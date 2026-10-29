@@ -1,0 +1,4354 @@
+{
+  "status": "INPUT_INVENTORY_ONLY_NOT_PORT_COMPLETE",
+  "source_version": "b24",
+  "author": "Blaac",
+  "file_count": 63,
+  "loaded_modules": 45,
+  "definitions": 617,
+  "wait_statements": 195,
+  "fork_calls": 113,
+  "embedded_sprite_declarations": 345,
+  "unreferenced_gml_files": [
+    "areas/banditcamp.area.gml",
+    "areas/bigdog.area.gml",
+    "areas/mansion.area.gml",
+    "bosses/ravenbossbackup.mod.gml",
+    "bosses/spiderboss.mod.gml"
+  ],
+  "modules": [
+    {
+      "kind": "mod",
+      "module": "areas/noyetihere.area",
+      "path": "areas/noyetihere.area.gml",
+      "bytes": 2301,
+      "lines": 76,
+      "definitions": [
+        {
+          "name": "area_name",
+          "parameters": ""
+        },
+        {
+          "name": "area_sprite",
+          "parameters": "q"
+        },
+        {
+          "name": "area_transit",
+          "parameters": ""
+        },
+        {
+          "name": "area_finish",
+          "parameters": ""
+        },
+        {
+          "name": "area_setup",
+          "parameters": ""
+        },
+        {
+          "name": "area_start",
+          "parameters": ""
+        },
+        {
+          "name": "area_make_floor",
+          "parameters": ""
+        },
+        {
+          "name": "area_pop_enemies",
+          "parameters": ""
+        },
+        {
+          "name": "area_pop_props",
+          "parameters": ""
+        },
+        {
+          "name": "area_mapdata",
+          "parameters": "lx, ly, lp, ls, ws, ll"
+        }
+      ],
+      "wait_statements": 0,
+      "fork_calls": 0,
+      "called_functions": [
+        "area_mapdata",
+        "area_sprite",
+        "choose",
+        "ds_list_create",
+        "ds_list_destroy",
+        "ds_list_find_value",
+        "ds_list_size",
+        "if",
+        "instance_create",
+        "instance_furthest",
+        "instance_nearest",
+        "irandom",
+        "make_color_rgb",
+        "mod_script_call",
+        "random",
+        "sound_play_ambient",
+        "sound_play_music",
+        "switch",
+        "weapon_get_list",
+        "with"
+      ],
+      "embedded_sprite_declarations": 0
+    },
+    {
+      "kind": "mod",
+      "module": "areas/icecave.area",
+      "path": "areas/icecave.area.gml",
+      "bytes": 15452,
+      "lines": 128,
+      "definitions": [
+        {
+          "name": "area_name",
+          "parameters": ""
+        },
+        {
+          "name": "area_sprite",
+          "parameters": "q"
+        },
+        {
+          "name": "area_transit",
+          "parameters": ""
+        },
+        {
+          "name": "area_finish",
+          "parameters": ""
+        },
+        {
+          "name": "area_setup",
+          "parameters": ""
+        },
+        {
+          "name": "area_make_floor",
+          "parameters": ""
+        },
+        {
+          "name": "area_start",
+          "parameters": ""
+        },
+        {
+          "name": "area_pop_enemies",
+          "parameters": ""
+        },
+        {
+          "name": "area_pop_props",
+          "parameters": ""
+        },
+        {
+          "name": "area_mapdata",
+          "parameters": "lx, ly, lp, ls, ws, ll"
+        }
+      ],
+      "wait_statements": 0,
+      "fork_calls": 0,
+      "called_functions": [
+        "area_mapdata",
+        "area_sprite",
+        "choose",
+        "if",
+        "instance_create",
+        "instance_destroy",
+        "instance_number",
+        "make_color_rgb",
+        "mod_script_call",
+        "place_meeting",
+        "point_distance",
+        "random",
+        "sound_play_music",
+        "sound_stop_all",
+        "sprite_add_base64",
+        "sprite_replace_base64",
+        "sprite_restore",
+        "switch"
+      ],
+      "embedded_sprite_declarations": 9
+    },
+    {
+      "kind": "mod",
+      "module": "areas/ravenboss.area",
+      "path": "areas/ravenboss.area.gml",
+      "bytes": 14242,
+      "lines": 92,
+      "definitions": [
+        {
+          "name": "area_name",
+          "parameters": ""
+        },
+        {
+          "name": "area_sprite",
+          "parameters": "q"
+        },
+        {
+          "name": "area_transit",
+          "parameters": ""
+        },
+        {
+          "name": "area_finish",
+          "parameters": ""
+        },
+        {
+          "name": "area_setup",
+          "parameters": ""
+        },
+        {
+          "name": "area_start",
+          "parameters": ""
+        },
+        {
+          "name": "area_make_floor",
+          "parameters": ""
+        },
+        {
+          "name": "area_pop_enemies",
+          "parameters": ""
+        },
+        {
+          "name": "area_pop_props",
+          "parameters": ""
+        },
+        {
+          "name": "area_mapdata",
+          "parameters": "lx, ly, lp, ls, ws, ll"
+        }
+      ],
+      "wait_statements": 0,
+      "fork_calls": 0,
+      "called_functions": [
+        "area_mapdata",
+        "area_sprite",
+        "choose",
+        "if",
+        "instance_create",
+        "instance_destroy",
+        "instance_furthest",
+        "instance_number",
+        "make_color_rgb",
+        "mod_script_call",
+        "place_meeting",
+        "point_distance",
+        "random",
+        "sound_play_ambient",
+        "sprite_add_base64",
+        "switch"
+      ],
+      "embedded_sprite_declarations": 1
+    },
+    {
+      "kind": "mod",
+      "module": "areas/scorpionboss.area",
+      "path": "areas/scorpionboss.area.gml",
+      "bytes": 6395,
+      "lines": 157,
+      "definitions": [
+        {
+          "name": "area_name",
+          "parameters": ""
+        },
+        {
+          "name": "area_sprite",
+          "parameters": "q"
+        },
+        {
+          "name": "area_transit",
+          "parameters": ""
+        },
+        {
+          "name": "area_finish",
+          "parameters": ""
+        },
+        {
+          "name": "area_setup",
+          "parameters": ""
+        },
+        {
+          "name": "area_start",
+          "parameters": ""
+        },
+        {
+          "name": "area_make_floor",
+          "parameters": ""
+        },
+        {
+          "name": "area_pop_enemies",
+          "parameters": ""
+        },
+        {
+          "name": "area_pop_props",
+          "parameters": ""
+        },
+        {
+          "name": "area_mapdata",
+          "parameters": "lx, ly, lp, ls, ws, ll"
+        }
+      ],
+      "wait_statements": 0,
+      "fork_calls": 0,
+      "called_functions": [
+        "area_mapdata",
+        "area_sprite",
+        "choose",
+        "ds_list_create",
+        "ds_list_destroy",
+        "ds_list_find_value",
+        "ds_list_size",
+        "if",
+        "instance_change",
+        "instance_create",
+        "instance_destroy",
+        "instance_furthest",
+        "instance_number",
+        "irandom",
+        "make_color_rgb",
+        "mod_script_call",
+        "place_meeting",
+        "point_distance",
+        "random",
+        "sound_play_ambient",
+        "sprite_add_base64",
+        "sprite_restore",
+        "switch",
+        "weapon_get_list"
+      ],
+      "embedded_sprite_declarations": 1
+    },
+    {
+      "kind": "mod",
+      "module": "areas/turtles.area",
+      "path": "areas/turtles.area.gml",
+      "bytes": 5029,
+      "lines": 99,
+      "definitions": [
+        {
+          "name": "area_name",
+          "parameters": ""
+        },
+        {
+          "name": "area_sprite",
+          "parameters": "q"
+        },
+        {
+          "name": "area_transit",
+          "parameters": ""
+        },
+        {
+          "name": "area_finish",
+          "parameters": ""
+        },
+        {
+          "name": "area_setup",
+          "parameters": ""
+        },
+        {
+          "name": "area_start",
+          "parameters": ""
+        },
+        {
+          "name": "area_make_floor",
+          "parameters": ""
+        },
+        {
+          "name": "area_pop_props",
+          "parameters": ""
+        },
+        {
+          "name": "area_mapdata",
+          "parameters": "lx, ly, lp, ls, ws, ll"
+        }
+      ],
+      "wait_statements": 0,
+      "fork_calls": 0,
+      "called_functions": [
+        "area_mapdata",
+        "area_sprite",
+        "choose",
+        "if",
+        "instance_create",
+        "instance_destroy",
+        "instance_furthest",
+        "instance_nearest",
+        "instance_number",
+        "make_color_rgb",
+        "mod_script_call",
+        "place_meeting",
+        "point_distance",
+        "random",
+        "sound_play_ambient",
+        "sound_play_music",
+        "sound_stop",
+        "sprite_add_base64",
+        "switch",
+        "with"
+      ],
+      "embedded_sprite_declarations": 2
+    },
+    {
+      "kind": "mod",
+      "module": "areas/elevator.area",
+      "path": "areas/elevator.area.gml",
+      "bytes": 13256,
+      "lines": 184,
+      "definitions": [
+        {
+          "name": "area_name",
+          "parameters": ""
+        },
+        {
+          "name": "area_sprite",
+          "parameters": "q"
+        },
+        {
+          "name": "area_transit",
+          "parameters": ""
+        },
+        {
+          "name": "area_finish",
+          "parameters": ""
+        },
+        {
+          "name": "area_setup",
+          "parameters": ""
+        },
+        {
+          "name": "area_start",
+          "parameters": ""
+        },
+        {
+          "name": "area_make_floor",
+          "parameters": ""
+        },
+        {
+          "name": "area_pop_enemies",
+          "parameters": ""
+        },
+        {
+          "name": "area_mapdata",
+          "parameters": "lx, ly, lp, ls, ws, ll"
+        }
+      ],
+      "wait_statements": 0,
+      "fork_calls": 0,
+      "called_functions": [
+        "abs",
+        "area_mapdata",
+        "area_sprite",
+        "choose",
+        "collision_rectangle",
+        "distance_to_object",
+        "distance_to_point",
+        "if",
+        "instance_create",
+        "instance_destroy",
+        "instance_number",
+        "instances_matching",
+        "make_color_rgb",
+        "mod_script_call",
+        "point_distance",
+        "random",
+        "repeat",
+        "sound_play_ambient",
+        "sound_play_music",
+        "sprite_add_base64",
+        "switch"
+      ],
+      "embedded_sprite_declarations": 3
+    },
+    {
+      "kind": "mod",
+      "module": "areas/HQ.area",
+      "path": "areas/HQ.area.gml",
+      "bytes": 3597,
+      "lines": 123,
+      "definitions": [
+        {
+          "name": "area_name",
+          "parameters": ""
+        },
+        {
+          "name": "area_sprite",
+          "parameters": "q"
+        },
+        {
+          "name": "area_transit",
+          "parameters": ""
+        },
+        {
+          "name": "area_finish",
+          "parameters": ""
+        },
+        {
+          "name": "area_setup",
+          "parameters": ""
+        },
+        {
+          "name": "area_start",
+          "parameters": ""
+        },
+        {
+          "name": "area_make_floor",
+          "parameters": ""
+        },
+        {
+          "name": "area_pop_enemies",
+          "parameters": ""
+        },
+        {
+          "name": "area_pop_props",
+          "parameters": ""
+        },
+        {
+          "name": "area_mapdata",
+          "parameters": "lx, ly, lp, ls, ws, ll"
+        }
+      ],
+      "wait_statements": 0,
+      "fork_calls": 0,
+      "called_functions": [
+        "abs",
+        "area_mapdata",
+        "area_sprite",
+        "choose",
+        "if",
+        "instance_create",
+        "instance_destroy",
+        "instance_number",
+        "make_color_rgb",
+        "place_meeting",
+        "point_distance",
+        "random",
+        "sound_play_ambient",
+        "sound_play_music",
+        "string",
+        "switch"
+      ],
+      "embedded_sprite_declarations": 0
+    },
+    {
+      "kind": "mod",
+      "module": "areas/venuz.area",
+      "path": "areas/venuz.area.gml",
+      "bytes": 44675,
+      "lines": 1317,
+      "definitions": [
+        {
+          "name": "area_name",
+          "parameters": ""
+        },
+        {
+          "name": "area_sprite",
+          "parameters": "q"
+        },
+        {
+          "name": "area_transit",
+          "parameters": ""
+        },
+        {
+          "name": "area_finish",
+          "parameters": ""
+        },
+        {
+          "name": "area_setup",
+          "parameters": ""
+        },
+        {
+          "name": "area_make_floor",
+          "parameters": ""
+        },
+        {
+          "name": "area_start",
+          "parameters": ""
+        },
+        {
+          "name": "area_pop_enemies",
+          "parameters": ""
+        },
+        {
+          "name": "area_pop_props",
+          "parameters": ""
+        },
+        {
+          "name": "area_mapdata",
+          "parameters": "lx, ly, lp, ls, ws, ll"
+        }
+      ],
+      "wait_statements": 1,
+      "fork_calls": 1,
+      "called_functions": [
+        "area_mapdata",
+        "area_sprite",
+        "distance_to_object",
+        "for",
+        "fork",
+        "if",
+        "instance_change",
+        "instance_create",
+        "instance_delete",
+        "instance_destroy",
+        "instance_nearest",
+        "instances_matching",
+        "instances_matching_gt",
+        "make_color_rgb",
+        "mod_script_call",
+        "point_distance",
+        "position_meeting",
+        "sound_add",
+        "sound_loop",
+        "sound_stop",
+        "sprite_add_base64",
+        "string",
+        "string_char_at",
+        "string_length",
+        "string_split",
+        "switch"
+      ],
+      "embedded_sprite_declarations": 21
+    },
+    {
+      "kind": "mod",
+      "module": "areas/oasis.area",
+      "path": "areas/oasis.area.gml",
+      "bytes": 46978,
+      "lines": 536,
+      "definitions": [
+        {
+          "name": "area_name",
+          "parameters": ""
+        },
+        {
+          "name": "area_sprite",
+          "parameters": "q"
+        },
+        {
+          "name": "area_transit",
+          "parameters": ""
+        },
+        {
+          "name": "area_finish",
+          "parameters": ""
+        },
+        {
+          "name": "area_setup",
+          "parameters": ""
+        },
+        {
+          "name": "area_start",
+          "parameters": ""
+        },
+        {
+          "name": "area_make_floor",
+          "parameters": ""
+        },
+        {
+          "name": "area_pop_enemies",
+          "parameters": ""
+        },
+        {
+          "name": "area_pop_props",
+          "parameters": ""
+        },
+        {
+          "name": "area_mapdata",
+          "parameters": "lx, ly, lp, ls, ws, ll"
+        }
+      ],
+      "wait_statements": 0,
+      "fork_calls": 0,
+      "called_functions": [
+        "area_mapdata",
+        "area_sprite",
+        "choose",
+        "if",
+        "instance_change",
+        "instance_create",
+        "instance_delete",
+        "instance_destroy",
+        "instance_furthest",
+        "instance_nearest",
+        "instance_number",
+        "instances_matching",
+        "make_color_rgb",
+        "mod_script_call",
+        "place_meeting",
+        "point_distance",
+        "random",
+        "random_range",
+        "sound_assign",
+        "sound_play_ambient",
+        "sound_play_music",
+        "sound_restore",
+        "sprite_add_base64",
+        "sprite_replace_base64",
+        "sprite_restore",
+        "string",
+        "switch",
+        "with"
+      ],
+      "embedded_sprite_declarations": 19
+    },
+    {
+      "kind": "mod",
+      "module": "areas/jungle.area",
+      "path": "areas/jungle.area.gml",
+      "bytes": 17214,
+      "lines": 137,
+      "definitions": [
+        {
+          "name": "area_name",
+          "parameters": ""
+        },
+        {
+          "name": "area_sprite",
+          "parameters": "q"
+        },
+        {
+          "name": "area_transit",
+          "parameters": ""
+        },
+        {
+          "name": "area_finish",
+          "parameters": ""
+        },
+        {
+          "name": "area_setup",
+          "parameters": ""
+        },
+        {
+          "name": "area_start",
+          "parameters": ""
+        },
+        {
+          "name": "area_make_floor",
+          "parameters": ""
+        },
+        {
+          "name": "area_pop_enemies",
+          "parameters": ""
+        },
+        {
+          "name": "area_pop_props",
+          "parameters": ""
+        },
+        {
+          "name": "area_mapdata",
+          "parameters": "lx, ly, lp, ls, ws, ll"
+        }
+      ],
+      "wait_statements": 0,
+      "fork_calls": 0,
+      "called_functions": [
+        "area_mapdata",
+        "area_sprite",
+        "choose",
+        "if",
+        "instance_create",
+        "instance_destroy",
+        "instance_furthest",
+        "instance_number",
+        "make_color_rgb",
+        "mod_script_call",
+        "place_meeting",
+        "point_distance",
+        "random",
+        "repeat",
+        "sound_play_ambient",
+        "sound_play_music",
+        "sprite_replace_base64",
+        "sprite_restore",
+        "string",
+        "switch"
+      ],
+      "embedded_sprite_declarations": 8
+    },
+    {
+      "kind": "mod",
+      "module": "areas/cavesinv.area",
+      "path": "areas/cavesinv.area.gml",
+      "bytes": 29458,
+      "lines": 214,
+      "definitions": [
+        {
+          "name": "area_name",
+          "parameters": ""
+        },
+        {
+          "name": "area_sprite",
+          "parameters": "q"
+        },
+        {
+          "name": "area_transit",
+          "parameters": ""
+        },
+        {
+          "name": "area_finish",
+          "parameters": ""
+        },
+        {
+          "name": "area_setup",
+          "parameters": ""
+        },
+        {
+          "name": "area_start",
+          "parameters": ""
+        },
+        {
+          "name": "area_make_floor",
+          "parameters": ""
+        },
+        {
+          "name": "area_pop_enemies",
+          "parameters": ""
+        },
+        {
+          "name": "area_pop_props",
+          "parameters": ""
+        },
+        {
+          "name": "area_mapdata",
+          "parameters": "lx, ly, lp, ls, ws, ll"
+        }
+      ],
+      "wait_statements": 0,
+      "fork_calls": 0,
+      "called_functions": [
+        "area_mapdata",
+        "area_sprite",
+        "choose",
+        "if",
+        "instance_create",
+        "instance_destroy",
+        "instance_exists",
+        "instance_furthest",
+        "instance_nearest",
+        "instance_number",
+        "lengthdir_x",
+        "lengthdir_y",
+        "make_color_rgb",
+        "mod_script_call",
+        "place_meeting",
+        "point_direction",
+        "point_distance",
+        "random",
+        "random_range",
+        "skill_get",
+        "sound_play_ambient",
+        "sound_play_music",
+        "sprite_add_base64",
+        "sprite_replace_base64",
+        "sprite_restore",
+        "string",
+        "string_count",
+        "switch",
+        "weapon_get_name"
+      ],
+      "embedded_sprite_declarations": 8
+    },
+    {
+      "kind": "mod",
+      "module": "bosses/scorpionboss",
+      "path": "bosses/scorpionboss.mod.gml",
+      "bytes": 62206,
+      "lines": 755,
+      "definitions": [
+        {
+          "name": "scorpionboss_create",
+          "parameters": "_x,_y"
+        },
+        {
+          "name": "scorpionboss_step",
+          "parameters": ""
+        },
+        {
+          "name": "step",
+          "parameters": ""
+        },
+        {
+          "name": "scorpionboss_death",
+          "parameters": ""
+        },
+        {
+          "name": "fancyscorpionboss_death",
+          "parameters": ""
+        },
+        {
+          "name": "boltstickfly",
+          "parameters": ""
+        }
+      ],
+      "wait_statements": 21,
+      "fork_calls": 10,
+      "called_functions": [
+        "choose",
+        "collision_line",
+        "distance_to_object",
+        "for",
+        "fork",
+        "if",
+        "instance_copy",
+        "instance_create",
+        "instance_destroy",
+        "instance_exists",
+        "instance_nearest",
+        "instance_number",
+        "instances_matching",
+        "lengthdir_x",
+        "lengthdir_y",
+        "max",
+        "min",
+        "mod_script_call",
+        "mod_variable_exists",
+        "mod_variable_get",
+        "motion_add",
+        "move_towards_point",
+        "place_meeting",
+        "point_direction",
+        "point_distance",
+        "point_seen",
+        "random",
+        "random_range",
+        "repeat",
+        "round",
+        "scorpionboss_create",
+        "script_ref_create",
+        "sound_add",
+        "sound_play",
+        "sound_play_music",
+        "sound_play_pitch",
+        "sound_play_pitchvol",
+        "sprite_add_base64",
+        "wait",
+        "weapon_get_type",
+        "while",
+        "with"
+      ],
+      "embedded_sprite_declarations": 4
+    },
+    {
+      "kind": "mod",
+      "module": "bosses/turtles",
+      "path": "bosses/turtles.mod.gml",
+      "bytes": 39217,
+      "lines": 455,
+      "definitions": [
+        {
+          "name": "game_start",
+          "parameters": ""
+        },
+        {
+          "name": "turtle1_create",
+          "parameters": "_x,_y"
+        },
+        {
+          "name": "turtle2_create",
+          "parameters": "_x,_y"
+        },
+        {
+          "name": "turtle3_create",
+          "parameters": "_x,_y"
+        },
+        {
+          "name": "turtle4_create",
+          "parameters": "_x,_y"
+        },
+        {
+          "name": "draw_wep_katana",
+          "parameters": ""
+        },
+        {
+          "name": "turtle_step",
+          "parameters": ""
+        },
+        {
+          "name": "draw_wep_dagger",
+          "parameters": ""
+        },
+        {
+          "name": "draw_wep_chuck",
+          "parameters": ""
+        },
+        {
+          "name": "draw_wep_stick",
+          "parameters": ""
+        },
+        {
+          "name": "turtle_dead",
+          "parameters": ""
+        }
+      ],
+      "wait_statements": 12,
+      "fork_calls": 0,
+      "called_functions": [
+        "collision_circle",
+        "collision_line",
+        "draw_self",
+        "draw_sprite_ext",
+        "if",
+        "instance_create",
+        "instance_exists",
+        "instance_nearest",
+        "instance_number",
+        "lengthdir_x",
+        "lengthdir_y",
+        "mod_script_call",
+        "mod_variable_exists",
+        "mod_variable_get",
+        "motion_add",
+        "motion_set",
+        "point_direction",
+        "random",
+        "script_ref_create",
+        "sound_loop",
+        "sound_play",
+        "sound_play_music",
+        "sound_play_pitch",
+        "sound_stop",
+        "sprite_add_base64",
+        "turtle1_create",
+        "turtle2_create",
+        "turtle3_create",
+        "turtle4_create",
+        "wait"
+      ],
+      "embedded_sprite_declarations": 4
+    },
+    {
+      "kind": "mod",
+      "module": "bosses/ratboss",
+      "path": "bosses/ratboss.mod.gml",
+      "bytes": 73228,
+      "lines": 311,
+      "definitions": [
+        {
+          "name": "ratbosssleep_create",
+          "parameters": "_x,_y"
+        },
+        {
+          "name": "ratbosssleep_dead",
+          "parameters": ""
+        },
+        {
+          "name": "ratboss_create",
+          "parameters": "_x,_y"
+        },
+        {
+          "name": "ratboss_step",
+          "parameters": ""
+        },
+        {
+          "name": "ratboss_dead",
+          "parameters": ""
+        },
+        {
+          "name": "ratbosssleep_step",
+          "parameters": ""
+        },
+        {
+          "name": "tenticle_create",
+          "parameters": "_x,_y,cre"
+        },
+        {
+          "name": "tenticle_step",
+          "parameters": ""
+        },
+        {
+          "name": "tenticle_dead",
+          "parameters": ""
+        }
+      ],
+      "wait_statements": 1,
+      "fork_calls": 0,
+      "called_functions": [
+        "choose",
+        "collision_line",
+        "distance_to_object",
+        "if",
+        "instance_create",
+        "instance_destroy",
+        "instance_exists",
+        "instance_nearest",
+        "instance_number",
+        "instances_matching",
+        "instances_matching_ne",
+        "lengthdir_x",
+        "lengthdir_y",
+        "motion_add",
+        "motion_set",
+        "place_meeting",
+        "point_direction",
+        "random",
+        "random_range",
+        "ratboss_create",
+        "ratbosssleep_create",
+        "repeat",
+        "script_ref_create",
+        "sound_play",
+        "sound_play_pitch",
+        "sprite_add_base64",
+        "tenticle_create",
+        "wait",
+        "with"
+      ],
+      "embedded_sprite_declarations": 11
+    },
+    {
+      "kind": "mod",
+      "module": "bosses/ravenboss",
+      "path": "bosses/ravenboss.mod.gml",
+      "bytes": 68844,
+      "lines": 614,
+      "definitions": [
+        {
+          "name": "wantravenboss_create",
+          "parameters": "_x,_y"
+        },
+        {
+          "name": "wantravenboss_step",
+          "parameters": ""
+        },
+        {
+          "name": "ravenboss_create",
+          "parameters": "_x,_y"
+        },
+        {
+          "name": "ravenboss_callbackup",
+          "parameters": ""
+        },
+        {
+          "name": "ravenboss_hurt",
+          "parameters": ""
+        },
+        {
+          "name": "ravenboss_step",
+          "parameters": ""
+        },
+        {
+          "name": "ravenboss_draw",
+          "parameters": ""
+        },
+        {
+          "name": "ravenboss_death",
+          "parameters": ""
+        },
+        {
+          "name": "boltstickfly",
+          "parameters": ""
+        }
+      ],
+      "wait_statements": 4,
+      "fork_calls": 2,
+      "called_functions": [
+        "abs",
+        "choose",
+        "clamp",
+        "collision_line",
+        "distance_to_object",
+        "distance_to_point",
+        "draw_ellipse",
+        "draw_set_alpha",
+        "draw_set_color",
+        "draw_sprite_ext",
+        "floor",
+        "fork",
+        "if",
+        "instance_change",
+        "instance_create",
+        "instance_destroy",
+        "instance_exists",
+        "instance_furthest",
+        "instance_nearest",
+        "instance_number",
+        "irandom",
+        "irandom_range",
+        "lengthdir_x",
+        "lengthdir_y",
+        "make_color_rgb",
+        "min",
+        "mod_script_call",
+        "mod_variable_exists",
+        "mod_variable_get",
+        "motion_add",
+        "place_meeting",
+        "point_direction",
+        "point_distance",
+        "random",
+        "random_range",
+        "ravenboss_callbackup",
+        "ravenboss_create",
+        "repeat",
+        "script_ref_create",
+        "sound_play",
+        "sound_play_music",
+        "sound_play_pitch",
+        "sound_play_pitchvol",
+        "sprite_add_base64",
+        "wantravenboss_create",
+        "weapon_get_type",
+        "while",
+        "with"
+      ],
+      "embedded_sprite_declarations": 12
+    },
+    {
+      "kind": "mod",
+      "module": "bosses/gatorboss",
+      "path": "bosses/gatorboss.mod.gml",
+      "bytes": 50070,
+      "lines": 411,
+      "definitions": [
+        {
+          "name": "draw",
+          "parameters": ""
+        },
+        {
+          "name": "draw_dark",
+          "parameters": ""
+        },
+        {
+          "name": "gatorboss_create",
+          "parameters": "_x,_y"
+        },
+        {
+          "name": "gatorboss_step",
+          "parameters": ""
+        },
+        {
+          "name": "Gatorfist",
+          "parameters": ""
+        },
+        {
+          "name": "Gatorfist_wall",
+          "parameters": ""
+        },
+        {
+          "name": "Gatorfist_destroy",
+          "parameters": ""
+        },
+        {
+          "name": "gatorexplosion",
+          "parameters": "_x,_y,_t"
+        },
+        {
+          "name": "gatorboss_death",
+          "parameters": ""
+        }
+      ],
+      "wait_statements": 5,
+      "fork_calls": 4,
+      "called_functions": [
+        "choose",
+        "collision_line",
+        "distance_to_object",
+        "draw_circle",
+        "draw_set_color",
+        "fork",
+        "gatorboss_create",
+        "gatorexplosion",
+        "if",
+        "instance_create",
+        "instance_destroy",
+        "instance_exists",
+        "instance_nearest",
+        "instance_number",
+        "instances_matching",
+        "instances_matching_ne",
+        "lengthdir_x",
+        "lengthdir_y",
+        "min",
+        "mod",
+        "mod_script_call",
+        "mod_variable_exists",
+        "mod_variable_get",
+        "motion_add",
+        "place_meeting",
+        "point_direction",
+        "random",
+        "random_range",
+        "repeat",
+        "round",
+        "script_ref_create",
+        "sound_play",
+        "sound_play_music",
+        "sound_play_pitchvol",
+        "sprite_add_base64"
+      ],
+      "embedded_sprite_declarations": 11
+    },
+    {
+      "kind": "mod",
+      "module": "bosses/titank",
+      "path": "bosses/titank.mod.gml",
+      "bytes": 120497,
+      "lines": 1661,
+      "definitions": [
+        {
+          "name": "init",
+          "parameters": ""
+        },
+        {
+          "name": "step",
+          "parameters": ""
+        },
+        {
+          "name": "wanttitank",
+          "parameters": ""
+        },
+        {
+          "name": "wanttitank_step",
+          "parameters": ""
+        },
+        {
+          "name": "titank_create",
+          "parameters": "tankx, tanky"
+        },
+        {
+          "name": "draw",
+          "parameters": ""
+        },
+        {
+          "name": "draw_tank",
+          "parameters": ""
+        },
+        {
+          "name": "draw_leg",
+          "parameters": "i"
+        },
+        {
+          "name": "draw_shadows",
+          "parameters": ""
+        },
+        {
+          "name": "scrNuke",
+          "parameters": "z, size"
+        },
+        {
+          "name": "tinade_create",
+          "parameters": "_x,_y,_creator"
+        },
+        {
+          "name": "tinade",
+          "parameters": ""
+        },
+        {
+          "name": "tinade_explo",
+          "parameters": ""
+        },
+        {
+          "name": "tinade_wall",
+          "parameters": ""
+        },
+        {
+          "name": "tinade_hit",
+          "parameters": ""
+        },
+        {
+          "name": "tinade_draw",
+          "parameters": ""
+        }
+      ],
+      "wait_statements": 45,
+      "fork_calls": 30,
+      "called_functions": [
+        "abs",
+        "array_length_1d",
+        "button_pressed",
+        "choose",
+        "distance_to_object",
+        "draw_circle",
+        "draw_leg",
+        "draw_line",
+        "draw_set_blend_mode",
+        "draw_set_color",
+        "draw_sprite_ext",
+        "draw_sprite_pos",
+        "draw_text_shadow",
+        "for",
+        "fork",
+        "if",
+        "instance_create",
+        "instance_delete",
+        "instance_destroy",
+        "instance_exists",
+        "instance_nearest",
+        "instance_number",
+        "instances_matching",
+        "irandom",
+        "lengthdir_x",
+        "lengthdir_y",
+        "max",
+        "min",
+        "mod_script_call",
+        "mod_variable_exists",
+        "mod_variable_get",
+        "motion_add",
+        "move_bounce_solid",
+        "place_meeting",
+        "point_direction",
+        "point_distance",
+        "position_meeting",
+        "random",
+        "random_range",
+        "repeat",
+        "round",
+        "scrNuke",
+        "script_bind_draw",
+        "script_ref_create",
+        "sin",
+        "sound_play",
+        "sound_play_music",
+        "sprite_add_base64",
+        "sprite_get_width",
+        "string",
+        "tinade_create",
+        "titank_create",
+        "wait",
+        "weapon_get_name",
+        "while",
+        "with"
+      ],
+      "embedded_sprite_declarations": 15
+    },
+    {
+      "kind": "mod",
+      "module": "bosses/guardianboss",
+      "path": "bosses/guardianboss.mod.gml",
+      "bytes": 39146,
+      "lines": 640,
+      "definitions": [
+        {
+          "name": "draw_dark",
+          "parameters": ""
+        },
+        {
+          "name": "GuardianStatue_create",
+          "parameters": "_x, _y"
+        },
+        {
+          "name": "GuardianStatue_draw",
+          "parameters": ""
+        },
+        {
+          "name": "GuardianStatue_step",
+          "parameters": ""
+        },
+        {
+          "name": "guardianboss_create",
+          "parameters": ""
+        },
+        {
+          "name": "guardianboss_dead",
+          "parameters": ""
+        },
+        {
+          "name": "guardianboss_hurt",
+          "parameters": ""
+        },
+        {
+          "name": "guardianboss_step",
+          "parameters": ""
+        },
+        {
+          "name": "correctcoords",
+          "parameters": ""
+        },
+        {
+          "name": "guardiandark_draw",
+          "parameters": ""
+        },
+        {
+          "name": "guardianboss_draw",
+          "parameters": ""
+        },
+        {
+          "name": "guardianwall_draw",
+          "parameters": ""
+        }
+      ],
+      "wait_statements": 2,
+      "fork_calls": 2,
+      "called_functions": [
+        "GuardianStatue_create",
+        "abs",
+        "asset_get_index",
+        "ceil",
+        "choose",
+        "clamp",
+        "cos",
+        "d3d_set_fog",
+        "distance_to_object",
+        "draw_circle",
+        "draw_rectangle",
+        "draw_set_alpha",
+        "draw_set_color",
+        "draw_sprite",
+        "draw_sprite_ext",
+        "event_perform",
+        "for",
+        "fork",
+        "guardianboss_create",
+        "if",
+        "instance_create",
+        "instance_destroy",
+        "instance_exists",
+        "instance_nearest",
+        "instance_number",
+        "instances_matching",
+        "irandom",
+        "lengthdir_x",
+        "lengthdir_y",
+        "max",
+        "median",
+        "min",
+        "mod_script_call",
+        "mod_variable_exists",
+        "mod_variable_get",
+        "motion_add",
+        "place_meeting",
+        "point_direction",
+        "point_distance",
+        "random",
+        "random_range",
+        "repeat",
+        "round",
+        "script_bind_draw",
+        "script_ref_create",
+        "sin",
+        "sound_play",
+        "sound_play_music",
+        "sprite_add_base64",
+        "sprite_get_number",
+        "sprite_get_width",
+        "string",
+        "with"
+      ],
+      "embedded_sprite_declarations": 8
+    },
+    {
+      "kind": "mod",
+      "module": "bosses/throne",
+      "path": "bosses/throne.mod.gml",
+      "bytes": 4657,
+      "lines": 220,
+      "definitions": [
+        {
+          "name": "throne_create",
+          "parameters": "_x,_y"
+        },
+        {
+          "name": "Throne2Step",
+          "parameters": ""
+        },
+        {
+          "name": "Throne2Destroy",
+          "parameters": ""
+        },
+        {
+          "name": "Throne2Hit",
+          "parameters": "damage"
+        },
+        {
+          "name": "Throne2Draw",
+          "parameters": ""
+        },
+        {
+          "name": "move_alarm",
+          "parameters": ""
+        },
+        {
+          "name": "attack_alarm",
+          "parameters": ""
+        },
+        {
+          "name": "Throne2Platform",
+          "parameters": ""
+        }
+      ],
+      "wait_statements": 2,
+      "fork_calls": 0,
+      "called_functions": [
+        "Throne2Hit",
+        "attack_alarm",
+        "choose",
+        "d3d_set_fog",
+        "draw_set_color",
+        "draw_sprite",
+        "draw_text",
+        "for",
+        "instance_change",
+        "instance_create",
+        "instance_delete",
+        "instance_destroy",
+        "instance_exists",
+        "instance_nearest",
+        "instance_number",
+        "irandom",
+        "motion_add",
+        "move_alarm",
+        "place_meeting",
+        "point_direction",
+        "random",
+        "repeat",
+        "script_ref_create",
+        "sound_play",
+        "sound_play_music",
+        "string",
+        "throne_create",
+        "wait"
+      ],
+      "embedded_sprite_declarations": 0
+    },
+    {
+      "kind": "mod",
+      "module": "bosses/gungod",
+      "path": "bosses/gungod.mod.gml",
+      "bytes": 18894,
+      "lines": 241,
+      "definitions": [
+        {
+          "name": "GunGod_create",
+          "parameters": "_x, _y"
+        },
+        {
+          "name": "GunGod_draw",
+          "parameters": ""
+        },
+        {
+          "name": "GunGod_step",
+          "parameters": ""
+        },
+        {
+          "name": "GunGod_hurt",
+          "parameters": "damage"
+        },
+        {
+          "name": "GunGod_dead",
+          "parameters": ""
+        },
+        {
+          "name": "yungbullet",
+          "parameters": ""
+        },
+        {
+          "name": "helicopterdown",
+          "parameters": ""
+        }
+      ],
+      "wait_statements": 0,
+      "fork_calls": 0,
+      "called_functions": [
+        "GunGod_create",
+        "GunGod_hurt",
+        "choose",
+        "clamp",
+        "d3d_set_fog",
+        "distance_to_object",
+        "distance_to_point",
+        "draw_ellipse",
+        "draw_set_alpha",
+        "draw_set_color",
+        "draw_sprite_ext",
+        "for",
+        "instance_create",
+        "instance_delete",
+        "instance_destroy",
+        "instance_exists",
+        "instance_nearest",
+        "lengthdir_x",
+        "lengthdir_y",
+        "make_color_rgb",
+        "min",
+        "mod_script_call",
+        "motion_add",
+        "place_free",
+        "place_meeting",
+        "point_direction",
+        "random",
+        "random_range",
+        "repeat",
+        "script_ref_create",
+        "sound_play",
+        "sound_play_pitchvol",
+        "sprite_add_base64",
+        "while"
+      ],
+      "embedded_sprite_declarations": 1
+    },
+    {
+      "kind": "wep",
+      "module": "weapons/secretweapon1",
+      "path": "weapons/secretweapon1.wep.gml",
+      "bytes": 1688,
+      "lines": 70,
+      "definitions": [
+        {
+          "name": "weapon_name",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_type",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_cost",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_load",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_auto",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_area",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_swap",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_sprt",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_text",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_melee",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_fire",
+          "parameters": ""
+        }
+      ],
+      "wait_statements": 1,
+      "fork_calls": 0,
+      "called_functions": [
+        "instance_create",
+        "instance_exists",
+        "lengthdir_x",
+        "lengthdir_y",
+        "motion_add",
+        "skill_get",
+        "sound_play",
+        "sprite_add_weapon_base64"
+      ],
+      "embedded_sprite_declarations": 1
+    },
+    {
+      "kind": "wep",
+      "module": "weapons/secretweapon2",
+      "path": "weapons/secretweapon2.wep.gml",
+      "bytes": 5549,
+      "lines": 156,
+      "definitions": [
+        {
+          "name": "weapon_name",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_type",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_cost",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_load",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_auto",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_area",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_swap",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_sprt",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_text",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_laser_sight",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_fire",
+          "parameters": ""
+        },
+        {
+          "name": "step",
+          "parameters": ""
+        },
+        {
+          "name": "harpoon",
+          "parameters": ""
+        },
+        {
+          "name": "harpoonb",
+          "parameters": ""
+        },
+        {
+          "name": "harpoons",
+          "parameters": ""
+        }
+      ],
+      "wait_statements": 0,
+      "fork_calls": 0,
+      "called_functions": [
+        "distance_to_object",
+        "draw_sprite_ext",
+        "if",
+        "instance_create",
+        "instance_destroy",
+        "instance_exists",
+        "instances_matching",
+        "lengthdir_x",
+        "lengthdir_y",
+        "motion_set",
+        "point_direction",
+        "point_distance",
+        "repeat",
+        "script_bind_draw",
+        "sin",
+        "sound_play_pitch",
+        "sprite_add_base64",
+        "sprite_add_weapon_base64",
+        "weapon_post",
+        "with"
+      ],
+      "embedded_sprite_declarations": 3
+    },
+    {
+      "kind": "wep",
+      "module": "weapons/secretweapon3",
+      "path": "weapons/secretweapon3.wep.gml",
+      "bytes": 2495,
+      "lines": 83,
+      "definitions": [
+        {
+          "name": "init",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_name",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_type",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_cost",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_load",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_area",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_gold",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_swap",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_fire",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_sprt",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_text",
+          "parameters": ""
+        },
+        {
+          "name": "step",
+          "parameters": ""
+        },
+        {
+          "name": "crystallaser_step",
+          "parameters": ""
+        }
+      ],
+      "wait_statements": 0,
+      "fork_calls": 0,
+      "called_functions": [
+        "if",
+        "instance_create",
+        "instance_destroy",
+        "instance_exists",
+        "lengthdir_x",
+        "lengthdir_y",
+        "random",
+        "script_ref_create",
+        "skill_get",
+        "sound_play",
+        "sprite_add_weapon_base64"
+      ],
+      "embedded_sprite_declarations": 1
+    },
+    {
+      "kind": "wep",
+      "module": "weapons/secretweaponi1",
+      "path": "weapons/secretweaponi1.wep.gml",
+      "bytes": 837,
+      "lines": 48,
+      "definitions": [
+        {
+          "name": "weapon_name",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_type",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_cost",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_load",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_auto",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_area",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_swap",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_sprt",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_text",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_fire",
+          "parameters": ""
+        }
+      ],
+      "wait_statements": 1,
+      "fork_calls": 0,
+      "called_functions": [
+        "instance_create",
+        "instance_exists",
+        "motion_add",
+        "random",
+        "random_range",
+        "sound_play",
+        "weapon_post"
+      ],
+      "embedded_sprite_declarations": 0
+    },
+    {
+      "kind": "wep",
+      "module": "weapons/secretweaponi2",
+      "path": "weapons/secretweaponi2.wep.gml",
+      "bytes": 730,
+      "lines": 41,
+      "definitions": [
+        {
+          "name": "weapon_name",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_type",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_cost",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_load",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_auto",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_area",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_sprt",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_text",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_fire",
+          "parameters": ""
+        }
+      ],
+      "wait_statements": 0,
+      "fork_calls": 0,
+      "called_functions": [
+        "instance_create",
+        "motion_add",
+        "random_range",
+        "sound_play",
+        "weapon_post"
+      ],
+      "embedded_sprite_declarations": 0
+    },
+    {
+      "kind": "wep",
+      "module": "weapons/secretweaponi3",
+      "path": "weapons/secretweaponi3.wep.gml",
+      "bytes": 875,
+      "lines": 49,
+      "definitions": [
+        {
+          "name": "weapon_name",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_type",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_cost",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_load",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_auto",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_area",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_swap",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_sprt",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_text",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_fire",
+          "parameters": ""
+        }
+      ],
+      "wait_statements": 1,
+      "fork_calls": 0,
+      "called_functions": [
+        "instance_create",
+        "instance_exists",
+        "motion_add",
+        "random",
+        "repeat",
+        "sound_play",
+        "weapon_post",
+        "weapon_set_area",
+        "weapon_set_name"
+      ],
+      "embedded_sprite_declarations": 0
+    },
+    {
+      "kind": "wep",
+      "module": "weapons/secretweapong1",
+      "path": "weapons/secretweapong1.wep.gml",
+      "bytes": 2059,
+      "lines": 66,
+      "definitions": [
+        {
+          "name": "weapon_name",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_type",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_cost",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_load",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_auto",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_area",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_swap",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_sprt",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_text",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_fire",
+          "parameters": ""
+        }
+      ],
+      "wait_statements": 0,
+      "fork_calls": 0,
+      "called_functions": [
+        "if",
+        "instance_create",
+        "lengthdir_x",
+        "lengthdir_y",
+        "motion_add",
+        "place_free",
+        "place_meeting",
+        "random_range",
+        "round",
+        "sound_play",
+        "weapon_post",
+        "while"
+      ],
+      "embedded_sprite_declarations": 0
+    },
+    {
+      "kind": "wep",
+      "module": "weapons/secretweapong2",
+      "path": "weapons/secretweapong2.wep.gml",
+      "bytes": 2375,
+      "lines": 79,
+      "definitions": [
+        {
+          "name": "weapon_name",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_type",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_cost",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_load",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_auto",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_area",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_swap",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_sprt",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_text",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_fire",
+          "parameters": ""
+        }
+      ],
+      "wait_statements": 0,
+      "fork_calls": 0,
+      "called_functions": [
+        "if",
+        "instance_create",
+        "lengthdir_x",
+        "lengthdir_y",
+        "motion_add",
+        "place_free",
+        "place_meeting",
+        "random_range",
+        "sound_play",
+        "weapon_post",
+        "while"
+      ],
+      "embedded_sprite_declarations": 0
+    },
+    {
+      "kind": "wep",
+      "module": "weapons/secretweapong3",
+      "path": "weapons/secretweapong3.wep.gml",
+      "bytes": 2541,
+      "lines": 74,
+      "definitions": [
+        {
+          "name": "weapon_name",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_type",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_cost",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_load",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_auto",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_area",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_swap",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_sprt",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_text",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_fire",
+          "parameters": ""
+        }
+      ],
+      "wait_statements": 0,
+      "fork_calls": 0,
+      "called_functions": [
+        "if",
+        "instance_create",
+        "lengthdir_x",
+        "lengthdir_y",
+        "motion_add",
+        "place_free",
+        "place_meeting",
+        "random_range",
+        "round",
+        "sound_play",
+        "sprite_add_base64",
+        "weapon_post",
+        "while"
+      ],
+      "embedded_sprite_declarations": 1
+    },
+    {
+      "kind": "wep",
+      "module": "weapons/secretweapong4",
+      "path": "weapons/secretweapong4.wep.gml",
+      "bytes": 1567,
+      "lines": 48,
+      "definitions": [
+        {
+          "name": "weapon_name",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_type",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_cost",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_load",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_auto",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_area",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_swap",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_sprt",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_text",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_fire",
+          "parameters": ""
+        }
+      ],
+      "wait_statements": 0,
+      "fork_calls": 0,
+      "called_functions": [
+        "if",
+        "instance_create",
+        "lengthdir_x",
+        "lengthdir_y",
+        "motion_add",
+        "random",
+        "repeat",
+        "sound_play",
+        "sprite_add_weapon_base64",
+        "weapon_post"
+      ],
+      "embedded_sprite_declarations": 1
+    },
+    {
+      "kind": "wep",
+      "module": "weapons/secretweapong5",
+      "path": "weapons/secretweapong5.wep.gml",
+      "bytes": 2090,
+      "lines": 73,
+      "definitions": [
+        {
+          "name": "weapon_name",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_type",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_cost",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_load",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_auto",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_area",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_swap",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_sprt",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_text",
+          "parameters": ""
+        },
+        {
+          "name": "weapon_fire",
+          "parameters": ""
+        },
+        {
+          "name": "step",
+          "parameters": ""
+        }
+      ],
+      "wait_statements": 0,
+      "fork_calls": 0,
+      "called_functions": [
+        "if",
+        "instance_create",
+        "instance_destroy",
+        "instances_matching",
+        "lengthdir_x",
+        "lengthdir_y",
+        "motion_add",
+        "place_free",
+        "place_meeting",
+        "random_range",
+        "round",
+        "sound_play",
+        "weapon_post",
+        "while"
+      ],
+      "embedded_sprite_declarations": 0
+    },
+    {
+      "kind": "mod",
+      "module": "areas/end.area",
+      "path": "areas/end.area.gml",
+      "bytes": 8331,
+      "lines": 278,
+      "definitions": [
+        {
+          "name": "area_name",
+          "parameters": ""
+        },
+        {
+          "name": "area_sprite",
+          "parameters": "q"
+        },
+        {
+          "name": "area_transit",
+          "parameters": ""
+        },
+        {
+          "name": "area_finish",
+          "parameters": ""
+        },
+        {
+          "name": "area_setup",
+          "parameters": ""
+        },
+        {
+          "name": "area_start",
+          "parameters": ""
+        },
+        {
+          "name": "area_make_floor",
+          "parameters": ""
+        },
+        {
+          "name": "area_pop_props",
+          "parameters": ""
+        },
+        {
+          "name": "area_mapdata",
+          "parameters": "lx, ly, lp, ls, ws, ll"
+        }
+      ],
+      "wait_statements": 0,
+      "fork_calls": 0,
+      "called_functions": [
+        "area_mapdata",
+        "area_sprite",
+        "choose",
+        "distance_to_object",
+        "if",
+        "instance_create",
+        "instance_delete",
+        "instance_furthest",
+        "instance_number",
+        "instances_matching",
+        "instances_matching_ne",
+        "make_color_rgb",
+        "mod_script_call",
+        "motion_add",
+        "place_meeting",
+        "point_distance",
+        "random",
+        "sound_play_ambient",
+        "sound_play_music",
+        "sound_restore",
+        "sound_stop",
+        "sprite_restore",
+        "switch"
+      ],
+      "embedded_sprite_declarations": 0
+    },
+    {
+      "kind": "mod",
+      "module": "areas/throne.area",
+      "path": "areas/throne.area.gml",
+      "bytes": 9992,
+      "lines": 122,
+      "definitions": [
+        {
+          "name": "area_name",
+          "parameters": ""
+        },
+        {
+          "name": "area_sprite",
+          "parameters": "q"
+        },
+        {
+          "name": "area_transit",
+          "parameters": ""
+        },
+        {
+          "name": "area_finish",
+          "parameters": ""
+        },
+        {
+          "name": "area_setup",
+          "parameters": ""
+        },
+        {
+          "name": "area_start",
+          "parameters": ""
+        },
+        {
+          "name": "area_make_floor",
+          "parameters": ""
+        },
+        {
+          "name": "area_pop_enemies",
+          "parameters": ""
+        },
+        {
+          "name": "area_pop_props",
+          "parameters": ""
+        },
+        {
+          "name": "area_mapdata",
+          "parameters": "lx, ly, lp, ls, ws, ll"
+        }
+      ],
+      "wait_statements": 0,
+      "fork_calls": 0,
+      "called_functions": [
+        "area_mapdata",
+        "area_sprite",
+        "distance_to_object",
+        "distance_to_point",
+        "if",
+        "instance_create",
+        "instance_number",
+        "instances_matching",
+        "make_color_rgb",
+        "min",
+        "sound_play_music",
+        "sprite_replace_base64",
+        "switch"
+      ],
+      "embedded_sprite_declarations": 3
+    },
+    {
+      "kind": "mod",
+      "module": "areas/palace.area",
+      "path": "areas/palace.area.gml",
+      "bytes": 3711,
+      "lines": 126,
+      "definitions": [
+        {
+          "name": "area_name",
+          "parameters": ""
+        },
+        {
+          "name": "area_sprite",
+          "parameters": "q"
+        },
+        {
+          "name": "area_transit",
+          "parameters": ""
+        },
+        {
+          "name": "area_finish",
+          "parameters": ""
+        },
+        {
+          "name": "area_setup",
+          "parameters": ""
+        },
+        {
+          "name": "area_make_floor",
+          "parameters": ""
+        },
+        {
+          "name": "area_start",
+          "parameters": ""
+        },
+        {
+          "name": "area_pop_enemies",
+          "parameters": ""
+        },
+        {
+          "name": "area_pop_props",
+          "parameters": ""
+        },
+        {
+          "name": "area_mapdata",
+          "parameters": "lx, ly, lp, ls, ws, ll"
+        }
+      ],
+      "wait_statements": 0,
+      "fork_calls": 0,
+      "called_functions": [
+        "area_mapdata",
+        "area_sprite",
+        "choose",
+        "distance_to_point",
+        "if",
+        "instance_create",
+        "instance_destroy",
+        "instance_nearest",
+        "instance_number",
+        "instances_matching",
+        "make_color_rgb",
+        "mod_script_call",
+        "place_meeting",
+        "point_distance",
+        "random",
+        "sound_play_ambient",
+        "sound_play_music",
+        "string",
+        "switch"
+      ],
+      "embedded_sprite_declarations": 0
+    },
+    {
+      "kind": "mod",
+      "module": "areas/labs.area",
+      "path": "areas/labs.area.gml",
+      "bytes": 4099,
+      "lines": 132,
+      "definitions": [
+        {
+          "name": "area_name",
+          "parameters": ""
+        },
+        {
+          "name": "area_sprite",
+          "parameters": "q"
+        },
+        {
+          "name": "area_transit",
+          "parameters": ""
+        },
+        {
+          "name": "area_finish",
+          "parameters": ""
+        },
+        {
+          "name": "area_setup",
+          "parameters": ""
+        },
+        {
+          "name": "area_start",
+          "parameters": ""
+        },
+        {
+          "name": "area_make_floor",
+          "parameters": ""
+        },
+        {
+          "name": "area_pop_enemies",
+          "parameters": ""
+        },
+        {
+          "name": "area_pop_props",
+          "parameters": ""
+        },
+        {
+          "name": "area_mapdata",
+          "parameters": "lx, ly, lp, ls, ws, ll"
+        }
+      ],
+      "wait_statements": 0,
+      "fork_calls": 0,
+      "called_functions": [
+        "abs",
+        "area_mapdata",
+        "area_sprite",
+        "choose",
+        "distance_to_object",
+        "distance_to_point",
+        "if",
+        "instance_change",
+        "instance_create",
+        "instance_destroy",
+        "instance_furthest",
+        "instance_nearest",
+        "instance_number",
+        "instances_matching_ne",
+        "make_color_rgb",
+        "mod_script_call",
+        "point_distance",
+        "random",
+        "random_range",
+        "repeat",
+        "sound_play_ambient",
+        "sound_play_music",
+        "string",
+        "switch",
+        "with"
+      ],
+      "embedded_sprite_declarations": 0
+    },
+    {
+      "kind": "mod",
+      "module": "areas/city.area",
+      "path": "areas/city.area.gml",
+      "bytes": 20450,
+      "lines": 209,
+      "definitions": [
+        {
+          "name": "area_name",
+          "parameters": ""
+        },
+        {
+          "name": "area_sprite",
+          "parameters": "q"
+        },
+        {
+          "name": "area_transit",
+          "parameters": ""
+        },
+        {
+          "name": "area_finish",
+          "parameters": ""
+        },
+        {
+          "name": "area_setup",
+          "parameters": ""
+        },
+        {
+          "name": "area_start",
+          "parameters": ""
+        },
+        {
+          "name": "area_make_floor",
+          "parameters": ""
+        },
+        {
+          "name": "area_pop_enemies",
+          "parameters": ""
+        },
+        {
+          "name": "area_pop_props",
+          "parameters": ""
+        },
+        {
+          "name": "area_mapdata",
+          "parameters": "lx, ly, lp, ls, ws, ll"
+        }
+      ],
+      "wait_statements": 3,
+      "fork_calls": 2,
+      "called_functions": [
+        "area_mapdata",
+        "area_sprite",
+        "choose",
+        "fork",
+        "if",
+        "instance_create",
+        "instance_destroy",
+        "instance_number",
+        "instances_matching",
+        "make_color_rgb",
+        "mod_script_call",
+        "place_meeting",
+        "point_distance",
+        "random",
+        "repeat",
+        "sound_play_ambient",
+        "sound_play_music",
+        "sprite_add_base64",
+        "sprite_replace_base64",
+        "string",
+        "switch"
+      ],
+      "embedded_sprite_declarations": 10
+    },
+    {
+      "kind": "mod",
+      "module": "areas/caves.area",
+      "path": "areas/caves.area.gml",
+      "bytes": 12353,
+      "lines": 158,
+      "definitions": [
+        {
+          "name": "area_name",
+          "parameters": ""
+        },
+        {
+          "name": "area_sprite",
+          "parameters": "q"
+        },
+        {
+          "name": "area_transit",
+          "parameters": ""
+        },
+        {
+          "name": "area_finish",
+          "parameters": ""
+        },
+        {
+          "name": "area_setup",
+          "parameters": ""
+        },
+        {
+          "name": "area_make_floor",
+          "parameters": ""
+        },
+        {
+          "name": "area_start",
+          "parameters": ""
+        },
+        {
+          "name": "area_pop_enemies",
+          "parameters": ""
+        },
+        {
+          "name": "area_pop_props",
+          "parameters": ""
+        },
+        {
+          "name": "area_mapdata",
+          "parameters": "lx, ly, lp, ls, ws, ll"
+        }
+      ],
+      "wait_statements": 0,
+      "fork_calls": 0,
+      "called_functions": [
+        "area_mapdata",
+        "area_sprite",
+        "choose",
+        "if",
+        "instance_create",
+        "instance_destroy",
+        "instance_exists",
+        "instance_furthest",
+        "instance_nearest",
+        "instance_number",
+        "lengthdir_x",
+        "lengthdir_y",
+        "make_color_rgb",
+        "mod_script_call",
+        "place_meeting",
+        "point_direction",
+        "point_distance",
+        "random",
+        "random_range",
+        "skill_get",
+        "sound_play_ambient",
+        "sound_play_music",
+        "sprite_add_base64",
+        "string",
+        "string_count",
+        "switch",
+        "weapon_get_name"
+      ],
+      "embedded_sprite_declarations": 3
+    },
+    {
+      "kind": "mod",
+      "module": "areas/junkyard.area",
+      "path": "areas/junkyard.area.gml",
+      "bytes": 5288,
+      "lines": 159,
+      "definitions": [
+        {
+          "name": "area_name",
+          "parameters": ""
+        },
+        {
+          "name": "area_sprite",
+          "parameters": "q"
+        },
+        {
+          "name": "area_transit",
+          "parameters": ""
+        },
+        {
+          "name": "area_finish",
+          "parameters": ""
+        },
+        {
+          "name": "area_setup",
+          "parameters": ""
+        },
+        {
+          "name": "area_start",
+          "parameters": ""
+        },
+        {
+          "name": "area_make_floor",
+          "parameters": ""
+        },
+        {
+          "name": "area_pop_enemies",
+          "parameters": ""
+        },
+        {
+          "name": "area_pop_props",
+          "parameters": ""
+        },
+        {
+          "name": "area_mapdata",
+          "parameters": "lx, ly, lp, ls, ws, ll"
+        }
+      ],
+      "wait_statements": 0,
+      "fork_calls": 0,
+      "called_functions": [
+        "area_mapdata",
+        "area_sprite",
+        "choose",
+        "if",
+        "instance_create",
+        "instance_destroy",
+        "instance_furthest",
+        "instance_nearest",
+        "instance_number",
+        "instances_matching",
+        "make_color_rgb",
+        "place_meeting",
+        "point_distance",
+        "random",
+        "sound_play_ambient",
+        "sound_play_music",
+        "string",
+        "switch",
+        "with"
+      ],
+      "embedded_sprite_declarations": 0
+    },
+    {
+      "kind": "mod",
+      "module": "areas/sewers.area",
+      "path": "areas/sewers.area.gml",
+      "bytes": 13980,
+      "lines": 250,
+      "definitions": [
+        {
+          "name": "area_name",
+          "parameters": ""
+        },
+        {
+          "name": "area_sprite",
+          "parameters": "q"
+        },
+        {
+          "name": "area_transit",
+          "parameters": ""
+        },
+        {
+          "name": "area_finish",
+          "parameters": ""
+        },
+        {
+          "name": "area_setup",
+          "parameters": ""
+        },
+        {
+          "name": "area_start",
+          "parameters": ""
+        },
+        {
+          "name": "area_make_floor",
+          "parameters": ""
+        },
+        {
+          "name": "area_pop_enemies",
+          "parameters": ""
+        },
+        {
+          "name": "area_pop_props",
+          "parameters": ""
+        },
+        {
+          "name": "area_mapdata",
+          "parameters": "lx, ly, lp, ls, ws, ll"
+        }
+      ],
+      "wait_statements": 2,
+      "fork_calls": 0,
+      "called_functions": [
+        "and",
+        "area_mapdata",
+        "area_sprite",
+        "choose",
+        "distance_to_object",
+        "distance_to_point",
+        "if",
+        "instance_create",
+        "instance_delete",
+        "instance_destroy",
+        "instance_furthest",
+        "instance_nearest",
+        "instance_number",
+        "instances_matching",
+        "instances_matching_ne",
+        "make_color_rgb",
+        "mod_script_call",
+        "mod_variable_exists",
+        "place_meeting",
+        "point_distance",
+        "position_meeting",
+        "random",
+        "repeat",
+        "sound_assign",
+        "sound_play_ambient",
+        "sound_play_music",
+        "sound_restore",
+        "sprite_add_base64",
+        "string",
+        "switch"
+      ],
+      "embedded_sprite_declarations": 5
+    },
+    {
+      "kind": "mod",
+      "module": "areas/nightdesert.area",
+      "path": "areas/nightdesert.area.gml",
+      "bytes": 3392,
+      "lines": 104,
+      "definitions": [
+        {
+          "name": "area_name",
+          "parameters": ""
+        },
+        {
+          "name": "area_sprite",
+          "parameters": "q"
+        },
+        {
+          "name": "area_transit",
+          "parameters": ""
+        },
+        {
+          "name": "area_finish",
+          "parameters": ""
+        },
+        {
+          "name": "area_setup",
+          "parameters": ""
+        },
+        {
+          "name": "area_start",
+          "parameters": ""
+        },
+        {
+          "name": "area_make_floor",
+          "parameters": ""
+        },
+        {
+          "name": "area_pop_enemies",
+          "parameters": ""
+        },
+        {
+          "name": "area_pop_props",
+          "parameters": ""
+        },
+        {
+          "name": "area_mapdata",
+          "parameters": "lx, ly, lp, ls, ws, ll"
+        }
+      ],
+      "wait_statements": 0,
+      "fork_calls": 0,
+      "called_functions": [
+        "area_mapdata",
+        "area_sprite",
+        "choose",
+        "distance_to_object",
+        "if",
+        "instance_create",
+        "instance_delete",
+        "instance_destroy",
+        "instance_furthest",
+        "instance_nearest",
+        "instance_number",
+        "instances_matching_ne",
+        "make_color_rgb",
+        "mod_script_call",
+        "place_meeting",
+        "point_distance",
+        "random",
+        "sound_play_ambient",
+        "sound_play_music",
+        "switch",
+        "with"
+      ],
+      "embedded_sprite_declarations": 0
+    },
+    {
+      "kind": "mod",
+      "module": "maincode",
+      "path": "maincode.mod.gml",
+      "bytes": 115004,
+      "lines": 2847,
+      "definitions": [
+        {
+          "name": "game_start",
+          "parameters": ""
+        },
+        {
+          "name": "draw_dark",
+          "parameters": ""
+        },
+        {
+          "name": "step",
+          "parameters": ""
+        },
+        {
+          "name": "move_player_snap",
+          "parameters": "_index, _x, _y"
+        },
+        {
+          "name": "venuzfadein",
+          "parameters": ""
+        },
+        {
+          "name": "StablePortal",
+          "parameters": ""
+        },
+        {
+          "name": "PortalShrink",
+          "parameters": ""
+        },
+        {
+          "name": "either",
+          "parameters": ""
+        },
+        {
+          "name": "bigdogintro",
+          "parameters": ""
+        },
+        {
+          "name": "CHCoutro",
+          "parameters": ""
+        },
+        {
+          "name": "sewerboi",
+          "parameters": ""
+        },
+        {
+          "name": "spacesewerboi",
+          "parameters": ""
+        },
+        {
+          "name": "draw_pause",
+          "parameters": ""
+        },
+        {
+          "name": "shilling",
+          "parameters": ""
+        },
+        {
+          "name": "versionnumber",
+          "parameters": ""
+        },
+        {
+          "name": "resourceful",
+          "parameters": ""
+        },
+        {
+          "name": "chat_command",
+          "parameters": ""
+        }
+      ],
+      "wait_statements": 31,
+      "fork_calls": 21,
+      "called_functions": [
+        "and",
+        "asset_get_index",
+        "button_check",
+        "button_pressed",
+        "choose",
+        "collision_line",
+        "distance_to_object",
+        "distance_to_point",
+        "draw_circle",
+        "draw_rectangle",
+        "draw_set_alpha",
+        "draw_set_color",
+        "draw_set_font",
+        "draw_set_halign",
+        "draw_sprite_ext",
+        "draw_sprite_part_ext",
+        "draw_text",
+        "draw_text_transformed",
+        "either",
+        "fork",
+        "if",
+        "instance_change",
+        "instance_create",
+        "instance_delete",
+        "instance_destroy",
+        "instance_exists",
+        "instance_furthest",
+        "instance_nearest",
+        "instance_number",
+        "instances_matching",
+        "instances_matching_ge",
+        "instances_matching_gt",
+        "instances_matching_le",
+        "instances_matching_ne",
+        "irandom",
+        "lengthdir_x",
+        "lengthdir_y",
+        "make_color_rgb",
+        "merge_color",
+        "min",
+        "mod_script_call",
+        "mod_variable_exists",
+        "mod_variable_get",
+        "motion_add",
+        "motion_set",
+        "move_bounce_solid",
+        "move_player_snap",
+        "place_free",
+        "place_meeting",
+        "player_find",
+        "player_fire",
+        "point_direction",
+        "point_distance",
+        "position_meeting",
+        "random",
+        "random_range",
+        "repeat",
+        "script_bind_draw",
+        "script_bind_end_step",
+        "skill_get",
+        "sound_loop",
+        "sound_play",
+        "sound_play_music",
+        "sound_play_pitchvol",
+        "sound_restore",
+        "sound_stop",
+        "sound_stop_all",
+        "sprite_add_base64",
+        "sprite_get_height",
+        "sprite_get_width",
+        "sprite_replace_base64",
+        "sprite_restore",
+        "string",
+        "switch",
+        "trace",
+        "wait",
+        "weapon_get_sprt",
+        "weapon_set_area",
+        "while",
+        "with"
+      ],
+      "embedded_sprite_declarations": 9
+    },
+    {
+      "kind": "mod",
+      "module": "enemies",
+      "path": "enemies.mod.gml",
+      "bytes": 471028,
+      "lines": 5040,
+      "definitions": [
+        {
+          "name": "step",
+          "parameters": ""
+        },
+        {
+          "name": "elitebanditsleep_create",
+          "parameters": "_x, _y"
+        },
+        {
+          "name": "elitebanditsleep_step",
+          "parameters": ""
+        },
+        {
+          "name": "elitebandit_create",
+          "parameters": "_x, _y,_rads"
+        },
+        {
+          "name": "elitebandit_step",
+          "parameters": ""
+        },
+        {
+          "name": "elitebandit_destroy",
+          "parameters": ""
+        },
+        {
+          "name": "undeadmice",
+          "parameters": ""
+        },
+        {
+          "name": "gatorswim_create",
+          "parameters": "_x, _y, _d, _h"
+        },
+        {
+          "name": "gatorswim_step",
+          "parameters": ""
+        },
+        {
+          "name": "littledog_create",
+          "parameters": "_x,_y"
+        },
+        {
+          "name": "littledog_step",
+          "parameters": ""
+        },
+        {
+          "name": "littledog_destroy",
+          "parameters": ""
+        },
+        {
+          "name": "goldsalamander_create",
+          "parameters": "_x,_y"
+        },
+        {
+          "name": "goldsalamander_step",
+          "parameters": ""
+        },
+        {
+          "name": "goldsalamander_death",
+          "parameters": ""
+        },
+        {
+          "name": "Flame_create",
+          "parameters": "_x,_y"
+        },
+        {
+          "name": "Flame_step",
+          "parameters": ""
+        },
+        {
+          "name": "Flame_wall",
+          "parameters": ""
+        },
+        {
+          "name": "Flame_hit",
+          "parameters": ""
+        },
+        {
+          "name": "Flame_dead",
+          "parameters": ""
+        },
+        {
+          "name": "wantjungleboss_create",
+          "parameters": "_x,_y"
+        },
+        {
+          "name": "wantjungleboss_step",
+          "parameters": ""
+        },
+        {
+          "name": "VenuzSpawn_create",
+          "parameters": "_x,_y,_name,_door"
+        },
+        {
+          "name": "prisoner_create",
+          "parameters": "_x, _y"
+        },
+        {
+          "name": "prisoner_step",
+          "parameters": ""
+        },
+        {
+          "name": "Molefish_create",
+          "parameters": "_x, _y"
+        },
+        {
+          "name": "Molefish_step",
+          "parameters": ""
+        },
+        {
+          "name": "Molesarge_create",
+          "parameters": "_x, _y"
+        },
+        {
+          "name": "Molesarge_step",
+          "parameters": ""
+        },
+        {
+          "name": "Minigunner_create",
+          "parameters": "_x, _y"
+        },
+        {
+          "name": "Minigunner_step",
+          "parameters": ""
+        },
+        {
+          "name": "Monster_create",
+          "parameters": "_x,_y"
+        },
+        {
+          "name": "Monster_step",
+          "parameters": ""
+        },
+        {
+          "name": "Chick_create",
+          "parameters": "_x, _y"
+        },
+        {
+          "name": "Chick_step",
+          "parameters": ""
+        },
+        {
+          "name": "EliteSpider_create",
+          "parameters": "_x, _y"
+        },
+        {
+          "name": "EliteSpider_step",
+          "parameters": ""
+        },
+        {
+          "name": "EliteSpiderShield_step",
+          "parameters": ""
+        },
+        {
+          "name": "bigcrystal_create",
+          "parameters": "_x, _y"
+        },
+        {
+          "name": "bigcrystal_step",
+          "parameters": ""
+        },
+        {
+          "name": "bigshield_step",
+          "parameters": ""
+        },
+        {
+          "name": "bigshielder_draw",
+          "parameters": ""
+        },
+        {
+          "name": "bigcrystaltopdraw",
+          "parameters": ""
+        },
+        {
+          "name": "SpiderPit_create",
+          "parameters": "_x,_y"
+        },
+        {
+          "name": "SpiderPit_step",
+          "parameters": ""
+        },
+        {
+          "name": "SpiderPit_dead",
+          "parameters": ""
+        },
+        {
+          "name": "plasmacrystal_create",
+          "parameters": "_x,_y"
+        },
+        {
+          "name": "plasmacrystal_step",
+          "parameters": ""
+        },
+        {
+          "name": "yeti_create",
+          "parameters": "_x, _y"
+        },
+        {
+          "name": "yeti_step",
+          "parameters": ""
+        },
+        {
+          "name": "yeti_dead",
+          "parameters": ""
+        },
+        {
+          "name": "makeavan_create",
+          "parameters": "timing"
+        },
+        {
+          "name": "makeavan_step",
+          "parameters": ""
+        },
+        {
+          "name": "vanguide",
+          "parameters": ""
+        },
+        {
+          "name": "vandraw",
+          "parameters": ""
+        },
+        {
+          "name": "vanexplo",
+          "parameters": ""
+        },
+        {
+          "name": "IDPDTank_draw",
+          "parameters": ""
+        },
+        {
+          "name": "IDPDTank_create",
+          "parameters": "_x,_y,_d"
+        },
+        {
+          "name": "IDPDTank_step",
+          "parameters": ""
+        },
+        {
+          "name": "IDPDTank_dead",
+          "parameters": ""
+        },
+        {
+          "name": "IDPDLaserCannon_step",
+          "parameters": ""
+        },
+        {
+          "name": "IDPDLaserCannon_destroy",
+          "parameters": ""
+        },
+        {
+          "name": "idpdtankmissile_step",
+          "parameters": ""
+        },
+        {
+          "name": "idpdtankmissile_hurt",
+          "parameters": ""
+        },
+        {
+          "name": "idpdtankmissile_dead",
+          "parameters": ""
+        },
+        {
+          "name": "missile_create",
+          "parameters": "_x,_y,_gunangle,_team,_creator,_hitid"
+        },
+        {
+          "name": "missile_step",
+          "parameters": ""
+        },
+        {
+          "name": "missile_destroy",
+          "parameters": ""
+        },
+        {
+          "name": "missile_wall",
+          "parameters": ""
+        },
+        {
+          "name": "missile_draw",
+          "parameters": ""
+        },
+        {
+          "name": "ClamMimic_create",
+          "parameters": "_x,_y"
+        },
+        {
+          "name": "ClamMimic_step",
+          "parameters": ""
+        },
+        {
+          "name": "ClamMimic_dead",
+          "parameters": ""
+        },
+        {
+          "name": "enemyfish_create",
+          "parameters": "_x, _y"
+        },
+        {
+          "name": "enemyfish_step",
+          "parameters": ""
+        },
+        {
+          "name": "enemyfish_destroy",
+          "parameters": ""
+        },
+        {
+          "name": "crystalshielder_create",
+          "parameters": "_x, _y"
+        },
+        {
+          "name": "crystalshielder_step",
+          "parameters": ""
+        },
+        {
+          "name": "customshield_step",
+          "parameters": ""
+        },
+        {
+          "name": "crystalshielder_draw",
+          "parameters": ""
+        },
+        {
+          "name": "enemymelting_create",
+          "parameters": "_x, _y"
+        },
+        {
+          "name": "enemymelting_step",
+          "parameters": ""
+        },
+        {
+          "name": "enemymelting_dead",
+          "parameters": ""
+        },
+        {
+          "name": "bulb_create",
+          "parameters": "_x,_y"
+        },
+        {
+          "name": "bulb_step",
+          "parameters": ""
+        },
+        {
+          "name": "bulb_dead",
+          "parameters": ""
+        },
+        {
+          "name": "enemyplant_create",
+          "parameters": "_x, _y"
+        },
+        {
+          "name": "enemyplant_step",
+          "parameters": ""
+        },
+        {
+          "name": "enemyplant_dead",
+          "parameters": ""
+        },
+        {
+          "name": "enemyyv_create",
+          "parameters": "_x, _y"
+        },
+        {
+          "name": "enemyyv_step",
+          "parameters": ""
+        },
+        {
+          "name": "yv_dead",
+          "parameters": ""
+        },
+        {
+          "name": "enemysteroids_create",
+          "parameters": "_x, _y"
+        },
+        {
+          "name": "enemysteroids_step",
+          "parameters": ""
+        },
+        {
+          "name": "enemysteroids_dead",
+          "parameters": ""
+        },
+        {
+          "name": "enemyrobot_create",
+          "parameters": "_x, _y"
+        },
+        {
+          "name": "enemyrobot_step",
+          "parameters": ""
+        },
+        {
+          "name": "enemychicken_create",
+          "parameters": "_x, _y"
+        },
+        {
+          "name": "enemychicken_step",
+          "parameters": ""
+        },
+        {
+          "name": "enemychicken_dead",
+          "parameters": ""
+        },
+        {
+          "name": "enemyrebel_create",
+          "parameters": "_x, _y"
+        },
+        {
+          "name": "enemyally_create",
+          "parameters": "_x,_y"
+        },
+        {
+          "name": "enemyrebel_step",
+          "parameters": ""
+        },
+        {
+          "name": "enemyally_step",
+          "parameters": ""
+        },
+        {
+          "name": "drawelitebanditgun",
+          "parameters": ""
+        },
+        {
+          "name": "enemyrogue_create",
+          "parameters": "_x, _y"
+        },
+        {
+          "name": "enemyrogue_step",
+          "parameters": ""
+        },
+        {
+          "name": "enemyrogue_death",
+          "parameters": ""
+        },
+        {
+          "name": "enemyrogue_draw",
+          "parameters": ""
+        },
+        {
+          "name": "cycle",
+          "parameters": ""
+        },
+        {
+          "name": "enemyskeleton_create",
+          "parameters": "_x, _y"
+        },
+        {
+          "name": "enemyskeleton_step",
+          "parameters": ""
+        },
+        {
+          "name": "drawenemygun",
+          "parameters": ""
+        },
+        {
+          "name": "gun_spin",
+          "parameters": ""
+        },
+        {
+          "name": "DropWeapon",
+          "parameters": ""
+        },
+        {
+          "name": "banditbossoutro",
+          "parameters": ""
+        },
+        {
+          "name": "standarddroprate",
+          "parameters": ""
+        },
+        {
+          "name": "scrPickups",
+          "parameters": "_dropchance"
+        }
+      ],
+      "wait_statements": 25,
+      "fork_calls": 14,
+      "called_functions": [
+        "Chick_create",
+        "ClamMimic_create",
+        "EliteSpider_create",
+        "Flame_create",
+        "IDPDTank_create",
+        "Minigunner_create",
+        "Molefish_create",
+        "Molesarge_create",
+        "Monster_create",
+        "SpiderPit_create",
+        "VenuzSpawn_create",
+        "abs",
+        "and",
+        "angle_difference",
+        "array_length_1d",
+        "bigcrystal_create",
+        "bulb_create",
+        "button_pressed",
+        "choose",
+        "clamp",
+        "collision_circle",
+        "collision_line",
+        "crystalshielder_create",
+        "cycle",
+        "d3d_set_fog",
+        "distance_to_object",
+        "draw_self",
+        "draw_sprite",
+        "draw_sprite_ext",
+        "elitebandit_create",
+        "elitebanditsleep_create",
+        "enemyally_create",
+        "enemychicken_create",
+        "enemyfish_create",
+        "enemymelting_create",
+        "enemyplant_create",
+        "enemyrebel_create",
+        "enemyrobot_create",
+        "enemyrogue_create",
+        "enemyskeleton_create",
+        "enemysteroids_create",
+        "enemyyv_create",
+        "for",
+        "fork",
+        "gatorswim_create",
+        "goldsalamander_create",
+        "if",
+        "instance_change",
+        "instance_create",
+        "instance_delete",
+        "instance_destroy",
+        "instance_exists",
+        "instance_nearest",
+        "instance_number",
+        "instances_matching",
+        "instances_matching_gt",
+        "instances_matching_le",
+        "instances_matching_lt",
+        "instances_matching_ne",
+        "irandom",
+        "lengthdir_x",
+        "lengthdir_y",
+        "littledog_create",
+        "make_color_rgb",
+        "makeavan_create",
+        "max",
+        "merge_color",
+        "min",
+        "missile_create",
+        "mod_script_call",
+        "mod_variable_exists",
+        "mod_variable_get",
+        "motion_add",
+        "motion_set",
+        "move_bounce_solid",
+        "move_contact_solid",
+        "place_free",
+        "place_meeting",
+        "plasmacrystal_create",
+        "point_direction",
+        "point_distance",
+        "position_meeting",
+        "prisoner_create",
+        "random",
+        "random_range",
+        "repeat",
+        "round",
+        "scrPickups",
+        "script_bind_draw",
+        "script_bind_end_step",
+        "script_ref_create",
+        "skill_get",
+        "sound_loop",
+        "sound_play",
+        "sound_play_music",
+        "sound_play_pitch",
+        "sound_play_pitchvol",
+        "sound_stop",
+        "sprite_add_base64",
+        "sprite_add_weapon_base64",
+        "sprite_get_height",
+        "sprite_get_width",
+        "wait",
+        "wantjungleboss_create",
+        "weapon_get_type",
+        "while",
+        "with",
+        "yeti_create"
+      ],
+      "embedded_sprite_declarations": 115
+    },
+    {
+      "kind": "mod",
+      "module": "props",
+      "path": "props.mod.gml",
+      "bytes": 126495,
+      "lines": 2736,
+      "definitions": [
+        {
+          "name": "draw_dark",
+          "parameters": ""
+        },
+        {
+          "name": "draw_dark_end",
+          "parameters": ""
+        },
+        {
+          "name": "draw_shadows",
+          "parameters": ""
+        },
+        {
+          "name": "step",
+          "parameters": ""
+        },
+        {
+          "name": "mpAmmoChest_create",
+          "parameters": "_x,_y"
+        },
+        {
+          "name": "MpAmmoChest_step",
+          "parameters": ""
+        },
+        {
+          "name": "MpAmmoChest_destroy",
+          "parameters": ""
+        },
+        {
+          "name": "MpAmmo_create",
+          "parameters": "_x, _y,_ind"
+        },
+        {
+          "name": "MpAmmo_step",
+          "parameters": ""
+        },
+        {
+          "name": "MpAmmo_wall",
+          "parameters": ""
+        },
+        {
+          "name": "flag_create",
+          "parameters": "_x,_y"
+        },
+        {
+          "name": "flag_step",
+          "parameters": ""
+        },
+        {
+          "name": "flag_hurt",
+          "parameters": "damage, kb_vel, kb_dir"
+        },
+        {
+          "name": "fishskull_create",
+          "parameters": "_x,_y"
+        },
+        {
+          "name": "fishskull_step",
+          "parameters": ""
+        },
+        {
+          "name": "fishskull_hurt",
+          "parameters": ""
+        },
+        {
+          "name": "fishskull_dead",
+          "parameters": ""
+        },
+        {
+          "name": "ClamMimic_create",
+          "parameters": "_x,_y"
+        },
+        {
+          "name": "ClamMimic_step",
+          "parameters": ""
+        },
+        {
+          "name": "ClamMimic_dead",
+          "parameters": ""
+        },
+        {
+          "name": "fancylid_create",
+          "parameters": "_x,_y"
+        },
+        {
+          "name": "fancylid_step",
+          "parameters": ""
+        },
+        {
+          "name": "fancylid_draw",
+          "parameters": ""
+        },
+        {
+          "name": "VenuzCar_create",
+          "parameters": "_x, _y, _h"
+        },
+        {
+          "name": "VenuzCar_draw",
+          "parameters": ""
+        },
+        {
+          "name": "outsider_draw",
+          "parameters": ""
+        },
+        {
+          "name": "E",
+          "parameters": ""
+        },
+        {
+          "name": "VenuzCar_step",
+          "parameters": ""
+        },
+        {
+          "name": "VenuzDoor_create",
+          "parameters": "_x, _y,_door"
+        },
+        {
+          "name": "VenuzDoorSide_create",
+          "parameters": "_x, _y,_door"
+        },
+        {
+          "name": "VenuzDoor_step",
+          "parameters": ""
+        },
+        {
+          "name": "VenuzFloor_draw",
+          "parameters": "color_"
+        },
+        {
+          "name": "VenuzAmmo1_create",
+          "parameters": "_x, _y"
+        },
+        {
+          "name": "VenuzAmmo1_step",
+          "parameters": ""
+        },
+        {
+          "name": "VenuzAmmo2_create",
+          "parameters": "_x, _y"
+        },
+        {
+          "name": "VenuzAmmo2_step",
+          "parameters": ""
+        },
+        {
+          "name": "VenuzAmmo3_create",
+          "parameters": "_x, _y"
+        },
+        {
+          "name": "VenuzAmmo3_step",
+          "parameters": ""
+        },
+        {
+          "name": "VenuzBars_create",
+          "parameters": "_x, _y"
+        },
+        {
+          "name": "VenuzBarsSide_create",
+          "parameters": "_x, _y"
+        },
+        {
+          "name": "VenuzBars_step",
+          "parameters": ""
+        },
+        {
+          "name": "VenuzStar_create",
+          "parameters": "_x, _y"
+        },
+        {
+          "name": "VenuzStar_step",
+          "parameters": ""
+        },
+        {
+          "name": "VenuzStar_destroy",
+          "parameters": ""
+        },
+        {
+          "name": "CaveDecal",
+          "parameters": ""
+        },
+        {
+          "name": "iceblock_create",
+          "parameters": "_x,_y"
+        },
+        {
+          "name": "iceblock_step",
+          "parameters": ""
+        },
+        {
+          "name": "cave_create",
+          "parameters": "_x,_y"
+        },
+        {
+          "name": "cave_step",
+          "parameters": ""
+        },
+        {
+          "name": "whitecrystal_create",
+          "parameters": "_x,_y"
+        },
+        {
+          "name": "whitecrystal_step",
+          "parameters": ""
+        },
+        {
+          "name": "Flower_create",
+          "parameters": "_x,_y"
+        },
+        {
+          "name": "Flower_step",
+          "parameters": ""
+        },
+        {
+          "name": "lookout_create",
+          "parameters": "_x,_y"
+        },
+        {
+          "name": "lookout_step",
+          "parameters": ""
+        },
+        {
+          "name": "hole_step",
+          "parameters": ""
+        },
+        {
+          "name": "leave_create",
+          "parameters": "_x,_y"
+        },
+        {
+          "name": "leave_step",
+          "parameters": ""
+        },
+        {
+          "name": "bigtube1_create",
+          "parameters": "_x,_y"
+        },
+        {
+          "name": "bigtube1_step",
+          "parameters": ""
+        },
+        {
+          "name": "bigtube_hurt",
+          "parameters": ""
+        },
+        {
+          "name": "bigtube1_dead",
+          "parameters": ""
+        },
+        {
+          "name": "bigtube2_create",
+          "parameters": "_x,_y"
+        },
+        {
+          "name": "bigtube2_dead",
+          "parameters": ""
+        },
+        {
+          "name": "terminal_create",
+          "parameters": "_x,_y"
+        },
+        {
+          "name": "terminal_step",
+          "parameters": ""
+        },
+        {
+          "name": "elevator_create",
+          "parameters": "_x,_y"
+        },
+        {
+          "name": "elevator_step",
+          "parameters": ""
+        },
+        {
+          "name": "elevator_hurt",
+          "parameters": ""
+        },
+        {
+          "name": "joao_shockwave",
+          "parameters": ""
+        },
+        {
+          "name": "fadefloor",
+          "parameters": ""
+        }
+      ],
+      "wait_statements": 37,
+      "fork_calls": 27,
+      "called_functions": [
+        "ClamMimic_create",
+        "Flower_create",
+        "MpAmmo_create",
+        "VenuzAmmo1_create",
+        "VenuzAmmo2_create",
+        "VenuzAmmo3_create",
+        "VenuzBarsSide_create",
+        "VenuzBars_create",
+        "VenuzCar_create",
+        "VenuzDoorSide_create",
+        "VenuzDoor_create",
+        "VenuzFloor_draw",
+        "VenuzStar_create",
+        "abs",
+        "and",
+        "bigtube1_create",
+        "bigtube2_create",
+        "button_check",
+        "button_pressed",
+        "cave_create",
+        "choose",
+        "clamp",
+        "collision_line",
+        "d3d_set_fog",
+        "distance_to_object",
+        "draw_circle",
+        "draw_ellipse",
+        "draw_rectangle",
+        "draw_set_alpha",
+        "draw_set_color",
+        "draw_sprite",
+        "draw_sprite_ext",
+        "draw_text",
+        "ds_list_create",
+        "ds_list_destroy",
+        "ds_list_find_value",
+        "ds_list_size",
+        "elevator_create",
+        "fancylid_create",
+        "fishskull_create",
+        "flag_create",
+        "flag_hurt",
+        "for",
+        "fork",
+        "iceblock_create",
+        "if",
+        "instance_change",
+        "instance_create",
+        "instance_delete",
+        "instance_destroy",
+        "instance_exists",
+        "instance_nearest",
+        "instance_number",
+        "instances_matching",
+        "instances_matching_ge",
+        "instances_matching_gt",
+        "instances_matching_ne",
+        "irandom",
+        "joao_shockwave",
+        "leave_create",
+        "lengthdir_x",
+        "lengthdir_y",
+        "lookout_create",
+        "make_color_rgb",
+        "merge_color",
+        "min",
+        "mod_script_call",
+        "mod_variable_exists",
+        "mod_variable_get",
+        "mod_variable_set",
+        "motion_add",
+        "motion_set",
+        "move_bounce_solid",
+        "move_contact_solid",
+        "mpAmmoChest_create",
+        "place_meeting",
+        "point_direction",
+        "point_distance",
+        "point_in_rectangle",
+        "position_meeting",
+        "random",
+        "random_range",
+        "repeat",
+        "script_bind_draw",
+        "script_ref_create",
+        "sin",
+        "skill_set",
+        "sound_play",
+        "sound_play_pitch",
+        "sound_play_pitchvol",
+        "sound_stop",
+        "sound_stop_all",
+        "sprite_add_base64",
+        "string",
+        "switch",
+        "terminal_create",
+        "trace",
+        "wait",
+        "weapon_get_list",
+        "weapon_get_sprt",
+        "weapon_get_type",
+        "while",
+        "whitecrystal_create",
+        "with"
+      ],
+      "embedded_sprite_declarations": 55
+    },
+    {
+      "kind": "mod",
+      "module": "bosses/bossintros",
+      "path": "bosses/bossintros.mod.gml",
+      "bytes": 7285,
+      "lines": 314,
+      "definitions": [
+        {
+          "name": "boss_trigger",
+          "parameters": ""
+        },
+        {
+          "name": "customboss_step",
+          "parameters": ""
+        },
+        {
+          "name": "draw_gui",
+          "parameters": ""
+        },
+        {
+          "name": "boss_death",
+          "parameters": ""
+        }
+      ],
+      "wait_statements": 0,
+      "fork_calls": 0,
+      "called_functions": [
+        "boss_trigger",
+        "draw_rectangle",
+        "draw_set_alpha",
+        "draw_set_color",
+        "draw_set_font",
+        "draw_set_halign",
+        "draw_sprite",
+        "draw_sprite_ext",
+        "draw_text_nt",
+        "if",
+        "instance_create",
+        "instance_destroy",
+        "instance_exists",
+        "instances_matching",
+        "instances_matching_ne",
+        "mod_variable_exists",
+        "mod_variable_get",
+        "script_ref_create",
+        "sound_play",
+        "string_replace_all",
+        "with"
+      ],
+      "embedded_sprite_declarations": 0
+    },
+    {
+      "kind": "mod",
+      "module": "options",
+      "path": "options.mod.gml",
+      "bytes": 7773,
+      "lines": 212,
+      "definitions": [
+        {
+          "name": "game_start",
+          "parameters": ""
+        },
+        {
+          "name": "basicload",
+          "parameters": ""
+        },
+        {
+          "name": "basicsave",
+          "parameters": ""
+        },
+        {
+          "name": "chat_command",
+          "parameters": ""
+        }
+      ],
+      "wait_statements": 1,
+      "fork_calls": 0,
+      "called_functions": [
+        "basicload",
+        "basicsave",
+        "file_exists",
+        "file_load",
+        "file_unload",
+        "if",
+        "string",
+        "string_load",
+        "string_save",
+        "string_split",
+        "trace",
+        "weapon_set_name"
+      ],
+      "embedded_sprite_declarations": 0
+    }
+  ]
+}

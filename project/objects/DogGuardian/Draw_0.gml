@@ -1,0 +1,11 @@
+// NTT swimming owns the cropped body renderer.
+if(scrHMEnabled() && (self[$ "swimming"]??false)) exit;
+if lockstep_stop
+	exit
+
+if (nexthurt - current_frame) > 4 {
+    gpu_set_fog(1, c_white, 0, 0)
+    draw_sprite_ext(sprite_index, image_index, x, y - z, right, 1, 0, c_white, 1)
+    gpu_set_fog(0, c_white, 0, 0)
+}
+else draw_sprite_ext(sprite_index, image_index, x, y - z, right, 1, 0, c_white, 1)

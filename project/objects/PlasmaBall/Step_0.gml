@@ -1,0 +1,14 @@
+// One-shot Hardmode portrait freeze.
+if(scrHMEnabled() && (self[$ "hm_portrait_frozen"]??false)) exit;
+if lockstep_stop
+	exit
+
+image_yscale = image_xscale
+
+if image_xscale <= 0.5 {
+	instance_destroy()
+}
+
+if current_frame_active && !irandom(1) {
+	instance_create(x + orandom(8), y + orandom(8), PlasmaTrail)
+}

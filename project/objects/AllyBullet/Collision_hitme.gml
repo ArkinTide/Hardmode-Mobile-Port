@@ -1,0 +1,1 @@
+scr_projectile_generic_hit(true,!(self[$ "hm_venus_pellet107"]??false))

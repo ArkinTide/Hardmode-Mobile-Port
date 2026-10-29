@@ -1,0 +1,10 @@
+// One-shot Hardmode portrait freeze.
+if(scrHMEnabled() && (self[$ "hm_portrait_frozen"]??false)) exit;
+image_angle = direction
+
+if speed < (6) * timescale && sprite_index != spr_fade {
+	spr_fade = sprSlugDisappear
+    sprite_index = spr_fade
+    image_index = 0
+    image_speed = (0.4) * timescale
+}

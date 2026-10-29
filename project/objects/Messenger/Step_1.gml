@@ -1,0 +1,20 @@
+// One-shot Hardmode portrait freeze.
+if(scrHMEnabled() && (self[$ "hm_portrait_frozen"]??false)) exit;
+if lockstep_stop
+	exit
+
+if (sprite_index == sprMessengerWalk) {
+	y += (4) * timescale
+}
+
+if (sprite_index == sprMessengerSigh && image_index == 4 && !audio_is_playing(sndLastGrowl)) {
+    snd_play(sndLastGrowl)
+}
+
+if y >= 10036 {
+    with (Cinematic){
+		alarm[3] = 30
+	}
+
+    instance_destroy()
+}

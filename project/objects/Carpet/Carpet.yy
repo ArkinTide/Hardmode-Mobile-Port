@@ -1,0 +1,39 @@
+{
+  "$GMObject": "",
+  "%Name": "Carpet",
+  "eventList": [],
+  "managed": true,
+  "name": "Carpet",
+  "overriddenProperties": [],
+  "parent": {
+    "name": "Nothing",
+    "path": "folders/Objects/Enemies/Bosses/Nothing.yy"
+  },
+  "parentObjectId": {
+    "name": "GameObject",
+    "path": "objects/GameObject/GameObject.yy"
+  },
+  "persistent": false,
+  "physicsAngularDamping": 0.1,
+  "physicsDensity": 0.5,
+  "physicsFriction": 0.2,
+  "physicsGroup": 0,
+  "physicsKinematic": false,
+  "physicsLinearDamping": 0.1,
+  "physicsObject": false,
+  "physicsRestitution": 0.1,
+  "physicsSensor": false,
+  "physicsShape": 0,
+  "physicsShapePoints": [],
+  "physicsStartAwake": true,
+  "properties": [],
+  "resourceType": "GMObject",
+  "resourceVersion": "2.0",
+  "solid": false,
+  "spriteId": {
+    "name": "sprCarpet",
+    "path": "sprites/sprCarpet/sprCarpet.yy"
+  },
+  "spriteMaskId": null,
+  "visible": true
+}

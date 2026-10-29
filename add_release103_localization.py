@@ -1,0 +1,52 @@
+"""Translate the host character unlock hints used by standalone Hardmode."""
+import json
+from pathlib import Path
+path=Path(__file__).resolve().parent/'localization/zh-CN.json'
+catalog=json.loads(path.read_text(encoding='utf8'))
+catalog.update({
+    'UNLOCKED FROM THE START':'初始解锁',
+    'REACH THE SEWERS':'抵达下水道',
+    'DIE':'死亡一次',
+    'REACH THE SCRAPYARD':'抵达废车场',
+    'REACH 3-?':'抵达 3-?',
+    'REACH THE LABS':'抵达实验室',
+    'REACH THE FROZEN CITY':'抵达冰冻都市',
+    'REACH 5-?':'抵达 5-?',
+    '??? THE GAME':'在游戏中完成???',
+    'DEFEAT WILD HORROR':'击败野生恐惧',
+    'DEFEAT THE NUCLEAR THRONE':'击败核子王座',
+    'BEAT THE BIG DOG':'击败大狗',
+    'SECRET CHARACTER':'隐藏角色',
+    'LOOP WITH EVERY CHARACTER':'使用每个角色进入循环',
+    'REACH 4-?':'抵达 4-?',
+    'REACH 2-?':'抵达 2-?',
+    'BEAT THE THRONE WITHOUT#RHINO SKIN AND STRONG SPIRIT':'不使用犀牛皮肤和坚强意志#击败王座',
+    'BEAT THE THRONE#IN UNDER 10 MINUTES':'在十分钟内#击败王座',
+    'UNLOCK GOLDEN WEAPON#FOR EVERY CHARACTER':'为每个角色#解锁黄金武器',
+    'DEFEAT 6-1 BOSS':'击败 6-1 的首领',
+    'EAT ANY HYPER WEAPON':'吞食任意高能武器',
+    'REACH 2-1 H1':'抵达困难模式循环一的 2-1',
+    'DEFEAT 2-1 BOSS':'击败 2-1 的首领',
+    'DEFEAT 4-1 BOSS':'击败 4-1 的首领',
+    'DEFEAT ???':'击败???',
+    'EMBRACE ETERNITY':'拥抱永恒',
+    'SHOOT A ??? GUN':'使用???枪开火',
+    'NO SKIN':'没有此皮肤',
+    'CARRY 3 @y???':'携带三个@y???',
+    'UNLOCK ALL B-SKINS':'解锁所有 B 皮肤',
+    'SURVIVE OVER 100 DAMAGE':'承受超过一百点伤害后存活',
+    'REACH THE NUCLEAR THRONE#WITHOUT FIRING A SHOT':'不开一枪#抵达核子王座',
+    'HAVE 12 MUTATIONS':'拥有十二项变异',
+    '@rBLOOD BLOOD BLOOD':'@r鲜血 鲜血 鲜血',
+    'DEFEAT ??? AS ???':'使用???击败???',
+    'REACH THE NUCLEAR THRONE#WITHOUT PICKING UP ANY WEAPONS':'不拾取任何武器#抵达核子王座',
+    'EAT ???':'吞食???',
+    'DEFEAT EVERY BOSS#WITH THE ???':'使用???#击败每个首领',
+    'DEFEAT 1000 BANDITS':'击败一千名小匪',
+    'REACH ???#WITH 3 OR FEWER MUTATIONS':'拥有不超过三项变异#抵达???',
+    "DON'T DEFEAT ???":'不击败???',
+    'CARRY 6 @q???':'携带六个@q???',
+    'EAT ANY @g???@w WEAPON':'吞食任意@g???@w武器',
+})
+path.write_text(json.dumps(catalog,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
+print('Catalog entries:',len(catalog))

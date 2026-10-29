@@ -1,0 +1,1 @@
+if(!(scrHMEnabled() && GameCont.area==scrHMAreaResolve("junkyard"))) scrBossIntro(1)

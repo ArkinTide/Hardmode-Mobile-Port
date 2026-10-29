@@ -1,0 +1,11 @@
+// NTT swimming owns the cropped body renderer.
+if(scrHMEnabled() && (self[$ "swimming"]??false)) exit;
+if lockstep_stop
+	exit
+
+if gunangle <= 180 draw_sprite_ext(sprPopoHeavyGun, -1, x + lengthdir_x(-wkick, gunangle), y + lengthdir_y(-wkick, gunangle), 1, right, gunangle, c_white, 1) draw_sprite_ext(sprite_index, -1, x, y, right, 1, angle, c_white, 1)
+if gunangle > 180 draw_sprite_ext(sprPopoHeavyGun, -1, x + lengthdir_x(-wkick, gunangle), y + lengthdir_y(-wkick, gunangle), 1, right, gunangle, c_white, 1)
+
+if instance_exists(GameCont) && GameCont.underwater {
+	draw_sprite(sprPlayerBubble, -1, x, y)
+}

@@ -1,0 +1,11 @@
+// NTT swimming owns the cropped body renderer.
+if(scrHMEnabled() && (self[$ "swimming"]??false)) exit;
+if lockstep_stop
+	exit
+
+draw_sprite(sprite_index, -1, x, y)
+draw_sprite(sprPStatLights, min(39, anim), x, y)
+
+if canim > 0 && hp < max_hp * 0.7 {
+    draw_sprite(sprPStatLightsCharged, canim, x, y)
+}
