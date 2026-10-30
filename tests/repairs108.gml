@@ -144,7 +144,7 @@ function scrHMGameplayRepairs108() {
             "tank portal does not clear an unrelated tile during van-style placement");
         vanportal108=instance_create(player.x-64,player.y,VanSpawn);
         scrHMGameplayCheck(tankportal108.sprite_index==sprVanPortalStart,"tank uses the same large IDPD opening as a van");
-        scrHMGameplayCheck(sprite_get_width(sprHMVanWarning108)==24&&sprite_get_height(sprHMIDPDTankWarning108)==20,"warning assets use supplied van and source tank head");
+        scrHMGameplayCheck(sprite_get_width(sprHMVanWarning108)==24&&sprite_get_width(sprHMIDPDTankWarning108)==24&&sprite_get_height(sprHMIDPDTankWarning108)==24,"warning assets use supplied van and exact replacement tank icon");
         warning_frames108=0;tank_opened108=false;
     }
     if(mode=="tankportal108" && ticks==85) {

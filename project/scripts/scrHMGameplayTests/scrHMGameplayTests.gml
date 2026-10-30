@@ -51,7 +51,7 @@ function scrHMGameplayTests() {
     if(!instance_exists(BackCont)) instance_create(0,0,BackCont);
     if(!instance_exists(TopCont)) instance_create(0,0,TopCont);
     if(!instance_exists(MusCont)) instance_create(0,0,MusCont);
-    var _player=scrPlayerCreate(0,Race.Fish,0);
+    var _player=scrPlayerCreate(0,(array_length(_parts)>6&&_parts[6]=="venusyc109")?Race.Cuz:Race.Fish,0);
     _player.wep=wep_revolver;_player.bwep=wep_shotgun;
     _player.hp=100000;_player.max_hp=100000;
     scrHMRunStart();
@@ -93,6 +93,10 @@ function scrHMGameplayTestStep() {
         var _actors=[];
         with(CustomEnemy) array_push(_actors,[name,hp,x,y]);
         show_debug_message("HARDMODE GENERATED ACTORS "+json_stringify(_actors));
+        if(GameCont.area==scrHMAreaResolve("throne")) {
+            var _thrones=[];with(NothingInactive) array_push(_thrones,[x,y,image_alpha,visible,distance_to_object(Floor)]);
+            show_debug_message("HARDMODE GENERATED THRONES "+json_stringify(_thrones));
+        }
     }
     if(HMWorld.logic_tick) {
         ticks++;
@@ -114,7 +118,8 @@ function scrHMGameplayTestStep() {
         if(string_pos("106",mode)>0) scrHMGameplayRepairs106();
         if(string_pos("107",mode)>0) scrHMGameplayRepairs107();
         if(string_pos("108",mode)>0) scrHMGameplayRepairs108();
-        if(mode=="venus106" || mode=="venussecrets106") scrHMGameplayVenus106();
+        if(string_pos("109",mode)>0) scrHMGameplayRepairs109();
+        if(mode=="venus106" || mode=="venussecrets106" || mode=="venusyc109") scrHMGameplayVenus106();
         if(ticks==120 && surface_exists(application_surface)) {
             surface_save(application_surface,game_directory+"gameplay.png");
         }
@@ -137,7 +142,7 @@ function scrHMGameplayTestStep() {
 }
 
 function scrHMGameplayRoomStart() {
-    if(!array_contains(["route","route103","boss","titank","continue","goto103","venus106","venussecrets106","ice107"],self[$ "mode"])) return;
+    if(!array_contains(["route","route103","boss","titank","continue","goto103","venus106","venussecrets106","ice107","throneroute109"],self[$ "mode"])) return;
     ready_age=-1;room_ticks=0;route_rooms++;transition_wait=0;
     show_debug_message("HARDMODE ROUTE ROOM "+string(route_rooms)+" "+string(GameCont.area)+","+string(GameCont.subarea));
     if(mode=="titank" && ticks>900) {
@@ -325,7 +330,7 @@ function scrHMGameplayUI() {
     if(ticks==30) {
         var _menu=instance_create(0,0,MenuOptions);
         scrOptionsMenuChangeCategory(OptionCategory.Hardmode,false);
-        scrHMGameplayCheck(_menu.item_count==7,"all single-player MOD settings visible in actual menu");
+        scrHMGameplayCheck(_menu.item_count==8,"all single-player MOD settings visible in actual menu");
         for(var _i=0;_i<7;++_i) {
             var _opt=_menu.items[_i],_old=scrHMModGet("mod","options",_opt.hm_setting);
             method_execute(_opt.click,_opt);
@@ -405,8 +410,8 @@ function scrHMGameplayWeapons() {
 
 function scrHMGameplaySave() {
     if(ticks!=30) return;
-    var _fields=["intropan","bossoutros","rads","weaponnames","coopchests","portals","rogue","flames"];
-    for(var _i=0;_i<8;++_i) {
+    var _fields=["intropan","bossoutros","rads","weaponnames","coopchests","portals","rogue","flames","ratrevive"];
+    for(var _i=0;_i<array_length(_fields);++_i) {
         var _old=scrHMModGet("mod","options",_fields[_i]);
         scrHMModCall("mod","options","chat_command",_fields[_i]);
         scrHMGameplayCheck(scrHMModGet("mod","options",_fields[_i])!=_old,"option toggles "+_fields[_i]);
@@ -414,7 +419,7 @@ function scrHMGameplaySave() {
         scrHMGameplayCheck(scrHMModGet("mod","options",_fields[_i])==_old,"option restored "+_fields[_i]);
     }
     var _settings=string_split(scrHMStringLoad("hardsave.txt"),"*");
-    scrHMGameplayCheck(array_length(_settings)==8,"settings file has all fields");
+    scrHMGameplayCheck(array_length(_settings)==9,"settings file has all fields");
     global.hm_module_vars[$ "mod:maincode"].gce=17;
     global.hm_module_vars[$ "mod:bosses/turtles"].seenturtles=true;
     player.wep=global.hm_weapon_ids[$ "secretweapon2"];
@@ -1494,7 +1499,7 @@ function scrHMVenusPark106() {
 
 function scrHMGameplayVenus106() {
     if(!variable_instance_exists(id,"venus_path106")) {
-        venus_path106=mode=="venus106"?[1,2,3,4,5,6,7,8,9,10,11,12]:[1,2,3,100,4,5,6,200,7,8,9,300,10,11,400,401,12];
+        venus_path106=mode=="venusyc109"?[401,12]:(mode=="venus106"?[1,2,3,4,5,6,7,8,9,10,11,12]:[1,2,3,100,4,5,6,200,7,8,9,300,10,11,400,401,12]);
         var _start=0;for(var _i=0;_i<array_length(venus_path106);++_i) if(venus_path106[_i]==GameCont.subarea) {_start=_i;break;}
         if(_start>0) {
             var _trim=[];for(var _i=_start;_i<array_length(venus_path106);++_i) array_push(_trim,venus_path106[_i]);
@@ -1582,6 +1587,14 @@ function scrHMGameplayVenus106() {
         other.venus_shots106++;
     }
     if(venus_phase106=="settle" && venus_phase_age106>=90) {
+        if(mode=="venusyc109") {
+            if(_sub==401) {
+                scrHMGameplayCheck(instance_number(YungVenuzCouch)==1,"Y.C secret lounge legitimately creates the seated YV");
+                with(GiantWeaponChest) {instance_create(x,y,ChestOpen);instance_destroy(id,false);}
+            } else if(_sub==12) {
+                scrHMGameplayCheck(!instance_exists(YungVenuzCouch)&&!instance_exists(ChestOpen),"actual lounge elevator removes seated YV and opened chest art before final boss");
+            }
+        }
         scrHMGameplayCheck(instance_number(Floor)>5&&!TopCont.darkness,"Venus stage is populated and has no false darkness");
         var _song=(_sub<=3||_sub==100)?"gungodz02":((_sub<=6||_sub==200)?"gungodz03":((_sub<=9||_sub==300)?"gungodz04":(_sub==12?"gungodz07":"gungodz06")));
         if(venus_path106[0]==1 || venus_index106>0) scrHMGameplayCheck(audio_is_playing(custom_sound_check(scrHMModGet("area","venuz",_song))),"Venus stage retains its expected source music while muted");
@@ -2174,7 +2187,7 @@ function scrHMGameplayRepairs108() {
             "tank portal does not clear an unrelated tile during van-style placement");
         vanportal108=instance_create(player.x-64,player.y,VanSpawn);
         scrHMGameplayCheck(tankportal108.sprite_index==sprVanPortalStart,"tank uses the same large IDPD opening as a van");
-        scrHMGameplayCheck(sprite_get_width(sprHMVanWarning108)==24&&sprite_get_height(sprHMIDPDTankWarning108)==20,"warning assets use supplied van and source tank head");
+        scrHMGameplayCheck(sprite_get_width(sprHMVanWarning108)==24&&sprite_get_width(sprHMIDPDTankWarning108)==24&&sprite_get_height(sprHMIDPDTankWarning108)==24,"warning assets use supplied van and exact replacement tank icon");
         warning_frames108=0;tank_opened108=false;
     }
     if(mode=="tankportal108" && ticks==85) {
@@ -2289,4 +2302,358 @@ function scrHMGameplayRender108() {
     if(array_contains(["wall108","venuswall108","pickup108","tankportal108"],mode)
         && array_contains([20,40,84],ticks) && surface_exists(application_surface))
         surface_save(application_surface,game_directory+mode+"-"+string(ticks)+"-"+string(age)+".png");
+}
+
+// Exercise real host events and source callbacks, in isolated test saves.
+function scrHMGameplayRepairs109() {
+    scrHMGameplayRequests109();
+    if(mode=="contracts109" && ticks==10) {
+        scrHMGameplayLane107();
+        var _selector=instance_create(0,0,CustomModeWeaponSelector);
+        instance_deactivate_object(GameCont);
+        for(var _w=1;_w<=maxwep;++_w) {scr_weapon_get_area(_w);scr_weapon_get_name(_w);}
+        with(_selector) event_user(1);
+        scrHMGameplayCheck(array_length(_selector.groups)==_selector.group_count,"real custom selector builds/sorts all weapon metadata without GameCont");
+        instance_activate_object(GameCont);instance_destroy(_selector,false);
+        var _body=noone,_portal=noone;
+        with(player) _body=scrHMBindDraw(hm_maincode_mod_gml_PortalShrink,-10);
+        with(instance_create(player.x,player.y,Portal)) {
+            _portal=scrHMBindDraw(hm_maincode_mod_gml_StablePortal,-10);instance_destroy(id,false);
+        }
+        scrHMGameplayCheck(_body.depth<_portal.depth,"entry body draws strictly above stable portal independent of creation order");
+        var _tech=instance_create(player.x+48,player.y,TechnoMancer);
+        with(_tech) {hp=0;instance_destroy();}
+        var _corpse=noone;with(CorpseActive) if(sprite_index==sprTechnoMancerDead) _corpse=id;
+        scrHMGameplayCheck(instance_exists(_corpse)&&_corpse.hm_no_revive109,"TechnoMancer death marks its actual moving corpse");
+        with(_corpse) {var _spr=sprite_index;instance_change(Corpse,false);sprite_index=_spr;}
+        var _freaks=instance_number(Freak),_circle=instance_create(_corpse.x,_corpse.y,ReviveCircle);
+        with(_circle) event_perform(ev_alarm,0);
+        show_debug_message("HARDMODE REVIVE109 "+json_stringify({exists:instance_exists(_corpse),type:_corpse.object_index,flag:_corpse.hm_no_revive109,spr:_corpse.sprite_index,before:_freaks,after:instance_number(Freak)}));
+        scrHMGameplayCheck(instance_exists(_corpse)&&_corpse.object_index==Corpse&&instance_number(Freak)==_freaks,"necromancer circle cannot revive TechnoMancer into Freak");
+        var _ordinary=instance_create(player.x+64,player.y,Corpse);_ordinary.sprite_index=sprBanditDead;
+        scrHMGameplayCheck(scrHMReviveNearest109(_corpse.x,_corpse.y)==_ordinary,"necromancer skips nearby ineligible boss in target selection");
+        _circle=instance_create(_ordinary.x,_ordinary.y,ReviveCircle);with(_circle) event_perform(ev_alarm,0);
+        scrHMGameplayCheck(instance_number(Freak)==_freaks+1,"ordinary corpses still revive");
+        instance_destroy(enemy,false);instance_destroy(Corpse,false);
+    }
+    if(mode=="drops109" && ticks==10) {
+        scrHMGameplayLane107();GameCont.loops=3;
+        var _tank=hm_enemies_mod_gml_IDPDTank_create(player.x+80,player.y,0);
+        var _n=instance_number(AmmoPickup)+instance_number(HPPickup);
+        with(_tank) {scrHMTankSupplies109();scrHMTankSupplies109();}
+        scrHMGameplayCheck(instance_number(AmmoPickup)+instance_number(HPPickup)==_n+2,"loop-three tank supplies are two drops exactly once");
+        with(_tank) {scrHMRadiationSync(true);scrHMTankRadiation108();scrHMRadiationSync(false);}
+        scrHMGameplayCheck(_tank.raddrop==70,"tank supply change retains 70 post-cap base radiation");
+        instance_destroy(_tank,false);GameCont.area=scrHMAreaResolve("oasis");
+        var _fish=instance_create(player.x+48,player.y,BoneFish);
+        with(_fish) scrHMRadiationSync(true);
+        scrHMGameplayCheck(_fish.raddrop==0,"bone fish retains original reduced pre-cap radiation");
+        with(_fish) {scrHMRadiationSync(false);raddrop+=7;repeat(8)scrHMRadiationSync(false);}
+        scrHMGameplayCheck(_fish.raddrop==17,"post-cap bone fish drops 10 base and preserves absorbed radiation idempotently");
+        instance_destroy(_fish,false);
+    }
+    if(mode=="altar109" && ticks==15) {
+        scrHMGameplayCheck(instance_number(ProtoStatue)==1,"natural palace 7-4 generation supplies one crown entrance");
+        instance_destroy(ProtoStatue,false);GameCont.crownvisits=3;scrHMCrownAltar109();
+        scrHMGameplayCheck(!instance_exists(ProtoStatue),"original three-visit cap forbids new crown altar");
+        GameCont.crownvisits=2;repeat(4)scrHMCrownAltar109();
+        scrHMGameplayCheck(instance_number(ProtoStatue)==1,"remaining visit permits exactly one altar");
+    }
+    if(mode=="hunter109" && ticks==10) {
+        with(enemy) hp=0;
+        scrHMGameplayCheck(scrHMPendingBoss(),"delayed hunter controller is pending combat immediately after generation");
+    }
+    if(mode=="hunter109" && ticks==300)
+        scrHMGameplayCheck(scrHMPendingBoss()&&!instance_exists(Portal),"cleared 5-5 cannot exit during original hunter arrival wait");
+    if(mode=="hunter109" && ticks==700) {
+        show_debug_message("HARDMODE HUNTER109 "+json_stringify({normal:instance_number(LilHunter),flying:instance_number(LilHunterFly),pending:instance_number(WantLH)}));
+        scrHMGameplayCheck(instance_number(LilHunter)+instance_number(LilHunterFly)==GameCont.loops+1,"real delayed WantLH creates one additional hunter per loop");
+        scrHMGameplayCheck(!instance_exists(Portal),"no portal opens before the arriving hunters");
+    }
+    if(mode=="gators109" && ticks==15) {
+        var _n=0;with(CustomEnemy) if(name=="gatorboss") _n++;
+        scrHMGameplayCheck(_n==GameCont.loops+1,"natural sewer encounter has one additional super gator per loop");
+    }
+    if(mode=="birds109" && ticks==10) with(enemy) hp=0;
+    if(mode=="birds109" && ticks==400) {
+        var _n=0,_r=instance_number(RavenFly)+instance_number(Raven);
+        with(CustomEnemy) if(name=="BIG BIRD") {_n++;target=other.player;hm_bosses_ravenboss_mod_gml_ravenboss_callbackup(1);}
+        scrHMGameplayCheck(_n==GameCont.loops+1,"real threshold spawner creates loop-scaled big bird count");
+        scrHMGameplayCheck(instance_number(RavenFly)+instance_number(Raven)-_r==GameCont.loops+1,"all birds combined request only the original single-boss minion budget");
+    }
+    if(mode=="water109" && ticks==15) {
+        scrHMGameplayLane107();
+        var _water=instance_create(16001,16003,Floor);_water.traction=2;
+        var _dry=instance_create(16033,16003,Floor);_dry.traction=0;
+        HMWorld.hm_water_map=undefined;
+        scrHMGameplayCheck(!scrHMWaterAt(16000.99,16019)&&scrHMWaterAt(16001.01,16019),"fractional left water edge excludes neighbouring dry space");
+        scrHMGameplayCheck(scrHMWaterAt(16032.99,16019)&&!scrHMWaterAt(16033,16019),"bank begins at exact half-open water boundary");
+        scrHMGameplayCheck(!scrHMWaterAt(16017,16002.99)&&scrHMWaterAt(16017,16003.01),"fractional upper water edge is exact");
+        _water.traction=0;
+        scrHMGameplayCheck(!scrHMWaterAt(16017,16019),"same-count floor traction change immediately removes swimming");
+        _water.traction=2;
+        var _patch=instance_create(16017,16019,FloorExplo);HMWorld.hm_water_map=undefined;
+        scrHMGameplayCheck(!scrHMWaterAt(16020,16022),"new dry explosion patch overrides remaining water rectangle");
+        instance_destroy(_patch,false);
+    }
+    if(mode=="crystals109" && ticks==15) {
+        scrHMGameplayLane107();var _n=0;
+        repeat(400) {var _crystal=scrHMLoopCrystal109(player.x+64,player.y);if(instance_exists(_crystal)) {_n++;instance_destroy(_crystal,false);}}
+        scrHMGameplayCheck(_n>0&&_n<40,"loop population adds pictured big crystal with bounded original-style weight");
+        GameCont.loops=0;var _added=0;repeat(200) if(instance_exists(scrHMLoopCrystal109(player.x+64,player.y))) _added++;
+        scrHMGameplayCheck(_added==0,"new big crystal distribution is loop-only");
+    }
+    if(mode=="night109" && ticks==10) {
+        // Keep all naturally created types and run their actual damage/wake
+        // paths. Never blanket-delete invisible enemies or wall inhabitants.
+        show_debug_message("HARDMODE NIGHT109 INITIAL "+string(instance_number(enemy)));
+        var _ones=[];with(hitme) if(hp==1&&max_hp==1) array_push(_ones,{type:object_get_name(object_index),spr:sprite_index,alpha:image_alpha,name:self[$ "name"],step:self[$ "on_step"],draw:self[$ "on_draw"],mask:mask_index});
+        show_debug_message("HARDMODE NIGHT109 ONE_HP "+json_stringify(_ones));
+        var _blank=0;with(CustomEnemy) if(name==""&&!sprite_exists(sprite_index)&&is_undefined(on_step)&&is_undefined(on_draw)) _blank++;
+        scrHMGameplayCheck(_blank==0,"natural loop clustering creates no bare CustomEnemy shells");
+    }
+    if(mode=="night109" && ticks>=30 && ticks<220 && ticks mod 20==0) with(enemy) scr_hit(id,10000,HitId.Player);
+    if(mode=="night109" && ticks==280) {
+        var _state=[];with(enemy) array_push(_state,{type:object_get_name(object_index),name:self[$ "name"],hp:hp,spr:sprite_index,idle:self[$ "spr_idle"],step:self[$ "on_step"],x:x,y:y});
+        show_debug_message("HARDMODE NIGHT109 REMAINING "+json_stringify(_state));
+        var _ghost=0;with(enemy) if(hp>0&&!sprite_exists(sprite_index)&&is_undefined(self[$ "on_draw"])) _ghost++;
+        scrHMGameplayCheck(_ghost==0,"night desert real damage leaves no unrendered enemy receiver");
+        if(GameCont.loops==0) {
+            scrHMGameplayCheck(instance_number(enemy)==0,"non-loop night wave clears all actual enemies");
+            scrHMGameplayCheck(instance_exists(Portal),"night desert natural clear opens an exit");
+        }
+    }
+    if(mode=="empty109" && ticks==10) {
+        // Simulate the last enemy's real replacement/delete path, after all
+        // previous death animations have finished. Keep ordinary 1HP props.
+        with(enemy) instance_destroy(id,false);
+        with(becomenemy) instance_destroy(id,false);
+        with(Corpse) alarm[0]=-1;
+        with(Portal) instance_destroy(id,false);
+        empty_player_x109=player.x;empty_player_y109=player.y;
+    }
+    if(mode=="empty109" && ticks>=10) {
+        player.x=empty_player_x109;player.y=empty_player_y109;player.speed=0;
+        if(instance_exists(Portal)) empty_seen109=true;
+    }
+    if(mode=="empty109" && ticks==130) {
+        var _left=[];with(enemy) array_push(_left,{type:object_get_name(object_index),name:self[$ "name"],hp:hp});
+        var _timers=[];with(Corpse) array_push(_timers,{alarm:alarm[0],marker:self[$ "hm_exit_corpse"],spr:sprite_index});
+        show_debug_message("HARDMODE EMPTY109 "+json_stringify({left:_left,pending:scrHMPendingBoss(),timers:_timers,timer:variable_instance_get(HMWorld,"hm_empty_exit109")}));
+        scrHMGameplayCheck(instance_number(enemy)==0&&(self[$ "empty_seen109"]??false),"empty natural night encounter repairs expired/missing exit alarm without killing anything");
+    }
+    if(mode=="titank109" && ticks==20) {
+        scrHMGameplayLane107();
+        with(HMWorld) hm_bosses_titank_mod_gml_titank_create(other.player.x+120,other.player.y);
+    }
+    if(mode=="titank109" && ticks>=350) {
+        var _tank=noone;with(CustomEnemy) if(name=="titank") _tank=id;
+        if(instance_exists(_tank)) {
+            if(!(self[$ "jump_killed109"]??false) && _tank.lastatk==1 && _tank.z>250) {
+                var _foot=_tank.hm_feet[0];with(_foot) scr_hit(id,10000,HitId.Player);
+                jump_killed109=true;jump_deadline109=ticks+150;
+            }
+            if(self[$ "jump_killed109"]??false) if(ticks==jump_deadline109) {
+                show_debug_message("HARDMODE TITANK109 RECOVER "+json_stringify({z:_tank.z,start:_tank.zstart,canmove:_tank.canmove,last:_tank.lastatk}));
+                scrHMGameplayCheck(_tank.hp==_tank.legs-1,"actual jump damage destroys a leg without killing the body");
+                scrHMGameplayCheck(self[$ "jump_recovered109"]??false,"jump lands and recovers movement after takeoff leg loss");
+                jump_checked109=true;
+            }
+            if((self[$ "jump_killed109"]??false) && _tank.canmove==1 && abs(_tank.z-_tank.zstart)<1) jump_recovered109=true;
+            if(ticks mod 100==0) show_debug_message("HARDMODE TITANK109 "+json_stringify({tick:ticks,z:_tank.z,attack:_tank.lastatk,canmove:_tank.canmove,hp:_tank.hp}));
+        }
+    }
+    if(mode=="titank109" && ticks==1100) scrHMGameplayCheck(self[$ "jump_checked109"]??false,"natural Titank performed and recovered its tested jump");
+    if(mode=="guardian109" && ticks==10) {
+        guardian109=hm_bosses_guardianboss_mod_gml_guardianboss_create(player.x+64,player.y);
+    }
+    if(mode=="guardian109" && ticks==100) {
+        var _dark=0;with(HMBinding) if(hm_code==scrHMScriptRef(hm_bosses_guardianboss_mod_gml_guardiandark_draw)) _dark++;
+        scrHMGameplayCheck(_dark==1,"guardian uses one dark arena renderer");
+        var _bad=0;with(hitme) if(depth>-9) _bad++;
+        scrHMGameplayCheck(_bad==0,"guardian entities are naturally above its dark layer without repeated Draw callbacks");
+        with(CustomEnemy) if(name=="guardianboss") {hp=0;instance_destroy();}
+    }
+    if(mode=="guardian109" && ticks==300) {
+        var _left=0;with(GameObject) if(!is_undefined(self[$ "hm_guard_depth109"])) _left++;
+        scrHMGameplayCheck(_left==0,"guardian death restores temporary entity depths");
+    }
+    if(mode=="wall109" && ticks==15) {
+        TopCont.darkness=0;
+        var _transition=0,_plain_bad=0,_roof_bad=0,_bad=[];
+        with(Wall) if(self[$ "hm_interior_wall"]??false) {
+            var _tile=collision_point(x+8,y+8,TopSmall,false,true);
+            if(scrHMPlainWall106()) {if(instance_exists(_tile)) {_plain_bad++;if(array_length(_bad)<10)array_push(_bad,[x,y,"plain",_tile.x,_tile.y]);}}
+            else {
+                _transition++;
+                if(!instance_exists(_tile) || !scrHMTransitionRoof109()) {_roof_bad++;if(array_length(_bad)<10)array_push(_bad,[x,y,"roof",position_meeting(x,y,Floor)]);}
+            }
+        }
+        show_debug_message("HARDMODE WALL109 "+json_stringify({transition:_transition,plain_bad:_plain_bad,roof_bad:_roof_bad,bad:_bad}));
+        scrHMGameplayCheck(_transition>0,"final terrain contains a synthetic transition ring");
+        scrHMGameplayCheck(_plain_bad==0&&_roof_bad==0,"transition lies outside authored edge, without detailed roof overpaint or a third ring");
+    }
+    if(mode=="profile109" && ticks==10) {
+        scrHMGameplayLane107();
+        var _owners=[];
+        repeat(160) {
+            var _owner=instance_create(player.x+32,player.y,CustomObject);
+            with(_owner) scrHMBindDraw(hm_enemies_mod_gml_bigcrystaltopdraw,0);
+            array_push(_owners,_owner);
+        }
+        var _count=instance_number(HMBinding),_cache_time=get_timer();
+        repeat(8) for(var _i=0;_i<array_length(_owners);++_i) with(_owners[_i]) scrHMBindDraw(hm_enemies_mod_gml_bigcrystaltopdraw,0);
+        _cache_time=get_timer()-_cache_time;
+        var _scan_time=get_timer(),_matched=0;
+        repeat(8) for(var _i=0;_i<array_length(_owners);++_i) {
+            var _who=_owners[_i];
+            with(HMBinding) if(creator==_who && hm_code==scrHMScriptRef(hm_enemies_mod_gml_bigcrystaltopdraw)) {_matched++;break;}
+        }
+        _scan_time=get_timer()-_scan_time;
+        scrHMGameplayCheck(instance_number(HMBinding)==_count&&_matched==1280,"cached binding lookup reuses exactly one renderer per owner");
+        show_debug_message("HARDMODE PROFILE109 "+json_stringify({rate:rate,owners:160,lookups:1280,cached_us:_cache_time,old_scan_us:_scan_time,bindings:_count}));
+        for(var _i=0;_i<array_length(_owners);++_i) instance_destroy(_owners[_i],false);
+        with(HMBinding) instance_destroy(id,false);
+    }
+    if(mode=="throneseed109" && ticks==10) {
+        var _flags=[];with(Floor) if(self[$ "nokill"]??false) array_push(_flags,[x,y]);
+        var _bosses=[];with(NothingInactive) array_push(_bosses,{x:x,y:y,alpha:image_alpha,visible:visible,floor:distance_to_object(Floor)});
+        show_debug_message("HARDMODE THRONE SEED109 "+json_stringify({flags:_flags,bosses:_bosses,area:GameCont.area,sub:GameCont.subarea}));
+        scrHMGameplayCheck(instance_number(NothingInactive)==1,"throne generation retains exactly one first-stage throne");
+        with(NothingInactive) scrHMGameplayCheck(visible&&image_alpha==1&&distance_to_object(Floor)<48,"first throne has visible art on the real arena");
+        with(NothingInactive) instance_destroy(id,false);
+        with(Floor) nokill=0;
+        repeat(3) scrHMThroneEntrance109();
+        scrHMGameplayCheck(instance_number(NothingInactive)==1,"finalization recovers a missing seed-dependent initial throne exactly once");
+        var _active=instance_create(NothingInactive.x,NothingInactive.y,BecomeNothing);
+        instance_destroy(NothingInactive,false);scrHMThroneEntrance109();
+        scrHMGameplayCheck(!instance_exists(NothingInactive),"finalization never resurrects first stage over an active phase transition");
+        instance_destroy(_active,false);scrHMThroneEntrance109();
+    }
+    if(mode=="throneseed109" && ticks==80) scrHMGameplayCheck(instance_exists(NothingInactive),"initial throne persists before player activation");
+    if(mode=="throneroute109" && room_ticks==10) {
+        if(!(self[$ "throne_requested109"]??false)) {
+            throne_requested109=true;GameCont.can_advance_stage=true;GameCont.is_level_ended=true;room_restart();
+        } else {
+            scrHMGameplayCheck(GameCont.area==scrHMAreaResolve("throne"),"actual 7-4 finish selects the Hardmode throne arena");
+            scrHMGameplayCheck(instance_number(NothingInactive)==1,"palace-to-throne room transition preserves exactly one initial throne");
+            with(NothingInactive) scrHMGameplayCheck(visible&&image_alpha==1&&distance_to_object(Floor)<48,"transition throne is visible on generated terrain");
+        }
+    }
+    if(mode=="buffgator109" && ticks==15) {
+        scrHMGameplayLane107();var _added=0;
+        // An idle player can touch the natural 2-2 crown entrance during the
+        // settling frames. This isolated population probe uses its scenario.
+        var _parts=string_split(scenario,",");
+        GameCont.area=scrHMAreaResolve(_parts[0]);GameCont.subarea=real(_parts[1]);
+        repeat(320) {var _g=scrHMLoopBuffGator109(player.x+64,player.y);if(instance_exists(_g)) {_added++;instance_destroy(_g,false);}}
+        show_debug_message("HARDMODE BUFFGATOR109 "+json_stringify({added:_added,area:GameCont.area,sub:GameCont.subarea,loop:GameCont.loops,wall:position_meeting(player.x+64,player.y,Wall)}));
+        scrHMGameplayCheck(_added>0&&_added<50,"requested loop area has bounded BuffGator additions");
+        GameCont.loops=0;var _base=instance_number(BuffGator);
+        repeat(120) scrHMLoopBuffGator109(player.x+64,player.y);
+        scrHMGameplayCheck(instance_number(BuffGator)==_base,"new BuffGator population is loop-only");
+    }
+}
+
+function scrHMGameplayRender109() {
+    if(!surface_exists(application_surface)) return;
+    if(mode=="requests109" && ticks==20) {
+        var _saved=[GameCont.area,GameCont.subarea,GameCont.waypnt,GameCont.waysub,GameCont.waylps,GameCont.waypoints];
+        GameCont.area=scrHMAreaResolve("palace");GameCont.subarea=3;
+        GameCont.waypnt=[1,1,scrHMAreaResolve("nightdesert"),scrHMAreaResolve("scorpionboss"),scrHMAreaResolve("sewers"),3,scrHMAreaResolve("ravenboss"),scrHMAreaResolve("junkyard"),scrHMAreaResolve("caves"),scrHMAreaResolve("city"),scrHMAreaResolve("labs"),scrHMAreaResolve("elevator"),scrHMAreaResolve("palace")];
+        GameCont.waysub=[1,3,4,5,3,2,3,5,3,5,2,3,3];
+        GameCont.waylps=array_create(13,0);GameCont.waypoints=13;
+        surface_set_target(application_surface);
+        draw_set_color(c_black);draw_set_alpha(1);draw_rectangle(view_xview,view_yview,view_xview+view_width,view_yview+86,false);
+        scrDrawRoadmap(view_xview+view_width/2,view_yview+48,13);
+        surface_reset_target();
+        surface_save(application_surface,game_directory+"roadmap-7-3.png");
+        GameCont.area=_saved[0];GameCont.subarea=_saved[1];GameCont.waypnt=_saved[2];GameCont.waysub=_saved[3];GameCont.waylps=_saved[4];GameCont.waypoints=_saved[5];
+    }
+    if(array_contains(["wall109","guardian109","crystals109","water109"],mode) && array_contains([20,95,140],ticks))
+        surface_save(application_surface,game_directory+mode+"-"+string(ticks)+"-"+string(age)+".png");
+}
+
+function scrHMGameplayRequests109() {
+    if(mode=="rats109" && ticks==10) {
+        scrHMGameplayLane107();
+        scrHMGameplayCheck(scrHMRatRevive109(),"rat revival defaults to enabled");
+        scrHMRatToggle109();
+        rat109=instance_create(player.x+64,player.y,Rat);
+    }
+    if(mode=="rats109" && ticks==14) {
+        scrHMGameplayCheck((rat109[$ "infected"]??0)==0,"disabled rat has no borrowed revival health");
+        with(rat109) scr_hit(id,1000,HitId.Player);
+    }
+    if(mode=="rats109" && ticks==22) {
+        scrHMGameplayCheck(!instance_exists(FastRat),"actual rat death cannot revive when setting is off");
+        scrHMRatToggle109();rat109=instance_create(player.x+64,player.y,Rat);
+    }
+    if(mode=="rats109" && ticks==26) {
+        scrHMGameplayCheck(rat109.infected==1,"re-enabled setting restores original infected lifecycle");
+        var _hp=rat109.hp;scrHMRatToggle109();
+        scrHMGameplayCheck(rat109.hp==_hp-6,"turning off restores the living rat's underlying health");
+        scrHMRatToggle109();
+    }
+    if(mode=="rats109" && ticks==30) {
+        scrHMGameplayCheck(rat109.infected==1,"existing rats can be re-enabled without adding health repeatedly");
+        with(rat109) scr_hit(id,1000,HitId.Player);
+    }
+    if(mode=="rats109" && ticks==40) {
+        scrHMGameplayCheck(instance_exists(FastRat),"enabled rat death retains original green rat revival");
+        var _saved=string_split(scrHMStringLoad("hardsave.txt"),"*");
+        scrHMGameplayCheck(array_length(_saved)==9&&_saved[8]=="1","ninth field persists default-enabled rat revival");
+        scrHMRatToggle109();_saved=string_split(scrHMStringLoad("hardsave.txt"),"*");
+        scrHMGameplayCheck(_saved[8]=="0","disabled rat revival persists to disk");
+    }
+    if(mode=="rats109" && ticks==42) {
+        scrHMStringSave("1*1*1*1*1*1*1*1","hardsave.txt");
+        hm_options_mod_gml_basicload();
+    }
+    if(mode=="rats109" && ticks==47) {
+        scrHMGameplayCheck(scrHMRatRevive109(),"old eight-field settings migrate to enabled revival");
+        scrHMStringSave("1*1*1*1*1*1*1*1*0","hardsave.txt");
+        hm_options_mod_gml_basicload();
+    }
+    if(mode=="rats109" && ticks==53) {
+        scrHMGameplayCheck(!scrHMRatRevive109(),"real loader restores disabled ninth-field setting");
+        scrHMRatToggle109();
+    }
+    if(mode=="requests109" && ticks==10) {
+        scrHMGameplayLane107();
+        var _cases=[[1,3,2],["nightdesert",1,3],["scorpionboss",1,4],
+            ["sewers",3,7],["junkyard",4,11],["city",5,20],["elevator",1,23],
+            ["palace",3,26],["palace",4,27],["throne",1,28]];
+        for(var _i=0;_i<array_length(_cases);++_i) {
+            var _c=_cases[_i],_position=scrHMRoutePosition109(scrHMAreaResolve(_c[0]),_c[1]);
+            scrHMGameplayCheck(_position[0]==_c[2]&&_position[1]==0,"Hardmode progress maps real main-line stage "+string(_c[0])+"/"+string(_c[1]));
+        }
+        scrHMGameplayCheck(scrHMRoutePosition109(scrHMAreaResolve("venuz"),12,11)[0]==11,"Venus branch remains at its real main-line entrance");
+        var _can=instance_create(player.x+48,player.y,RogueChest);
+        var _n=instance_number(RadChest);with(_can) repeat(10)scrHMRogueCanisters109();
+        scrHMGameplayCheck(instance_exists(_can)&&instance_number(RadChest)==_n+1,"Rogue retains strike canister and receives one rad canister without repeats");
+        with(RadChest) scrHMGameplayCheck(!place_meeting(x,y,Wall),"additional Rogue canister is reachable off the walls");
+        draw_align(fa_right,fa_middle);scrDrawInteractionHUD(player);
+        scrHMGameplayCheck(draw_get_halign()==fa_right&&draw_get_valign()==fa_middle,"interaction text owns and restores draw alignment");
+    }
+    if(mode=="minigunner109" && ticks==10) {
+        scrHMGameplayLane107();
+        var _n=0;repeat(320) {var _g=scrHMLoopMinigunner109(player.x+64,player.y);if(instance_exists(_g)) {_n++;instance_destroy(_g,false);}}
+        scrHMGameplayCheck(_n>0&&_n<40,"loop junkyard population includes pictured Minigunner with bounded weight");
+        gunner109=hm_enemies_mod_gml_Minigunner_create(player.x+80,player.y);
+        gunner109.gunangle=180;var _before=instance_number(EnemyBullet4);
+        with(gunner109)scrHMMinigunnerShot109();
+        scrHMGameplayCheck(instance_number(EnemyBullet4)==_before+1,"non-Venus Minigunner uses a native sniper bullet");
+        with(EnemyBullet4)scrHMGameplayCheck(damage==3&&team==1&&image_alpha==1,"sniper round retains native damage, visibility and enemy team");
+        with(gunner109) {alrm1=0;alrm2=1;activated=1;}
+    }
+    if(mode=="minigunner109" && ticks==100) {
+        scrHMGameplayCheck(gunner109.firing==1,"real source firing continuation runs outside Venus");
+        var _trail=0;with(Effect)if(name=="venuzpistoltrail")_trail++;
+        scrHMGameplayCheck(_trail==0,"non-Venus actual firing uses no Venus hitscan trail");
+    }
+    if(mode=="venusyc109" && GameCont.area==scrHMAreaResolve("venuz") && GameCont.subarea==12 && ticks>500) {
+        scrHMGameplayCheck(!instance_exists(YungVenuzCouch)&&!instance_exists(ChestOpen),"Y.C final boss remains free of prior lounge art");
+        goal_ticks=ticks;
+    }
 }

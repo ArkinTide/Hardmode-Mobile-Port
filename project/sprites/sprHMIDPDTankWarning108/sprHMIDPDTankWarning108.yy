@@ -2,10 +2,10 @@
   "$GMSprite": "v2",
   "%Name": "sprHMIDPDTankWarning108",
   "bboxMode": 0,
-  "bbox_bottom": 19,
-  "bbox_left": 0,
+  "bbox_bottom": 20,
+  "bbox_left": 5,
   "bbox_right": 18,
-  "bbox_top": 0,
+  "bbox_top": 8,
   "collisionKind": 0,
   "collisionTolerance": 0,
   "DynamicTexturePage": false,
@@ -22,7 +22,7 @@
   ],
   "gridX": 0,
   "gridY": 0,
-  "height": 20,
+  "height": 24,
   "HTile": false,
   "layers": [
     {
@@ -132,8 +132,8 @@
     ],
     "visibleRange": null,
     "volume": 1,
-    "xorigin": 9,
-    "yorigin": 10
+    "xorigin": 12,
+    "yorigin": 12
   },
   "swatchColours": null,
   "swfPrecision": 2.525,
@@ -143,5 +143,5 @@
   },
   "type": 0,
   "VTile": false,
-  "width": 19
+  "width": 24
 }

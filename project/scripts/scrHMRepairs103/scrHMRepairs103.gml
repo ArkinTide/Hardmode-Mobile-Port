@@ -45,9 +45,12 @@ function scrHMPalaceHorrorStep() {
 
 function scrHMPendingBoss() {
     if(!scrHMEnabled()) return false;
+    if(instance_exists(WantLH)) return true;
+    var _hunter=false;with(CustomObject) if(name=="hm_hunter_arrival109") {_hunter=true;break;}
+    if(_hunter) return true;
     if(instance_exists(HMWorld) && (variable_instance_get(HMWorld,"hm_titank_entering")??false)) return true;
     var _pending=false;
-    with(CustomObject) if(name=="wanttitank" || name=="wantravenboss" || name=="wantjungleboss") {_pending=true;break;}
+    with(CustomObject) if(name=="wanttitank" || name=="wantRavenboss" || name=="wantjungleboss") {_pending=true;break;}
     return _pending;
 }
 

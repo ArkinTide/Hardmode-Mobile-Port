@@ -55,6 +55,7 @@ function scrPopEnemies() {
 			}
 			break
 	    case area_scrapyards:
+            if(scrHMEnabled()) scrHMLoopMinigunner109(bbox_center_x,bbox_center_y);
 	        if ((random(5) < 4) && (!_is_last || (random(2) < 1))) {
 	            if (random(2) < _loop_rand) {
 	                __spawn(Sniper, Sniper, MeleeFake, MeleeFake, Salamander, SnowBot, Raven, BuffGator, Raven)

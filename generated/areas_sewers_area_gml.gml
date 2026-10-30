@@ -383,7 +383,7 @@ if(instance_exists(__hm_with65[__hm_index66])) with (__hm_with65[__hm_index66]) 
 {
 scrHMSewerClear((x + 16), (y + 16));
 ;
-scrHMModCall("mod", "gatorboss", "gatorboss_create", (x + 16), (y + 16));
+scrHMGatorGroup109((x + 16), (y + 16));
 ;
 repeat ((5 * (GameCont.loops + 1))) instance_create((x + 16), (y + 16), Gator);
 }
@@ -511,6 +511,8 @@ instance_create((x + 16), (y + 16), FireBaller);
 ;
 }
 }
+
+scrHMLoopBuffGator109(x+16,y+16);
 }
 
 // Source areas/sewers.area.gml:241; area_pop_props

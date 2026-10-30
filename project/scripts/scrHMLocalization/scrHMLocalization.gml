@@ -195,7 +195,8 @@ static _catalog={
   "REACH ???#WITH 3 OR FEWER MUTATIONS": "到达？？？时#拥有的变异不超过 3 个",
   "DON'T DEFEAT ???": "不要击败？？？",
   "CARRY 6 @Q???": "携带六个@q???",
-  "EAT ANY @G???@W WEAPON": "吞食任意@g???@w武器"
+  "EAT ANY @G???@W WEAPON": "吞食任意@g???@w武器",
+  "RATS REVIVE AS GREEN RATS": "老鼠死亡后变为绿老鼠"
 };
 return _catalog;
 }

@@ -245,6 +245,7 @@ default: throw "Hardmode invalid continuation PC";
 
 // Source bosses/ravenboss.mod.gml:134; ravenboss_callbackup
 function hm_bosses_ravenboss_mod_gml_ravenboss_callbackup() {
+if(!scrHMRavenBackup109()) return;
 repeat ((argument0 * (GameCont.loops + 1))) {
 if ((instance_exists(target) and (target > 0))) {
 { var __hm_with1 = scrHMInstances(instance_create((x + random_range(200, (- 200))), (target.y - random_range(250, 300)), Raven)), __hm_break3=false;

@@ -16,6 +16,7 @@ global.hm_module_vars[$ "mod:options"].rogue = "1";
 ;
 global.hm_module_vars[$ "mod:options"].flames = "1";
 ;
+global.hm_module_vars[$ "mod:options"].ratrevive="1";
 hm_options_mod_gml_basicload();
 ;
 if ((global.hm_module_vars[$ "mod:options"].weaponnames == "1")) {
@@ -75,6 +76,7 @@ global.hm_module_vars[$ "mod:options"].portals = _hm.vars._settings[5];
 global.hm_module_vars[$ "mod:options"].rogue = _hm.vars._settings[6];
 ;
 global.hm_module_vars[$ "mod:options"].flames = _hm.vars._settings[7];
+global.hm_module_vars[$ "mod:options"].ratrevive=array_length(_hm.vars._settings)>8?_hm.vars._settings[8]:"1";
 ;
 scrHMFileUnload(savefile);
 ;
@@ -100,12 +102,15 @@ default: throw "Hardmode invalid continuation PC";
 function hm_options_mod_gml_basicsave() {
 var _hml__str = ((((((((((((((("" + string(global.hm_module_vars[$ "mod:options"].intropan)) + "*") + string(global.hm_module_vars[$ "mod:options"].bossoutros)) + "*") + string(global.hm_module_vars[$ "mod:options"].rads)) + "*") + string(global.hm_module_vars[$ "mod:options"].weaponnames)) + "*") + string(global.hm_module_vars[$ "mod:options"].coopchests)) + "*") + string(global.hm_module_vars[$ "mod:options"].portals)) + "*") + string(global.hm_module_vars[$ "mod:options"].rogue)) + "*") + string(global.hm_module_vars[$ "mod:options"].flames));
 ;
+_hml__str+="*"+string(global.hm_module_vars[$ "mod:options"].ratrevive);
 scrHMStringSave(_hml__str, savefile);
 ;
 }
 
 // Source options.mod.gml:65; chat_command
 function hm_options_mod_gml_chat_command() {
+if(argument0=="ratrevive") {scrHMRatToggle109();return true;}
+
 if ((argument0 == "intropan")) {
 {
 if ((global.hm_module_vars[$ "mod:options"].intropan == "1")) {

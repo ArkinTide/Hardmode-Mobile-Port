@@ -198,6 +198,8 @@ instance_create((x + 16), (y + 16), Salamander);
 if ((random(4) < 1)) {
 instance_create((x + 16), (y + 16), Car);
 }
+
+scrHMLoopMinigunner109(x+16,y+16);
 }
 
 // Source areas/ravenboss.area.gml:87; area_pop_props

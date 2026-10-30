@@ -1,0 +1,89 @@
+"""Write local delivery documentation from the verified 1.0.9 receipt."""
+from pathlib import Path
+import json
+from release_config import VERSION,BUILD
+
+ROOT=Path(__file__).resolve().parent
+OUT=ROOT/'release109'
+
+
+def main():
+    r=json.loads((OUT/'delivery-receipt.json').read_text(encoding='utf8'))
+    assert r['status']=='PASS' and (VERSION,BUILD)==('1.0.9',10)
+    artifacts={Path(a['path']).suffix:a for a in r['artifacts']}
+    summary=(f"同一最终桌面 VM 在30／60帧下完成{r['gameplay_cases']}项游戏场景、"
+             f"{int(r['gameplay_assertions'])}项游戏断言、{int(r['native_assertions'])}项原生检查和"
+             f"{int(r['menu_assertions'])}项菜单／语言断言。包含两阶段王座战，以及金星12关主线、17关秘密路线的"
+             "两阶段Boss、逃生车和返回3-5；另有Y.C从秘密客厅到最终Boss的实际电梯换层测试。")
+    fixes='''# Hardmode 1.0.9 修复对应
+
+本轮包括先前19项与追加9项，共28项。以下为源码修复、桌面自动场景和画面审查；不等于手机真机验收。原版、b24冻结输入和NTTE未改。
+
+| 项目 | 修改与验证 |
+|---|---|
+| 1 进入传送门被遮挡 | 玩家缩入绘制绑定设为-12，严格高于传送门-10；检查真实绑定深度，保留原入口事件。 |
+| 2 Titank起跳时腿死后停滞 | 由本体持有落地和移动恢复；修正分腿fork重用循环变量，落地冲击只执行一次。titank109。 |
+| 3 7-4王冠入口 | 定稿时补一个原生祭坛，遵守三次访问上限；去掉MOD启动时禁用入口的crownvisits=5，迁移旧值。altar109。 |
+| 4 5-5小猎人缺失 | 延迟控制器按本关生命周期等待500tick；等待期间计入待登场Boss，每loop增加一只。hunter109。 |
+| 5 科技术士被复活 | 标记实际尸体，死灵法师选尸和复活圈均跳过；普通尸体仍可复活。contracts109。 |
+| 6 实验室衔接层 | 原TopSmall过渡层覆盖精细边缘外侧，合并碰撞填充不覆盖该层；延迟Create同样遵守纯色外墙。wall109。 |
+| 7 截图报错 | 武器元数据查询允许标题／自定义选择器无GameCont；秘密鱼叉武器默认不进入普通随机掉落。contracts109实际遍历全部武器。 |
+| 8 Tank预警与补给 | 精确导入用户sprMutant8BSit.png；loop3起真实死亡回调只掉两份弹药／医疗补给一次，原70基础辐射保留。drops109。 |
+| 9 夜间沙漠无实体血条 | 原生循环群组复制错误地裸建CustomEnemy，现跳过这种复制，保留MOD自行刷怪。自然种子27／81／221检查；真正清场且无待生成Boss时恢复遗漏出口计时，不删除敌人。night109、empty109。 |
+| 10 怪物和特效性能 | 每owner缓存绘制绑定及水晶顶部renderer，避免每帧重复全表扫描；profile109在同一组对象上配对计时。 |
+| 11 岸边误判下水 | 哈希只提供候选，最终按精确半开地板矩形判定；干地板覆盖水面，退出游泳立即清旧renderer。water109。 |
+| 12 循环Boss数量 | 超级鳄鱼、巨鸟、小猎人为loop+1；多只巨鸟共享一只Boss的渡鸦召唤预算。gators109、birds109、hunter109。 |
+| 13 骨鱼满级辐射 | 绿洲骨鱼满级后10基础点，满级前保留原MOD0；独立增量保留吸收量且重复同步不叠加。drops109。 |
+| 14 Great Guardian性能 | 黑暗单次覆盖，实体按原生层级各绘一次，死亡恢复临时层级；guardian109和画面。 |
+| 15 宫殿衔接层 | 与实验室相同的原TopSmall／精细边缘／纯色外墙分工；wall109和画面。 |
+| 16 循环水晶怪分布 | 截图确认为bigcrystal，循环雪地／水晶洞／诅咒洞每population回调1/32权重，不改其原AI。crystals109。 |
+| 17 Android加速 | Android原有timing0保持；在Java native Process之前用单调时钟限制30／60帧，抑制高刷新显示回调过快。12项fake-clock测试和DEX调用顺序审核通过；没有120Hz手机实测。 |
+| 18 刚进关没有王座 | 自然种子和7-4进场未复现间歇消失；定稿后若没有任何王座阶段则补唯一idle王座，已有战斗／死亡阶段绝不重建。throneseed109、throneroute109。 |
+| 19 循环BuffGator | 截图为原生BuffGator，加入循环下水道全部三关及停车场3-4／3-5，1/16权重，原血量／AI／辐射保持。buffgator109。 |
+| 20 Y.C金星客厅残留 | 同房电梯换层清理原生YungVenuzCouch和已打开的ChestOpen，保留秘密客厅本身的合法人物和箱子。venusyc109实际401→12。 |
+| 21 金星大厦屋顶网格 | X区域重复铺带金边的wall103out形成网格，改为纯色sprWall103Trans；真实外墙立面和窗洞保持。完整金星路线和大厦画面。 |
+| 22 中文叠字 | 触屏接管时普通HUD不重复绘交互提示；交互绘图自行设置并恢复文字对齐。requests109、源码合同和画面。 |
+| 23 流浪者双罐 | 按用户确认，同时保留传送打击罐和辐射罐；MOD Rogue拾取选项开启时每个打击罐只补一次附近可达的辐射罐。requests109。 |
+| 24 关卡进度条 | 用实际Hardmode可变关长映射自定义区域，7-3位置26、7-4位置27、王座28；秘密支线保留进入点，循环分色。requests109和真实路线绘制。 |
+| 25 循环Minigunner | 加入loop后的停车场3-1／2／4／5及巨鸟3-3；金星外改为原生狙击弹EnemyBullet4，金星保留原hitscan。minigunner109和生成合同。 |
+| 26 渡鸦辐射 | 满级前5点，满级后原版4基础点，已吸收辐射不丢失；实际原生Create、反复同步、升满级、退回和死亡掉落实测。 |
+| 27 水晶辐射 | 激光／闪电／诅咒水晶满级前在现Hardmode值上各减10，分别8／11／11；满级后原版22／25／25，保留吸收。相同实际死亡掉落矩阵。 |
+| 28 老鼠复活开关 | Hardmode设置新增默认开启的老鼠死亡变绿鼠开关；关闭恢复其普通死亡，运行中切换不叠加生命值，保存为hardsave第9字段，旧8字段默认开启。rats109及真实菜单。 |
+
+新增水晶／渡鸦辐射与原有规则同样读取实际等级上限，不改变存档格式GAME_BUILD3004。新增设置不改原版已有汉化；手机控制与普通游戏音量保持。测试全程静音。
+
+用户预警图标是本轮唯一媒体变动；GitHub仅上传文本源码和元数据。桌面性能数据不能代表手机帧率。IPA使用兼容runner和新VM／资源，需要重签；未做手机真机或本轮Mac原生重建。Android离线lint依赖不全，签名、资源及ZIP／ELF16K对齐单独核验。
+'''
+    (OUT/'FIXES.md').write_text(fixes,encoding='utf8')
+    install=f'''# Hardmode {VERSION} / build {BUILD}
+
+Android：`NuclearThrone.Hardmode-Android-{VERSION}.apk`，保持签名可覆盖更新。iOS：`NuclearThrone.Hardmode-iOS-{VERSION}.ipa`，需要重签。
+
+包名`com.arkintide.nuclearthronehardmode`，存档格式GAME_BUILD3004。安卓授权后共享存档为`/storage/emulated/0/games/com.arkintide.nuclearthronehardmode/`，不可写则回退私有目录；iOS为`Documents/hardmode/`并开启文件共享。更新前请备份存档。
+
+{summary}
+
+没有手机真机或新Mac原生重建验证；IPA需要重签。桌面CPU采样不能保证手机帧率。
+
+Android SHA256：`{artifacts['.apk']['sha256']}`。
+
+iOS SHA256：`{artifacts['.ipa']['sha256']}`。
+
+Hardmode安装包：https://mega.nz/folder/7TY3wZRB#PgQeCYQzxvrVGjfjX6YefA 。上传完成状态见publication-receipt.json。
+'''
+    (OUT/'INSTALL.md').write_text(install,encoding='utf8')
+    (ROOT/'deliverables'/f'Hardmode-{VERSION}-安装说明.md').write_text(install,encoding='utf8')
+    (OUT/'DELIVERY.md').write_text(f'''# Hardmode {VERSION}
+
+交付核验PASS。详见delivery-receipt.json、FIXES.md、INSTALL.md。
+
+{summary}
+
+桌面VM：`{r['final_desktop_vm_sha256']}`。原版{r['original_files_verified']}文件未改。APK：`../{artifacts['.apk']['path']}`。IPA：`../{artifacts['.ipa']['path']}`，需要重签。
+
+GitHub只发文本源码；云端发布完成状态见publication-receipt.json。
+''',encoding='utf8')
+    print('Release 109 documentation written')
+
+
+if __name__=='__main__':main()

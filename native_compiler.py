@@ -18,6 +18,7 @@ from repairs105 import emitted_repair as emitted_repair105
 from repairs106 import emitted_repair as emitted_repair106
 from repairs107 import ast_repair as ast_repair107, emitted_repair as emitted_repair107
 from repairs108 import ast_repair as ast_repair108, emitted_repair as emitted_repair108
+from repairs109 import ast_repair as ast_repair109, emitted_repair as emitted_repair109
 
 ROOT = Path(__file__).resolve().parent
 
@@ -60,6 +61,7 @@ class Emitter:
             ('bosses/guardianboss.mod.gml','guardiandark_draw'),
             ('bosses/guardianboss.mod.gml','guardianwall_draw'),
             ('enemies.mod.gml','crystalshielder_draw'),
+            ('enemies.mod.gml','bigshielder_draw'),
             ('enemies.mod.gml','enemyrogue_draw'),
             ('tests/compiler-fixture.gml','draw_logic_probe'),
             ('maincode.mod.gml','PortalShrink'),
@@ -292,7 +294,8 @@ class Emitter:
             text = self.expression(callee)
             if (name=="instance_destroy" and not arguments and
                     ((self.module=="maincode.mod.gml" and self.definition.name in {"shilling","versionnumber","StablePortal","PortalShrink","bigdogintro","sewerboi","spacesewerboi"})
-                    or (self.module=="props.mod.gml" and self.definition.name in {"E","outsider_draw"}))):
+                    or (self.module=="props.mod.gml" and self.definition.name in {"E","outsider_draw"})
+                    or (self.module=="enemies.mod.gml" and self.definition.name=="bigcrystaltopdraw"))):
                 text="scrHMMenuDrawComplete"
             if (self.module == "bosses/titank.mod.gml" and self.definition.name == "wanttitank_step"
                     and name == "titank_create"):
@@ -553,6 +556,7 @@ def main():
             ast_repair104(path, definition, walk)
             ast_repair107(path, definition, walk)
             ast_repair108(path, definition, walk)
+            ast_repair109(path, definition, walk)
             if path == "maincode.mod.gml" and definition.name == "step":
                 # The two original setrads loops are superseded by the tested
                 # reversible level-cap policy. Retain the absorption mechanic
@@ -603,6 +607,7 @@ def main():
             emitted=emitted_repair106(path,definition.name,emitted)
             emitted=emitted_repair107(path,definition.name,emitted)
             emitted=emitted_repair108(path,definition.name,emitted)
+            emitted=emitted_repair109(path,definition.name,emitted)
             text.append(f"// Source {path}:{definition.line}; {definition.name}\n" + emitted)
             records.append({"name": definition.name, "line": definition.line, "native_name": emitter.native_name,
                             "uses_coroutine": emitter.async_mode, "calls": sorted(emitter.calls)})

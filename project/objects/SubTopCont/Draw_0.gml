@@ -31,7 +31,7 @@ with TopSmall {
 	
 for(var _wall=0;_wall<ds_list_size(_list);++_wall) with(_list[| _wall]) {
     if(scrHMEnabled() && scrHMPlainWall106()) continue;
-	draw_sprite_ext(topspr, image_index, x, y - 8, 1, 1, 0, image_blend, 1)
+	if(!scrHMTransitionRoof109()) draw_sprite_ext(topspr, image_index, x, y - 8, 1, 1, 0, image_blend, 1)
 }
 	
 with TopPot {

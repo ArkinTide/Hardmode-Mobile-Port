@@ -351,6 +351,10 @@ instance_create((x + 16), (y + 16), Car);
 if ((random(16) < 1)) {
 instance_create((x + 16), (y + 16), Barrel);
 }
+
+scrHMLoopBuffGator109(x+16,y+16);
+
+scrHMLoopMinigunner109(x+16,y+16);
 }
 
 // Source areas/junkyard.area.gml:154; area_pop_props

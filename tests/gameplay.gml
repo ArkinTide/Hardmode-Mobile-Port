@@ -51,7 +51,7 @@ function scrHMGameplayTests() {
     if(!instance_exists(BackCont)) instance_create(0,0,BackCont);
     if(!instance_exists(TopCont)) instance_create(0,0,TopCont);
     if(!instance_exists(MusCont)) instance_create(0,0,MusCont);
-    var _player=scrPlayerCreate(0,Race.Fish,0);
+    var _player=scrPlayerCreate(0,(array_length(_parts)>6&&_parts[6]=="venusyc109")?Race.Cuz:Race.Fish,0);
     _player.wep=wep_revolver;_player.bwep=wep_shotgun;
     _player.hp=100000;_player.max_hp=100000;
     scrHMRunStart();
@@ -93,6 +93,10 @@ function scrHMGameplayTestStep() {
         var _actors=[];
         with(CustomEnemy) array_push(_actors,[name,hp,x,y]);
         show_debug_message("HARDMODE GENERATED ACTORS "+json_stringify(_actors));
+        if(GameCont.area==scrHMAreaResolve("throne")) {
+            var _thrones=[];with(NothingInactive) array_push(_thrones,[x,y,image_alpha,visible,distance_to_object(Floor)]);
+            show_debug_message("HARDMODE GENERATED THRONES "+json_stringify(_thrones));
+        }
     }
     if(HMWorld.logic_tick) {
         ticks++;
@@ -114,7 +118,8 @@ function scrHMGameplayTestStep() {
         if(string_pos("106",mode)>0) scrHMGameplayRepairs106();
         if(string_pos("107",mode)>0) scrHMGameplayRepairs107();
         if(string_pos("108",mode)>0) scrHMGameplayRepairs108();
-        if(mode=="venus106" || mode=="venussecrets106") scrHMGameplayVenus106();
+        if(string_pos("109",mode)>0) scrHMGameplayRepairs109();
+        if(mode=="venus106" || mode=="venussecrets106" || mode=="venusyc109") scrHMGameplayVenus106();
         if(ticks==120 && surface_exists(application_surface)) {
             surface_save(application_surface,game_directory+"gameplay.png");
         }
@@ -137,7 +142,7 @@ function scrHMGameplayTestStep() {
 }
 
 function scrHMGameplayRoomStart() {
-    if(!array_contains(["route","route103","boss","titank","continue","goto103","venus106","venussecrets106","ice107"],self[$ "mode"])) return;
+    if(!array_contains(["route","route103","boss","titank","continue","goto103","venus106","venussecrets106","ice107","throneroute109"],self[$ "mode"])) return;
     ready_age=-1;room_ticks=0;route_rooms++;transition_wait=0;
     show_debug_message("HARDMODE ROUTE ROOM "+string(route_rooms)+" "+string(GameCont.area)+","+string(GameCont.subarea));
     if(mode=="titank" && ticks>900) {
@@ -325,7 +330,7 @@ function scrHMGameplayUI() {
     if(ticks==30) {
         var _menu=instance_create(0,0,MenuOptions);
         scrOptionsMenuChangeCategory(OptionCategory.Hardmode,false);
-        scrHMGameplayCheck(_menu.item_count==7,"all single-player MOD settings visible in actual menu");
+        scrHMGameplayCheck(_menu.item_count==8,"all single-player MOD settings visible in actual menu");
         for(var _i=0;_i<7;++_i) {
             var _opt=_menu.items[_i],_old=scrHMModGet("mod","options",_opt.hm_setting);
             method_execute(_opt.click,_opt);
@@ -405,8 +410,8 @@ function scrHMGameplayWeapons() {
 
 function scrHMGameplaySave() {
     if(ticks!=30) return;
-    var _fields=["intropan","bossoutros","rads","weaponnames","coopchests","portals","rogue","flames"];
-    for(var _i=0;_i<8;++_i) {
+    var _fields=["intropan","bossoutros","rads","weaponnames","coopchests","portals","rogue","flames","ratrevive"];
+    for(var _i=0;_i<array_length(_fields);++_i) {
         var _old=scrHMModGet("mod","options",_fields[_i]);
         scrHMModCall("mod","options","chat_command",_fields[_i]);
         scrHMGameplayCheck(scrHMModGet("mod","options",_fields[_i])!=_old,"option toggles "+_fields[_i]);
@@ -414,7 +419,7 @@ function scrHMGameplaySave() {
         scrHMGameplayCheck(scrHMModGet("mod","options",_fields[_i])==_old,"option restored "+_fields[_i]);
     }
     var _settings=string_split(scrHMStringLoad("hardsave.txt"),"*");
-    scrHMGameplayCheck(array_length(_settings)==8,"settings file has all fields");
+    scrHMGameplayCheck(array_length(_settings)==9,"settings file has all fields");
     global.hm_module_vars[$ "mod:maincode"].gce=17;
     global.hm_module_vars[$ "mod:bosses/turtles"].seenturtles=true;
     player.wep=global.hm_weapon_ids[$ "secretweapon2"];

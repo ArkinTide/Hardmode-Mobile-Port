@@ -5,7 +5,7 @@ function hm_weapons_secretweapong2_wep_gml___load() {
 
 // Source weapons/secretweapong2.wep.gml:2; weapon_name
 function hm_weapons_secretweapong2_wep_gml_weapon_name() {
-if ((((GameCont.area == scrHMAreaResolve("venuz")) || (GameCont.area == scrHMAreaResolve(103))) || (GameCont.area == scrHMAreaResolve(107)))) {
+if ((((scrHMWeaponArea109() == scrHMAreaResolve("venuz")) || (scrHMWeaponArea109() == scrHMAreaResolve(103))) || (scrHMWeaponArea109() == scrHMAreaResolve(107)))) {
 return "Shotgun";
 } else {
 return "Venuz Shotgun";

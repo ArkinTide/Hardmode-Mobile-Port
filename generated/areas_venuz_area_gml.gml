@@ -648,7 +648,8 @@ if ((((GameCont.subarea >= 10) and (GameCont.subarea < 100)) || (GameCont.subare
 for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
 if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
 {
-sprite_index = global.hm_module_vars[$ "area:venuz"].wall103out;
+sprite_index = sprWall103Trans;
+y -= 8;
 ;
 depth = (20 - (y / 10000));
 }
@@ -659,7 +660,8 @@ if(__hm_break3) break;
 for (var __hm_index5=0; __hm_index5<array_length(__hm_with4); ++__hm_index5) {
 if(instance_exists(__hm_with4[__hm_index5])) with (__hm_with4[__hm_index5]) {
 {
-sprite_index = global.hm_module_vars[$ "area:venuz"].wall103out;
+sprite_index = sprWall103Trans;
+y -= 8;
 ;
 depth = (20 - (y / 10000));
 }
@@ -670,7 +672,8 @@ if(__hm_break6) break;
 for (var __hm_index8=0; __hm_index8<array_length(__hm_with7); ++__hm_index8) {
 if(instance_exists(__hm_with7[__hm_index8])) with (__hm_with7[__hm_index8]) {
 {
-sprite_index = global.hm_module_vars[$ "area:venuz"].wall103out;
+sprite_index = sprWall103Trans;
+y -= 8;
 ;
 depth = (20 - (y / 10000));
 }
@@ -681,7 +684,8 @@ if(__hm_break9) break;
 for (var __hm_index11=0; __hm_index11<array_length(__hm_with10); ++__hm_index11) {
 if(instance_exists(__hm_with10[__hm_index11])) with (__hm_with10[__hm_index11]) {
 {
-sprite_index = global.hm_module_vars[$ "area:venuz"].wall103out;
+sprite_index = sprWall103Trans;
+y -= 8;
 ;
 depth = (20 - (y / 10000));
 }

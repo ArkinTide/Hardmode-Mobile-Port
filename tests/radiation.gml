@@ -105,6 +105,26 @@ function scrHMRunRadiationTests() {
         instance_destroy(_cap, false);
         UberCont.custom = false;
 
+        // User-requested rewards: real native Create amounts, actual death
+        // pickups, and reversible signed deltas across the real level cap.
+        var _objects109=[Raven,LaserCrystal,LightningCrystal,InvLaserCrystal];
+        var _before109=[5,8,11,11],_after109=[4,22,25,25];
+        for(var _n109=0;_n109<4;++_n109) {
+            GameCont.level=9;
+            var _e109=instance_create(10000,10000,_objects109[_n109]);
+            _e109.corpse=false;
+            repeat(10)scrHMRadiationSyncWorld();
+            scrHMRadiationTestCheck(_e109.raddrop==_before109[_n109],"requested pre-cap reward from native Create");
+            _e109.raddrop+=3;
+            repeat(10)scrHMRadiationSyncWorld();
+            scrHMRadiationTestCheck(_e109.raddrop==_before109[_n109]+3,"pre-cap repeats preserve absorbed radiation");
+            GameCont.level=10;repeat(10)scrHMRadiationSyncWorld();
+            scrHMRadiationTestCheck(_e109.raddrop==_after109[_n109]+3,"cap restores native reward and absorbed radiation");
+            GameCont.level=9;repeat(10)scrHMRadiationSyncWorld();
+            scrHMRadiationTestCheck(_e109.raddrop==_before109[_n109]+3,"cap reversal does not compound special adjustments");
+            scrHMRadiationTestKill(_e109,_before109[_n109]+3);
+        }
+
         show_debug_message("HARDMODE RADIATION RATE PASS " + string(_rate));
     }
     var _report = json_stringify({status:"PASS",checks:global.hm_test_checks,rates:[30,60],physical_device_tested:false});

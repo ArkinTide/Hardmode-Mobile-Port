@@ -3,6 +3,7 @@
 /// @param y
 /// @param pos
 function scrDrawRoadmap(_drawx, _drawy, _pos) {
+    if(scrHMEnabled()) {scrHMRoadmap109(_drawx,_drawy,_pos);return;}
 	var _segment_length = 9,
 		_start_area = area_desert,
 		_total_map_size = 0

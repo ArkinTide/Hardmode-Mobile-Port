@@ -11,6 +11,7 @@ function scrHMRadiationBelowMaximum() {
 
 // Execute in the enemy's scope. The caller computes the cap once per world pass.
 function scrHMRadiationSync(_below_maximum) {
+    scrHMBoneFishRadiation109(_below_maximum);
     if(object_index==FastRat) {
         // FastRat's vanilla drop is 0; Rat's is 4. Keep this independent
         // signed delta so radiation absorbed during play is never reset.
@@ -24,7 +25,7 @@ function scrHMRadiationSync(_below_maximum) {
     }
 
     if (_below_maximum) {
-        if (hm_rad_reduced) return;
+        if (hm_rad_reduced) {scrHMRadiationRequests109(_below_maximum);return;}
         var _unmodified = raddrop;
         // b24 explicitly exempts radiation maggots from the ordinary -4 rule.
         if (object_index == RadMaggot || object_is_ancestor(object_index, RadMaggot)) {
@@ -42,6 +43,7 @@ function scrHMRadiationSync(_below_maximum) {
         hm_rad_adjustment = 0;
         hm_rad_reduced = false;
     }
+    scrHMRadiationRequests109(_below_maximum);
 }
 
 function scrHMRadiationSyncWorld() {

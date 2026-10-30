@@ -1498,18 +1498,23 @@ ammo = 0;
 }
 if(__hm_break247) break;
 }}
+if (scrHMRatRevive109()) {
 { var __hm_with248 = scrHMInstances(Rat), __hm_break250=false;
 for (var __hm_index249=0; __hm_index249<array_length(__hm_with248); ++__hm_index249) {
 if(instance_exists(__hm_with248[__hm_index249])) with (__hm_with248[__hm_index249]) {
-if ((!scrHMVariableExists(id, "infected"))) {
+if (((! scrHMVariableExists(id, "infected")) || (infected == 0))) {
 {
 infected = 1;
+;
 hp += 6;
+;
 }
 }
 }
 if(__hm_break250) break;
 }}
+}
+if (scrHMRatRevive109()) {
 { var __hm_with251 = scrHMMatching(Rat, "infected", 1), __hm_break253=false;
 for (var __hm_index252=0; __hm_index252<array_length(__hm_with251); ++__hm_index252) {
 if(instance_exists(__hm_with251[__hm_index252])) with (__hm_with251[__hm_index252]) {
@@ -1582,6 +1587,8 @@ scrHMDelete(id);
 }
 if(__hm_break253) break;
 }}
+}
+if (scrHMRatRevive109()) {
 { var __hm_with271 = scrHMMatching(Corpse, "sprite_index", sprRatDead), __hm_break273=false;
 for (var __hm_index272=0; __hm_index272<array_length(__hm_with271); ++__hm_index272) {
 if(instance_exists(__hm_with271[__hm_index272])) with (__hm_with271[__hm_index272]) {
@@ -1607,6 +1614,7 @@ instance_destroy();
 }
 if(__hm_break273) break;
 }}
+}
 { var __hm_with279 = scrHMMatching(FireBaller, "canmelee", 0), __hm_break281=false;
 for (var __hm_index280=0; __hm_index280<array_length(__hm_with279); ++__hm_index280) {
 if(instance_exists(__hm_with279[__hm_index280])) with (__hm_with279[__hm_index280]) {
@@ -3474,6 +3482,8 @@ break;
 case 5: // enemies.mod.gml:1956
 {
 gunangle = (_hm.vars.gang_ + random_range((- 20), 20));
+
+if(GameCont.area!=scrHMAreaResolve("venuz")) {scrHMMinigunnerShot109();} else {
 _hm.vars.dist = 4;
 ;
 scrHMSoundPitchVolume(sndMinigun, 0.9, ((view_width / 4) / distance_to_object(Player)));
@@ -3540,6 +3550,8 @@ image_speed = (1) * timescale;
 }
 if(__hm_break16) break;
 }}
+
+}
 }
 _hm.pc=4;
 break;
@@ -4478,11 +4490,11 @@ scrHMDrawSpriteExt(global.hm_module_vars[$ "mod:enemies"].bigcrystal, 1, creator
 ;
 scrHMDrawSpriteExt(global.hm_module_vars[$ "mod:enemies"].bigcrystalfrontlegswalk, creator.shieldwalk, x, (y + 3), 1, 1, 0, c_white, 1);
 ;
-creator.shieldwalk += 0.25;
+if(scrHMReadyTick()) { creator.shieldwalk += 0.25; }
 }
 } else {
 {
-creator.shieldwalk = 0;
+if(scrHMReadyTick()) { creator.shieldwalk = 0; }
 scrHMDrawSprite(global.hm_module_vars[$ "mod:enemies"].bigcrystalbacklegsidle, 0, x, (y + 3));
 scrHMDrawSpriteExt(global.hm_module_vars[$ "mod:enemies"].bigcrystal, 1, creator.x, creator.y, creator.right, 1, 0, c_white, 1);
 ;
@@ -5842,6 +5854,7 @@ default: throw "Hardmode invalid continuation PC";
 // Source enemies.mod.gml:3137; IDPDTank_dead
 function hm_enemies_mod_gml_IDPDTank_dead() {
 scrHMTankRadiation108();
+scrHMTankSupplies109();
 if (scrHMModExists("mod", "options", "bossoutros")) {
 if ((scrHMModGet("mod", "options", "bossoutros") == "1")) {
 scrHMModCall("mod", "bossintros", "boss_trigger", "", mskNone, mskNone, mskNone, id, 0);

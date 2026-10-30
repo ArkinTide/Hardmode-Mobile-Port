@@ -1,4 +1,4 @@
-function scrDrawPlayerHUD(_player = noone) {
+function scrDrawPlayerHUD(_player = noone, _draw_interaction = true) {
 	if !((UberCont.opt_hud || instance_exists(MakeGame)) && (is_struct(_player) || instance_exists(_player))) exit
 	
 	var _ammo = _player.ammo,
@@ -298,7 +298,7 @@ function scrDrawPlayerHUD(_player = noone) {
 	draw_set_color(c_white)
 	
 	// Interaction
-	if (!scrGameIsPaused()) scrDrawInteractionHUD(_player)
+	if (_draw_interaction && !scrGameIsPaused()) scrDrawInteractionHUD(_player)
 }
 
 function scrDrawTypeAmmo(_type, _background_index, _icon_index, _x, _y) {
@@ -336,6 +336,9 @@ function scrDrawTypeAmmo(_type, _background_index, _icon_index, _x, _y) {
 }
 
 function scrDrawInteractionHUD(_player) {
+    var _ha=draw_get_halign(),_va=draw_get_valign();
+    try {
+    draw_align(fa_center,fa_top);
 	with (_player) array_foreach([ WepPickup, CarVenusFixed, IceFlower, Van ], function(_object_index) {
 		var _player = id
 		
@@ -404,4 +407,5 @@ function scrDrawInteractionHUD(_player) {
 			}
 		}
 	})
+    } finally {draw_align(_ha,_va);}
 }

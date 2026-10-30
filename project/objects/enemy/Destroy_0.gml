@@ -10,6 +10,7 @@ if (instance_number(enemy) == 2) {
 if corpse && (!scrHMEnabled() || (sprite_exists(spr_dead) && spr_dead!=mskNone)) {
     with instance_create(x, y, CorpseActive) {
         if(scrHMEnabled()) other.hm_death_corpse107=id;
+        if(scrHMEnabled()) {other.hm_death_corpse107=id;hm_no_revive109=other.object_index==TechnoMancer;}
         size = other.size
         mask_index = other.mask_index
         motion_add(other.direction, other.speed)

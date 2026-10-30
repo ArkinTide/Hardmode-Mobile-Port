@@ -396,6 +396,8 @@ instance_create((x + 16), (y + 16), InvLaserCrystal);
 if ((random(100) < 1)) {
 scrHMModCall("mod", "enemies", "bigcrystal_create", (x + 16), (y + 16));
 }
+
+scrHMLoopCrystal109(x+16,y+16);
 }
 
 // Source areas/cavesinv.area.gml:190; area_pop_props

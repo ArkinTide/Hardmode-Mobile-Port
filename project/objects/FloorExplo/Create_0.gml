@@ -5,6 +5,17 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 hm_quiet_wall107=scrHMEnabled() && variable_global_exists("hm_quiet_wall107") && global.hm_quiet_wall107;
 scrHMCarveFill105(16);
 var _area;

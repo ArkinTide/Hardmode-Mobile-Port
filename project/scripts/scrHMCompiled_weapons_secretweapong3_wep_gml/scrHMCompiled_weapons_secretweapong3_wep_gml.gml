@@ -5,7 +5,7 @@ global.hm_module_vars[$ "weapon:secretweapong3"].minigun = sprHM_weapons_secretw
 
 // Source weapons/secretweapong3.wep.gml:3; weapon_name
 function hm_weapons_secretweapong3_wep_gml_weapon_name() {
-if ((((GameCont.area == scrHMAreaResolve("venuz")) || (GameCont.area == scrHMAreaResolve(103))) || (GameCont.area == scrHMAreaResolve(107)))) {
+if ((((scrHMWeaponArea109() == scrHMAreaResolve("venuz")) || (scrHMWeaponArea109() == scrHMAreaResolve(103))) || (scrHMWeaponArea109() == scrHMAreaResolve(107)))) {
 return "Minigun";
 } else {
 return "Venuz Minigun";

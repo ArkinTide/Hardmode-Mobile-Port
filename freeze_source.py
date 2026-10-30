@@ -23,7 +23,7 @@ def freeze(name, directory='release100'):
     assert not failures, failures
     files={p.relative_to(ROOT).as_posix():sha(p) for p in sorted((ROOT/'project').rglob('*')) if p.is_file()}
     sources={}
-    for folder in ['native','generated','tests','localization']:
+    for folder in ['native','generated','tests','localization','android']:
         sources.update({p.relative_to(ROOT).as_posix():sha(p) for p in sorted((ROOT/folder).rglob('*')) if p.is_file()})
     sources.update({p.name:sha(p) for p in sorted(ROOT.glob('*.py'))})
     sources.update({p.name:sha(p) for p in sorted(ROOT.glob('*.ps1'))})

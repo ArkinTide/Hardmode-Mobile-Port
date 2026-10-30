@@ -24,7 +24,7 @@ function scrHMRadiationSync(_below_maximum) {
     }
 
     if (_below_maximum) {
-        if (hm_rad_reduced) return;
+        if (hm_rad_reduced) {scrHMRadiationRequests109(_below_maximum);return;}
         var _unmodified = raddrop;
         // b24 explicitly exempts radiation maggots from the ordinary -4 rule.
         if (object_index == RadMaggot || object_is_ancestor(object_index, RadMaggot)) {
@@ -42,6 +42,7 @@ function scrHMRadiationSync(_below_maximum) {
         hm_rad_adjustment = 0;
         hm_rad_reduced = false;
     }
+    scrHMRadiationRequests109(_below_maximum);
 }
 
 function scrHMRadiationSyncWorld() {

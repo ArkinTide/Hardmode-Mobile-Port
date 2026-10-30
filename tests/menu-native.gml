@@ -41,7 +41,7 @@ function scrHMMenuOptionsCheck() {
         scrHMMenuCheck(_main[_i][$ "category"]!=OptionCategory.Coop_Menu,"no multiplayer entry");
     }
     scrOptionsMenuChangeCategory(OptionCategory.Hardmode,false);
-    scrHMMenuCheck(_menu.item_count==7,"seven single-player MOD options");
+    scrHMMenuCheck(_menu.item_count==8,"eight single-player MOD options including persisted rat revival");
     for(var _j=0;_j<_menu.item_count;++_j) {
         var _opt=_menu.items[_j];
         scrHMMenuCheck(_opt.hm_setting!="coopchests","no obsolete co-op ammo setting");

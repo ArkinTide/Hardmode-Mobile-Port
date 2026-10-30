@@ -35,7 +35,7 @@ return 15;
 
 // Source weapons/secretweapon3.wep.gml:16; weapon_area
 function hm_weapons_secretweapon3_wep_gml_weapon_area() {
-if ((((GameCont.area == scrHMAreaResolve(104)) || (GameCont.area == scrHMAreaResolve("icecave"))) || (GameCont.area == scrHMAreaResolve("cavesinv")))) {
+if ((((scrHMWeaponArea109() == scrHMAreaResolve(104)) || (scrHMWeaponArea109() == scrHMAreaResolve("icecave"))) || (scrHMWeaponArea109() == scrHMAreaResolve("cavesinv")))) {
 return 1;
 } else {
 return (- 1);

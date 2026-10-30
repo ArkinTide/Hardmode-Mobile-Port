@@ -53,12 +53,13 @@ function scrHMWaterMap() {
             _map[$ scrHMWaterKey(_xx,_yy)]=false;
     }
     HMWorld.hm_water_map=_map;
+    scrHMWaterRects109();
     HMWorld.hm_water_floors=instance_number(Floor);
 }
 
 function scrHMWaterAt(_x,_y) {
     if(is_undefined(variable_instance_get(HMWorld,"hm_water_map")) || (variable_instance_get(HMWorld,"hm_water_floors")??-1)!=instance_number(Floor)) scrHMWaterMap();
-    return HMWorld.hm_water_map[$ scrHMWaterKey(_x,_y)]??false;
+    return scrHMWaterExact109(_x,_y);
 }
 
 function scrHMSwimLeave() {
@@ -83,7 +84,7 @@ function scrHMSewerTick() {
         var _was=self[$ "swimming"]??false;
         if(!_was && (!variable_instance_exists(id,"right") || object_index==FireBaller || object_index==SuperFireBaller)) continue;
         var _near=point_distance(x,y,_player.x,_player.y)<view_width;
-        var _water=(_map[$ scrHMWaterKey(x,y)]??false) && !instance_exists(SpiralCont);
+        var _water=scrHMWaterExact109(x,y) && !instance_exists(SpiralCont);
         if(_water && distance_to_object(Portal)<=32) _water=false;
         if(!_water) {
             if(_was) {scrHMSwimLeave();if(_near) scrHMSoundPitchVolume(sndSewerDrip,1,.22);}

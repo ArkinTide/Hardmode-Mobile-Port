@@ -46,7 +46,7 @@ function scrHMVenusPark106() {
 
 function scrHMGameplayVenus106() {
     if(!variable_instance_exists(id,"venus_path106")) {
-        venus_path106=mode=="venus106"?[1,2,3,4,5,6,7,8,9,10,11,12]:[1,2,3,100,4,5,6,200,7,8,9,300,10,11,400,401,12];
+        venus_path106=mode=="venusyc109"?[401,12]:(mode=="venus106"?[1,2,3,4,5,6,7,8,9,10,11,12]:[1,2,3,100,4,5,6,200,7,8,9,300,10,11,400,401,12]);
         var _start=0;for(var _i=0;_i<array_length(venus_path106);++_i) if(venus_path106[_i]==GameCont.subarea) {_start=_i;break;}
         if(_start>0) {
             var _trim=[];for(var _i=_start;_i<array_length(venus_path106);++_i) array_push(_trim,venus_path106[_i]);
@@ -134,6 +134,14 @@ function scrHMGameplayVenus106() {
         other.venus_shots106++;
     }
     if(venus_phase106=="settle" && venus_phase_age106>=90) {
+        if(mode=="venusyc109") {
+            if(_sub==401) {
+                scrHMGameplayCheck(instance_number(YungVenuzCouch)==1,"Y.C secret lounge legitimately creates the seated YV");
+                with(GiantWeaponChest) {instance_create(x,y,ChestOpen);instance_destroy(id,false);}
+            } else if(_sub==12) {
+                scrHMGameplayCheck(!instance_exists(YungVenuzCouch)&&!instance_exists(ChestOpen),"actual lounge elevator removes seated YV and opened chest art before final boss");
+            }
+        }
         scrHMGameplayCheck(instance_number(Floor)>5&&!TopCont.darkness,"Venus stage is populated and has no false darkness");
         var _song=(_sub<=3||_sub==100)?"gungodz02":((_sub<=6||_sub==200)?"gungodz03":((_sub<=9||_sub==300)?"gungodz04":(_sub==12?"gungodz07":"gungodz06")));
         if(venus_path106[0]==1 || venus_index106>0) scrHMGameplayCheck(audio_is_playing(custom_sound_check(scrHMModGet("area","venuz",_song))),"Venus stage retains its expected source music while muted");

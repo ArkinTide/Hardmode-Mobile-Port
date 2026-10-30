@@ -36,14 +36,7 @@ return 0;
 }
 
 // Source weapons/secretweapon2.wep.gml:19; weapon_area
-function hm_weapons_secretweapon2_wep_gml_weapon_area() {
-if (((GameCont.area == scrHMAreaResolve("oasis")) || (GameCont.area == scrHMAreaResolve(101)))) {
-return 1;
-} else {
-return (- 1);
-}
-;
-}
+function hm_weapons_secretweapon2_wep_gml_weapon_area() {return instance_exists(GameCont)&&GameCont.area==scrHMAreaResolve("oasis")?1:-1;}
 
 // Source weapons/secretweapon2.wep.gml:25; weapon_swap
 function hm_weapons_secretweapon2_wep_gml_weapon_swap() {

@@ -12,8 +12,8 @@ if instance_exists(target) {
             else if hspeed < 0 right = -1
         } else {
             if instance_exists(Corpse) {
-                crp = instance_nearest(x, y, Corpse)
-                if !collision_line(x, y, crp.x, crp.y, Wall, 0, 0) {
+                crp = scrHMReviveNearest109(x, y)
+                if instance_exists(crp) && !collision_line(x, y, crp.x, crp.y, Wall, 0, 0) {
                     gunangle = point_direction(x, y, crp.x, crp.y)
                     with crp {
                         instance_create(x, y, ReviveCircle)
@@ -29,8 +29,8 @@ if instance_exists(target) {
         //DONT SEE PLAYER
         if random(4) < 3 {
             if instance_exists(Corpse) {
-                crp = instance_nearest(x, y, Corpse)
-                if !collision_line(x, y, crp.x, crp.y, Wall, 0, 0) {
+                crp = scrHMReviveNearest109(x, y)
+                if instance_exists(crp) && !collision_line(x, y, crp.x, crp.y, Wall, 0, 0) {
                     wkick = 5
                     gunangle = point_direction(x, y, crp.x, crp.y)
                     with crp {

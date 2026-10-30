@@ -1,5 +1,5 @@
 with Corpse {
-    if distance_to_object(other) <= 2 {
+    if distance_to_object(other) <= 2 && (!scrHMEnabled() || scrHMReviveAllowed109()) {
         if !place_meeting(x, y, Wall) {
             instance_create(x, y, ReviveFX)
             instance_change(Freak, true)

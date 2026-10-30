@@ -29,7 +29,7 @@ can_pick = true;
 ;
 can_spec = true;
 ;
-GameCont.crownvisits = 5;
+
 GameCont.droppedguitar = 1;
 GameCont.seenhq = 1;
 global.hm_module_vars[$ "mod:maincode"].gce = 0;
@@ -5849,9 +5849,7 @@ if ((_hm.vars.rog == 1)) {
 for (var __hm_index1032=0; __hm_index1032<array_length(__hm_with1031); ++__hm_index1032) {
 if(instance_exists(__hm_with1031[__hm_index1032])) with (__hm_with1031[__hm_index1032]) {
 {
-instance_change(Wind, 1);
-instance_create(x, y, RadChest);
-instance_destroy();
+scrHMRogueCanisters109();
 }
 }
 if(__hm_break1033) break;

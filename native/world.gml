@@ -220,15 +220,18 @@ function scrHMBindDraw(_code,_depth) {
         ||_code==scrHMScriptRef(hm_maincode_mod_gml_PortalShrink)
         ||_code==scrHMScriptRef(hm_maincode_mod_gml_bigdogintro)
         ||_code==scrHMScriptRef(hm_maincode_mod_gml_sewerboi)
-        ||_code==scrHMScriptRef(hm_maincode_mod_gml_spacesewerboi));
+        ||_code==scrHMScriptRef(hm_maincode_mod_gml_spacesewerboi)
+        ||_code==scrHMScriptRef(hm_enemies_mod_gml_bigcrystaltopdraw));
     var _binding=noone;
     // The source refreshes these one-shot rendering callbacks at 30 Hz. Retain
     // their renderer for intervening 60 FPS frames without accumulating it.
     if(_menu) {
-        var _creator=id;
-        with(HMBinding) if(hm_menu_overlay&&hm_code==_code&&creator==_creator) {_binding=id;break;}
+        if(is_undefined(self[$ "hm_draw_bindings109"])) hm_draw_bindings109={};
+        _binding=hm_draw_bindings109[$ string(_code)]??noone;
+        if(instance_exists(_binding) && (_binding.creator!=id || _binding.hm_code!=_code)) _binding=noone;
     }
     if(!instance_exists(_binding)) _binding=instance_create(x,y,HMBinding);
+    if(_menu) hm_draw_bindings109[$ string(_code)]=_binding;
     _binding.hm_menu_overlay=_menu;
     _binding.hm_refresh_tick=HMWorld.logic_serial;
     _binding.depth=_depth;_binding.hm_code=_code;

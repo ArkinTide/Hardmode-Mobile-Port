@@ -287,7 +287,7 @@ function scrPopulate() {
 	}
 	
 	if (_loops > 0 && _area != area_pizza_sewers) with (enemy) {
-		if (random(60) > _loops || object_index == Mimic
+		if ((scrHMEnabled() && object_index==CustomEnemy) || random(60) > _loops || object_index == Mimic
 			|| object_index == SuperMimic || object_index == WepMimic
 			|| object_index == MaggotSpawn
 		) {

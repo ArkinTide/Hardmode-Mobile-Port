@@ -4,13 +4,13 @@
 
 基于 **Blaac 的 Hardmode b24** 和 Nuclear Throne Recreated Epsilon 制作的安卓／iOS 独立移植版，与 NTTE 移植工程分开维护。
 
-当前版本 **1.0.8 / build 9**。[下载 APK 和 IPA](https://mega.nz/folder/7TY3wZRB#PgQeCYQzxvrVGjfjX6YefA)。GitHub 只发布源码，安装包放在既有 MEGA 目录。
+当前版本 **1.0.9 / build 10**。[下载 APK 和 IPA](https://mega.nz/folder/7TY3wZRB#PgQeCYQzxvrVGjfjX6YefA)。GitHub 只发布源码，安装包放在既有 MEGA 目录。
 
 仓库只包含文本源码及工程元数据，包括 GML 适配层、生成模块、编译器、测试、汉化和 GameMaker 工程定义。**不含图片、音频、字体、原生 runner、SDK、签名、用户存档或原 MOD 内嵌图片数据**。工程内的素材引用需要另行补齐。
 
 安卓独立包名为 `com.arkintide.nuclearthronehardmode`。授权后的共享存档目录为 `/storage/emulated/0/games/com.arkintide.nuclearthronehardmode/`；不可写时使用私有目录。iOS 存档在 `Documents/hardmode/` 并开启文件共享。
 
-满级前使用 Hardmode 的辐射掉落规则，满级后恢复普通掉落；绿老鼠满级后的基础掉落与普通老鼠相同。移除独立版中不使用的多人、资源包、每日／每周挑战和主菜单 Discord 入口，加入 Hardmode 简体中文文本，保留原版既有汉化。
+满级前使用 Hardmode 辐射规则，渡鸦5点，激光／闪电／诅咒水晶8／11／11点；满级后恢复各自原版基础掉落，绿老鼠与普通老鼠相同。Hardmode设置中的老鼠死亡复活为绿老鼠默认开启，可以关闭并保存。移除独立版中不使用的多人、资源包、每日／每周挑战和主菜单 Discord 入口，加入 Hardmode 简体中文文本，保留原版既有汉化。
 
 源码结构、构建依赖与命令见 [BUILDING.md](BUILDING.md)。纯源码克隆不能直接运行，需要自行提供合法取得的原版／Hardmode 素材、兼容 GameMaker、平台工具链和签名材料。
 

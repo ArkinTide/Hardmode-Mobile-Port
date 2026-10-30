@@ -4,7 +4,7 @@
 
 An independent Android and iOS port of **Hardmode b24 by Blaac**, based on the Nuclear Throne Recreated Epsilon project. This is separate from NTTE Mobile Port.
 
-Current release: **1.0.8**, native build **9**. [Download APK / IPA](https://mega.nz/folder/7TY3wZRB#PgQeCYQzxvrVGjfjX6YefA). Installers are distributed through the existing MEGA folder, not GitHub assets.
+Current release: **1.0.9**, native build **10**. [Download APK / IPA](https://mega.nz/folder/7TY3wZRB#PgQeCYQzxvrVGjfjX6YefA). Installers are distributed through the existing MEGA folder, not GitHub assets.
 
 This repository contains **text source code and project metadata only**: the maintained GML adapters, generated modules, compiler, tests, translations and GameMaker project definitions. It does not contain game artwork, audio, fonts, native runners, SDKs, signing identities, user saves, or the original MOD's embedded image payloads. The asset references in project definitions require separately supplied files.
 
@@ -13,7 +13,7 @@ This repository contains **text source code and project metadata only**: the mai
 - Independent application ID: `com.arkintide.nuclearthronehardmode`.
 - Android shared saves: `/storage/emulated/0/games/com.arkintide.nuclearthronehardmode/`, after storage permission; the private directory is the fallback.
 - iOS saves: `Documents/hardmode/`, exposed through Files sharing.
-- Below maximum character level, radiation follows Hardmode's reduced drops. At maximum level, ordinary drops return, with green rats matching ordinary rats.
+- Below the level cap, radiation follows Hardmode reductions with raven drops of 5 and laser/lightning/cursed crystal drops of 8/11/11. At the cap, native base rewards return; green rats match ordinary rats. Rat-to-green-rat revival has a persistent Hardmode setting, enabled by default.
 - Online multiplayer, resource packs, daily/weekly challenges and the main-menu Discord button are hidden in this independent port. Simplified Chinese Hardmode text is included; existing base-game translations are preserved.
 
 ## Source layout and building

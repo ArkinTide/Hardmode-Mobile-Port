@@ -28,11 +28,10 @@ def prepare(target):
     hits=[p for p in range(start,start+length,4) if game.data[p:p+8]==bytes.fromhex('13000f84 f1ff05c0')]
     assert len(hits)==1,hits
     game.put(hits[0],0x840f0004)
-    timing=None
+    refs=game.functions['display_set_timing_method']['refs'];assert len(refs)==1
+    timing=refs[0]-12
+    assert game.data[timing:timing+12]==bytes.fromhex('00000f84 00005207 010002d9')
     if target=='ios':
-        refs=game.functions['display_set_timing_method']['refs'];assert len(refs)==1
-        timing=refs[0]-12
-        assert game.data[timing:timing+12]==bytes.fromhex('00000f84 00005207 010002d9')
         game.put(timing,0x840f0001)
     assets[vm]=bytes(game.data)
     dest=ROOT/f'platforms/{target}/prepared-assets';dest.mkdir(parents=True,exist_ok=True)
@@ -40,7 +39,9 @@ def prepare(target):
         path=dest/name;path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(data)
     receipt={'target':target,'raw_vm_sha256':sha(raw),'prepared_vm_sha256':sha(assets[vm]),
              'fonts':fonts,'title':title,'cjk_anchor_operand':hits[0],
-             'ios_vsync_operand':timing,'assets':{n:sha(d) for n,d in assets.items()}}
+             'ios_vsync_operand':timing if target=='ios' else None,
+             'timing_operand':timing,'timing_method':1 if target=='ios' else 0,
+             'assets':{n:sha(d) for n,d in assets.items()}}
     (ROOT/f'platforms/{target}/prepared-receipt.json').write_text(json.dumps(receipt,indent=2)+'\n')
     print(target,'prepared',len(assets),'assets; exact font pixels verified')
     return assets,receipt

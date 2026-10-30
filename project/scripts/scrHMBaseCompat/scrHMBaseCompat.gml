@@ -21,7 +21,7 @@ function scrHMRavenSpawnStep() {
         }
     }
     if(!instance_exists(_floor)) return;
-    hm_bosses_ravenboss_mod_gml_ravenboss_create(_floor.x+16,_floor.y+16);
+    scrHMRavenGroup109(_floor.x+16,_floor.y+16);
     scrHMSoundPitchVolume(sndRavenDie,.6,4);
     instance_destroy();
 }
