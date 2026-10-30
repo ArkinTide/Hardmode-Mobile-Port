@@ -3,6 +3,8 @@ function scrHMStorageInit() {
     // Explicit desktop regressions use workspace-owned disposable state,
     // never a player's real original/NTTE/Hardmode save directory.
     if(os_type==os_windows) {
+        var _probe=filename_path(parameter_string(0));
+        if(file_exists(_probe+"live112.marker")) {game_directory=_probe+"state/";return;}
         var _prefix="--hardmode-test-root=";
         for(var _i=1;_i<=parameter_count();++_i) {
             var _arg=parameter_string(_i);

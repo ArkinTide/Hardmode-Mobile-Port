@@ -279,6 +279,7 @@ function scrInitPostGamestart() {
 			})
 			
 			display_reset(0, opt_vsync)
+            scrHMDesktopTiming112();
 			
 			opt_assist = 0
 		}

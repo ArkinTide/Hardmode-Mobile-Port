@@ -106,7 +106,7 @@ function scrHMRavenBackup109() {
 }
 
 function scrHMLoopCrystal109(_x,_y) {
-    if(GameCont.loops<=0 || random(32)>=1) return noone;
+    if(GameCont.loops<=0 || GameCont.area==scrHMAreaResolve("city") || random(32)>=1) return noone;
     if(position_meeting(_x,_y,Wall)) return noone;
     return hm_enemies_mod_gml_bigcrystal_create(_x,_y);
 }
@@ -269,7 +269,7 @@ function scrHMWaterExact109(_x,_y) {
         if(!instance_exists(_f)) continue;
         var _size=instance_is(_f,FloorExplo)?16:32;
         if(_x<_f.x || _y<_f.y || _x>=_f.x+_size || _y>=_f.y+_size) continue;
-        if(_f.traction!=2) return false;
+        if(_f.traction!=2 || !instance_exists(_f[$ "hm_water_surface111"]??noone) || scrHMWaterBank111(_f,_x,_y)) return false;
         _water=true;
     }
     return _water;

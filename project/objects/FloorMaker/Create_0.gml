@@ -1,4 +1,5 @@
 direction = rng_choose(0, 0, 90, 180, 270)
+if(scrHMEnabled() && GameCont.area==scrHMAreaResolve("throne")) direction=90;
 
 styleb = !rng_float(RNGStates.Generation, 6 - (GameCont.area == 104 * 4))
 if GameCont.area == 100 styleb = 0

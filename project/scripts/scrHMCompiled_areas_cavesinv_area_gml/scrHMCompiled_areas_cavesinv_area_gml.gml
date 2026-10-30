@@ -398,6 +398,7 @@ scrHMModCall("mod", "enemies", "bigcrystal_create", (x + 16), (y + 16));
 }
 
 scrHMLoopCrystal109(x+16,y+16);
+scrHMLoopSpider111(x+16,y+16);
 }
 
 // Source areas/cavesinv.area.gml:190; area_pop_props

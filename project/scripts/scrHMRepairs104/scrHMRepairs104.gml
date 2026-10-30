@@ -66,7 +66,7 @@ function scrHMSwimLeave() {
     swimming=false;
     canfly=self[$ "hm_swim_fly"]??false;
     image_alpha=self[$ "hm_swim_alpha"]??1;
-    spr_shadow=self[$ "shd_"]??shd12;
+    spr_shadow=self[$ "shd_"]??spr_shadow;
 }
 
 function scrHMSewerTick() {
@@ -84,7 +84,7 @@ function scrHMSewerTick() {
         var _was=self[$ "swimming"]??false;
         if(!_was && (!variable_instance_exists(id,"right") || object_index==FireBaller || object_index==SuperFireBaller)) continue;
         var _near=point_distance(x,y,_player.x,_player.y)<view_width;
-        var _water=scrHMWaterExact109(x,y) && !instance_exists(SpiralCont);
+        var _water=scrHMSwimSupported112(x,y) && !instance_exists(SpiralCont);
         if(_water && distance_to_object(Portal)<=32) _water=false;
         if(!_water) {
             if(_was) {scrHMSwimLeave();if(_near) scrHMSoundPitchVolume(sndSewerDrip,1,.22);}
@@ -180,15 +180,7 @@ function scrHMWallBreakUpdate104() {
     ds_list_destroy(_walls);
 }
 
-function scrHMWallThemeStart(_origin) {
-    HMWorld.hm_wall_theme_area106=GameCont.area;
-    if(!instance_exists(_origin)) return;
-    var _queue=[],_ox=_origin.x,_oy=_origin.y,_tick=HMWorld.logic_serial;
-    with(Wall) array_push(_queue,[id,_tick+ceil(point_distance(x,y,_ox,_oy)/8),false]);
-    with(TopSmall) array_push(_queue,[id,_tick+ceil(point_distance(x,y,_ox,_oy)/8),true]);
-    array_sort(_queue,function(_a,_b){return _a[1]-_b[1];});
-    HMWorld.hm_wall_theme_queue=_queue;HMWorld.hm_wall_theme_index=0;
-}
+function scrHMWallThemeStart(_origin) {scrHMCaveWallWave111(_origin);}
 
 function scrHMWallThemeTick() {
     var _queue=self[$ "hm_wall_theme_queue"]??[],_index=self[$ "hm_wall_theme_index"]??0;

@@ -28,8 +28,13 @@ def prepare(target):
     hits=[p for p in range(start,start+length,4) if game.data[p:p+8]==bytes.fromhex('13000f84 f1ff05c0')]
     assert len(hits)==1,hits
     game.put(hits[0],0x840f0004)
-    refs=game.functions['display_set_timing_method']['refs'];assert len(refs)==1
-    timing=refs[0]-12
+    refs=game.functions['display_set_timing_method']['refs']
+    # Windows has a separate startup-clock function. Only the inherited
+    # MakeGame event's timing argument is the iOS compatibility operand.
+    event_start,event_length=game.codes['gml_Object_MakeGame_Create_0']
+    event_refs=[r for r in refs if event_start<=r<event_start+event_length]
+    assert len(event_refs)==1,(refs,event_refs)
+    timing=event_refs[0]-12
     assert game.data[timing:timing+12]==bytes.fromhex('00000f84 00005207 010002d9')
     if target=='ios':
         game.put(timing,0x840f0001)
@@ -41,6 +46,7 @@ def prepare(target):
              'fonts':fonts,'title':title,'cjk_anchor_operand':hits[0],
              'ios_vsync_operand':timing if target=='ios' else None,
              'timing_operand':timing,'timing_method':1 if target=='ios' else 0,
+             'timing_reference_count':len(refs),'timing_code':'gml_Object_MakeGame_Create_0',
              'assets':{n:sha(d) for n,d in assets.items()}}
     (ROOT/f'platforms/{target}/prepared-receipt.json').write_text(json.dumps(receipt,indent=2)+'\n')
     print(target,'prepared',len(assets),'assets; exact font pixels verified')

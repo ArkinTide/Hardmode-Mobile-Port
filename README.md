@@ -2,9 +2,9 @@
 
 [简体中文](README.zh-CN.md) · English
 
-An independent Android and iOS port of **Hardmode b24 by Blaac**, based on the Nuclear Throne Recreated Epsilon project. This is separate from NTTE Mobile Port.
+An independent Android, iOS and Windows port of **Hardmode b24 by Blaac**, based on the Nuclear Throne Recreated Epsilon project. This is separate from NTTE Mobile Port.
 
-Current release: **1.0.10**, native build **11**. This update fixes wall colours, initial throne placement, 7-4 crown-vault routing, two-loop boss scaling, loop map growth and Windows mouse-wheel swapping. [Download APK / IPA](https://mega.nz/folder/7TY3wZRB#PgQeCYQzxvrVGjfjX6YefA). Installers are distributed through the existing MEGA folder, not GitHub assets.
+Current release: **1.0.12**, native build **13**. This update fixes Windows wheel event delivery and startup timing, cursed-cave wall restoration, music across areas, and dry sewer banks. It also extends manual MOD movement presentation to Android and iOS without changing the 30 Hz simulation. The earlier 1.0.11 fixes are included. [Download APK / IPA / Windows](https://mega.nz/folder/7TY3wZRB#PgQeCYQzxvrVGjfjX6YefA). Installers are distributed through the existing MEGA folder, not GitHub assets.
 
 This repository contains **text source code and project metadata only**: the maintained GML adapters, generated modules, compiler, tests, translations and GameMaker project definitions. It does not contain game artwork, audio, fonts, native runners, SDKs, signing identities, user saves, or the original MOD's embedded image payloads. The asset references in project definitions require separately supplied files.
 
@@ -28,7 +28,7 @@ See [BUILDING.md](BUILDING.md) for the local build sequence and asset requiremen
 
 ## Verification limits
 
-Release checks record one unchanged desktop VM at 30 and 60 FPS, real menu/gameplay callbacks, and mobile package structure, signature and resource checks. Desktop CPU profiles are not measurements of phone frame rate. No physical Android/iPhone validation or new Mac native build is claimed. The iOS package retains a compatible native runner with new VM/resources and **requires resigning**.
+The Windows package was delivered first after 22 targeted 30/60 FPS scenarios, native/menu checks and packaged-executable startup checks. The later mobile presentation change has a separately identified validation VM. Actual wheel input was observed on an earlier development VM; final-VM input checks use synthetic samples through the real Player Step. Mobile checks cover package structure, signature and resources. Desktop CPU profiles are not measurements of phone frame rate. No physical Android/iPhone validation or new Mac native build is claimed. The iOS package retains a compatible native runner with new VM/resources and **requires resigning**.
 
 ## Credits and license
 

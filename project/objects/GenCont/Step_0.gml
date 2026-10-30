@@ -19,6 +19,7 @@ alarm[2] = 2
 var _mx = ldrx(32, safedir),
 	_my = ldry(32, safedir)
 
+scrHMThroneShift111(_mx,_my);
 with (Floor) {
 	x += _mx
 	y += _my

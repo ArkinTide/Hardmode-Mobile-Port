@@ -56,35 +56,6 @@ function scrHMWallColour110(_sprite) {
     return scrHMBackgroundColour105();
 }
 
-function scrHMThroneSeed110() {
-    var _seed=instance_nearest(10000,10000,Floor);
-    if(!instance_exists(_seed)) return;
-    // A stale seed from another floor must not spawn a second throne or
-    // move the boss outside the arena. NTT's start callback expects one seed.
-    with(Floor) nokill=(id==_seed)?1:0;
-}
+function scrHMThroneSeed110() {scrHMThroneSeed111();}
 
-function scrHMThroneEntrance110() {
-    if(!scrHMEnabled() || !instance_exists(GameCont) || GameCont.area!=scrHMAreaResolve("throne")
-        || !instance_exists(Floor)) return;
-    if(instance_exists(BecomeNothing)||instance_exists(Nothing)||instance_exists(NothingDeath)
-        ||instance_exists(Nothing2)||instance_exists(Nothing2Death)) return;
-    var _seed=instance_nearest(10000,10000,Floor);
-    var _xx=_seed.x+16,_yy=_seed.y-1568-64*min(GameCont.loops*2,4);
-    var _floor=instance_nearest(_xx,_yy,Floor);
-    if(instance_exists(_floor) && point_distance(_xx,_yy,_floor.x+16,_floor.y+16)>48) {
-        _xx=_floor.x+16;_yy=_floor.y+16;
-    }
-    var _idle=instance_find(NothingInactive,0);
-    if(!instance_exists(_idle)) _idle=instance_create(_xx,_yy,NothingInactive);
-    with(NothingInactive) if(id!=_idle) instance_destroy(id,false);
-    if(!_idle.active) {
-        // Its native Step resets x/y to xstart/ystart. Repair both pairs,
-        // rather than moving it for only the current render frame.
-        _idle.x=_xx;_idle.y=_yy;_idle.xstart=_xx;_idle.ystart=_yy;
-        _idle.xprevious=_xx;_idle.yprevious=_yy;
-        _idle.visible=true;_idle.image_alpha=1;
-        _idle.sprite_index=sprNothingOff;_idle.spr_idle=sprNothingOff;
-        _idle.spr_hurt=sprNothingOff;_idle.mask_index=mskNothingInactive;
-    }
-}
+function scrHMThroneEntrance110() {scrHMThroneEntrance111();}

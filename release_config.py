@@ -1,5 +1,5 @@
-"""Standalone Hardmode application release identity (not the save schema)."""
-VERSION = '1.0.10'
-BUILD = 11
-DIRECTORY = 'release110'
+"""Standalone Hardmode application identity."""
+VERSION = '1.0.12'
+BUILD = 13
+DIRECTORY = 'release112'
 PACKAGE = 'com.arkintide.nuclearthronehardmode'

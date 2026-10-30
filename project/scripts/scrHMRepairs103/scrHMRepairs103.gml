@@ -1,5 +1,6 @@
 // Narrow host/NTT contracts established against frozen Hardmode b24.
-function scrHMMusicRoom() {
+function scrHMMusicRoom() {return scrHMMusicRoom112();}
+function scrHMMusicRoom103Legacy() {
     if(!scrHMEnabled() || !instance_exists(GameCont) || !scrHMAreaHas(GameCont.area)) return false;
     alarm[0]=-1;
     var _desired=self[$ "hm_music_desired"]??song;
@@ -72,6 +73,8 @@ function scrHMCursedCavesRestore(_x,_y) {
     GameCont.area=scrHMAreaResolve("caves");
     GameCont.maxsubarea=scrAreaGetMaxSubarea(GameCont.area);
     with(BackCont) {shadcol=786950;shadow_color=shadcol;}
+    // Capture walls before floor fade callbacks can replace the origin.
+    scrHMCaveWalls112(_floor);
     // The wave outlives the dead boss and uses a stable floor as its origin.
     with(HMWorld) hm_props_mod_gml_joao_shockwave(104,_floor);
     scrHMSoundMusic(mus4);scrHMSoundAmbient(amb4);

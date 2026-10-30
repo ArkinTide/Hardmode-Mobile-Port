@@ -8,7 +8,7 @@ if GameCont.area == area_vault {
     with instance_furthest(10016, 10016, Floor)
     instance_create(x + 16, y + 16, CrownPickup)
 }
-else if (GameCont.crownvisits < 3 && !instance_exists(ProtoStatue) && instance_exists(Floor)) {
+else if (!scrHMEnabled() && GameCont.crownvisits < 3 && !instance_exists(ProtoStatue) && instance_exists(Floor)) {
 	var _max_subarea = scrAreaGetMaxSubarea(_area),
 		_middle = min(_max_subarea - 1, ceil(_max_subarea / 2))
 	

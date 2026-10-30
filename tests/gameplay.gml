@@ -8,6 +8,7 @@ function scrHMGameplayErrorInit() {
         var _arg=parameter_string(_i);
         if(string_pos("--hardmode-",_arg)==1 && string_pos("-tests",_arg)>0) _enabled=true;
     }
+    if(file_exists(game_directory+"live112.marker")) _enabled=true;
     if(!_enabled) return;
     if(instance_exists(UberCont)) UberCont.opt_volume=0;
     audio_master_gain(0);
@@ -25,6 +26,7 @@ function scrHMGameplayTests() {
         if(_arg=="--hardmode-gameplay-tests") _enabled=true;
         if(string_pos("--hardmode-scenario=",_arg)==1) _scenario=string_delete(_arg,1,20);
     }
+    if(file_exists(game_directory+"live112.marker")) {_enabled=true;_scenario="1,1,0,60,18000,42,live112";}
     if(!_enabled) return false;
     scrHMGameplayErrorInit();
     UberCont.dont_save=true;
@@ -101,8 +103,10 @@ function scrHMGameplayTestStep() {
     if(HMWorld.logic_tick) {
         ticks++;
         room_ticks++;
+        if(mode=="live112" || string_pos("112",mode)>0) scrHMGameplayRepairs112();
         if(mode=="windows110") scrHMGameplayWindows110();
         if(string_pos("110",mode)>0) scrHMGameplayRepairs110();
+        if(string_pos("111",mode)>0) scrHMGameplayRepairs111();
         if(mode=="weapons") scrHMGameplayWeapons();
         if(mode=="maggot") scrHMGameplayMaggot();
         if(array_contains(["stale","frog","portal","scorpion","crowd","visual","fog","bandit","banditmelee"],mode)) scrHMGameplayRepairs102();
@@ -144,7 +148,7 @@ function scrHMGameplayTestStep() {
 }
 
 function scrHMGameplayRoomStart() {
-    if(!array_contains(["route","route103","boss","titank","continue","goto103","venus106","venussecrets106","ice107","throneroute109","vault110"],self[$ "mode"])) return;
+    if(!array_contains(["route","route103","boss","titank","continue","goto103","venus106","venussecrets106","ice107","throneroute109","vault110","music112"],self[$ "mode"])) return;
     ready_age=-1;room_ticks=0;route_rooms++;transition_wait=0;
     show_debug_message("HARDMODE ROUTE ROOM "+string(route_rooms)+" "+string(GameCont.area)+","+string(GameCont.subarea));
     if(mode=="titank" && ticks>900) {

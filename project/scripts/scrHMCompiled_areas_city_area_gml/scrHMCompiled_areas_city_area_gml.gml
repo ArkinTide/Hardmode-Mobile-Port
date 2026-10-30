@@ -384,7 +384,7 @@ instance_create((x + 16), (y + 16), Grunt);
 }
 }
 
-scrHMLoopCrystal109(x+16,y+16);
+scrHMLoopSpider111(x+16,y+16);
 }
 
 // Source areas/city.area.gml:195; area_pop_props

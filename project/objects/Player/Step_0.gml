@@ -22,13 +22,14 @@ else {
 if (swapanim != 0) swapanim = approach(swapanim, 0, timescale)
 
 //SWAP WEPS
-if can_swap && KeyCont.press_swap[index] && bwep != 0 {
+if can_swap && (KeyCont.press_swap[index] || scrDesktopWheelPending111(index)) && bwep != 0 {
 	if visible {
 		with instance_create(x, y, WepSwap) {
 			target = other.id
 		}
 	}
 	
+	scrDesktopWheelConsume111(index);
 	scrSwapWeps()
 	swapanim = 1
 

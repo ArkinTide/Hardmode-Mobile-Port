@@ -8,6 +8,7 @@ function scrHMGameplayErrorInit() {
         var _arg=parameter_string(_i);
         if(string_pos("--hardmode-",_arg)==1 && string_pos("-tests",_arg)>0) _enabled=true;
     }
+    if(file_exists(game_directory+"live112.marker")) _enabled=true;
     if(!_enabled) return;
     if(instance_exists(UberCont)) UberCont.opt_volume=0;
     audio_master_gain(0);
@@ -25,6 +26,7 @@ function scrHMGameplayTests() {
         if(_arg=="--hardmode-gameplay-tests") _enabled=true;
         if(string_pos("--hardmode-scenario=",_arg)==1) _scenario=string_delete(_arg,1,20);
     }
+    if(file_exists(game_directory+"live112.marker")) {_enabled=true;_scenario="1,1,0,60,18000,42,live112";}
     if(!_enabled) return false;
     scrHMGameplayErrorInit();
     UberCont.dont_save=true;
@@ -101,8 +103,10 @@ function scrHMGameplayTestStep() {
     if(HMWorld.logic_tick) {
         ticks++;
         room_ticks++;
+        if(mode=="live112" || string_pos("112",mode)>0) scrHMGameplayRepairs112();
         if(mode=="windows110") scrHMGameplayWindows110();
         if(string_pos("110",mode)>0) scrHMGameplayRepairs110();
+        if(string_pos("111",mode)>0) scrHMGameplayRepairs111();
         if(mode=="weapons") scrHMGameplayWeapons();
         if(mode=="maggot") scrHMGameplayMaggot();
         if(array_contains(["stale","frog","portal","scorpion","crowd","visual","fog","bandit","banditmelee"],mode)) scrHMGameplayRepairs102();
@@ -144,7 +148,7 @@ function scrHMGameplayTestStep() {
 }
 
 function scrHMGameplayRoomStart() {
-    if(!array_contains(["route","route103","boss","titank","continue","goto103","venus106","venussecrets106","ice107","throneroute109","vault110"],self[$ "mode"])) return;
+    if(!array_contains(["route","route103","boss","titank","continue","goto103","venus106","venussecrets106","ice107","throneroute109","vault110","music112"],self[$ "mode"])) return;
     ready_age=-1;room_ticks=0;route_rooms++;transition_wait=0;
     show_debug_message("HARDMODE ROUTE ROOM "+string(route_rooms)+" "+string(GameCont.area)+","+string(GameCont.subarea));
     if(mode=="titank" && ticks>900) {
@@ -2819,5 +2823,587 @@ function scrHMGameplayRepairs110() {
             scrHMGameplayCheck(GameCont.crownvisits==1&&GameCont.loops==start_loops110,"return does not consume an extra vault visit or loop");
             vault_phase110=3;
         }
+    }
+}
+
+// Measure actual physical frames, not the requested room speed or fps_real.
+function scrHMPerf111Manual() { x+=2; }
+function scrHMPerf111ProbeDraw() {
+    var _matrix=matrix_get(matrix_world),_shown=x+_matrix[12];
+    if(self[$ "hm_draw_started111"]??false) {
+        if(abs(_shown-hm_shown111)>.01) hm_shown_moves111++;
+        hm_shown_max_delta111=max(hm_shown_max_delta111,abs(_shown-hm_shown111));
+    } else {hm_draw_started111=true;hm_shown_moves111=0;hm_shown_max_delta111=0;}
+    hm_shown111=_shown;
+    draw_sprite(sprite_index,0,x,y);
+}
+function scrHMPerf111Frame() {
+    if(mode!="perf111" || ticks<15) return;
+    if(!(self[$ "perf_started111"]??false)) {
+        perf_started111=true;perf_frames111=0;perf_draws111=0;perf_intervals111=[];
+        perf_start111=get_timer();perf_last111=perf_start111;perf_step_start111=ticks;
+        perf_cpu111=[];perf_manual_moves111=0;perf_manual_last111=0;
+        perf_probe111=instance_create(20000,20000,CustomObject);
+        perf_probe111.on_step=scrHMPerf111Manual;perf_probe111.speed=0;
+        perf_probe111.on_draw=scrHMPerf111ProbeDraw;
+        perf_probe111.sprite_index=sprBanditIdle;perf_probe111.image_speed=0;
+        perf_manual_last111=perf_probe111.x;
+    }
+    var _now=get_timer();
+    if(perf_frames111>0) array_push(perf_intervals111,_now-perf_last111);
+    perf_last111=_now;perf_frames111++;
+    array_push(perf_cpu111,_now-hm_frame_start106);
+    if(perf_probe111.x!=perf_manual_last111) perf_manual_moves111++;
+    perf_manual_last111=perf_probe111.x;
+    if(ticks>=goal_ticks-1 && !(self[$ "perf_done111"]??false)) {
+        perf_done111=true;
+        var _elapsed=(_now-perf_start111)/1000000;
+        // array_sort mutates arrays; read the original reference afterwards.
+        array_sort(perf_intervals111,true);array_sort(perf_cpu111,true);
+        show_debug_message("HARDMODE PERF111 "+json_stringify({rate:rate,frames:perf_frames111,
+            draws:perf_draws111,elapsed:_elapsed,measured_fps:(perf_frames111-1)/_elapsed,
+            logic_ticks:ticks-perf_step_start111,manual_move_frames:perf_manual_moves111,
+            rendered_move_frames:perf_probe111.hm_shown_moves111,
+            maximum_rendered_delta:perf_probe111.hm_shown_max_delta111,
+            median_interval_us:perf_intervals111[floor(array_length(perf_intervals111)/2)],
+            p95_interval_us:perf_intervals111[floor(array_length(perf_intervals111)*.95)],
+            median_cpu_us:perf_cpu111[floor(array_length(perf_cpu111)/2)],
+            p95_cpu_us:perf_cpu111[floor(array_length(perf_cpu111)*.95)]}));
+        scrHMGameplayCheck(abs((perf_frames111-1)/_elapsed-rate)<3,"actual measured frame rate matches the requested 30/60 rate");
+        scrHMGameplayCheck(abs(perf_draws111-perf_frames111)<=2,"physical frames are actually drawn");
+        scrHMGameplayCheck(perf_probe111.hm_shown_moves111>=perf_frames111-3,"manual movement changes its rendered position every physical frame");
+        scrHMGameplayCheck(perf_probe111.hm_shown_max_delta111<=60/rate+.01,"manual movement is evenly spread without increasing simulation speed");
+    }
+}
+function scrHMPerf111Draw() {
+    if(mode=="perf111" && (self[$ "perf_started111"]??false)) perf_draws111++;
+}
+
+function scrHMGameplayRepairs111() {
+    if(mode=="exploguardian111" && ticks==20) {
+        scrHMGameplayLane107();
+        with(projectile) instance_destroy(id,false);
+        var _e=instance_create(player.x+64,player.y,ExploGuardian);
+        _e.target=player;_e.charge=1;
+        with(_e) event_perform(ev_alarm,2);
+        scrHMGameplayCheck(instance_number(ExploguardianBullet)==26,"real attack event emits the desktop's 26 projectiles");
+        var _angles=[];
+        with(ExploguardianBullet) {
+            array_push(_angles,direction);
+            scrHMGameplayCheck(abs(speed-10*timescale)<.001&&team==_e.team&&hitid==_e.hitid,"attack projectile retains speed, team and hit attribution");
+        }
+        array_sort(_angles,true);
+        for(var _i=0;_i<26;++_i) scrHMGameplayCheck(abs(((_angles[(_i+1) mod 26]-_angles[_i]+360) mod 360)-360/26)<.001,"attack ring has desktop angular spacing");
+        with(projectile) instance_destroy(id,false);
+        _e.charge=1;instance_destroy(_e);
+        scrHMGameplayCheck(instance_number(ExploguardianBullet)==14,"charged death retains its distinct desktop fourteen-shot burst");
+        with(projectile) instance_destroy(id,false);
+        _e=instance_create(player.x+64,player.y,ExploGuardian);_e.charge=0;instance_destroy(_e);
+        scrHMGameplayCheck(instance_number(ExploguardianBullet)==0,"uncharged death emits no extra burst");
+    }
+    if(mode=="water111" && ticks==30) {
+        var _wet=0,_linked=0;
+        with(Floor) if(traction==2) {_wet++;if(instance_exists(self[$ "hm_water_surface111"]??noone)) _linked++;}
+        var _surfaces=0;with(CustomObject) if(name=="sewagefloor") _surfaces++;
+        show_debug_message("HARDMODE WATER111 "+json_stringify({wet:_wet,linked:_linked,surfaces:_surfaces}));
+        scrHMGameplayCheck(_wet==_linked&&_surfaces>=_wet,"every generated water tile links its real visual surface");
+        scrHMGameplayLane107();
+        var _f=instance_create(16001,16003,Floor);_f.traction=2;
+        var _surface=instance_create(_f.x,_f.y,CustomObject);
+        _surface.name="sewagefloor";_surface.sprite_index=sprHM_areas_sewers_area_4;
+        _surface.image_xscale=.8;_surface.image_yscale=.8;
+        with(_surface) scrHMWaterSurface111();
+        HMWorld.hm_water_map=undefined;
+        scrHMGameplayCheck(scrHMWaterAt(16017,16004),"plain water surface starts at its exact rectangle");
+        _surface.sprite_index=sprHM_areas_sewers_area_3;
+        scrHMGameplayCheck(!scrHMWaterAt(16017,16009.39)&&scrHMWaterAt(16017,16009.41),"delayed shoreline sprite excludes its 6.4px bank without a floor-count change");
+        player.x=16017;player.y=16007;player.speed=0;
+        with(player) {scrHMSwimLeave();scrHMSwimPlayer105();}
+        scrHMGameplayCheck(!player.swimming&&player.image_alpha==1,"standing on visible bank has no swimming renderer");
+        player.y=16012;
+        with(player) scrHMSwimPlayer105();
+        scrHMGameplayCheck(player.swimming&&player.image_alpha==0,"actual water foot point still enters swimming");
+        player.y=16007;
+        with(player) scrHMSwimPlayer105();
+        scrHMGameplayCheck(!player.swimming&&player.image_alpha==1,"return to bank restores the player immediately");
+        var _dry=instance_create(16017,16012,FloorExplo);HMWorld.hm_water_map=undefined;
+        scrHMGameplayCheck(!scrHMWaterAt(16020,16014),"dry explosion patch still takes priority over water");
+        instance_destroy(_dry,false);instance_destroy(_surface,false);instance_destroy(_f,false);
+    }
+    if(mode=="altar111" && ticks==30) {
+        var _allowed=GameCont.area==scrHMAreaResolve("palace")&&GameCont.subarea==4;
+        scrHMGameplayCheck(instance_number(ProtoStatue)==(_allowed?1:0),"real generation places exactly one altar only in 7-4");
+        var _area=GameCont.area,_sub=GameCont.subarea,_visits=GameCont.crownvisits;
+        with(ProtoStatue) instance_destroy(id,false);
+        var _areas=[area_desert,area_scrapyards,area_city,area_palace,scrHMAreaResolve("city"),scrHMAreaResolve("sewers")];
+        for(var _i=0;_i<array_length(_areas);++_i) {
+            GameCont.area=_areas[_i];GameCont.subarea=min(scrAreaGetMaxSubarea(GameCont.area)-1,ceil(scrAreaGetMaxSubarea(GameCont.area)/2));
+            GameCont.crownvisits=0;
+            event_perform_object(GenCont,ev_alarm,2);
+            scrHMCrownAltar109();
+            scrHMGameplayCheck(!instance_exists(ProtoStatue),"old natural altar event cannot place outside 7-4 "+string(_areas[_i]));
+        }
+        GameCont.area=scrHMAreaResolve("palace");GameCont.subarea=4;
+        GameCont.crownvisits=3;scrHMCrownAltar109();
+        scrHMGameplayCheck(!instance_exists(ProtoStatue),"three prior vault visits prevent 7-4 altar");
+        GameCont.crownvisits=2;scrHMCrownAltar109();scrHMCrownAltar109();
+        scrHMGameplayCheck(instance_number(ProtoStatue)==1,"7-4 altar is unique with one remaining visit");
+        with(ProtoStatue) instance_destroy(id,false);
+        GameCont.area=_area;GameCont.subarea=_sub;GameCont.crownvisits=_visits;
+    }
+    if(array_contains(["cave111","music111"],mode) && ticks==10) {
+        // Exercise native sighting/arrival instead of expecting boss music
+        // before the encounter has started.
+        var _boss=instance_find(HyperCrystal,0);
+        scrHMGameplayCheck(instance_exists(_boss),"generated cave has its actual HyperCrystal");
+        player.x=_boss.x+64;player.y=_boss.y;
+        with(_boss) {target=other.player;intro=0;event_perform(ev_alarm,1);}
+    }
+    if(mode=="cave111" && ticks==20) {
+        scrHMGameplayCheck(instance_exists(HyperCrystal),"cursed cave contains its actual boss");
+        scrHMGameplayCheck(MusCont.song==musBoss6B&&audio_is_playing(musBoss6B),"cursed HyperCrystal plays its distinct boss music");
+        cave_records111=[];
+        with(Wall) if(self[$ "hm_plain106"]??false) array_push(other.cave_records111,[id,image_xscale,image_yscale]);
+        scrHMGameplayCheck(array_length(cave_records111)>0,"conversion fixture includes compact collision walls");
+        cave_kill111=true;
+    }
+    if(mode=="cave111" && ticks==50) with(HyperCrystal) hp=0;
+    if(mode=="cave111" && ticks==300) {
+        scrHMGameplayCheck(GameCont.area==scrHMAreaResolve("caves"),"boss death restores ordinary cave area");
+        var _walls=0,_wrong=0,_trans=0,_wrongtrans=0;
+        with(Wall) {_walls++;if(topspr!=sprWall4Top||outspr!=sprWall4Out||sprite_index!=sprWall4Bot) _wrong++;}
+        with(TopSmall) {_trans++;if(sprite_index!=sprWall4Trans) _wrongtrans++;}
+        scrHMGameplayCheck(_walls>0&&_wrong==0,"every surviving wall face/top/outside uses normal cave sprites");
+        scrHMGameplayCheck(_trans>0&&_wrongtrans==0,"every transition tile changes to normal cave sprites");
+        for(var _i=0;_i<array_length(cave_records111);++_i) {
+            var _r=cave_records111[_i],_wall=_r[0];
+            scrHMGameplayCheck(instance_exists(_wall)&&_wall.image_xscale==_r[1]&&_wall.image_yscale==_r[2],"wall conversion preserves packed collision geometry");
+        }
+        show_debug_message("HARDMODE CAVE111 "+json_stringify({walls:_walls,wrong:_wrong,transitions:_trans,wrong_transitions:_wrongtrans,queue:array_length(HMWorld.hm_wall_theme_queue)}));
+    }
+    if(mode=="music111" && ticks==20)
+        scrHMGameplayCheck(instance_exists(HyperCrystal)&&MusCont.song==musBoss6,"ordinary HyperCrystal retains ordinary boss music");
+    if(mode=="shield111" && ticks==30) {
+        scrHMGameplayLane107();
+        for(var _b=0;_b<3;++_b) {
+            var _spider=hm_enemies_mod_gml_EliteSpider_create(player.x+96,player.y);
+            _spider.spr_idle=global.hm_module_vars[$ "mod:enemies"].EliteSpiderShield;
+            _spider.image_alpha=1;_spider.image_index=8;_spider.alrm1=0;
+            with(_spider) scrHMActorCallback("on_step");
+            var _shield=noone;
+            with(CustomObject) if((self[$ "creator"]??noone)==_spider&&name=="customshield") _shield=id;
+            scrHMGameplayCheck(instance_exists(_shield),"pictured Elite Spider creates its actual shield");
+            _shield.image_speed=0;
+            var _shot=instance_create(_shield.x+4,_shield.y,(_b==0)?PlasmaBig:((_b==1)?PlasmaHuge:Bullet1));
+            _shot.team=team_player;_shot.hitid=HitId.Player;_shot.creator=player;_shot.direction=180;_shot.speed=0;
+            var _n=instance_number(Deflect);
+            with(_shield) scrHMActorCallback("on_step");
+            scrHMGameplayCheck(instance_number(Deflect)>_n&&_shot.direction!=180,"real spider mask actually reflects the projectile");
+            scrHMGameplayCheck(_shot.team==(_b==2?_spider.team:team_player),"real shield preserves player plasma and ordinary bullet deflection policy");
+            if(_b<2) {
+                with(_shot) scrHMGameplayCheck(!scr_can_hit(HMGameplayTest.player,false)&&scr_can_hit(_spider,false),"reflected plasma is harmless to player and can damage enemies");
+                scrHMGameplayCheck(_shot.creator==player&&_shot.hitid==HitId.Player,"plasma retains shooter and damage attribution");
+                instance_destroy(_shot);
+                var _children=0;
+                with(projectile) if(instance_is(id,PlasmaBig)||instance_is(id,PlasmaBall)) {
+                    _children++;
+                    scrHMGameplayCheck(team==team_player&&!scr_can_hit(HMGameplayTest.player,false),"plasma explosion descendants retain player team");
+                }
+                scrHMGameplayCheck(_children==(_b==0?10:4),"real reflected plasma splits with its full payload");
+            }
+            with(projectile) instance_destroy(id,false);
+            instance_destroy(_shield,false);instance_destroy(_spider,false);
+        }
+    }
+    if(mode=="spider111" && ticks==20) {
+        scrHMGameplayLane107();
+        var _original_loop=GameCont.loops,_n=0;
+        repeat(500) {
+            var _spider=scrHMLoopSpider111(player.x+96,player.y);
+            if(instance_exists(_spider)) {
+                _n++;scrHMGameplayCheck(_spider.sprite_index==sprHM_enemies_mod_33
+                    || _spider.spr_idle==sprHM_enemies_mod_33,"new loop population is the pictured Elite Spider");
+                with(_spider) scrHMGameplayCheck(!place_meeting(x,y,Wall)&&place_meeting(x,y,Floor),"added spider has usable floor");
+            }
+        }
+        scrHMGameplayCheck(_n>0&&_n<=4,"three requested areas add a bounded Elite Spider population");
+        GameCont.loops=0;var _preloop=0;
+        repeat(100) if(instance_exists(scrHMLoopSpider111(player.x+96,player.y))) _preloop++;
+        scrHMGameplayCheck(_preloop==0,"Elite Spider addition is loop-only");
+        GameCont.loops=_original_loop;
+        if(GameCont.area==scrHMAreaResolve("city")) {
+            var _crystals=0;
+            repeat(500) if(instance_exists(scrHMLoopCrystal109(player.x+96,player.y))) _crystals++;
+            scrHMGameplayCheck(_crystals==0,"pictured Big Crystal is excluded from loop city population");
+        }
+    }
+    if(mode=="loop111" && ticks==20) {
+        var _added=0,_types={};
+        with(enemy) if(self[$ "hm_vanilla_loop111"]??false) {
+            _added++;_types[$ object_get_name(object_index)]=true;
+            scrHMGameplayCheck(hp>0,"stock loop addition is a live enemy");
+        }
+        // Exercise all stock city additions through the next real world tick;
+        // Hardmode's pre-loop replacements must not erase the added pool.
+        if(GameCont.area==scrHMAreaResolve("city")) {
+            loop_keep111=[];
+            var _keep=[DogGuardian,ExploGuardian,Necromancer];
+            for(var _i=0;_i<array_length(_keep);++_i) {
+                var _e=instance_create(player.x+80+32*_i,player.y,_keep[_i]);
+                _e.hm_vanilla_loop111=true;array_push(loop_keep111,[_e,_keep[_i]]);
+            }
+        }
+        var _source=scrHMVanillaLoopArea111(GameCont.area),_pool=scrHMVanillaLoopPool111(_source);
+        scrHMGameplayCheck(GameCont.loops>0?(_added>0||array_length(_pool)==0):_added==0,"real generator applies stock loop pools only after looping");
+        show_debug_message("HARDMODE LOOP111 "+json_stringify({area:GameCont.area,source:_source,loop:GameCont.loops,added:_added,types:_types}));
+    }
+    if(mode=="loop111"&&ticks==23&&GameCont.area==scrHMAreaResolve("city")) {
+        for(var _i=0;_i<array_length(loop_keep111);++_i) {
+            var _r=loop_keep111[_i];
+            scrHMGameplayCheck(instance_exists(_r[0])&&_r[0].object_index==_r[1],"stock city loop enemy survives Hardmode's replacement hooks");
+        }
+    }
+    if(mode=="venusdrop111" && ticks==20) {
+        scrHMGameplayLane107();
+        var _creates=[hm_enemies_mod_gml_Molefish_create,hm_enemies_mod_gml_Molesarge_create,
+            hm_enemies_mod_gml_Minigunner_create,hm_enemies_mod_gml_Chick_create];
+        var _area=GameCont.area;
+        for(var _inside=0;_inside<2;++_inside) {
+            GameCont.area=_inside?scrHMAreaResolve("venuz"):_area;
+            for(var _i=0;_i<array_length(_creates);++_i) {
+                var _old=instance_number(WepPickup),_dead=instance_number(Corpse);
+                var _e=script_execute(scrHMScriptRef(_creates[_i]),player.x+96,player.y);
+                instance_destroy(_e);
+                scrHMGameplayCheck(instance_number(WepPickup)==_old+_inside,"real Venus enemy death respects location-specific weapon drop "+string(_i)+"/"+string(_inside));
+                scrHMGameplayCheck(instance_number(Corpse)>=_dead+1,"drop restriction preserves the enemy's corpse and exit marker");
+            }
+        }
+        GameCont.area=_area;
+        scrHMGameplayCheck(scrHMVenusDropAllowed111(wep_revolver),"ordinary weapon drops remain allowed outside Venus");
+        var _names=["secretweapong1","secretweapong2","secretweapong3","secretweapong4","secretweapong5"];
+        for(var _i=0;_i<array_length(_names);++_i) scrHMGameplayCheck(!scrHMVenusDropAllowed111(_names[_i]),"all Venus-specific enemy weapons are blocked outside Venus");
+    }
+    if(mode=="dog111" && ticks==20) {
+        scrHMGameplayLane107();
+        var _boss=instance_create(player.x+160,player.y+64,ScrapBoss);
+        _boss.morehp=1;_boss.intro=-2;_boss.introanimation=11;
+        var _bandit=instance_create(player.x+96,player.y,Bandit);
+        _bandit.alarm[0]=-1;_bandit.alarm[1]=-1;
+        var _missile=instance_create(player.x+48,player.y,ScrapBossMissile);_missile.creator=_boss;
+        _missile.team=team_enemy;_missile.speed=0;
+        var _shot=instance_create(_bandit.x-12,_bandit.y,EnemyBullet1);
+        _shot.creator=_bandit;_shot.team=team_enemy;_shot.speed=4*timescale;_shot.direction=0;
+        dog_start111=_shot.x;
+        dog_original111=_shot;dog_type111=_shot.object_index;
+        dog_direction111=_shot.direction;dog_speed111=_shot.speed;dog_owner111=_shot.creator;
+        dog_missile111=_missile;dog_bandit111=_bandit;
+        scrHMGameplayCheck(!scrHMMissileShot111(_bandit,_missile),"missile hook rejects another monster's shot even at a shared position");
+        scrHMGameplayCheck(scrHMMissileShot111(_boss,_missile),"missile hook still recognizes the real Big Dog owner");
+    }
+    if(mode=="dog111" && ticks==23) {
+        scrHMGameplayCheck(instance_exists(dog_original111),"enemy shot survives passing through another enemy");
+        scrHMGameplayCheck(dog_original111.object_index==dog_type111&&dog_original111.direction==dog_direction111
+            &&dog_original111.speed==dog_speed111&&dog_original111.creator==dog_owner111,"real 3-5 world hooks cannot convert another monster's bullet to a bouncer");
+        scrHMGameplayCheck(dog_original111.x>=dog_start111+8,"regression shot actually moves into its allied monster instead of remaining stationary");
+    }
+    if(mode=="throne111" && ticks==20) {
+        var _anchor=scrHMThroneAnchor111(),_boss=instance_find(NothingInactive,0);
+        scrHMGameplayCheck(instance_number(NothingInactive)==1,"natural throne generation creates one boss");
+        scrHMGameplayCheck(_boss.x==_anchor[0]+16&&_boss.y==_anchor[1]-1568-64*min(GameCont.loops*2,4),"throne sits at its immutable authored axis and depth");
+        var _axis=_boss.x,_target_y=_boss.y;
+        with(_boss) {x+=96;y+=32;xstart=x;ystart=y;}
+        repeat(3) scrHMThroneEntrance110();
+        with(_boss) event_perform(ev_step,ev_step_normal);
+        scrHMGameplayCheck(_boss.x==_axis&&_boss.y==_target_y,"native Step cannot shift the corrected throne sideways");
+        with(Carpet) scrHMGameplayCheck(abs(x-_axis)<1,"throne is centered on its authored carpet");
+        player.x=_axis+88;player.y=_target_y+60;
+        scr_camera_set_position(_axis,_target_y,fa_center,fa_middle);
+        var _row=[];
+        with(Floor) if(y<=_target_y&&y+32>_target_y) array_push(_row,[x,y,object_get_name(object_index)]);
+        var _left=1000000000,_right=-1000000000;
+        for(var _i=0;_i<array_length(_row);++_i) {_left=min(_left,_row[_i][0]);_right=max(_right,_row[_i][0]+32);}
+        scrHMGameplayCheck(abs((_left+_right)/2-_axis)<1,"throne and authored floor row share the same horizontal center after native safe-spawn");
+        show_debug_message("HARDMODE THRONE111 "+json_stringify({anchor:_anchor,boss:[_boss.x,_boss.y],floor:instance_nearest(_boss.x,_boss.y,Floor),row:_row}));
+    }
+    if(mode=="throne111"&&ticks==50) {
+        var _boss=instance_find(NothingInactive,0);
+        player.x=_boss.x;player.y=_boss.y+96;player.speed=0;
+        BackCont.force_snap_camera_position=true;
+    }
+    if(mode=="throne111"&&ticks==85) {
+        var _boss=instance_find(NothingInactive,0);
+        show_debug_message("HARDMODE THRONE111 VIEW "+json_stringify({boss:[_boss.x,_boss.y,_boss.depth,_boss.image_alpha,_boss.visible],
+            camera:[view_xview,view_yview,view_width,view_height],player:[player.x,player.y],sprite:[sprite_get_width(_boss.sprite_index),sprite_get_xoffset(_boss.sprite_index)]}));
+    }
+    if(array_contains(["cave111","throne111"],mode)&&array_contains([35,90,290],ticks))
+        surface_save(application_surface,game_directory+mode+"-"+string(ticks)+".png");
+}
+
+// Runs after real Player and input events on every physical frame.
+function scrHMGameplayFrame111() {
+    if(mode!="wheel111" || ticks<30) return;
+    if(!(self[$ "wheel_started111"]??false)) {
+        wheel_started111=true;wheel_phase111=0;
+        scrHMGameplayLane107();UberCont.opt_keyboard=true;UberCont.opt_gamepad=false;
+        player.wep=wep_revolver;player.bwep=wep_shotgun;player.can_swap=true;
+    }
+    switch(wheel_phase111) {
+        case 0:
+            scrDesktopWheelSwap(0,true,false);
+            KeyCont.press_swap[0]=false; // later generic key sampling
+            wheel_phase111++;break;
+        case 1:
+            scrHMGameplayCheck(player.wep==wep_shotgun,"notch survives a subsequent keyboard overwrite until real Player Step");
+            scrHMGameplayCheck(!KeyCont.wheel_pending111[0],"successful real swap consumes pending notch");
+            wheel_phase111++;break;
+        case 2:
+            scrHMGameplayCheck(player.wep==wep_shotgun,"next physical frame does not repeat consumed notch");
+            player.can_swap=false;scrDesktopWheelSwap(0,false,true);wheel_phase111++;break;
+        case 3:
+            scrHMGameplayCheck(player.wep==wep_shotgun&&KeyCont.wheel_pending111[0],"transient unavailable-swap frame retains a short pending notch");
+            player.can_swap=true;wheel_phase111++;break;
+        case 4:
+            scrHMGameplayCheck(player.wep==wep_revolver,"notch is used when next Player Step can swap");
+            scrDesktopWheelSwap(0,true,false);KeyCont.wheel_until111[0]=1;KeyCont.press_swap[0]=false;
+            wheel_phase111++;break;
+        case 5:
+            scrHMGameplayCheck(player.wep==wep_revolver&&!KeyCont.wheel_pending111[0],"expired notch is discarded");
+            UberCont.want_pause=1;scrDesktopWheelSwap(0,true,false);UberCont.want_pause=0;
+            scrHMGameplayCheck(!KeyCont.wheel_pending111[0],"pause transition cannot queue a delayed swap");
+            global.console_active=true;scrDesktopWheelSwap(0,true,false);global.console_active=false;
+            scrHMGameplayCheck(!KeyCont.wheel_pending111[0],"console scroll cannot queue weapon input");
+            scrDesktopWheelSwap(0,true,false);KeyCont.press_swap[0]=true;
+            with(player) event_perform(ev_step,ev_step_normal);
+            with(UberCont) scrHandleInputsGeneral(0);
+            scrHMGameplayCheck(!KeyCont.press_swap[0]&&!scrDesktopWheelPending111(0),"late generic sampler cannot reinsert consumed keyboard-plus-wheel action");
+            wheel_phase111++;break;
+        case 6:
+            scrHMGameplayCheck(player.wep==wep_shotgun,"keyboard-plus-wheel changes weapon exactly once across real frames");
+            wheel_phase111++;break;
+    }
+}
+
+function scrHMGameplayRepairs112() {
+    if(mode=="motion112") scrHMGameplayMobile112();
+    if(ticks==1) scrHMGameplayCheck(variable_global_exists("hm_desktop_clock112")&&global.hm_desktop_clock112,
+        "Windows clock is configured at startup before Hardmode initialization");
+    if(mode=="live112") {
+        if(ticks==1) {
+            scrHMGameplayLane107();UberCont.opt_keyboard=true;UberCont.opt_gamepad=false;
+            player.can_swap=true;player.wep=wep_revolver;player.bwep=wep_shotgun;
+            live_wep112=player.wep;
+        }
+        if(player.wep!=live_wep112) {
+            live_swaps112=(self[$ "live_swaps112"]??0)+1;
+            show_debug_message("WHEEL112 SWAPPED "+string(player.wep));live_wep112=player.wep;
+        }
+        window_set_caption("Hardmode isolated silent input probe 1.0.12 | weapon "+string(player.wep));
+        if(ticks mod 3==0) {
+            var _file=file_text_open_write(game_directory+"live-state112.json");
+            file_text_write_string(_file,json_stringify({weapon:player.wep,ticks:ticks,
+                events:self[$ "live_events112"]??0,swaps:self[$ "live_swaps112"]??0,
+                allowed:scrDesktopWheelAllowed111(),can_swap:player.can_swap,
+                pending:KeyCont.wheel_pending111[0],keyboard:UberCont.opt_keyboard,
+                pause:UberCont.paused,console:global.console_active}));file_text_close(_file);
+        }
+    }
+    if(mode=="water112" && ticks==30) {
+        scrHMGameplayLane107();
+        var _f=instance_create(16000,16000,Floor);_f.traction=2;
+        var _surface=instance_create(_f.x,_f.y,CustomObject);
+        _surface.name="sewagefloor";_surface.sprite_index=sprHM_areas_sewers_area_4;
+        _surface.image_xscale=.8;_surface.image_yscale=.8;
+        with(_surface) scrHMWaterSurface111();HMWorld.hm_water_map=undefined;
+        player.x=16016;player.y=16016;player.speed=0;
+        with(player) scrHMSwimPlayer105();
+        scrHMGameplayCheck(player[$ "swimming"]??false,"actual interior water allows swimming");
+        for(var _i=0;_i<4;++_i) {
+            player.x=16016;player.y=16016;
+            switch(_i) {case 0:player.x=16001;break;case 1:player.x=16031;break;case 2:player.y=16001;break;case 3:player.y=16031;break;}
+            with(player) scrHMSwimPlayer105();
+            scrHMGameplayCheck(!(player[$ "swimming"]??false)&&player.image_alpha==1,"feet partly supported by the bank stay dry on side "+string(_i));
+        }
+        _surface.sprite_index=sprHM_areas_sewers_area_3;
+        player.x=16016;player.y=16007;
+        with(player) scrHMSwimPlayer105();
+        scrHMGameplayCheck(!player.swimming,"top bank plus foot-contact margin does not trigger swimming");
+        player.y=16016;with(player) scrHMSwimPlayer105();
+        scrHMGameplayCheck(player.swimming,"top-bank exclusion retains actual deep water");
+        instance_destroy(_surface,false);
+        with(player) scrHMSwimPlayer105();
+        scrHMGameplayCheck(!player.swimming,"stale wet floor without visible water has no splash/swimming");
+        instance_destroy(_f,false);
+    }
+    if(mode=="waterbank112" && ticks==25) {
+        // Keep real generated water, surfaces and floor geometry intact.
+        with(enemy) instance_destroy(id,false);
+        with(projectile) instance_destroy(id,false);
+        with(Portal) instance_destroy(id,false);
+        bank_surface112=noone;
+        with(CustomObject) if(name=="sewagefloor" && sprite_index==sprHM_areas_sewers_area_3
+            && scrHMSwimSupported112(x+16,y+16) && !scrHMSwimSupported112(x+16,y+4)) {
+            other.bank_surface112=id;break;
+        }
+        scrHMGameplayCheck(instance_exists(bank_surface112),"generated map contains a visible shoreline with dry bank and actual water");
+        player.x=bank_surface112.x+16;player.y=bank_surface112.y+4;player.speed=0;
+        with(player) scrHMSwimPlayer105();
+        scrHMGameplayCheck(!(player[$ "swimming"]??false)&&player.image_alpha==1,"actual generated shoreline keeps player on dry bank");
+        BackCont.force_snap_camera_position=true;
+    }
+    if(mode=="waterbank112" && ticks==35) {
+        surface_save(application_surface,game_directory+"shore112-bank.png");
+        player.x=bank_surface112.x+16;player.y=bank_surface112.y+16;player.speed=0;
+        with(player) scrHMSwimPlayer105();
+        scrHMGameplayCheck(player.swimming,"moving from generated bank to deep water starts swimming");
+    }
+    if(mode=="waterbank112" && ticks==45) {
+        surface_save(application_surface,game_directory+"shore112-water.png");
+        player.x=bank_surface112.x+16;player.y=bank_surface112.y+4;player.speed=0;
+        with(player) scrHMSwimPlayer105();
+        scrHMGameplayCheck(!player.swimming&&player.image_alpha==1,"return from water to the real bank restores body immediately");
+    }
+    if(mode=="music112" && room_ticks==25) {
+        var _room=self[$ "music_room112"]??0;
+        var _songs=[mus3b,mus3b,mus4,mus5,mus7];
+        scrHMGameplayCheck(MusCont.song==_songs[_room]&&audio_is_playing(_songs[_room]),"real room transition selects expected area music "+string(_room));
+        if(_room>=2) scrHMGameplayCheck(!audio_is_playing(mus3b),"junkyard track is stopped after leaving its area");
+        music_room112=_room+1;
+        if(_room<4) {
+            var _areas=["junkyard","caves","city","palace"];
+            var _subs=[5,1,1,1];
+            scrHMGameplayCheck(scrHMConsoleGoto(_areas[_room],_subs[_room],0),"room lifecycle accepts next music destination");
+        }
+    }
+    if(mode=="cave112" && ticks==30) {
+        var _boss=instance_find(HyperCrystal,0);
+        scrHMGameplayCheck(instance_exists(_boss),"real cursed-cave boss generated");
+        cave_shapes112=[];
+        with(Wall) array_push(other.cave_shapes112,[id,image_xscale,image_yscale]);
+        var _ground=instance_nearest(_boss.x,_boss.y,Floor);
+        player.x=_ground.x+16;player.y=_ground.y+16;
+        BackCont.force_snap_camera_position=true;
+        with(_boss) {hp=0;event_perform(ev_step,ev_step_normal);}
+    }
+    if(mode=="cave112" && ticks==45) {
+        scrHMGameplayCheck(GameCont.area==scrHMAreaResolve("caves"),"native boss death restores cave identity");
+        var _bad=0,_n=0;
+        with(Wall) {_n++;if(sprite_index!=sprWall4Bot||topspr!=sprWall4Top||outspr!=sprWall4Out) _bad++;}
+        with(TopSmall) {if(sprite_index!=sprWall4Trans) _bad++;}
+        scrHMGameplayCheck(_n>0&&_bad==0,"wall face, roof, exterior and transition commit normal cave palette immediately");
+        for(var _i=0;_i<array_length(cave_shapes112);++_i) {
+            var _r=cave_shapes112[_i];
+            scrHMGameplayCheck(instance_exists(_r[0])&&_r[0].image_xscale==_r[1]&&_r[0].image_yscale==_r[2],"palette conversion keeps collision geometry");
+        }
+    }
+    if(mode=="cave112"&&ticks==60&&surface_exists(application_surface))
+        surface_save(application_surface,game_directory+"cave112-restored.png");
+}
+
+// Actual Custom* event scheduling and draw transforms, with unchanged 30Hz AI.
+function scrHMMotionManual112() {x+=2;motion_steps112++;}
+function scrHMMotionBegin112() {motion_begins112++;}
+function scrHMMotionEnd112() {motion_ends112++;}
+function scrHMMotionDraw112() {
+    var _matrix=matrix_get(matrix_world),_shown=x+_matrix[12];
+    if(motion_draws112>0) {
+        var _delta=abs(_shown-motion_shown112);
+        if(_delta>.01) motion_moves112++;
+        motion_max112=max(motion_max112,_delta);
+    }
+    motion_shown112=_shown;motion_draws112++;
+    draw_sprite(sprite_index,0,x,y);
+}
+function scrHMGameplayMobileFrame112() {
+    if(mode!="motion112" || !variable_instance_exists(id,"motion_actors112")) return;
+    if(ticks>=90) return;
+    for(var _i=0;_i<array_length(motion_actors112);++_i) {
+        var _actor=motion_actors112[_i];
+        with(_actor) {
+            // Calling the same draw wrapper cannot change simulation state
+            // or leak its matrix into the next unrelated object's drawing.
+            var _x=x,_y=y,_xp=xprevious,_yp=yprevious;
+            var _matrix=matrix_get(matrix_world),_offset=scrHMVisualOffset111();
+            scrHMGameplayCheck(x==_x&&y==_y&&xprevious==_xp&&yprevious==_yp,
+                "presentation query leaves movement and collision coordinates unchanged");
+            scrHMGameplayCheck(abs(_offset[0])<=1&&_offset[1]==0,
+                "manual presentation shift is bounded to half of a normal logic step");
+        }
+    }
+}
+function scrHMGameplayMobile112() {
+    if(ticks==20) {
+        scrHMGameplayLane107();motion_actors112=[];
+        var _types=[CustomObject,CustomEnemy,CustomProjectile];
+        for(var _i=0;_i<array_length(_types);++_i) {
+            var _actor=instance_create(20000,20000+64*_i,_types[_i]);
+            with(_actor) {
+                name="motionfixture112";hp=100000;can_die=false;
+                sprite_index=sprBanditIdle;spr_idle=sprBanditIdle;mask_index=mskNone;
+                image_alpha=1;image_speed=0;speed=0;right=1;
+                motion_start112=x;motion_steps112=0;motion_begins112=0;motion_ends112=0;
+                motion_draws112=0;motion_moves112=0;motion_shown112=x;motion_max112=0;
+                on_step=scrHMMotionManual112;on_begin_step=scrHMMotionBegin112;
+                on_end_step=scrHMMotionEnd112;on_draw=scrHMMotionDraw112;
+            }
+            array_push(motion_actors112,_actor);
+        }
+    }
+    if(ticks==30) {
+        var _actor=motion_actors112[0];
+        with(_actor) {
+            var _x=x,_xp=xprevious,_h=hspeed,_v=vspeed,_matrix=matrix_get(matrix_world);
+            xprevious=x-2;hspeed=0;vspeed=0;
+            var _offset=scrHMVisualOffset111();
+            scrHMGameplayCheck(abs(_offset[0]+2*(1-timescale))<.001,
+                "normal manual step is evenly presented at either selected frame rate");
+            var _binding=instance_create(x,y,HMBinding);
+            _binding.hm_draw=true;_binding.creator=id;_binding.hm_menu_overlay=true;
+            _binding.hm_refresh_tick=HMWorld.logic_serial;
+            _binding.hm_code=scrHMScriptRef(hm_enemies_mod_gml_bigcrystaltopdraw);
+            with(_binding) {
+                var _bound=scrHMBindingOffset112();
+                scrHMGameplayCheck(_bound[0]==_offset[0]&&_bound[1]==_offset[1],
+                    "separate crystal-top renderer follows its custom actor's displacement");
+                event_perform(ev_draw,0);
+                scrHMGameplayCheck(matrix_get(matrix_world)[12]==_matrix[12],
+                    "actual bound draw event restores the world matrix");
+                hm_code=scrHMScriptRef(hm_maincode_mod_gml_sewerboi);
+                var _wet=scrHMBindingOffset112();
+                scrHMGameplayCheck(_wet[0]==_offset[0],"cropped swimming renderer shares its actor transform");
+                hm_code=scrHMScriptRef(hm_maincode_mod_gml_PortalShrink);
+                var _portal=scrHMBindingOffset112();
+                scrHMGameplayCheck(_portal[0]==0&&_portal[1]==0,"portal overlays keep their own presentation");
+                instance_destroy(id,false);
+            }
+            // Native hspeed is already integrated each physical frame.
+            hspeed=2;
+            scrHMGameplayCheck(scrHMVisualOffset111()[0]==0,"native velocity does not receive a second interpolation");
+            hspeed=0;xprevious=x-40;
+            scrHMGameplayCheck(scrHMVisualOffset111()[0]==0,"teleports are not interpolated through walls");
+            xprevious=x-2;var _paused=UberCont.paused;UberCont.paused=true;
+            scrHMGameplayCheck(scrHMVisualOffset111()[0]==0,"pause freezes presentation offset");
+            UberCont.paused=_paused;hm_portrait_frozen=true;
+            scrHMGameplayCheck(scrHMVisualOffset111()[0]==0,"portrait freeze keeps the actor still");
+            hm_portrait_frozen=false;x=_x;xprevious=_xp;hspeed=_h;vspeed=_v;
+            scrHMGameplayCheck(matrix_get(matrix_world)[12]==_matrix[12],"presentation probes restore the caller's matrix");
+        }
+    }
+    if(ticks==90) {
+        var _rows=[];
+        for(var _i=0;_i<array_length(motion_actors112);++_i) with(motion_actors112[_i]) {
+            scrHMGameplayCheck(abs(x-motion_start112-2*motion_steps112)<.001,
+                "manual movement distance still matches exactly one 30Hz callback");
+            scrHMGameplayCheck(motion_steps112>=68&&motion_steps112<=71,
+                "Custom event logic does not run twice at 60 FPS");
+            scrHMGameplayCheck(abs(motion_begins112-motion_steps112)<=1&&abs(motion_ends112-motion_steps112)<=1,
+                "begin and end callbacks retain the same logic cadence");
+            scrHMGameplayCheck(motion_moves112>=motion_draws112-2,
+                "custom object's presented position changes every rendered frame");
+            scrHMGameplayCheck(motion_max112<=60/other.rate+.01,
+                "custom object, enemy and projectile have evenly divided manual displacement");
+            array_push(_rows,{type:object_get_name(object_index),steps:motion_steps112,
+                draws:motion_draws112,moves:motion_moves112,maximum_delta:motion_max112});
+        }
+        show_debug_message("HARDMODE MOBILE MOTION112 "+json_stringify({rate:rate,actors:_rows}));
     }
 }

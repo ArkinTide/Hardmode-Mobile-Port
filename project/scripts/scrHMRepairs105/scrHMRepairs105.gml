@@ -18,7 +18,7 @@ function scrHMSwimPlayer105() {
     if(!scrHMEnabled() || !instance_exists(GameCont) || !instance_exists(HMWorld) || instance_exists(GenCont)) return;
     if(GameCont.area!=scrHMAreaResolve("sewers") && GameCont.area!=102) return;
     if(self[$ "hm_portrait_frozen"]??false) return;
-    var _water=scrHMWaterAt(x,y) && !instance_exists(SpiralCont) && distance_to_object(Portal)>32;
+    var _water=scrHMSwimSupported112(x,y) && !instance_exists(SpiralCont) && distance_to_object(Portal)>32;
     var _was=self[$ "swimming"]??false;
     if(!_water) {
         if(_was) {scrHMSwimLeave();scrHMSoundPitchVolume(sndSewerDrip,1,.22);}

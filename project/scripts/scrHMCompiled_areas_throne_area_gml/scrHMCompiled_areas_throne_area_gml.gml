@@ -138,6 +138,7 @@ for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
 if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
 {
 nokill = 1;
+HMWorld.hm_throne_anchor111=[x,y];
 }
 }
 if(__hm_break3) break;

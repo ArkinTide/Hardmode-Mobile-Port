@@ -2,7 +2,7 @@
 audio_stop_sound(song)
 audio_stop_sound(amb)
 
-switch GameCont.area {
+switch scrHMUnlockArea(GameCont.area) {
 	case area_desert: song = musBoss1 break
 	case area_sewers: song = musBoss5 break
 	case area_scrapyards: song = musBoss2 break
@@ -17,6 +17,7 @@ switch GameCont.area {
 }
 
 song = custom_sound_check(song)
+if(scrHMEnabled()) hm_music_desired=song;
 amb = custom_sound_check(amb)
 
 snd_play_music(song, true)

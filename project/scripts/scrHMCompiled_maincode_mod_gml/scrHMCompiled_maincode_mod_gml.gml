@@ -3434,6 +3434,7 @@ if(__hm_break641) break;
 { var __hm_with646 = scrHMInstances(Necromancer), __hm_break648=false;
 for (var __hm_index647=0; __hm_index647<array_length(__hm_with646); ++__hm_index647) {
 if(instance_exists(__hm_with646[__hm_index647])) with (__hm_with646[__hm_index647]) {
+if(!(self[$ "hm_vanilla_loop111"]??false))
 {
 instance_create(x, y, Sniper);
 instance_change(Wind, 0);
@@ -3445,6 +3446,7 @@ if(__hm_break648) break;
 { var __hm_with649 = scrHMInstances(ExploGuardian), __hm_break651=false;
 for (var __hm_index650=0; __hm_index650<array_length(__hm_with649); ++__hm_index650) {
 if(instance_exists(__hm_with649[__hm_index650])) with (__hm_with649[__hm_index650]) {
+if(!(self[$ "hm_vanilla_loop111"]??false))
 {
 instance_create(x, y, Inspector);
 instance_change(Wind, 0);
@@ -3456,6 +3458,7 @@ if(__hm_break651) break;
 { var __hm_with652 = scrHMInstances(DogGuardian), __hm_break654=false;
 for (var __hm_index653=0; __hm_index653<array_length(__hm_with652); ++__hm_index653) {
 if(instance_exists(__hm_with652[__hm_index653])) with (__hm_with652[__hm_index653]) {
+if(!(self[$ "hm_vanilla_loop111"]??false))
 {
 instance_create(x, y, SnowTank);
 instance_change(Wind, 0);
@@ -4372,7 +4375,7 @@ y += lengthdir_y(0.5, direction);
 { var __hm_with816 = scrHMInstances(EnemyBullet1), __hm_break818=false;
 for (var __hm_index817=0; __hm_index817<array_length(__hm_with816); ++__hm_index817) {
 if(instance_exists(__hm_with816[__hm_index817])) with (__hm_with816[__hm_index817]) {
-if ((instance_nearest(x, y, enemy) == (scrHMOther(other)))) {
+if (scrHMMissileShot111(creator,scrHMOther(other))) {
 {
 { var __hm_with819 = scrHMInstances(instance_create(x, y, EnemyBullet3)), __hm_break821=false;
 for (var __hm_index820=0; __hm_index820<array_length(__hm_with819); ++__hm_index820) {

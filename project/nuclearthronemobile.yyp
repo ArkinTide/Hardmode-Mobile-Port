@@ -30056,6 +30056,18 @@
         "name": "scrHMRepairs110",
         "path": "scripts/scrHMRepairs110/scrHMRepairs110.yy"
       }
+    },
+    {
+      "id": {
+        "name": "scrHMRepairs111",
+        "path": "scripts/scrHMRepairs111/scrHMRepairs111.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrHMRepairs112",
+        "path": "scripts/scrHMRepairs112/scrHMRepairs112.yy"
+      }
     }
   ],
   "resourceType": "GMProject",

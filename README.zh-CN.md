@@ -2,9 +2,9 @@
 
 简体中文 · [English](README.md)
 
-基于 **Blaac 的 Hardmode b24** 和 Nuclear Throne Recreated Epsilon 制作的安卓／iOS 独立移植版，与 NTTE 移植工程分开维护。
+基于 **Blaac 的 Hardmode b24** 和 Nuclear Throne Recreated Epsilon 制作的安卓／iOS／Windows 独立移植版，与 NTTE 移植工程分开维护。
 
-当前版本 **1.0.10 / build 11**。本次修复墙色、王座生成、7-4密室路由；三种Boss每两次loop增加一只，普通随机地图每loop增大20%（最多两倍），Windows支持滚轮换枪。[下载 APK 和 IPA](https://mega.nz/folder/7TY3wZRB#PgQeCYQzxvrVGjfjX6YefA)。GitHub 只发布源码，安装包放在既有 MEGA 目录。
+当前版本 **1.0.12 / build 13**。本次修复 Windows 滚轮事件与启动节拍、诅咒洞窟墙色恢复、停车场音乐跨区滞留及下水道岸边误判；补上安卓和 iOS 的 MOD 手动位移绘制平滑，保持每秒30次逻辑更新。包含此前1.0.11的修复。[下载 APK、IPA 和 Windows](https://mega.nz/folder/7TY3wZRB#PgQeCYQzxvrVGjfjX6YefA)。GitHub 只发布源码，安装包放在既有 MEGA 目录。
 
 仓库只包含文本源码及工程元数据，包括 GML 适配层、生成模块、编译器、测试、汉化和 GameMaker 工程定义。**不含图片、音频、字体、原生 runner、SDK、签名、用户存档或原 MOD 内嵌图片数据**。工程内的素材引用需要另行补齐。
 
@@ -14,6 +14,6 @@
 
 源码结构、构建依赖与命令见 [BUILDING.md](BUILDING.md)。纯源码克隆不能直接运行，需要自行提供合法取得的原版／Hardmode 素材、兼容 GameMaker、平台工具链和签名材料。
 
-验证包括同一桌面 VM 的 30／60 帧回归、实际菜单和游戏回调、移动安装包的签名／结构／资源核验。桌面 CPU 计时不能代表手机帧率；没有宣称安卓／iPhone 真机或本轮 Mac 原生重建验收。**IPA 需要重签**。
+Windows 先完成22项30／60帧场景、原生／菜单和随包程序启动检查并交付，随后以独立标识的VM验证手机端平滑。实际滚轮输入在较早开发构建观察通过，最终VM以合成输入经过真实Player Step核验；移动包检查签名／结构／资源。桌面 CPU 计时不能代表手机帧率；没有宣称安卓／iPhone 真机或本轮 Mac 原生重建验收。**IPA 需要重签**。
 
 感谢 Hardmode 作者 Blaac、[原移植基础工程](https://github.com/kcd-shichen/NuclearThrone-Recreated-Epsilon)、Vlambeer、YellowAfterlife 及[原 MOD 贡献者](CREDITS.md)。原基础工程代码沿用 [GPL v3](LICENSE)；素材、音乐及第三方内容的权利仍归原作者，仓库不额外授予其使用许可。

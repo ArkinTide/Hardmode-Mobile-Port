@@ -100,7 +100,8 @@ function scrHMProjectileWall() {
     else scrHMActorCallback("on_wall");
 }
 
-function scrHMActorDraw() {
+function scrHMActorDraw() {scrHMActorDraw111();}
+function scrHMActorDrawRaw111() {
     if(is_undefined(on_draw)) {
         var _hurt=self[$ "spr_hurt"]??-1;
         var _sprite=((self[$ "nexthurt"]??0)>current_frame && sprite_exists(_hurt))?_hurt:sprite_index;

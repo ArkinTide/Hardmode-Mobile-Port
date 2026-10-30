@@ -1,7 +1,8 @@
 sprite_index = spr_fire
 ang = random_angle
 
-repeat 14 {
+// Desktop NTT: 26 evenly spaced attack projectiles.
+repeat 26 {
     with instance_create(x, y, ExploguardianBullet) {
         team = other.team
         motion_add(other.ang, (10) * timescale)
@@ -9,7 +10,7 @@ repeat 14 {
         hitid = other.hitid
     }
 
-    ang += 24
+    ang += 360 / 26
 }
 
 instance_create(x, y, PortalClear)

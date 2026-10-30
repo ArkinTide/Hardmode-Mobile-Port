@@ -36,8 +36,9 @@ function scrHMPoliceRevive107() {
 }
 
 function scrHMShieldKeepPlasma107() {
-    return scrHMEnabled() && team==team_player
-        && (instance_is(id,PlasmaBig)||instance_is(id,PlasmaHuge));
+    if(!scrHMEnabled() || !(instance_is(id,PlasmaBig)||instance_is(id,PlasmaHuge))) return false;
+    if(team!=team_player && !(self[$ "hm_friendly_plasma111"]??false)) return false;
+    hm_friendly_plasma111=true;team=team_player;return true;
 }
 
 function scrHMVanStop107() {

@@ -325,6 +325,7 @@ scrHMModCall("mod", "enemies", "SpiderPit_create", (x + 16), (y + 16));
 }
 
 scrHMLoopCrystal109(x+16,y+16);
+scrHMLoopSpider111(x+16,y+16);
 }
 
 // Source areas/caves.area.gml:134; area_pop_props

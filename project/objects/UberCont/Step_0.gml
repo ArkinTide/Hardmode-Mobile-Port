@@ -4,6 +4,7 @@ if native_cursor_inst != -1
 	native_cursor_update()
 
 input_tick()
+scrHMWheelPoll112();
 
 if (!block_input_frames) {
 	scrHandleInputsGeneral(global.index)
@@ -188,6 +189,7 @@ if (instance_exists(TestCont) && global.__debug_test_framerate_uncapped) {
 	else if (test_framerate_uncapped) {
 		if (game_get_speed(gamespeed_fps) == game_speed_uncaped) {
 			display_reset(display_aa, opt_vsync)
+            scrHMDesktopTiming112();
 			// 退出无上限测试模式时，恢复「用户设置的帧率」，
 			// 而不是写死的 30（opt_framerate 由 scrOptionsUpdate 在 Room Start 时读入）。
 			game_set_speed(opt_framerate, gamespeed_fps)

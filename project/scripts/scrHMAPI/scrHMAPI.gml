@@ -249,6 +249,7 @@ function scrHMSoundMusic(_sound) {
             music_sound=snd_play_music(song,true);
         }
         hm_music_desired=_next;
+        hm_music_area112=instance_exists(GameCont)?GameCont.area:area_campfire;
         alarm[0]=-1;
         alarm[1]=-1;alarm[3]=-1;
     }

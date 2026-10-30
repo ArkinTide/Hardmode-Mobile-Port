@@ -9,7 +9,7 @@ function scrPopEnemies() {
 
     random_set_seed(rng_next_int(RNGStates.Enemies))
 	
-    if(scrHMEnabled() && scrHMAreaHas(GameCont.area)) {scrHMAreaCall(GameCont.area,"area_pop_enemies");return;}
+    if(scrHMEnabled() && scrHMAreaHas(GameCont.area)) {scrHMAreaCall(GameCont.area,"area_pop_enemies");scrHMVanillaLoopPopulate111();return;}
 	var _loops = GameCont.loops,
 		_loop_rand = random(_loops),
 		_subarea = GameCont.subarea,

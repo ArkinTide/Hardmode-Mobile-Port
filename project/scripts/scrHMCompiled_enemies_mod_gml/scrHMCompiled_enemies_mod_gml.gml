@@ -795,7 +795,7 @@ for (var __hm_index101=0; __hm_index101<array_length(__hm_with100); ++__hm_index
 if(instance_exists(__hm_with100[__hm_index101])) with (__hm_with100[__hm_index101]) {
 {
 newintro = (- 1);
-scrHMSoundMusic(musBoss6);
+scrHMSoundMusic(GameCont.area==scrHMAreaResolve("cavesinv")?musBoss6B:musBoss6);
 scrHMMaxHealthWrite(id, ((max_hp / 2) * instance_number(Player)), "+=");
 scrHMMaxHealthWrite(id, ((max_hp / 2) * GameCont.loops), "+=");
 hp = max_hp;
@@ -9010,7 +9010,7 @@ instance_destroy();
 
 // Source enemies.mod.gml:5000; DropWeapon
 function hm_enemies_mod_gml_DropWeapon() {
-if ((weapondrop != 0)) {
+if ((weapondrop != 0) && scrHMVenusDropAllowed111(weapondrop)) {
 { var __hm_with1 = scrHMInstances(instance_create(x, y, WepPickup)), __hm_break3=false;
 for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
 if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
