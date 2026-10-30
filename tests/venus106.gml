@@ -140,7 +140,8 @@ function scrHMGameplayVenus106() {
         with(WepPickup) scrHMGameplayCheck(sprite_index==scrHMWeaponSprite(wep),"Venus weapon pickup retains its actual weapon art");
         var _packed=0;with(Wall) if(self[$ "hm_interior_wall"]??false) _packed++;
         show_debug_message("HARDMODE VENUS106 TERRAIN "+json_stringify({sub:_sub,packed:_packed,walls:instance_number(Wall)}));
-        scrHMGameplayCheck(_packed>0,"Venus exterior collision remains compact after a same-room elevator rebuild");
+        scrHMGameplayCheck(_packed==0&&instance_number(Floor)>5&&instance_number(Wall)>0,
+            "Venus elevator preserves authored geometry without an extra synthetic collision ring");
         if(surface_exists(application_surface)) surface_save(application_surface,game_directory+"venus-stage-"+string(_sub)+".png");
         venus_phase106=_sub==12?"bossair":"doors";venus_phase_age106=0;
     }

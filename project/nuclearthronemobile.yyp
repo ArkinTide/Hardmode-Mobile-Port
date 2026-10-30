@@ -30020,6 +30020,24 @@
         "name": "scrHMRepairs107",
         "path": "scripts/scrHMRepairs107/scrHMRepairs107.yy"
       }
+    },
+    {
+      "id": {
+        "name": "sprHMVanWarning108",
+        "path": "sprites/sprHMVanWarning108/sprHMVanWarning108.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprHMIDPDTankWarning108",
+        "path": "sprites/sprHMIDPDTankWarning108/sprHMIDPDTankWarning108.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrHMRepairs108",
+        "path": "scripts/scrHMRepairs108/scrHMRepairs108.yy"
+      }
     }
   ],
   "resourceType": "GMProject",

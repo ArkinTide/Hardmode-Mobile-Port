@@ -113,6 +113,7 @@ function scrHMGameplayTestStep() {
         if(string_pos("105",mode)>0) scrHMGameplayRepairs105();
         if(string_pos("106",mode)>0) scrHMGameplayRepairs106();
         if(string_pos("107",mode)>0) scrHMGameplayRepairs107();
+        if(string_pos("108",mode)>0) scrHMGameplayRepairs108();
         if(mode=="venus106" || mode=="venussecrets106") scrHMGameplayVenus106();
         if(ticks==120 && surface_exists(application_surface)) {
             surface_save(application_surface,game_directory+"gameplay.png");

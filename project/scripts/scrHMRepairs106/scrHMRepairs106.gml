@@ -13,6 +13,7 @@ function scrHMFillBlock106(_x,_y,_w,_h) {
 
 function scrHMFillStep106() {
     if(!(self[$ "hm_fill_active"]??false)) return true;
+    if(GameCont.area==scrHMAreaResolve("venuz")) {hm_fill_active=false;hm_fill_taken106=undefined;return true;}
     if(is_undefined(self[$ "hm_fill_taken106"])) hm_fill_taken106={};
     var _venuz=GameCont.area==scrHMAreaResolve("venuz");
     repeat(512) {
@@ -34,7 +35,7 @@ function scrHMFillStep106() {
         }
         hm_fill_x+=16;
         if(hm_fill_x>=hm_fill_right) {hm_fill_x=hm_fill_left;hm_fill_y+=16;}
-        if(hm_fill_y>=hm_fill_bottom) {hm_fill_active=false;hm_fill_taken106=undefined;return true;}
+        if(hm_fill_y>=hm_fill_bottom) {hm_fill_active=false;hm_fill_taken106=undefined;scrHMWallTransitions108();return true;}
     }
     return false;
 }
@@ -111,6 +112,7 @@ function scrHMCarveFill106(_size) {
         if(x>=_x&&x<_x+_size&&y>=_y&&y<_y+_size) instance_destroy(id,false);
         else hm_plain106=collision_rectangle(x-32,y-32,x+47,y+47,Floor,false,true)==noone;
     }
+    scrHMWallTransitions108(_x-48,_y-48,_x+_size+48,_y+_size+48);
     HMWorld.hm_water_map=undefined;
 }
 

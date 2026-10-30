@@ -23,6 +23,8 @@ if (charge) {
 	exit
 }
 
+if(scrHMEnabled()) scrHMThroneBeam108();
+else {
 image_yscale = 1
 
 repeat (1024) {
@@ -30,6 +32,7 @@ repeat (1024) {
 	if (place_meeting(x, y, Wall)) {
 		break
 	}
+}
 }
 
 instance_create(x + orandom(20), bbox_bottom + orandom(1), NothingBeamHit)

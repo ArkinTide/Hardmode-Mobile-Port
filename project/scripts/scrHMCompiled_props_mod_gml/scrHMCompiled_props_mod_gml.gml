@@ -177,14 +177,14 @@ if(__hm_break18) break;
 
 // Source props.mod.gml:115; draw_shadows
 function hm_props_mod_gml_draw_shadows() {
-{ var __hm_with1 = scrHMMatching(GameObject, "shadow", 1), __hm_break3=false;
+{ var __hm_with1 = scrHMMatching([CustomObject, Effect], "shadow", 1), __hm_break3=false;
 for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
 if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
 scrHMDrawSpriteExt(sprite_index, image_index, x, (y + 6), image_xscale, (- 1), 0, c_black, 1);
 }
 if(__hm_break3) break;
 }}
-{ var __hm_with4 = scrHMMatching(GameObject, "shadow", 2), __hm_break6=false;
+{ var __hm_with4 = scrHMMatching([CustomObject, Effect], "shadow", 2), __hm_break6=false;
 for (var __hm_index5=0; __hm_index5<array_length(__hm_with4); ++__hm_index5) {
 if(instance_exists(__hm_with4[__hm_index5])) with (__hm_with4[__hm_index5]) {
 scrHMDrawSprite(shd24, 1, x, y);
@@ -570,6 +570,7 @@ scrHMDelete(id);
 }
 if(__hm_break80) break;
 }}
+scrHMVenusCleanup108();
 scrHMModCall("area", "venuz", "area_setup");
 scrHMModCall("area", "venuz", "area_make_floor");
 scrHMModCall("area", "venuz", "area_start");
@@ -1924,6 +1925,7 @@ scrHMMenuDrawComplete();
 
 // Source props.mod.gml:940; VenuzCar_step
 function hm_props_mod_gml_VenuzCar_step() {
+scrHMCarSteer108();
 sprite_index = spr_idle;
 if (position_meeting(x, (y + 8), Wall)) {
 shd_y = (- 8);
@@ -2365,16 +2367,16 @@ if(__hm_break88) break;
 { var __hm_with91 = scrHMInstances((scrHMOther(other))), __hm_break93=false;
 for (var __hm_index92=0; __hm_index92<array_length(__hm_with91); ++__hm_index92) {
 if(instance_exists(__hm_with91[__hm_index92])) with (__hm_with91[__hm_index92]) {
-if (scrHMButtonCheck(driver, "nort")) {
+if (scrHMCarButton108(driver, "nort")) {
 {
 scrHMMotionAdd(image_angle, 0.2);
 if ((riders >= instance_number(Player))) {
 z += 0.2;
 }
-if (scrHMButtonCheck(driver, "west")) {
+if (scrHMCarButton108(driver, "west")) {
 image_angle += (((speed / timescale) / 5) * 4);
 }
-if (scrHMButtonCheck(driver, "east")) {
+if (scrHMCarButton108(driver, "east")) {
 image_angle -= (((speed / timescale) / 5) * 4);
 }
 }
@@ -2393,13 +2395,13 @@ z -= 0.3;
 }
 }
 }
-if (scrHMButtonCheck(driver, "west")) {
+if (scrHMCarButton108(driver, "west")) {
 image_angle += (2 + ((speed / timescale) / 2));
 }
-if (scrHMButtonCheck(driver, "east")) {
+if (scrHMCarButton108(driver, "east")) {
 image_angle -= (2 + ((speed / timescale) / 2));
 }
-if ((((! scrHMButtonCheck(driver, "west")) and (! scrHMButtonCheck(driver, "east"))) and ((speed / timescale) < 0.1))) {
+if ((((! scrHMCarButton108(driver, "west")) and (! scrHMCarButton108(driver, "east"))) and ((speed / timescale) < 0.1))) {
 {
 direction = image_angle;
 }
@@ -2413,7 +2415,7 @@ if(__hm_break93) break;
 for (var __hm_index95=0; __hm_index95<array_length(__hm_with94); ++__hm_index95) {
 if(instance_exists(__hm_with94[__hm_index95])) with (__hm_with94[__hm_index95]) {
 {
-if (scrHMButtonCheck(driver, "sout")) {
+if (scrHMCarButton108(driver, "sout")) {
 {
 direction = image_angle;
 speed -= (0.1) * timescale;

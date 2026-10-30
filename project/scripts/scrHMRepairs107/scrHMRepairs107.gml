@@ -46,7 +46,7 @@ function scrHMVanStop107() {
     // Its own Destroy callback already produces the three police explosions.
     var _xx=x,_yy=y;
     instance_destroy();
-    repeat(3) instance_create(_xx+orandom(8),_yy+orandom(8),PopoFreak);
+    repeat(3) scrHMPoliceSpawn108(_xx+orandom(8),_yy+orandom(8));
     return true;
 }
 

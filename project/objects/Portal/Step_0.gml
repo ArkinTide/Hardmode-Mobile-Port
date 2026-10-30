@@ -20,6 +20,8 @@ if instance_exists(Player) {
     }
 }
 
+scrHMPortalEntry108();
+
 if (endgame < 100) {
     endgame -= timescale
 	

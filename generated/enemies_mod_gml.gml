@@ -1038,7 +1038,12 @@ _hm.pc = (scrHMTaskFork(_hm, 24)) ? 24 : 18;
 break;
 case 26: // enemies.mod.gml:469
 {
+{
+mask_index = mskBandit;
+;
 canfly = 0;
+;
+}
 y += 2;
 sprite_index = spr_hurt;
 }
@@ -4197,8 +4202,9 @@ if ((typ == 1)) {
 {
 scrHMSoundPlay(sndCrystalRicochet);
 var __hm_other4=scrHMOther(other);
-team = __hm_other4.team;
-hitid = [global.hm_module_vars[$ "mod:enemies"].EliteSpiderIdle, "Big Spider"];
+var _keep_plasma108=scrHMShieldKeepPlasma107();
+if(!_keep_plasma108) team = __hm_other4.team;
+if(!_keep_plasma108) hitid = [global.hm_module_vars[$ "mod:enemies"].EliteSpiderIdle, "Big Spider"];
 var __hm_other5=scrHMOther(other);
 direction = point_direction(__hm_other5.x, __hm_other5.y, x, y);
 image_angle = direction;
@@ -4401,8 +4407,9 @@ if ((typ == 1)) {
 {
 scrHMSoundPlay(sndCrystalRicochet);
 var __hm_other4=scrHMOther(other);
-team = __hm_other4.team;
-hitid = [global.hm_module_vars[$ "mod:enemies"].bigcrystal, "Big Crystal"];
+var _keep_plasma108=scrHMShieldKeepPlasma107();
+if(!_keep_plasma108) team = __hm_other4.team;
+if(!_keep_plasma108) hitid = [global.hm_module_vars[$ "mod:enemies"].bigcrystal, "Big Crystal"];
 var __hm_other5=scrHMOther(other);
 direction = (point_direction(__hm_other5.x, __hm_other5.y, x, y) + random_range((- 30), 30));
 image_angle = direction;
@@ -5266,7 +5273,7 @@ if ((((speed / timescale) == 0) and (land > 0))) {
 land -= 1;
 }
 if ((((GameCont.loops > 0) || ((GameCont.subarea == 5) and (random(6) < GameCont.loops))) and (start == 6))) {
-scrHMModCall("mod", "enemies", "IDPDTank_create", (x + lengthdir_x(30, ((image_angle + 180) - 30))), (y + lengthdir_y(30, ((image_angle + 180) - 30))), direction);
+scrHMTankPortal108((x + lengthdir_x(30, ((image_angle + 180) - 30))), (y + lengthdir_y(30, ((image_angle + 180) - 30))), direction);
 }
 if(scrHMVanStop107()) return;
 if ((land == 1)) {
@@ -5464,13 +5471,12 @@ if(instance_exists(__hm_with4[__hm_index5])) with (__hm_with4[__hm_index5]) {
 {
 sprite_index = sprScorch;
 ;
-image_xscale = 3;
-image_yscale = 3;
+scrHMVanCrater108();
 }
 }
 if(__hm_break6) break;
 }}
-repeat (10) instance_create((x + random_range((- 30), 30)), (x + random_range((- 30), 30)), BlueFlame);
+repeat (10) instance_create((x + random_range((- 30), 30)), (y + random_range((- 30), 30)), BlueFlame);
 }
 
 // Source enemies.mod.gml:2946; IDPDTank_draw
@@ -5497,12 +5503,12 @@ if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
 name = "IDPDTank";
 hitid = [global.hm_module_vars[$ "mod:enemies"].IDPDTankidle, "IDPD Tank"];
 team = 3;
-spawnanimation = 150;
+spawnanimation = 0;
 on_step = scrHMScriptRef(hm_enemies_mod_gml_IDPDTank_step);
 on_destroy = scrHMScriptRef(hm_enemies_mod_gml_IDPDTank_dead);
 on_draw = scrHMScriptRef(hm_enemies_mod_gml_IDPDTank_draw);
 scrHMSoundPitch(sndLastMelee, 1.2);
-spr_idle = global.hm_module_vars[$ "mod:enemies"].IDPDTankintro;
+spr_idle = global.hm_module_vars[$ "mod:enemies"].IDPDTankidle;
 spr_walk = global.hm_module_vars[$ "mod:enemies"].IDPDTankwalk;
 spr_hurt = global.hm_module_vars[$ "mod:enemies"].IDPDTankhurt;
 spr_dead = global.hm_module_vars[$ "mod:enemies"].IDPDTankdead;
@@ -5516,9 +5522,11 @@ mask_index = mskHyperCrystal;
 targetvisible = 0;
 walk = 0;
 depth = (- 8);
-alrm1 = 1000;
+alrm1 = 30;
 hurttimer = 50;
-scrHMMotionAdd(_hml__d, 16);
+sprite_index=spr_idle;friction=.4;
+scrHMTankRadiation108();
+scrHMMotionAdd(_hml__d, 2);
 { var __hm_with4 = scrHMInstances(instance_create(x, y, Dust)), __hm_break6=false;
 for (var __hm_index5=0; __hm_index5<array_length(__hm_with4); ++__hm_index5) {
 if(instance_exists(__hm_with4[__hm_index5])) with (__hm_with4[__hm_index5]) {
@@ -5833,6 +5841,7 @@ default: throw "Hardmode invalid continuation PC";
 
 // Source enemies.mod.gml:3137; IDPDTank_dead
 function hm_enemies_mod_gml_IDPDTank_dead() {
+scrHMTankRadiation108();
 if (scrHMModExists("mod", "options", "bossoutros")) {
 if ((scrHMModGet("mod", "options", "bossoutros") == "1")) {
 scrHMModCall("mod", "bossintros", "boss_trigger", "", mskNone, mskNone, mskNone, id, 0);
@@ -5866,7 +5875,7 @@ depth = (creator.depth - 1);
 }
 if (((charge < 1.25) && instance_exists(creator))) {
 {
-aim = creator.gunangle;
+scrHMTankAim108();
 }
 }
 if ((charge > 0)) {
@@ -6742,8 +6751,9 @@ if ((typ == 1)) {
 {
 scrHMSoundPlay(sndCrystalRicochet);
 var __hm_other4=scrHMOther(other);
-team = __hm_other4.team;
-hitid = [sprMutant2BIdle, "Crystal"];
+var _keep_plasma108=scrHMShieldKeepPlasma107();
+if(!_keep_plasma108) team = __hm_other4.team;
+if(!_keep_plasma108) hitid = [sprMutant2BIdle, "Crystal"];
 var __hm_other5=scrHMOther(other);
 direction = point_direction(__hm_other5.x, __hm_other5.y, x, y);
 image_angle = direction;

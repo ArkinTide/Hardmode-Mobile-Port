@@ -22,7 +22,7 @@ function scrShadows() {
 		
 	for (var i = _count - 1; i >= 0; --i) {
 		with _list[| i] {
-			if !position_meeting(x, y + 16, TopSmall) {
+			if (!(scrHMEnabled() && scrHMPlainWall106()) && !position_meeting(x, y + 16, TopSmall)) {
 				draw_sprite_ext(outspr, outindex, x - _xview, y + 2 + 16 - _yview, 1, -1, 0, c_black, 1)
 			}
 		}

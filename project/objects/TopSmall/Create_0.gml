@@ -1,4 +1,4 @@
-if (position_meeting(x, y, Wall) || position_meeting(x, y, Floor)) {
+if (scrHMEnabled() ? !scrHMTopAllowed108() : (position_meeting(x, y, Wall) || position_meeting(x, y, Floor))) {
     instance_destroy()
     exit
 }

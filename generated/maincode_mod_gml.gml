@@ -1535,7 +1535,7 @@ if ((distance_to_object((scrHMOther(other))) < 16)) {
 {
 sprite_index = sprWall103Bot;
 topspr = sprWall103Top;
-outindex = sprWall103Out;
+outindex = 0;
 outspr = sprWall103Out;
 }
 }

@@ -139,6 +139,13 @@ function scr_create_debug_overlay_views() {
 				if(scrHMEnabled()) {scrHMConsoleGoto(_area,_subarea,global.__debug_transit_loop);return;}
 				if(scrHMEnabled()) {scrHMConsoleGoto(_area,_subarea,global.__debug_transit_loop);return;}
 				if(scrHMEnabled()) {scrHMConsoleGoto(_area,_subarea,global.__debug_transit_loop);return;}
+				if(scrHMEnabled()) {scrHMConsoleGoto(_area,_subarea,global.__debug_transit_loop);return;}
+				if(scrHMEnabled()) {scrHMConsoleGoto(_area,_subarea,global.__debug_transit_loop);return;}
+				if(scrHMEnabled()) {scrHMConsoleGoto(_area,_subarea,global.__debug_transit_loop);return;}
+				if(scrHMEnabled()) {scrHMConsoleGoto(_area,_subarea,global.__debug_transit_loop);return;}
+				if(scrHMEnabled()) {scrHMConsoleGoto(_area,_subarea,global.__debug_transit_loop);return;}
+				if(scrHMEnabled()) {scrHMConsoleGoto(_area,_subarea,global.__debug_transit_loop);return;}
+				if(scrHMEnabled()) {scrHMConsoleGoto(_area,_subarea,global.__debug_transit_loop);return;}
 				
 				with (GameCont) {
 					area = _area
@@ -172,6 +179,139 @@ function scr_create_debug_overlay_views() {
 		
 		dbg_slider_int(ref_create(global, "__debug_transit_loop"), -1, 10, "Loop")
 		
+        // Hardmode destinations: actual extended areas, no stock secret aliases.
+        if(scrHMEnabled()) {
+            var _routes=[[1,3],[2,3],[3,5],[4,3],[5,5],[6,2],[7,4]];
+            for(var _i=0;_i<array_length(_routes);++_i) {
+                var _route=_routes[_i];
+                for(var _s=1;_s<=_route[1];++_s) {
+                    if(_s>1) dbg_same_line();
+                    dbg_button(string(_route[0])+"-"+string(_s),__area_transit_button(_route[0],_s),70);
+                }
+            }
+            var _extra=["nightdesert","scorpionboss","ravenboss","oasis","jungle","turtles","cavesinv","icecave","noyetihere","elevator","HQ","venuz","throne","end"];
+            for(var _i=0;_i<array_length(_extra);++_i) {
+                var _key=_extra[_i],_area=scrHMAreaResolve(_key);
+                for(var _s=1;_s<=scrAreaGetMaxSubarea(_area);++_s) {
+                    if(_s>1) dbg_same_line();
+                    dbg_button(_key+"-"+string(_s),__area_transit_button(_area,_s),100);
+                }
+            }
+        } else {
+        // Hardmode destinations: actual extended areas, no stock secret aliases.
+        if(scrHMEnabled()) {
+            var _routes=[[1,3],[2,3],[3,5],[4,3],[5,5],[6,2],[7,4]];
+            for(var _i=0;_i<array_length(_routes);++_i) {
+                var _route=_routes[_i];
+                for(var _s=1;_s<=_route[1];++_s) {
+                    if(_s>1) dbg_same_line();
+                    dbg_button(string(_route[0])+"-"+string(_s),__area_transit_button(_route[0],_s),70);
+                }
+            }
+            var _extra=["nightdesert","scorpionboss","ravenboss","oasis","jungle","turtles","cavesinv","icecave","noyetihere","elevator","HQ","venuz","throne","end"];
+            for(var _i=0;_i<array_length(_extra);++_i) {
+                var _key=_extra[_i],_area=scrHMAreaResolve(_key);
+                for(var _s=1;_s<=scrAreaGetMaxSubarea(_area);++_s) {
+                    if(_s>1) dbg_same_line();
+                    dbg_button(_key+"-"+string(_s),__area_transit_button(_area,_s),100);
+                }
+            }
+        } else {
+        // Hardmode destinations: actual extended areas, no stock secret aliases.
+        if(scrHMEnabled()) {
+            var _routes=[[1,3],[2,3],[3,5],[4,3],[5,5],[6,2],[7,4]];
+            for(var _i=0;_i<array_length(_routes);++_i) {
+                var _route=_routes[_i];
+                for(var _s=1;_s<=_route[1];++_s) {
+                    if(_s>1) dbg_same_line();
+                    dbg_button(string(_route[0])+"-"+string(_s),__area_transit_button(_route[0],_s),70);
+                }
+            }
+            var _extra=["nightdesert","scorpionboss","ravenboss","oasis","jungle","turtles","cavesinv","icecave","noyetihere","elevator","HQ","venuz","throne","end"];
+            for(var _i=0;_i<array_length(_extra);++_i) {
+                var _key=_extra[_i],_area=scrHMAreaResolve(_key);
+                for(var _s=1;_s<=scrAreaGetMaxSubarea(_area);++_s) {
+                    if(_s>1) dbg_same_line();
+                    dbg_button(_key+"-"+string(_s),__area_transit_button(_area,_s),100);
+                }
+            }
+        } else {
+        // Hardmode destinations: actual extended areas, no stock secret aliases.
+        if(scrHMEnabled()) {
+            var _routes=[[1,3],[2,3],[3,5],[4,3],[5,5],[6,2],[7,4]];
+            for(var _i=0;_i<array_length(_routes);++_i) {
+                var _route=_routes[_i];
+                for(var _s=1;_s<=_route[1];++_s) {
+                    if(_s>1) dbg_same_line();
+                    dbg_button(string(_route[0])+"-"+string(_s),__area_transit_button(_route[0],_s),70);
+                }
+            }
+            var _extra=["nightdesert","scorpionboss","ravenboss","oasis","jungle","turtles","cavesinv","icecave","noyetihere","elevator","HQ","venuz","throne","end"];
+            for(var _i=0;_i<array_length(_extra);++_i) {
+                var _key=_extra[_i],_area=scrHMAreaResolve(_key);
+                for(var _s=1;_s<=scrAreaGetMaxSubarea(_area);++_s) {
+                    if(_s>1) dbg_same_line();
+                    dbg_button(_key+"-"+string(_s),__area_transit_button(_area,_s),100);
+                }
+            }
+        } else {
+        // Hardmode destinations: actual extended areas, no stock secret aliases.
+        if(scrHMEnabled()) {
+            var _routes=[[1,3],[2,3],[3,5],[4,3],[5,5],[6,2],[7,4]];
+            for(var _i=0;_i<array_length(_routes);++_i) {
+                var _route=_routes[_i];
+                for(var _s=1;_s<=_route[1];++_s) {
+                    if(_s>1) dbg_same_line();
+                    dbg_button(string(_route[0])+"-"+string(_s),__area_transit_button(_route[0],_s),70);
+                }
+            }
+            var _extra=["nightdesert","scorpionboss","ravenboss","oasis","jungle","turtles","cavesinv","icecave","noyetihere","elevator","HQ","venuz","throne","end"];
+            for(var _i=0;_i<array_length(_extra);++_i) {
+                var _key=_extra[_i],_area=scrHMAreaResolve(_key);
+                for(var _s=1;_s<=scrAreaGetMaxSubarea(_area);++_s) {
+                    if(_s>1) dbg_same_line();
+                    dbg_button(_key+"-"+string(_s),__area_transit_button(_area,_s),100);
+                }
+            }
+        } else {
+        // Hardmode destinations: actual extended areas, no stock secret aliases.
+        if(scrHMEnabled()) {
+            var _routes=[[1,3],[2,3],[3,5],[4,3],[5,5],[6,2],[7,4]];
+            for(var _i=0;_i<array_length(_routes);++_i) {
+                var _route=_routes[_i];
+                for(var _s=1;_s<=_route[1];++_s) {
+                    if(_s>1) dbg_same_line();
+                    dbg_button(string(_route[0])+"-"+string(_s),__area_transit_button(_route[0],_s),70);
+                }
+            }
+            var _extra=["nightdesert","scorpionboss","ravenboss","oasis","jungle","turtles","cavesinv","icecave","noyetihere","elevator","HQ","venuz","throne","end"];
+            for(var _i=0;_i<array_length(_extra);++_i) {
+                var _key=_extra[_i],_area=scrHMAreaResolve(_key);
+                for(var _s=1;_s<=scrAreaGetMaxSubarea(_area);++_s) {
+                    if(_s>1) dbg_same_line();
+                    dbg_button(_key+"-"+string(_s),__area_transit_button(_area,_s),100);
+                }
+            }
+        } else {
+        // Hardmode destinations: actual extended areas, no stock secret aliases.
+        if(scrHMEnabled()) {
+            var _routes=[[1,3],[2,3],[3,5],[4,3],[5,5],[6,2],[7,4]];
+            for(var _i=0;_i<array_length(_routes);++_i) {
+                var _route=_routes[_i];
+                for(var _s=1;_s<=_route[1];++_s) {
+                    if(_s>1) dbg_same_line();
+                    dbg_button(string(_route[0])+"-"+string(_s),__area_transit_button(_route[0],_s),70);
+                }
+            }
+            var _extra=["nightdesert","scorpionboss","ravenboss","oasis","jungle","turtles","cavesinv","icecave","noyetihere","elevator","HQ","venuz","throne","end"];
+            for(var _i=0;_i<array_length(_extra);++_i) {
+                var _key=_extra[_i],_area=scrHMAreaResolve(_key);
+                for(var _s=1;_s<=scrAreaGetMaxSubarea(_area);++_s) {
+                    if(_s>1) dbg_same_line();
+                    dbg_button(_key+"-"+string(_s),__area_transit_button(_area,_s),100);
+                }
+            }
+        } else {
         // Hardmode destinations: actual extended areas, no stock secret aliases.
         if(scrHMEnabled()) {
             var _routes=[[1,3],[2,3],[3,5],[4,3],[5,5],[6,2],[7,4]];
@@ -665,6 +805,20 @@ function scr_create_debug_overlay_views() {
 			}
 		}
 		
+        }
+
+        }
+
+        }
+
+        }
+
+        }
+
+        }
+
+        }
+
         }
 
         }

@@ -159,6 +159,7 @@ function scrHMFilter(_target, _field, _values, _operation) {
         if(_field=="race") _expected=scrHMRaceResolve(_expected);
         _values[_j]=_expected;
     }
+    if(!is_array(_target)) return scrHMFilterOne108(_target,_field,_values,_operation);
     var _found=[],_items=scrHMInstances(_target);
     for(var _i=0;_i<array_length(_items);++_i) {
         var _item=_items[_i],_value=undefined,_match=false;

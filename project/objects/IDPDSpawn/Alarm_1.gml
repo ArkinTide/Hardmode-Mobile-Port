@@ -1,7 +1,8 @@
 instance_create(x, y, PortalClear)
 
 if GameCont.loops - (GameCont.area == 0) >= 3 {
-    instance_create(x + orandom(2), y + orandom(2), PopoFreak)
+    if(scrHMEnabled()) scrHMPoliceSpawn108(x+orandom(2),y+orandom(2));
+    else instance_create(x + orandom(2), y + orandom(2), PopoFreak)
     exit
 }
 

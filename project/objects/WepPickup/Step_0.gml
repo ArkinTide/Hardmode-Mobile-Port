@@ -1,4 +1,7 @@
 scrHMPickupRefresh();
+scrHMVenusPickup108();
+
+scrHMPickupRefresh();
 
 if lockstep_stop
 	exit

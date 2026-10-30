@@ -3,4 +3,11 @@ if lockstep_stop
 
 if(scrHMEnabled()) scrHMPortalClearWall107(other.id);
 else if(scrHMEnabled()) scrHMPortalClearWall107(other.id);
+else if(scrHMEnabled()) scrHMPortalClearWall107(other.id);
+else if(scrHMEnabled()) scrHMPortalClearWall107(other.id);
+else if(scrHMEnabled()) scrHMPortalClearWall107(other.id);
+else if(scrHMEnabled()) scrHMPortalClearWall107(other.id);
+else if(scrHMEnabled()) scrHMPortalClearWall107(other.id);
+else if(scrHMEnabled()) scrHMPortalClearWall107(other.id);
+else if(scrHMEnabled()) scrHMPortalClearWall107(other.id);
 else scrWallDestroy(other.id)

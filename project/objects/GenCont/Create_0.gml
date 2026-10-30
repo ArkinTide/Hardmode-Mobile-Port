@@ -85,6 +85,13 @@ if(scrHMEnabled() && scrHMAreaHas(GameCont.area)) {
 
 
 
+
+
+
+
+
+
+
 if save_get_value("game", "tutorial", true) {
 	instance_create(x, y, TutCont)
 	safespawn = true

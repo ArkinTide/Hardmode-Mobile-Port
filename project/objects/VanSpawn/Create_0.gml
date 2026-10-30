@@ -1,3 +1,5 @@
+if(scrHMVanPortalCreate108()) exit;
+
 var player = instance_random(Player)
 
 if GameCont.area == area_vault || (GameCont.area == area_palace && GameCont.finalsubarea) {

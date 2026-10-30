@@ -5,6 +5,7 @@ function hm_bosses_bossintros_mod_gml___load() {
 
 // Source bosses/bossintros.mod.gml:2; boss_trigger
 function hm_bosses_bossintros_mod_gml_boss_trigger() {
+if(scrHMSkipBossPresentation108(argument0,argument4)) return;
 var _hml_only1 = 1;
 ;
 { var __hm_with1 = scrHMMatching(CustomObject, "name", "bossintro"), __hm_break3=false;

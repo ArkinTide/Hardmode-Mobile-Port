@@ -17,6 +17,7 @@ from repairs104 import ast_repair as ast_repair104, emitted_repair as emitted_re
 from repairs105 import emitted_repair as emitted_repair105
 from repairs106 import emitted_repair as emitted_repair106
 from repairs107 import ast_repair as ast_repair107, emitted_repair as emitted_repair107
+from repairs108 import ast_repair as ast_repair108, emitted_repair as emitted_repair108
 
 ROOT = Path(__file__).resolve().parent
 
@@ -551,6 +552,7 @@ def main():
             ast_repair(path, definition, walk)
             ast_repair104(path, definition, walk)
             ast_repair107(path, definition, walk)
+            ast_repair108(path, definition, walk)
             if path == "maincode.mod.gml" and definition.name == "step":
                 # The two original setrads loops are superseded by the tested
                 # reversible level-cap policy. Retain the absorption mechanic
@@ -600,6 +602,7 @@ def main():
             emitted=emitted_repair105(path,definition.name,emitted)
             emitted=emitted_repair106(path,definition.name,emitted)
             emitted=emitted_repair107(path,definition.name,emitted)
+            emitted=emitted_repair108(path,definition.name,emitted)
             text.append(f"// Source {path}:{definition.line}; {definition.name}\n" + emitted)
             records.append({"name": definition.name, "line": definition.line, "native_name": emitter.native_name,
                             "uses_coroutine": emitter.async_mode, "calls": sorted(emitter.calls)})
