@@ -121,6 +121,7 @@ function scrHMAreaCall(_area,_hook) {
 }
 
 function scrHMAreaTransit() {
+    if(area==area_vault) {subarea=1;maxsubarea=1;finalsubarea=true;return;}
     for(var _i=0;_i<array_length(global.hm_module_order);++_i) {
         var _key=global.hm_module_order[_i];
         if(string_pos("area:",_key)==1) {

@@ -109,6 +109,7 @@ if save_get_value("game", "tutorial", true) {
     goal = 5
 }
 
+scrHMLoopMapSetup110();
 alarm[5] = 600
 
 with instance_create(10000, 10000, FloorMaker) {

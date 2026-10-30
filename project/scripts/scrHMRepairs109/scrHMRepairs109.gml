@@ -75,7 +75,7 @@ function scrHMLilHunterWait109() {
 
 function scrHMLilHunterGroup109(_x,_y) {
     var _first=noone;
-    repeat(1+max(0,GameCont.loops)) {
+    repeat(scrHMLoopBossCount110()) {
         var _boss=instance_create(_x,_y,LilHunter);
         if(!instance_exists(_first)) _first=_boss;
     }
@@ -84,7 +84,7 @@ function scrHMLilHunterGroup109(_x,_y) {
 
 function scrHMGatorGroup109(_x,_y) {
     var _first=noone;
-    repeat(1+max(0,GameCont.loops)) {
+    repeat(scrHMLoopBossCount110()) {
         var _boss=hm_bosses_gatorboss_mod_gml_gatorboss_create(_x,_y);
         if(!instance_exists(_first)) _first=_boss;
     }
@@ -92,7 +92,7 @@ function scrHMGatorGroup109(_x,_y) {
 }
 
 function scrHMRavenGroup109(_x,_y) {
-    repeat(1+max(0,GameCont.loops)) hm_bosses_ravenboss_mod_gml_ravenboss_create(_x,_y);
+    repeat(scrHMLoopBossCount110()) hm_bosses_ravenboss_mod_gml_ravenboss_create(_x,_y);
 }
 
 function scrHMRavenBackup109() {
@@ -160,7 +160,8 @@ function scrHMCrownAltar109() {
     if(instance_exists(_floor)) with(_floor) instance_create(bbox_center_x,bbox_center_y,ProtoStatue);
 }
 
-function scrHMThroneEntrance109() {
+function scrHMThroneEntrance109() {scrHMThroneEntrance110();}
+function scrHMThroneEntrance109Legacy() {
     // Finalize once with GenCont, after the source's floor/seed-dependent
     // setup. Never poll during combat or recreate a defeated throne.
     if(!scrHMEnabled() || GameCont.area!=scrHMAreaResolve("throne") || !instance_exists(Floor)) return;

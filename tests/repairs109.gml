@@ -59,20 +59,22 @@ function scrHMGameplayRepairs109() {
     }
     if(mode=="hunter109" && ticks==300)
         scrHMGameplayCheck(scrHMPendingBoss()&&!instance_exists(Portal),"cleared 5-5 cannot exit during original hunter arrival wait");
-    if(mode=="hunter109" && ticks==700) {
+    // At loop zero the native WantLH delay is 210, following the authored
+    // 500-tick arrival wait. Inspect after both have completed.
+    if(mode=="hunter109" && ticks==730) {
         show_debug_message("HARDMODE HUNTER109 "+json_stringify({normal:instance_number(LilHunter),flying:instance_number(LilHunterFly),pending:instance_number(WantLH)}));
-        scrHMGameplayCheck(instance_number(LilHunter)+instance_number(LilHunterFly)==GameCont.loops+1,"real delayed WantLH creates one additional hunter per loop");
+        scrHMGameplayCheck(instance_number(LilHunter)+instance_number(LilHunterFly)==1+floor(GameCont.loops/2),"real delayed WantLH adds one hunter every two loops");
         scrHMGameplayCheck(!instance_exists(Portal),"no portal opens before the arriving hunters");
     }
     if(mode=="gators109" && ticks==15) {
         var _n=0;with(CustomEnemy) if(name=="gatorboss") _n++;
-        scrHMGameplayCheck(_n==GameCont.loops+1,"natural sewer encounter has one additional super gator per loop");
+        scrHMGameplayCheck(_n==1+floor(GameCont.loops/2),"natural sewer encounter adds one super gator every two loops");
     }
     if(mode=="birds109" && ticks==10) with(enemy) hp=0;
     if(mode=="birds109" && ticks==400) {
         var _n=0,_r=instance_number(RavenFly)+instance_number(Raven);
         with(CustomEnemy) if(name=="BIG BIRD") {_n++;target=other.player;hm_bosses_ravenboss_mod_gml_ravenboss_callbackup(1);}
-        scrHMGameplayCheck(_n==GameCont.loops+1,"real threshold spawner creates loop-scaled big bird count");
+        scrHMGameplayCheck(_n==1+floor(GameCont.loops/2),"real threshold spawner adds one big bird every two loops");
         scrHMGameplayCheck(instance_number(RavenFly)+instance_number(Raven)-_r==GameCont.loops+1,"all birds combined request only the original single-boss minion budget");
     }
     if(mode=="water109" && ticks==15) {

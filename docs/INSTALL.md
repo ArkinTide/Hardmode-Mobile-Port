@@ -1,15 +1,15 @@
-# Hardmode 1.0.9 / build 10
+# Hardmode 1.0.10 / build 11
 
-Android：`NuclearThrone.Hardmode-Android-1.0.9.apk`，保持签名可覆盖更新。iOS：`NuclearThrone.Hardmode-iOS-1.0.9.ipa`，需要重签。
+Android：NuclearThrone.Hardmode-Android-1.0.10.apk，保持旧签名，可覆盖更新。
+iOS：NuclearThrone.Hardmode-iOS-1.0.10.ipa，需要重签。
 
-包名`com.arkintide.nuclearthronehardmode`，存档格式GAME_BUILD3004。安卓授权后共享存档为`/storage/emulated/0/games/com.arkintide.nuclearthronehardmode/`，不可写则回退私有目录；iOS为`Documents/hardmode/`并开启文件共享。更新前请备份存档。
+安卓共享存档：/storage/emulated/0/games/com.arkintide.nuclearthronehardmode/，需存储授权；不可写时回退原私有目录。iOS：Documents/hardmode/，开启文件共享。更新前请备份存档。
 
-同一最终桌面 VM 在30／60帧下完成100项游戏场景、6250项游戏断言、1659项原生检查和4365项菜单／语言断言。包含两阶段王座战，以及金星12关主线、17关秘密路线的两阶段Boss、逃生车和返回3-5；另有Y.C从秘密客厅到最终Boss的实际电梯换层测试。
+同一最终桌面VM通过30／60帧73项定向游戏场景、1704项游戏断言、1659项底层检查和4365项菜单／语言断言。
 
-没有手机真机或新Mac原生重建验证；IPA需要重签。桌面CPU采样不能保证手机帧率。
+无手机真机或新Mac原生重建验证。APK SHA256：68804fe40cd2872338abca12c606be30b659d0861c1ddfc5aadfd7ae24eef710。
+IPA SHA256：4d0fadf53d1e1ec725d475fd78034ee6061164361a142b0f062dc90f6bfbd30a。
 
-Android SHA256：`504ff2e52845a4382fd61731a415f0ecda4f4febb65c275fc2f2e6ce7a4aef91`。
-
-iOS SHA256：`e5e229f031ee4adcc7a57aafc2ee03329d723e53008c4fc5840608083b098012`。
-
-Hardmode安装包：https://mega.nz/folder/7TY3wZRB#PgQeCYQzxvrVGjfjX6YefA 。上传完成状态见publication-receipt.json。
+Hardmode下载：https://mega.nz/folder/7TY3wZRB#PgQeCYQzxvrVGjfjX6YefA
+GitHub仅纯源码：https://github.com/ArkinTide/Hardmode-Mobile-Port
+云端状态以publication-receipt.json为准。

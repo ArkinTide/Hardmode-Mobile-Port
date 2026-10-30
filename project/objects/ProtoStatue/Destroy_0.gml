@@ -12,9 +12,10 @@ repeat 10 {
 if rad > 24 {
     with instance_create(x, y, Portal) {
         type = 3
+        if(scrHMEnabled()) {hm_destination107=area_vault;hm_subarea107=1;}
     }
 
-    with (GameCont) {
+    if(!scrHMEnabled()) with (GameCont) {
 		lastarea = area
 		lastsubarea = subarea
 		area = area_vault

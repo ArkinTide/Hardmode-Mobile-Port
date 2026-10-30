@@ -143,7 +143,7 @@ function scrHMPlainWall106() {
 
 function scrHMDrawPlainWall106() {
     var _color=draw_get_color(),_alpha=draw_get_alpha();
-    var _base=scrHMWallColour106(topspr);
+    var _base=scrHMWallColour110(topspr);
     draw_set_color(make_color_rgb(color_get_red(_base)*color_get_red(image_blend)/255,
         color_get_green(_base)*color_get_green(image_blend)/255,color_get_blue(_base)*color_get_blue(image_blend)/255));
     draw_set_alpha(image_alpha);
@@ -160,7 +160,8 @@ function scrHMSwimSprite106() {
     return false;
 }
 
-function scrHMThroneSeed106() {
+function scrHMThroneSeed106() {scrHMThroneSeed110();}
+function scrHMThroneSeed106Legacy() {
     var _found=false;with(Floor) if(self[$ "nokill"]??false) {_found=true;break;}
     if(!_found) {
         var _seed=instance_nearest(10000,10000,Floor);

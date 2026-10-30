@@ -51,6 +51,7 @@ if (!can_advance_stage) {
 	exit
 }
 
+if(scrHMEnabled() && !_went_crib && scrHMAdvanceDestination107()) exit;
 if(scrHMEnabled() && scrHMAreaHas(area) && !_went_crib) {scrHMAreaAdvance();exit;}
 var _is_secret = (area >= 100)
 

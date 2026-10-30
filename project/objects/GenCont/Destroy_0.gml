@@ -233,3 +233,6 @@ if UberCont.halloween && _subarea == area_desert && instance_exists(Bandit) {
 if UberCont.weekly_run {
 	instance_destroy(ProtoStatue)
 }
+
+// Final boss placement follows all host generation cleanup.
+scrHMThroneEntrance110();

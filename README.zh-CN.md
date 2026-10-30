@@ -4,7 +4,7 @@
 
 基于 **Blaac 的 Hardmode b24** 和 Nuclear Throne Recreated Epsilon 制作的安卓／iOS 独立移植版，与 NTTE 移植工程分开维护。
 
-当前版本 **1.0.9 / build 10**。[下载 APK 和 IPA](https://mega.nz/folder/7TY3wZRB#PgQeCYQzxvrVGjfjX6YefA)。GitHub 只发布源码，安装包放在既有 MEGA 目录。
+当前版本 **1.0.10 / build 11**。本次修复墙色、王座生成、7-4密室路由；三种Boss每两次loop增加一只，普通随机地图每loop增大20%（最多两倍），Windows支持滚轮换枪。[下载 APK 和 IPA](https://mega.nz/folder/7TY3wZRB#PgQeCYQzxvrVGjfjX6YefA)。GitHub 只发布源码，安装包放在既有 MEGA 目录。
 
 仓库只包含文本源码及工程元数据，包括 GML 适配层、生成模块、编译器、测试、汉化和 GameMaker 工程定义。**不含图片、音频、字体、原生 runner、SDK、签名、用户存档或原 MOD 内嵌图片数据**。工程内的素材引用需要另行补齐。
 

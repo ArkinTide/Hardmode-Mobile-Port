@@ -101,6 +101,8 @@ function scrHMGameplayTestStep() {
     if(HMWorld.logic_tick) {
         ticks++;
         room_ticks++;
+        if(mode=="windows110") scrHMGameplayWindows110();
+        if(string_pos("110",mode)>0) scrHMGameplayRepairs110();
         if(mode=="weapons") scrHMGameplayWeapons();
         if(mode=="maggot") scrHMGameplayMaggot();
         if(array_contains(["stale","frog","portal","scorpion","crowd","visual","fog","bandit","banditmelee"],mode)) scrHMGameplayRepairs102();
@@ -142,7 +144,7 @@ function scrHMGameplayTestStep() {
 }
 
 function scrHMGameplayRoomStart() {
-    if(!array_contains(["route","route103","boss","titank","continue","goto103","venus106","venussecrets106","ice107","throneroute109"],self[$ "mode"])) return;
+    if(!array_contains(["route","route103","boss","titank","continue","goto103","venus106","venussecrets106","ice107","throneroute109","vault110"],self[$ "mode"])) return;
     ready_age=-1;room_ticks=0;route_rooms++;transition_wait=0;
     show_debug_message("HARDMODE ROUTE ROOM "+string(route_rooms)+" "+string(GameCont.area)+","+string(GameCont.subarea));
     if(mode=="titank" && ticks>900) {

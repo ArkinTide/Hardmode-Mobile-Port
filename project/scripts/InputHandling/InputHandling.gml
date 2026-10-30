@@ -268,6 +268,7 @@ function scrHandleInputsGeneral(_index) {
 	}
 	// keyboard
 	else if opt_keyboard {
+		scrDesktopWheelSwap(_index, mouse_wheel_up(), mouse_wheel_down())
 	    scrSetKeyboardInputs(_index)
 		
 	    if localcoop {
@@ -335,6 +336,18 @@ function scrHandleInputsGeneral(_index) {
 			}
 		}
 	}
+}
+
+// Wheel notches are momentary input, not a held key. Merge them with the
+// existing swap action so Space + wheel in the same frame swaps only once.
+function scrDesktopWheelSwap(_index, _up, _down) {
+	if (!_up && !_down) return;
+	if (os_type != os_windows || !UberCont.opt_keyboard || UberCont.opt_gamepad) return;
+	if (UberCont.paused || UberCont.want_pause || UberCont.block_input_frames > 0) return;
+	if (scr_keyboard_is_typing() || is_mouse_over_debug_overlay()) return;
+	if (scrGameIsLockState() || instance_exists(MenuOptions) || instance_exists(PauseButton)) return;
+	KeyCont.press_swap[_index] = true;
+	KeyCont.hold_swap[_index] = true;
 }
 
 function scrSetCardinalDirectionInputs(_index) {

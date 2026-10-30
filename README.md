@@ -4,7 +4,7 @@
 
 An independent Android and iOS port of **Hardmode b24 by Blaac**, based on the Nuclear Throne Recreated Epsilon project. This is separate from NTTE Mobile Port.
 
-Current release: **1.0.9**, native build **10**. [Download APK / IPA](https://mega.nz/folder/7TY3wZRB#PgQeCYQzxvrVGjfjX6YefA). Installers are distributed through the existing MEGA folder, not GitHub assets.
+Current release: **1.0.10**, native build **11**. This update fixes wall colours, initial throne placement, 7-4 crown-vault routing, two-loop boss scaling, loop map growth and Windows mouse-wheel swapping. [Download APK / IPA](https://mega.nz/folder/7TY3wZRB#PgQeCYQzxvrVGjfjX6YefA). Installers are distributed through the existing MEGA folder, not GitHub assets.
 
 This repository contains **text source code and project metadata only**: the maintained GML adapters, generated modules, compiler, tests, translations and GameMaker project definitions. It does not contain game artwork, audio, fonts, native runners, SDKs, signing identities, user saves, or the original MOD's embedded image payloads. The asset references in project definitions require separately supplied files.
 
