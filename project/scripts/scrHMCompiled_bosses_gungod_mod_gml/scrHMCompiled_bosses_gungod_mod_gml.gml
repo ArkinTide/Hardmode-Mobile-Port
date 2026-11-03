@@ -1,8 +1,13 @@
-// Source bosses/gungod.mod.gml:1; __load
-function hm_bosses_gungod_mod_gml___load() {
-global.hm_module_vars[$ "mod:bosses/gungod"].GunGod = sprHM_bosses_gungod_mod_2;
-}
-
+// Source bosses/gungod.mod.gml:1; __load
+
+function hm_bosses_gungod_mod_gml___load() {
+
+global.hm_module_vars[$ "mod:bosses/gungod"].GunGod = sprHM_bosses_gungod_mod_2;
+
+}
+
+
+
 // Source bosses/gungod.mod.gml:0; GunGod_create (native content 1.1.0)
 function hm_bosses_gungod_mod_gml_GunGod_create(_hml__x, _hml__y) {
 { var __hm_with1 = scrHMInstances(instance_create(_hml__x, _hml__y, CustomEnemy)), __hm_break3=false;
@@ -67,54 +72,102 @@ if(__hm_break3) break;
 }}
 }
 
-// Source bosses/gungod.mod.gml:46; GunGod_draw
-function hm_bosses_gungod_mod_gml_GunGod_draw() {
-var _hml_i = undefined;
-;
-var _hml_j = 0;
-;
-var _hml_g = 0;
-;
-gpu_set_fog(0, 0, 0, 0);
-_hml_j = 0;
-_hml_g = 0;
-var _hml_shad_scale = undefined;
-;
-_hml_shad_scale = (1 - min((0.66 * (z / 96)), 0.66));
-draw_set_color(make_color_rgb(20, 20, 20));
-;
-draw_set_alpha(0.4);
-;
-draw_ellipse(((x - 2) + (12 * _hml_shad_scale)), ((y + (8 * _hml_shad_scale)) + shd_y), ((x - 2) - (12 * _hml_shad_scale)), ((y - (8 * _hml_shad_scale)) + shd_y), 0);
-;
-draw_set_color(c_white);
-;
-draw_set_alpha(1);
-;
-if ((wframes > 0)) {
-gpu_set_fog(true, c_white, 0, 0);
-}
-for (_hml_i = 0; (_hml_i <= 52); _hml_i++) {
-repeat (zscale) {
-scrHMDrawSpriteExt(global.hm_module_vars[$ "mod:bosses/gungod"].GunGod, clamp(_hml_i, 0, 51), x, ((y - (.5 * (_hml_i + _hml_g))) - z), image_xscale, image_yscale, image_angle, c_white, 1);
-;
-_hml_g += 1;
-;
-}
-}
-draw_set_color(c_white);
-;
-draw_set_alpha(random_range(0, 0.5));
-;
-draw_ellipse((x + random_range(59, 61)), (((y + 50) - random_range(44, 48)) - z), (x - random_range(59, 61)), (((y - 50) - random_range(44, 48)) - z), 0);
-;
-draw_set_color(c_white);
-;
-draw_set_alpha(1);
-;
-gpu_set_fog(0, 0, 0, 0);
-}
-
+// Source bosses/gungod.mod.gml:46; GunGod_draw
+
+function hm_bosses_gungod_mod_gml_GunGod_draw() {
+
+var _hml_i = undefined;
+
+;
+
+var _hml_j = 0;
+
+;
+
+var _hml_g = 0;
+
+;
+
+gpu_set_fog(0, 0, 0, 0);
+
+_hml_j = 0;
+
+_hml_g = 0;
+
+var _hml_shad_scale = undefined;
+
+;
+
+_hml_shad_scale = (1 - min((0.66 * (z / 96)), 0.66));
+
+draw_set_color(make_color_rgb(20, 20, 20));
+
+;
+
+draw_set_alpha(0.4);
+
+;
+
+draw_ellipse(((x - 2) + (12 * _hml_shad_scale)), ((y + (8 * _hml_shad_scale)) + shd_y), ((x - 2) - (12 * _hml_shad_scale)), ((y - (8 * _hml_shad_scale)) + shd_y), 0);
+
+;
+
+draw_set_color(c_white);
+
+;
+
+draw_set_alpha(1);
+
+;
+
+if ((wframes > 0)) {
+
+gpu_set_fog(true, c_white, 0, 0);
+
+}
+
+for (_hml_i = 0; (_hml_i <= 52); _hml_i++) {
+
+repeat (zscale) {
+
+scrHMDrawSpriteExt(global.hm_module_vars[$ "mod:bosses/gungod"].GunGod, clamp(_hml_i, 0, 51), x, ((y - (.5 * (_hml_i + _hml_g))) - z), image_xscale, image_yscale, image_angle, c_white, 1);
+
+;
+
+_hml_g += 1;
+
+;
+
+}
+
+}
+
+draw_set_color(c_white);
+
+;
+
+draw_set_alpha(random_range(0, 0.5));
+
+;
+
+draw_ellipse((x + random_range(59, 61)), (((y + 50) - random_range(44, 48)) - z), (x - random_range(59, 61)), (((y - 50) - random_range(44, 48)) - z), 0);
+
+;
+
+draw_set_color(c_white);
+
+;
+
+draw_set_alpha(1);
+
+;
+
+gpu_set_fog(0, 0, 0, 0);
+
+}
+
+
+
 // Source bosses/gungod.mod.gml:0; GunGod_step (native content 1.1.0)
 function hm_bosses_gungod_mod_gml_GunGod_step() {
 if ((GameCont.area != scrHMAreaResolve("venuz"))) {
@@ -174,7 +227,7 @@ if ((instance_exists(Player) and (attackpause <= 0))) {
 {
 if (((attacktype == 1) and (random(15) < 1))) {
 {
-repeat (choose(1, 2, 3, 4)) {
+repeat (choose(1, 2, 3, 4)+max(0,floor(GameCont.loops))) {
 var _hml_a = choose((- 90), 90);
 ;
 { var __hm_with1 = scrHMInstances(instance_create(((x + (hspeed / timescale)) + lengthdir_x(15, (gunangle + _hml_a))), (((y + (vspeed / timescale)) + lengthdir_y(15, (gunangle + _hml_a))) - 20), JockRocket)), __hm_break3=false;
@@ -408,11 +461,16 @@ on_step = scrHMContentRef1100("mod", "gungod", "helicopterdown");
 ;
 }
 
-// Source bosses/gungod.mod.gml:207; GunGod_dead
-function hm_bosses_gungod_mod_gml_GunGod_dead() {
-
-}
-
+// Source bosses/gungod.mod.gml:207; GunGod_dead
+
+function hm_bosses_gungod_mod_gml_GunGod_dead() {
+
+
+
+}
+
+
+
 // Source bosses/gungod.mod.gml:0; yungbullet (native content 1.1.0)
 function hm_bosses_gungod_mod_gml_yungbullet() {
 if(!instance_exists(target)) target=instance_nearest(x,y,Floor);

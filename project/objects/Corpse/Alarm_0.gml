@@ -23,7 +23,7 @@ else {
 	with instance_create(x, y, Portal) {
 	    type = 1
 		
-	    if GameCont.area == area_hq {
+	    if (GameCont.area == area_hq || (scrHMEnabled() && array_contains([scrHMAreaResolve("elevator"),scrHMAreaResolve("HQ")],GameCont.area))) {
 	        type = 2
 	    }
 	}

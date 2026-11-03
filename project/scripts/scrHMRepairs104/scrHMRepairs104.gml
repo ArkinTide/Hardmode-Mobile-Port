@@ -79,6 +79,7 @@ function scrHMSewerTick() {
     // cannot keep an entity swimming on dry ground.
     if(is_undefined(variable_instance_get(HMWorld,"hm_water_map")) || (variable_instance_get(HMWorld,"hm_water_floors")??-1)!=instance_number(Floor)) scrHMWaterMap();
     var _player=instance_nearest(x,y,Player),_map=HMWorld.hm_water_map;
+    scrHMWaterBatchBegin1102();
     with(hitme) {
         if(self[$ "hm_portrait_frozen"]??false) continue;
         var _was=self[$ "swimming"]??false;
@@ -107,6 +108,7 @@ function scrHMSewerTick() {
         var _bind=scrHMBindDraw(hm_maincode_mod_gml_sewerboi,2-y/10000);
         _bind.creator=id;
     }
+    scrHMWaterBatchEnd1102();
     with(Crab) friction=.8*timescale*timescale;
     // A handful of visible water specks, rather than a full floor scan plus
     // particles per cell on every simulation tick.

@@ -46,6 +46,7 @@ global.hm_module_vars[$ "mod:maincode"].venuz = 0;
 
 // Source maincode.mod.gml:0; game_start (native content 1.1.0)
 function hm_maincode_mod_gml_game_start() {
+GameCont.hm_chief_seen=false;
 can_walk = true;
 ;
 can_pick = true;

@@ -75,7 +75,7 @@ function scrHMLilHunterWait109() {
 
 function scrHMLilHunterGroup109(_x,_y) {
     var _first=noone;
-    repeat(1+max(0,GameCont.loops)) {
+    repeat(scrHMLoopBossCount110()) {
         var _boss=instance_create(_x,_y,LilHunter);
         if(!instance_exists(_first)) _first=_boss;
     }
@@ -84,7 +84,7 @@ function scrHMLilHunterGroup109(_x,_y) {
 
 function scrHMGatorGroup109(_x,_y) {
     var _first=noone;
-    repeat(1+max(0,GameCont.loops)) {
+    repeat(scrHMLoopBossCount110()) {
         var _boss=hm_bosses_gatorboss_mod_gml_gatorboss_create(_x,_y);
         if(!instance_exists(_first)) _first=_boss;
     }
@@ -92,7 +92,7 @@ function scrHMGatorGroup109(_x,_y) {
 }
 
 function scrHMRavenGroup109(_x,_y) {
-    repeat(1+max(0,GameCont.loops)) hm_bosses_ravenboss_mod_gml_ravenboss_create(_x,_y);
+    repeat(scrHMLoopBossCount110()) hm_bosses_ravenboss_mod_gml_ravenboss_create(_x,_y);
 }
 
 function scrHMRavenBackup109() {
@@ -106,7 +106,7 @@ function scrHMRavenBackup109() {
 }
 
 function scrHMLoopCrystal109(_x,_y) {
-    if(GameCont.loops<=0 || random(32)>=1) return noone;
+    if(GameCont.loops<=0 || GameCont.area==scrHMAreaResolve("city") || random(32)>=1) return noone;
     if(position_meeting(_x,_y,Wall)) return noone;
     return hm_enemies_mod_gml_bigcrystal_create(_x,_y);
 }
@@ -160,7 +160,8 @@ function scrHMCrownAltar109() {
     if(instance_exists(_floor)) with(_floor) instance_create(bbox_center_x,bbox_center_y,ProtoStatue);
 }
 
-function scrHMThroneEntrance109() {
+function scrHMThroneEntrance109() {scrHMThroneEntrance110();}
+function scrHMThroneEntrance109Legacy() {
     // Finalize once with GenCont, after the source's floor/seed-dependent
     // setup. Never poll during combat or recreate a defeated throne.
     if(!scrHMEnabled() || GameCont.area!=scrHMAreaResolve("throne") || !instance_exists(Floor)) return;
@@ -259,6 +260,7 @@ function scrHMGuardianDark109() {
 }
 
 function scrHMWaterExact109(_x,_y) {
+    if(variable_instance_get(HMWorld,"hm_water_batch1102")??false) return scrHMWaterExact1102(_x,_y);
     // The hash supplies candidates, but a quantized 16px cell must never
     // include a neighbouring dry bank or a fractional edge outside the tile.
     var _entries=HMWorld.hm_water_rects109[$ scrHMWaterKey(_x,_y)]??[];
@@ -268,7 +270,7 @@ function scrHMWaterExact109(_x,_y) {
         if(!instance_exists(_f)) continue;
         var _size=instance_is(_f,FloorExplo)?16:32;
         if(_x<_f.x || _y<_f.y || _x>=_f.x+_size || _y>=_f.y+_size) continue;
-        if(_f.traction!=2) return false;
+        if(_f.traction!=2 || !instance_exists(_f[$ "hm_water_surface111"]??noone) || scrHMWaterBank111(_f,_x,_y)) return false;
         _water=true;
     }
     return _water;

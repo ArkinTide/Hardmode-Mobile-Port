@@ -30194,6 +30194,18 @@
         "name": "scrHMGameplay1101",
         "path": "scripts/scrHMGameplay1101/scrHMGameplay1101.yy"
       }
+    },
+    {
+      "id": {
+        "name": "scrHMRepairs1102",
+        "path": "scripts/scrHMRepairs1102/scrHMRepairs1102.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrHMGameplay1102",
+        "path": "scripts/scrHMGameplay1102/scrHMGameplay1102.yy"
+      }
     }
   ],
   "resourceType": "GMProject",

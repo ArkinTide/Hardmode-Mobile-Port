@@ -4,7 +4,7 @@
 
 An independent Android and iOS port of **Hardmode b24 by Blaac**, based on Nuclear Throne Recreated Epsilon. Maintained separately from NTTE Mobile Port.
 
-Current release: **1.1.1 / build 15**. Repairs the uninitialized level-cap error and police-van damage recursion, adds targeted final-boss/Y.V camera pans, starts the existing five-percent final-boss replacement rule at Loop1, and separates compact boss titles from their health bars. See [changes and verification limits](docs/FIXES.md).
+Current release: **1.1.2 / build 16**. Adds the native-mod sewer-query optimization and 6-3 exit repair, plus mutually exclusive five-percent Captain/final Venus boss replacement from Loop1. Throne and all Venus rooms keep their own bosses. Captain gains native warp presentation, camera pans and one extra ball-split beam per Loop; the final Venus boss gains one first-phase rocket per Loop. See [changes and verification limits](docs/FIXES.md).
 
 [Download Android APK / iOS IPA](https://mega.nz/folder/7TY3wZRB#PgQeCYQzxvrVGjfjX6YefA). **IPA requires resigning.** Installers are distributed through MEGA; GitHub contains text source only.
 

@@ -11,7 +11,7 @@ function scrHMBossCameraEligible1101(_actor) {
     if(variable_instance_exists(_actor,"hm_extra") && _actor.hm_extra) return false;
     if(_actor.object_index==YVBoss) return true;
     var _name=_actor[$ "name"]??"";
-    if(_name=="hm_yv_phase") return true;
+    if(array_contains(["hm_yv_phase","hm_chief","hm_chief_departure"],_name)) return true;
     return GameCont.area!=scrHMAreaResolve("venuz") && array_contains(["GunGod","gungod"],_name);
 }
 

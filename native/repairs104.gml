@@ -53,19 +53,20 @@ function scrHMWaterMap() {
             _map[$ scrHMWaterKey(_xx,_yy)]=false;
     }
     HMWorld.hm_water_map=_map;
+    scrHMWaterRects109();
     HMWorld.hm_water_floors=instance_number(Floor);
 }
 
 function scrHMWaterAt(_x,_y) {
     if(is_undefined(variable_instance_get(HMWorld,"hm_water_map")) || (variable_instance_get(HMWorld,"hm_water_floors")??-1)!=instance_number(Floor)) scrHMWaterMap();
-    return HMWorld.hm_water_map[$ scrHMWaterKey(_x,_y)]??false;
+    return scrHMWaterExact109(_x,_y);
 }
 
 function scrHMSwimLeave() {
     swimming=false;
     canfly=self[$ "hm_swim_fly"]??false;
     image_alpha=self[$ "hm_swim_alpha"]??1;
-    spr_shadow=self[$ "shd_"]??shd12;
+    spr_shadow=self[$ "shd_"]??spr_shadow;
 }
 
 function scrHMSewerTick() {
@@ -78,12 +79,13 @@ function scrHMSewerTick() {
     // cannot keep an entity swimming on dry ground.
     if(is_undefined(variable_instance_get(HMWorld,"hm_water_map")) || (variable_instance_get(HMWorld,"hm_water_floors")??-1)!=instance_number(Floor)) scrHMWaterMap();
     var _player=instance_nearest(x,y,Player),_map=HMWorld.hm_water_map;
+    scrHMWaterBatchBegin1102();
     with(hitme) {
         if(self[$ "hm_portrait_frozen"]??false) continue;
         var _was=self[$ "swimming"]??false;
         if(!_was && (!variable_instance_exists(id,"right") || object_index==FireBaller || object_index==SuperFireBaller)) continue;
         var _near=point_distance(x,y,_player.x,_player.y)<view_width;
-        var _water=(_map[$ scrHMWaterKey(x,y)]??false) && !instance_exists(SpiralCont);
+        var _water=scrHMSwimSupported112(x,y) && !instance_exists(SpiralCont);
         if(_water && distance_to_object(Portal)<=32) _water=false;
         if(!_water) {
             if(_was) {scrHMSwimLeave();if(_near) scrHMSoundPitchVolume(sndSewerDrip,1,.22);}
@@ -98,7 +100,7 @@ function scrHMSewerTick() {
         if(!_near && object_index!=Player) continue;
         if(object_index==Gator || object_index==BuffGator) {
             speed=5*timescale;direction=round(direction/90)*90;
-        } else if(object_index!=CustomEnemy && speed>timescale) speed=timescale;
+        } else if(object_index!=Player && object_index!=CustomEnemy && speed>timescale) speed=timescale;
         if(random(32)<1 && object_index!=Player) direction=choose(0,90,180,270);
         if(speed>.4*timescale && HMWorld.logic_serial mod 4==0 && instance_number(Wind)<80) {
             with(instance_create(x,y-4,Wind)) {sprite_index=global.hm_module_vars[$ "mod:maincode"].ripple;depth=2;image_xscale=choose(-1,1);}
@@ -106,6 +108,7 @@ function scrHMSewerTick() {
         var _bind=scrHMBindDraw(hm_maincode_mod_gml_sewerboi,2-y/10000);
         _bind.creator=id;
     }
+    scrHMWaterBatchEnd1102();
     with(Crab) friction=.8*timescale*timescale;
     // A handful of visible water specks, rather than a full floor scan plus
     // particles per cell on every simulation tick.
@@ -132,6 +135,15 @@ function scrHMWallFillBegin() {
             _left=_l;_right=_r;_top=_t;_bottom=_b;
         }
     }
+    // Include disconnected Venus rooms behind unopened doors.
+    if(GameCont.area==scrHMAreaResolve("venuz")) {
+        // Authored Venus maps use coordinates near zero, separate from the
+        // host's temporary generation seed at (10000,10000).
+        _seed=instance_nearest(0,0,Floor);
+        _left=_seed.x;_right=_seed.x+32;_top=_seed.y;_bottom=_seed.y+32;
+        with(Floor) if(point_distance(x,y,_seed.x,_seed.y)<4096) {_left=min(_left,x);_right=max(_right,x+32);_top=min(_top,y);_bottom=max(_bottom,y+32);}
+        with(CustomObject) if(name=="floor" && point_distance(x,y,_seed.x,_seed.y)<4096) {_left=min(_left,x);_right=max(_right,x+32);_top=min(_top,y);_bottom=max(_bottom,y+32);}
+    }
     // Static cells have no Step/Draw work. Populate during generation in
     // bounded batches; keep ordinary Wall identity for native collisions,
     // explosions and the MOD's authored wall-spawn enemies.
@@ -140,7 +152,8 @@ function scrHMWallFillBegin() {
     hm_fill_x=hm_fill_left;hm_fill_active=true;
 }
 
-function scrHMWallFillStep() {
+function scrHMWallFillStep() {return scrHMFillStep106();}
+function scrHMWallFillStep104Legacy() {
     if(!(self[$ "hm_fill_active"]??false)) return true;
     repeat(512) {
         var _xx=hm_fill_x,_yy=hm_fill_y;
@@ -169,14 +182,7 @@ function scrHMWallBreakUpdate104() {
     ds_list_destroy(_walls);
 }
 
-function scrHMWallThemeStart(_origin) {
-    if(!instance_exists(_origin)) return;
-    var _queue=[],_ox=_origin.x,_oy=_origin.y,_tick=HMWorld.logic_serial;
-    with(Wall) array_push(_queue,[id,_tick+ceil(point_distance(x,y,_ox,_oy)/8),false]);
-    with(TopSmall) array_push(_queue,[id,_tick+ceil(point_distance(x,y,_ox,_oy)/8),true]);
-    array_sort(_queue,function(_a,_b){return _a[1]-_b[1];});
-    HMWorld.hm_wall_theme_queue=_queue;HMWorld.hm_wall_theme_index=0;
-}
+function scrHMWallThemeStart(_origin) {scrHMCaveWallWave111(_origin);}
 
 function scrHMWallThemeTick() {
     var _queue=self[$ "hm_wall_theme_queue"]??[],_index=self[$ "hm_wall_theme_index"]??0;
@@ -217,7 +223,7 @@ function scrHMBossFreeze104() {
             anim:image_speed,was_frozen:self[$ "frozen"]??false});
         speed=0;image_speed=0;frozen=true;hm_portrait_frozen=true;
     }
-    _intro.hm_portrait_records=_records;
+    _intro.hm_portrait_records=_records;HMWorld.hm_portrait_active=_intro;
     // Explicitly retain the intro instance rather than relying on the
     // physical GML 'other' across the script/coroutine call boundary.
     with(Player) global.hm_camera_targets[index]=_intro;
@@ -236,7 +242,7 @@ function scrHMBossRestore104() {
             frozen=_record.was_frozen;hm_portrait_frozen=false;
         }
     }
-    hm_portrait_records=[];
+    hm_portrait_records=[];HMWorld.hm_portrait_active=noone;
     with(Player) {
         can_walk=true;can_pick=(race!=Race.BigDog);can_spec=true;can_swap=true;can_aim=true;
         if(variable_instance_exists(id,"_mask")) mask_index=_mask;

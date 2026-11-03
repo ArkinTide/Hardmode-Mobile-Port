@@ -1,7 +1,7 @@
 /// @function scrBossIntro
 /// @param art_index
-function scrBossIntro(_boss_index) {
-    if(scrHMEnabled() && instance_exists(GameCont) && GameCont.loops>0) return;
+function scrBossIntro(_boss_index,_force=false) {
+    if(scrHMEnabled() && instance_exists(GameCont) && GameCont.loops>0 && !_force) return;
     with UberCont {
         if instance_exists(CoopController) || !opt_bossintro || !instance_exists(Player) exit
 		

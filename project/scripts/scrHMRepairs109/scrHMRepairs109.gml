@@ -260,6 +260,7 @@ function scrHMGuardianDark109() {
 }
 
 function scrHMWaterExact109(_x,_y) {
+    if(variable_instance_get(HMWorld,"hm_water_batch1102")??false) return scrHMWaterExact1102(_x,_y);
     // The hash supplies candidates, but a quantized 16px cell must never
     // include a neighbouring dry bank or a fractional edge outside the tile.
     var _entries=HMWorld.hm_water_rects109[$ scrHMWaterKey(_x,_y)]??[];

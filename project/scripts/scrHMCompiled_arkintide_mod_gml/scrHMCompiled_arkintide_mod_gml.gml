@@ -6429,12 +6429,7 @@ if(__hm_break51) break;
 
 // Source arkintide.mod.gml:0; hm_idpd_portal_sprite (native content 1.1.0)
 function hm_arkintide_mod_gml_hm_idpd_portal_sprite() {
-if (((sprite_index == sprPortalDisappear) || (sprite_index == sprProtoPortalDisappear))) {
-sprite_index = sprPopoPortalDisappear;
-} else {
-sprite_index = sprPopoPortal;
-}
-;
+scrHMIDPDPortalSprite1102();
 }
 
 // Source arkintide.mod.gml:0; hm_throne_generator_zone (native content 1.1.0)
@@ -6864,84 +6859,7 @@ if(__hm_break3) break;
 
 // Source arkintide.mod.gml:0; hm_elevator_step (native content 1.1.0)
 function hm_arkintide_mod_gml_hm_elevator_step() {
-sprite_index = spr_idle;
-;
-if ((instance_exists(SpiralCont) || instance_exists(Spiral))) {
-{
-mask_index = mskNone;
-;
-exit;
-;
-}
-}
-if (instance_exists(hm_elevator_exit)) {
-{
-mask_index = mskNone;
-;
-exit;
-;
-}
-}
-if (instance_exists(Portal)) {
-{
-mask_index = mskNone;
-;
-exit;
-;
-}
-}
-if ((! hm_arkintide_mod_gml_hm_combat_clear())) {
-{
-hm_elevator_wait = 40;
-;
-exit;
-;
-}
-}
-hm_elevator_wait -= 1;
-;
-if ((hm_elevator_wait > 0)) {
-exit;
-}
-var _hml_xx = x;
-var _hml_yy = (y - 16);
-;
-if ((! hm_arkintide_mod_gml_hm_throne_clear(_hml_xx, _hml_yy, mskBandit))) {
-{
-var _hml_tile = hm_arkintide_mod_gml_hm_venus_boss_floor(_hml_xx, _hml_yy);
-;
-if ((! instance_exists(_hml_tile))) {
-{
-hm_elevator_wait = 1;
-;
-exit;
-;
-}
-}
-_hml_xx = (_hml_tile.x + 16);
-;
-_hml_yy = (_hml_tile.y + 16);
-;
-}
-}
-mask_index = mskNone;
-;
-hm_elevator_exit = instance_create(_hml_xx, _hml_yy, Portal);
-;
-{ var __hm_with1 = scrHMInstances(hm_elevator_exit), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-type = 2;
-;
-image_yscale = (- 1);
-;
-hm_arkintide_mod_gml_hm_idpd_portal_sprite();
-;
-}
-}
-if(__hm_break3) break;
-}}
+scrHMElevatorStep1102();
 }
 
 // Source arkintide.mod.gml:0; hm_gungod_shot (native content 1.1.0)
@@ -7419,132 +7337,7 @@ return false;
 
 // Source arkintide.mod.gml:0; hm_gungod_replace_tick (native content 1.1.0)
 function hm_arkintide_mod_gml_hm_gungod_replace_tick() {
-if ((((((! instance_exists(GameCont)) || instance_exists(GenCont)) || (! instance_exists(Player))) || (GameCont.loops < 1)) || (! hm_arkintide_mod_gml_hm_gungod_area_allowed()))) {
-exit;
-}
-if (((scrHMVariableExists(id, "hm_gungod_rolled") && hm_gungod_rolled) && (! hm_gungod_replaced))) {
-exit;
-}
-var _hml_original = noone;
-;
-{ var __hm_with1 = scrHMInstances(enemy), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-if (hm_arkintide_mod_gml_hm_stage_boss_actor()) {
-{
-if ((scrHMVariableExists(id, "name") && ((((name == "GunGod") || (name == "gungod")) || (name == "hm_yv_phase")) || (name == "hm_gungod_landing")))) {
-continue;
-}
-_hml_original = id;
-;
-__hm_break3=true; break;
-;
-}
-}
-}
-if(__hm_break3) break;
-}}
-if ((! instance_exists(_hml_original))) {
-exit;
-}
-if ((! scrHMVariableExists(id, "hm_gungod_rolled"))) {
-{
-hm_gungod_rolled = 1;
-;
-hm_gungod_replaced = 0;
-;
-if ((random(1) >= 0.05)) {
-exit;
-}
-var _hml_tile = hm_arkintide_mod_gml_hm_gungod_floor(_hml_original.x, _hml_original.y);
-;
-if ((! instance_exists(_hml_tile))) {
-exit;
-}
-var _hml_actor = scrHMModCall("mod", "gungod", "GunGod_create", (_hml_tile.x + 16), (_hml_tile.y + 16));
-;
-if ((! instance_exists(_hml_actor))) {
-exit;
-}
-hm_gungod_replaced = 1;
-;
-{ var __hm_with4 = scrHMInstances(_hml_actor), __hm_break6=false;
-for (var __hm_index5=0; __hm_index5<array_length(__hm_with4); ++__hm_index5) {
-if(instance_exists(__hm_with4[__hm_index5])) with (__hm_with4[__hm_index5]) {
-hm_arkintide_mod_gml_hm_gungod_bounds();
-}
-if(__hm_break6) break;
-}}
-;
-if ((! (scrHMVariableExists(GameCont, "hm_yv_seen") && GameCont.hm_yv_seen))) {
-{
-GameCont.hm_yv_seen = 1;
-;
-{ var __hm_with7 = scrHMInstances(_hml_actor), __hm_break9=false;
-for (var __hm_index8=0; __hm_index8<array_length(__hm_with7); ++__hm_index8) {
-if(instance_exists(__hm_with7[__hm_index8])) with (__hm_with7[__hm_index8]) {
-scrHMContentEvent1100(YVBoss, ev_alarm, 7);
-}
-if(__hm_break9) break;
-}}
-;
-scrHMSoundMusic(musBoss9);
-;
-}
-}
-}
-}
-if ((! hm_gungod_replaced)) {
-exit;
-}
-{ var __hm_with10 = scrHMInstances(enemy), __hm_break12=false;
-for (var __hm_index11=0; __hm_index11<array_length(__hm_with10); ++__hm_index11) {
-if(instance_exists(__hm_with10[__hm_index11])) with (__hm_with10[__hm_index11]) {
-if (hm_arkintide_mod_gml_hm_stage_boss_actor()) {
-{
-if ((scrHMVariableExists(id, "name") && ((((name == "GunGod") || (name == "gungod")) || (name == "hm_yv_phase")) || (name == "hm_gungod_landing")))) {
-continue;
-}
-scrHMDelete(id);
-;
-}
-}
-}
-if(__hm_break12) break;
-}}
-{ var __hm_with13 = scrHMInstances(WantBoss), __hm_break15=false;
-for (var __hm_index14=0; __hm_index14<array_length(__hm_with13); ++__hm_index14) {
-if(instance_exists(__hm_with13[__hm_index14])) with (__hm_with13[__hm_index14]) {
-scrHMDelete(id);
-}
-if(__hm_break15) break;
-}}
-;
-{ var __hm_with16 = scrHMInstances(WantLH), __hm_break18=false;
-for (var __hm_index17=0; __hm_index17<array_length(__hm_with16); ++__hm_index17) {
-if(instance_exists(__hm_with16[__hm_index17])) with (__hm_with16[__hm_index17]) {
-scrHMDelete(id);
-}
-if(__hm_break18) break;
-}}
-;
-{ var __hm_with19 = scrHMInstances(BecomeScrapBoss), __hm_break21=false;
-for (var __hm_index20=0; __hm_index20<array_length(__hm_with19); ++__hm_index20) {
-if(instance_exists(__hm_with19[__hm_index20])) with (__hm_with19[__hm_index20]) {
-scrHMDelete(id);
-}
-if(__hm_break21) break;
-}}
-;
-{ var __hm_with22 = scrHMInstances(CustomObject), __hm_break24=false;
-for (var __hm_index23=0; __hm_index23<array_length(__hm_with22); ++__hm_index23) {
-if(instance_exists(__hm_with22[__hm_index23])) with (__hm_with22[__hm_index23]) {
-if ((scrHMVariableExists(id, "name") && (((name == "wanttitank") || (name == "wantravenboss")) || (name == "hm_hunter_pending")))) {
-scrHMDelete(id);
-}
-}
-if(__hm_break24) break;
-}}
+scrHMReplacementTick1102();
 }
 
 // Source arkintide.mod.gml:0; hm_horror_bullets (native content 1.1.0)

@@ -1,180 +1,357 @@
-// Source props.mod.gml:1; __load
-function hm_props_mod_gml___load() {
-global.hm_module_vars[$ "mod:props"].VenuzStar = sprHM_props_mod_4;
-global.hm_module_vars[$ "mod:props"].fancylid = sprHM_props_mod_6;
-global.hm_module_vars[$ "mod:props"].lookout = sprHM_props_mod_7;
-global.hm_module_vars[$ "mod:props"].hole = sprHM_props_mod_8;
-global.hm_module_vars[$ "mod:props"].flower = sprHM_props_mod_9;
-global.hm_module_vars[$ "mod:props"].iceblock = sprHM_props_mod_10;
-global.hm_module_vars[$ "mod:props"].cactusbloom1 = sprHM_props_mod_11;
-global.hm_module_vars[$ "mod:props"].cactusbloom2 = sprHM_props_mod_12;
-global.hm_module_vars[$ "mod:props"].cactusbloom3 = sprHM_props_mod_13;
-global.hm_module_vars[$ "mod:props"].ammo1 = sprHM_props_mod_14;
-global.hm_module_vars[$ "mod:props"].venuz1 = sprHM_props_mod_15;
-global.hm_module_vars[$ "mod:props"].VenuzBars1Side = sprHM_props_mod_16;
-global.hm_module_vars[$ "mod:props"].VenuzBars1 = sprHM_props_mod_17;
-global.hm_module_vars[$ "mod:props"].VenuzDoorSide = sprHM_props_mod_18;
-global.hm_module_vars[$ "mod:props"].VenuzDoor = sprHM_props_mod_19;
-global.hm_module_vars[$ "mod:props"].VenuzBars2Side = sprHM_props_mod_21;
-global.hm_module_vars[$ "mod:props"].VenuzBars2 = sprHM_props_mod_22;
-global.hm_module_vars[$ "mod:props"].VenuzDoor2Side = sprHM_props_mod_23;
-global.hm_module_vars[$ "mod:props"].VenuzDoor2 = sprHM_props_mod_24;
-global.hm_module_vars[$ "mod:props"].VenuzBars3 = sprHM_props_mod_25;
-global.hm_module_vars[$ "mod:props"].VenuzDoor3Side = sprHM_props_mod_26;
-global.hm_module_vars[$ "mod:props"].VenuzDoor3 = sprHM_props_mod_27;
-global.hm_module_vars[$ "mod:props"].VenuzBars4Side = sprHM_props_mod_28;
-global.hm_module_vars[$ "mod:props"].VenuzBars4 = sprHM_props_mod_29;
-global.hm_module_vars[$ "mod:props"].VenuzDoor4Side = sprHM_props_mod_30;
-global.hm_module_vars[$ "mod:props"].VenuzDoor4 = sprHM_props_mod_31;
-global.hm_module_vars[$ "mod:props"].BigSkull = sprHM_props_mod_32;
-global.hm_module_vars[$ "mod:props"].BigSkullHurt = sprHM_props_mod_33;
-global.hm_module_vars[$ "mod:props"].BigSkullDead = sprHM_props_mod_34;
-global.hm_module_vars[$ "mod:props"].whitecrystal = sprHM_props_mod_35;
-global.hm_module_vars[$ "mod:props"].elevator = sprHM_props_mod_36;
-global.hm_module_vars[$ "mod:props"].bigtube = sprHM_props_mod_37;
-global.hm_module_vars[$ "mod:props"].bigtubehurt = sprHM_props_mod_38;
-global.hm_module_vars[$ "mod:props"].bigtubedead = sprHM_props_mod_39;
-global.hm_module_vars[$ "mod:props"].bigtube2 = sprHM_props_mod_40;
-global.hm_module_vars[$ "mod:props"].bigtube2hurt = sprHM_props_mod_41;
-global.hm_module_vars[$ "mod:props"].bigtube2dead = sprHM_props_mod_42;
-global.hm_module_vars[$ "mod:props"].VenuzCar = sprHM_props_mod_43;
-global.hm_module_vars[$ "mod:props"].VenuzCar2 = sprHM_props_mod_44;
-global.hm_module_vars[$ "mod:props"].VenuzCaroutline = sprHM_props_mod_45;
-global.hm_module_vars[$ "mod:props"].ClamMimicIdle = sprHM_props_mod_46;
-global.hm_module_vars[$ "mod:props"].ClamMimicFire = sprHM_props_mod_47;
-global.hm_module_vars[$ "mod:props"].ClamMimicTell = sprHM_props_mod_48;
-global.hm_module_vars[$ "mod:props"].ClamMimicHurt = sprHM_props_mod_49;
-global.hm_module_vars[$ "mod:props"].ClamMimicDead = sprHM_props_mod_50;
-global.hm_module_vars[$ "mod:props"].flagdead = sprHM_props_mod_51;
-global.hm_module_vars[$ "mod:props"].redflag = sprHM_props_mod_52;
-global.hm_module_vars[$ "mod:props"].redflaghurt = sprHM_props_mod_53;
-global.hm_module_vars[$ "mod:props"].redflagdead = sprHM_props_mod_54;
-global.hm_module_vars[$ "mod:props"].blueflag = sprHM_props_mod_55;
-global.hm_module_vars[$ "mod:props"].blueflaghurt = sprHM_props_mod_56;
-global.hm_module_vars[$ "mod:props"].blueflagdead = sprHM_props_mod_57;
-global.hm_module_vars[$ "mod:props"].yellowflag = sprHM_props_mod_58;
-global.hm_module_vars[$ "mod:props"].yellowflaghurt = sprHM_props_mod_59;
-global.hm_module_vars[$ "mod:props"].yellowflagdead = sprHM_props_mod_60;
-}
-
-// Source props.mod.gml:63; draw_dark
-function hm_props_mod_gml_draw_dark() {
-{ var __hm_with1 = scrHMMatching(enemy, "sprite_index", sprLaserCrystalFire), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-draw_set_alpha(1);
-draw_set_color($808080);
-draw_circle(x, y, (75 + random(3)), false);
-}
-}
-if(__hm_break3) break;
-}}
-{ var __hm_with4 = scrHMMatching(CustomHitme, "name", "elevator"), __hm_break6=false;
-for (var __hm_index5=0; __hm_index5<array_length(__hm_with4); ++__hm_index5) {
-if(instance_exists(__hm_with4[__hm_index5])) with (__hm_with4[__hm_index5]) {
-{
-draw_set_alpha(1);
-draw_set_color($808080);
-draw_circle(x, (y - 8), (125 + random(3)), false);
-}
-}
-if(__hm_break6) break;
-}}
-{ var __hm_with7 = scrHMMatching(CustomEnemy, "light", 1), __hm_break9=false;
-for (var __hm_index8=0; __hm_index8<array_length(__hm_with7); ++__hm_index8) {
-if(instance_exists(__hm_with7[__hm_index8])) with (__hm_with7[__hm_index8]) {
-{
-draw_set_alpha(1);
-draw_set_color($808080);
-draw_circle(x, y, (75 + random(3)), false);
-}
-}
-if(__hm_break9) break;
-}}
-{ var __hm_with10 = scrHMMatching(CustomObject, "light", 1), __hm_break12=false;
-for (var __hm_index11=0; __hm_index11<array_length(__hm_with10); ++__hm_index11) {
-if(instance_exists(__hm_with10[__hm_index11])) with (__hm_with10[__hm_index11]) {
-{
-draw_set_alpha(1);
-draw_set_color($808080);
-draw_circle(x, y, (75 + random(3)), false);
-}
-}
-if(__hm_break12) break;
-}}
-}
-
-// Source props.mod.gml:84; draw_dark_end
-function hm_props_mod_gml_draw_dark_end() {
-{ var __hm_with1 = scrHMMatching(enemy, "sprite_index", sprLaserCrystalFire), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-draw_set_alpha(1);
-draw_set_color(0);
-draw_circle(x, y, (25 + random(3)), false);
-}
-}
-if(__hm_break3) break;
-}}
-{ var __hm_with4 = scrHMMatching(CustomHitme, "name", "elevator"), __hm_break6=false;
-for (var __hm_index5=0; __hm_index5<array_length(__hm_with4); ++__hm_index5) {
-if(instance_exists(__hm_with4[__hm_index5])) with (__hm_with4[__hm_index5]) {
-{
-draw_set_alpha(1);
-draw_set_color(0);
-draw_circle(x, (y - 8), (50 + random(3)), false);
-}
-}
-if(__hm_break6) break;
-}}
-{ var __hm_with7 = scrHMMatching(CustomEnemy, "light", 1), __hm_break9=false;
-for (var __hm_index8=0; __hm_index8<array_length(__hm_with7); ++__hm_index8) {
-if(instance_exists(__hm_with7[__hm_index8])) with (__hm_with7[__hm_index8]) {
-{
-draw_set_alpha(1);
-draw_set_color(0);
-draw_circle(x, y, (25 + random(3)), false);
-}
-}
-if(__hm_break9) break;
-}}
-{ var __hm_with10 = scrHMMatching(CustomObject, "light", 1), __hm_break12=false;
-for (var __hm_index11=0; __hm_index11<array_length(__hm_with10); ++__hm_index11) {
-if(instance_exists(__hm_with10[__hm_index11])) with (__hm_with10[__hm_index11]) {
-{
-draw_set_alpha(1);
-draw_set_color(0);
-draw_circle(x, y, (25 + random(3)), false);
-}
-}
-if(__hm_break12) break;
-}}
-{ var __hm_with13 = scrHMMatching(CustomObject, "name", "sewagefloor"), __hm_break15=false;
-for (var __hm_index14=0; __hm_index14<array_length(__hm_with13); ++__hm_index14) {
-if(instance_exists(__hm_with13[__hm_index14])) with (__hm_with13[__hm_index14]) {
-{
-draw_set_alpha(1);
-draw_set_color(0);
-draw_circle((x + 16), (y + 16), (25 + random(3)), false);
-}
-}
-if(__hm_break15) break;
-}}
-{ var __hm_with16 = scrHMInstances(BigTV), __hm_break18=false;
-for (var __hm_index17=0; __hm_index17<array_length(__hm_with16); ++__hm_index17) {
-if(instance_exists(__hm_with16[__hm_index17])) with (__hm_with16[__hm_index17]) {
-{
-draw_set_alpha(1);
-draw_set_color(0);
-draw_circle(x, y, (100 + random(1)), false);
-}
-}
-if(__hm_break18) break;
-}}
-}
-
+// Source props.mod.gml:1; __load
+
+function hm_props_mod_gml___load() {
+
+global.hm_module_vars[$ "mod:props"].VenuzStar = sprHM_props_mod_4;
+
+global.hm_module_vars[$ "mod:props"].fancylid = sprHM_props_mod_6;
+
+global.hm_module_vars[$ "mod:props"].lookout = sprHM_props_mod_7;
+
+global.hm_module_vars[$ "mod:props"].hole = sprHM_props_mod_8;
+
+global.hm_module_vars[$ "mod:props"].flower = sprHM_props_mod_9;
+
+global.hm_module_vars[$ "mod:props"].iceblock = sprHM_props_mod_10;
+
+global.hm_module_vars[$ "mod:props"].cactusbloom1 = sprHM_props_mod_11;
+
+global.hm_module_vars[$ "mod:props"].cactusbloom2 = sprHM_props_mod_12;
+
+global.hm_module_vars[$ "mod:props"].cactusbloom3 = sprHM_props_mod_13;
+
+global.hm_module_vars[$ "mod:props"].ammo1 = sprHM_props_mod_14;
+
+global.hm_module_vars[$ "mod:props"].venuz1 = sprHM_props_mod_15;
+
+global.hm_module_vars[$ "mod:props"].VenuzBars1Side = sprHM_props_mod_16;
+
+global.hm_module_vars[$ "mod:props"].VenuzBars1 = sprHM_props_mod_17;
+
+global.hm_module_vars[$ "mod:props"].VenuzDoorSide = sprHM_props_mod_18;
+
+global.hm_module_vars[$ "mod:props"].VenuzDoor = sprHM_props_mod_19;
+
+global.hm_module_vars[$ "mod:props"].VenuzBars2Side = sprHM_props_mod_21;
+
+global.hm_module_vars[$ "mod:props"].VenuzBars2 = sprHM_props_mod_22;
+
+global.hm_module_vars[$ "mod:props"].VenuzDoor2Side = sprHM_props_mod_23;
+
+global.hm_module_vars[$ "mod:props"].VenuzDoor2 = sprHM_props_mod_24;
+
+global.hm_module_vars[$ "mod:props"].VenuzBars3 = sprHM_props_mod_25;
+
+global.hm_module_vars[$ "mod:props"].VenuzDoor3Side = sprHM_props_mod_26;
+
+global.hm_module_vars[$ "mod:props"].VenuzDoor3 = sprHM_props_mod_27;
+
+global.hm_module_vars[$ "mod:props"].VenuzBars4Side = sprHM_props_mod_28;
+
+global.hm_module_vars[$ "mod:props"].VenuzBars4 = sprHM_props_mod_29;
+
+global.hm_module_vars[$ "mod:props"].VenuzDoor4Side = sprHM_props_mod_30;
+
+global.hm_module_vars[$ "mod:props"].VenuzDoor4 = sprHM_props_mod_31;
+
+global.hm_module_vars[$ "mod:props"].BigSkull = sprHM_props_mod_32;
+
+global.hm_module_vars[$ "mod:props"].BigSkullHurt = sprHM_props_mod_33;
+
+global.hm_module_vars[$ "mod:props"].BigSkullDead = sprHM_props_mod_34;
+
+global.hm_module_vars[$ "mod:props"].whitecrystal = sprHM_props_mod_35;
+
+global.hm_module_vars[$ "mod:props"].elevator = sprHM_props_mod_36;
+
+global.hm_module_vars[$ "mod:props"].bigtube = sprHM_props_mod_37;
+
+global.hm_module_vars[$ "mod:props"].bigtubehurt = sprHM_props_mod_38;
+
+global.hm_module_vars[$ "mod:props"].bigtubedead = sprHM_props_mod_39;
+
+global.hm_module_vars[$ "mod:props"].bigtube2 = sprHM_props_mod_40;
+
+global.hm_module_vars[$ "mod:props"].bigtube2hurt = sprHM_props_mod_41;
+
+global.hm_module_vars[$ "mod:props"].bigtube2dead = sprHM_props_mod_42;
+
+global.hm_module_vars[$ "mod:props"].VenuzCar = sprHM_props_mod_43;
+
+global.hm_module_vars[$ "mod:props"].VenuzCar2 = sprHM_props_mod_44;
+
+global.hm_module_vars[$ "mod:props"].VenuzCaroutline = sprHM_props_mod_45;
+
+global.hm_module_vars[$ "mod:props"].ClamMimicIdle = sprHM_props_mod_46;
+
+global.hm_module_vars[$ "mod:props"].ClamMimicFire = sprHM_props_mod_47;
+
+global.hm_module_vars[$ "mod:props"].ClamMimicTell = sprHM_props_mod_48;
+
+global.hm_module_vars[$ "mod:props"].ClamMimicHurt = sprHM_props_mod_49;
+
+global.hm_module_vars[$ "mod:props"].ClamMimicDead = sprHM_props_mod_50;
+
+global.hm_module_vars[$ "mod:props"].flagdead = sprHM_props_mod_51;
+
+global.hm_module_vars[$ "mod:props"].redflag = sprHM_props_mod_52;
+
+global.hm_module_vars[$ "mod:props"].redflaghurt = sprHM_props_mod_53;
+
+global.hm_module_vars[$ "mod:props"].redflagdead = sprHM_props_mod_54;
+
+global.hm_module_vars[$ "mod:props"].blueflag = sprHM_props_mod_55;
+
+global.hm_module_vars[$ "mod:props"].blueflaghurt = sprHM_props_mod_56;
+
+global.hm_module_vars[$ "mod:props"].blueflagdead = sprHM_props_mod_57;
+
+global.hm_module_vars[$ "mod:props"].yellowflag = sprHM_props_mod_58;
+
+global.hm_module_vars[$ "mod:props"].yellowflaghurt = sprHM_props_mod_59;
+
+global.hm_module_vars[$ "mod:props"].yellowflagdead = sprHM_props_mod_60;
+
+}
+
+
+
+// Source props.mod.gml:63; draw_dark
+
+function hm_props_mod_gml_draw_dark() {
+
+{ var __hm_with1 = scrHMMatching(enemy, "sprite_index", sprLaserCrystalFire), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+{
+
+draw_set_alpha(1);
+
+draw_set_color($808080);
+
+draw_circle(x, y, (75 + random(3)), false);
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+{ var __hm_with4 = scrHMMatching(CustomHitme, "name", "elevator"), __hm_break6=false;
+
+for (var __hm_index5=0; __hm_index5<array_length(__hm_with4); ++__hm_index5) {
+
+if(instance_exists(__hm_with4[__hm_index5])) with (__hm_with4[__hm_index5]) {
+
+{
+
+draw_set_alpha(1);
+
+draw_set_color($808080);
+
+draw_circle(x, (y - 8), (125 + random(3)), false);
+
+}
+
+}
+
+if(__hm_break6) break;
+
+}}
+
+{ var __hm_with7 = scrHMMatching(CustomEnemy, "light", 1), __hm_break9=false;
+
+for (var __hm_index8=0; __hm_index8<array_length(__hm_with7); ++__hm_index8) {
+
+if(instance_exists(__hm_with7[__hm_index8])) with (__hm_with7[__hm_index8]) {
+
+{
+
+draw_set_alpha(1);
+
+draw_set_color($808080);
+
+draw_circle(x, y, (75 + random(3)), false);
+
+}
+
+}
+
+if(__hm_break9) break;
+
+}}
+
+{ var __hm_with10 = scrHMMatching(CustomObject, "light", 1), __hm_break12=false;
+
+for (var __hm_index11=0; __hm_index11<array_length(__hm_with10); ++__hm_index11) {
+
+if(instance_exists(__hm_with10[__hm_index11])) with (__hm_with10[__hm_index11]) {
+
+{
+
+draw_set_alpha(1);
+
+draw_set_color($808080);
+
+draw_circle(x, y, (75 + random(3)), false);
+
+}
+
+}
+
+if(__hm_break12) break;
+
+}}
+
+}
+
+
+
+// Source props.mod.gml:84; draw_dark_end
+
+function hm_props_mod_gml_draw_dark_end() {
+
+{ var __hm_with1 = scrHMMatching(enemy, "sprite_index", sprLaserCrystalFire), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+{
+
+draw_set_alpha(1);
+
+draw_set_color(0);
+
+draw_circle(x, y, (25 + random(3)), false);
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+{ var __hm_with4 = scrHMMatching(CustomHitme, "name", "elevator"), __hm_break6=false;
+
+for (var __hm_index5=0; __hm_index5<array_length(__hm_with4); ++__hm_index5) {
+
+if(instance_exists(__hm_with4[__hm_index5])) with (__hm_with4[__hm_index5]) {
+
+{
+
+draw_set_alpha(1);
+
+draw_set_color(0);
+
+draw_circle(x, (y - 8), (50 + random(3)), false);
+
+}
+
+}
+
+if(__hm_break6) break;
+
+}}
+
+{ var __hm_with7 = scrHMMatching(CustomEnemy, "light", 1), __hm_break9=false;
+
+for (var __hm_index8=0; __hm_index8<array_length(__hm_with7); ++__hm_index8) {
+
+if(instance_exists(__hm_with7[__hm_index8])) with (__hm_with7[__hm_index8]) {
+
+{
+
+draw_set_alpha(1);
+
+draw_set_color(0);
+
+draw_circle(x, y, (25 + random(3)), false);
+
+}
+
+}
+
+if(__hm_break9) break;
+
+}}
+
+{ var __hm_with10 = scrHMMatching(CustomObject, "light", 1), __hm_break12=false;
+
+for (var __hm_index11=0; __hm_index11<array_length(__hm_with10); ++__hm_index11) {
+
+if(instance_exists(__hm_with10[__hm_index11])) with (__hm_with10[__hm_index11]) {
+
+{
+
+draw_set_alpha(1);
+
+draw_set_color(0);
+
+draw_circle(x, y, (25 + random(3)), false);
+
+}
+
+}
+
+if(__hm_break12) break;
+
+}}
+
+{ var __hm_with13 = scrHMMatching(CustomObject, "name", "sewagefloor"), __hm_break15=false;
+
+for (var __hm_index14=0; __hm_index14<array_length(__hm_with13); ++__hm_index14) {
+
+if(instance_exists(__hm_with13[__hm_index14])) with (__hm_with13[__hm_index14]) {
+
+{
+
+draw_set_alpha(1);
+
+draw_set_color(0);
+
+draw_circle((x + 16), (y + 16), (25 + random(3)), false);
+
+}
+
+}
+
+if(__hm_break15) break;
+
+}}
+
+{ var __hm_with16 = scrHMInstances(BigTV), __hm_break18=false;
+
+for (var __hm_index17=0; __hm_index17<array_length(__hm_with16); ++__hm_index17) {
+
+if(instance_exists(__hm_with16[__hm_index17])) with (__hm_with16[__hm_index17]) {
+
+{
+
+draw_set_alpha(1);
+
+draw_set_color(0);
+
+draw_circle(x, y, (100 + random(1)), false);
+
+}
+
+}
+
+if(__hm_break18) break;
+
+}}
+
+}
+
+
+
 // Source props.mod.gml:0; draw_shadows (native content 1.1.0)
 function hm_props_mod_gml_draw_shadows() {
 var _hml_shadow_objects = hm_arkintide_mod_gml_hm_shadow_objects();
@@ -1179,323 +1356,640 @@ default: throw "Hardmode invalid continuation PC";
 }
 }
 
-// Source props.mod.gml:401; mpAmmoChest_create
-function hm_props_mod_gml_mpAmmoChest_create(_hml__x, _hml__y) {
-{ var __hm_with1 = scrHMInstances(instance_create(_hml__x, _hml__y, CustomObject)), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-name = "mpammochest";
-spr_idle = sprAmmoChest;
-image_speed = (0) * timescale;
-shadow = 2;
-on_step = scrHMScriptRef(hm_props_mod_gml_MpAmmoChest_step);
-on_destroy = scrHMScriptRef(hm_props_mod_gml_MpAmmoChest_destroy);
-return id;
-;
-}
-}
-if(__hm_break3) break;
-}}
-}
-
-// Source props.mod.gml:411; MpAmmoChest_step
-function hm_props_mod_gml_MpAmmoChest_step() {
-sprite_index = spr_idle;
-if ((((image_speed / timescale) > 0) and (image_index >= 6))) {
-{
-image_speed = (0) * timescale;
-image_index = 0;
-}
-}
-if ((((image_speed / timescale) == 0) and (random(50) < 1))) {
-image_speed = (0.4) * timescale;
-}
-if ((distance_to_object(Player) < 16)) {
-instance_destroy();
-}
-}
-
-// Source props.mod.gml:421; MpAmmoChest_destroy
-function hm_props_mod_gml_MpAmmoChest_destroy() {
-var _hml_plin_ = 0;
-repeat (instance_number(Player)) {
-hm_props_mod_gml_MpAmmo_create(x, y, _hml_plin_);
-hm_props_mod_gml_MpAmmo_create(x, y, _hml_plin_);
-_hml_plin_ += 1;
-}
-scrHMSoundPlay(sndAmmoChest);
-{ var __hm_with1 = scrHMInstances(instance_create(x, y, ChestOpen)), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-sprite_index = sprAmmoChestOpen;
-}
-}
-if(__hm_break3) break;
-}}
-instance_create(x, y, FXChestOpen);
-}
-
-// Source props.mod.gml:435; MpAmmo_create
-function hm_props_mod_gml_MpAmmo_create(_hml__x, _hml__y, _hml__ind) {
-{ var __hm_with1 = scrHMInstances(instance_create(_hml__x, _hml__y, CustomProjectile)), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-name = "mpammo";
-spr_idle = sprAmmo;
-image_speed = (0) * timescale;
-on_step = scrHMScriptRef(hm_props_mod_gml_MpAmmo_step);
-on_wall = scrHMScriptRef(hm_props_mod_gml_MpAmmo_wall);
-team = 2;
-index = _hml__ind;
-target = (- 1);
-targetvisible = 0;
-direction = choose(0, 180, 90, 270);
-speed = (5) * timescale;
-return id;
-;
-}
-}
-if(__hm_break3) break;
-}}
-}
-
-// Source props.mod.gml:450; MpAmmo_step
-function hm_props_mod_gml_MpAmmo_step() {
-sprite_index = spr_idle;
-if ((((image_speed / timescale) > 0) and (image_index >= 6))) {
-{
-image_speed = (0) * timescale;
-image_index = 0;
-}
-}
-if ((((image_speed / timescale) == 0) and (random(50) < 1))) {
-image_speed = (0.4) * timescale;
-}
-{ var __hm_with1 = scrHMMatching(Player, "index", index), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-var __hm_other4=scrHMOther(other);
-__hm_other4.target = id;
-}
-if(__hm_break3) break;
-}}
-if ((instance_exists(target) && (collision_line(x, y, target.x, target.y, Wall, 0, 0) < 0))) {
-targetvisible = 1;
-} else {
-targetvisible = 0;
-}
-;
-if (targetvisible) {
-scrHMMotionSet(point_direction(x, y, target.x, target.y), 5);
-} else {
-if (place_meeting((x + (hspeed / timescale)), (y + (vspeed / timescale)), Wall)) {
-direction += random_range(80, 100);
-}
-}
-{ var __hm_with5 = scrHMMatching(Player, "index", index), __hm_break7=false;
-for (var __hm_index6=0; __hm_index6<array_length(__hm_with5); ++__hm_index6) {
-if(instance_exists(__hm_with5[__hm_index6])) with (__hm_with5[__hm_index6]) {
-if ((distance_to_object((scrHMOther(other))) < 16)) {
-{
-scrHMSoundPitch(sndAmmoPickup, 0.8);
-if ((ammo[scrHMWeaponType(wep)] == 0)) {
-{
-var _hml_melee_ = choose(1, 2, 3, 4, 5);
-;
-ammo[scrHMWeaponType(_hml_melee_)] += typ_ammo[scrHMWeaponType(_hml_melee_)];
-if ((ammo[scrHMWeaponType(_hml_melee_)] > typ_amax[scrHMWeaponType(_hml_melee_)])) {
-ammo[scrHMWeaponType(_hml_melee_)] = typ_amax[scrHMWeaponType(_hml_melee_)];
-}
-{ var __hm_with8 = scrHMInstances(instance_create(x, y, PopupText)), __hm_break10=false;
-for (var __hm_index9=0; __hm_index9<array_length(__hm_with8); ++__hm_index9) {
-if(instance_exists(__hm_with8[__hm_index9])) with (__hm_with8[__hm_index9]) {
-{
-{ var __hm_with11 = scrHMInstances((scrHMOther(other))), __hm_break13=false;
-for (var __hm_index12=0; __hm_index12<array_length(__hm_with11); ++__hm_index12) {
-if(instance_exists(__hm_with11[__hm_index12])) with (__hm_with11[__hm_index12]) {
-{
-if ((_hml_melee_ == 1)) {
-var __hm_other14=scrHMOther(other);
-__hm_other14.mytext = (("+" + string(typ_ammo[_hml_melee_])) + " BULLETS");
-} else {
-if ((_hml_melee_ == 2)) {
-var __hm_other15=scrHMOther(other);
-__hm_other15.mytext = (("+" + string(typ_ammo[_hml_melee_])) + " SHELLS");
-} else {
-if ((_hml_melee_ == 3)) {
-var __hm_other16=scrHMOther(other);
-__hm_other16.mytext = (("+" + string(typ_ammo[_hml_melee_])) + " BOLTS");
-} else {
-if ((_hml_melee_ == 4)) {
-var __hm_other17=scrHMOther(other);
-__hm_other17.mytext = (("+" + string(typ_ammo[_hml_melee_])) + " EXPLOSIVES");
-} else {
-if ((_hml_melee_ == 5)) {
-var __hm_other18=scrHMOther(other);
-__hm_other18.mytext = (("+" + string(typ_ammo[_hml_melee_])) + " ENERGY");
-}
-}
-}
-}
-}
-}
-}
-if(__hm_break13) break;
-}}
-}
-}
-if(__hm_break10) break;
-}}
-}
-} else {
-{
-ammo[scrHMWeaponType(wep)] += typ_ammo[scrHMWeaponType(wep)];
-if ((ammo[scrHMWeaponType(wep)] > typ_amax[scrHMWeaponType(wep)])) {
-ammo[scrHMWeaponType(wep)] = typ_amax[scrHMWeaponType(wep)];
-}
-{ var __hm_with19 = scrHMInstances(instance_create(x, y, PopupText)), __hm_break21=false;
-for (var __hm_index20=0; __hm_index20<array_length(__hm_with19); ++__hm_index20) {
-if(instance_exists(__hm_with19[__hm_index20])) with (__hm_with19[__hm_index20]) {
-{
-{ var __hm_with22 = scrHMInstances((scrHMOther(other))), __hm_break24=false;
-for (var __hm_index23=0; __hm_index23<array_length(__hm_with22); ++__hm_index23) {
-if(instance_exists(__hm_with22[__hm_index23])) with (__hm_with22[__hm_index23]) {
-{
-if ((scrHMWeaponType(wep) == 1)) {
-var __hm_other25=scrHMOther(other);
-__hm_other25.mytext = (("+" + string(typ_ammo[scrHMWeaponType(wep)])) + " BULLETS");
-} else {
-if ((scrHMWeaponType(wep) == 2)) {
-var __hm_other26=scrHMOther(other);
-__hm_other26.mytext = (("+" + string(typ_ammo[scrHMWeaponType(wep)])) + " SHELLS");
-} else {
-if ((scrHMWeaponType(wep) == 3)) {
-var __hm_other27=scrHMOther(other);
-__hm_other27.mytext = (("+" + string(typ_ammo[scrHMWeaponType(wep)])) + " BOLTS");
-} else {
-if ((scrHMWeaponType(wep) == 4)) {
-var __hm_other28=scrHMOther(other);
-__hm_other28.mytext = (("+" + string(typ_ammo[scrHMWeaponType(wep)])) + " EXPLOSIVES");
-} else {
-if ((scrHMWeaponType(wep) == 5)) {
-var __hm_other29=scrHMOther(other);
-__hm_other29.mytext = (("+" + string(typ_ammo[scrHMWeaponType(wep)])) + " ENERGY");
-}
-}
-}
-}
-}
-}
-}
-if(__hm_break24) break;
-}}
-}
-}
-if(__hm_break21) break;
-}}
-}
-}
-{ var __hm_with30 = scrHMInstances((scrHMOther(other))), __hm_break32=false;
-for (var __hm_index31=0; __hm_index31<array_length(__hm_with30); ++__hm_index31) {
-if(instance_exists(__hm_with30[__hm_index31])) with (__hm_with30[__hm_index31]) {
-instance_destroy();
-}
-if(__hm_break32) break;
-}}
-}
-}
-}
-if(__hm_break7) break;
-}}
-}
-
-// Source props.mod.gml:515; MpAmmo_wall
-function hm_props_mod_gml_MpAmmo_wall() {
-move_bounce_solid(1);
-}
-
-// Source props.mod.gml:520; flag_create
-function hm_props_mod_gml_flag_create(_hml__x, _hml__y) {
-{ var __hm_with1 = scrHMInstances(instance_create(_hml__x, _hml__y, CustomHitme)), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-name = "flag";
-on_step = scrHMScriptRef(hm_props_mod_gml_flag_step);
-on_hurt = scrHMScriptRef(hm_props_mod_gml_flag_hurt);
-image_index = irandom(29);
-image_xscale = choose((- 1), 1);
-image_speed = (0.4) * timescale;
-friction = (30) * (timescale * timescale);
-depth = 7;
-hp = 3;
-spr_shadow = shd24;
-if ((GameCont.area == scrHMAreaResolve(1))) {
-{
-spr_idle = global.hm_module_vars[$ "mod:props"].redflag;
-spr_hurt = global.hm_module_vars[$ "mod:props"].redflaghurt;
-spr_dead = global.hm_module_vars[$ "mod:props"].redflagdead;
-}
-} else {
-if ((GameCont.area == scrHMAreaResolve(3))) {
-{
-spr_idle = global.hm_module_vars[$ "mod:props"].blueflag;
-spr_hurt = global.hm_module_vars[$ "mod:props"].blueflaghurt;
-spr_dead = global.hm_module_vars[$ "mod:props"].blueflagdead;
-}
-} else {
-if ((GameCont.area == scrHMAreaResolve(4))) {
-{
-spr_idle = global.hm_module_vars[$ "mod:props"].yellowflag;
-spr_hurt = global.hm_module_vars[$ "mod:props"].yellowflaghurt;
-spr_dead = global.hm_module_vars[$ "mod:props"].yellowflagdead;
-}
-}
-}
-}
-return id;
-;
-}
-}
-if(__hm_break3) break;
-}}
-}
-
-// Source props.mod.gml:549; flag_step
-function hm_props_mod_gml_flag_step() {
-if ((nexthurt > current_frame)) {
-{
-if ((sprite_index != spr_hurt)) {
-{
-image_index = 0;
-;
-sprite_index = spr_hurt;
-;
-}
-}
-}
-} else {
-{
-if (((speed / timescale) > (friction / (timescale * timescale)))) {
-sprite_index = spr_walk;
-} else {
-sprite_index = spr_idle;
-}
-;
-}
-}
-if ((! place_meeting(x, y, Floor))) {
-instance_destroy();
-} else {
-if (place_meeting(x, y, Wall)) {
-instance_destroy();
-}
-}
-}
-
+// Source props.mod.gml:401; mpAmmoChest_create
+
+function hm_props_mod_gml_mpAmmoChest_create(_hml__x, _hml__y) {
+
+{ var __hm_with1 = scrHMInstances(instance_create(_hml__x, _hml__y, CustomObject)), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+{
+
+name = "mpammochest";
+
+spr_idle = sprAmmoChest;
+
+image_speed = (0) * timescale;
+
+shadow = 2;
+
+on_step = scrHMScriptRef(hm_props_mod_gml_MpAmmoChest_step);
+
+on_destroy = scrHMScriptRef(hm_props_mod_gml_MpAmmoChest_destroy);
+
+return id;
+
+;
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+}
+
+
+
+// Source props.mod.gml:411; MpAmmoChest_step
+
+function hm_props_mod_gml_MpAmmoChest_step() {
+
+sprite_index = spr_idle;
+
+if ((((image_speed / timescale) > 0) and (image_index >= 6))) {
+
+{
+
+image_speed = (0) * timescale;
+
+image_index = 0;
+
+}
+
+}
+
+if ((((image_speed / timescale) == 0) and (random(50) < 1))) {
+
+image_speed = (0.4) * timescale;
+
+}
+
+if ((distance_to_object(Player) < 16)) {
+
+instance_destroy();
+
+}
+
+}
+
+
+
+// Source props.mod.gml:421; MpAmmoChest_destroy
+
+function hm_props_mod_gml_MpAmmoChest_destroy() {
+
+var _hml_plin_ = 0;
+
+repeat (instance_number(Player)) {
+
+hm_props_mod_gml_MpAmmo_create(x, y, _hml_plin_);
+
+hm_props_mod_gml_MpAmmo_create(x, y, _hml_plin_);
+
+_hml_plin_ += 1;
+
+}
+
+scrHMSoundPlay(sndAmmoChest);
+
+{ var __hm_with1 = scrHMInstances(instance_create(x, y, ChestOpen)), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+{
+
+sprite_index = sprAmmoChestOpen;
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+instance_create(x, y, FXChestOpen);
+
+}
+
+
+
+// Source props.mod.gml:435; MpAmmo_create
+
+function hm_props_mod_gml_MpAmmo_create(_hml__x, _hml__y, _hml__ind) {
+
+{ var __hm_with1 = scrHMInstances(instance_create(_hml__x, _hml__y, CustomProjectile)), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+{
+
+name = "mpammo";
+
+spr_idle = sprAmmo;
+
+image_speed = (0) * timescale;
+
+on_step = scrHMScriptRef(hm_props_mod_gml_MpAmmo_step);
+
+on_wall = scrHMScriptRef(hm_props_mod_gml_MpAmmo_wall);
+
+team = 2;
+
+index = _hml__ind;
+
+target = (- 1);
+
+targetvisible = 0;
+
+direction = choose(0, 180, 90, 270);
+
+speed = (5) * timescale;
+
+return id;
+
+;
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+}
+
+
+
+// Source props.mod.gml:450; MpAmmo_step
+
+function hm_props_mod_gml_MpAmmo_step() {
+
+sprite_index = spr_idle;
+
+if ((((image_speed / timescale) > 0) and (image_index >= 6))) {
+
+{
+
+image_speed = (0) * timescale;
+
+image_index = 0;
+
+}
+
+}
+
+if ((((image_speed / timescale) == 0) and (random(50) < 1))) {
+
+image_speed = (0.4) * timescale;
+
+}
+
+{ var __hm_with1 = scrHMMatching(Player, "index", index), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+var __hm_other4=scrHMOther(other);
+
+__hm_other4.target = id;
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+if ((instance_exists(target) && (collision_line(x, y, target.x, target.y, Wall, 0, 0) < 0))) {
+
+targetvisible = 1;
+
+} else {
+
+targetvisible = 0;
+
+}
+
+;
+
+if (targetvisible) {
+
+scrHMMotionSet(point_direction(x, y, target.x, target.y), 5);
+
+} else {
+
+if (place_meeting((x + (hspeed / timescale)), (y + (vspeed / timescale)), Wall)) {
+
+direction += random_range(80, 100);
+
+}
+
+}
+
+{ var __hm_with5 = scrHMMatching(Player, "index", index), __hm_break7=false;
+
+for (var __hm_index6=0; __hm_index6<array_length(__hm_with5); ++__hm_index6) {
+
+if(instance_exists(__hm_with5[__hm_index6])) with (__hm_with5[__hm_index6]) {
+
+if ((distance_to_object((scrHMOther(other))) < 16)) {
+
+{
+
+scrHMSoundPitch(sndAmmoPickup, 0.8);
+
+if ((ammo[scrHMWeaponType(wep)] == 0)) {
+
+{
+
+var _hml_melee_ = choose(1, 2, 3, 4, 5);
+
+;
+
+ammo[scrHMWeaponType(_hml_melee_)] += typ_ammo[scrHMWeaponType(_hml_melee_)];
+
+if ((ammo[scrHMWeaponType(_hml_melee_)] > typ_amax[scrHMWeaponType(_hml_melee_)])) {
+
+ammo[scrHMWeaponType(_hml_melee_)] = typ_amax[scrHMWeaponType(_hml_melee_)];
+
+}
+
+{ var __hm_with8 = scrHMInstances(instance_create(x, y, PopupText)), __hm_break10=false;
+
+for (var __hm_index9=0; __hm_index9<array_length(__hm_with8); ++__hm_index9) {
+
+if(instance_exists(__hm_with8[__hm_index9])) with (__hm_with8[__hm_index9]) {
+
+{
+
+{ var __hm_with11 = scrHMInstances((scrHMOther(other))), __hm_break13=false;
+
+for (var __hm_index12=0; __hm_index12<array_length(__hm_with11); ++__hm_index12) {
+
+if(instance_exists(__hm_with11[__hm_index12])) with (__hm_with11[__hm_index12]) {
+
+{
+
+if ((_hml_melee_ == 1)) {
+
+var __hm_other14=scrHMOther(other);
+
+__hm_other14.mytext = (("+" + string(typ_ammo[_hml_melee_])) + " BULLETS");
+
+} else {
+
+if ((_hml_melee_ == 2)) {
+
+var __hm_other15=scrHMOther(other);
+
+__hm_other15.mytext = (("+" + string(typ_ammo[_hml_melee_])) + " SHELLS");
+
+} else {
+
+if ((_hml_melee_ == 3)) {
+
+var __hm_other16=scrHMOther(other);
+
+__hm_other16.mytext = (("+" + string(typ_ammo[_hml_melee_])) + " BOLTS");
+
+} else {
+
+if ((_hml_melee_ == 4)) {
+
+var __hm_other17=scrHMOther(other);
+
+__hm_other17.mytext = (("+" + string(typ_ammo[_hml_melee_])) + " EXPLOSIVES");
+
+} else {
+
+if ((_hml_melee_ == 5)) {
+
+var __hm_other18=scrHMOther(other);
+
+__hm_other18.mytext = (("+" + string(typ_ammo[_hml_melee_])) + " ENERGY");
+
+}
+
+}
+
+}
+
+}
+
+}
+
+}
+
+}
+
+if(__hm_break13) break;
+
+}}
+
+}
+
+}
+
+if(__hm_break10) break;
+
+}}
+
+}
+
+} else {
+
+{
+
+ammo[scrHMWeaponType(wep)] += typ_ammo[scrHMWeaponType(wep)];
+
+if ((ammo[scrHMWeaponType(wep)] > typ_amax[scrHMWeaponType(wep)])) {
+
+ammo[scrHMWeaponType(wep)] = typ_amax[scrHMWeaponType(wep)];
+
+}
+
+{ var __hm_with19 = scrHMInstances(instance_create(x, y, PopupText)), __hm_break21=false;
+
+for (var __hm_index20=0; __hm_index20<array_length(__hm_with19); ++__hm_index20) {
+
+if(instance_exists(__hm_with19[__hm_index20])) with (__hm_with19[__hm_index20]) {
+
+{
+
+{ var __hm_with22 = scrHMInstances((scrHMOther(other))), __hm_break24=false;
+
+for (var __hm_index23=0; __hm_index23<array_length(__hm_with22); ++__hm_index23) {
+
+if(instance_exists(__hm_with22[__hm_index23])) with (__hm_with22[__hm_index23]) {
+
+{
+
+if ((scrHMWeaponType(wep) == 1)) {
+
+var __hm_other25=scrHMOther(other);
+
+__hm_other25.mytext = (("+" + string(typ_ammo[scrHMWeaponType(wep)])) + " BULLETS");
+
+} else {
+
+if ((scrHMWeaponType(wep) == 2)) {
+
+var __hm_other26=scrHMOther(other);
+
+__hm_other26.mytext = (("+" + string(typ_ammo[scrHMWeaponType(wep)])) + " SHELLS");
+
+} else {
+
+if ((scrHMWeaponType(wep) == 3)) {
+
+var __hm_other27=scrHMOther(other);
+
+__hm_other27.mytext = (("+" + string(typ_ammo[scrHMWeaponType(wep)])) + " BOLTS");
+
+} else {
+
+if ((scrHMWeaponType(wep) == 4)) {
+
+var __hm_other28=scrHMOther(other);
+
+__hm_other28.mytext = (("+" + string(typ_ammo[scrHMWeaponType(wep)])) + " EXPLOSIVES");
+
+} else {
+
+if ((scrHMWeaponType(wep) == 5)) {
+
+var __hm_other29=scrHMOther(other);
+
+__hm_other29.mytext = (("+" + string(typ_ammo[scrHMWeaponType(wep)])) + " ENERGY");
+
+}
+
+}
+
+}
+
+}
+
+}
+
+}
+
+}
+
+if(__hm_break24) break;
+
+}}
+
+}
+
+}
+
+if(__hm_break21) break;
+
+}}
+
+}
+
+}
+
+{ var __hm_with30 = scrHMInstances((scrHMOther(other))), __hm_break32=false;
+
+for (var __hm_index31=0; __hm_index31<array_length(__hm_with30); ++__hm_index31) {
+
+if(instance_exists(__hm_with30[__hm_index31])) with (__hm_with30[__hm_index31]) {
+
+instance_destroy();
+
+}
+
+if(__hm_break32) break;
+
+}}
+
+}
+
+}
+
+}
+
+if(__hm_break7) break;
+
+}}
+
+}
+
+
+
+// Source props.mod.gml:515; MpAmmo_wall
+
+function hm_props_mod_gml_MpAmmo_wall() {
+
+move_bounce_solid(1);
+
+}
+
+
+
+// Source props.mod.gml:520; flag_create
+
+function hm_props_mod_gml_flag_create(_hml__x, _hml__y) {
+
+{ var __hm_with1 = scrHMInstances(instance_create(_hml__x, _hml__y, CustomHitme)), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+{
+
+name = "flag";
+
+on_step = scrHMScriptRef(hm_props_mod_gml_flag_step);
+
+on_hurt = scrHMScriptRef(hm_props_mod_gml_flag_hurt);
+
+image_index = irandom(29);
+
+image_xscale = choose((- 1), 1);
+
+image_speed = (0.4) * timescale;
+
+friction = (30) * (timescale * timescale);
+
+depth = 7;
+
+hp = 3;
+
+spr_shadow = shd24;
+
+if ((GameCont.area == scrHMAreaResolve(1))) {
+
+{
+
+spr_idle = global.hm_module_vars[$ "mod:props"].redflag;
+
+spr_hurt = global.hm_module_vars[$ "mod:props"].redflaghurt;
+
+spr_dead = global.hm_module_vars[$ "mod:props"].redflagdead;
+
+}
+
+} else {
+
+if ((GameCont.area == scrHMAreaResolve(3))) {
+
+{
+
+spr_idle = global.hm_module_vars[$ "mod:props"].blueflag;
+
+spr_hurt = global.hm_module_vars[$ "mod:props"].blueflaghurt;
+
+spr_dead = global.hm_module_vars[$ "mod:props"].blueflagdead;
+
+}
+
+} else {
+
+if ((GameCont.area == scrHMAreaResolve(4))) {
+
+{
+
+spr_idle = global.hm_module_vars[$ "mod:props"].yellowflag;
+
+spr_hurt = global.hm_module_vars[$ "mod:props"].yellowflaghurt;
+
+spr_dead = global.hm_module_vars[$ "mod:props"].yellowflagdead;
+
+}
+
+}
+
+}
+
+}
+
+return id;
+
+;
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+}
+
+
+
+// Source props.mod.gml:549; flag_step
+
+function hm_props_mod_gml_flag_step() {
+
+if ((nexthurt > current_frame)) {
+
+{
+
+if ((sprite_index != spr_hurt)) {
+
+{
+
+image_index = 0;
+
+;
+
+sprite_index = spr_hurt;
+
+;
+
+}
+
+}
+
+}
+
+} else {
+
+{
+
+if (((speed / timescale) > (friction / (timescale * timescale)))) {
+
+sprite_index = spr_walk;
+
+} else {
+
+sprite_index = spr_idle;
+
+}
+
+;
+
+}
+
+}
+
+if ((! place_meeting(x, y, Floor))) {
+
+instance_destroy();
+
+} else {
+
+if (place_meeting(x, y, Wall)) {
+
+instance_destroy();
+
+}
+
+}
+
+}
+
+
+
 // Source props.mod.gml:0; flag_hurt (native content 1.1.0)
 function hm_props_mod_gml_flag_hurt(_hml_damage, _hml_kb_vel, _hml_kb_dir) {
 hp -= _hml_damage;
@@ -1673,467 +2167,928 @@ if(__hm_break6) break;
 }}
 }
 
-// Source props.mod.gml:644; ClamMimic_create
-function hm_props_mod_gml_ClamMimic_create(_hml__x, _hml__y) {
-{ var __hm_with1 = scrHMInstances(instance_create(x, y, CustomEnemy)), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-alarm[1] = 100;
-alarm[2] = 10;
-friction = (300) * (timescale * timescale);
-on_step = scrHMScriptRef(hm_props_mod_gml_ClamMimic_step);
-on_destroy = scrHMScriptRef(hm_props_mod_gml_ClamMimic_dead);
-spr_idle = global.hm_module_vars[$ "mod:props"].ClamMimicIdle;
-spr_fire = global.hm_module_vars[$ "mod:props"].ClamMimicFire;
-spr_tell = global.hm_module_vars[$ "mod:props"].ClamMimicTell;
-spr_hurt = global.hm_module_vars[$ "mod:props"].ClamMimicHurt;
-spr_dead = global.hm_module_vars[$ "mod:props"].ClamMimicDead;
-hitid = [global.hm_module_vars[$ "mod:props"].ClamMimicFire, "MIMIC"];
-hp = 12;
-size = 1;
-canmelee = 1;
-meleedamage = 3;
-team = 1;
-sprite_index = spr_idle;
-;
-return id;
-;
-}
-}
-if(__hm_break3) break;
-}}
-}
-
-// Source props.mod.gml:665; ClamMimic_step
-function hm_props_mod_gml_ClamMimic_step() {
-if ((nexthurt > current_frame)) {
-{
-if ((sprite_index != spr_hurt)) {
-{
-image_index = 0;
-;
-scrHMSoundPlay(sndMimicHurt);
-;
-sprite_index = spr_hurt;
-;
-}
-}
-}
-} else {
-if (((sprite_index != spr_fire) and (sprite_index != spr_tell))) {
-{
-sprite_index = spr_idle;
-}
-}
-}
-if (((sprite_index != spr_fire) and (alarm[1] <= 0))) {
-{
-alarm[1] = random_range(100, 300);
-sprite_index = spr_tell;
-;
-scrHMSoundPlay(sndMimicSlurp);
-instance_create(x, y, Bubble);
-}
-}
-if (((sprite_index == spr_tell) and (image_index >= 14))) {
-{
-alarm[1] = random_range(300, 600);
-sprite_index = spr_idle;
-}
-}
-if (((sprite_index == spr_fire) and (image_index >= 3))) {
-sprite_index = spr_idle;
-}
-if ((alarm[1] > 0)) {
-alarm[1] -= 1;
-}
-if ((alarm[2] > 0)) {
-alarm[2] -= 1;
-}
-if (((place_meeting(x, y, Player) and (alarm[2] <= 0)) and ((sprite_index == spr_idle) || (sprite_index == spr_tell)))) {
-{
-scrHMSoundPlay(sndMimicMelee);
-sprite_index = spr_fire;
-alarm[1] = 100;
-alarm[2] = 30;
-repeat (3) instance_create(x, y, Bubble);
-}
-}
-}
-
-// Source props.mod.gml:703; ClamMimic_dead
-function hm_props_mod_gml_ClamMimic_dead() {
-scrHMSoundPlay(sndMimicDead);
-repeat (2) instance_create(x, y, AmmoPickup);
-}
-
-// Source props.mod.gml:710; fancylid_create
-function hm_props_mod_gml_fancylid_create(_hml__x, _hml__y) {
-{ var __hm_with1 = scrHMInstances(instance_create(_hml__x, _hml__y, CustomObject)), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-name = "fancylid";
-on_step = scrHMScriptRef(hm_props_mod_gml_fancylid_step);
-on_draw = scrHMScriptRef(hm_props_mod_gml_fancylid_draw);
-friction = (0.1) * (timescale * timescale);
-flip = 0;
-starty = (y + 2);
-shadow = (starty - 2);
-right = choose((- 1), 1);
-depth = (- 10);
-image_speed = (0) * timescale;
-turn = random_range(0, 25);
-bounce = random(6);
-sound = 0;
-scrHMMotionAdd(random_range(60, 120), random_range(5, 10));
-repeat (12) {
-{ var __hm_with4 = scrHMInstances(instance_create(x, y, Dust)), __hm_break6=false;
-for (var __hm_index5=0; __hm_index5<array_length(__hm_with4); ++__hm_index5) {
-if(instance_exists(__hm_with4[__hm_index5])) with (__hm_with4[__hm_index5]) {
-scrHMMotionAdd(random(360), random(6));
-}
-if(__hm_break6) break;
-}}
-}
-repeat (6) {
-{ var __hm_with7 = scrHMInstances(instance_create(x, y, Dust)), __hm_break9=false;
-for (var __hm_index8=0; __hm_index8<array_length(__hm_with7); ++__hm_index8) {
-if(instance_exists(__hm_with7[__hm_index8])) with (__hm_with7[__hm_index8]) {
-var __hm_other10=scrHMOther(other);
-scrHMMotionAdd(__hm_other10.direction, random(6));
-}
-if(__hm_break9) break;
-}}
-}
-instance_create(x, y, Portal);
-return id;
-;
-}
-}
-if(__hm_break3) break;
-}}
-}
-
-// Source props.mod.gml:739; fancylid_step
-function hm_props_mod_gml_fancylid_step() {
-sprite_index = global.hm_module_vars[$ "mod:props"].fancylid;
-if (((flip < 1) and (flip >= 0))) {
-image_index = 0;
-} else {
-if (((flip > 1) and (flip < 2))) {
-image_index = 1;
-}
-}
-image_yscale = (flip - 1);
-if (((speed / timescale) > (friction / (timescale * timescale)))) {
-{
-image_angle += turn;
-flip += min(((speed / timescale) / 10), 0.4);
-flip = (flip mod 2);
-;
-}
-}
-if ((y < starty)) {
-{
-depth = (- 10);
-shadow = (starty - 2);
-vspeed += (0.2) * timescale;
-hspeed = (right) * timescale;
-}
-} else {
-{
-if (place_meeting(x, y, Floor)) {
-depth = (- 1);
-}
-shadow = y;
-if ((bounce > 0)) {
-{
-scrHMSoundPlay(sndFootMetRock2);
-speed = (0) * timescale;
-scrHMMotionAdd(random_range(75, 115), random(3));
-bounce -= 1;
-repeat (2) {
-{ var __hm_with1 = scrHMInstances(instance_create(x, y, Dust)), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-scrHMMotionAdd(random(360), random(2));
-var __hm_other4=scrHMOther(other);
-depth = (__hm_other4.depth + 0.1);
-}
-}
-if(__hm_break3) break;
-}}
-}
-}
-} else {
-if ((sound == 0)) {
-{
-scrHMSoundPlay(sndFootMetRock3);
-sound = 1;
-}
-}
-}
-if (((flip < 1) and (flip >= 0))) {
-flip -= 0.1;
-} else {
-if (((flip > 1) and (flip < 2))) {
-flip += 0.1;
-}
-}
-}
-}
-if ((y >= (starty - 12))) {
-{
-if (place_meeting(x, y, projectile)) {
-{
-right = random_range((- 1), 1);
-scrHMMotionAdd(90, ((projectile.knockback_speed / timescale) / 3));
-bounce = random(6);
-sound = 0;
-scrHMSoundPitch(sndGrenadeHitWall, random_range(0.8, 1.2));
-repeat (2) {
-{ var __hm_with5 = scrHMInstances(instance_create(x, y, Dust)), __hm_break7=false;
-for (var __hm_index6=0; __hm_index6<array_length(__hm_with5); ++__hm_index6) {
-if(instance_exists(__hm_with5[__hm_index6])) with (__hm_with5[__hm_index6]) {
-{
-var __hm_other8=scrHMOther(other);
-scrHMMotionAdd(__hm_other8.direction, random(6));
-var __hm_other9=scrHMOther(other);
-depth = (__hm_other9.depth + 0.1);
-}
-}
-if(__hm_break7) break;
-}}
-}
-}
-}
-if (place_meeting(x, y, Explosion)) {
-{
-right = random_range((- 1), 1);
-scrHMMotionAdd(90, random_range(5, 10));
-bounce = random(6);
-sound = 0;
-scrHMSoundPitch(sndGrenadeHitWall, random_range(0.8, 1.2));
-repeat (2) {
-{ var __hm_with10 = scrHMInstances(instance_create(x, y, Dust)), __hm_break12=false;
-for (var __hm_index11=0; __hm_index11<array_length(__hm_with10); ++__hm_index11) {
-if(instance_exists(__hm_with10[__hm_index11])) with (__hm_with10[__hm_index11]) {
-{
-var __hm_other13=scrHMOther(other);
-scrHMMotionAdd(__hm_other13.direction, random(6));
-var __hm_other14=scrHMOther(other);
-depth = (__hm_other14.depth + 0.1);
-}
-}
-if(__hm_break12) break;
-}}
-}
-}
-}
-}
-}
-}
-
-// Source props.mod.gml:813; fancylid_draw
-function hm_props_mod_gml_fancylid_draw() {
-draw_set_color(make_color_rgb(20, 20, 20));
-;
-scrHMDrawSpriteExt(shd24, 1, x, ystart, min(((ystart - y) / 100), 1), min(((ystart - y) / 100), 1), 1, c_white, 0.4);
-;
-scrHMDrawSpriteExt(sprite_index, image_index, x, y, 1, image_yscale, image_angle, c_white, 1);
-;
-scrHMDrawSpriteExt(sprite_index, image_index, x, (y - 1), 1, (image_yscale + 0.1), image_angle, c_white, 1);
-;
-}
-
-// Source props.mod.gml:821; VenuzCar_create
-function hm_props_mod_gml_VenuzCar_create(_hml__x, _hml__y, _hml__h) {
-scrHMCarPrepare106();
-{ var __hm_with1 = scrHMInstances(instance_create(_hml__x, _hml__y, CustomObject)), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-name = "VenuzCar";
-if ((GameCont.area == scrHMAreaResolve(3))) {
-spr_idle = global.hm_module_vars[$ "mod:props"].VenuzCar;
-} else {
-spr_idle = choose(global.hm_module_vars[$ "mod:props"].VenuzCar, global.hm_module_vars[$ "mod:props"].VenuzCar2);
-}
-direction = 180;
-image_angle = 180;
-mask_index = mskSnowTank;
-hitid = [sprVenusCarFixed, "VENUZ CAR"];
-spr_shadow = shd32;
-shd_y = 0;
-friction = (0.01) * (timescale * timescale);
-size = 1;
-canfly = 1;
-team = 0;
-driver = (- 1);
-portal = 200;
-z = _hml__h;
-team = 2;
-riders = 0;
-bg_ = scrHMBackgroundColour105();
-rot = 0;
-if ((z > 0)) {
-rot = choose(1, (- 1));
-}
-image_alpha = 0;
-;
-on_step = scrHMScriptRef(hm_props_mod_gml_VenuzCar_step);
-pla_shd = shd24;
-pla_msk = mskPlayer;
-{ var __hm_with4 = scrHMInstances(scrHMBindDraw(hm_props_mod_gml_VenuzCar_draw, (- 8))), __hm_break6=false;
-for (var __hm_index5=0; __hm_index5<array_length(__hm_with4); ++__hm_index5) {
-if(instance_exists(__hm_with4[__hm_index5])) with (__hm_with4[__hm_index5]) {
-{
-zscale = 1;
-var __hm_other7=scrHMOther(other);
-creator = __hm_other7;
-var __hm_other8=scrHMOther(other);
-image_angle = __hm_other8.image_angle;
-var __hm_other9=scrHMOther(other);
-image_xscale = __hm_other9.image_xscale;
-var __hm_other10=scrHMOther(other);
-image_yscale = __hm_other10.image_yscale;
-var __hm_other11=scrHMOther(other);
-image_speed = ((__hm_other11.image_speed / timescale)) * timescale;
-sprite_index = global.hm_module_vars[$ "mod:props"].VenuzCar;
-}
-}
-if(__hm_break6) break;
-}}
-return id;
-;
-}
-}
-if(__hm_break3) break;
-}}
-}
-
-// Source props.mod.gml:868; VenuzCar_draw
-function hm_props_mod_gml_VenuzCar_draw() {
-if (instance_exists(creator)) {
-{
-if ((creator.portal < 175)) {
-{
-draw_set_alpha((1 - (creator.portal / 175)));
-;
-draw_set_color(0);
-;
-draw_rectangle((view_xview - (view_width / 2)), (view_yview - (view_height / 2)), (view_xview + (view_width * 2)), (view_yview + (view_height * 2)), 0);
-draw_set_color(c_white);
-;
-draw_set_alpha(1);
-;
-}
-}
-image_angle = creator.image_angle;
-var _hml_i = undefined;
-;
-var _hml_j = 0;
-;
-var _hml_g = 0;
-;
-gpu_set_fog(0, 0, 0, 0);
-_hml_j = 0;
-_hml_g = 0;
-var _hml_shad_scale = undefined;
-;
-_hml_shad_scale = (1 - min((0.66 * (creator.z / 96)), 0.66));
-draw_set_color(make_color_rgb(20, 20, 20));
-;
-draw_set_alpha(0.4);
-;
-draw_ellipse(((creator.x - 2) + (12 * _hml_shad_scale)), ((creator.y + (12 * _hml_shad_scale)) + creator.shd_y), ((creator.x - 2) - (12 * _hml_shad_scale)), ((creator.y - (4 * _hml_shad_scale)) + creator.shd_y), 0);
-;
-draw_set_color(c_white);
-;
-draw_set_alpha(1);
-;
-for (_hml_i = 0; (_hml_i <= 8); _hml_i++) {
-repeat (zscale) {
-scrHMDrawSpriteExt(global.hm_module_vars[$ "mod:props"].VenuzCaroutline, clamp(_hml_i, 0, 7), creator.x, ((creator.y - (.5 * (_hml_i + _hml_j))) - creator.z), image_xscale, image_yscale, image_angle, c_white, 1);
-;
-_hml_j += 1;
-;
-}
-}
-for (_hml_i = 0; (_hml_i <= 8); _hml_i++) {
-repeat (zscale) {
-scrHMDrawSpriteExt(creator.spr_idle, clamp(_hml_i, 0, 7), creator.x, ((creator.y - (.5 * (_hml_i + _hml_g))) - creator.z), image_xscale, image_yscale, image_angle, c_white, 1);
-;
-_hml_g += 1;
-;
-}
-}
-}
-} else {
-instance_destroy();
-}
-}
-
-// Source props.mod.gml:909; outsider_draw
-function hm_props_mod_gml_outsider_draw() {
-{ var __hm_with1 = scrHMInstances(creator), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-if ((outside == 1)) {
-{
-draw_set_color(make_color_rgb(20, 20, 20));
-;
-scrHMDrawSpriteExt(pla_shd, 1, x, (y + spr_shadow_y), image_xscale, image_yscale, 1, c_white, 0.4);
-}
-}
-if ((bwep != scrHMWeaponResolve(0))) {
-{
-if ((race != 7)) {
-scrHMDrawSpriteExt(scrHMWeaponSprite(bwep), 0, (x - (right * 2)), (y + 4), 1, ((bwepflip * right) * (- 1)), (90 + (15 * right)), c_silver, 1);
-} else {
-scrHMDrawSpriteExt(scrHMWeaponSprite(bwep), 0, x, y, 1, (right * (- 1)), (gunangle + wepangle), c_white, 1);
-}
-;
-}
-}
-if ((gunangle < 180)) {
-scrHMDrawSpriteExt(scrHMWeaponSprite(wep), 0, x, (y - z), 1, right, (gunangle + wepangle), c_white, 1);
-}
-scrHMDrawSpriteExt(sprite_index, image_index, x, (y - z), right, image_yscale, angle, c_white, 1);
-if ((gunangle >= 180)) {
-scrHMDrawSpriteExt(scrHMWeaponSprite(wep), 0, x, (y - z), 1, right, (gunangle + wepangle), c_white, 1);
-}
-}
-}
-if(__hm_break3) break;
-}}
-scrHMMenuDrawComplete();
-}
-
-// Source props.mod.gml:928; E
-function hm_props_mod_gml_E() {
-{ var __hm_with1 = scrHMInstances(creator), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-scrHMDrawSprite(sprEPickup, 0, x, ((y - 7) - z));
-draw_set_color(c_black);
-scrHMDrawTextPlain((x - 31), ((y - 30) - z), string(name));
-scrHMDrawTextPlain(((x + 1) - 31), ((y - 30) - z), string(name));
-scrHMDrawTextPlain(((x + 1) - 31), ((y - 31) - z), string(name));
-draw_set_color(c_white);
-scrHMDrawTextPlain((x - 31), ((y - 31) - z), string(name));
-}
-}
-if(__hm_break3) break;
-}}
-scrHMMenuDrawComplete();
-}
-
+// Source props.mod.gml:644; ClamMimic_create
+
+function hm_props_mod_gml_ClamMimic_create(_hml__x, _hml__y) {
+
+{ var __hm_with1 = scrHMInstances(instance_create(x, y, CustomEnemy)), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+{
+
+alarm[1] = 100;
+
+alarm[2] = 10;
+
+friction = (300) * (timescale * timescale);
+
+on_step = scrHMScriptRef(hm_props_mod_gml_ClamMimic_step);
+
+on_destroy = scrHMScriptRef(hm_props_mod_gml_ClamMimic_dead);
+
+spr_idle = global.hm_module_vars[$ "mod:props"].ClamMimicIdle;
+
+spr_fire = global.hm_module_vars[$ "mod:props"].ClamMimicFire;
+
+spr_tell = global.hm_module_vars[$ "mod:props"].ClamMimicTell;
+
+spr_hurt = global.hm_module_vars[$ "mod:props"].ClamMimicHurt;
+
+spr_dead = global.hm_module_vars[$ "mod:props"].ClamMimicDead;
+
+hitid = [global.hm_module_vars[$ "mod:props"].ClamMimicFire, "MIMIC"];
+
+hp = 12;
+
+size = 1;
+
+canmelee = 1;
+
+meleedamage = 3;
+
+team = 1;
+
+sprite_index = spr_idle;
+
+;
+
+return id;
+
+;
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+}
+
+
+
+// Source props.mod.gml:665; ClamMimic_step
+
+function hm_props_mod_gml_ClamMimic_step() {
+
+if ((nexthurt > current_frame)) {
+
+{
+
+if ((sprite_index != spr_hurt)) {
+
+{
+
+image_index = 0;
+
+;
+
+scrHMSoundPlay(sndMimicHurt);
+
+;
+
+sprite_index = spr_hurt;
+
+;
+
+}
+
+}
+
+}
+
+} else {
+
+if (((sprite_index != spr_fire) and (sprite_index != spr_tell))) {
+
+{
+
+sprite_index = spr_idle;
+
+}
+
+}
+
+}
+
+if (((sprite_index != spr_fire) and (alarm[1] <= 0))) {
+
+{
+
+alarm[1] = random_range(100, 300);
+
+sprite_index = spr_tell;
+
+;
+
+scrHMSoundPlay(sndMimicSlurp);
+
+instance_create(x, y, Bubble);
+
+}
+
+}
+
+if (((sprite_index == spr_tell) and (image_index >= 14))) {
+
+{
+
+alarm[1] = random_range(300, 600);
+
+sprite_index = spr_idle;
+
+}
+
+}
+
+if (((sprite_index == spr_fire) and (image_index >= 3))) {
+
+sprite_index = spr_idle;
+
+}
+
+if ((alarm[1] > 0)) {
+
+alarm[1] -= 1;
+
+}
+
+if ((alarm[2] > 0)) {
+
+alarm[2] -= 1;
+
+}
+
+if (((place_meeting(x, y, Player) and (alarm[2] <= 0)) and ((sprite_index == spr_idle) || (sprite_index == spr_tell)))) {
+
+{
+
+scrHMSoundPlay(sndMimicMelee);
+
+sprite_index = spr_fire;
+
+alarm[1] = 100;
+
+alarm[2] = 30;
+
+repeat (3) instance_create(x, y, Bubble);
+
+}
+
+}
+
+}
+
+
+
+// Source props.mod.gml:703; ClamMimic_dead
+
+function hm_props_mod_gml_ClamMimic_dead() {
+
+scrHMSoundPlay(sndMimicDead);
+
+repeat (2) instance_create(x, y, AmmoPickup);
+
+}
+
+
+
+// Source props.mod.gml:710; fancylid_create
+
+function hm_props_mod_gml_fancylid_create(_hml__x, _hml__y) {
+
+{ var __hm_with1 = scrHMInstances(instance_create(_hml__x, _hml__y, CustomObject)), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+{
+
+name = "fancylid";
+
+on_step = scrHMScriptRef(hm_props_mod_gml_fancylid_step);
+
+on_draw = scrHMScriptRef(hm_props_mod_gml_fancylid_draw);
+
+friction = (0.1) * (timescale * timescale);
+
+flip = 0;
+
+starty = (y + 2);
+
+shadow = (starty - 2);
+
+right = choose((- 1), 1);
+
+depth = (- 10);
+
+image_speed = (0) * timescale;
+
+turn = random_range(0, 25);
+
+bounce = random(6);
+
+sound = 0;
+
+scrHMMotionAdd(random_range(60, 120), random_range(5, 10));
+
+repeat (12) {
+
+{ var __hm_with4 = scrHMInstances(instance_create(x, y, Dust)), __hm_break6=false;
+
+for (var __hm_index5=0; __hm_index5<array_length(__hm_with4); ++__hm_index5) {
+
+if(instance_exists(__hm_with4[__hm_index5])) with (__hm_with4[__hm_index5]) {
+
+scrHMMotionAdd(random(360), random(6));
+
+}
+
+if(__hm_break6) break;
+
+}}
+
+}
+
+repeat (6) {
+
+{ var __hm_with7 = scrHMInstances(instance_create(x, y, Dust)), __hm_break9=false;
+
+for (var __hm_index8=0; __hm_index8<array_length(__hm_with7); ++__hm_index8) {
+
+if(instance_exists(__hm_with7[__hm_index8])) with (__hm_with7[__hm_index8]) {
+
+var __hm_other10=scrHMOther(other);
+
+scrHMMotionAdd(__hm_other10.direction, random(6));
+
+}
+
+if(__hm_break9) break;
+
+}}
+
+}
+
+instance_create(x, y, Portal);
+
+return id;
+
+;
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+}
+
+
+
+// Source props.mod.gml:739; fancylid_step
+
+function hm_props_mod_gml_fancylid_step() {
+
+sprite_index = global.hm_module_vars[$ "mod:props"].fancylid;
+
+if (((flip < 1) and (flip >= 0))) {
+
+image_index = 0;
+
+} else {
+
+if (((flip > 1) and (flip < 2))) {
+
+image_index = 1;
+
+}
+
+}
+
+image_yscale = (flip - 1);
+
+if (((speed / timescale) > (friction / (timescale * timescale)))) {
+
+{
+
+image_angle += turn;
+
+flip += min(((speed / timescale) / 10), 0.4);
+
+flip = (flip mod 2);
+
+;
+
+}
+
+}
+
+if ((y < starty)) {
+
+{
+
+depth = (- 10);
+
+shadow = (starty - 2);
+
+vspeed += (0.2) * timescale;
+
+hspeed = (right) * timescale;
+
+}
+
+} else {
+
+{
+
+if (place_meeting(x, y, Floor)) {
+
+depth = (- 1);
+
+}
+
+shadow = y;
+
+if ((bounce > 0)) {
+
+{
+
+scrHMSoundPlay(sndFootMetRock2);
+
+speed = (0) * timescale;
+
+scrHMMotionAdd(random_range(75, 115), random(3));
+
+bounce -= 1;
+
+repeat (2) {
+
+{ var __hm_with1 = scrHMInstances(instance_create(x, y, Dust)), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+{
+
+scrHMMotionAdd(random(360), random(2));
+
+var __hm_other4=scrHMOther(other);
+
+depth = (__hm_other4.depth + 0.1);
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+}
+
+}
+
+} else {
+
+if ((sound == 0)) {
+
+{
+
+scrHMSoundPlay(sndFootMetRock3);
+
+sound = 1;
+
+}
+
+}
+
+}
+
+if (((flip < 1) and (flip >= 0))) {
+
+flip -= 0.1;
+
+} else {
+
+if (((flip > 1) and (flip < 2))) {
+
+flip += 0.1;
+
+}
+
+}
+
+}
+
+}
+
+if ((y >= (starty - 12))) {
+
+{
+
+if (place_meeting(x, y, projectile)) {
+
+{
+
+right = random_range((- 1), 1);
+
+scrHMMotionAdd(90, ((projectile.knockback_speed / timescale) / 3));
+
+bounce = random(6);
+
+sound = 0;
+
+scrHMSoundPitch(sndGrenadeHitWall, random_range(0.8, 1.2));
+
+repeat (2) {
+
+{ var __hm_with5 = scrHMInstances(instance_create(x, y, Dust)), __hm_break7=false;
+
+for (var __hm_index6=0; __hm_index6<array_length(__hm_with5); ++__hm_index6) {
+
+if(instance_exists(__hm_with5[__hm_index6])) with (__hm_with5[__hm_index6]) {
+
+{
+
+var __hm_other8=scrHMOther(other);
+
+scrHMMotionAdd(__hm_other8.direction, random(6));
+
+var __hm_other9=scrHMOther(other);
+
+depth = (__hm_other9.depth + 0.1);
+
+}
+
+}
+
+if(__hm_break7) break;
+
+}}
+
+}
+
+}
+
+}
+
+if (place_meeting(x, y, Explosion)) {
+
+{
+
+right = random_range((- 1), 1);
+
+scrHMMotionAdd(90, random_range(5, 10));
+
+bounce = random(6);
+
+sound = 0;
+
+scrHMSoundPitch(sndGrenadeHitWall, random_range(0.8, 1.2));
+
+repeat (2) {
+
+{ var __hm_with10 = scrHMInstances(instance_create(x, y, Dust)), __hm_break12=false;
+
+for (var __hm_index11=0; __hm_index11<array_length(__hm_with10); ++__hm_index11) {
+
+if(instance_exists(__hm_with10[__hm_index11])) with (__hm_with10[__hm_index11]) {
+
+{
+
+var __hm_other13=scrHMOther(other);
+
+scrHMMotionAdd(__hm_other13.direction, random(6));
+
+var __hm_other14=scrHMOther(other);
+
+depth = (__hm_other14.depth + 0.1);
+
+}
+
+}
+
+if(__hm_break12) break;
+
+}}
+
+}
+
+}
+
+}
+
+}
+
+}
+
+}
+
+
+
+// Source props.mod.gml:813; fancylid_draw
+
+function hm_props_mod_gml_fancylid_draw() {
+
+draw_set_color(make_color_rgb(20, 20, 20));
+
+;
+
+scrHMDrawSpriteExt(shd24, 1, x, ystart, min(((ystart - y) / 100), 1), min(((ystart - y) / 100), 1), 1, c_white, 0.4);
+
+;
+
+scrHMDrawSpriteExt(sprite_index, image_index, x, y, 1, image_yscale, image_angle, c_white, 1);
+
+;
+
+scrHMDrawSpriteExt(sprite_index, image_index, x, (y - 1), 1, (image_yscale + 0.1), image_angle, c_white, 1);
+
+;
+
+}
+
+
+
+// Source props.mod.gml:821; VenuzCar_create
+
+function hm_props_mod_gml_VenuzCar_create(_hml__x, _hml__y, _hml__h) {
+
+scrHMCarPrepare106();
+
+{ var __hm_with1 = scrHMInstances(instance_create(_hml__x, _hml__y, CustomObject)), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+{
+
+name = "VenuzCar";
+
+if ((GameCont.area == scrHMAreaResolve(3))) {
+
+spr_idle = global.hm_module_vars[$ "mod:props"].VenuzCar;
+
+} else {
+
+spr_idle = choose(global.hm_module_vars[$ "mod:props"].VenuzCar, global.hm_module_vars[$ "mod:props"].VenuzCar2);
+
+}
+
+direction = 180;
+
+image_angle = 180;
+
+mask_index = mskSnowTank;
+
+hitid = [sprVenusCarFixed, "VENUZ CAR"];
+
+spr_shadow = shd32;
+
+shd_y = 0;
+
+friction = (0.01) * (timescale * timescale);
+
+size = 1;
+
+canfly = 1;
+
+team = 0;
+
+driver = (- 1);
+
+portal = 200;
+
+z = _hml__h;
+
+team = 2;
+
+riders = 0;
+
+bg_ = scrHMBackgroundColour105();
+
+rot = 0;
+
+if ((z > 0)) {
+
+rot = choose(1, (- 1));
+
+}
+
+image_alpha = 0;
+
+;
+
+on_step = scrHMScriptRef(hm_props_mod_gml_VenuzCar_step);
+
+pla_shd = shd24;
+
+pla_msk = mskPlayer;
+
+{ var __hm_with4 = scrHMInstances(scrHMBindDraw(hm_props_mod_gml_VenuzCar_draw, (- 8))), __hm_break6=false;
+
+for (var __hm_index5=0; __hm_index5<array_length(__hm_with4); ++__hm_index5) {
+
+if(instance_exists(__hm_with4[__hm_index5])) with (__hm_with4[__hm_index5]) {
+
+{
+
+zscale = 1;
+
+var __hm_other7=scrHMOther(other);
+
+creator = __hm_other7;
+
+var __hm_other8=scrHMOther(other);
+
+image_angle = __hm_other8.image_angle;
+
+var __hm_other9=scrHMOther(other);
+
+image_xscale = __hm_other9.image_xscale;
+
+var __hm_other10=scrHMOther(other);
+
+image_yscale = __hm_other10.image_yscale;
+
+var __hm_other11=scrHMOther(other);
+
+image_speed = ((__hm_other11.image_speed / timescale)) * timescale;
+
+sprite_index = global.hm_module_vars[$ "mod:props"].VenuzCar;
+
+}
+
+}
+
+if(__hm_break6) break;
+
+}}
+
+return id;
+
+;
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+}
+
+
+
+// Source props.mod.gml:868; VenuzCar_draw
+
+function hm_props_mod_gml_VenuzCar_draw() {
+
+if (instance_exists(creator)) {
+
+{
+
+if ((creator.portal < 175)) {
+
+{
+
+draw_set_alpha((1 - (creator.portal / 175)));
+
+;
+
+draw_set_color(0);
+
+;
+
+draw_rectangle((view_xview - (view_width / 2)), (view_yview - (view_height / 2)), (view_xview + (view_width * 2)), (view_yview + (view_height * 2)), 0);
+
+draw_set_color(c_white);
+
+;
+
+draw_set_alpha(1);
+
+;
+
+}
+
+}
+
+image_angle = creator.image_angle;
+
+var _hml_i = undefined;
+
+;
+
+var _hml_j = 0;
+
+;
+
+var _hml_g = 0;
+
+;
+
+gpu_set_fog(0, 0, 0, 0);
+
+_hml_j = 0;
+
+_hml_g = 0;
+
+var _hml_shad_scale = undefined;
+
+;
+
+_hml_shad_scale = (1 - min((0.66 * (creator.z / 96)), 0.66));
+
+draw_set_color(make_color_rgb(20, 20, 20));
+
+;
+
+draw_set_alpha(0.4);
+
+;
+
+draw_ellipse(((creator.x - 2) + (12 * _hml_shad_scale)), ((creator.y + (12 * _hml_shad_scale)) + creator.shd_y), ((creator.x - 2) - (12 * _hml_shad_scale)), ((creator.y - (4 * _hml_shad_scale)) + creator.shd_y), 0);
+
+;
+
+draw_set_color(c_white);
+
+;
+
+draw_set_alpha(1);
+
+;
+
+for (_hml_i = 0; (_hml_i <= 8); _hml_i++) {
+
+repeat (zscale) {
+
+scrHMDrawSpriteExt(global.hm_module_vars[$ "mod:props"].VenuzCaroutline, clamp(_hml_i, 0, 7), creator.x, ((creator.y - (.5 * (_hml_i + _hml_j))) - creator.z), image_xscale, image_yscale, image_angle, c_white, 1);
+
+;
+
+_hml_j += 1;
+
+;
+
+}
+
+}
+
+for (_hml_i = 0; (_hml_i <= 8); _hml_i++) {
+
+repeat (zscale) {
+
+scrHMDrawSpriteExt(creator.spr_idle, clamp(_hml_i, 0, 7), creator.x, ((creator.y - (.5 * (_hml_i + _hml_g))) - creator.z), image_xscale, image_yscale, image_angle, c_white, 1);
+
+;
+
+_hml_g += 1;
+
+;
+
+}
+
+}
+
+}
+
+} else {
+
+instance_destroy();
+
+}
+
+}
+
+
+
+// Source props.mod.gml:909; outsider_draw
+
+function hm_props_mod_gml_outsider_draw() {
+
+{ var __hm_with1 = scrHMInstances(creator), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+{
+
+if ((outside == 1)) {
+
+{
+
+draw_set_color(make_color_rgb(20, 20, 20));
+
+;
+
+scrHMDrawSpriteExt(pla_shd, 1, x, (y + spr_shadow_y), image_xscale, image_yscale, 1, c_white, 0.4);
+
+}
+
+}
+
+if ((bwep != scrHMWeaponResolve(0))) {
+
+{
+
+if ((race != 7)) {
+
+scrHMDrawSpriteExt(scrHMWeaponSprite(bwep), 0, (x - (right * 2)), (y + 4), 1, ((bwepflip * right) * (- 1)), (90 + (15 * right)), c_silver, 1);
+
+} else {
+
+scrHMDrawSpriteExt(scrHMWeaponSprite(bwep), 0, x, y, 1, (right * (- 1)), (gunangle + wepangle), c_white, 1);
+
+}
+
+;
+
+}
+
+}
+
+if ((gunangle < 180)) {
+
+scrHMDrawSpriteExt(scrHMWeaponSprite(wep), 0, x, (y - z), 1, right, (gunangle + wepangle), c_white, 1);
+
+}
+
+scrHMDrawSpriteExt(sprite_index, image_index, x, (y - z), right, image_yscale, angle, c_white, 1);
+
+if ((gunangle >= 180)) {
+
+scrHMDrawSpriteExt(scrHMWeaponSprite(wep), 0, x, (y - z), 1, right, (gunangle + wepangle), c_white, 1);
+
+}
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+scrHMMenuDrawComplete();
+
+}
+
+
+
+// Source props.mod.gml:928; E
+
+function hm_props_mod_gml_E() {
+
+{ var __hm_with1 = scrHMInstances(creator), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+{
+
+scrHMDrawSprite(sprEPickup, 0, x, ((y - 7) - z));
+
+draw_set_color(c_black);
+
+scrHMDrawTextPlain((x - 31), ((y - 30) - z), string(name));
+
+scrHMDrawTextPlain(((x + 1) - 31), ((y - 30) - z), string(name));
+
+scrHMDrawTextPlain(((x + 1) - 31), ((y - 31) - z), string(name));
+
+draw_set_color(c_white);
+
+scrHMDrawTextPlain((x - 31), ((y - 31) - z), string(name));
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+scrHMMenuDrawComplete();
+
+}
+
+
+
 // Source props.mod.gml:0; VenuzCar_step (native content 1.1.0)
 function hm_props_mod_gml_VenuzCar_step() {
 scrHMCarSteer108();
@@ -2807,1162 +3762,2318 @@ if(__hm_break120) break;
 }
 }
 
-// Source props.mod.gml:1289; VenuzDoor_create
-function hm_props_mod_gml_VenuzDoor_create(_hml__x, _hml__y, _hml__door) {
-{ var __hm_with1 = scrHMInstances(instance_create(_hml__x, _hml__y, CustomObject)), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-name = "door";
-team = 0;
-side = 0;
-ox = _hml__x;
-oy = _hml__y;
-if (((GameCont.subarea <= 3) || (GameCont.subarea == 100))) {
-spr_idle = global.hm_module_vars[$ "mod:props"].VenuzDoor;
-} else {
-if ((((GameCont.subarea <= 6) and (GameCont.subarea > 3)) || (GameCont.subarea == 200))) {
-spr_idle = global.hm_module_vars[$ "mod:props"].VenuzDoor2;
-} else {
-if ((((GameCont.subarea <= 9) and (GameCont.subarea > 6)) || (GameCont.subarea == 300))) {
-spr_idle = global.hm_module_vars[$ "mod:props"].VenuzDoor3;
-} else {
-if ((((GameCont.subarea >= 10) and (GameCont.subarea < 100)) || (GameCont.subarea >= 400))) {
-spr_idle = global.hm_module_vars[$ "mod:props"].VenuzDoor4;
-}
-}
-}
-}
-open = 0;
-if ((_hml__door == "A")) {
-number = 1;
-} else {
-if ((_hml__door == "B")) {
-number = 2;
-} else {
-if ((_hml__door == "C")) {
-number = 3;
-} else {
-if ((_hml__door == "D")) {
-number = 4;
-} else {
-if ((_hml__door == "E")) {
-number = 5;
-} else {
-if ((_hml__door == "F")) {
-number = 6;
-} else {
-if ((_hml__door == "G")) {
-number = 7;
-} else {
-if ((_hml__door == "H")) {
-number = 8;
-} else {
-if ((_hml__door == "I")) {
-number = 9;
-} else {
-if ((_hml__door == "J")) {
-number = 10;
-} else {
-if ((_hml__door == "K")) {
-number = 11;
-} else {
-number = 0;
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-shadow = 1;
-depth = (- 1);
-friction = (300) * (timescale * timescale);
-hp = 100;
-on_step = scrHMScriptRef(hm_props_mod_gml_VenuzDoor_step);
-return id;
-;
-}
-}
-if(__hm_break3) break;
-}}
-}
-
-// Source props.mod.gml:1335; VenuzDoorSide_create
-function hm_props_mod_gml_VenuzDoorSide_create() {
-var _args = [];
-for(var _i=0;_i<argument_count;++_i) array_push(_args, argument[_i]);
-return scrHMTaskStart(hm_props_mod_gml_VenuzDoorSide_create_resume, id, scrHMOther(other), _args, 11, ["_x", "_y", "_door"]);
-}
-function hm_props_mod_gml_VenuzDoorSide_create_resume(_hm) {
-var _budget=0;
-while(!_hm.done) {
-assert(++_budget<100000,"Hardmode runaway continuation: hm_props_mod_gml_VenuzDoorSide_create");
-if (!instance_exists(_hm.scope)) { if(array_length(_hm.with_stack)>_hm.with_floor) {scrHMTaskWithNext(_hm); continue;} _hm.done=true; return; }
-with (_hm.scope) { switch (_hm.pc) {
-case 0: _hm.done=true; return;
-case 1: // props.mod.gml:1336
-scrHMTaskWithNext(_hm);
-break;
-case 2: // props.mod.gml:1336
-scrHMTaskWithAbort(_hm);
-break;
-case 3: // props.mod.gml:1391
-{
-;
-}
-_hm.pc=1;
-break;
-case 4: // props.mod.gml:1391
-_hm.result=id; _hm.done=true; return;
-break;
-case 5: // props.mod.gml:1389
-{
-;
-}
-_hm.pc=4;
-break;
-case 6: // props.mod.gml:1389
-_hm.result=undefined; _hm.done=true; return;
-break;
-case 7: // props.mod.gml:1381
-{
-if (instance_exists(Wall)) {
-{
-{ var __hm_with1 = scrHMInstances(instance_create((x - 16), ((y - 16) - 16), Effect)), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-sprite_index = (instance_nearest(x, y, Wall)).sprite_index;
-image_speed = (0) * timescale;
-}
-}
-if(__hm_break3) break;
-}}
-{ var __hm_with4 = scrHMInstances(instance_create(x, ((y - 16) - 16), Effect)), __hm_break6=false;
-for (var __hm_index5=0; __hm_index5<array_length(__hm_with4); ++__hm_index5) {
-if(instance_exists(__hm_with4[__hm_index5])) with (__hm_with4[__hm_index5]) {
-{
-sprite_index = (instance_nearest(x, y, Wall)).sprite_index;
-image_speed = (0) * timescale;
-}
-}
-if(__hm_break6) break;
-}}
-}
-}
-}
-_hm.pc=6;
-break;
-case 8: // props.mod.gml:1380
-_hm.wait_ticks=max(0,2); _hm.pc=7; return;
-break;
-case 9: // props.mod.gml:1379
-_hm.pc = (scrHMTaskFork(_hm, 8)) ? 8 : 4;
-break;
-case 10: // props.mod.gml:1337
-{
-name = "door";
-side = 1;
-team = 0;
-ox = _hm.vars._x;
-oy = _hm.vars._y;
-if (((GameCont.subarea <= 3) || (GameCont.subarea == 100))) {
-spr_idle = global.hm_module_vars[$ "mod:props"].VenuzDoorSide;
-} else {
-if ((((GameCont.subarea <= 6) and (GameCont.subarea > 3)) || (GameCont.subarea == 200))) {
-spr_idle = global.hm_module_vars[$ "mod:props"].VenuzDoor2Side;
-} else {
-if ((((GameCont.subarea <= 9) and (GameCont.subarea > 6)) || (GameCont.subarea == 300))) {
-spr_idle = global.hm_module_vars[$ "mod:props"].VenuzDoor3Side;
-} else {
-if ((((GameCont.subarea >= 10) and (GameCont.subarea < 100)) || (GameCont.subarea >= 400))) {
-spr_idle = global.hm_module_vars[$ "mod:props"].VenuzDoor4Side;
-}
-}
-}
-}
-open = 0;
-if ((_hm.vars._door == "A")) {
-number = 1;
-} else {
-if ((_hm.vars._door == "B")) {
-number = 2;
-} else {
-if ((_hm.vars._door == "C")) {
-number = 3;
-} else {
-if ((_hm.vars._door == "D")) {
-number = 4;
-} else {
-if ((_hm.vars._door == "E")) {
-number = 5;
-} else {
-if ((_hm.vars._door == "F")) {
-number = 6;
-} else {
-if ((_hm.vars._door == "G")) {
-number = 7;
-} else {
-if ((_hm.vars._door == "H")) {
-number = 8;
-} else {
-if ((_hm.vars._door == "I")) {
-number = 9;
-} else {
-if ((_hm.vars._door == "J")) {
-number = 10;
-} else {
-if ((_hm.vars._door == "K")) {
-number = 11;
-} else {
-number = 0;
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-shadow = 1;
-depth = (- 1);
-friction = (300) * (timescale * timescale);
-hp = 100;
-on_step = scrHMScriptRef(hm_props_mod_gml_VenuzDoor_step);
-}
-_hm.pc=9;
-break;
-case 11: // props.mod.gml:1336
-scrHMTaskWithEnter(_hm,scrHMInstances(instance_create(_hm.vars._x, _hm.vars._y, CustomObject)),10,0);
-break;
-default: throw "Hardmode invalid continuation PC";
-}}
-}
-}
-
-
-// Source props.mod.gml:1393; VenuzDoor_step
-function hm_props_mod_gml_VenuzDoor_step() {
-if ((open == 0)) {
-{
-{ var __hm_with1 = scrHMInstances(instance_nearest(x, y, DustOLD)), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-if ((distance_to_object((scrHMOther(other))) < 63)) {
-{
-var __hm_other4=scrHMOther(other);
-x = (__hm_other4.x - 16);
-var __hm_other5=scrHMOther(other);
-y = (__hm_other5.y - 16);
-}
-}
-}
-if(__hm_break3) break;
-}}
-if ((! place_meeting(x, y, Floor))) {
-instance_create((x - 16), (y - 16), Floor);
-}
-{ var __hm_with6 = scrHMInstances(instance_nearest(x, y, InvisiWall)), __hm_break8=false;
-for (var __hm_index7=0; __hm_index7<array_length(__hm_with6); ++__hm_index7) {
-if(instance_exists(__hm_with6[__hm_index7])) with (__hm_with6[__hm_index7]) {
-if (place_meeting(x, y, (scrHMOther(other)))) {
-scrHMDelete(id);
-}
-}
-if(__hm_break8) break;
-}}
-}
-}
-sprite_index = spr_idle;
-;
-{ var __hm_with9 = scrHMMatchingGT(hitme, "speed", 0), __hm_break11=false;
-for (var __hm_index10=0; __hm_index10<array_length(__hm_with9); ++__hm_index10) {
-if(instance_exists(__hm_with9[__hm_index10])) with (__hm_with9[__hm_index10]) {
-if (place_meeting(x, y, (scrHMOther(other)))) {
-{
-if (((scrHMOther(other)).side == 0)) {
-{
-if ((y > (scrHMOther(other)).y)) {
-direction = 270;
-} else {
-if ((y < (scrHMOther(other)).y)) {
-direction = 90;
-}
-}
-}
-} else {
-{
-if ((x > (scrHMOther(other)).x)) {
-direction = 0;
-} else {
-if ((x < (scrHMOther(other)).x)) {
-direction = 180;
-}
-}
-}
-}
-}
-}
-}
-if(__hm_break11) break;
-}}
-{ var __hm_with12 = scrHMInstances(Rocket), __hm_break14=false;
-for (var __hm_index13=0; __hm_index13<array_length(__hm_with12); ++__hm_index13) {
-if(instance_exists(__hm_with12[__hm_index13])) with (__hm_with12[__hm_index13]) {
-if (place_meeting((x + (hspeed / timescale)), (y + (vspeed / timescale)), (scrHMOther(other)))) {
-{
-{ var __hm_with15 = scrHMInstances(instance_create(x, y, Explosion)), __hm_break17=false;
-for (var __hm_index16=0; __hm_index16<array_length(__hm_with15); ++__hm_index16) {
-if(instance_exists(__hm_with15[__hm_index16])) with (__hm_with15[__hm_index16]) {
-mask_index = mskNone;
-}
-if(__hm_break17) break;
-}}
-scrHMDelete(id);
-}
-}
-}
-if(__hm_break14) break;
-}}
-{ var __hm_with18 = scrHMInstances(projectile), __hm_break20=false;
-for (var __hm_index19=0; __hm_index19<array_length(__hm_with18); ++__hm_index19) {
-if(instance_exists(__hm_with18[__hm_index19])) with (__hm_with18[__hm_index19]) {
-if (place_meeting(x, y, (scrHMOther(other)))) {
-instance_destroy();
-}
-}
-if(__hm_break20) break;
-}}
-if (((distance_to_object(Player) <= 16) and (open == 0))) {
-{
-open = choose((- 1), 1);
-{ var __hm_with21 = scrHMMatching(Effect, "name", "secret"), __hm_break23=false;
-for (var __hm_index22=0; __hm_index22<array_length(__hm_with21); ++__hm_index22) {
-if(instance_exists(__hm_with21[__hm_index22])) with (__hm_with21[__hm_index22]) {
-{
-if ((distance_to_object((scrHMOther(other))) < 32)) {
-{
-scrHMTrace("my_dreams");
-scrHMDelete(id);
-}
-}
-}
-}
-if(__hm_break23) break;
-}}
-{ var __hm_with24 = scrHMMatching(CustomObject, "door", number), __hm_break26=false;
-for (var __hm_index25=0; __hm_index25<array_length(__hm_with24); ++__hm_index25) {
-if(instance_exists(__hm_with24[__hm_index25])) with (__hm_with24[__hm_index25]) {
-{
-switch (name) {
-case "floor":
-{ var __hm_with27 = scrHMInstances(instance_create(x, y, Floor)), __hm_break29=false;
-for (var __hm_index28=0; __hm_index28<array_length(__hm_with27); ++__hm_index28) {
-if(instance_exists(__hm_with27[__hm_index28])) with (__hm_with27[__hm_index28]) {
-{
-repeat (4) {
-{ var __hm_with30 = scrHMInstances(instance_nearest((x + 16), (y + 16), InvisiWall)), __hm_break32=false;
-for (var __hm_index31=0; __hm_index31<array_length(__hm_with30); ++__hm_index31) {
-if(instance_exists(__hm_with30[__hm_index31])) with (__hm_with30[__hm_index31]) {
-if (place_meeting(x, y, (scrHMOther(other)))) {
-scrHMDelete(id);
-}
-}
-if(__hm_break32) break;
-}}
-{ var __hm_with33 = scrHMInstances(instance_nearest((x + 16), (y + 16), FloorExplo)), __hm_break35=false;
-for (var __hm_index34=0; __hm_index34<array_length(__hm_with33); ++__hm_index34) {
-if(instance_exists(__hm_with33[__hm_index34])) with (__hm_with33[__hm_index34]) {
-if (place_meeting(x, y, (scrHMOther(other)))) {
-scrHMDelete(id);
-}
-}
-if(__hm_break35) break;
-}}
-{ var __hm_with36 = scrHMInstances(instance_nearest((x + 16), (y + 16), Wall)), __hm_break38=false;
-for (var __hm_index37=0; __hm_index37<array_length(__hm_with36); ++__hm_index37) {
-if(instance_exists(__hm_with36[__hm_index37])) with (__hm_with36[__hm_index37]) {
-if (place_meeting(x, y, (scrHMOther(other)))) {
-scrHMDelete(id);
-}
-}
-if(__hm_break38) break;
-}}
-}
-}
-}
-if(__hm_break29) break;
-}}
-break;
-;
-case "prisoner":
-scrHMModCall("mod", "enemies", "prisoner_create", x, y);
-;
-break;
-;
-case "Molefish":
-scrHMModCall("mod", "enemies", "Molefish_create", x, y);
-;
-break;
-;
-case "Molesarge":
-scrHMModCall("mod", "enemies", "Molesarge_create", x, y);
-;
-break;
-;
-case "Minigunner":
-scrHMModCall("mod", "enemies", "Minigunner_create", x, y);
-;
-break;
-;
-case "Jock":
-{ var __hm_with39 = scrHMInstances(instance_create(x, y, Jock)), __hm_break41=false;
-for (var __hm_index40=0; __hm_index40<array_length(__hm_with39); ++__hm_index40) {
-if(instance_exists(__hm_with39[__hm_index40])) with (__hm_with39[__hm_index40]) {
-{
-raddrop = 0;
-;
-hp *= 2;
-;
-wepseed = (- 4);
-}
-}
-if(__hm_break41) break;
-}}
-break;
-;
-case "Charger":
-scrHMModCall("mod", "enemies", "Monster_create", x, y);
-;
-break;
-;
-case "FireBaller":
-{ var __hm_with42 = scrHMInstances(instance_create(x, y, FireBaller)), __hm_break44=false;
-for (var __hm_index43=0; __hm_index43<array_length(__hm_with42); ++__hm_index43) {
-if(instance_exists(__hm_with42[__hm_index43])) with (__hm_with42[__hm_index43]) {
-{
-raddrop = 0;
-;
-hp *= 1.5;
-;
-wepseed = (- 4);
-}
-}
-if(__hm_break44) break;
-}}
-break;
-;
-case "SuperFireBaller":
-{ var __hm_with45 = scrHMInstances(instance_create(x, y, SuperFireBaller)), __hm_break47=false;
-for (var __hm_index46=0; __hm_index46<array_length(__hm_with45); ++__hm_index46) {
-if(instance_exists(__hm_with45[__hm_index46])) with (__hm_with45[__hm_index46]) {
-{
-raddrop = 0;
-;
-hp *= 2;
-;
-wepseed = (- 4);
-}
-}
-if(__hm_break47) break;
-}}
-break;
-;
-case "Turtle":
-scrHMModCall("mod", "enemies", "Chick_create", x, y);
-;
-break;
-;
-case "HP":
-instance_create(x, y, HealthChest);
-break;
-;
-}
-instance_destroy();
-}
-}
-if(__hm_break26) break;
-}}
-{ var __hm_with48 = scrHMInstances(instance_create((ox - 16), (oy - 16), Floor)), __hm_break50=false;
-for (var __hm_index49=0; __hm_index49<array_length(__hm_with48); ++__hm_index49) {
-if(instance_exists(__hm_with48[__hm_index49])) with (__hm_with48[__hm_index49]) {
-{
-door = 0;
-hm_field_new = 1;
-{ var __hm_with51 = scrHMInstances(Wall), __hm_break53=false;
-for (var __hm_index52=0; __hm_index52<array_length(__hm_with51); ++__hm_index52) {
-if(instance_exists(__hm_with51[__hm_index52])) with (__hm_with51[__hm_index52]) {
-if (place_meeting(x, y, (scrHMOther(other)))) {
-scrHMDelete(id);
-}
-}
-if(__hm_break53) break;
-}}
-{ var __hm_with54 = scrHMInstances(InvisiWall), __hm_break56=false;
-for (var __hm_index55=0; __hm_index55<array_length(__hm_with54); ++__hm_index55) {
-if(instance_exists(__hm_with54[__hm_index55])) with (__hm_with54[__hm_index55]) {
-if (place_meeting(x, y, (scrHMOther(other)))) {
-scrHMDelete(id);
-}
-}
-if(__hm_break56) break;
-}}
-{ var __hm_with57 = scrHMInstances(FloorExplo), __hm_break59=false;
-for (var __hm_index58=0; __hm_index58<array_length(__hm_with57); ++__hm_index58) {
-if(instance_exists(__hm_with57[__hm_index58])) with (__hm_with57[__hm_index58]) {
-if (place_meeting(x, y, (scrHMOther(other)))) {
-scrHMDelete(id);
-}
-}
-if(__hm_break59) break;
-}}
-{ var __hm_with60 = scrHMInstances(DustOLD), __hm_break62=false;
-for (var __hm_index61=0; __hm_index61<array_length(__hm_with60); ++__hm_index61) {
-if(instance_exists(__hm_with60[__hm_index61])) with (__hm_with60[__hm_index61]) {
-if (place_meeting(x, y, (scrHMOther(other)))) {
-scrHMDelete(id);
-}
-}
-if(__hm_break62) break;
-}}
-}
-}
-if(__hm_break50) break;
-}}
-}
-}
-var _hml_spe_ = 3;
-;
-if (((open > 0) and (open < 30))) {
-{
-open += _hml_spe_;
-scrHMSoundPitchVolume(sndWallBreakLabs, 1.3, 0.5);
-if ((side == 0)) {
-x += _hml_spe_;
-} else {
-y -= _hml_spe_;
-}
-}
-} else {
-if (((open < 0) and (open > (- 30)))) {
-{
-open -= _hml_spe_;
-scrHMSoundPitchVolume(sndWallBreakLabs, 1.3, 0.5);
-if ((side == 0)) {
-x -= _hml_spe_;
-} else {
-y -= _hml_spe_;
-}
-}
-}
-}
-if ((((open > 16) || (open < (- 16))) and (! instance_exists(SpiralCont)))) {
-{
-mask_index = mskNone;
-}
-}
-if ((abs(open) >= 30)) {
-{
-scrHMSoundPitch(sndWallBreakLabs, 1.1);
-{ var __hm_with63 = scrHMInstances(instance_create(x, y, Effect)), __hm_break65=false;
-for (var __hm_index64=0; __hm_index64<array_length(__hm_with63); ++__hm_index64) {
-if(instance_exists(__hm_with63[__hm_index64])) with (__hm_with63[__hm_index64]) {
-{
-var __hm_other66=scrHMOther(other);
-sprite_index = __hm_other66.spr_idle;
-image_speed = (0) * timescale;
-var __hm_other67=scrHMOther(other);
-depth = __hm_other67.depth;
-shadow = 1;
-}
-}
-if(__hm_break65) break;
-}}
-instance_destroy();
-}
-}
-}
-
-// Source props.mod.gml:1536; VenuzFloor_draw
-function hm_props_mod_gml_VenuzFloor_draw(_hml_color_) {
-
-}
-
-// Source props.mod.gml:1540; VenuzAmmo1_create
-function hm_props_mod_gml_VenuzAmmo1_create(_hml__x, _hml__y) {
-{ var __hm_with1 = scrHMInstances(instance_create(_hml__x, _hml__y, CustomObject)), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-name = "ammo1";
-spr_idle = global.hm_module_vars[$ "mod:props"].ammo1;
-image_speed = (0) * timescale;
-on_step = scrHMScriptRef(hm_props_mod_gml_VenuzAmmo1_step);
-return id;
-;
-}
-}
-if(__hm_break3) break;
-}}
-}
-
-// Source props.mod.gml:1548; VenuzAmmo1_step
-function hm_props_mod_gml_VenuzAmmo1_step() {
-sprite_index = spr_idle;
-if ((((image_speed / timescale) > 0) and (image_index >= 6))) {
-{
-image_speed = (0) * timescale;
-image_index = 0;
-}
-}
-if ((((image_speed / timescale) == 0) and (random(50) < 1))) {
-image_speed = (0.4) * timescale;
-}
-{ var __hm_with1 = scrHMInstances(Player), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-if ((distance_to_object((scrHMOther(other))) < 16)) {
-{
-ammo[1] += 25;
-scrHMSoundPitch(sndAmmoPickup, 0.8);
-{ var __hm_with4 = scrHMInstances(instance_create(x, y, PopupText)), __hm_break6=false;
-for (var __hm_index5=0; __hm_index5<array_length(__hm_with4); ++__hm_index5) {
-if(instance_exists(__hm_with4[__hm_index5])) with (__hm_with4[__hm_index5]) {
-mytext = "+25 BULLETS";
-}
-if(__hm_break6) break;
-}}
-instance_create(x, y, ChestOpen);
-{ var __hm_with7 = scrHMInstances((scrHMOther(other))), __hm_break9=false;
-for (var __hm_index8=0; __hm_index8<array_length(__hm_with7); ++__hm_index8) {
-if(instance_exists(__hm_with7[__hm_index8])) with (__hm_with7[__hm_index8]) {
-instance_destroy();
-}
-if(__hm_break9) break;
-}}
-}
-}
-}
-if(__hm_break3) break;
-}}
-}
-
-// Source props.mod.gml:1567; VenuzAmmo2_create
-function hm_props_mod_gml_VenuzAmmo2_create(_hml__x, _hml__y) {
-{ var __hm_with1 = scrHMInstances(instance_create(_hml__x, _hml__y, CustomObject)), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-name = "ammo2";
-spr_idle = sprAmmo;
-image_speed = (0) * timescale;
-on_step = scrHMScriptRef(hm_props_mod_gml_VenuzAmmo2_step);
-return id;
-;
-}
-}
-if(__hm_break3) break;
-}}
-}
-
-// Source props.mod.gml:1575; VenuzAmmo2_step
-function hm_props_mod_gml_VenuzAmmo2_step() {
-sprite_index = spr_idle;
-if ((((image_speed / timescale) > 0) and (image_index >= 6))) {
-{
-image_speed = (0) * timescale;
-image_index = 0;
-}
-}
-if ((((image_speed / timescale) == 0) and (random(50) < 1))) {
-image_speed = (0.4) * timescale;
-}
-{ var __hm_with1 = scrHMInstances(Player), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-if ((distance_to_object((scrHMOther(other))) < 16)) {
-{
-ammo[2] += 10;
-scrHMSoundPitch(sndAmmoPickup, 0.8);
-{ var __hm_with4 = scrHMInstances(instance_create(x, y, PopupText)), __hm_break6=false;
-for (var __hm_index5=0; __hm_index5<array_length(__hm_with4); ++__hm_index5) {
-if(instance_exists(__hm_with4[__hm_index5])) with (__hm_with4[__hm_index5]) {
-mytext = "+10 SHELLS";
-}
-if(__hm_break6) break;
-}}
-instance_create(x, y, ChestOpen);
-{ var __hm_with7 = scrHMInstances((scrHMOther(other))), __hm_break9=false;
-for (var __hm_index8=0; __hm_index8<array_length(__hm_with7); ++__hm_index8) {
-if(instance_exists(__hm_with7[__hm_index8])) with (__hm_with7[__hm_index8]) {
-instance_destroy();
-}
-if(__hm_break9) break;
-}}
-}
-}
-}
-if(__hm_break3) break;
-}}
-}
-
-// Source props.mod.gml:1594; VenuzAmmo3_create
-function hm_props_mod_gml_VenuzAmmo3_create(_hml__x, _hml__y) {
-{ var __hm_with1 = scrHMInstances(instance_create(_hml__x, _hml__y, CustomObject)), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-name = "ammo3";
-spr_idle = sprAmmoChest;
-image_speed = (0) * timescale;
-on_step = scrHMScriptRef(hm_props_mod_gml_VenuzAmmo3_step);
-return id;
-;
-}
-}
-if(__hm_break3) break;
-}}
-}
-
-// Source props.mod.gml:1602; VenuzAmmo3_step
-function hm_props_mod_gml_VenuzAmmo3_step() {
-sprite_index = spr_idle;
-if ((((image_speed / timescale) > 0) and (image_index >= 6))) {
-{
-image_speed = (0) * timescale;
-image_index = 0;
-}
-}
-if ((((image_speed / timescale) == 0) and (random(50) < 1))) {
-image_speed = (0.4) * timescale;
-}
-{ var __hm_with1 = scrHMInstances(Player), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-if ((distance_to_object((scrHMOther(other))) < 16)) {
-{
-ammo[4] += 6;
-scrHMSoundPitch(sndAmmoPickup, 0.8);
-{ var __hm_with4 = scrHMInstances(instance_create(x, y, PopupText)), __hm_break6=false;
-for (var __hm_index5=0; __hm_index5<array_length(__hm_with4); ++__hm_index5) {
-if(instance_exists(__hm_with4[__hm_index5])) with (__hm_with4[__hm_index5]) {
-mytext = "+6 ROCKETS";
-}
-if(__hm_break6) break;
-}}
-instance_create(x, y, ChestOpen);
-{ var __hm_with7 = scrHMInstances((scrHMOther(other))), __hm_break9=false;
-for (var __hm_index8=0; __hm_index8<array_length(__hm_with7); ++__hm_index8) {
-if(instance_exists(__hm_with7[__hm_index8])) with (__hm_with7[__hm_index8]) {
-instance_destroy();
-}
-if(__hm_break9) break;
-}}
-}
-}
-}
-if(__hm_break3) break;
-}}
-}
-
-// Source props.mod.gml:1621; VenuzBars_create
-function hm_props_mod_gml_VenuzBars_create(_hml__x, _hml__y) {
-{ var __hm_with1 = scrHMInstances(instance_create(_hml__x, _hml__y, CustomObject)), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-name = "bar";
-side = 0;
-if (((GameCont.subarea <= 3) || (GameCont.subarea == 100))) {
-spr_idle = global.hm_module_vars[$ "mod:props"].VenuzBars1;
-} else {
-if ((((GameCont.subarea <= 6) and (GameCont.subarea > 3)) || (GameCont.subarea == 200))) {
-spr_idle = global.hm_module_vars[$ "mod:props"].VenuzBars2;
-} else {
-if ((((GameCont.subarea <= 9) and (GameCont.subarea > 6)) || (GameCont.subarea == 300))) {
-spr_idle = global.hm_module_vars[$ "mod:props"].VenuzBars3;
-} else {
-if ((((GameCont.subarea >= 10) and (GameCont.subarea < 100)) || (GameCont.subarea >= 400))) {
-spr_idle = global.hm_module_vars[$ "mod:props"].VenuzBars4;
-}
-}
-}
-}
-spr_shadow = mskNone;
-shadow = 1;
-depth = (- 1);
-friction = (300) * (timescale * timescale);
-on_step = scrHMScriptRef(hm_props_mod_gml_VenuzBars_step);
-return id;
-;
-}
-}
-if(__hm_break3) break;
-}}
-}
-
-// Source props.mod.gml:1640; VenuzBarsSide_create
-function hm_props_mod_gml_VenuzBarsSide_create(_hml__x, _hml__y) {
-{ var __hm_with1 = scrHMInstances(instance_create(_hml__x, (_hml__y - 8), CustomObject)), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-name = "bar";
-side = 1;
-if (((GameCont.subarea <= 3) || (GameCont.subarea == 100))) {
-spr_idle = global.hm_module_vars[$ "mod:props"].VenuzBars1Side;
-} else {
-if ((((GameCont.subarea <= 6) and (GameCont.subarea > 3)) || (GameCont.subarea == 200))) {
-spr_idle = global.hm_module_vars[$ "mod:props"].VenuzBars2Side;
-} else {
-if ((((GameCont.subarea <= 9) and (GameCont.subarea > 6)) || (GameCont.subarea == 300))) {
-spr_idle = global.hm_module_vars[$ "mod:props"].VenuzBars1Side;
-} else {
-if ((((GameCont.subarea >= 10) and (GameCont.subarea < 100)) || (GameCont.subarea >= 400))) {
-spr_idle = global.hm_module_vars[$ "mod:props"].VenuzBars4Side;
-}
-}
-}
-}
-spr_shadow = mskNone;
-shadow = 1;
-depth = (- 1);
-friction = (300) * (timescale * timescale);
-on_step = scrHMScriptRef(hm_props_mod_gml_VenuzBars_step);
-return id;
-;
-}
-}
-if(__hm_break3) break;
-}}
-}
-
-// Source props.mod.gml:1659; VenuzBars_step
-function hm_props_mod_gml_VenuzBars_step() {
-sprite_index = spr_idle;
-{ var __hm_with1 = scrHMMatchingGT(hitme, "speed", 0), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-if (place_meeting((x + (hspeed / timescale)), (y + (vspeed / timescale)), (scrHMOther(other)))) {
-{
-if (((scrHMOther(other)).side == 0)) {
-{
-if ((y > (scrHMOther(other)).y)) {
-direction = 270;
-} else {
-if ((y < (scrHMOther(other)).y)) {
-direction = 90;
-}
-}
-}
-} else {
-{
-if ((x > (scrHMOther(other)).x)) {
-direction = 0;
-} else {
-if ((x < (scrHMOther(other)).x)) {
-direction = 180;
-}
-}
-}
-}
-speed *= 0.5;
-}
-}
-}
-if(__hm_break3) break;
-}}
-{ var __hm_with4 = scrHMInstances(Corpse), __hm_break6=false;
-for (var __hm_index5=0; __hm_index5<array_length(__hm_with4); ++__hm_index5) {
-if(instance_exists(__hm_with4[__hm_index5])) with (__hm_with4[__hm_index5]) {
-if (place_meeting((x + (hspeed / timescale)), (y + (vspeed / timescale)), (scrHMOther(other)))) {
-{
-if (((scrHMOther(other)).side == 0)) {
-{
-if ((y > (scrHMOther(other)).y)) {
-direction = 270;
-} else {
-if ((y < (scrHMOther(other)).y)) {
-direction = 90;
-}
-}
-}
-} else {
-{
-if ((x > (scrHMOther(other)).x)) {
-direction = 0;
-} else {
-if ((x < (scrHMOther(other)).x)) {
-direction = 180;
-}
-}
-}
-}
-speed *= 0.5;
-}
-}
-}
-if(__hm_break6) break;
-}}
-}
-
-// Source props.mod.gml:1697; VenuzStar_create
-function hm_props_mod_gml_VenuzStar_create(_hml__x, _hml__y) {
-{ var __hm_with1 = scrHMInstances(instance_create(_hml__x, _hml__y, CustomObject)), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-name = "star";
-sprite_index = global.hm_module_vars[$ "mod:props"].VenuzStar;
-image_speed = (0) * timescale;
-spr_shadow = mskNone;
-depth = (- 1);
-friction = (300) * (timescale * timescale);
-on_step = scrHMScriptRef(hm_props_mod_gml_VenuzStar_step);
-on_destroy = scrHMScriptRef(hm_props_mod_gml_VenuzStar_destroy);
-return id;
-;
-}
-}
-if(__hm_break3) break;
-}}
-}
-
-// Source props.mod.gml:1709; VenuzStar_step
-function hm_props_mod_gml_VenuzStar_step() {
-if (place_meeting(x, y, Player)) {
-instance_destroy();
-}
-}
-
-// Source props.mod.gml:1712; VenuzStar_destroy
-function hm_props_mod_gml_VenuzStar_destroy() {
-scrHMModSet("area", "venuz", "secrets", 1);
-instance_create(x, y, FXChestOpen);
-for (var _hml_s = 0; (_hml_s < 3); _hml_s++) { var __hm_with1 = scrHMInstances(instance_create(x, y, CaveSparkle)), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-scrHMMotionAdd((90 + (_hml_s * 120)), 4);
-}
-if(__hm_break3) break;
-}}
-scrHMSoundPlay(sndGoldPickup);
-}
-
-// Source props.mod.gml:1726; CaveDecal
-function hm_props_mod_gml_CaveDecal() {
-if ((! instance_exists(argument2))) {
-{
-scrHMModCall("mod", "enemies", "crystalshielder_create", argument0, argument1);
-}
-}
-instance_destroy();
-}
-
-// Source props.mod.gml:1733; iceblock_create
-function hm_props_mod_gml_iceblock_create(_hml__x, _hml__y) {
-{ var __hm_with1 = scrHMInstances(instance_create(_hml__x, _hml__y, CustomObject)), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-spr_idle = global.hm_module_vars[$ "mod:props"].iceblock;
-image_speed = (0) * timescale;
-image_alpha = 0.7;
-image_index = choose(0, 0, 0, 1, 2);
-open = 100;
-depth = (0 - (y / 10016));
-{ var __hm_with4 = scrHMInstances(instance_create((x + 8), (y + 8), PlasmaImpact)), __hm_break6=false;
-for (var __hm_index5=0; __hm_index5<array_length(__hm_with4); ++__hm_index5) {
-if(instance_exists(__hm_with4[__hm_index5])) with (__hm_with4[__hm_index5]) {
-{
-team = 1;
-damage = 3000;
-}
-}
-if(__hm_break6) break;
-}}
-on_step = scrHMScriptRef(hm_props_mod_gml_iceblock_step);
-if ((random(30) < 1)) {
-{
-{ var __hm_with7 = scrHMInstances(instance_create((x + 8), (y + 8), WepPickup)), __hm_break9=false;
-for (var __hm_index8=0; __hm_index8<array_length(__hm_with7); ++__hm_index8) {
-if(instance_exists(__hm_with7[__hm_index8])) with (__hm_with7[__hm_index8]) {
-{
-var _hml_weplist = ds_list_create();
-;
-scrHMWeaponList(_hml_weplist, 0, GameCont.hard);
-;
-wep = scrHMWeaponResolve(ds_list_find_value(_hml_weplist, irandom((ds_list_size(_hml_weplist) - 1))));
-;
-ds_list_destroy(_hml_weplist);
-;
-ammo = 1;
-rotation = random(360);
-}
-}
-if(__hm_break9) break;
-}}
-}
-}
-}
-}
-if(__hm_break3) break;
-}}
-}
-
-// Source props.mod.gml:1760; iceblock_step
-function hm_props_mod_gml_iceblock_step() {
-sprite_index = spr_idle;
-if ((open > 0)) {
-if (((distance_to_object(projectile) < 32) and (place_meeting(x, y, CustomProjectile) and (CustomProjectile.sprite_index == sprTrapFire)))) {
-{
-open -= 2;
-var __hm_other1=scrHMOther(other);
-instance_create((__hm_other1.x + random_range((- 12), 12)), (__hm_other1.y + random_range((- 12), 12)), Sweat);
-}
-}
-}
-var _hml_h = instance_nearest(x, y, hitme);
-;
-if ((distance_to_object(_hml_h) < 64)) {
-{ var __hm_with2 = scrHMMatchingGT(hitme, "speed", 0), __hm_break4=false;
-for (var __hm_index3=0; __hm_index3<array_length(__hm_with2); ++__hm_index3) {
-if(instance_exists(__hm_with2[__hm_index3])) with (__hm_with2[__hm_index3]) {
-if (place_meeting((x + (hspeed / timescale)), (y + (vspeed / timescale)), (scrHMOther(other)))) {
-{
-speed = (0) * timescale;
-direction += 180;
-}
-}
-}
-if(__hm_break4) break;
-}}
-}
-var _hml_n = instance_nearest(x, y, projectile);
-;
-if ((place_meeting(x, y, _hml_n) and (_hml_n.object_index != ((Flame || Laser) || EnemyLaser)))) {
-{ var __hm_with5 = scrHMInstances(_hml_n), __hm_break7=false;
-for (var __hm_index6=0; __hm_index6<array_length(__hm_with5); ++__hm_index6) {
-if(instance_exists(__hm_with5[__hm_index6])) with (__hm_with5[__hm_index6]) {
-if ((sprite_index != sprTrapFire)) {
-instance_destroy();
-} else {
-speed *= 0.9;
-}
-}
-if(__hm_break7) break;
-}}
-}
-if (((instance_exists(id) and (open <= 0)) and (open != (- 100)))) {
-{
-instance_destroy();
-}
-}
-}
-
-// Source props.mod.gml:1789; cave_create
-function hm_props_mod_gml_cave_create(_hml__x, _hml__y) {
-{ var __hm_with1 = scrHMInstances(instance_create(_hml__x, _hml__y, CustomObject)), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-time = 125;
-mask_index = mskPlayer;
-var _hml_n = instance_nearest(x, y, Floor);
-;
-direction = point_direction((_hml_n.x + 16), (_hml_n.y + 16), x, y);
-friction = (0.4) * (timescale * timescale);
-on_step = scrHMScriptRef(hm_props_mod_gml_cave_step);
-}
-}
-if(__hm_break3) break;
-}}
-}
-
-// Source props.mod.gml:1798; cave_step
-function hm_props_mod_gml_cave_step() {
-if ((GameCont.subarea == 3)) {
-direction = point_direction(HyperCrystal.x, HyperCrystal.y, x, y);
-}
-if (((time > 0) and instance_exists(Wall))) {
-{
-if ((time >= 125)) {
-scrHMMotionAdd(direction, 10);
-}
-time -= 1;
-{ var __hm_with1 = scrHMInstances(instance_create(x, y, PortalClear)), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-image_xscale = 0.4;
-image_yscale = 0.4;
-}
-}
-if(__hm_break3) break;
-}}
-}
-} else {
-{
-if ((GameCont.subarea < 3)) {
-{
-var _hml_n = instance_nearest(x, y, Floor);
-;
-hm_props_mod_gml_whitecrystal_create(_hml_n.x, _hml_n.y);
-{ var __hm_with4 = scrHMInstances(FloorExplo), __hm_break6=false;
-for (var __hm_index5=0; __hm_index5<array_length(__hm_with4); ++__hm_index5) {
-if(instance_exists(__hm_with4[__hm_index5])) with (__hm_with4[__hm_index5]) {
-{
-if ((distance_to_object((scrHMOther(other))) < 72)) {
-{
-sprite_index = sprFloor5B;
-traction = 0.5;
-}
-}
-if ((distance_to_object((scrHMOther(other))) < 52)) {
-{
-hm_props_mod_gml_iceblock_create((x + 8), (y + 8));
-}
-}
-}
-}
-if(__hm_break6) break;
-}}
-}
-} else {
-{
-{ var __hm_with7 = scrHMInstances(FloorExplo), __hm_break9=false;
-for (var __hm_index8=0; __hm_index8<array_length(__hm_with7); ++__hm_index8) {
-if(instance_exists(__hm_with7[__hm_index8])) with (__hm_with7[__hm_index8]) {
-{
-if ((distance_to_object((scrHMOther(other))) < 52)) {
-{
-sprite_index = sprFloor105;
-}
-}
-}
-}
-if(__hm_break9) break;
-}}
-var _hml_n = instance_nearest(x, y, Floor);
-;
-hm_props_mod_gml_Flower_create(x, y);
-instance_create((_hml_n.x + 16), (_hml_n.y + 16), PortalClear);
-repeat (32) instance_create((x + random_range((- 150), 150)), (y + random_range((- 150), 150)), LightBeam);
-}
-}
-instance_destroy();
-}
-}
-}
-
+// Source props.mod.gml:1289; VenuzDoor_create
+
+function hm_props_mod_gml_VenuzDoor_create(_hml__x, _hml__y, _hml__door) {
+
+{ var __hm_with1 = scrHMInstances(instance_create(_hml__x, _hml__y, CustomObject)), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+{
+
+name = "door";
+
+team = 0;
+
+side = 0;
+
+ox = _hml__x;
+
+oy = _hml__y;
+
+if (((GameCont.subarea <= 3) || (GameCont.subarea == 100))) {
+
+spr_idle = global.hm_module_vars[$ "mod:props"].VenuzDoor;
+
+} else {
+
+if ((((GameCont.subarea <= 6) and (GameCont.subarea > 3)) || (GameCont.subarea == 200))) {
+
+spr_idle = global.hm_module_vars[$ "mod:props"].VenuzDoor2;
+
+} else {
+
+if ((((GameCont.subarea <= 9) and (GameCont.subarea > 6)) || (GameCont.subarea == 300))) {
+
+spr_idle = global.hm_module_vars[$ "mod:props"].VenuzDoor3;
+
+} else {
+
+if ((((GameCont.subarea >= 10) and (GameCont.subarea < 100)) || (GameCont.subarea >= 400))) {
+
+spr_idle = global.hm_module_vars[$ "mod:props"].VenuzDoor4;
+
+}
+
+}
+
+}
+
+}
+
+open = 0;
+
+if ((_hml__door == "A")) {
+
+number = 1;
+
+} else {
+
+if ((_hml__door == "B")) {
+
+number = 2;
+
+} else {
+
+if ((_hml__door == "C")) {
+
+number = 3;
+
+} else {
+
+if ((_hml__door == "D")) {
+
+number = 4;
+
+} else {
+
+if ((_hml__door == "E")) {
+
+number = 5;
+
+} else {
+
+if ((_hml__door == "F")) {
+
+number = 6;
+
+} else {
+
+if ((_hml__door == "G")) {
+
+number = 7;
+
+} else {
+
+if ((_hml__door == "H")) {
+
+number = 8;
+
+} else {
+
+if ((_hml__door == "I")) {
+
+number = 9;
+
+} else {
+
+if ((_hml__door == "J")) {
+
+number = 10;
+
+} else {
+
+if ((_hml__door == "K")) {
+
+number = 11;
+
+} else {
+
+number = 0;
+
+}
+
+}
+
+}
+
+}
+
+}
+
+}
+
+}
+
+}
+
+}
+
+}
+
+}
+
+shadow = 1;
+
+depth = (- 1);
+
+friction = (300) * (timescale * timescale);
+
+hp = 100;
+
+on_step = scrHMScriptRef(hm_props_mod_gml_VenuzDoor_step);
+
+return id;
+
+;
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+}
+
+
+
+// Source props.mod.gml:1335; VenuzDoorSide_create
+
+function hm_props_mod_gml_VenuzDoorSide_create() {
+
+var _args = [];
+
+for(var _i=0;_i<argument_count;++_i) array_push(_args, argument[_i]);
+
+return scrHMTaskStart(hm_props_mod_gml_VenuzDoorSide_create_resume, id, scrHMOther(other), _args, 11, ["_x", "_y", "_door"]);
+
+}
+
+function hm_props_mod_gml_VenuzDoorSide_create_resume(_hm) {
+
+var _budget=0;
+
+while(!_hm.done) {
+
+assert(++_budget<100000,"Hardmode runaway continuation: hm_props_mod_gml_VenuzDoorSide_create");
+
+if (!instance_exists(_hm.scope)) { if(array_length(_hm.with_stack)>_hm.with_floor) {scrHMTaskWithNext(_hm); continue;} _hm.done=true; return; }
+
+with (_hm.scope) { switch (_hm.pc) {
+
+case 0: _hm.done=true; return;
+
+case 1: // props.mod.gml:1336
+
+scrHMTaskWithNext(_hm);
+
+break;
+
+case 2: // props.mod.gml:1336
+
+scrHMTaskWithAbort(_hm);
+
+break;
+
+case 3: // props.mod.gml:1391
+
+{
+
+;
+
+}
+
+_hm.pc=1;
+
+break;
+
+case 4: // props.mod.gml:1391
+
+_hm.result=id; _hm.done=true; return;
+
+break;
+
+case 5: // props.mod.gml:1389
+
+{
+
+;
+
+}
+
+_hm.pc=4;
+
+break;
+
+case 6: // props.mod.gml:1389
+
+_hm.result=undefined; _hm.done=true; return;
+
+break;
+
+case 7: // props.mod.gml:1381
+
+{
+
+if (instance_exists(Wall)) {
+
+{
+
+{ var __hm_with1 = scrHMInstances(instance_create((x - 16), ((y - 16) - 16), Effect)), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+{
+
+sprite_index = (instance_nearest(x, y, Wall)).sprite_index;
+
+image_speed = (0) * timescale;
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+{ var __hm_with4 = scrHMInstances(instance_create(x, ((y - 16) - 16), Effect)), __hm_break6=false;
+
+for (var __hm_index5=0; __hm_index5<array_length(__hm_with4); ++__hm_index5) {
+
+if(instance_exists(__hm_with4[__hm_index5])) with (__hm_with4[__hm_index5]) {
+
+{
+
+sprite_index = (instance_nearest(x, y, Wall)).sprite_index;
+
+image_speed = (0) * timescale;
+
+}
+
+}
+
+if(__hm_break6) break;
+
+}}
+
+}
+
+}
+
+}
+
+_hm.pc=6;
+
+break;
+
+case 8: // props.mod.gml:1380
+
+_hm.wait_ticks=max(0,2); _hm.pc=7; return;
+
+break;
+
+case 9: // props.mod.gml:1379
+
+_hm.pc = (scrHMTaskFork(_hm, 8)) ? 8 : 4;
+
+break;
+
+case 10: // props.mod.gml:1337
+
+{
+
+name = "door";
+
+side = 1;
+
+team = 0;
+
+ox = _hm.vars._x;
+
+oy = _hm.vars._y;
+
+if (((GameCont.subarea <= 3) || (GameCont.subarea == 100))) {
+
+spr_idle = global.hm_module_vars[$ "mod:props"].VenuzDoorSide;
+
+} else {
+
+if ((((GameCont.subarea <= 6) and (GameCont.subarea > 3)) || (GameCont.subarea == 200))) {
+
+spr_idle = global.hm_module_vars[$ "mod:props"].VenuzDoor2Side;
+
+} else {
+
+if ((((GameCont.subarea <= 9) and (GameCont.subarea > 6)) || (GameCont.subarea == 300))) {
+
+spr_idle = global.hm_module_vars[$ "mod:props"].VenuzDoor3Side;
+
+} else {
+
+if ((((GameCont.subarea >= 10) and (GameCont.subarea < 100)) || (GameCont.subarea >= 400))) {
+
+spr_idle = global.hm_module_vars[$ "mod:props"].VenuzDoor4Side;
+
+}
+
+}
+
+}
+
+}
+
+open = 0;
+
+if ((_hm.vars._door == "A")) {
+
+number = 1;
+
+} else {
+
+if ((_hm.vars._door == "B")) {
+
+number = 2;
+
+} else {
+
+if ((_hm.vars._door == "C")) {
+
+number = 3;
+
+} else {
+
+if ((_hm.vars._door == "D")) {
+
+number = 4;
+
+} else {
+
+if ((_hm.vars._door == "E")) {
+
+number = 5;
+
+} else {
+
+if ((_hm.vars._door == "F")) {
+
+number = 6;
+
+} else {
+
+if ((_hm.vars._door == "G")) {
+
+number = 7;
+
+} else {
+
+if ((_hm.vars._door == "H")) {
+
+number = 8;
+
+} else {
+
+if ((_hm.vars._door == "I")) {
+
+number = 9;
+
+} else {
+
+if ((_hm.vars._door == "J")) {
+
+number = 10;
+
+} else {
+
+if ((_hm.vars._door == "K")) {
+
+number = 11;
+
+} else {
+
+number = 0;
+
+}
+
+}
+
+}
+
+}
+
+}
+
+}
+
+}
+
+}
+
+}
+
+}
+
+}
+
+shadow = 1;
+
+depth = (- 1);
+
+friction = (300) * (timescale * timescale);
+
+hp = 100;
+
+on_step = scrHMScriptRef(hm_props_mod_gml_VenuzDoor_step);
+
+}
+
+_hm.pc=9;
+
+break;
+
+case 11: // props.mod.gml:1336
+
+scrHMTaskWithEnter(_hm,scrHMInstances(instance_create(_hm.vars._x, _hm.vars._y, CustomObject)),10,0);
+
+break;
+
+default: throw "Hardmode invalid continuation PC";
+
+}}
+
+}
+
+}
+
+
+
+
+
+// Source props.mod.gml:1393; VenuzDoor_step
+
+function hm_props_mod_gml_VenuzDoor_step() {
+
+if ((open == 0)) {
+
+{
+
+{ var __hm_with1 = scrHMInstances(instance_nearest(x, y, DustOLD)), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+if ((distance_to_object((scrHMOther(other))) < 63)) {
+
+{
+
+var __hm_other4=scrHMOther(other);
+
+x = (__hm_other4.x - 16);
+
+var __hm_other5=scrHMOther(other);
+
+y = (__hm_other5.y - 16);
+
+}
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+if ((! place_meeting(x, y, Floor))) {
+
+instance_create((x - 16), (y - 16), Floor);
+
+}
+
+{ var __hm_with6 = scrHMInstances(instance_nearest(x, y, InvisiWall)), __hm_break8=false;
+
+for (var __hm_index7=0; __hm_index7<array_length(__hm_with6); ++__hm_index7) {
+
+if(instance_exists(__hm_with6[__hm_index7])) with (__hm_with6[__hm_index7]) {
+
+if (place_meeting(x, y, (scrHMOther(other)))) {
+
+scrHMDelete(id);
+
+}
+
+}
+
+if(__hm_break8) break;
+
+}}
+
+}
+
+}
+
+sprite_index = spr_idle;
+
+;
+
+{ var __hm_with9 = scrHMMatchingGT(hitme, "speed", 0), __hm_break11=false;
+
+for (var __hm_index10=0; __hm_index10<array_length(__hm_with9); ++__hm_index10) {
+
+if(instance_exists(__hm_with9[__hm_index10])) with (__hm_with9[__hm_index10]) {
+
+if (place_meeting(x, y, (scrHMOther(other)))) {
+
+{
+
+if (((scrHMOther(other)).side == 0)) {
+
+{
+
+if ((y > (scrHMOther(other)).y)) {
+
+direction = 270;
+
+} else {
+
+if ((y < (scrHMOther(other)).y)) {
+
+direction = 90;
+
+}
+
+}
+
+}
+
+} else {
+
+{
+
+if ((x > (scrHMOther(other)).x)) {
+
+direction = 0;
+
+} else {
+
+if ((x < (scrHMOther(other)).x)) {
+
+direction = 180;
+
+}
+
+}
+
+}
+
+}
+
+}
+
+}
+
+}
+
+if(__hm_break11) break;
+
+}}
+
+{ var __hm_with12 = scrHMInstances(Rocket), __hm_break14=false;
+
+for (var __hm_index13=0; __hm_index13<array_length(__hm_with12); ++__hm_index13) {
+
+if(instance_exists(__hm_with12[__hm_index13])) with (__hm_with12[__hm_index13]) {
+
+if (place_meeting((x + (hspeed / timescale)), (y + (vspeed / timescale)), (scrHMOther(other)))) {
+
+{
+
+{ var __hm_with15 = scrHMInstances(instance_create(x, y, Explosion)), __hm_break17=false;
+
+for (var __hm_index16=0; __hm_index16<array_length(__hm_with15); ++__hm_index16) {
+
+if(instance_exists(__hm_with15[__hm_index16])) with (__hm_with15[__hm_index16]) {
+
+mask_index = mskNone;
+
+}
+
+if(__hm_break17) break;
+
+}}
+
+scrHMDelete(id);
+
+}
+
+}
+
+}
+
+if(__hm_break14) break;
+
+}}
+
+{ var __hm_with18 = scrHMInstances(projectile), __hm_break20=false;
+
+for (var __hm_index19=0; __hm_index19<array_length(__hm_with18); ++__hm_index19) {
+
+if(instance_exists(__hm_with18[__hm_index19])) with (__hm_with18[__hm_index19]) {
+
+if (place_meeting(x, y, (scrHMOther(other)))) {
+
+instance_destroy();
+
+}
+
+}
+
+if(__hm_break20) break;
+
+}}
+
+if (((distance_to_object(Player) <= 16) and (open == 0))) {
+
+{
+
+open = choose((- 1), 1);
+
+{ var __hm_with21 = scrHMMatching(Effect, "name", "secret"), __hm_break23=false;
+
+for (var __hm_index22=0; __hm_index22<array_length(__hm_with21); ++__hm_index22) {
+
+if(instance_exists(__hm_with21[__hm_index22])) with (__hm_with21[__hm_index22]) {
+
+{
+
+if ((distance_to_object((scrHMOther(other))) < 32)) {
+
+{
+
+scrHMTrace("my_dreams");
+
+scrHMDelete(id);
+
+}
+
+}
+
+}
+
+}
+
+if(__hm_break23) break;
+
+}}
+
+{ var __hm_with24 = scrHMMatching(CustomObject, "door", number), __hm_break26=false;
+
+for (var __hm_index25=0; __hm_index25<array_length(__hm_with24); ++__hm_index25) {
+
+if(instance_exists(__hm_with24[__hm_index25])) with (__hm_with24[__hm_index25]) {
+
+{
+
+switch (name) {
+
+case "floor":
+
+{ var __hm_with27 = scrHMInstances(instance_create(x, y, Floor)), __hm_break29=false;
+
+for (var __hm_index28=0; __hm_index28<array_length(__hm_with27); ++__hm_index28) {
+
+if(instance_exists(__hm_with27[__hm_index28])) with (__hm_with27[__hm_index28]) {
+
+{
+
+repeat (4) {
+
+{ var __hm_with30 = scrHMInstances(instance_nearest((x + 16), (y + 16), InvisiWall)), __hm_break32=false;
+
+for (var __hm_index31=0; __hm_index31<array_length(__hm_with30); ++__hm_index31) {
+
+if(instance_exists(__hm_with30[__hm_index31])) with (__hm_with30[__hm_index31]) {
+
+if (place_meeting(x, y, (scrHMOther(other)))) {
+
+scrHMDelete(id);
+
+}
+
+}
+
+if(__hm_break32) break;
+
+}}
+
+{ var __hm_with33 = scrHMInstances(instance_nearest((x + 16), (y + 16), FloorExplo)), __hm_break35=false;
+
+for (var __hm_index34=0; __hm_index34<array_length(__hm_with33); ++__hm_index34) {
+
+if(instance_exists(__hm_with33[__hm_index34])) with (__hm_with33[__hm_index34]) {
+
+if (place_meeting(x, y, (scrHMOther(other)))) {
+
+scrHMDelete(id);
+
+}
+
+}
+
+if(__hm_break35) break;
+
+}}
+
+{ var __hm_with36 = scrHMInstances(instance_nearest((x + 16), (y + 16), Wall)), __hm_break38=false;
+
+for (var __hm_index37=0; __hm_index37<array_length(__hm_with36); ++__hm_index37) {
+
+if(instance_exists(__hm_with36[__hm_index37])) with (__hm_with36[__hm_index37]) {
+
+if (place_meeting(x, y, (scrHMOther(other)))) {
+
+scrHMDelete(id);
+
+}
+
+}
+
+if(__hm_break38) break;
+
+}}
+
+}
+
+}
+
+}
+
+if(__hm_break29) break;
+
+}}
+
+break;
+
+;
+
+case "prisoner":
+
+scrHMModCall("mod", "enemies", "prisoner_create", x, y);
+
+;
+
+break;
+
+;
+
+case "Molefish":
+
+scrHMModCall("mod", "enemies", "Molefish_create", x, y);
+
+;
+
+break;
+
+;
+
+case "Molesarge":
+
+scrHMModCall("mod", "enemies", "Molesarge_create", x, y);
+
+;
+
+break;
+
+;
+
+case "Minigunner":
+
+scrHMModCall("mod", "enemies", "Minigunner_create", x, y);
+
+;
+
+break;
+
+;
+
+case "Jock":
+
+{ var __hm_with39 = scrHMInstances(instance_create(x, y, Jock)), __hm_break41=false;
+
+for (var __hm_index40=0; __hm_index40<array_length(__hm_with39); ++__hm_index40) {
+
+if(instance_exists(__hm_with39[__hm_index40])) with (__hm_with39[__hm_index40]) {
+
+{
+
+raddrop = 0;
+
+;
+
+hp *= 2;
+
+;
+
+wepseed = (- 4);
+
+}
+
+}
+
+if(__hm_break41) break;
+
+}}
+
+break;
+
+;
+
+case "Charger":
+
+scrHMModCall("mod", "enemies", "Monster_create", x, y);
+
+;
+
+break;
+
+;
+
+case "FireBaller":
+
+{ var __hm_with42 = scrHMInstances(instance_create(x, y, FireBaller)), __hm_break44=false;
+
+for (var __hm_index43=0; __hm_index43<array_length(__hm_with42); ++__hm_index43) {
+
+if(instance_exists(__hm_with42[__hm_index43])) with (__hm_with42[__hm_index43]) {
+
+{
+
+raddrop = 0;
+
+;
+
+hp *= 1.5;
+
+;
+
+wepseed = (- 4);
+
+}
+
+}
+
+if(__hm_break44) break;
+
+}}
+
+break;
+
+;
+
+case "SuperFireBaller":
+
+{ var __hm_with45 = scrHMInstances(instance_create(x, y, SuperFireBaller)), __hm_break47=false;
+
+for (var __hm_index46=0; __hm_index46<array_length(__hm_with45); ++__hm_index46) {
+
+if(instance_exists(__hm_with45[__hm_index46])) with (__hm_with45[__hm_index46]) {
+
+{
+
+raddrop = 0;
+
+;
+
+hp *= 2;
+
+;
+
+wepseed = (- 4);
+
+}
+
+}
+
+if(__hm_break47) break;
+
+}}
+
+break;
+
+;
+
+case "Turtle":
+
+scrHMModCall("mod", "enemies", "Chick_create", x, y);
+
+;
+
+break;
+
+;
+
+case "HP":
+
+instance_create(x, y, HealthChest);
+
+break;
+
+;
+
+}
+
+instance_destroy();
+
+}
+
+}
+
+if(__hm_break26) break;
+
+}}
+
+{ var __hm_with48 = scrHMInstances(instance_create((ox - 16), (oy - 16), Floor)), __hm_break50=false;
+
+for (var __hm_index49=0; __hm_index49<array_length(__hm_with48); ++__hm_index49) {
+
+if(instance_exists(__hm_with48[__hm_index49])) with (__hm_with48[__hm_index49]) {
+
+{
+
+door = 0;
+
+hm_field_new = 1;
+
+{ var __hm_with51 = scrHMInstances(Wall), __hm_break53=false;
+
+for (var __hm_index52=0; __hm_index52<array_length(__hm_with51); ++__hm_index52) {
+
+if(instance_exists(__hm_with51[__hm_index52])) with (__hm_with51[__hm_index52]) {
+
+if (place_meeting(x, y, (scrHMOther(other)))) {
+
+scrHMDelete(id);
+
+}
+
+}
+
+if(__hm_break53) break;
+
+}}
+
+{ var __hm_with54 = scrHMInstances(InvisiWall), __hm_break56=false;
+
+for (var __hm_index55=0; __hm_index55<array_length(__hm_with54); ++__hm_index55) {
+
+if(instance_exists(__hm_with54[__hm_index55])) with (__hm_with54[__hm_index55]) {
+
+if (place_meeting(x, y, (scrHMOther(other)))) {
+
+scrHMDelete(id);
+
+}
+
+}
+
+if(__hm_break56) break;
+
+}}
+
+{ var __hm_with57 = scrHMInstances(FloorExplo), __hm_break59=false;
+
+for (var __hm_index58=0; __hm_index58<array_length(__hm_with57); ++__hm_index58) {
+
+if(instance_exists(__hm_with57[__hm_index58])) with (__hm_with57[__hm_index58]) {
+
+if (place_meeting(x, y, (scrHMOther(other)))) {
+
+scrHMDelete(id);
+
+}
+
+}
+
+if(__hm_break59) break;
+
+}}
+
+{ var __hm_with60 = scrHMInstances(DustOLD), __hm_break62=false;
+
+for (var __hm_index61=0; __hm_index61<array_length(__hm_with60); ++__hm_index61) {
+
+if(instance_exists(__hm_with60[__hm_index61])) with (__hm_with60[__hm_index61]) {
+
+if (place_meeting(x, y, (scrHMOther(other)))) {
+
+scrHMDelete(id);
+
+}
+
+}
+
+if(__hm_break62) break;
+
+}}
+
+}
+
+}
+
+if(__hm_break50) break;
+
+}}
+
+}
+
+}
+
+var _hml_spe_ = 3;
+
+;
+
+if (((open > 0) and (open < 30))) {
+
+{
+
+open += _hml_spe_;
+
+scrHMSoundPitchVolume(sndWallBreakLabs, 1.3, 0.5);
+
+if ((side == 0)) {
+
+x += _hml_spe_;
+
+} else {
+
+y -= _hml_spe_;
+
+}
+
+}
+
+} else {
+
+if (((open < 0) and (open > (- 30)))) {
+
+{
+
+open -= _hml_spe_;
+
+scrHMSoundPitchVolume(sndWallBreakLabs, 1.3, 0.5);
+
+if ((side == 0)) {
+
+x -= _hml_spe_;
+
+} else {
+
+y -= _hml_spe_;
+
+}
+
+}
+
+}
+
+}
+
+if ((((open > 16) || (open < (- 16))) and (! instance_exists(SpiralCont)))) {
+
+{
+
+mask_index = mskNone;
+
+}
+
+}
+
+if ((abs(open) >= 30)) {
+
+{
+
+scrHMSoundPitch(sndWallBreakLabs, 1.1);
+
+{ var __hm_with63 = scrHMInstances(instance_create(x, y, Effect)), __hm_break65=false;
+
+for (var __hm_index64=0; __hm_index64<array_length(__hm_with63); ++__hm_index64) {
+
+if(instance_exists(__hm_with63[__hm_index64])) with (__hm_with63[__hm_index64]) {
+
+{
+
+var __hm_other66=scrHMOther(other);
+
+sprite_index = __hm_other66.spr_idle;
+
+image_speed = (0) * timescale;
+
+var __hm_other67=scrHMOther(other);
+
+depth = __hm_other67.depth;
+
+shadow = 1;
+
+}
+
+}
+
+if(__hm_break65) break;
+
+}}
+
+instance_destroy();
+
+}
+
+}
+
+}
+
+
+
+// Source props.mod.gml:1536; VenuzFloor_draw
+
+function hm_props_mod_gml_VenuzFloor_draw(_hml_color_) {
+
+
+
+}
+
+
+
+// Source props.mod.gml:1540; VenuzAmmo1_create
+
+function hm_props_mod_gml_VenuzAmmo1_create(_hml__x, _hml__y) {
+
+{ var __hm_with1 = scrHMInstances(instance_create(_hml__x, _hml__y, CustomObject)), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+{
+
+name = "ammo1";
+
+spr_idle = global.hm_module_vars[$ "mod:props"].ammo1;
+
+image_speed = (0) * timescale;
+
+on_step = scrHMScriptRef(hm_props_mod_gml_VenuzAmmo1_step);
+
+return id;
+
+;
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+}
+
+
+
+// Source props.mod.gml:1548; VenuzAmmo1_step
+
+function hm_props_mod_gml_VenuzAmmo1_step() {
+
+sprite_index = spr_idle;
+
+if ((((image_speed / timescale) > 0) and (image_index >= 6))) {
+
+{
+
+image_speed = (0) * timescale;
+
+image_index = 0;
+
+}
+
+}
+
+if ((((image_speed / timescale) == 0) and (random(50) < 1))) {
+
+image_speed = (0.4) * timescale;
+
+}
+
+{ var __hm_with1 = scrHMInstances(Player), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+if ((distance_to_object((scrHMOther(other))) < 16)) {
+
+{
+
+ammo[1] += 25;
+
+scrHMSoundPitch(sndAmmoPickup, 0.8);
+
+{ var __hm_with4 = scrHMInstances(instance_create(x, y, PopupText)), __hm_break6=false;
+
+for (var __hm_index5=0; __hm_index5<array_length(__hm_with4); ++__hm_index5) {
+
+if(instance_exists(__hm_with4[__hm_index5])) with (__hm_with4[__hm_index5]) {
+
+mytext = "+25 BULLETS";
+
+}
+
+if(__hm_break6) break;
+
+}}
+
+instance_create(x, y, ChestOpen);
+
+{ var __hm_with7 = scrHMInstances((scrHMOther(other))), __hm_break9=false;
+
+for (var __hm_index8=0; __hm_index8<array_length(__hm_with7); ++__hm_index8) {
+
+if(instance_exists(__hm_with7[__hm_index8])) with (__hm_with7[__hm_index8]) {
+
+instance_destroy();
+
+}
+
+if(__hm_break9) break;
+
+}}
+
+}
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+}
+
+
+
+// Source props.mod.gml:1567; VenuzAmmo2_create
+
+function hm_props_mod_gml_VenuzAmmo2_create(_hml__x, _hml__y) {
+
+{ var __hm_with1 = scrHMInstances(instance_create(_hml__x, _hml__y, CustomObject)), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+{
+
+name = "ammo2";
+
+spr_idle = sprAmmo;
+
+image_speed = (0) * timescale;
+
+on_step = scrHMScriptRef(hm_props_mod_gml_VenuzAmmo2_step);
+
+return id;
+
+;
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+}
+
+
+
+// Source props.mod.gml:1575; VenuzAmmo2_step
+
+function hm_props_mod_gml_VenuzAmmo2_step() {
+
+sprite_index = spr_idle;
+
+if ((((image_speed / timescale) > 0) and (image_index >= 6))) {
+
+{
+
+image_speed = (0) * timescale;
+
+image_index = 0;
+
+}
+
+}
+
+if ((((image_speed / timescale) == 0) and (random(50) < 1))) {
+
+image_speed = (0.4) * timescale;
+
+}
+
+{ var __hm_with1 = scrHMInstances(Player), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+if ((distance_to_object((scrHMOther(other))) < 16)) {
+
+{
+
+ammo[2] += 10;
+
+scrHMSoundPitch(sndAmmoPickup, 0.8);
+
+{ var __hm_with4 = scrHMInstances(instance_create(x, y, PopupText)), __hm_break6=false;
+
+for (var __hm_index5=0; __hm_index5<array_length(__hm_with4); ++__hm_index5) {
+
+if(instance_exists(__hm_with4[__hm_index5])) with (__hm_with4[__hm_index5]) {
+
+mytext = "+10 SHELLS";
+
+}
+
+if(__hm_break6) break;
+
+}}
+
+instance_create(x, y, ChestOpen);
+
+{ var __hm_with7 = scrHMInstances((scrHMOther(other))), __hm_break9=false;
+
+for (var __hm_index8=0; __hm_index8<array_length(__hm_with7); ++__hm_index8) {
+
+if(instance_exists(__hm_with7[__hm_index8])) with (__hm_with7[__hm_index8]) {
+
+instance_destroy();
+
+}
+
+if(__hm_break9) break;
+
+}}
+
+}
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+}
+
+
+
+// Source props.mod.gml:1594; VenuzAmmo3_create
+
+function hm_props_mod_gml_VenuzAmmo3_create(_hml__x, _hml__y) {
+
+{ var __hm_with1 = scrHMInstances(instance_create(_hml__x, _hml__y, CustomObject)), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+{
+
+name = "ammo3";
+
+spr_idle = sprAmmoChest;
+
+image_speed = (0) * timescale;
+
+on_step = scrHMScriptRef(hm_props_mod_gml_VenuzAmmo3_step);
+
+return id;
+
+;
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+}
+
+
+
+// Source props.mod.gml:1602; VenuzAmmo3_step
+
+function hm_props_mod_gml_VenuzAmmo3_step() {
+
+sprite_index = spr_idle;
+
+if ((((image_speed / timescale) > 0) and (image_index >= 6))) {
+
+{
+
+image_speed = (0) * timescale;
+
+image_index = 0;
+
+}
+
+}
+
+if ((((image_speed / timescale) == 0) and (random(50) < 1))) {
+
+image_speed = (0.4) * timescale;
+
+}
+
+{ var __hm_with1 = scrHMInstances(Player), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+if ((distance_to_object((scrHMOther(other))) < 16)) {
+
+{
+
+ammo[4] += 6;
+
+scrHMSoundPitch(sndAmmoPickup, 0.8);
+
+{ var __hm_with4 = scrHMInstances(instance_create(x, y, PopupText)), __hm_break6=false;
+
+for (var __hm_index5=0; __hm_index5<array_length(__hm_with4); ++__hm_index5) {
+
+if(instance_exists(__hm_with4[__hm_index5])) with (__hm_with4[__hm_index5]) {
+
+mytext = "+6 ROCKETS";
+
+}
+
+if(__hm_break6) break;
+
+}}
+
+instance_create(x, y, ChestOpen);
+
+{ var __hm_with7 = scrHMInstances((scrHMOther(other))), __hm_break9=false;
+
+for (var __hm_index8=0; __hm_index8<array_length(__hm_with7); ++__hm_index8) {
+
+if(instance_exists(__hm_with7[__hm_index8])) with (__hm_with7[__hm_index8]) {
+
+instance_destroy();
+
+}
+
+if(__hm_break9) break;
+
+}}
+
+}
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+}
+
+
+
+// Source props.mod.gml:1621; VenuzBars_create
+
+function hm_props_mod_gml_VenuzBars_create(_hml__x, _hml__y) {
+
+{ var __hm_with1 = scrHMInstances(instance_create(_hml__x, _hml__y, CustomObject)), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+{
+
+name = "bar";
+
+side = 0;
+
+if (((GameCont.subarea <= 3) || (GameCont.subarea == 100))) {
+
+spr_idle = global.hm_module_vars[$ "mod:props"].VenuzBars1;
+
+} else {
+
+if ((((GameCont.subarea <= 6) and (GameCont.subarea > 3)) || (GameCont.subarea == 200))) {
+
+spr_idle = global.hm_module_vars[$ "mod:props"].VenuzBars2;
+
+} else {
+
+if ((((GameCont.subarea <= 9) and (GameCont.subarea > 6)) || (GameCont.subarea == 300))) {
+
+spr_idle = global.hm_module_vars[$ "mod:props"].VenuzBars3;
+
+} else {
+
+if ((((GameCont.subarea >= 10) and (GameCont.subarea < 100)) || (GameCont.subarea >= 400))) {
+
+spr_idle = global.hm_module_vars[$ "mod:props"].VenuzBars4;
+
+}
+
+}
+
+}
+
+}
+
+spr_shadow = mskNone;
+
+shadow = 1;
+
+depth = (- 1);
+
+friction = (300) * (timescale * timescale);
+
+on_step = scrHMScriptRef(hm_props_mod_gml_VenuzBars_step);
+
+return id;
+
+;
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+}
+
+
+
+// Source props.mod.gml:1640; VenuzBarsSide_create
+
+function hm_props_mod_gml_VenuzBarsSide_create(_hml__x, _hml__y) {
+
+{ var __hm_with1 = scrHMInstances(instance_create(_hml__x, (_hml__y - 8), CustomObject)), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+{
+
+name = "bar";
+
+side = 1;
+
+if (((GameCont.subarea <= 3) || (GameCont.subarea == 100))) {
+
+spr_idle = global.hm_module_vars[$ "mod:props"].VenuzBars1Side;
+
+} else {
+
+if ((((GameCont.subarea <= 6) and (GameCont.subarea > 3)) || (GameCont.subarea == 200))) {
+
+spr_idle = global.hm_module_vars[$ "mod:props"].VenuzBars2Side;
+
+} else {
+
+if ((((GameCont.subarea <= 9) and (GameCont.subarea > 6)) || (GameCont.subarea == 300))) {
+
+spr_idle = global.hm_module_vars[$ "mod:props"].VenuzBars1Side;
+
+} else {
+
+if ((((GameCont.subarea >= 10) and (GameCont.subarea < 100)) || (GameCont.subarea >= 400))) {
+
+spr_idle = global.hm_module_vars[$ "mod:props"].VenuzBars4Side;
+
+}
+
+}
+
+}
+
+}
+
+spr_shadow = mskNone;
+
+shadow = 1;
+
+depth = (- 1);
+
+friction = (300) * (timescale * timescale);
+
+on_step = scrHMScriptRef(hm_props_mod_gml_VenuzBars_step);
+
+return id;
+
+;
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+}
+
+
+
+// Source props.mod.gml:1659; VenuzBars_step
+
+function hm_props_mod_gml_VenuzBars_step() {
+
+sprite_index = spr_idle;
+
+{ var __hm_with1 = scrHMMatchingGT(hitme, "speed", 0), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+if (place_meeting((x + (hspeed / timescale)), (y + (vspeed / timescale)), (scrHMOther(other)))) {
+
+{
+
+if (((scrHMOther(other)).side == 0)) {
+
+{
+
+if ((y > (scrHMOther(other)).y)) {
+
+direction = 270;
+
+} else {
+
+if ((y < (scrHMOther(other)).y)) {
+
+direction = 90;
+
+}
+
+}
+
+}
+
+} else {
+
+{
+
+if ((x > (scrHMOther(other)).x)) {
+
+direction = 0;
+
+} else {
+
+if ((x < (scrHMOther(other)).x)) {
+
+direction = 180;
+
+}
+
+}
+
+}
+
+}
+
+speed *= 0.5;
+
+}
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+{ var __hm_with4 = scrHMInstances(Corpse), __hm_break6=false;
+
+for (var __hm_index5=0; __hm_index5<array_length(__hm_with4); ++__hm_index5) {
+
+if(instance_exists(__hm_with4[__hm_index5])) with (__hm_with4[__hm_index5]) {
+
+if (place_meeting((x + (hspeed / timescale)), (y + (vspeed / timescale)), (scrHMOther(other)))) {
+
+{
+
+if (((scrHMOther(other)).side == 0)) {
+
+{
+
+if ((y > (scrHMOther(other)).y)) {
+
+direction = 270;
+
+} else {
+
+if ((y < (scrHMOther(other)).y)) {
+
+direction = 90;
+
+}
+
+}
+
+}
+
+} else {
+
+{
+
+if ((x > (scrHMOther(other)).x)) {
+
+direction = 0;
+
+} else {
+
+if ((x < (scrHMOther(other)).x)) {
+
+direction = 180;
+
+}
+
+}
+
+}
+
+}
+
+speed *= 0.5;
+
+}
+
+}
+
+}
+
+if(__hm_break6) break;
+
+}}
+
+}
+
+
+
+// Source props.mod.gml:1697; VenuzStar_create
+
+function hm_props_mod_gml_VenuzStar_create(_hml__x, _hml__y) {
+
+{ var __hm_with1 = scrHMInstances(instance_create(_hml__x, _hml__y, CustomObject)), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+{
+
+name = "star";
+
+sprite_index = global.hm_module_vars[$ "mod:props"].VenuzStar;
+
+image_speed = (0) * timescale;
+
+spr_shadow = mskNone;
+
+depth = (- 1);
+
+friction = (300) * (timescale * timescale);
+
+on_step = scrHMScriptRef(hm_props_mod_gml_VenuzStar_step);
+
+on_destroy = scrHMScriptRef(hm_props_mod_gml_VenuzStar_destroy);
+
+return id;
+
+;
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+}
+
+
+
+// Source props.mod.gml:1709; VenuzStar_step
+
+function hm_props_mod_gml_VenuzStar_step() {
+
+if (place_meeting(x, y, Player)) {
+
+instance_destroy();
+
+}
+
+}
+
+
+
+// Source props.mod.gml:1712; VenuzStar_destroy
+
+function hm_props_mod_gml_VenuzStar_destroy() {
+
+scrHMModSet("area", "venuz", "secrets", 1);
+
+instance_create(x, y, FXChestOpen);
+
+for (var _hml_s = 0; (_hml_s < 3); _hml_s++) { var __hm_with1 = scrHMInstances(instance_create(x, y, CaveSparkle)), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+scrHMMotionAdd((90 + (_hml_s * 120)), 4);
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+scrHMSoundPlay(sndGoldPickup);
+
+}
+
+
+
+// Source props.mod.gml:1726; CaveDecal
+
+function hm_props_mod_gml_CaveDecal() {
+
+if ((! instance_exists(argument2))) {
+
+{
+
+scrHMModCall("mod", "enemies", "crystalshielder_create", argument0, argument1);
+
+}
+
+}
+
+instance_destroy();
+
+}
+
+
+
+// Source props.mod.gml:1733; iceblock_create
+
+function hm_props_mod_gml_iceblock_create(_hml__x, _hml__y) {
+
+{ var __hm_with1 = scrHMInstances(instance_create(_hml__x, _hml__y, CustomObject)), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+{
+
+spr_idle = global.hm_module_vars[$ "mod:props"].iceblock;
+
+image_speed = (0) * timescale;
+
+image_alpha = 0.7;
+
+image_index = choose(0, 0, 0, 1, 2);
+
+open = 100;
+
+depth = (0 - (y / 10016));
+
+{ var __hm_with4 = scrHMInstances(instance_create((x + 8), (y + 8), PlasmaImpact)), __hm_break6=false;
+
+for (var __hm_index5=0; __hm_index5<array_length(__hm_with4); ++__hm_index5) {
+
+if(instance_exists(__hm_with4[__hm_index5])) with (__hm_with4[__hm_index5]) {
+
+{
+
+team = 1;
+
+damage = 3000;
+
+}
+
+}
+
+if(__hm_break6) break;
+
+}}
+
+on_step = scrHMScriptRef(hm_props_mod_gml_iceblock_step);
+
+if ((random(30) < 1)) {
+
+{
+
+{ var __hm_with7 = scrHMInstances(instance_create((x + 8), (y + 8), WepPickup)), __hm_break9=false;
+
+for (var __hm_index8=0; __hm_index8<array_length(__hm_with7); ++__hm_index8) {
+
+if(instance_exists(__hm_with7[__hm_index8])) with (__hm_with7[__hm_index8]) {
+
+{
+
+var _hml_weplist = ds_list_create();
+
+;
+
+scrHMWeaponList(_hml_weplist, 0, GameCont.hard);
+
+;
+
+wep = scrHMWeaponResolve(ds_list_find_value(_hml_weplist, irandom((ds_list_size(_hml_weplist) - 1))));
+
+;
+
+ds_list_destroy(_hml_weplist);
+
+;
+
+ammo = 1;
+
+rotation = random(360);
+
+}
+
+}
+
+if(__hm_break9) break;
+
+}}
+
+}
+
+}
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+}
+
+
+
+// Source props.mod.gml:1760; iceblock_step
+
+function hm_props_mod_gml_iceblock_step() {
+
+sprite_index = spr_idle;
+
+if ((open > 0)) {
+
+if (((distance_to_object(projectile) < 32) and (place_meeting(x, y, CustomProjectile) and (CustomProjectile.sprite_index == sprTrapFire)))) {
+
+{
+
+open -= 2;
+
+var __hm_other1=scrHMOther(other);
+
+instance_create((__hm_other1.x + random_range((- 12), 12)), (__hm_other1.y + random_range((- 12), 12)), Sweat);
+
+}
+
+}
+
+}
+
+var _hml_h = instance_nearest(x, y, hitme);
+
+;
+
+if ((distance_to_object(_hml_h) < 64)) {
+
+{ var __hm_with2 = scrHMMatchingGT(hitme, "speed", 0), __hm_break4=false;
+
+for (var __hm_index3=0; __hm_index3<array_length(__hm_with2); ++__hm_index3) {
+
+if(instance_exists(__hm_with2[__hm_index3])) with (__hm_with2[__hm_index3]) {
+
+if (place_meeting((x + (hspeed / timescale)), (y + (vspeed / timescale)), (scrHMOther(other)))) {
+
+{
+
+speed = (0) * timescale;
+
+direction += 180;
+
+}
+
+}
+
+}
+
+if(__hm_break4) break;
+
+}}
+
+}
+
+var _hml_n = instance_nearest(x, y, projectile);
+
+;
+
+if ((place_meeting(x, y, _hml_n) and (_hml_n.object_index != ((Flame || Laser) || EnemyLaser)))) {
+
+{ var __hm_with5 = scrHMInstances(_hml_n), __hm_break7=false;
+
+for (var __hm_index6=0; __hm_index6<array_length(__hm_with5); ++__hm_index6) {
+
+if(instance_exists(__hm_with5[__hm_index6])) with (__hm_with5[__hm_index6]) {
+
+if ((sprite_index != sprTrapFire)) {
+
+instance_destroy();
+
+} else {
+
+speed *= 0.9;
+
+}
+
+}
+
+if(__hm_break7) break;
+
+}}
+
+}
+
+if (((instance_exists(id) and (open <= 0)) and (open != (- 100)))) {
+
+{
+
+instance_destroy();
+
+}
+
+}
+
+}
+
+
+
+// Source props.mod.gml:1789; cave_create
+
+function hm_props_mod_gml_cave_create(_hml__x, _hml__y) {
+
+{ var __hm_with1 = scrHMInstances(instance_create(_hml__x, _hml__y, CustomObject)), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+{
+
+time = 125;
+
+mask_index = mskPlayer;
+
+var _hml_n = instance_nearest(x, y, Floor);
+
+;
+
+direction = point_direction((_hml_n.x + 16), (_hml_n.y + 16), x, y);
+
+friction = (0.4) * (timescale * timescale);
+
+on_step = scrHMScriptRef(hm_props_mod_gml_cave_step);
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+}
+
+
+
+// Source props.mod.gml:1798; cave_step
+
+function hm_props_mod_gml_cave_step() {
+
+if ((GameCont.subarea == 3)) {
+
+direction = point_direction(HyperCrystal.x, HyperCrystal.y, x, y);
+
+}
+
+if (((time > 0) and instance_exists(Wall))) {
+
+{
+
+if ((time >= 125)) {
+
+scrHMMotionAdd(direction, 10);
+
+}
+
+time -= 1;
+
+{ var __hm_with1 = scrHMInstances(instance_create(x, y, PortalClear)), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+{
+
+image_xscale = 0.4;
+
+image_yscale = 0.4;
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+}
+
+} else {
+
+{
+
+if ((GameCont.subarea < 3)) {
+
+{
+
+var _hml_n = instance_nearest(x, y, Floor);
+
+;
+
+hm_props_mod_gml_whitecrystal_create(_hml_n.x, _hml_n.y);
+
+{ var __hm_with4 = scrHMInstances(FloorExplo), __hm_break6=false;
+
+for (var __hm_index5=0; __hm_index5<array_length(__hm_with4); ++__hm_index5) {
+
+if(instance_exists(__hm_with4[__hm_index5])) with (__hm_with4[__hm_index5]) {
+
+{
+
+if ((distance_to_object((scrHMOther(other))) < 72)) {
+
+{
+
+sprite_index = sprFloor5B;
+
+traction = 0.5;
+
+}
+
+}
+
+if ((distance_to_object((scrHMOther(other))) < 52)) {
+
+{
+
+hm_props_mod_gml_iceblock_create((x + 8), (y + 8));
+
+}
+
+}
+
+}
+
+}
+
+if(__hm_break6) break;
+
+}}
+
+}
+
+} else {
+
+{
+
+{ var __hm_with7 = scrHMInstances(FloorExplo), __hm_break9=false;
+
+for (var __hm_index8=0; __hm_index8<array_length(__hm_with7); ++__hm_index8) {
+
+if(instance_exists(__hm_with7[__hm_index8])) with (__hm_with7[__hm_index8]) {
+
+{
+
+if ((distance_to_object((scrHMOther(other))) < 52)) {
+
+{
+
+sprite_index = sprFloor105;
+
+}
+
+}
+
+}
+
+}
+
+if(__hm_break9) break;
+
+}}
+
+var _hml_n = instance_nearest(x, y, Floor);
+
+;
+
+hm_props_mod_gml_Flower_create(x, y);
+
+instance_create((_hml_n.x + 16), (_hml_n.y + 16), PortalClear);
+
+repeat (32) instance_create((x + random_range((- 150), 150)), (y + random_range((- 150), 150)), LightBeam);
+
+}
+
+}
+
+instance_destroy();
+
+}
+
+}
+
+}
+
+
+
 // Source props.mod.gml:0; whitecrystal_create (native content 1.1.0)
 function hm_props_mod_gml_whitecrystal_create(_hml__x, _hml__y) {
 { var __hm_with1 = scrHMInstances(instance_create(_hml__x, _hml__y, CustomObject)), __hm_break3=false;
@@ -4592,283 +6703,560 @@ default: throw "Hardmode invalid continuation PC";
 }
 }
 
-// Source props.mod.gml:2106; lookout_create
-function hm_props_mod_gml_lookout_create(_hml__x, _hml__y) {
-{ var __hm_with1 = scrHMInstances(instance_create(_hml__x, _hml__y, CustomObject)), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-name = "lookout";
-depth = 0;
-image_speed = (0.4) * timescale;
-on_step = scrHMScriptRef(hm_props_mod_gml_lookout_step);
-{ var __hm_with4 = scrHMInstances(instance_create(x, (y + 8), CustomObject)), __hm_break6=false;
-for (var __hm_index5=0; __hm_index5<array_length(__hm_with4); ++__hm_index5) {
-if(instance_exists(__hm_with4[__hm_index5])) with (__hm_with4[__hm_index5]) {
-{
-name = " ENTER";
-depth = 0;
-z = 0;
-image_speed = (0.2) * timescale;
-on_step = scrHMScriptRef(hm_props_mod_gml_hole_step);
-}
-}
-if(__hm_break6) break;
-}}
-}
-}
-if(__hm_break3) break;
-}}
-}
-
-// Source props.mod.gml:2120; lookout_step
-function hm_props_mod_gml_lookout_step() {
-sprite_index = global.hm_module_vars[$ "mod:props"].lookout;
-if ((image_index > 27)) {
-instance_destroy();
-}
-}
-
-// Source props.mod.gml:2124; hole_step
-function hm_props_mod_gml_hole_step() {
-var _args = [];
-for(var _i=0;_i<argument_count;++_i) array_push(_args, argument[_i]);
-return scrHMTaskStart(hm_props_mod_gml_hole_step_resume, id, scrHMOther(other), _args, 10, []);
-}
-function hm_props_mod_gml_hole_step_resume(_hm) {
-var _budget=0;
-while(!_hm.done) {
-assert(++_budget<100000,"Hardmode runaway continuation: hm_props_mod_gml_hole_step");
-if (!instance_exists(_hm.scope)) { if(array_length(_hm.with_stack)>_hm.with_floor) {scrHMTaskWithNext(_hm); continue;} _hm.done=true; return; }
-with (_hm.scope) { switch (_hm.pc) {
-case 0: _hm.done=true; return;
-case 1: // props.mod.gml:2138
-{
-if (((image_index > 31) and instance_exists(id))) {
-instance_destroy();
-}
-}
-_hm.pc=0;
-break;
-case 2: // props.mod.gml:2131
-scrHMTaskWithNext(_hm);
-break;
-case 3: // props.mod.gml:2131
-scrHMTaskWithAbort(_hm);
-break;
-case 4: // props.mod.gml:2135
-{
-GameCont.area = scrHMAreaResolve("yeti");
-}
-_hm.pc=2;
-break;
-case 5: // props.mod.gml:2134
-_hm.wait_ticks=max(0,3); _hm.pc=4; return;
-break;
-case 6: // props.mod.gml:2133
-{
-instance_create(x, y, Portal);
-}
-_hm.pc=5;
-break;
-case 7: // props.mod.gml:2132
-_hm.pc = (scrHMButtonPressed(index, "pick")) ? 6 : 2;
-break;
-case 8: // props.mod.gml:2131
-_hm.pc = ((distance_to_object(_hm.other_scope) < 16)) ? 7 : 2;
-break;
-case 9: // props.mod.gml:2131
-scrHMTaskWithEnter(_hm,scrHMInstances(Player),8,1);
-break;
-case 10: // props.mod.gml:2125
-{
-sprite_index = global.hm_module_vars[$ "mod:props"].hole;
-if ((distance_to_object(Player) < 16)) {
-{
-{ var __hm_with1 = scrHMInstances(scrHMBindDraw(hm_props_mod_gml_E, (- 11))), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-var __hm_other4=scrHMOther(other);
-creator = __hm_other4;
-}
-if(__hm_break3) break;
-}}
-}
-}
-}
-_hm.pc=9;
-break;
-default: throw "Hardmode invalid continuation PC";
-}}
-}
-}
-
-
-// Source props.mod.gml:2142; leave_create
-function hm_props_mod_gml_leave_create(_hml__x, _hml__y) {
-{ var __hm_with1 = scrHMInstances(instance_create(_hml__x, _hml__y, CustomObject)), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-name = " leave";
-if ((GameCont.area == scrHMAreaResolve("end"))) {
-name = " light";
-}
-mask_index = mskPlayer;
-z = 0;
-on_step = scrHMScriptRef(hm_props_mod_gml_leave_step);
-}
-}
-if(__hm_break3) break;
-}}
-}
-
-// Source props.mod.gml:2151; leave_step
-function hm_props_mod_gml_leave_step() {
-{ var __hm_with1 = scrHMInstances(Player), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-if ((distance_to_object((scrHMOther(other))) < 16)) {
-{
-var _hml_me = (scrHMOther(other));
-;
-{ var __hm_with4 = scrHMInstances((scrHMOther(other))), __hm_break6=false;
-for (var __hm_index5=0; __hm_index5<array_length(__hm_with4); ++__hm_index5) {
-if(instance_exists(__hm_with4[__hm_index5])) with (__hm_with4[__hm_index5]) {
-{ var __hm_with7 = scrHMInstances(scrHMBindDraw(hm_props_mod_gml_E, (- 11))), __hm_break9=false;
-for (var __hm_index8=0; __hm_index8<array_length(__hm_with7); ++__hm_index8) {
-if(instance_exists(__hm_with7[__hm_index8])) with (__hm_with7[__hm_index8]) {
-var __hm_other10=scrHMOther(other);
-creator = __hm_other10;
-}
-if(__hm_break9) break;
-}}
-}
-if(__hm_break6) break;
-}}
-if (scrHMButtonPressed(index, "pick")) {
-{
-{ var __hm_with11 = scrHMInstances(instance_create(x, y, Portal)), __hm_break13=false;
-for (var __hm_index12=0; __hm_index12<array_length(__hm_with11); ++__hm_index12) {
-if(instance_exists(__hm_with11[__hm_index12])) with (__hm_with11[__hm_index12]) {
-{
-if ((GameCont.area == scrHMAreaResolve("end"))) {
-{
-image_alpha = 0;
-{ var __hm_with14 = scrHMInstances(Campfire), __hm_break16=false;
-for (var __hm_index15=0; __hm_index15<array_length(__hm_with14); ++__hm_index15) {
-if(instance_exists(__hm_with14[__hm_index15])) with (__hm_with14[__hm_index15]) {
-spr_idle = sprCampfire;
-}
-if(__hm_break16) break;
-}}
-{ var __hm_with17 = scrHMInstances(instance_create(_hml_me.x, _hml_me.y, GroundFlame)), __hm_break19=false;
-for (var __hm_index18=0; __hm_index18<array_length(__hm_with17); ++__hm_index18) {
-if(instance_exists(__hm_with17[__hm_index18])) with (__hm_with17[__hm_index18]) {
-sprite_index = sprGroundFlameBig;
-}
-if(__hm_break19) break;
-}}
-}
-}
-}
-}
-if(__hm_break13) break;
-}}
-{ var __hm_with20 = scrHMInstances((scrHMOther(other))), __hm_break22=false;
-for (var __hm_index21=0; __hm_index21<array_length(__hm_with20); ++__hm_index21) {
-if(instance_exists(__hm_with20[__hm_index21])) with (__hm_with20[__hm_index21]) {
-instance_destroy();
-}
-if(__hm_break22) break;
-}}
-}
-}
-}
-}
-}
-if(__hm_break3) break;
-}}
-}
-
-// Source props.mod.gml:2172; bigtube1_create
-function hm_props_mod_gml_bigtube1_create(_hml__x, _hml__y) {
-{ var __hm_with1 = scrHMInstances(instance_create(_hml__x, _hml__y, CustomHitme)), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-name = "bigtube1";
-spr_idle = global.hm_module_vars[$ "mod:props"].bigtube;
-spr_hurt = global.hm_module_vars[$ "mod:props"].bigtubehurt;
-spr_dead = global.hm_module_vars[$ "mod:props"].bigtubedead;
-snd_hurt = sndLabsTubeBreak;
-snd_dead = sndLabsMutantTubeBreak;
-team = (- 1);
-image_xscale = choose(1, 1, (- 1));
-friction = (30) * (timescale * timescale);
-hp = 20;
-depth = (- 10);
-on_step = scrHMScriptRef(hm_props_mod_gml_bigtube1_step);
-on_hurt = scrHMScriptRef(hm_props_mod_gml_bigtube_hurt);
-on_destroy = scrHMScriptRef(hm_props_mod_gml_bigtube1_dead);
-}
-}
-if(__hm_break3) break;
-}}
-}
-
-// Source props.mod.gml:2189; bigtube1_step
-function hm_props_mod_gml_bigtube1_step() {
-if ((nexthurt > current_frame)) {
-{
-if ((sprite_index != spr_hurt)) {
-{
-image_index = 0;
-;
-sprite_index = spr_hurt;
-;
-}
-}
-}
-} else {
-{
-sprite_index = spr_idle;
-;
-}
-}
-{ var __hm_with1 = scrHMInstances(instance_nearest(x, y, hitme)), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-if (place_meeting(x, (y + 8), (scrHMOther(other)))) {
-{
-var __hm_other4=scrHMOther(other);
-scrHMMotionAdd(point_direction(__hm_other4.x, (__hm_other4.y + 8), x, y), 0.5);
-}
-}
-}
-if(__hm_break3) break;
-}}
-}
-
-// Source props.mod.gml:2201; bigtube_hurt
-function hm_props_mod_gml_bigtube_hurt() {
-if ((sprite_index != spr_hurt)) {
-{
-hp -= argument0;
-;
-image_index = 0;
-;
-sprite_index = spr_hurt;
-;
-}
-}
-if ((hp <= 0)) {
-{
-instance_destroy();
-}
-}
-}
-
+// Source props.mod.gml:2106; lookout_create
+
+function hm_props_mod_gml_lookout_create(_hml__x, _hml__y) {
+
+{ var __hm_with1 = scrHMInstances(instance_create(_hml__x, _hml__y, CustomObject)), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+{
+
+name = "lookout";
+
+depth = 0;
+
+image_speed = (0.4) * timescale;
+
+on_step = scrHMScriptRef(hm_props_mod_gml_lookout_step);
+
+{ var __hm_with4 = scrHMInstances(instance_create(x, (y + 8), CustomObject)), __hm_break6=false;
+
+for (var __hm_index5=0; __hm_index5<array_length(__hm_with4); ++__hm_index5) {
+
+if(instance_exists(__hm_with4[__hm_index5])) with (__hm_with4[__hm_index5]) {
+
+{
+
+name = " ENTER";
+
+depth = 0;
+
+z = 0;
+
+image_speed = (0.2) * timescale;
+
+on_step = scrHMScriptRef(hm_props_mod_gml_hole_step);
+
+}
+
+}
+
+if(__hm_break6) break;
+
+}}
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+}
+
+
+
+// Source props.mod.gml:2120; lookout_step
+
+function hm_props_mod_gml_lookout_step() {
+
+sprite_index = global.hm_module_vars[$ "mod:props"].lookout;
+
+if ((image_index > 27)) {
+
+instance_destroy();
+
+}
+
+}
+
+
+
+// Source props.mod.gml:2124; hole_step
+
+function hm_props_mod_gml_hole_step() {
+
+var _args = [];
+
+for(var _i=0;_i<argument_count;++_i) array_push(_args, argument[_i]);
+
+return scrHMTaskStart(hm_props_mod_gml_hole_step_resume, id, scrHMOther(other), _args, 10, []);
+
+}
+
+function hm_props_mod_gml_hole_step_resume(_hm) {
+
+var _budget=0;
+
+while(!_hm.done) {
+
+assert(++_budget<100000,"Hardmode runaway continuation: hm_props_mod_gml_hole_step");
+
+if (!instance_exists(_hm.scope)) { if(array_length(_hm.with_stack)>_hm.with_floor) {scrHMTaskWithNext(_hm); continue;} _hm.done=true; return; }
+
+with (_hm.scope) { switch (_hm.pc) {
+
+case 0: _hm.done=true; return;
+
+case 1: // props.mod.gml:2138
+
+{
+
+if (((image_index > 31) and instance_exists(id))) {
+
+instance_destroy();
+
+}
+
+}
+
+_hm.pc=0;
+
+break;
+
+case 2: // props.mod.gml:2131
+
+scrHMTaskWithNext(_hm);
+
+break;
+
+case 3: // props.mod.gml:2131
+
+scrHMTaskWithAbort(_hm);
+
+break;
+
+case 4: // props.mod.gml:2135
+
+{
+
+GameCont.area = scrHMAreaResolve("yeti");
+
+}
+
+_hm.pc=2;
+
+break;
+
+case 5: // props.mod.gml:2134
+
+_hm.wait_ticks=max(0,3); _hm.pc=4; return;
+
+break;
+
+case 6: // props.mod.gml:2133
+
+{
+
+instance_create(x, y, Portal);
+
+}
+
+_hm.pc=5;
+
+break;
+
+case 7: // props.mod.gml:2132
+
+_hm.pc = (scrHMButtonPressed(index, "pick")) ? 6 : 2;
+
+break;
+
+case 8: // props.mod.gml:2131
+
+_hm.pc = ((distance_to_object(_hm.other_scope) < 16)) ? 7 : 2;
+
+break;
+
+case 9: // props.mod.gml:2131
+
+scrHMTaskWithEnter(_hm,scrHMInstances(Player),8,1);
+
+break;
+
+case 10: // props.mod.gml:2125
+
+{
+
+sprite_index = global.hm_module_vars[$ "mod:props"].hole;
+
+if ((distance_to_object(Player) < 16)) {
+
+{
+
+{ var __hm_with1 = scrHMInstances(scrHMBindDraw(hm_props_mod_gml_E, (- 11))), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+var __hm_other4=scrHMOther(other);
+
+creator = __hm_other4;
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+}
+
+}
+
+}
+
+_hm.pc=9;
+
+break;
+
+default: throw "Hardmode invalid continuation PC";
+
+}}
+
+}
+
+}
+
+
+
+
+
+// Source props.mod.gml:2142; leave_create
+
+function hm_props_mod_gml_leave_create(_hml__x, _hml__y) {
+
+{ var __hm_with1 = scrHMInstances(instance_create(_hml__x, _hml__y, CustomObject)), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+{
+
+name = " leave";
+
+if ((GameCont.area == scrHMAreaResolve("end"))) {
+
+name = " light";
+
+}
+
+mask_index = mskPlayer;
+
+z = 0;
+
+on_step = scrHMScriptRef(hm_props_mod_gml_leave_step);
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+}
+
+
+
+// Source props.mod.gml:2151; leave_step
+
+function hm_props_mod_gml_leave_step() {
+
+{ var __hm_with1 = scrHMInstances(Player), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+if ((distance_to_object((scrHMOther(other))) < 16)) {
+
+{
+
+var _hml_me = (scrHMOther(other));
+
+;
+
+{ var __hm_with4 = scrHMInstances((scrHMOther(other))), __hm_break6=false;
+
+for (var __hm_index5=0; __hm_index5<array_length(__hm_with4); ++__hm_index5) {
+
+if(instance_exists(__hm_with4[__hm_index5])) with (__hm_with4[__hm_index5]) {
+
+{ var __hm_with7 = scrHMInstances(scrHMBindDraw(hm_props_mod_gml_E, (- 11))), __hm_break9=false;
+
+for (var __hm_index8=0; __hm_index8<array_length(__hm_with7); ++__hm_index8) {
+
+if(instance_exists(__hm_with7[__hm_index8])) with (__hm_with7[__hm_index8]) {
+
+var __hm_other10=scrHMOther(other);
+
+creator = __hm_other10;
+
+}
+
+if(__hm_break9) break;
+
+}}
+
+}
+
+if(__hm_break6) break;
+
+}}
+
+if (scrHMButtonPressed(index, "pick")) {
+
+{
+
+{ var __hm_with11 = scrHMInstances(instance_create(x, y, Portal)), __hm_break13=false;
+
+for (var __hm_index12=0; __hm_index12<array_length(__hm_with11); ++__hm_index12) {
+
+if(instance_exists(__hm_with11[__hm_index12])) with (__hm_with11[__hm_index12]) {
+
+{
+
+if ((GameCont.area == scrHMAreaResolve("end"))) {
+
+{
+
+image_alpha = 0;
+
+{ var __hm_with14 = scrHMInstances(Campfire), __hm_break16=false;
+
+for (var __hm_index15=0; __hm_index15<array_length(__hm_with14); ++__hm_index15) {
+
+if(instance_exists(__hm_with14[__hm_index15])) with (__hm_with14[__hm_index15]) {
+
+spr_idle = sprCampfire;
+
+}
+
+if(__hm_break16) break;
+
+}}
+
+{ var __hm_with17 = scrHMInstances(instance_create(_hml_me.x, _hml_me.y, GroundFlame)), __hm_break19=false;
+
+for (var __hm_index18=0; __hm_index18<array_length(__hm_with17); ++__hm_index18) {
+
+if(instance_exists(__hm_with17[__hm_index18])) with (__hm_with17[__hm_index18]) {
+
+sprite_index = sprGroundFlameBig;
+
+}
+
+if(__hm_break19) break;
+
+}}
+
+}
+
+}
+
+}
+
+}
+
+if(__hm_break13) break;
+
+}}
+
+{ var __hm_with20 = scrHMInstances((scrHMOther(other))), __hm_break22=false;
+
+for (var __hm_index21=0; __hm_index21<array_length(__hm_with20); ++__hm_index21) {
+
+if(instance_exists(__hm_with20[__hm_index21])) with (__hm_with20[__hm_index21]) {
+
+instance_destroy();
+
+}
+
+if(__hm_break22) break;
+
+}}
+
+}
+
+}
+
+}
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+}
+
+
+
+// Source props.mod.gml:2172; bigtube1_create
+
+function hm_props_mod_gml_bigtube1_create(_hml__x, _hml__y) {
+
+{ var __hm_with1 = scrHMInstances(instance_create(_hml__x, _hml__y, CustomHitme)), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+{
+
+name = "bigtube1";
+
+spr_idle = global.hm_module_vars[$ "mod:props"].bigtube;
+
+spr_hurt = global.hm_module_vars[$ "mod:props"].bigtubehurt;
+
+spr_dead = global.hm_module_vars[$ "mod:props"].bigtubedead;
+
+snd_hurt = sndLabsTubeBreak;
+
+snd_dead = sndLabsMutantTubeBreak;
+
+team = (- 1);
+
+image_xscale = choose(1, 1, (- 1));
+
+friction = (30) * (timescale * timescale);
+
+hp = 20;
+
+depth = (- 10);
+
+on_step = scrHMScriptRef(hm_props_mod_gml_bigtube1_step);
+
+on_hurt = scrHMScriptRef(hm_props_mod_gml_bigtube_hurt);
+
+on_destroy = scrHMScriptRef(hm_props_mod_gml_bigtube1_dead);
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+}
+
+
+
+// Source props.mod.gml:2189; bigtube1_step
+
+function hm_props_mod_gml_bigtube1_step() {
+
+if ((nexthurt > current_frame)) {
+
+{
+
+if ((sprite_index != spr_hurt)) {
+
+{
+
+image_index = 0;
+
+;
+
+sprite_index = spr_hurt;
+
+;
+
+}
+
+}
+
+}
+
+} else {
+
+{
+
+sprite_index = spr_idle;
+
+;
+
+}
+
+}
+
+{ var __hm_with1 = scrHMInstances(instance_nearest(x, y, hitme)), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+if (place_meeting(x, (y + 8), (scrHMOther(other)))) {
+
+{
+
+var __hm_other4=scrHMOther(other);
+
+scrHMMotionAdd(point_direction(__hm_other4.x, (__hm_other4.y + 8), x, y), 0.5);
+
+}
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+}
+
+
+
+// Source props.mod.gml:2201; bigtube_hurt
+
+function hm_props_mod_gml_bigtube_hurt() {
+
+if ((sprite_index != spr_hurt)) {
+
+{
+
+hp -= argument0;
+
+;
+
+image_index = 0;
+
+;
+
+sprite_index = spr_hurt;
+
+;
+
+}
+
+}
+
+if ((hp <= 0)) {
+
+{
+
+instance_destroy();
+
+}
+
+}
+
+}
+
+
+
 // Source props.mod.gml:0; bigtube1_dead (native content 1.1.0)
 function hm_props_mod_gml_bigtube1_dead() {
 scrHMModCall("mod", "enemies", "enemysteroids_create", x, y);
@@ -4896,32 +7284,58 @@ if(__hm_break6) break;
 }}
 }
 
-// Source props.mod.gml:2221; bigtube2_create
-function hm_props_mod_gml_bigtube2_create(_hml__x, _hml__y) {
-{ var __hm_with1 = scrHMInstances(instance_create(_hml__x, _hml__y, CustomHitme)), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-name = "bigtube2";
-spr_idle = global.hm_module_vars[$ "mod:props"].bigtube2;
-spr_hurt = global.hm_module_vars[$ "mod:props"].bigtube2hurt;
-spr_dead = global.hm_module_vars[$ "mod:props"].bigtube2dead;
-snd_hurt = sndLabsTubeBreak;
-snd_dead = sndLabsMutantTubeBreak;
-team = (- 1);
-image_xscale = choose(1, 1, (- 1));
-friction = (30) * (timescale * timescale);
-hp = 20;
-depth = (- 10);
-on_step = scrHMScriptRef(hm_props_mod_gml_bigtube1_step);
-on_hurt = scrHMScriptRef(hm_props_mod_gml_bigtube_hurt);
-on_destroy = scrHMScriptRef(hm_props_mod_gml_bigtube2_dead);
-}
-}
-if(__hm_break3) break;
-}}
-}
-
+// Source props.mod.gml:2221; bigtube2_create
+
+function hm_props_mod_gml_bigtube2_create(_hml__x, _hml__y) {
+
+{ var __hm_with1 = scrHMInstances(instance_create(_hml__x, _hml__y, CustomHitme)), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+{
+
+name = "bigtube2";
+
+spr_idle = global.hm_module_vars[$ "mod:props"].bigtube2;
+
+spr_hurt = global.hm_module_vars[$ "mod:props"].bigtube2hurt;
+
+spr_dead = global.hm_module_vars[$ "mod:props"].bigtube2dead;
+
+snd_hurt = sndLabsTubeBreak;
+
+snd_dead = sndLabsMutantTubeBreak;
+
+team = (- 1);
+
+image_xscale = choose(1, 1, (- 1));
+
+friction = (30) * (timescale * timescale);
+
+hp = 20;
+
+depth = (- 10);
+
+on_step = scrHMScriptRef(hm_props_mod_gml_bigtube1_step);
+
+on_hurt = scrHMScriptRef(hm_props_mod_gml_bigtube_hurt);
+
+on_destroy = scrHMScriptRef(hm_props_mod_gml_bigtube2_dead);
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+}
+
+
+
 // Source props.mod.gml:0; bigtube2_dead (native content 1.1.0)
 function hm_props_mod_gml_bigtube2_dead() {
 instance_create(x, y, PopoFreak);
@@ -4949,102 +7363,198 @@ if(__hm_break6) break;
 }}
 }
 
-// Source props.mod.gml:2251; terminal_create
-function hm_props_mod_gml_terminal_create(_hml__x, _hml__y) {
-{ var __hm_with1 = scrHMInstances(instance_create(_hml__x, _hml__y, CustomObject)), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-name = " Palace";
-spr_idle = sprTerminal;
-spr_hurt = sprTerminalHurt;
-snd_hurt = sndHitWall;
-mask_index = mskNone;
-z = 0;
-friction = (30) * (timescale * timescale);
-hp = 4000;
-depth = 0;
-on_step = scrHMScriptRef(hm_props_mod_gml_terminal_step);
-}
-}
-if(__hm_break3) break;
-}}
-}
-
-// Source props.mod.gml:2264; terminal_step
-function hm_props_mod_gml_terminal_step() {
-sprite_index = spr_idle;
-{ var __hm_with1 = scrHMInstances(Player), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-if ((distance_to_object((scrHMOther(other))) < 16)) {
-{
-var _hml_cpu = (scrHMOther(other));
-;
-{ var __hm_with4 = scrHMInstances((scrHMOther(other))), __hm_break6=false;
-for (var __hm_index5=0; __hm_index5<array_length(__hm_with4); ++__hm_index5) {
-if(instance_exists(__hm_with4[__hm_index5])) with (__hm_with4[__hm_index5]) {
-{ var __hm_with7 = scrHMInstances(scrHMBindDraw(hm_props_mod_gml_E, (- 11))), __hm_break9=false;
-for (var __hm_index8=0; __hm_index8<array_length(__hm_with7); ++__hm_index8) {
-if(instance_exists(__hm_with7[__hm_index8])) with (__hm_with7[__hm_index8]) {
-var __hm_other10=scrHMOther(other);
-creator = __hm_other10;
-}
-if(__hm_break9) break;
-}}
-}
-if(__hm_break6) break;
-}}
-if (scrHMButtonPressed(index, "pick")) {
-{
-if (instance_exists(BigTV)) {
-{
-scrHMSoundPlay(sndClick);
-{ var __hm_with11 = scrHMInstances(BigTV), __hm_break13=false;
-for (var __hm_index12=0; __hm_index12<array_length(__hm_with11); ++__hm_index12) {
-if(instance_exists(__hm_with11[__hm_index12])) with (__hm_with11[__hm_index12]) {
-{
-if ((spr_idle == spr_tv1)) {
-{
-spr_idle = spr_tv2;
-;
-_hml_cpu.name = "   HQ";
-if ((scrHMModExists("area", "elevator", "nextarea") and (scrHMModGet("area", "elevator", "nextarea") == 1))) {
-scrHMModSet("area", "elevator", "nextarea", 0);
-}
-}
-} else {
-if ((spr_idle == spr_tv2)) {
-{
-spr_idle = spr_tv1;
-;
-_hml_cpu.name = " Palace";
-if ((scrHMModExists("area", "elevator", "nextarea") and (scrHMModGet("area", "elevator", "nextarea") == 0))) {
-scrHMModSet("area", "elevator", "nextarea", 1);
-}
-}
-}
-}
-}
-}
-if(__hm_break13) break;
-}}
-}
-} else {
-scrHMSoundPlay(sndComputerBreak);
-}
-}
-}
-}
-}
-}
-if(__hm_break3) break;
-}}
-if ((! instance_exists(BigTV))) {
-instance_destroy();
-}
-}
-
+// Source props.mod.gml:2251; terminal_create
+
+function hm_props_mod_gml_terminal_create(_hml__x, _hml__y) {
+
+{ var __hm_with1 = scrHMInstances(instance_create(_hml__x, _hml__y, CustomObject)), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+{
+
+name = " Palace";
+
+spr_idle = sprTerminal;
+
+spr_hurt = sprTerminalHurt;
+
+snd_hurt = sndHitWall;
+
+mask_index = mskNone;
+
+z = 0;
+
+friction = (30) * (timescale * timescale);
+
+hp = 4000;
+
+depth = 0;
+
+on_step = scrHMScriptRef(hm_props_mod_gml_terminal_step);
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+}
+
+
+
+// Source props.mod.gml:2264; terminal_step
+
+function hm_props_mod_gml_terminal_step() {
+
+sprite_index = spr_idle;
+
+{ var __hm_with1 = scrHMInstances(Player), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+if ((distance_to_object((scrHMOther(other))) < 16)) {
+
+{
+
+var _hml_cpu = (scrHMOther(other));
+
+;
+
+{ var __hm_with4 = scrHMInstances((scrHMOther(other))), __hm_break6=false;
+
+for (var __hm_index5=0; __hm_index5<array_length(__hm_with4); ++__hm_index5) {
+
+if(instance_exists(__hm_with4[__hm_index5])) with (__hm_with4[__hm_index5]) {
+
+{ var __hm_with7 = scrHMInstances(scrHMBindDraw(hm_props_mod_gml_E, (- 11))), __hm_break9=false;
+
+for (var __hm_index8=0; __hm_index8<array_length(__hm_with7); ++__hm_index8) {
+
+if(instance_exists(__hm_with7[__hm_index8])) with (__hm_with7[__hm_index8]) {
+
+var __hm_other10=scrHMOther(other);
+
+creator = __hm_other10;
+
+}
+
+if(__hm_break9) break;
+
+}}
+
+}
+
+if(__hm_break6) break;
+
+}}
+
+if (scrHMButtonPressed(index, "pick")) {
+
+{
+
+if (instance_exists(BigTV)) {
+
+{
+
+scrHMSoundPlay(sndClick);
+
+{ var __hm_with11 = scrHMInstances(BigTV), __hm_break13=false;
+
+for (var __hm_index12=0; __hm_index12<array_length(__hm_with11); ++__hm_index12) {
+
+if(instance_exists(__hm_with11[__hm_index12])) with (__hm_with11[__hm_index12]) {
+
+{
+
+if ((spr_idle == spr_tv1)) {
+
+{
+
+spr_idle = spr_tv2;
+
+;
+
+_hml_cpu.name = "   HQ";
+
+if ((scrHMModExists("area", "elevator", "nextarea") and (scrHMModGet("area", "elevator", "nextarea") == 1))) {
+
+scrHMModSet("area", "elevator", "nextarea", 0);
+
+}
+
+}
+
+} else {
+
+if ((spr_idle == spr_tv2)) {
+
+{
+
+spr_idle = spr_tv1;
+
+;
+
+_hml_cpu.name = " Palace";
+
+if ((scrHMModExists("area", "elevator", "nextarea") and (scrHMModGet("area", "elevator", "nextarea") == 0))) {
+
+scrHMModSet("area", "elevator", "nextarea", 1);
+
+}
+
+}
+
+}
+
+}
+
+}
+
+}
+
+if(__hm_break13) break;
+
+}}
+
+}
+
+} else {
+
+scrHMSoundPlay(sndComputerBreak);
+
+}
+
+}
+
+}
+
+}
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+if ((! instance_exists(BigTV))) {
+
+instance_destroy();
+
+}
+
+}
+
+
+
 // Source props.mod.gml:0; elevator_create (native content 1.1.0)
 function hm_props_mod_gml_elevator_create(_hml__x, _hml__y) {
 { var __hm_with1 = scrHMInstances(instance_create(_hml__x, _hml__y, CustomHitme)), __hm_break3=false;
@@ -5056,6 +7566,7 @@ name = "elevator";
 hm_elevator_wait = 40;
 ;
 hm_elevator_exit = noone;
+mask_index=mskNone;
 ;
 spr_idle = global.hm_module_vars[$ "mod:props"].elevator;
 spr_hurt = global.hm_module_vars[$ "mod:props"].elevator;
@@ -5073,98 +7584,33 @@ if(__hm_break3) break;
 
 // Source props.mod.gml:0; elevator_step (native content 1.1.0)
 function hm_props_mod_gml_elevator_step() {
-sprite_index = spr_idle;
-;
-if ((instance_exists(SpiralCont) || instance_exists(Spiral))) {
-{
-mask_index = mskNone;
-;
-exit;
-;
-}
-}
-if (instance_exists(hm_elevator_exit)) {
-{
-mask_index = mskNone;
-;
-exit;
-;
-}
-}
-if (instance_exists(Portal)) {
-{
-mask_index = mskNone;
-;
-exit;
-;
-}
-}
-if ((! hm_arkintide_mod_gml_hm_combat_clear())) {
-{
-hm_elevator_wait = 40;
-;
-exit;
-;
-}
-}
-hm_elevator_wait -= 1;
-;
-if ((hm_elevator_wait > 0)) {
-exit;
-}
-var _hml_xx = x;
-var _hml_yy = (y - 16);
-;
-if ((! hm_arkintide_mod_gml_hm_throne_clear(_hml_xx, _hml_yy, mskBandit))) {
-{
-var _hml_tile = hm_arkintide_mod_gml_hm_venus_boss_floor(_hml_xx, _hml_yy);
-;
-if ((! instance_exists(_hml_tile))) {
-{
-hm_elevator_wait = 1;
-;
-exit;
-;
-}
-}
-_hml_xx = (_hml_tile.x + 16);
-;
-_hml_yy = (_hml_tile.y + 16);
-;
-}
-}
-mask_index = mskNone;
-;
-hm_elevator_exit = instance_create(_hml_xx, _hml_yy, Portal);
-;
-{ var __hm_with1 = scrHMInstances(hm_elevator_exit), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-type = 2;
-;
-image_yscale = (- 1);
-;
-hm_arkintide_mod_gml_hm_idpd_portal_sprite();
-;
-}
-}
-if(__hm_break3) break;
-}}
+scrHMElevatorStep1102();
 }
 
-// Source props.mod.gml:2323; elevator_hurt
-function hm_props_mod_gml_elevator_hurt() {
-if ((sprite_index != spr_hurt)) {
-{
-image_index = 0;
-;
-sprite_index = spr_hurt;
-;
-}
-}
-}
-
+// Source props.mod.gml:2323; elevator_hurt
+
+function hm_props_mod_gml_elevator_hurt() {
+
+if ((sprite_index != spr_hurt)) {
+
+{
+
+image_index = 0;
+
+;
+
+sprite_index = spr_hurt;
+
+;
+
+}
+
+}
+
+}
+
+
+
 // Source props.mod.gml:0; joao_shockwave (native content 1.1.0)
 function hm_props_mod_gml_joao_shockwave() {
 var _args = [];
@@ -6434,27 +8880,51 @@ default: throw "Hardmode invalid continuation PC";
 }
 }
 
-// Source props.mod.gml:2724; fadefloor
-function hm_props_mod_gml_fadefloor() {
-if ((image_alpha < 1)) {
-image_alpha += 0.1;
-} else {
-{
-{ var __hm_with1 = scrHMInstances(realboy), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-image_alpha = 1;
-;
-var __hm_other4=scrHMOther(other);
-sprite_index = __hm_other4.sprite_index;
-;
-}
-}
-if(__hm_break3) break;
-}}
-instance_destroy();
-;
-}
-}
-}
+// Source props.mod.gml:2724; fadefloor
+
+function hm_props_mod_gml_fadefloor() {
+
+if ((image_alpha < 1)) {
+
+image_alpha += 0.1;
+
+} else {
+
+{
+
+{ var __hm_with1 = scrHMInstances(realboy), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+{
+
+image_alpha = 1;
+
+;
+
+var __hm_other4=scrHMOther(other);
+
+sprite_index = __hm_other4.sprite_index;
+
+;
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+instance_destroy();
+
+;
+
+}
+
+}
+
+}
+

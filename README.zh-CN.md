@@ -4,7 +4,7 @@
 
 基于 **Blaac 的 Hardmode b24** 与 Nuclear Throne Recreated Epsilon 制作的安卓／iOS 独立移植版，与 NTTE 工程分开维护。
 
-当前版本：**1.1.1 / build 15**。修复等级上限未初始化报错、警车受伤递归闪退，补齐金星最终首领及 Y.V 的入场／退场镜头，随机替换金星最终首领从 Loop1 开始，缩小首领名称并与血条分行。详见 [更新说明及验证范围](docs/FIXES.md)。
+当前版本：**1.1.2 / build 16**。同步模组版的下水道涉水查询优化、6-3 出口修复，以及 Loop1 起局长／金星最终首领各 5% 的互斥替换。Throne 和所有金星关卡保留自己的关底首领。局长拥有传送入场、入退场镜头和每循环增加一束大球分裂弹；金星最终首领一阶段每循环增加一枚火箭。详见 [更新说明及验证范围](docs/FIXES.md)。
 
 [下载安卓 APK／iOS IPA](https://mega.nz/folder/7TY3wZRB#PgQeCYQzxvrVGjfjX6YefA)。**IPA 需要自行重签。** 安装包放在 Hardmode 专用 MEGA，GitHub 只发布文本源码。
 

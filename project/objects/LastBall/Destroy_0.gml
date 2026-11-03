@@ -17,3 +17,5 @@ repeat 8 {
 	
 	_spd += 0.6
 }
+
+scrHMChiefBallBurst1102();

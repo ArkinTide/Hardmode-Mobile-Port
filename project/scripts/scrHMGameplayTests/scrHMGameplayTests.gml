@@ -104,6 +104,7 @@ function scrHMGameplayTestStep() {
         ticks++;
         if(string_pos("sync",mode)==1) scrHMGameplaySync1100();
         if(string_pos("sync111",mode)==1) scrHMGameplay1101();
+        if(string_pos("sync112",mode)==1) scrHMGameplay1102();
         room_ticks++;
         if(mode=="live112" || string_pos("112",mode)>0) scrHMGameplayRepairs112();
         if(mode=="windows110") scrHMGameplayWindows110();
@@ -150,7 +151,7 @@ function scrHMGameplayTestStep() {
 }
 
 function scrHMGameplayRoomStart() {
-    if(!array_contains(["route","route103","boss","titank","continue","goto103","venus106","venussecrets106","ice107","throneroute109","vault110","music112"],self[$ "mode"])) return;
+    if(!array_contains(["route","route103","boss","titank","continue","goto103","venus106","venussecrets106","ice107","throneroute109","vault110","music112","sync112exit"],self[$ "mode"])) return;
     ready_age=-1;room_ticks=0;route_rooms++;transition_wait=0;
     show_debug_message("HARDMODE ROUTE ROOM "+string(route_rooms)+" "+string(GameCont.area)+","+string(GameCont.subarea));
     if(mode=="titank" && ticks>900) {
