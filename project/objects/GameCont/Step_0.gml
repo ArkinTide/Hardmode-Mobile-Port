@@ -1,3 +1,4 @@
+scrHMContentInit1100();scrHMContentBegin1100();
 if lockstep_stop
 	exit
 
@@ -100,7 +101,7 @@ if rad > max_rad {
 }
 
 // Hardmode: synchronize existing and newly spawned enemies after level changes.
-scrHMRadiationSyncWorld();
+// Native 1.1.0 policy runs once in the main module before absorption.
 
 if (wantdestinyskill && room == romGame) {
 	wantdestinyskill = false

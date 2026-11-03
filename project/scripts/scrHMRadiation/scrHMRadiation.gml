@@ -10,7 +10,8 @@ function scrHMRadiationBelowMaximum() {
 }
 
 // Execute in the enemy's scope. The caller computes the cap once per world pass.
-function scrHMRadiationSync(_below_maximum) {
+function scrHMRadiationSync(_below_maximum) {hm_arkintide_mod_gml_hm_radiation(_below_maximum);}
+function scrHMRadiationSyncLegacy1100(_below_maximum) {
     scrHMBoneFishRadiation109(_below_maximum);
     if(object_index==FastRat) {
         // FastRat's vanilla drop is 0; Rat's is 4. Keep this independent

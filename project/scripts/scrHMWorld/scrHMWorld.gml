@@ -66,6 +66,7 @@ function scrHMWorldStep() {
 function scrHMRunStart() {
     if(!scrHMEnabled()) return;
     global.hm_tasks=[];
+    scrHMContentInit1100();hm_arkintide_mod_gml_hm_progression_start();
     with(HMWorld) scrHMHook("game_start");
 }
 
@@ -136,6 +137,9 @@ function scrHMAreaTransit() {
 
 function scrHMAreaAdvance() {
     if(scrHMAdvanceDestination107()) return;
+    // Native explicit destinations share the existing mobile transition path.
+    var _destination=self[$ "hm_destination"]??"";
+    if(_destination!="") {hm_destination107=scrHMAreaResolve(_destination);hm_destination_sub107=1;hm_destination="";if(scrHMAdvanceDestination107()) return;}
     var _old_area=area,_old_subarea=subarea;
     lastarea=_old_area;lastsubarea=_old_subarea;
     scrHMAreaCall(_old_area,"area_finish");
@@ -219,7 +223,9 @@ function scrHMBindDraw(_code,_depth) {
     var _args=[];
     for(var _i=2;_i<argument_count;++_i) array_push(_args,argument[_i]);
     _code=scrHMScriptRef(_code);
-    var _menu=(_code==scrHMScriptRef(hm_maincode_mod_gml_shilling)
+    var _menu=(_code==scrHMScriptRef(hm_arkintide_mod_gml_hm_van_warning)
+        ||_code==scrHMScriptRef(hm_arkintide_mod_gml_hm_throne_fall_draw)
+        ||_code==scrHMScriptRef(hm_maincode_mod_gml_shilling)
         ||_code==scrHMScriptRef(hm_maincode_mod_gml_versionnumber)
         ||_code==scrHMScriptRef(hm_maincode_mod_gml_StablePortal)
         ||_code==scrHMScriptRef(hm_maincode_mod_gml_PortalShrink)

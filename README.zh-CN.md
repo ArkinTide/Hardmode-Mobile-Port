@@ -2,18 +2,18 @@
 
 简体中文 · [English](README.md)
 
-基于 **Blaac 的 Hardmode b24** 和 Nuclear Throne Recreated Epsilon 制作的安卓／iOS／Windows 独立移植版，与 NTTE 移植工程分开维护。
+基于 **Blaac 的 Hardmode b24** 与 Nuclear Throne Recreated Epsilon 制作的安卓／iOS 独立移植版，与 NTTE 工程分开维护。
 
-当前版本 **1.0.12 / build 13**。本次修复 Windows 滚轮事件与启动节拍、诅咒洞窟墙色恢复、停车场音乐跨区滞留及下水道岸边误判；补上安卓和 iOS 的 MOD 手动位移绘制平滑，保持每秒30次逻辑更新。包含此前1.0.11的修复。[下载 APK、IPA 和 Windows](https://mega.nz/folder/7TY3wZRB#PgQeCYQzxvrVGjfjX6YefA)。GitHub 只发布源码，安装包放在既有 MEGA 目录。
+当前版本：**1.1.0 / build 14**。本次将 Hardmode NTT v100.034 模组版中适用的维护改动同步到手机版，包括额外 Boss、循环怪物池、警察出场、辐射与掉落平衡、Boss 血条、可选玩家增强，以及地形、流程和特效性能修复。完整分类及验证范围见 [更新说明](docs/FIXES.md)。
 
-仓库只包含文本源码及工程元数据，包括 GML 适配层、生成模块、编译器、测试、汉化和 GameMaker 工程定义。**不含图片、音频、字体、原生 runner、SDK、签名、用户存档或原 MOD 内嵌图片数据**。工程内的素材引用需要另行补齐。
+[下载安卓 APK／iOS IPA](https://mega.nz/folder/7TY3wZRB#PgQeCYQzxvrVGjfjX6YefA)。**IPA 需要自行重签。** 安装包放在 Hardmode 专用 MEGA，GitHub 只发布文本源码。
 
-安卓独立包名为 `com.arkintide.nuclearthronehardmode`。授权后的共享存档目录为 `/storage/emulated/0/games/com.arkintide.nuclearthronehardmode/`；不可写时使用私有目录。iOS 存档在 `Documents/hardmode/` 并开启文件共享。
+保留触屏操作、简体中文、既有存档兼容及每秒 30 次逻辑更新／可选 60 帧呈现。**不加入 Grillskills**，继续使用手机版自带的变异选择功能。Hardmode 设置新增首领血条、反弹王座能量球、玩家增强（生命上限 +2、等级上限 +1），并保留老鼠复活开关。
 
-满级前使用 Hardmode 辐射规则，渡鸦5点，激光／闪电／诅咒水晶8／11／11点；满级后恢复各自原版基础掉落，绿老鼠与普通老鼠相同。Hardmode设置中的老鼠死亡复活为绿老鼠默认开启，可以关闭并保存。移除独立版中不使用的多人、资源包、每日／每周挑战和主菜单 Discord 入口，加入 Hardmode 简体中文文本，保留原版既有汉化。
+独立包名：`com.arkintide.nuclearthronehardmode`。安卓授权后的共享存档目录为 `/storage/emulated/0/games/com.arkintide.nuclearthronehardmode/`，不可写时使用私有目录。iOS 存档位于 `Documents/hardmode/`，开启文件共享。更新前请备份存档。
 
-源码结构、构建依赖与命令见 [BUILDING.md](BUILDING.md)。纯源码克隆不能直接运行，需要自行提供合法取得的原版／Hardmode 素材、兼容 GameMaker、平台工具链和签名材料。
+仓库仅含文本源码和工程元数据，不含图片、音频、字体、原生 runner、SDK、签名材料、用户存档、安装包或原模组内嵌的图片数据。构建需要自行补齐素材及本地依赖，见 [BUILDING.md](BUILDING.md)。
 
-Windows 先完成22项30／60帧场景、原生／菜单和随包程序启动检查并交付，随后以独立标识的VM验证手机端平滑。实际滚轮输入在较早开发构建观察通过，最终VM以合成输入经过真实Player Step核验；移动包检查签名／结构／资源。桌面 CPU 计时不能代表手机帧率；没有宣称安卓／iPhone 真机或本轮 Mac 原生重建验收。**IPA 需要重签**。
+验证使用静音隔离桌面上的已编译 VM，并检查安卓／iOS 安装包结构。没有宣称安卓或 iPhone 真机验收，也不能据此保证所有设备在高循环下恒定 60 帧。iOS 使用兼容的既有原生 runner 与本轮新 VM／资源，需要重签，未进行新一轮 Mac 原生构建。
 
-感谢 Hardmode 作者 Blaac、[原移植基础工程](https://github.com/kcd-shichen/NuclearThrone-Recreated-Epsilon)、Vlambeer、YellowAfterlife 及[原 MOD 贡献者](CREDITS.md)。原基础工程代码沿用 [GPL v3](LICENSE)；素材、音乐及第三方内容的权利仍归原作者，仓库不额外授予其使用许可。
+感谢 Hardmode 作者 **Blaac**、**Vlambeer**、NTT 作者 **YellowAfterlife**、[Epsilon 基础工程](https://github.com/kcd-shichen/NuclearThrone-Recreated-Epsilon)及[原模组贡献者](CREDITS.md)。**ArkinTide** 负责移植整合与维护。基础工程代码沿用 [GPL v3](LICENSE)，素材及第三方内容的权利仍归原作者。

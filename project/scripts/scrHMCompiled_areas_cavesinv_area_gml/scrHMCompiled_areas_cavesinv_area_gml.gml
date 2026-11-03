@@ -1,53 +1,89 @@
-// Source areas/cavesinv.area.gml:1; __load
-function hm_areas_cavesinv_area_gml___load() {
-global.hm_module_vars[$ "area:cavesinv"].CrystalFreakIdle = sprHM_areas_cavesinv_area_2;
-global.hm_module_vars[$ "area:cavesinv"].CrystalFreakWalk = sprHM_areas_cavesinv_area_3;
-global.hm_module_vars[$ "area:cavesinv"].CrystalFreakHurt = sprHM_areas_cavesinv_area_4;
-global.hm_module_vars[$ "area:cavesinv"].CrystalFreakDead = sprHM_areas_cavesinv_area_5;
-global.hm_module_vars[$ "area:cavesinv"].sprCrystalPropBlueDead = sprHM_areas_cavesinv_area_6;
-global.hm_module_vars[$ "area:cavesinv"].sprCrystalPropGreenDead = sprHM_areas_cavesinv_area_7;
-}
-
-// Source areas/cavesinv.area.gml:10; area_name
-function hm_areas_cavesinv_area_gml_area_name() {
-return ((string(choose("q", "4", "a", "4", "\\", "4", string(GameCont.subarea), ",", ">", "F", "-", "*", "!", "^")) + string(choose("q", "r", "a", "]", "\\", "+", string(GameCont.subarea), ",", ">", "F", "-", "*", "!", "^"))) + string(choose("q", "r", "a", "]", string(GameCont.subarea), string(GameCont.subarea), string(GameCont.subarea), ",", ">", "F", "-", "*", "!", "^")));
-}
-
-// Source areas/cavesinv.area.gml:13; area_sprite
-function hm_areas_cavesinv_area_gml_area_sprite(_hml_q) {
-switch (_hml_q) {
-case sprFloor1:
-return sprFloor104;
-;
-case sprFloor1B:
-return sprFloor104B;
-;
-case sprFloor1Explo:
-return sprFloor104Explo;
-;
-case sprWall1Trans:
-return sprWall104Trans;
-;
-case sprWall1Bot:
-return sprWall104Bot;
-;
-case sprWall1Out:
-return sprWall104Out;
-;
-case sprWall1Top:
-return sprWall104Top;
-;
-case sprDebris1:
-return sprDebris104;
-;
-case sprDetail1:
-return sprDetail104;
-;
-}
-}
-
-// Source areas/cavesinv.area.gml:25; area_transit
+// Source areas/cavesinv.area.gml:1; __load
+function hm_areas_cavesinv_area_gml___load() {
+global.hm_module_vars[$ "area:cavesinv"].CrystalFreakIdle = sprHM_areas_cavesinv_area_2;
+global.hm_module_vars[$ "area:cavesinv"].CrystalFreakWalk = sprHM_areas_cavesinv_area_3;
+global.hm_module_vars[$ "area:cavesinv"].CrystalFreakHurt = sprHM_areas_cavesinv_area_4;
+global.hm_module_vars[$ "area:cavesinv"].CrystalFreakDead = sprHM_areas_cavesinv_area_5;
+global.hm_module_vars[$ "area:cavesinv"].sprCrystalPropBlueDead = sprHM_areas_cavesinv_area_6;
+global.hm_module_vars[$ "area:cavesinv"].sprCrystalPropGreenDead = sprHM_areas_cavesinv_area_7;
+}
+
+// Source areas/cavesinv.area.gml:10; area_name
+function hm_areas_cavesinv_area_gml_area_name() {
+return ((string(choose("q", "4", "a", "4", "\\", "4", string(GameCont.subarea), ",", ">", "F", "-", "*", "!", "^")) + string(choose("q", "r", "a", "]", "\\", "+", string(GameCont.subarea), ",", ">", "F", "-", "*", "!", "^"))) + string(choose("q", "r", "a", "]", string(GameCont.subarea), string(GameCont.subarea), string(GameCont.subarea), ",", ">", "F", "-", "*", "!", "^")));
+}
+
+// Source areas/cavesinv.area.gml:13; area_sprite
+function hm_areas_cavesinv_area_gml_area_sprite(_hml_q) {
+switch (_hml_q) {
+case sprFloor1:
+return sprFloor104;
+;
+case sprFloor1B:
+return sprFloor104B;
+;
+case sprFloor1Explo:
+return sprFloor104Explo;
+;
+case sprWall1Trans:
+return sprWall104Trans;
+;
+case sprWall1Bot:
+return sprWall104Bot;
+;
+case sprWall1Out:
+return sprWall104Out;
+;
+case sprWall1Top:
+return sprWall104Top;
+;
+case sprDebris1:
+return sprDebris104;
+;
+case sprDetail1:
+return sprDetail104;
+;
+}
+}
+
+// Source areas/cavesinv.area.gml:0; area_transit (native content 1.1.0)
 function hm_areas_cavesinv_area_gml_area_transit() {
+if ((scrHMVariableExists(GameCont, "hm_debug_pending") && GameCont.hm_debug_pending)) {
+{
+area = scrHMAreaResolve(GameCont.hm_debug_area);
+;
+subarea = GameCont.hm_debug_sub;
+;
+return;
+;
+}
+}
+if ((scrHMVariableExists(GameCont, "hm_crown_return") && GameCont.hm_crown_return)) {
+hm_arkintide_mod_gml_hm_crown_watch();
+}
+if (((scrHMVariableExists(GameCont, "hm_crown_exit_ready") && GameCont.hm_crown_exit_ready) && (area != scrHMAreaResolve(100)))) {
+{
+area = scrHMAreaResolve("throne");
+;
+subarea = 1;
+;
+GameCont.hm_destination = "throne";
+;
+return;
+;
+}
+}
+if ((area == scrHMAreaResolve(100))) {
+return;
+}
+if ((scrHMVariableExists(GameCont, "hm_destination") && (GameCont.hm_destination != ""))) {
+{
+area = scrHMAreaResolve(GameCont.hm_destination);
+;
+return;
+;
+}
+}
 if (((lastarea != scrHMAreaResolve("caves")) and (lastarea == scrHMAreaResolve("bigdog")))) {
 {
 if (((Player.curse == 0) and (Player.bcurse == 0))) {
@@ -67,8 +103,18 @@ area = scrHMAreaResolve("cavesinv");
 }
 }
 
-// Source areas/cavesinv.area.gml:36; area_finish
+// Source areas/cavesinv.area.gml:0; area_finish (native content 1.1.0)
 function hm_areas_cavesinv_area_gml_area_finish() {
+if ((scrHMVariableExists(GameCont, "hm_debug_pending") && GameCont.hm_debug_pending)) {
+{
+area = scrHMAreaResolve(GameCont.hm_debug_area);
+;
+subarea = GameCont.hm_debug_sub;
+;
+return;
+;
+}
+}
 if ((subarea < 3)) {
 {
 area = scrHMAreaResolve("cavesinv");
@@ -78,8 +124,6 @@ subarea += 1;
 if (((instance_exists(Player) and (Player.curse == 0)) and (Player.bcurse == 0))) {
 {
 area = scrHMAreaResolve("caves");
-;
-subarea += 1;
 ;
 }
 }
@@ -98,8 +142,12 @@ scrHMSpriteRestore(sprHyperCrystalHurt);
 ;
 }
 
-// Source areas/cavesinv.area.gml:52; area_setup
+// Source areas/cavesinv.area.gml:0; area_setup (native content 1.1.0)
 function hm_areas_cavesinv_area_gml_area_setup() {
+GameCont.hm_cave_cleansed = 0;
+;
+GameCont.hm_destination = "";
+;
 scrHMSoundMusic(mus104);
 scrHMSoundAmbient(amb104);
 ;
@@ -125,10 +173,14 @@ if(__hm_break6) break;
 ;
 scrHMSpriteReplace(sprHyperCrystalIdle, sprHM_areas_cavesinv_area_62);
 scrHMSpriteReplace(sprHyperCrystalHurt, sprHM_areas_cavesinv_area_63);
+hm_arkintide_mod_gml_hm_map_budget();
+;
 }
 
-// Source areas/cavesinv.area.gml:65; area_start
+// Source areas/cavesinv.area.gml:0; area_start (native content 1.1.0)
 function hm_areas_cavesinv_area_gml_area_start() {
+hm_arkintide_mod_gml_hm_native_unlock_area();
+;
 { var __hm_with1 = scrHMInstances(Floor), __hm_break3=false;
 for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
 if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
@@ -315,71 +367,71 @@ if(__hm_break48) break;
 }}
 }
 
-// Source areas/cavesinv.area.gml:144; area_make_floor
-function hm_areas_cavesinv_area_gml_area_make_floor() {
-if ((scrHMVariableExists(id, "big") and (big == 1))) {
-{
-instance_create((x + 32), y, Floor);
-;
-instance_create((x + 32), (y + 32), Floor);
-;
-instance_create(x, (y + 32), Floor);
-;
-}
-}
-instance_create(x, y, Floor);
-;
-var _hml_turn = choose(0, 0, 0, 0, 0, 0, 0, 90, (- 90), 90, (- 90), 180);
-;
-direction += _hml_turn;
-;
-if (((_hml_turn == 180) && (point_distance(x, y, 10016, 10016) > 48))) {
-{
-instance_create(x, y, Floor);
-;
-{ var __hm_with1 = scrHMInstances(instance_create((x + 16), (y + 16), WeaponChest)), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-curse = 1;
-sprite_index = sprCursedChest;
-}
-}
-if(__hm_break3) break;
-}}
-}
-}
-if ((random((19 + instance_number(FloorMaker))) > 22)) {
-{
-if ((point_distance(x, y, 10016, 10016) > 48)) {
-{
-instance_create((x + 16), (y + 16), AmmoChest);
-;
-instance_create(x, y, Floor);
-;
-}
-}
-instance_destroy();
-;
-}
-} else {
-if ((random(6) < (1 + GameCont.loops))) {
-{
-{ var __hm_with4 = scrHMInstances(instance_create(x, y, FloorMaker)), __hm_break6=false;
-for (var __hm_index5=0; __hm_index5<array_length(__hm_with4); ++__hm_index5) {
-if(instance_exists(__hm_with4[__hm_index5])) with (__hm_with4[__hm_index5]) {
-{
-big = choose(0, 0, 0, 0, 1);
-}
-}
-if(__hm_break6) break;
-}}
-}
-}
-}
-}
-
-// Source areas/cavesinv.area.gml:175; area_pop_enemies
+// Source areas/cavesinv.area.gml:144; area_make_floor
+function hm_areas_cavesinv_area_gml_area_make_floor() {
+if ((scrHMVariableExists(id, "big") and (big == 1))) {
+{
+instance_create((x + 32), y, Floor);
+;
+instance_create((x + 32), (y + 32), Floor);
+;
+instance_create(x, (y + 32), Floor);
+;
+}
+}
+instance_create(x, y, Floor);
+;
+var _hml_turn = choose(0, 0, 0, 0, 0, 0, 0, 90, (- 90), 90, (- 90), 180);
+;
+direction += _hml_turn;
+;
+if (((_hml_turn == 180) && (point_distance(x, y, 10016, 10016) > 48))) {
+{
+instance_create(x, y, Floor);
+;
+{ var __hm_with1 = scrHMInstances(instance_create((x + 16), (y + 16), WeaponChest)), __hm_break3=false;
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+{
+curse = 1;
+sprite_index = sprCursedChest;
+}
+}
+if(__hm_break3) break;
+}}
+}
+}
+if ((random((19 + instance_number(FloorMaker))) > 22)) {
+{
+if ((point_distance(x, y, 10016, 10016) > 48)) {
+{
+instance_create((x + 16), (y + 16), AmmoChest);
+;
+instance_create(x, y, Floor);
+;
+}
+}
+instance_destroy();
+;
+}
+} else {
+if ((random(6) < (1 + GameCont.loops))) {
+{
+{ var __hm_with4 = scrHMInstances(instance_create(x, y, FloorMaker)), __hm_break6=false;
+for (var __hm_index5=0; __hm_index5<array_length(__hm_with4); ++__hm_index5) {
+if(instance_exists(__hm_with4[__hm_index5])) with (__hm_with4[__hm_index5]) {
+{
+big = choose(0, 0, 0, 0, 1);
+}
+}
+if(__hm_break6) break;
+}}
+}
+}
+}
+}
+
+// Source areas/cavesinv.area.gml:0; area_pop_enemies (native content 1.1.0)
 function hm_areas_cavesinv_area_gml_area_pop_enemies() {
 instance_create((x + 16), (y + 16), InvSpider);
 ;
@@ -396,55 +448,51 @@ instance_create((x + 16), (y + 16), InvLaserCrystal);
 if ((random(100) < 1)) {
 scrHMModCall("mod", "enemies", "bigcrystal_create", (x + 16), (y + 16));
 }
-
-scrHMLoopCrystal109(x+16,y+16);
-scrHMLoopSpider111(x+16,y+16);
-}
-
-// Source areas/cavesinv.area.gml:190; area_pop_props
-function hm_areas_cavesinv_area_gml_area_pop_props() {
-if ((random(4) < 1)) {
-instance_create((x + 16), (y + 16), LightBeam);
-}
-if ((random(4) < 1)) {
-{ var __hm_with1 = scrHMInstances(instance_create((x + 16), (y + 16), Crystal)), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-if ((random(3) < 1)) {
-{
-spr_idle = sprCrystalProp;
-spr_hurt = sprCrystalPropHurt;
-spr_dead = sprCrystalPropDead;
-}
-} else {
-if ((random(2) < 1)) {
-{
-spr_idle = sprCrystalPropBlue;
-spr_hurt = sprCrystalPropBlueHurt;
-spr_dead = global.hm_module_vars[$ "area:cavesinv"].sprCrystalPropBlueDead;
-}
-} else {
-{
-spr_idle = sprCrystalPropGreen;
-spr_hurt = sprCrystalPropGreenHurt;
-spr_dead = global.hm_module_vars[$ "area:cavesinv"].sprCrystalPropGreenDead;
-}
-}
-}
-}
-}
-if(__hm_break3) break;
-}}
-}
-}
-
-// Source areas/cavesinv.area.gml:210; area_mapdata
-function hm_areas_cavesinv_area_gml_area_mapdata(_hml_lx, _hml_ly, _hml_lp, _hml_ls, _hml_ws, _hml_ll) {
-if ((_hml_lp == "junkyard")) {
-return [(_hml_lx + 18), 9, 1, 1, 1];
-} else {
-return [_hml_lx, 9, 1, 1, 1];
-}
+hm_arkintide_mod_gml_hm_loop_population(4);
 ;
 }
+
+// Source areas/cavesinv.area.gml:190; area_pop_props
+function hm_areas_cavesinv_area_gml_area_pop_props() {
+if ((random(4) < 1)) {
+instance_create((x + 16), (y + 16), LightBeam);
+}
+if ((random(4) < 1)) {
+{ var __hm_with1 = scrHMInstances(instance_create((x + 16), (y + 16), Crystal)), __hm_break3=false;
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+{
+if ((random(3) < 1)) {
+{
+spr_idle = sprCrystalProp;
+spr_hurt = sprCrystalPropHurt;
+spr_dead = sprCrystalPropDead;
+}
+} else {
+if ((random(2) < 1)) {
+{
+spr_idle = sprCrystalPropBlue;
+spr_hurt = sprCrystalPropBlueHurt;
+spr_dead = global.hm_module_vars[$ "area:cavesinv"].sprCrystalPropBlueDead;
+}
+} else {
+{
+spr_idle = sprCrystalPropGreen;
+spr_hurt = sprCrystalPropGreenHurt;
+spr_dead = global.hm_module_vars[$ "area:cavesinv"].sprCrystalPropGreenDead;
+}
+}
+}
+}
+}
+if(__hm_break3) break;
+}}
+}
+}
+
+// Source areas/cavesinv.area.gml:0; area_mapdata (native content 1.1.0)
+function hm_areas_cavesinv_area_gml_area_mapdata(_hml_lx, _hml_ly, _hml_lp, _hml_ls, _hml_ws, _hml_ll) {
+return hm_arkintide_mod_gml_hm_mapdata("cavesinv", _hml_lx, _hml_ly, _hml_lp, _hml_ls, _hml_ws, _hml_ll);
+;
+}
+

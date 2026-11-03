@@ -41,7 +41,7 @@ function scrHMMenuOptionsCheck() {
         scrHMMenuCheck(_main[_i][$ "category"]!=OptionCategory.Coop_Menu,"no multiplayer entry");
     }
     scrOptionsMenuChangeCategory(OptionCategory.Hardmode,false);
-    scrHMMenuCheck(_menu.item_count==8,"eight single-player MOD options including persisted rat revival");
+    scrHMMenuCheck(_menu.item_count==11,"eleven touch-accessible MOD settings without duplicate Grillskills");
     for(var _j=0;_j<_menu.item_count;++_j) {
         var _opt=_menu.items[_j];
         scrHMMenuCheck(_opt.hm_setting!="coopchests","no obsolete co-op ammo setting");
@@ -156,7 +156,7 @@ function scrHMMenuTestStep() {
             if(instance_number(HMWorld)!=1 || !instance_exists(_world)) throw "Returning from character selection deleted Hardmode";
             if(!instance_exists(GameCont)) instance_create(0,0,GameCont);
             scrHMRunStart();
-            if(!scrHMEnabled() || array_length(global.hm_module_order)!=45 || !variable_struct_exists(global.hm_area_ids,"palace")) throw "Hardmode registry disappeared after menu cancellation";
+            if(!scrHMEnabled() || array_length(global.hm_module_order)!=47 || !variable_struct_exists(global.hm_area_ids,"palace")) throw "Hardmode registry disappeared after menu cancellation";
             _receipt.checks+=2;_receipt.menu_cancel_preserves_world=true;
             show_debug_message("HARDMODE MENU RESULT "+json_stringify(_receipt));
             global.hm_enabled=false;global.hm_tasks=[];game_end();

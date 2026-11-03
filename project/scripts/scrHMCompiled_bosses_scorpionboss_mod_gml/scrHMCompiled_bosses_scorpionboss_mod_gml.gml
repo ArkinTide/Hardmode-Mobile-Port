@@ -1,80 +1,77 @@
-// Source bosses/scorpionboss.mod.gml:1; __load
-function hm_bosses_scorpionboss_mod_gml___load() {
-global.hm_module_vars[$ "mod:bosses/scorpionboss"].scorpionbossidle = sprHM_bosses_scorpionboss_mod_2;
-global.hm_module_vars[$ "mod:bosses/scorpionboss"].scorpionbosshurt = sprHM_bosses_scorpionboss_mod_3;
-global.hm_module_vars[$ "mod:bosses/scorpionboss"].scorpionbossdead = sprHM_bosses_scorpionboss_mod_4;
-global.hm_module_vars[$ "mod:bosses/scorpionboss"].scorpionintro = sprHM_bosses_scorpionboss_mod_5;
-global.hm_module_vars[$ "mod:bosses/scorpionboss"].scorpionExplode = scrHMSoundAdd("../music/scorpionexplode.ogg");
-;
-}
-
-// Source bosses/scorpionboss.mod.gml:9; scorpionboss_create
-function hm_bosses_scorpionboss_mod_gml_scorpionboss_create(_hml__x, _hml__y) {
-{ var __hm_with1 = scrHMInstances(instance_create(_hml__x, _hml__y, CustomEnemy)), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-name = "scorpionboss";
-on_step = scrHMScriptRef(hm_bosses_scorpionboss_mod_gml_scorpionboss_step);
-if ((GameCont.loops == 0)) {
-on_destroy = scrHMScriptRef(hm_bosses_scorpionboss_mod_gml_scorpionboss_death);
-} else {
-on_destroy = scrHMScriptRef(hm_bosses_scorpionboss_mod_gml_fancyscorpionboss_death);
-}
-hitid = [global.hm_module_vars[$ "mod:bosses/scorpionboss"].scorpionbossidle, "grand scorpion"];
-spr_idle = global.hm_module_vars[$ "mod:bosses/scorpionboss"].scorpionbossidle;
-spr_walk = global.hm_module_vars[$ "mod:bosses/scorpionboss"].scorpionbossidle;
-spr_hurt = global.hm_module_vars[$ "mod:bosses/scorpionboss"].scorpionbosshurt;
-spr_dead = global.hm_module_vars[$ "mod:bosses/scorpionboss"].scorpionbossdead;
-snd_hurt = sndGoldScorpionHurt;
-snd_dead = sndGoldScorpionDead;
-scrHMMaxHealthWrite(id, 250, "=");
-scrHMMaxHealthWrite(id, ((max_hp / 2) * instance_number(Player)), "+=");
-scrHMMaxHealthWrite(id, (GameCont.loops + 1), "*=");
-hp = max_hp;
-midpoint = ((max_hp / 4) * 3);
-team = 1;
-friction = (0.4) * (timescale * timescale);
-direction = random(360);
-direction2 = direction;
-mask_index = mskShield;
-spr_shadow = shd96;
-size = 3;
-canmelee = 1;
-meleedamage = 6;
-target = 0;
-targetvisible = 0;
-raddrop = 100;
-intro = 0;
-dashing = 0;
-alrm0 = 0;
-alrm1 = (- 1);
-alrm2 = (- 1);
-wakeup = 0;
-repeat ((GameCont.loops + 2)) {
-if ((random(10) < GameCont.loops)) {
-instance_create((x + 16), (y + 16), GoldScorpion);
-} else {
-instance_create((x + 16), (y + 16), Scorpion);
-}
-;
-}
-return id;
-;
-}
-}
-if(__hm_break3) break;
-}}
-}
-
-// Source bosses/scorpionboss.mod.gml:55; scorpionboss_step
+// Source bosses/scorpionboss.mod.gml:1; __load
+function hm_bosses_scorpionboss_mod_gml___load() {
+global.hm_module_vars[$ "mod:bosses/scorpionboss"].scorpionbossidle = sprHM_bosses_scorpionboss_mod_2;
+global.hm_module_vars[$ "mod:bosses/scorpionboss"].scorpionbosshurt = sprHM_bosses_scorpionboss_mod_3;
+global.hm_module_vars[$ "mod:bosses/scorpionboss"].scorpionbossdead = sprHM_bosses_scorpionboss_mod_4;
+global.hm_module_vars[$ "mod:bosses/scorpionboss"].scorpionintro = sprHM_bosses_scorpionboss_mod_5;
+global.hm_module_vars[$ "mod:bosses/scorpionboss"].scorpionExplode = scrHMSoundAdd("../music/scorpionexplode.ogg");
+;
+}
+
+// Source bosses/scorpionboss.mod.gml:9; scorpionboss_create
+function hm_bosses_scorpionboss_mod_gml_scorpionboss_create(_hml__x, _hml__y) {
+{ var __hm_with1 = scrHMInstances(instance_create(_hml__x, _hml__y, CustomEnemy)), __hm_break3=false;
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+{
+name = "scorpionboss";
+on_step = scrHMScriptRef(hm_bosses_scorpionboss_mod_gml_scorpionboss_step);
+if ((GameCont.loops == 0)) {
+on_destroy = scrHMScriptRef(hm_bosses_scorpionboss_mod_gml_scorpionboss_death);
+} else {
+on_destroy = scrHMScriptRef(hm_bosses_scorpionboss_mod_gml_fancyscorpionboss_death);
+}
+hitid = [global.hm_module_vars[$ "mod:bosses/scorpionboss"].scorpionbossidle, "grand scorpion"];
+spr_idle = global.hm_module_vars[$ "mod:bosses/scorpionboss"].scorpionbossidle;
+spr_walk = global.hm_module_vars[$ "mod:bosses/scorpionboss"].scorpionbossidle;
+spr_hurt = global.hm_module_vars[$ "mod:bosses/scorpionboss"].scorpionbosshurt;
+spr_dead = global.hm_module_vars[$ "mod:bosses/scorpionboss"].scorpionbossdead;
+snd_hurt = sndGoldScorpionHurt;
+snd_dead = sndGoldScorpionDead;
+scrHMMaxHealthWrite(id, 250, "=");
+scrHMMaxHealthWrite(id, ((max_hp / 2) * instance_number(Player)), "+=");
+scrHMMaxHealthWrite(id, (GameCont.loops + 1), "*=");
+hp = max_hp;
+midpoint = ((max_hp / 4) * 3);
+team = 1;
+friction = (0.4) * (timescale * timescale);
+direction = random(360);
+direction2 = direction;
+mask_index = mskShield;
+spr_shadow = shd96;
+size = 3;
+canmelee = 1;
+meleedamage = 6;
+target = 0;
+targetvisible = 0;
+raddrop = 100;
+intro = 0;
+dashing = 0;
+alrm0 = 0;
+alrm1 = (- 1);
+alrm2 = (- 1);
+wakeup = 0;
+repeat ((GameCont.loops + 2)) {
+if ((random(10) < GameCont.loops)) {
+instance_create((x + 16), (y + 16), GoldScorpion);
+} else {
+instance_create((x + 16), (y + 16), Scorpion);
+}
+;
+}
+return id;
+;
+}
+}
+if(__hm_break3) break;
+}}
+}
+
+// Source bosses/scorpionboss.mod.gml:0; scorpionboss_step (native content 1.1.0)
 function hm_bosses_scorpionboss_mod_gml_scorpionboss_step() {
-var _target=instance_nearest(x,y,Player);
-var _a=instance_exists(_target)?point_direction(x,y,_target.x,_target.y):direction;
-var _d=instance_exists(_target)?point_distance(x,y,_target.x,_target.y):128;
 var _args = [];
 for(var _i=0;_i<argument_count;++_i) array_push(_args, argument[_i]);
-return scrHMTaskStart(hm_bosses_scorpionboss_mod_gml_scorpionboss_step_resume, id, scrHMOther(other), [_a,_d], 109, ["a","d"]);
+return scrHMTaskStart(hm_bosses_scorpionboss_mod_gml_scorpionboss_step_resume, id, scrHMOther(other), _args, 109, []);
 }
 function hm_bosses_scorpionboss_mod_gml_scorpionboss_step_resume(_hm) {
 var _budget=0;
@@ -83,27 +80,27 @@ assert(++_budget<100000,"Hardmode runaway continuation: hm_bosses_scorpionboss_m
 if (!instance_exists(_hm.scope)) { if(array_length(_hm.with_stack)>_hm.with_floor) {scrHMTaskWithNext(_hm); continue;} _hm.done=true; return; }
 with (_hm.scope) { switch (_hm.pc) {
 case 0: _hm.done=true; return;
-case 2: // bosses/scorpionboss.mod.gml:408
+case 2: // bosses/scorpionboss.mod.gml:414
 _hm.vars.__hm_repeat1--; _hm.pc=1;
 break;
-case 3: // bosses/scorpionboss.mod.gml:428
+case 3: // bosses/scorpionboss.mod.gml:434
 {
 _hm.vars.ang += 1;
 }
 _hm.pc=2;
 break;
-case 4: // bosses/scorpionboss.mod.gml:412
+case 4: // bosses/scorpionboss.mod.gml:418
 scrHMTaskWithNext(_hm);
 break;
-case 5: // bosses/scorpionboss.mod.gml:412
+case 5: // bosses/scorpionboss.mod.gml:418
 scrHMTaskWithAbort(_hm);
 break;
-case 6: // bosses/scorpionboss.mod.gml:425
+case 6: // bosses/scorpionboss.mod.gml:431
 _hm.wait_ticks=max(0,random_range(0, 1)); _hm.pc=4; return;
 break;
-case 7: // bosses/scorpionboss.mod.gml:413
+case 7: // bosses/scorpionboss.mod.gml:419
 {
-scrHMSoundPitchVolume(sndScorpionFireStart, 1, ((view_width / 4) / distance_to_object(Player)));
+scrHMSoundPitchVolume(sndScorpionFireStart, 1, min(1, ((view_width / 4) / max(1, distance_to_object(Player)))));
 damage = 1;
 maggot = 1;
 creator = _hm.vars.c;
@@ -119,10 +116,10 @@ image_angle = direction;
 }
 _hm.pc=6;
 break;
-case 8: // bosses/scorpionboss.mod.gml:412
+case 8: // bosses/scorpionboss.mod.gml:418
 scrHMTaskWithEnter(_hm,scrHMInstances(instance_create((x + lengthdir_x(32, _hm.vars.d)), (y + lengthdir_y(32, _hm.vars.d)), EnemyBullet2)),7,3);
 break;
-case 9: // bosses/scorpionboss.mod.gml:410
+case 9: // bosses/scorpionboss.mod.gml:416
 {
 _hm.vars.wide_ = ((60 - (20 * GameCont.loops)) - 0);
 _hm.vars.d = ((_hm.vars.a + random_range((- 5), 5)) + choose((_hm.vars.wide_ * (- 1)), _hm.vars.wide_));
@@ -130,34 +127,34 @@ _hm.vars.d = ((_hm.vars.a + random_range((- 5), 5)) + choose((_hm.vars.wide_ * (
 }
 _hm.pc=8;
 break;
-case 10: // bosses/scorpionboss.mod.gml:409
+case 10: // bosses/scorpionboss.mod.gml:415
 _hm.pc = (instance_exists(_hm.scope)) ? 9 : 3;
 break;
-case 1: // bosses/scorpionboss.mod.gml:408
+case 1: // bosses/scorpionboss.mod.gml:414
 _hm.pc=(_hm.vars.__hm_repeat1>0)?10:0;
 break;
-case 11: // bosses/scorpionboss.mod.gml:408
+case 11: // bosses/scorpionboss.mod.gml:414
 _hm.vars.__hm_repeat1=round(30); _hm.pc=1;
 break;
-case 12: // bosses/scorpionboss.mod.gml:407
+case 12: // bosses/scorpionboss.mod.gml:413
 {
 _hm.vars.ang = 0;
 }
 _hm.pc=11;
 break;
-case 14: // bosses/scorpionboss.mod.gml:386
+case 14: // bosses/scorpionboss.mod.gml:392
 _hm.vars.__hm_repeat2--; _hm.pc=13;
 break;
-case 15: // bosses/scorpionboss.mod.gml:390
+case 15: // bosses/scorpionboss.mod.gml:396
 scrHMTaskWithNext(_hm);
 break;
-case 16: // bosses/scorpionboss.mod.gml:390
+case 16: // bosses/scorpionboss.mod.gml:396
 scrHMTaskWithAbort(_hm);
 break;
-case 17: // bosses/scorpionboss.mod.gml:402
+case 17: // bosses/scorpionboss.mod.gml:408
 _hm.wait_ticks=max(0,random_range(0, 2)); _hm.pc=15; return;
 break;
-case 18: // bosses/scorpionboss.mod.gml:391
+case 18: // bosses/scorpionboss.mod.gml:397
 {
 damage = 2;
 maggot = 1;
@@ -174,30 +171,30 @@ image_angle = direction;
 }
 _hm.pc=17;
 break;
-case 19: // bosses/scorpionboss.mod.gml:390
+case 19: // bosses/scorpionboss.mod.gml:396
 scrHMTaskWithEnter(_hm,scrHMInstances(instance_create((x + lengthdir_x(32, _hm.vars.d)), (y + lengthdir_y(32, _hm.vars.d)), EnemyBullet2)),18,14);
 break;
-case 20: // bosses/scorpionboss.mod.gml:388
+case 20: // bosses/scorpionboss.mod.gml:394
 {
-scrHMSoundPitchVolume(sndScorpionFireStart, 1, ((view_width / 4) / distance_to_object(Player)));
+scrHMSoundPitchVolume(sndScorpionFireStart, 1, min(1, ((view_width / 4) / max(1, distance_to_object(Player)))));
 _hm.vars.d = (_hm.vars.a + random_range((- 50), 50));
 ;
 }
 _hm.pc=19;
 break;
-case 21: // bosses/scorpionboss.mod.gml:387
+case 21: // bosses/scorpionboss.mod.gml:393
 _hm.pc = (instance_exists(_hm.scope)) ? 20 : 14;
 break;
-case 13: // bosses/scorpionboss.mod.gml:386
+case 13: // bosses/scorpionboss.mod.gml:392
 _hm.pc=(_hm.vars.__hm_repeat2>0)?21:12;
 break;
-case 22: // bosses/scorpionboss.mod.gml:386
+case 22: // bosses/scorpionboss.mod.gml:392
 _hm.vars.__hm_repeat2=round(40); _hm.pc=13;
 break;
-case 23: // bosses/scorpionboss.mod.gml:385
+case 23: // bosses/scorpionboss.mod.gml:391
 _hm.pc = (scrHMTaskFork(_hm, 22)) ? 22 : 12;
 break;
-case 24: // bosses/scorpionboss.mod.gml:381
+case 24: // bosses/scorpionboss.mod.gml:387
 {
 scrHMSoundPlay(sndGoldScorpionFire);
 alrm1 = 1000;
@@ -206,10 +203,10 @@ _hm.vars.c = id;
 }
 _hm.pc=23;
 break;
-case 25: // bosses/scorpionboss.mod.gml:380
+case 25: // bosses/scorpionboss.mod.gml:386
 _hm.pc = (((instance_exists(_hm.scope) and (alrm1 == 0)) && (target > 0))) ? 24 : 0;
 break;
-case 26: // bosses/scorpionboss.mod.gml:255
+case 26: // bosses/scorpionboss.mod.gml:261
 {
 if (instance_exists(id)) {
 for (_hm.vars.i = (- 70); (_hm.vars.i < 70); _hm.vars.i++) {
@@ -251,25 +248,25 @@ if(__hm_break9) break;
 }
 _hm.pc=25;
 break;
-case 27: // bosses/scorpionboss.mod.gml:254
+case 27: // bosses/scorpionboss.mod.gml:260
 _hm.wait_ticks=max(0,10); _hm.pc=26; return;
 break;
-case 28: // bosses/scorpionboss.mod.gml:253
+case 28: // bosses/scorpionboss.mod.gml:259
 {
 alrm2 = max(round((_hm.vars.d / 8)), 16);
 }
 _hm.pc=27;
 break;
-case 29: // bosses/scorpionboss.mod.gml:251
+case 29: // bosses/scorpionboss.mod.gml:257
 _hm.result=undefined; _hm.done=true; return;
 break;
-case 31: // bosses/scorpionboss.mod.gml:245
+case 31: // bosses/scorpionboss.mod.gml:251
 _hm.vars.q++; _hm.pc=30;
 break;
-case 32: // bosses/scorpionboss.mod.gml:249
+case 32: // bosses/scorpionboss.mod.gml:255
 _hm.wait_ticks=max(0,1); _hm.pc=31; return;
 break;
-case 33: // bosses/scorpionboss.mod.gml:246
+case 33: // bosses/scorpionboss.mod.gml:252
 {
 if (((_hm.vars.q mod 2) == 1)) {
 {
@@ -279,17 +276,17 @@ scrHMSoundPitchVolume(sndEliteInspectorStart, 0.8, 0.5);
 }
 _hm.pc=32;
 break;
-case 30: // bosses/scorpionboss.mod.gml:245
+case 30: // bosses/scorpionboss.mod.gml:251
 _hm.pc=((_hm.vars.q < 10))?33:29;
 break;
-case 34: // bosses/scorpionboss.mod.gml:245
+case 34: // bosses/scorpionboss.mod.gml:251
 _hm.vars.q = 0;
 _hm.pc=30;
 break;
-case 35: // bosses/scorpionboss.mod.gml:244
+case 35: // bosses/scorpionboss.mod.gml:250
 _hm.pc = (scrHMTaskFork(_hm, 34)) ? 34 : 28;
 break;
-case 36: // bosses/scorpionboss.mod.gml:297
+case 36: // bosses/scorpionboss.mod.gml:303
 {
 if (instance_exists(id)) {
 alrm0 += 1;
@@ -297,10 +294,10 @@ alrm0 += 1;
 }
 _hm.pc=25;
 break;
-case 37: // bosses/scorpionboss.mod.gml:296
+case 37: // bosses/scorpionboss.mod.gml:302
 _hm.wait_ticks=max(0,20); _hm.pc=36; return;
 break;
-case 38: // bosses/scorpionboss.mod.gml:292
+case 38: // bosses/scorpionboss.mod.gml:298
 {
 dashing = 0;
 friction = (0.4) * (timescale * timescale);
@@ -308,13 +305,13 @@ alrm1 = 0;
 }
 _hm.pc=37;
 break;
-case 39: // bosses/scorpionboss.mod.gml:291
+case 39: // bosses/scorpionboss.mod.gml:297
 _hm.pc = (instance_exists(_hm.scope)) ? 38 : 25;
 break;
-case 40: // bosses/scorpionboss.mod.gml:290
+case 40: // bosses/scorpionboss.mod.gml:296
 _hm.wait_ticks=max(0,(12 + (5 * GameCont.loops))); _hm.pc=39; return;
 break;
-case 41: // bosses/scorpionboss.mod.gml:281
+case 41: // bosses/scorpionboss.mod.gml:287
 {
 scrHMSoundPitch(sndEliteInspectorAlarmed, 0.8);
 _hm.vars._inc = (distance_to_object(target) / 12);
@@ -331,10 +328,10 @@ friction = (0.4) * (timescale * timescale);
 }
 _hm.pc=40;
 break;
-case 42: // bosses/scorpionboss.mod.gml:243
+case 42: // bosses/scorpionboss.mod.gml:249
 _hm.pc = ((((_hm.vars.d < 160) || (random(4) < 1)) || (_hm.vars.d > 320))) ? 35 : 41;
 break;
-case 43: // bosses/scorpionboss.mod.gml:237
+case 43: // bosses/scorpionboss.mod.gml:243
 {
 if ((wakeup == 1)) {
 wakeup = (- 1);
@@ -347,19 +344,19 @@ _hm.vars.d = point_distance(x, y, target.x, target.y);
 }
 _hm.pc=42;
 break;
-case 45: // bosses/scorpionboss.mod.gml:361
+case 45: // bosses/scorpionboss.mod.gml:367
 _hm.vars.__hm_repeat11--; _hm.pc=44;
 break;
-case 46: // bosses/scorpionboss.mod.gml:373
+case 46: // bosses/scorpionboss.mod.gml:379
 {
 ;
 }
 _hm.pc=45;
 break;
-case 47: // bosses/scorpionboss.mod.gml:373
+case 47: // bosses/scorpionboss.mod.gml:379
 _hm.wait_ticks=max(0,1); _hm.pc=46; return;
 break;
-case 48: // bosses/scorpionboss.mod.gml:362
+case 48: // bosses/scorpionboss.mod.gml:368
 {
 if (instance_exists(id)) {
 { var __hm_with12 = scrHMInstances(instance_create((x + lengthdir_x((50 + _hm.vars._dis), _hm.vars._ang)), (y + lengthdir_y((50 + _hm.vars._dis), _hm.vars._ang)), PortalClear)), __hm_break14=false;
@@ -388,13 +385,13 @@ _hm.vars._dis += _hm.vars._inc;
 }
 _hm.pc=47;
 break;
-case 44: // bosses/scorpionboss.mod.gml:361
+case 44: // bosses/scorpionboss.mod.gml:367
 _hm.pc=(_hm.vars.__hm_repeat11>0)?48:25;
 break;
-case 49: // bosses/scorpionboss.mod.gml:361
+case 49: // bosses/scorpionboss.mod.gml:367
 _hm.vars.__hm_repeat11=round(12); _hm.pc=44;
 break;
-case 50: // bosses/scorpionboss.mod.gml:358
+case 50: // bosses/scorpionboss.mod.gml:364
 {
 _hm.vars._inc = (distance_to_object(target) / 8);
 ;
@@ -405,34 +402,34 @@ _hm.vars._ang = point_direction(x, y, target.x, target.y);
 }
 _hm.pc=49;
 break;
-case 51: // bosses/scorpionboss.mod.gml:356
+case 51: // bosses/scorpionboss.mod.gml:362
 _hm.pc = ((instance_exists(_hm.scope) and (target > 0))) ? 50 : 25;
 break;
-case 52: // bosses/scorpionboss.mod.gml:354
+case 52: // bosses/scorpionboss.mod.gml:360
 {
 ;
 }
 _hm.pc=51;
 break;
-case 53: // bosses/scorpionboss.mod.gml:354
+case 53: // bosses/scorpionboss.mod.gml:360
 _hm.result=undefined; _hm.done=true; return;
 break;
-case 55: // bosses/scorpionboss.mod.gml:336
+case 55: // bosses/scorpionboss.mod.gml:342
 _hm.vars.__hm_repeat18--; _hm.pc=54;
 break;
-case 56: // bosses/scorpionboss.mod.gml:340
+case 56: // bosses/scorpionboss.mod.gml:346
 scrHMTaskWithNext(_hm);
 break;
-case 57: // bosses/scorpionboss.mod.gml:340
+case 57: // bosses/scorpionboss.mod.gml:346
 scrHMTaskWithAbort(_hm);
 break;
-case 58: // bosses/scorpionboss.mod.gml:350
+case 58: // bosses/scorpionboss.mod.gml:356
 _hm.wait_ticks=max(0,1); _hm.pc=56; return;
 break;
-case 59: // bosses/scorpionboss.mod.gml:349
+case 59: // bosses/scorpionboss.mod.gml:355
 _hm.pc = ((random(2) < 1)) ? 58 : 56;
 break;
-case 60: // bosses/scorpionboss.mod.gml:341
+case 60: // bosses/scorpionboss.mod.gml:347
 {
 damage = 1;
 maggot = 1;
@@ -445,30 +442,30 @@ image_angle = direction;
 }
 _hm.pc=59;
 break;
-case 61: // bosses/scorpionboss.mod.gml:340
+case 61: // bosses/scorpionboss.mod.gml:346
 scrHMTaskWithEnter(_hm,scrHMInstances(instance_create((x + lengthdir_x(32, _hm.vars.d)), (y + lengthdir_y(32, _hm.vars.d)), EnemyBullet2)),60,55);
 break;
-case 62: // bosses/scorpionboss.mod.gml:338
+case 62: // bosses/scorpionboss.mod.gml:344
 {
-scrHMSoundPitchVolume(sndScorpionFireStart, 1, ((view_width / 4) / distance_to_object(Player)));
+scrHMSoundPitchVolume(sndScorpionFireStart, 1, min(1, ((view_width / 4) / max(1, distance_to_object(Player)))));
 _hm.vars.d = (_hm.vars.a + random_range((- 5), 5));
 ;
 }
 _hm.pc=61;
 break;
-case 63: // bosses/scorpionboss.mod.gml:337
+case 63: // bosses/scorpionboss.mod.gml:343
 _hm.pc = (instance_exists(_hm.scope)) ? 62 : 55;
 break;
-case 54: // bosses/scorpionboss.mod.gml:336
+case 54: // bosses/scorpionboss.mod.gml:342
 _hm.pc=(_hm.vars.__hm_repeat18>0)?63:53;
 break;
-case 64: // bosses/scorpionboss.mod.gml:336
+case 64: // bosses/scorpionboss.mod.gml:342
 _hm.vars.__hm_repeat18=round(40); _hm.pc=54;
 break;
-case 65: // bosses/scorpionboss.mod.gml:335
+case 65: // bosses/scorpionboss.mod.gml:341
 _hm.pc = (scrHMTaskFork(_hm, 64)) ? 64 : 51;
 break;
-case 66: // bosses/scorpionboss.mod.gml:318
+case 66: // bosses/scorpionboss.mod.gml:324
 {
 direction = point_direction(x, y, target.x, target.y);
 repeat (300) { var __hm_with19 = scrHMInstances(instance_create((x + random_range((- 16), 16)), ((y + 32) + random_range((- 16), 16)), Dust)), __hm_break21=false;
@@ -492,28 +489,28 @@ _hm.vars.c = id;
 }
 _hm.pc=65;
 break;
-case 67: // bosses/scorpionboss.mod.gml:317
+case 67: // bosses/scorpionboss.mod.gml:323
 _hm.pc = (instance_exists(_hm.scope)) ? 66 : 25;
 break;
-case 68: // bosses/scorpionboss.mod.gml:315
+case 68: // bosses/scorpionboss.mod.gml:321
 _hm.wait_ticks=max(0,30); _hm.pc=67; return;
 break;
-case 69: // bosses/scorpionboss.mod.gml:313
+case 69: // bosses/scorpionboss.mod.gml:319
 {
 ;
 }
 _hm.pc=68;
 break;
-case 70: // bosses/scorpionboss.mod.gml:313
+case 70: // bosses/scorpionboss.mod.gml:319
 _hm.result=undefined; _hm.done=true; return;
 break;
-case 72: // bosses/scorpionboss.mod.gml:306
+case 72: // bosses/scorpionboss.mod.gml:312
 _hm.vars.t++; _hm.pc=71;
 break;
-case 73: // bosses/scorpionboss.mod.gml:311
+case 73: // bosses/scorpionboss.mod.gml:317
 _hm.wait_ticks=max(0,1); _hm.pc=72; return;
 break;
-case 74: // bosses/scorpionboss.mod.gml:307
+case 74: // bosses/scorpionboss.mod.gml:313
 {
 repeat (round((1 + (_hm.vars.t / 2.5)))) if (instance_exists(id)) {
 { var __hm_with24 = scrHMInstances(instance_create((x + lengthdir_x((64 - (_hm.vars.t * 2)), random(360))), (y + lengthdir_y((64 - (_hm.vars.t * 2)), random(360))), Dust)), __hm_break26=false;
@@ -528,30 +525,30 @@ if(__hm_break26) break;
 }
 _hm.pc=73;
 break;
-case 71: // bosses/scorpionboss.mod.gml:306
+case 71: // bosses/scorpionboss.mod.gml:312
 _hm.pc=((_hm.vars.t < 30))?74:70;
 break;
-case 75: // bosses/scorpionboss.mod.gml:306
+case 75: // bosses/scorpionboss.mod.gml:312
 _hm.vars.t = 0;
 _hm.pc=71;
 break;
-case 76: // bosses/scorpionboss.mod.gml:305
+case 76: // bosses/scorpionboss.mod.gml:311
 _hm.pc = (scrHMTaskFork(_hm, 75)) ? 75 : 68;
 break;
-case 77: // bosses/scorpionboss.mod.gml:303
+case 77: // bosses/scorpionboss.mod.gml:309
 {
 alrm2 = 140;
 scrHMSoundPitch(sndExploGuardianCharge, 1.3);
 }
 _hm.pc=76;
 break;
-case 78: // bosses/scorpionboss.mod.gml:236
+case 78: // bosses/scorpionboss.mod.gml:242
 _hm.pc = (targetvisible) ? 43 : 77;
 break;
-case 79: // bosses/scorpionboss.mod.gml:235
+case 79: // bosses/scorpionboss.mod.gml:241
 _hm.pc = (((alrm2 == 0) and (target > (- 1)))) ? 78 : 25;
 break;
-case 80: // bosses/scorpionboss.mod.gml:174
+case 80: // bosses/scorpionboss.mod.gml:180
 {
 if (((alrm2 > 0) && (target > 0))) {
 {
@@ -642,19 +639,19 @@ alrm0 += 25;
 }
 _hm.pc=79;
 break;
-case 82: // bosses/scorpionboss.mod.gml:156
+case 82: // bosses/scorpionboss.mod.gml:162
 _hm.vars.__hm_repeat32--; _hm.pc=81;
 break;
-case 83: // bosses/scorpionboss.mod.gml:171
+case 83: // bosses/scorpionboss.mod.gml:177
 {
 ;
 }
 _hm.pc=82;
 break;
-case 84: // bosses/scorpionboss.mod.gml:171
+case 84: // bosses/scorpionboss.mod.gml:177
 _hm.wait_ticks=max(0,1); _hm.pc=83; return;
 break;
-case 85: // bosses/scorpionboss.mod.gml:157
+case 85: // bosses/scorpionboss.mod.gml:163
 {
 if (instance_exists(id)) {
 { var __hm_with33 = scrHMInstances(instance_create((x + lengthdir_x((50 + _hm.vars._dis), _hm.vars._ang)), (y + lengthdir_y((50 + _hm.vars._dis), _hm.vars._ang)), PortalClear)), __hm_break35=false;
@@ -692,13 +689,13 @@ _hm.vars._dis += _hm.vars._inc;
 }
 _hm.pc=84;
 break;
-case 81: // bosses/scorpionboss.mod.gml:156
+case 81: // bosses/scorpionboss.mod.gml:162
 _hm.pc=(_hm.vars.__hm_repeat32>0)?85:80;
 break;
-case 86: // bosses/scorpionboss.mod.gml:156
+case 86: // bosses/scorpionboss.mod.gml:162
 _hm.vars.__hm_repeat32=round(12); _hm.pc=81;
 break;
-case 87: // bosses/scorpionboss.mod.gml:138
+case 87: // bosses/scorpionboss.mod.gml:144
 {
 scrHMSoundMusic(musBoss1);
 if (scrHMModExists("mod", "options", "intropan")) {
@@ -733,10 +730,10 @@ _hm.vars._ang = point_direction(x, y, target.x, target.y);
 }
 _hm.pc=86;
 break;
-case 88: // bosses/scorpionboss.mod.gml:137
+case 88: // bosses/scorpionboss.mod.gml:143
 _hm.pc = (((intro == 0) and (alrm2 > 0))) ? 87 : 80;
 break;
-case 89: // bosses/scorpionboss.mod.gml:121
+case 89: // bosses/scorpionboss.mod.gml:127
 {
 if ((intro == 0)) {
 {
@@ -773,29 +770,29 @@ if(__hm_break50) break;
 }
 _hm.pc=88;
 break;
-case 90: // bosses/scorpionboss.mod.gml:112
+case 90: // bosses/scorpionboss.mod.gml:118
 {
 midpoint -= (max_hp / 4);
 }
 _hm.pc=89;
 break;
-case 91: // bosses/scorpionboss.mod.gml:110
+case 91: // bosses/scorpionboss.mod.gml:116
 {
 ;
 }
 _hm.pc=90;
 break;
-case 92: // bosses/scorpionboss.mod.gml:110
+case 92: // bosses/scorpionboss.mod.gml:116
 _hm.result=undefined; _hm.done=true; return;
 break;
-case 93: // bosses/scorpionboss.mod.gml:89
+case 93: // bosses/scorpionboss.mod.gml:95
 {
 for (_hm.vars.i = (- 70); (_hm.vars.i < 70); _hm.vars.i++) {
-{ var __hm_with53 = scrHMInstances(instance_create((x + lengthdir_x((32 + random_range((- 30), 30)), (_hm.vars.i + _hm.vars.a))), (y + lengthdir_y((32 + random_range((- 30), 30)), (_hm.vars.i + _hm.vars.a))), DustOLD)), __hm_break55=false;
+{ var __hm_with53 = scrHMInstances(instance_create((x + lengthdir_x((32 + random_range((- 30), 30)), (_hm.vars.i + _hm.vars.hm_retaliation_angle))), (y + lengthdir_y((32 + random_range((- 30), 30)), (_hm.vars.i + _hm.vars.hm_retaliation_angle))), DustOLD)), __hm_break55=false;
 for (var __hm_index54=0; __hm_index54<array_length(__hm_with53); ++__hm_index54) {
 if(instance_exists(__hm_with53[__hm_index54])) with (__hm_with53[__hm_index54]) {
 {
-scrHMMotionAdd((_hm.vars.i + _hm.vars.a), 20);
+scrHMMotionAdd((_hm.vars.i + _hm.vars.hm_retaliation_angle), 20);
 set = 0;
 time = 0;
 image_xscale = random_range(1, 3);
@@ -808,11 +805,11 @@ creator = __hm_other56;
 }
 if(__hm_break55) break;
 }}
-{ var __hm_with57 = scrHMInstances(instance_create((x + lengthdir_x((32 + random_range((- 30), 30)), (_hm.vars.i + _hm.vars.a))), (y + lengthdir_y((32 + random_range((- 30), 30)), (_hm.vars.i + _hm.vars.a))), Dust)), __hm_break59=false;
+{ var __hm_with57 = scrHMInstances(instance_create((x + lengthdir_x((32 + random_range((- 30), 30)), (_hm.vars.i + _hm.vars.hm_retaliation_angle))), (y + lengthdir_y((32 + random_range((- 30), 30)), (_hm.vars.i + _hm.vars.hm_retaliation_angle))), Dust)), __hm_break59=false;
 for (var __hm_index58=0; __hm_index58<array_length(__hm_with57); ++__hm_index58) {
 if(instance_exists(__hm_with57[__hm_index58])) with (__hm_with57[__hm_index58]) {
 {
-scrHMMotionAdd((_hm.vars.i + _hm.vars.a), 20);
+scrHMMotionAdd((_hm.vars.i + _hm.vars.hm_retaliation_angle), 20);
 set = 0;
 image_xscale = random_range(1, 3);
 image_yscale = image_xscale;
@@ -828,25 +825,25 @@ if(__hm_break59) break;
 }
 _hm.pc=92;
 break;
-case 94: // bosses/scorpionboss.mod.gml:88
+case 94: // bosses/scorpionboss.mod.gml:94
 _hm.wait_ticks=max(0,10); _hm.pc=93; return;
 break;
-case 95: // bosses/scorpionboss.mod.gml:87
+case 95: // bosses/scorpionboss.mod.gml:93
 {
-alrm2 = max(round((_hm.vars.d / 8)), 16);
+alrm2 = max(round((_hm.vars.hm_retaliation_distance / 8)), 16);
 }
 _hm.pc=94;
 break;
-case 96: // bosses/scorpionboss.mod.gml:85
+case 96: // bosses/scorpionboss.mod.gml:91
 _hm.result=undefined; _hm.done=true; return;
 break;
-case 98: // bosses/scorpionboss.mod.gml:79
+case 98: // bosses/scorpionboss.mod.gml:85
 _hm.vars.q++; _hm.pc=97;
 break;
-case 99: // bosses/scorpionboss.mod.gml:83
+case 99: // bosses/scorpionboss.mod.gml:89
 _hm.wait_ticks=max(0,1); _hm.pc=98; return;
 break;
-case 100: // bosses/scorpionboss.mod.gml:80
+case 100: // bosses/scorpionboss.mod.gml:86
 {
 if (((_hm.vars.q mod 2) == 1)) {
 {
@@ -856,29 +853,40 @@ scrHMSoundPitchVolume(sndEliteInspectorStart, 0.8, 0.5);
 }
 _hm.pc=99;
 break;
-case 97: // bosses/scorpionboss.mod.gml:79
+case 97: // bosses/scorpionboss.mod.gml:85
 _hm.pc=((_hm.vars.q < 10))?100:96;
 break;
-case 101: // bosses/scorpionboss.mod.gml:79
+case 101: // bosses/scorpionboss.mod.gml:85
 _hm.vars.q = 0;
 _hm.pc=97;
 break;
-case 102: // bosses/scorpionboss.mod.gml:78
+case 102: // bosses/scorpionboss.mod.gml:84
 _hm.pc = (scrHMTaskFork(_hm, 101)) ? 101 : 95;
 break;
-case 103: // bosses/scorpionboss.mod.gml:77
+case 103: // bosses/scorpionboss.mod.gml:83
 _hm.pc = (scrHMTaskFork(_hm, 102)) ? 102 : 90;
 break;
-case 104: // bosses/scorpionboss.mod.gml:76
+case 104: // bosses/scorpionboss.mod.gml:77
 {
+_hm.vars.hm_retaliation_angle = direction;
+_hm.vars.hm_retaliation_distance = 128;
+;
+if (instance_exists(target)) {
+{
+_hm.vars.hm_retaliation_angle = point_direction(x, y, target.x, target.y);
+;
+_hm.vars.hm_retaliation_distance = point_distance(x, y, target.x, target.y);
+;
+}
+}
 scrHMSoundPitchVolume(sndScorpionDie, 1.4, 2);
 }
 _hm.pc=103;
 break;
-case 105: // bosses/scorpionboss.mod.gml:75
+case 105: // bosses/scorpionboss.mod.gml:76
 _hm.pc = ((hp < midpoint)) ? 104 : 89;
 break;
-case 106: // bosses/scorpionboss.mod.gml:71
+case 106: // bosses/scorpionboss.mod.gml:72
 {
 if ((sprite_index != spr_hurt)) {
 {
@@ -891,7 +899,7 @@ sprite_index = spr_hurt;
 }
 _hm.pc=105;
 break;
-case 107: // bosses/scorpionboss.mod.gml:115
+case 107: // bosses/scorpionboss.mod.gml:121
 {
 if (((speed / timescale) > (friction / (timescale * timescale)))) {
 sprite_index = spr_walk;
@@ -902,10 +910,10 @@ sprite_index = spr_idle;
 }
 _hm.pc=89;
 break;
-case 108: // bosses/scorpionboss.mod.gml:70
+case 108: // bosses/scorpionboss.mod.gml:71
 _hm.pc = ((nexthurt > current_frame)) ? 106 : 107;
 break;
-case 109: // bosses/scorpionboss.mod.gml:56
+case 109: // bosses/scorpionboss.mod.gml:57
 {
 { var __hm_with61 = scrHMInstances(Player), __hm_break63=false;
 for (var __hm_index62=0; __hm_index62<array_length(__hm_with61); ++__hm_index62) {
@@ -948,115 +956,114 @@ default: throw "Hardmode invalid continuation PC";
 }
 }
 
-
-// Source bosses/scorpionboss.mod.gml:431; step
-function hm_bosses_scorpionboss_mod_gml_step() {
-{ var __hm_with1 = scrHMMatching(DustOLD, "set", 0), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-if (((current_time mod 30) == 1)) {
-time += 1;
-}
-{ var __hm_with4 = scrHMInstances(Player), __hm_break6=false;
-for (var __hm_index5=0; __hm_index5<array_length(__hm_with4); ++__hm_index5) {
-if(instance_exists(__hm_with4[__hm_index5])) with (__hm_with4[__hm_index5]) {
-if (place_meeting(x, y, (scrHMOther(other)))) {
-{
-var __hm_other7=scrHMOther(other);
-x += lengthdir_x(1, __hm_other7.direction);
-;
-var __hm_other8=scrHMOther(other);
-y += lengthdir_y(1, __hm_other8.direction);
-;
-view_shake[index] = choose(100, (- 100));
-}
-}
-}
-if(__hm_break6) break;
-}}
-if ((random((200 - (time * 3))) < 1)) {
-if ((place_meeting(x, y, Floor) and (distance_to_object(Player) > 32))) {
-{
-{ var __hm_with9 = scrHMInstances(instance_nearest(x, y, Floor)), __hm_break11=false;
-for (var __hm_index10=0; __hm_index10<array_length(__hm_with9); ++__hm_index10) {
-if(instance_exists(__hm_with9[__hm_index10])) with (__hm_with9[__hm_index10]) {
-{
-var _hml__x = x;
-var _hml__y = y;
-if ((object_index != FloorExplo)) {
-{
-if ((random(2) < 1)) {
-_hml__x = (x + 16);
-}
-if ((random(2) < 1)) {
-_hml__y = (y + 16);
-}
-}
-}
-repeat (12) { var __hm_with12 = scrHMInstances(instance_create(_hml__x, _hml__y, Dust)), __hm_break14=false;
-for (var __hm_index13=0; __hm_index13<array_length(__hm_with12); ++__hm_index13) {
-if(instance_exists(__hm_with12[__hm_index13])) with (__hm_with12[__hm_index13]) {
-{
-scrHMMotionAdd(random_range(80, 100), random(4));
-depth = (- 11);
-}
-}
-if(__hm_break14) break;
-}}
-instance_create(_hml__x, _hml__y, Wall);
-scrHMSoundPlay(sndWallBreak);
-}
-}
-if(__hm_break11) break;
-}}
-}
-}
-}
-if (place_meeting(x, y, Wall)) {
-instance_destroy();
-}
-}
-}
-if(__hm_break3) break;
-}}
-{ var __hm_with15 = scrHMMatching(DustOLD, "set", 1), __hm_break17=false;
-for (var __hm_index16=0; __hm_index16<array_length(__hm_with15); ++__hm_index16) {
-if(instance_exists(__hm_with15[__hm_index16])) with (__hm_with15[__hm_index16]) {
-{
-image_xscale *= 0.9;
-image_yscale = image_xscale;
-image_alpha = min((image_xscale + 0.5), 1);
-if ((image_xscale <= 0)) {
-instance_destroy();
-} else {
-if (place_meeting(x, y, Wall)) {
-instance_destroy();
-}
-}
-}
-}
-if(__hm_break17) break;
-}}
-{ var __hm_with18 = scrHMInstances(DustOLD), __hm_break20=false;
-for (var __hm_index19=0; __hm_index19<array_length(__hm_with18); ++__hm_index19) {
-if(instance_exists(__hm_with18[__hm_index19])) with (__hm_with18[__hm_index19]) {
-if (((speed / timescale) <= 0)) {
-{
-scrHMMotionAdd((direction + 180), 20);
-if ((scrHMVariableExists(id, "set") and (set == 0))) {
-set = 1;
-} else {
-instance_destroy();
-}
-}
-}
-}
-if(__hm_break20) break;
-}}
-}
-
-// Source bosses/scorpionboss.mod.gml:480; scorpionboss_death
+// Source bosses/scorpionboss.mod.gml:431; step
+function hm_bosses_scorpionboss_mod_gml_step() {
+{ var __hm_with1 = scrHMMatching(DustOLD, "set", 0), __hm_break3=false;
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+{
+if (((current_time mod 30) == 1)) {
+time += 1;
+}
+{ var __hm_with4 = scrHMInstances(Player), __hm_break6=false;
+for (var __hm_index5=0; __hm_index5<array_length(__hm_with4); ++__hm_index5) {
+if(instance_exists(__hm_with4[__hm_index5])) with (__hm_with4[__hm_index5]) {
+if (place_meeting(x, y, (scrHMOther(other)))) {
+{
+var __hm_other7=scrHMOther(other);
+x += lengthdir_x(1, __hm_other7.direction);
+;
+var __hm_other8=scrHMOther(other);
+y += lengthdir_y(1, __hm_other8.direction);
+;
+view_shake[index] = choose(100, (- 100));
+}
+}
+}
+if(__hm_break6) break;
+}}
+if ((random((200 - (time * 3))) < 1)) {
+if ((place_meeting(x, y, Floor) and (distance_to_object(Player) > 32))) {
+{
+{ var __hm_with9 = scrHMInstances(instance_nearest(x, y, Floor)), __hm_break11=false;
+for (var __hm_index10=0; __hm_index10<array_length(__hm_with9); ++__hm_index10) {
+if(instance_exists(__hm_with9[__hm_index10])) with (__hm_with9[__hm_index10]) {
+{
+var _hml__x = x;
+var _hml__y = y;
+if ((object_index != FloorExplo)) {
+{
+if ((random(2) < 1)) {
+_hml__x = (x + 16);
+}
+if ((random(2) < 1)) {
+_hml__y = (y + 16);
+}
+}
+}
+repeat (12) { var __hm_with12 = scrHMInstances(instance_create(_hml__x, _hml__y, Dust)), __hm_break14=false;
+for (var __hm_index13=0; __hm_index13<array_length(__hm_with12); ++__hm_index13) {
+if(instance_exists(__hm_with12[__hm_index13])) with (__hm_with12[__hm_index13]) {
+{
+scrHMMotionAdd(random_range(80, 100), random(4));
+depth = (- 11);
+}
+}
+if(__hm_break14) break;
+}}
+instance_create(_hml__x, _hml__y, Wall);
+scrHMSoundPlay(sndWallBreak);
+}
+}
+if(__hm_break11) break;
+}}
+}
+}
+}
+if (place_meeting(x, y, Wall)) {
+instance_destroy();
+}
+}
+}
+if(__hm_break3) break;
+}}
+{ var __hm_with15 = scrHMMatching(DustOLD, "set", 1), __hm_break17=false;
+for (var __hm_index16=0; __hm_index16<array_length(__hm_with15); ++__hm_index16) {
+if(instance_exists(__hm_with15[__hm_index16])) with (__hm_with15[__hm_index16]) {
+{
+image_xscale *= 0.9;
+image_yscale = image_xscale;
+image_alpha = min((image_xscale + 0.5), 1);
+if ((image_xscale <= 0)) {
+instance_destroy();
+} else {
+if (place_meeting(x, y, Wall)) {
+instance_destroy();
+}
+}
+}
+}
+if(__hm_break17) break;
+}}
+{ var __hm_with18 = scrHMInstances(DustOLD), __hm_break20=false;
+for (var __hm_index19=0; __hm_index19<array_length(__hm_with18); ++__hm_index19) {
+if(instance_exists(__hm_with18[__hm_index19])) with (__hm_with18[__hm_index19]) {
+if (((speed / timescale) <= 0)) {
+{
+scrHMMotionAdd((direction + 180), 20);
+if ((scrHMVariableExists(id, "set") and (set == 0))) {
+set = 1;
+} else {
+instance_destroy();
+}
+}
+}
+}
+if(__hm_break20) break;
+}}
+}
+
+// Source bosses/scorpionboss.mod.gml:0; scorpionboss_death (native content 1.1.0)
 function hm_bosses_scorpionboss_mod_gml_scorpionboss_death() {
 var _args = [];
 for(var _i=0;_i<argument_count;++_i) array_push(_args, argument[_i]);
@@ -1069,7 +1076,7 @@ assert(++_budget<100000,"Hardmode runaway continuation: hm_bosses_scorpionboss_m
 if (!instance_exists(_hm.scope)) { if(array_length(_hm.with_stack)>_hm.with_floor) {scrHMTaskWithNext(_hm); continue;} _hm.done=true; return; }
 with (_hm.scope) { switch (_hm.pc) {
 case 0: _hm.done=true; return;
-case 1: // bosses/scorpionboss.mod.gml:497
+case 1: // bosses/scorpionboss.mod.gml:504
 {
 if (instance_exists(Player)) {
 { var __hm_with1 = scrHMInstances(_hm.vars.fl_), __hm_break3=false;
@@ -1085,13 +1092,17 @@ if(__hm_break3) break;
 }
 _hm.pc=0;
 break;
-case 2: // bosses/scorpionboss.mod.gml:496
+case 2: // bosses/scorpionboss.mod.gml:503
 _hm.wait_ticks=max(0,6); _hm.pc=1; return;
 break;
-case 3: // bosses/scorpionboss.mod.gml:481
+case 3: // bosses/scorpionboss.mod.gml:488
 {
+if ((! hm_arkintide_mod_gml_hm_stage_boss_alive())) {
 scrHMSoundPlay(sndBossWin);
+}
+if ((! hm_arkintide_mod_gml_hm_stage_boss_alive())) {
 scrHMSoundMusic(musBossDead);
+}
 scrHMSoundPitchVolume(sndGoldScorpionDead, 0.8, 4);
 _hm.vars.xd_ = x;
 ;
@@ -1121,8 +1132,7 @@ default: throw "Hardmode invalid continuation PC";
 }
 }
 
-
-// Source bosses/scorpionboss.mod.gml:503; fancyscorpionboss_death
+// Source bosses/scorpionboss.mod.gml:0; fancyscorpionboss_death (native content 1.1.0)
 function hm_bosses_scorpionboss_mod_gml_fancyscorpionboss_death() {
 var _args = [];
 for(var _i=0;_i<argument_count;++_i) array_push(_args, argument[_i]);
@@ -1135,16 +1145,16 @@ assert(++_budget<100000,"Hardmode runaway continuation: hm_bosses_scorpionboss_m
 if (!instance_exists(_hm.scope)) { if(array_length(_hm.with_stack)>_hm.with_floor) {scrHMTaskWithNext(_hm); continue;} _hm.done=true; return; }
 with (_hm.scope) { switch (_hm.pc) {
 case 0: _hm.done=true; return;
-case 1: // bosses/scorpionboss.mod.gml:735
+case 1: // bosses/scorpionboss.mod.gml:742
 {
 ;
 }
 _hm.pc=0;
 break;
-case 2: // bosses/scorpionboss.mod.gml:735
+case 2: // bosses/scorpionboss.mod.gml:742
 _hm.result=undefined; _hm.done=true; return;
 break;
-case 3: // bosses/scorpionboss.mod.gml:683
+case 3: // bosses/scorpionboss.mod.gml:690
 {
 { var __hm_with1 = scrHMInstances(projectile), __hm_break3=false;
 for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
@@ -1227,7 +1237,9 @@ friction = (((speed / timescale) * 0.02)) * (timescale * timescale);
 if(__hm_break15) break;
 }}
 }
+if ((! hm_arkintide_mod_gml_hm_stage_boss_alive())) {
 scrHMSoundPlay(sndBossWin);
+}
 _hm.vars.a = GameCont.area;
 ;
 _hm.vars.sa = GameCont.subarea;
@@ -1235,25 +1247,25 @@ _hm.vars.sa = GameCont.subarea;
 }
 _hm.pc=2;
 break;
-case 4: // bosses/scorpionboss.mod.gml:680
+case 4: // bosses/scorpionboss.mod.gml:687
 {
 ;
 }
 _hm.pc=3;
 break;
-case 5: // bosses/scorpionboss.mod.gml:680
+case 5: // bosses/scorpionboss.mod.gml:687
 _hm.result=undefined; _hm.done=true; return;
 break;
-case 7: // bosses/scorpionboss.mod.gml:678
+case 7: // bosses/scorpionboss.mod.gml:685
 {
 ;
 }
 _hm.pc=6;
 break;
-case 8: // bosses/scorpionboss.mod.gml:678
+case 8: // bosses/scorpionboss.mod.gml:685
 _hm.wait_ticks=max(0,1); _hm.pc=7; return;
 break;
-case 9: // bosses/scorpionboss.mod.gml:674
+case 9: // bosses/scorpionboss.mod.gml:681
 {
 for (_hm.vars.i = 0; (_hm.vars.i < INPUT_MAX_PLAYERS); _hm.vars.i += 1) view_shake[_hm.vars.i] = _hm.vars.s;
 ;
@@ -1262,32 +1274,32 @@ _hm.vars.s /= 1.2;
 }
 _hm.pc=8;
 break;
-case 6: // bosses/scorpionboss.mod.gml:672
+case 6: // bosses/scorpionboss.mod.gml:679
 _hm.pc=((_hm.vars.s > 1))?9:5;
 break;
-case 10: // bosses/scorpionboss.mod.gml:670
+case 10: // bosses/scorpionboss.mod.gml:677
 {
 _hm.vars.s = 128;
 ;
 }
 _hm.pc=6;
 break;
-case 11: // bosses/scorpionboss.mod.gml:668
+case 11: // bosses/scorpionboss.mod.gml:675
 _hm.pc = (scrHMTaskFork(_hm, 10)) ? 10 : 3;
 break;
-case 13: // bosses/scorpionboss.mod.gml:628
+case 13: // bosses/scorpionboss.mod.gml:635
 _hm.vars.__hm_repeat16--; _hm.pc=12;
 break;
-case 14: // bosses/scorpionboss.mod.gml:664
+case 14: // bosses/scorpionboss.mod.gml:671
 {
 ;
 }
 _hm.pc=13;
 break;
-case 15: // bosses/scorpionboss.mod.gml:664
+case 15: // bosses/scorpionboss.mod.gml:671
 _hm.wait_ticks=max(0,1); _hm.pc=14; return;
 break;
-case 16: // bosses/scorpionboss.mod.gml:630
+case 16: // bosses/scorpionboss.mod.gml:637
 {
 _hm.vars.warpspeed += 1;
 ;
@@ -1340,13 +1352,13 @@ if(__hm_break22) break;
 }
 _hm.pc=15;
 break;
-case 12: // bosses/scorpionboss.mod.gml:628
+case 12: // bosses/scorpionboss.mod.gml:635
 _hm.pc=(_hm.vars.__hm_repeat16>0)?16:11;
 break;
-case 17: // bosses/scorpionboss.mod.gml:628
+case 17: // bosses/scorpionboss.mod.gml:635
 _hm.vars.__hm_repeat16=round((0.75 * 30)); _hm.pc=12;
 break;
-case 18: // bosses/scorpionboss.mod.gml:617
+case 18: // bosses/scorpionboss.mod.gml:624
 {
 ;
 { var __hm_with23 = scrHMInstances(CaveSparkle), __hm_break25=false;
@@ -1366,50 +1378,50 @@ _hm.vars.warpspeed = 0;
 }
 _hm.pc=17;
 break;
-case 19: // bosses/scorpionboss.mod.gml:617
+case 19: // bosses/scorpionboss.mod.gml:624
 _hm.wait_ticks=max(0,(1.13 * 30)); _hm.pc=18; return;
 break;
-case 21: // bosses/scorpionboss.mod.gml:591
+case 21: // bosses/scorpionboss.mod.gml:598
 _hm.vars.__hm_repeat26--; _hm.pc=20;
 break;
-case 22: // bosses/scorpionboss.mod.gml:593
+case 22: // bosses/scorpionboss.mod.gml:600
 scrHMTaskWithNext(_hm);
 break;
-case 23: // bosses/scorpionboss.mod.gml:593
+case 23: // bosses/scorpionboss.mod.gml:600
 scrHMTaskWithAbort(_hm);
 break;
-case 24: // bosses/scorpionboss.mod.gml:612
+case 24: // bosses/scorpionboss.mod.gml:619
 {
 ;
 }
 _hm.pc=22;
 break;
-case 25: // bosses/scorpionboss.mod.gml:612
+case 25: // bosses/scorpionboss.mod.gml:619
 _hm.result=undefined; _hm.done=true; return;
 break;
-case 27: // bosses/scorpionboss.mod.gml:610
+case 27: // bosses/scorpionboss.mod.gml:617
 {
 ;
 }
 _hm.pc=26;
 break;
-case 28: // bosses/scorpionboss.mod.gml:610
+case 28: // bosses/scorpionboss.mod.gml:617
 _hm.wait_ticks=max(0,1); _hm.pc=27; return;
 break;
-case 29: // bosses/scorpionboss.mod.gml:609
+case 29: // bosses/scorpionboss.mod.gml:616
 {
 visible = place_meeting(x, y, Floor);
 ;
 }
 _hm.pc=28;
 break;
-case 26: // bosses/scorpionboss.mod.gml:607
+case 26: // bosses/scorpionboss.mod.gml:614
 _hm.pc=(instance_exists(_hm.scope))?29:25;
 break;
-case 30: // bosses/scorpionboss.mod.gml:605
+case 30: // bosses/scorpionboss.mod.gml:612
 _hm.pc = (scrHMTaskFork(_hm, 26)) ? 26 : 22;
 break;
-case 31: // bosses/scorpionboss.mod.gml:595
+case 31: // bosses/scorpionboss.mod.gml:602
 {
 sprite_index = sprDust;
 ;
@@ -1432,16 +1444,16 @@ friction = (((speed / timescale) * 0.02)) * (timescale * timescale);
 }
 _hm.pc=30;
 break;
-case 32: // bosses/scorpionboss.mod.gml:593
+case 32: // bosses/scorpionboss.mod.gml:600
 scrHMTaskWithEnter(_hm,scrHMInstances(instance_create(_hm.vars.xd_, _hm.vars.yd_, CaveSparkle)),31,21);
 break;
-case 20: // bosses/scorpionboss.mod.gml:591
+case 20: // bosses/scorpionboss.mod.gml:598
 _hm.pc=(_hm.vars.__hm_repeat26>0)?32:19;
 break;
-case 33: // bosses/scorpionboss.mod.gml:591
+case 33: // bosses/scorpionboss.mod.gml:598
 _hm.vars.__hm_repeat26=round(100); _hm.pc=20;
 break;
-case 34: // bosses/scorpionboss.mod.gml:560
+case 34: // bosses/scorpionboss.mod.gml:567
 {
 { var __hm_with27 = scrHMInstances(Wall), __hm_break29=false;
 for (var __hm_index28=0; __hm_index28<array_length(__hm_with27); ++__hm_index28) {
@@ -1499,25 +1511,25 @@ if(__hm_break35) break;
 }
 _hm.pc=33;
 break;
-case 35: // bosses/scorpionboss.mod.gml:557
+case 35: // bosses/scorpionboss.mod.gml:564
 {
 ;
 }
 _hm.pc=34;
 break;
-case 36: // bosses/scorpionboss.mod.gml:557
+case 36: // bosses/scorpionboss.mod.gml:564
 _hm.result=undefined; _hm.done=true; return;
 break;
-case 38: // bosses/scorpionboss.mod.gml:555
+case 38: // bosses/scorpionboss.mod.gml:562
 {
 ;
 }
 _hm.pc=37;
 break;
-case 39: // bosses/scorpionboss.mod.gml:555
+case 39: // bosses/scorpionboss.mod.gml:562
 _hm.wait_ticks=max(0,1); _hm.pc=38; return;
 break;
-case 40: // bosses/scorpionboss.mod.gml:551
+case 40: // bosses/scorpionboss.mod.gml:558
 {
 for (_hm.vars.i = 0; (_hm.vars.i < INPUT_MAX_PLAYERS); _hm.vars.i += 1) view_shake[_hm.vars.i] = _hm.vars.s;
 ;
@@ -1526,29 +1538,29 @@ _hm.vars.s /= 1.1;
 }
 _hm.pc=39;
 break;
-case 37: // bosses/scorpionboss.mod.gml:549
+case 37: // bosses/scorpionboss.mod.gml:556
 _hm.pc=((_hm.vars.s > 1))?40:36;
 break;
-case 41: // bosses/scorpionboss.mod.gml:547
+case 41: // bosses/scorpionboss.mod.gml:554
 {
 _hm.vars.s = 128;
 ;
 }
 _hm.pc=37;
 break;
-case 42: // bosses/scorpionboss.mod.gml:545
+case 42: // bosses/scorpionboss.mod.gml:552
 _hm.pc = (scrHMTaskFork(_hm, 41)) ? 41 : 34;
 break;
-case 43: // bosses/scorpionboss.mod.gml:542
+case 43: // bosses/scorpionboss.mod.gml:549
 {
 ;
 }
 _hm.pc=42;
 break;
-case 44: // bosses/scorpionboss.mod.gml:542
+case 44: // bosses/scorpionboss.mod.gml:549
 _hm.wait_ticks=max(0,(0.65 * 30)); _hm.pc=43; return;
 break;
-case 45: // bosses/scorpionboss.mod.gml:522
+case 45: // bosses/scorpionboss.mod.gml:529
 {
 scrHMSoundMusic(musBoss4Silence);
 ;
@@ -1588,10 +1600,10 @@ if(__hm_break41) break;
 }
 _hm.pc=44;
 break;
-case 46: // bosses/scorpionboss.mod.gml:520
+case 46: // bosses/scorpionboss.mod.gml:527
 _hm.pc = ((! instance_exists(Spiral))) ? 45 : 2;
 break;
-case 47: // bosses/scorpionboss.mod.gml:511
+case 47: // bosses/scorpionboss.mod.gml:518
 {
 ;
 if (instance_exists(Player)) {
@@ -1608,10 +1620,10 @@ if(__hm_break44) break;
 }
 _hm.pc=46;
 break;
-case 48: // bosses/scorpionboss.mod.gml:511
+case 48: // bosses/scorpionboss.mod.gml:518
 _hm.wait_ticks=max(0,1); _hm.pc=47; return;
 break;
-case 49: // bosses/scorpionboss.mod.gml:507
+case 49: // bosses/scorpionboss.mod.gml:514
 {
 _hm.vars.xd_ = x;
 ;
@@ -1622,7 +1634,7 @@ _hm.vars.fl_ = instance_nearest(_hm.vars.xd_, _hm.vars.yd_, Floor);
 }
 _hm.pc=48;
 break;
-case 50: // bosses/scorpionboss.mod.gml:505
+case 50: // bosses/scorpionboss.mod.gml:512
 _hm.pc = (scrHMTaskFork(_hm, 49)) ? 49 : 0;
 break;
 default: throw "Hardmode invalid continuation PC";
@@ -1630,25 +1642,24 @@ default: throw "Hardmode invalid continuation PC";
 }
 }
 
-
-// Source bosses/scorpionboss.mod.gml:747; boltstickfly
-function hm_bosses_scorpionboss_mod_gml_boltstickfly() {
-if (instance_exists(creator)) {
-{
-x = creator.x;
-y = (creator.y + 16);
-{ var __hm_with1 = scrHMInstances(BoltStick), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-if ((target == (scrHMOther(other)).creator)) {
-var __hm_other4=scrHMOther(other);
-target = __hm_other4;
-}
-}
-if(__hm_break3) break;
-}}
-}
-} else {
-instance_destroy();
-}
-}
+// Source bosses/scorpionboss.mod.gml:747; boltstickfly
+function hm_bosses_scorpionboss_mod_gml_boltstickfly() {
+if (instance_exists(creator)) {
+{
+x = creator.x;
+y = (creator.y + 16);
+{ var __hm_with1 = scrHMInstances(BoltStick), __hm_break3=false;
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+if ((target == (scrHMOther(other)).creator)) {
+var __hm_other4=scrHMOther(other);
+target = __hm_other4;
+}
+}
+if(__hm_break3) break;
+}}
+}
+} else {
+instance_destroy();
+}
+}

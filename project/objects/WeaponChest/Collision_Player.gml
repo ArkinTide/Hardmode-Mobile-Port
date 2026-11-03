@@ -10,7 +10,7 @@ if (_shift != 0) global.rng_state[RNGStates.WeaponDrops] += _shift
 	
 var _extra = 1 + curse * 2,
 	_player = instance_nearest(x, y, Player),
-	_wep = scrDecideWep(_extra, curse),
+	_wep = scrHMToolWeapon1100(scrDecideWep(_extra, curse)),
 	_count = 1
 
 if scr_ultra_get(Race.Steroids, UltraSkill.Ambidextrous) {

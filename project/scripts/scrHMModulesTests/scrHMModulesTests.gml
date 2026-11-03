@@ -23,6 +23,6 @@ function scrHMModulesTests() {
     _checks++;
     assert(scrHMModGet("area","venuz","kills")==0,"Hardmode area global kills counter preserved");
     _checks++;
-    show_debug_message("HARDMODE MODULES RESULT "+json_stringify({status:"PASS",checks:_checks,modules:45}));
+    show_debug_message("HARDMODE MODULES RESULT "+json_stringify({status:"PASS",checks:_checks,modules:array_length(global.hm_module_order)}));
     game_end();return true;
 }

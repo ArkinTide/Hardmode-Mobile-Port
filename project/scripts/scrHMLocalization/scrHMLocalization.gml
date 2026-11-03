@@ -196,7 +196,10 @@ static _catalog={
   "DON'T DEFEAT ???": "不要击败？？？",
   "CARRY 6 @Q???": "携带六个@q???",
   "EAT ANY @G???@W WEAPON": "吞食任意@g???@w武器",
-  "RATS REVIVE AS GREEN RATS": "老鼠死亡后变为绿老鼠"
+  "RATS REVIVE AS GREEN RATS": "老鼠死亡后变为绿老鼠",
+  "BOSS HEALTH BARS": "首领血条",
+  "DEFLECT THRONE BALLS": "反弹王座能量球",
+  "PLAYER BOOST (+2 HP, +1 LEVEL)": "玩家增强（生命上限+2，等级上限+1）"
 };
 return _catalog;
 }

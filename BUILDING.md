@@ -1,25 +1,26 @@
 # Build and maintenance
 
-This source-only distribution deliberately omits media and proprietary/native dependencies. Supply your own original Epsilon/GameMaker resources, Hardmode b24 input and compatible runner/toolchains. Do not commit them, signing material or saves.
+This text-only repository omits game media and native dependencies. Supply the original Epsilon baseline, Hardmode b24 assets, maintained native Hardmode NTT v100.034 inputs, compatible GameMaker runtime/toolchains and your own signing material. Local scripts retain workspace paths which must be configured for another environment.
 
-The maintained local pipeline expects `original-source/` (unmodified baseline), `reference/hardmode-b24/` (unmodified MOD), imported `assets/`, populated project media, and platform toolchains in `platforms/`. Those private inputs are not in this repository. Generated GML remains readable without them. Current local scripts preserve their original workspace paths; configure paths for your environment.
+The 1.1.0 pipeline starts from the preserved mobile 1.0.12 text baseline in `release1100/baseline-code.zip`, plus the native source binding and migration ledger. These local evidence archives and media are not GitHub release assets. The complete final GameMaker source is already under `project/`; do not rerun historical registration scripts over it indiscriminately.
 
-The checked-in project already contains the integration. Do not replay historical registration scripts on it. Restore the missing assets and dependencies, then build and check the current project:
+For maintenance with the complete private inputs available:
 
 ```powershell
+python -B compile_sync1100.py
+python -B register_sync1100.py
+python -B integrate_sync1100.py
+python -B audit_sync1100.py
 ./build_local.ps1 -Target windows
-python -B run_release112_checks.py native-menu
-python -B run_release112_checks.py gameplay
-python -B run_release112_checks.py collect
-python -B package_windows112.py
+python -B run_sync1100_checks.py menu:30 menu:60
+python -B build_mobile1100.py
+python -B freeze_source.py final --directory release1100
+python -B make_release1100_receipt.py
+python -B prepare_publication1100.py
 ```
 
-The maintained development process freezes and delivers Windows before the mobile-only inspection. After the mobile source integration, `audit_mobile_motion112.py runtime` exercises shared actor callbacks and draw transforms at 30/60 FPS; `build_mobile112.py` generates and checks fresh APK/IPA resources. Local source, delivery and publication receipts keep the two validation VM hashes separate. The scripts use the complete private workspace inputs, not an asset-free clone.
+Set version metadata with `set_release1100.py`; add only the new mobile labels with `localize_sync1100.py`. Grillskills is deliberately excluded. Source changes require appropriate real-VM regression before packaging. `run_sync1100_checks.py` mutes a test-only sound-resource copy, uses a private never-activated desktop and prevents VM rebuild during execution. Test entry points are opt-in and desktop-only.
 
-An Android Igor extension-path error may occur after fresh VM/resource generation; the maintained offline Gradle assembly path uses those new resources. Do not accept an old resource ZIP. The retained-runner iOS packaging route requires resigning and is not a new native Mac build.
+Android uses fresh Igor resources plus the maintained offline Gradle assembly path. A known Igor extension-path error is accepted only after verifying newly generated resources. Preserve the monotonic frame pacer and previous signing identity. iOS packaging retains a compatible native runner with fresh resources, verifies additional builtin/extension compatibility, and requires resigning.
 
-Before freezing and creating the delivery receipt, review the current-VM wall, map and throne screenshots, and record that manual review in `release112/visual-review.json`. Do not mark screenshots reviewed from automated assertions alone.
-
-The portable Windows ZIP and its recorded validation VM remain unchanged during the subsequent mobile presentation work.
-
-Tests run silently, sequentially, at 30 and 60 FPS. The VM lock prevents rebuilding while Runner uses it. Preserve save schema `GAME_BUILD3004`; application versions are configured separately in `release_config.py`. Full verification records and local input manifests are kept outside the public repository.
+Freeze the final source after development and package verification. Delivery validation binds source, platform resources and final test VM hashes. Publication audits all text blobs and reachable Git history, uploads APK/IPA/checksums to the dedicated Hardmode MEGA with remote SHA-256 readback, then publishes a source-only GitHub release. Keep credentials and all binary assets outside Git.

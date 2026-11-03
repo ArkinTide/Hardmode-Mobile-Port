@@ -1,46 +1,82 @@
-// Source areas/jungle.area.gml:1; __load
-function hm_areas_jungle_area_gml___load() {
-global.hm_module_vars[$ "area:jungle"].jw_set_bigbandit_to_set_the_subarea_to_3_when_they_spawn = 0;
-}
-
-// Source areas/jungle.area.gml:2; area_name
-function hm_areas_jungle_area_gml_area_name() {
-return ("?-" + string(GameCont.subarea));
-;
-}
-
-// Source areas/jungle.area.gml:5; area_sprite
-function hm_areas_jungle_area_gml_area_sprite(_hml_q) {
-switch (_hml_q) {
-case sprFloor1:
-return sprFloor105;
-;
-case sprFloor1B:
-return sprFloor105;
-;
-case sprFloor1Explo:
-return sprFloor105Explo;
-;
-case sprWall1Trans:
-return sprWall105Trans;
-;
-case sprWall1Bot:
-return sprWall105Bot;
-;
-case sprWall1Out:
-return sprWall105Out;
-;
-case sprWall1Top:
-return sprWall105Top;
-;
-case sprDebris1:
-return sprDebris105;
-;
-}
-}
-
-// Source areas/jungle.area.gml:17; area_transit
+// Source areas/jungle.area.gml:1; __load
+function hm_areas_jungle_area_gml___load() {
+global.hm_module_vars[$ "area:jungle"].jw_set_bigbandit_to_set_the_subarea_to_3_when_they_spawn = 0;
+}
+
+// Source areas/jungle.area.gml:2; area_name
+function hm_areas_jungle_area_gml_area_name() {
+return ("?-" + string(GameCont.subarea));
+;
+}
+
+// Source areas/jungle.area.gml:5; area_sprite
+function hm_areas_jungle_area_gml_area_sprite(_hml_q) {
+switch (_hml_q) {
+case sprFloor1:
+return sprFloor105;
+;
+case sprFloor1B:
+return sprFloor105;
+;
+case sprFloor1Explo:
+return sprFloor105Explo;
+;
+case sprWall1Trans:
+return sprWall105Trans;
+;
+case sprWall1Bot:
+return sprWall105Bot;
+;
+case sprWall1Out:
+return sprWall105Out;
+;
+case sprWall1Top:
+return sprWall105Top;
+;
+case sprDebris1:
+return sprDebris105;
+;
+}
+}
+
+// Source areas/jungle.area.gml:0; area_transit (native content 1.1.0)
 function hm_areas_jungle_area_gml_area_transit() {
+if ((scrHMVariableExists(GameCont, "hm_debug_pending") && GameCont.hm_debug_pending)) {
+{
+area = scrHMAreaResolve(GameCont.hm_debug_area);
+;
+subarea = GameCont.hm_debug_sub;
+;
+return;
+;
+}
+}
+if ((scrHMVariableExists(GameCont, "hm_crown_return") && GameCont.hm_crown_return)) {
+hm_arkintide_mod_gml_hm_crown_watch();
+}
+if (((scrHMVariableExists(GameCont, "hm_crown_exit_ready") && GameCont.hm_crown_exit_ready) && (area != scrHMAreaResolve(100)))) {
+{
+area = scrHMAreaResolve("throne");
+;
+subarea = 1;
+;
+GameCont.hm_destination = "throne";
+;
+return;
+;
+}
+}
+if ((area == scrHMAreaResolve(100))) {
+return;
+}
+if ((scrHMVariableExists(GameCont, "hm_destination") && (GameCont.hm_destination != ""))) {
+{
+area = scrHMAreaResolve(GameCont.hm_destination);
+;
+return;
+;
+}
+}
 if (((lastarea != scrHMAreaResolve("jungle")) and (lastarea == scrHMAreaResolve("jungleboogie")))) {
 {
 area = scrHMAreaResolve("jungle");
@@ -50,8 +86,18 @@ subarea = 1;
 }
 }
 
-// Source areas/jungle.area.gml:23; area_finish
+// Source areas/jungle.area.gml:0; area_finish (native content 1.1.0)
 function hm_areas_jungle_area_gml_area_finish() {
+if ((scrHMVariableExists(GameCont, "hm_debug_pending") && GameCont.hm_debug_pending)) {
+{
+area = scrHMAreaResolve(GameCont.hm_debug_area);
+;
+subarea = GameCont.hm_debug_sub;
+;
+return;
+;
+}
+}
 if ((global.hm_module_vars[$ "area:jungle"].jw_set_bigbandit_to_set_the_subarea_to_3_when_they_spawn < 5)) {
 {
 area = scrHMAreaResolve("jungle");
@@ -84,8 +130,10 @@ scrHMSpriteRestore(sprBanditBossDead);
 ;
 }
 
-// Source areas/jungle.area.gml:41; area_setup
+// Source areas/jungle.area.gml:0; area_setup (native content 1.1.0)
 function hm_areas_jungle_area_gml_area_setup() {
+GameCont.hm_destination = "";
+;
 scrHMSoundMusic(mus105);
 scrHMSoundAmbient(amb105);
 ;
@@ -102,10 +150,14 @@ if(__hm_break3) break;
 }}
 TopCont.fog = sprFog2;
 TopCont.darkness = 1;
+hm_arkintide_mod_gml_hm_map_budget();
+;
 }
 
-// Source areas/jungle.area.gml:51; area_start
+// Source areas/jungle.area.gml:0; area_start (native content 1.1.0)
 function hm_areas_jungle_area_gml_area_start() {
+hm_arkintide_mod_gml_hm_native_unlock_area();
+;
 global.hm_module_vars[$ "area:jungle"].jw_set_bigbandit_to_set_the_subarea_to_3_when_they_spawn = GameCont.subarea;
 { var __hm_with1 = scrHMInstances(Floor), __hm_break3=false;
 for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
@@ -206,58 +258,58 @@ if(__hm_break21) break;
 }}
 }
 
-// Source areas/jungle.area.gml:95; area_make_floor
-function hm_areas_jungle_area_gml_area_make_floor() {
-instance_create(x, y, Floor);
-;
-var _hml_turn = choose(0, 0, 0, 0, 0, 0, 0, 90, 90, 90, (- 90), (- 90), (- 90), 180);
-;
-direction += _hml_turn;
-;
-if (((_hml_turn == 180) && (point_distance(x, y, 10016, 10016) > 48))) {
-{
-instance_create(x, y, Floor);
-;
-instance_create((x + 16), (y + 16), WeaponChest);
-;
-}
-}
-if ((random(10) < 1)) {
-{
-instance_create((x + 32), y, Floor);
-;
-instance_create((x - 32), y, Floor);
-;
-instance_create(x, (y + 32), Floor);
-;
-instance_create(x, (y - 32), Floor);
-;
-}
-}
-if ((random((19 + instance_number(FloorMaker))) > 22)) {
-{
-if ((point_distance(x, y, 10016, 10016) > 48)) {
-{
-instance_create((x + 16), (y + 16), AmmoChest);
-;
-instance_create(x, y, Floor);
-;
-}
-}
-instance_destroy();
-;
-}
-} else {
-if ((random(7) < 1)) {
-{
-instance_create(x, y, FloorMaker);
-;
-}
-}
-}
-}
-
-// Source areas/jungle.area.gml:122; area_pop_enemies
+// Source areas/jungle.area.gml:95; area_make_floor
+function hm_areas_jungle_area_gml_area_make_floor() {
+instance_create(x, y, Floor);
+;
+var _hml_turn = choose(0, 0, 0, 0, 0, 0, 0, 90, 90, 90, (- 90), (- 90), (- 90), 180);
+;
+direction += _hml_turn;
+;
+if (((_hml_turn == 180) && (point_distance(x, y, 10016, 10016) > 48))) {
+{
+instance_create(x, y, Floor);
+;
+instance_create((x + 16), (y + 16), WeaponChest);
+;
+}
+}
+if ((random(10) < 1)) {
+{
+instance_create((x + 32), y, Floor);
+;
+instance_create((x - 32), y, Floor);
+;
+instance_create(x, (y + 32), Floor);
+;
+instance_create(x, (y - 32), Floor);
+;
+}
+}
+if ((random((19 + instance_number(FloorMaker))) > 22)) {
+{
+if ((point_distance(x, y, 10016, 10016) > 48)) {
+{
+instance_create((x + 16), (y + 16), AmmoChest);
+;
+instance_create(x, y, Floor);
+;
+}
+}
+instance_destroy();
+;
+}
+} else {
+if ((random(7) < 1)) {
+{
+instance_create(x, y, FloorMaker);
+;
+}
+}
+}
+}
+
+// Source areas/jungle.area.gml:0; area_pop_enemies (native content 1.1.0)
 function hm_areas_jungle_area_gml_area_pop_enemies() {
 if ((random(20) < 1)) {
 instance_create((x + 16), (y + 16), JungleAssassinHide);
@@ -274,24 +326,24 @@ instance_create((x + 16), (y + 16), Raven);
 if ((random(100) < 1)) {
 repeat (5) scrHMModCall("mod", "enemies", "enemychicken_create", (x + 16), (y + 16));
 }
-}
-
-// Source areas/jungle.area.gml:129; area_pop_props
-function hm_areas_jungle_area_gml_area_pop_props() {
-if ((random(2) < 1)) {
-instance_create((x + 16), (y + 16), Bush);
-}
-if ((random(14) < 1)) {
-instance_create((x + 16), (y + 16), LightBeam);
+if ((((GameCont.loops > 0) && (random(16) < 1)) && (collision_circle((x + 16), (y + 16), 12, [Wall, InvisiWall, enemy], false, true) == noone))) {
+instance_create((x + 16), (y + 16), choose(Gator, BuffGator));
 }
 }
 
-// Source areas/jungle.area.gml:133; area_mapdata
+// Source areas/jungle.area.gml:129; area_pop_props
+function hm_areas_jungle_area_gml_area_pop_props() {
+if ((random(2) < 1)) {
+instance_create((x + 16), (y + 16), Bush);
+}
+if ((random(14) < 1)) {
+instance_create((x + 16), (y + 16), LightBeam);
+}
+}
+
+// Source areas/jungle.area.gml:0; area_mapdata (native content 1.1.0)
 function hm_areas_jungle_area_gml_area_mapdata(_hml_lx, _hml_ly, _hml_lp, _hml_ls, _hml_ws, _hml_ll) {
-if ((_hml_lp == "junkyard")) {
-return [(_hml_lx + 18), 9, 1, 1, 1];
-} else {
-return [_hml_lx, 9, 1, 1, 1];
-}
+return hm_arkintide_mod_gml_hm_mapdata("jungle", _hml_lx, _hml_ly, _hml_lp, _hml_ls, _hml_ws, _hml_ll);
 ;
 }
+

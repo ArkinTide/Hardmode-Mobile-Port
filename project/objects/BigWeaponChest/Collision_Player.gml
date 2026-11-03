@@ -16,7 +16,7 @@ random_set_seed(dropseed)
 instance_create(x, y, PortalClear)
 
 repeat _count {
-	var _wep = scrDecideWep(1, false),
+	var _wep = scrHMToolWeapon1100(scrDecideWep(1, false)),
 		_x = bbox_center_x + orandom(2),
 		_y = bbox_center_y + orandom(2)
 	

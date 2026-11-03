@@ -1,14 +1,34 @@
-# Hardmode 1.0.12
+# Hardmode Mobile 1.1.0 / build 14
 
-- Windows：滚轮事件及输入采样统一进入短时待消费换枪队列，避免输入采样覆盖；空格、暂停和控制台限制保留。
-- Windows：启动时明确使用目标帧率时钟，将原初始化覆盖的33毫秒等待余量改为1毫秒；四个区域分别测量30／60帧的实际绘制与手动位移呈现。
-- 诅咒超级水晶死亡后，一次性恢复普通洞窟的墙面、墙顶、外墙和衔接层；保留碰撞几何及深层纯色绘制。
-- 下水道以脚下五点实际水面判定入水；可见岸边、部分仍受岸边支撑及视觉水面已删除的位置保持干燥，上岸即时恢复。
-- 音乐记录所属区域，跨区重新选曲，避免停车场音乐覆盖后续关卡；同区域续播。
-- 移动端补上原先仅Windows启用的MOD手动位移绘制平滑；物体、敌人、弹幕及水中／水晶分层绘制同步，逻辑和碰撞仍保持每秒30次。
+This release synchronizes the maintained NTT v100.034 Hardmode content with mobile 1.0.12. Mobile input, translations, storage, platform timing, compact wall renderer and mutation selector are retained through host adapters.
 
-包含尚未独立发布到GitHub的1.0.11修改：7-4专属祭坛与密室往返、诅咒水晶独立音乐、盾反等离子阵营保留、循环原版敌人池和精英蜘蛛、金星敌人在外不掉金星武器、3-5敌弹归属、王座锚点与生成、爆炸守护者26发攻击。
+## Gameplay and balance
 
-Windows最终构建完成22项定向场景、1667断言、七类原生和两帧率菜单检查，随包EXE两帧率启动检查通过。实际滚轮上下输入在较早开发VM观察通过；最终VM的换枪检查为合成输入经过真实Player Step。较早候选VM另有46项回归证据，不能当成最终VM回归。
+- Native loop enemy pools, special enemy variants, radiation and pickup policies, including pre-cap raven/snow-robot base drops of 1, crystal reductions, ordinary green-rat rewards at the cap, and bonefish rewards.
+- Optional player boost: +2 maximum HP and one additional level/mutation; repeat initialization and continue-game do not stack it.
+- Extra bosses use their normal combat behavior without loop attack upgrades or the first-loop 30% HP bonus. They retain 5% HP per loop, random eligible map placement and a one-second room-entry grace period. Their configured count can be zero and its upper bound grows every two loops. They do not replace the ordinary stage boss, play boss music or summon extra ravens.
+- The native changes to boss HP, self-rocket immunity, crystal half-health splitting, raven summon cap, turtle weapon rendering, Rogue attacks and Gun God off-world combat are included.
+- Off-world sewer Rat spawns in a real mask-fitting water pool on existing complete floor tiles. It is vulnerable, has no tentacles and uses a raised submerged renderer. Gun God's off-world terrain restrictions, first-phase projectile policy and L3 YV phase are retained.
+- Boss health bars support Hardmode bosses, overhead extra-boss bars and selected top-of-screen bars. Throne-ball deflection and player boost have persistent touch-accessible switches.
 
-移动平滑使用独立VM执行共享回调和绘制检查；桌面帧率不是手机帧率。没有安卓／iPhone真机或本轮Mac原生重建验收，IPA需要重签。
+## Police, portals and progression
+
+- Animated police robot charge/warning, particles and timed emergence; separate gates avoid recurring van requests. Native loop police/freak weights and infantry limits are included.
+- Police portal transitions are blue from the first prewarmed ring. Van wreckage does not replace the last combat death as the exit location.
+- Extended Throne hall: player at bottom center, boss at upper center, complete generator annexes generated on the boss side before wall construction.
+- 7-4 crown-vault round trip resumes at Throne without spending an extra visit or changing the loop.
+- Jungle entrance, fish skull and golden-car clear gates, guaranteed 3-1 access tool, HQ rules, cave exits and native music routing are synchronized.
+- Native Venus retry/progression, carried-weapon cleanup, authored terrain and stage cleanup are retained with mobile interaction adapters. The pause-menu restart uses the synchronized retry request, including secret stages.
+
+## Terrain, rendering and performance
+
+- Preserve compact outer-wall collision/rendering, native edge/transition layer selection and cave palette restoration without recreating all detailed walls.
+- The host uses five-point actual-water support with immediate bank recovery. Native pool creation is converted to the host's water material ID, keeping swimming and movement friction separate.
+- Retain 30 Hz AI and manually moved MOD entities with smooth optional 60 Hz presentation, including submerged actors and layered crystals.
+- Native bounded beam queries, staggered entity work, effect budgets, corpse/particle lifetimes, cached wall/effect work and audio limits are included. Performance remains scene- and device-dependent.
+
+## Scope and verification
+
+The implementation ledger accounts for 543 historical native transformations: 509 imported, 8 mobile equivalents, 25 changes in upstream files that neither active loader references, and 1 Grillskills change excluded at the user's request. These counts describe source coverage, not 543 independently exercised runtime features. See [migration ledger](migration-1.1.0.json).
+
+Compiled desktop tests run silently on a private desktop, without foreground window control or input automation. Package verification checks fresh platform resources, Android signing and pacing, iOS runner compatibility and storage metadata. Exact cases and hashes are retained in the local delivery receipt. This is targeted regression testing, not exhaustive manual gameplay or physical Android/iPhone validation. IPA requires resigning; no native Mac rebuild or universal high-loop 60 FPS guarantee is claimed.

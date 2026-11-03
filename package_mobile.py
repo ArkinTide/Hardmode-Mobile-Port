@@ -1,6 +1,7 @@
 """Independent Hardmode mobile data preparation and retained-runner IPA."""
 from pathlib import Path
 import argparse,copy,hashlib,json,plistlib,struct,sys,zipfile
+import xml.etree.ElementTree as ET
 from package_fonts import restore
 from release_config import VERSION,BUILD,PACKAGE
 
@@ -90,6 +91,16 @@ def android():
     dest=ROOT/'platforms/android/gradle-project'/PACKAGE/'src/main/assets'
     for name,data in assets.items():
         path=dest/name;path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(data)
+    # The retained offline project owns its manifest independently of Igor's
+    # option metadata. Refresh it for every release before Gradle assembles.
+    manifest=dest.parent/'AndroidManifest.xml'
+    ET.register_namespace('android','http://schemas.android.com/apk/res/android')
+    ET.register_namespace('tools','http://schemas.android.com/tools')
+    tree=ET.parse(manifest);node=tree.getroot()
+    assert node.get('package')==PACKAGE
+    node.set('{http://schemas.android.com/apk/res/android}versionCode',str(BUILD))
+    node.set('{http://schemas.android.com/apk/res/android}versionName',VERSION)
+    tree.write(manifest,encoding='utf-8',xml_declaration=True)
     print('Android runner assets updated; assemble and validate the signed APK next.')
 
 if __name__=='__main__':

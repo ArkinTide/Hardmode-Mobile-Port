@@ -1,3 +1,4 @@
+scrHMPortalStyle1100(id);
 if lockstep_stop
 	exit
 
@@ -9,6 +10,7 @@ other.nexthurt = current_frame + 30
 
 if (endgame > 30) {
 	close = true
+	scrHMPortalStyle1100(id);
 	
 	alarm[1] = 90
 	

@@ -1,4 +1,4 @@
-// Source options.mod.gml:1; __load
+// Source options.mod.gml:0; __load (native content 1.1.0)
 function hm_options_mod_gml___load() {
 global.hm_module_vars[$ "mod:options"].intropan = "1";
 ;
@@ -16,7 +16,26 @@ global.hm_module_vars[$ "mod:options"].rogue = "1";
 ;
 global.hm_module_vars[$ "mod:options"].flames = "1";
 ;
-global.hm_module_vars[$ "mod:options"].ratrevive="1";
+global.hm_module_vars[$ "mod:options"].playerboost = "1";
+;
+global.hm_module_vars[$ "mod:options"].throneballs = "1";
+;
+global.hm_module_vars[$ "mod:options"].ratrevive = "1";
+;
+global.hm_module_vars[$ "mod:options"].bossbars = "1";
+;
+global.hm_module_vars[$ "mod:options"].grillskills = "1";
+;
+global.hm_module_vars[$ "mod:options"].hm_settings_cooldown = 0;
+;
+global.hm_module_vars[$ "mod:options"].hm_settings_open = 0;
+;
+global.hm_module_vars[$ "mod:options"].hm_settings_fire = 0;
+;
+global.hm_module_vars[$ "mod:options"].hm_settings_row = 0;
+;
+global.hm_module_vars[$ "mod:options"].hm_settings_keys = array_create(5, 0);
+;
 hm_options_mod_gml_basicload();
 ;
 if ((global.hm_module_vars[$ "mod:options"].weaponnames == "1")) {
@@ -33,17 +52,17 @@ scrHMWeaponSetName(46, "CHICKEN SWORD");
 #macro savefile "hardsave.txt"
 }
 
-// Source options.mod.gml:23; game_start
-function hm_options_mod_gml_game_start() {
-hm_options_mod_gml_basicsave();
-;
-}
-
-// Source options.mod.gml:26; basicload
+// Source options.mod.gml:23; game_start
+function hm_options_mod_gml_game_start() {
+hm_options_mod_gml_basicsave();
+;
+}
+
+// Source options.mod.gml:0; basicload (native content 1.1.0)
 function hm_options_mod_gml_basicload() {
 var _args = [];
 for(var _i=0;_i<argument_count;++_i) array_push(_args, argument[_i]);
-return scrHMTaskStart(hm_options_mod_gml_basicload_resume, id, scrHMOther(other), _args, 2, []);
+return scrHMTaskStart(hm_options_mod_gml_basicload_resume, id, scrHMOther(other), _args, 10, []);
 }
 function hm_options_mod_gml_basicload_resume(_hm) {
 var _budget=0;
@@ -52,15 +71,8 @@ assert(++_budget<100000,"Hardmode runaway continuation: hm_options_mod_gml_basic
 if (!instance_exists(_hm.scope)) { if(array_length(_hm.with_stack)>_hm.with_floor) {scrHMTaskWithNext(_hm); continue;} _hm.done=true; return; }
 with (_hm.scope) { switch (_hm.pc) {
 case 0: _hm.done=true; return;
-case 1: // options.mod.gml:28
+case 1: // options.mod.gml:39
 {
-;
-if (scrHMFileExists(savefile)) {
-{
-_hm.vars._settings = scrHMStringLoad(savefile);
-;
-_hm.vars._settings = string_split(_hm.vars._settings, "*");
-;
 global.hm_module_vars[$ "mod:options"].intropan = _hm.vars._settings[0];
 ;
 global.hm_module_vars[$ "mod:options"].bossoutros = _hm.vars._settings[1];
@@ -76,41 +88,176 @@ global.hm_module_vars[$ "mod:options"].portals = _hm.vars._settings[5];
 global.hm_module_vars[$ "mod:options"].rogue = _hm.vars._settings[6];
 ;
 global.hm_module_vars[$ "mod:options"].flames = _hm.vars._settings[7];
-global.hm_module_vars[$ "mod:options"].ratrevive=array_length(_hm.vars._settings)>8?_hm.vars._settings[8]:"1";
 ;
+if ((array_length(_hm.vars._settings) > 8)) {
+global.hm_module_vars[$ "mod:options"].ratrevive = _hm.vars._settings[8];
+}
+if ((array_length(_hm.vars._settings) > 9)) {
+global.hm_module_vars[$ "mod:options"].bossbars = _hm.vars._settings[9];
+}
+if ((array_length(_hm.vars._settings) > 10)) {
+global.hm_module_vars[$ "mod:options"].grillskills = _hm.vars._settings[10];
+}
+if ((array_length(_hm.vars._settings) > 11)) {
+global.hm_module_vars[$ "mod:options"].throneballs = _hm.vars._settings[11];
+}
+if ((array_length(_hm.vars._settings) > 12)) {
+global.hm_module_vars[$ "mod:options"].playerboost = _hm.vars._settings[12];
+}
 scrHMFileUnload(savefile);
 ;
 }
-} else {
+_hm.pc=0;
+break;
+case 2: // options.mod.gml:35
+{
+;
+}
+_hm.pc=1;
+break;
+case 3: // options.mod.gml:35
+_hm.result=undefined; _hm.done=true; return;
+break;
+case 4: // options.mod.gml:35
+{
+scrHMFileUnload(savefile);
+;
+}
+_hm.pc=3;
+break;
+case 5: // options.mod.gml:35
+_hm.pc = ((array_length(_hm.vars._settings) < 8)) ? 4 : 1;
+break;
+case 6: // options.mod.gml:33
+{
+_hm.vars._settings = scrHMStringLoad(savefile);
+;
+_hm.vars._settings = string_split(_hm.vars._settings, "*");
+;
+}
+_hm.pc=5;
+break;
+case 7: // options.mod.gml:55
 {
 
 }
-}
-}
 _hm.pc=0;
 break;
-case 2: // options.mod.gml:28
-_hm.wait_ticks=max(0,scrHMFileLoad(savefile)); _hm.pc=1; return;
+case 8: // options.mod.gml:32
+_hm.pc = (scrHMFileExists(savefile)) ? 6 : 7;
+break;
+case 9: // options.mod.gml:31
+{
+;
+}
+_hm.pc=8;
+break;
+case 10: // options.mod.gml:31
+_hm.wait_ticks=max(0,scrHMFileLoad(savefile)); _hm.pc=9; return;
 break;
 default: throw "Hardmode invalid continuation PC";
 }}
 }
 }
 
-
-// Source options.mod.gml:50; basicsave
+// Source options.mod.gml:0; basicsave (native content 1.1.0)
 function hm_options_mod_gml_basicsave() {
 var _hml__str = ((((((((((((((("" + string(global.hm_module_vars[$ "mod:options"].intropan)) + "*") + string(global.hm_module_vars[$ "mod:options"].bossoutros)) + "*") + string(global.hm_module_vars[$ "mod:options"].rads)) + "*") + string(global.hm_module_vars[$ "mod:options"].weaponnames)) + "*") + string(global.hm_module_vars[$ "mod:options"].coopchests)) + "*") + string(global.hm_module_vars[$ "mod:options"].portals)) + "*") + string(global.hm_module_vars[$ "mod:options"].rogue)) + "*") + string(global.hm_module_vars[$ "mod:options"].flames));
 ;
-_hml__str+="*"+string(global.hm_module_vars[$ "mod:options"].ratrevive);
+_hml__str += ((((((((("*" + string(global.hm_module_vars[$ "mod:options"].ratrevive)) + "*") + string(global.hm_module_vars[$ "mod:options"].bossbars)) + "*") + string(global.hm_module_vars[$ "mod:options"].grillskills)) + "*") + string(global.hm_module_vars[$ "mod:options"].throneballs)) + "*") + string(global.hm_module_vars[$ "mod:options"].playerboost));
+;
 scrHMStringSave(_hml__str, savefile);
 ;
 }
 
-// Source options.mod.gml:65; chat_command
+// Source options.mod.gml:0; chat_command (native content 1.1.0)
 function hm_options_mod_gml_chat_command() {
-if(argument0=="ratrevive") {scrHMRatToggle109();return true;}
-
+if ((argument0 == "playerboost")) {
+{
+if ((global.hm_module_vars[$ "mod:options"].playerboost == "1")) {
+global.hm_module_vars[$ "mod:options"].playerboost = "0";
+} else {
+global.hm_module_vars[$ "mod:options"].playerboost = "1";
+}
+;
+hm_options_mod_gml_basicsave();
+;
+return true;
+;
+}
+}
+if ((argument0 == "throneballs")) {
+{
+if ((global.hm_module_vars[$ "mod:options"].throneballs == "1")) {
+global.hm_module_vars[$ "mod:options"].throneballs = "0";
+} else {
+global.hm_module_vars[$ "mod:options"].throneballs = "1";
+}
+;
+hm_options_mod_gml_basicsave();
+;
+return true;
+;
+}
+}
+if (((argument0 == "bossbars") || (argument0 == "grillskills"))) {
+{
+if ((argument0 == "bossbars")) {
+{
+if ((global.hm_module_vars[$ "mod:options"].bossbars == "1")) {
+global.hm_module_vars[$ "mod:options"].bossbars = "0";
+} else {
+global.hm_module_vars[$ "mod:options"].bossbars = "1";
+}
+;
+}
+} else {
+{
+if ((global.hm_module_vars[$ "mod:options"].grillskills == "1")) {
+global.hm_module_vars[$ "mod:options"].grillskills = "0";
+} else {
+global.hm_module_vars[$ "mod:options"].grillskills = "1";
+}
+;
+}
+}
+hm_options_mod_gml_basicsave();
+;
+return true;
+;
+}
+}
+if ((argument0 == "ratrevive")) {
+{
+if ((global.hm_module_vars[$ "mod:options"].ratrevive == "1")) {
+{
+global.hm_module_vars[$ "mod:options"].ratrevive = "0";
+;
+{ var __hm_with1 = scrHMMatching(Rat, "infected", 1), __hm_break3=false;
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+{
+hp -= 6;
+;
+infected = 0;
+;
+}
+}
+if(__hm_break3) break;
+}}
+}
+} else {
+global.hm_module_vars[$ "mod:options"].ratrevive = "1";
+}
+;
+hm_options_mod_gml_basicsave();
+;
+scrHMTrace(("Rat revival: " + global.hm_module_vars[$ "mod:options"].ratrevive));
+;
+return true;
+;
+}
+}
 if ((argument0 == "intropan")) {
 {
 if ((global.hm_module_vars[$ "mod:options"].intropan == "1")) {
@@ -350,6 +497,8 @@ return true;
 }
 if ((argument0 == "options")) {
 {
+scrHMTrace(("/ratrevive - rat revival (0=off, 1=on): " + string(global.hm_module_vars[$ "mod:options"].ratrevive)));
+;
 scrHMTrace(("options:" + global.hm_module_vars[$ "mod:options"].intropan), global.hm_module_vars[$ "mod:options"].bossoutros, global.hm_module_vars[$ "mod:options"].rads, global.hm_module_vars[$ "mod:options"].weaponnames, global.hm_module_vars[$ "mod:options"].coopchests, global.hm_module_vars[$ "mod:options"].portals, global.hm_module_vars[$ "mod:options"].rogue, (global.hm_module_vars[$ "mod:options"].flames + "\n\t\t---this mod has a save file and will remember options---\n\t\t/intropan -freezes the game and pans to bosses\n\t\t/bossoutros -pauses and pans on boss death\n\t\t/rads -enemies absorb rads(drop when they are killed)\n\t\t/weaponnames -some weapons are renamed(chicken sword = sword)\n\t\t/coopchests -ammo for all players in co-op\n\t\t/portals -fancy portals, waits for all alive players in Co op\n\t\t/rogue -rogue will find rad canisters, idpd can drop strike ammo\n\t\t/flames -recoded flame projectiles, adds a afterburn and lets other damage sources hurt them"));
 ;
 return true;
@@ -357,3 +506,4 @@ return true;
 }
 }
 }
+

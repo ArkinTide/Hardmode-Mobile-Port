@@ -1,0 +1,4602 @@
+{
+  "status": "PASS",
+  "counts": {
+    "IMPORTED": 509,
+    "UNLOADED_UPSTREAM_FILE": 25,
+    "MOBILE_EQUIVALENT": 8,
+    "EXCLUDED_PER_USER": 1
+  },
+  "changes": [
+    {
+      "index": 0,
+      "file": "maincode.mod.gml",
+      "script": "game_start",
+      "change": "Restore crown visits",
+      "status": "IMPORTED",
+      "resolution": "hm_maincode_mod_gml_game_start"
+    },
+    {
+      "index": 1,
+      "file": "maincode.mod.gml",
+      "script": "step",
+      "change": "Full-level radiation policy: Raven/SnowBot below-cap base 1, crystal/green-rat/bonefish balances",
+      "status": "IMPORTED",
+      "resolution": "hm_maincode_mod_gml_step"
+    },
+    {
+      "index": 2,
+      "file": "maincode.mod.gml",
+      "script": "step",
+      "change": "Rogue keeps both strike and radiation canisters",
+      "status": "IMPORTED",
+      "resolution": "hm_maincode_mod_gml_step"
+    },
+    {
+      "index": 3,
+      "file": "maincode.mod.gml",
+      "script": "step",
+      "change": "Portal body draws above the portal",
+      "status": "IMPORTED",
+      "resolution": "hm_maincode_mod_gml_step"
+    },
+    {
+      "index": 4,
+      "file": "maincode.mod.gml",
+      "script": "step",
+      "change": "Restore native loop police and vans",
+      "status": "IMPORTED",
+      "resolution": "hm_maincode_mod_gml_step"
+    },
+    {
+      "index": 5,
+      "file": "maincode.mod.gml",
+      "script": "step",
+      "change": "Exact water footprint, restore bank contact immediately, remove entry teleport and stacked sounds",
+      "status": "IMPORTED",
+      "resolution": "hm_maincode_mod_gml_step"
+    },
+    {
+      "index": 6,
+      "file": "maincode.mod.gml",
+      "script": "step",
+      "change": "Correct Venus wall frame index",
+      "status": "IMPORTED",
+      "resolution": "hm_maincode_mod_gml_step"
+    },
+    {
+      "index": 7,
+      "file": "maincode.mod.gml",
+      "script": "CHCoutro",
+      "change": "Restore all cave wall layers once",
+      "status": "IMPORTED",
+      "resolution": "hm_maincode_mod_gml_CHCoutro"
+    },
+    {
+      "index": 8,
+      "file": "maincode.mod.gml",
+      "script": "step",
+      "change": "Blue IDPD exits in HQ and 6-3",
+      "status": "IMPORTED",
+      "resolution": "hm_maincode_mod_gml_step"
+    },
+    {
+      "index": 9,
+      "file": "maincode.mod.gml",
+      "script": "step",
+      "change": "Use cursed Hyper Crystal boss music",
+      "status": "IMPORTED",
+      "resolution": "hm_maincode_mod_gml_step"
+    },
+    {
+      "index": 10,
+      "file": "maincode.mod.gml",
+      "script": "step",
+      "change": "Retain loop-3 revival effects",
+      "status": "IMPORTED",
+      "resolution": "hm_maincode_mod_gml_step"
+    },
+    {
+      "index": 11,
+      "file": "maincode.mod.gml",
+      "script": "step",
+      "change": "Retain loop-3 revival timers",
+      "status": "IMPORTED",
+      "resolution": "hm_maincode_mod_gml_step"
+    },
+    {
+      "index": 12,
+      "file": "options.mod.gml",
+      "script": "basicload",
+      "change": "Load ninth setting with old-save default",
+      "status": "IMPORTED",
+      "resolution": "hm_options_mod_gml_basicload"
+    },
+    {
+      "index": 13,
+      "file": "options.mod.gml",
+      "script": "basicsave",
+      "change": "Persist rat revival toggle",
+      "status": "IMPORTED",
+      "resolution": "hm_options_mod_gml_basicsave"
+    },
+    {
+      "index": 14,
+      "file": "options.mod.gml",
+      "script": "chat_command",
+      "change": "Expose /ratrevive option",
+      "status": "IMPORTED",
+      "resolution": "hm_options_mod_gml_chat_command"
+    },
+    {
+      "index": 15,
+      "file": "enemies.mod.gml",
+      "script": "step",
+      "change": "Optional rat-to-green-rat revival, default on",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_step"
+    },
+    {
+      "index": 16,
+      "file": "enemies.mod.gml",
+      "script": "step",
+      "change": "Mounted sniper can be hit while falling",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_step"
+    },
+    {
+      "index": 17,
+      "file": "enemies.mod.gml",
+      "script": "step",
+      "change": "Restore hostile Horror appearance, 16HP, movement and no rad laser",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_step"
+    },
+    {
+      "index": 18,
+      "file": "enemies.mod.gml",
+      "script": "EliteSpiderShield_step",
+      "change": "Friendly player plasma remains friendly when reflected",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_EliteSpiderShield_step"
+    },
+    {
+      "index": 19,
+      "file": "enemies.mod.gml",
+      "script": "bigshield_step",
+      "change": "Friendly player plasma remains friendly when reflected",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_bigshield_step"
+    },
+    {
+      "index": 20,
+      "file": "enemies.mod.gml",
+      "script": "customshield_step",
+      "change": "Friendly player plasma remains friendly when reflected",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_customshield_step"
+    },
+    {
+      "index": 21,
+      "file": "enemies.mod.gml",
+      "script": "IDPDTank_create",
+      "change": "Remove tank entrance presentation",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_IDPDTank_create"
+    },
+    {
+      "index": 22,
+      "file": "enemies.mod.gml",
+      "script": "IDPDTank_create",
+      "change": "Start tank in combat idle",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_IDPDTank_create"
+    },
+    {
+      "index": 23,
+      "file": "enemies.mod.gml",
+      "script": "IDPDTank_create",
+      "change": "Tank combat readiness",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_IDPDTank_create"
+    },
+    {
+      "index": 24,
+      "file": "enemies.mod.gml",
+      "script": "IDPDTank_create",
+      "change": "Tank drop balance and safe arrival speed",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_IDPDTank_create"
+    },
+    {
+      "index": 25,
+      "file": "enemies.mod.gml",
+      "script": "IDPDTank_dead",
+      "change": "No tank outro; two supplies after loop 3",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_IDPDTank_dead"
+    },
+    {
+      "index": 26,
+      "file": "enemies.mod.gml",
+      "script": "IDPDLaserCannon_step",
+      "change": "Reduced tracking and locked laser warning",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_IDPDLaserCannon_step"
+    },
+    {
+      "index": 27,
+      "file": "enemies.mod.gml",
+      "script": "IDPDLaserCannon_step",
+      "change": "Finite logarithmic laser ray search",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_IDPDLaserCannon_step"
+    },
+    {
+      "index": 28,
+      "file": "enemies.mod.gml",
+      "script": "vanguide",
+      "change": "Tank appears through warned large portal",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_vanguide"
+    },
+    {
+      "index": 29,
+      "file": "enemies.mod.gml",
+      "script": "vanguide",
+      "change": "Select tank warning icon",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_vanguide"
+    },
+    {
+      "index": 30,
+      "file": "enemies.mod.gml",
+      "script": "vanguide",
+      "change": "Loop-3 stopped van explosion and mixed police",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_vanguide"
+    },
+    {
+      "index": 31,
+      "file": "enemies.mod.gml",
+      "script": "vanexplo",
+      "change": "Three small van craters",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_vanexplo"
+    },
+    {
+      "index": 32,
+      "file": "enemies.mod.gml",
+      "script": "vanexplo",
+      "change": "Correct van flame y coordinate",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_vanexplo"
+    },
+    {
+      "index": 33,
+      "file": "enemies.mod.gml",
+      "script": "DropWeapon",
+      "change": "Venus enemies do not drop Venus weapons outside Venus",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_DropWeapon"
+    },
+    {
+      "index": 34,
+      "file": "enemies.mod.gml",
+      "script": "Minigunner_step",
+      "change": "Sniper-type shots outside Venus, original hitscan inside",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_Minigunner_step"
+    },
+    {
+      "index": 35,
+      "file": "props.mod.gml",
+      "script": "draw_shadows",
+      "change": "Avoid scanning all walls and projectiles for optional shadows",
+      "status": "IMPORTED",
+      "resolution": "hm_props_mod_gml_draw_shadows"
+    },
+    {
+      "index": 36,
+      "file": "props.mod.gml",
+      "script": "step",
+      "change": "Expire asymptotic Venus shot trails",
+      "status": "IMPORTED",
+      "resolution": "hm_props_mod_gml_step"
+    },
+    {
+      "index": 37,
+      "file": "props.mod.gml",
+      "script": "step",
+      "change": "Clean previous Venus-floor drops, masks and couch",
+      "status": "IMPORTED",
+      "resolution": "hm_props_mod_gml_step"
+    },
+    {
+      "index": 38,
+      "file": "props.mod.gml",
+      "script": "fishskull_create",
+      "change": "Oasis fish skull HP100, loop HP3000",
+      "status": "IMPORTED",
+      "resolution": "hm_props_mod_gml_fishskull_create"
+    },
+    {
+      "index": 39,
+      "file": "props.mod.gml",
+      "script": "joao_shockwave",
+      "change": "Do not destroy/rebuild every wall or start per-wall tasks",
+      "status": "IMPORTED",
+      "resolution": "hm_props_mod_gml_joao_shockwave"
+    },
+    {
+      "index": 40,
+      "file": "props.mod.gml",
+      "script": "joao_shockwave",
+      "change": "Cursed spiders convert without death spawning cursed offspring",
+      "status": "IMPORTED",
+      "resolution": "hm_props_mod_gml_joao_shockwave"
+    },
+    {
+      "index": 41,
+      "file": "props.mod.gml",
+      "script": "joao_shockwave",
+      "change": "Convert cursed crystals without old death callback",
+      "status": "IMPORTED",
+      "resolution": "hm_props_mod_gml_joao_shockwave"
+    },
+    {
+      "index": 42,
+      "file": "bosses/bossintros.mod.gml",
+      "script": "boss_trigger",
+      "change": "Skip tank presentations and all loop portraits",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_bossintros_mod_gml_boss_trigger"
+    },
+    {
+      "index": 43,
+      "file": "bosses/ravenboss.mod.gml",
+      "script": "ravenboss_callbackup",
+      "change": "Share one raven backup budget between loop bosses",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_ravenboss_mod_gml_ravenboss_callbackup"
+    },
+    {
+      "index": 44,
+      "file": "bosses/ravenboss.mod.gml",
+      "script": "wantravenboss_step",
+      "change": "One additional Big Bird per two loops",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_ravenboss_mod_gml_wantravenboss_step"
+    },
+    {
+      "index": 45,
+      "file": "bosses/ravenboss.mod.gml",
+      "script": "ravenboss_step",
+      "change": "Correct flight timer and empty collision-line truth test",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_ravenboss_mod_gml_ravenboss_step"
+    },
+    {
+      "index": 46,
+      "file": "areas/nightdesert.area.gml",
+      "script": "area_pop_enemies",
+      "change": "Native weighted loop enemies and requested extra species",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_nightdesert_area_gml_area_pop_enemies"
+    },
+    {
+      "index": 47,
+      "file": "areas/nightdesert.area.gml",
+      "script": "area_setup",
+      "change": "Bounded loop map growth, up to 2x",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_nightdesert_area_gml_area_setup"
+    },
+    {
+      "index": 48,
+      "file": "areas/scorpionboss.area.gml",
+      "script": "area_pop_enemies",
+      "change": "Native weighted loop enemies and requested extra species",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_scorpionboss_area_gml_area_pop_enemies"
+    },
+    {
+      "index": 49,
+      "file": "areas/scorpionboss.area.gml",
+      "script": "area_setup",
+      "change": "Bounded loop map growth, up to 2x",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_scorpionboss_area_gml_area_setup"
+    },
+    {
+      "index": 50,
+      "file": "areas/sewers.area.gml",
+      "script": "area_pop_enemies",
+      "change": "Native weighted loop enemies and requested extra species",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_sewers_area_gml_area_pop_enemies"
+    },
+    {
+      "index": 51,
+      "file": "areas/sewers.area.gml",
+      "script": "area_setup",
+      "change": "Bounded loop map growth, up to 2x",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_sewers_area_gml_area_setup"
+    },
+    {
+      "index": 52,
+      "file": "areas/junkyard.area.gml",
+      "script": "area_pop_enemies",
+      "change": "Native weighted loop enemies and requested extra species",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_junkyard_area_gml_area_pop_enemies"
+    },
+    {
+      "index": 53,
+      "file": "areas/junkyard.area.gml",
+      "script": "area_setup",
+      "change": "Bounded loop map growth, up to 2x",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_junkyard_area_gml_area_setup"
+    },
+    {
+      "index": 54,
+      "file": "areas/ravenboss.area.gml",
+      "script": "area_pop_enemies",
+      "change": "Native weighted loop enemies and requested extra species",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_ravenboss_area_gml_area_pop_enemies"
+    },
+    {
+      "index": 55,
+      "file": "areas/ravenboss.area.gml",
+      "script": "area_setup",
+      "change": "Bounded loop map growth, up to 2x",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_ravenboss_area_gml_area_setup"
+    },
+    {
+      "index": 56,
+      "file": "areas/caves.area.gml",
+      "script": "area_pop_enemies",
+      "change": "Native weighted loop enemies and requested extra species",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_caves_area_gml_area_pop_enemies"
+    },
+    {
+      "index": 57,
+      "file": "areas/caves.area.gml",
+      "script": "area_setup",
+      "change": "Bounded loop map growth, up to 2x",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_caves_area_gml_area_setup"
+    },
+    {
+      "index": 58,
+      "file": "areas/cavesinv.area.gml",
+      "script": "area_pop_enemies",
+      "change": "Native weighted loop enemies and requested extra species",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_cavesinv_area_gml_area_pop_enemies"
+    },
+    {
+      "index": 59,
+      "file": "areas/cavesinv.area.gml",
+      "script": "area_setup",
+      "change": "Bounded loop map growth, up to 2x",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_cavesinv_area_gml_area_setup"
+    },
+    {
+      "index": 60,
+      "file": "areas/city.area.gml",
+      "script": "area_pop_enemies",
+      "change": "Native weighted loop enemies and requested extra species",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_city_area_gml_area_pop_enemies"
+    },
+    {
+      "index": 61,
+      "file": "areas/city.area.gml",
+      "script": "area_setup",
+      "change": "Bounded loop map growth, up to 2x",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_city_area_gml_area_setup"
+    },
+    {
+      "index": 62,
+      "file": "areas/labs.area.gml",
+      "script": "area_pop_enemies",
+      "change": "Native weighted loop enemies and requested extra species",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_labs_area_gml_area_pop_enemies"
+    },
+    {
+      "index": 63,
+      "file": "areas/labs.area.gml",
+      "script": "area_setup",
+      "change": "Bounded loop map growth, up to 2x",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_labs_area_gml_area_setup"
+    },
+    {
+      "index": 64,
+      "file": "areas/elevator.area.gml",
+      "script": "area_pop_enemies",
+      "change": "Native weighted loop enemies and requested extra species",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_elevator_area_gml_area_pop_enemies"
+    },
+    {
+      "index": 65,
+      "file": "areas/elevator.area.gml",
+      "script": "area_setup",
+      "change": "Bounded loop map growth, up to 2x",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_elevator_area_gml_area_setup"
+    },
+    {
+      "index": 66,
+      "file": "areas/palace.area.gml",
+      "script": "area_pop_enemies",
+      "change": "Native weighted loop enemies and requested extra species",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_palace_area_gml_area_pop_enemies"
+    },
+    {
+      "index": 67,
+      "file": "areas/palace.area.gml",
+      "script": "area_setup",
+      "change": "Bounded loop map growth, up to 2x",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_palace_area_gml_area_setup"
+    },
+    {
+      "index": 68,
+      "file": "areas/oasis.area.gml",
+      "script": "area_setup",
+      "change": "Loop floor-budget growth",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_oasis_area_gml_area_setup"
+    },
+    {
+      "index": 69,
+      "file": "areas/icecave.area.gml",
+      "script": "area_setup",
+      "change": "Loop floor-budget growth",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_icecave_area_gml_area_setup"
+    },
+    {
+      "index": 70,
+      "file": "areas/jungle.area.gml",
+      "script": "area_setup",
+      "change": "Loop floor-budget growth",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_jungle_area_gml_area_setup"
+    },
+    {
+      "index": 71,
+      "file": "areas/mansion.area.gml",
+      "script": "area_setup",
+      "change": "Loop floor-budget growth",
+      "status": "UNLOADED_UPSTREAM_FILE",
+      "resolution": "Not loaded by either the supplied native MOD entrypoint or the mobile module graph; active equivalents remain loaded."
+    },
+    {
+      "index": 72,
+      "file": "areas/HQ.area.gml",
+      "script": "area_setup",
+      "change": "Loop floor-budget growth",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_HQ_area_gml_area_setup"
+    },
+    {
+      "index": 73,
+      "file": "areas/sewers.area.gml",
+      "script": "area_start",
+      "change": "Link each visual water surface to its exact floor",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_sewers_area_gml_area_start"
+    },
+    {
+      "index": 74,
+      "file": "areas/sewers.area.gml",
+      "script": "area_start",
+      "change": "One extra Super Gator per two loops",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_sewers_area_gml_area_start"
+    },
+    {
+      "index": 75,
+      "file": "areas/city.area.gml",
+      "script": "area_start",
+      "change": "Room-owned delayed Little Hunter arrival",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_city_area_gml_area_start"
+    },
+    {
+      "index": 76,
+      "file": "areas/palace.area.gml",
+      "script": "area_start",
+      "change": "Crown altar only in 7-4 with native three-visit limit",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_palace_area_gml_area_start"
+    },
+    {
+      "index": 77,
+      "file": "areas/throne.area.gml",
+      "script": "area_start",
+      "change": "Stable throne seed fallback without combat respawn",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_throne_area_gml_area_start"
+    },
+    {
+      "index": 78,
+      "file": "areas/oasis.area.gml",
+      "script": "area_setup",
+      "change": "Oasis stays bright",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_oasis_area_gml_area_setup"
+    },
+    {
+      "index": 79,
+      "file": "areas/cavesinv.area.gml",
+      "script": "area_finish",
+      "change": "No double stage increment leaving cursed caves",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_cavesinv_area_gml_area_finish"
+    },
+    {
+      "index": 80,
+      "file": "areas/throne.area.gml",
+      "script": "area_make_floor",
+      "change": "Persist the authored throne anchor through floor merging",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_throne_area_gml_area_make_floor"
+    },
+    {
+      "index": 81,
+      "file": "bosses/ravenboss.mod.gml",
+      "script": "ravenboss_step",
+      "change": "Avoid decrementing the flight alarm twice",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_ravenboss_mod_gml_ravenboss_step"
+    },
+    {
+      "index": 82,
+      "file": "bosses/ravenboss.mod.gml",
+      "script": "ravenboss_step",
+      "change": "Correct rocket sprite condition; lock flight target and recover valid landing",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_ravenboss_mod_gml_ravenboss_step"
+    },
+    {
+      "index": 83,
+      "file": "bosses/titank.mod.gml",
+      "script": "titank_create",
+      "change": "Independent leg health and body-owned jump recovery, single landing impact",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_titank_mod_gml_titank_create"
+    },
+    {
+      "index": 84,
+      "file": "bosses/gatorboss.mod.gml",
+      "script": "gatorboss_step",
+      "change": "Do not read a missing player in allied gator orders",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_gatorboss_mod_gml_gatorboss_step"
+    },
+    {
+      "index": 85,
+      "file": "areas/palace.area.gml",
+      "script": "area_pop_enemies",
+      "change": "Create palace Horrors with the intended enemy health and sprites",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_palace_area_gml_area_pop_enemies"
+    },
+    {
+      "index": 86,
+      "file": "areas/palace.area.gml",
+      "script": "area_start",
+      "change": "Deduplicate palace generators before explosions can cascade",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_palace_area_gml_area_start"
+    },
+    {
+      "index": 87,
+      "file": "areas/venuz.area.gml",
+      "script": "area_make_floor",
+      "change": "Restore the four mansion transition strips at the correct height",
+      "status": "MOBILE_EQUIVALENT",
+      "resolution": "Mobile sprite registration and previously repaired authored Venus terrain remain in place."
+    },
+    {
+      "index": 88,
+      "file": "areas/sewers.area.gml",
+      "script": "area_start",
+      "change": "Bound manhole placement; choose real dry accessible floor",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_sewers_area_gml_area_start"
+    },
+    {
+      "index": 89,
+      "file": "areas/sewers.area.gml",
+      "script": "area_start",
+      "change": "Water slowdown does not stack with excessive floor friction",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_sewers_area_gml_area_start"
+    },
+    {
+      "index": 90,
+      "file": "areas/sewers.area.gml",
+      "script": "area_start",
+      "change": "Rat water check follows actual surface after friction correction",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_sewers_area_gml_area_start"
+    },
+    {
+      "index": 91,
+      "file": "areas/sewers.area.gml",
+      "script": "area_start",
+      "change": "Center the native manhole and bind its ground layer to its supporting dry floor",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_sewers_area_gml_area_start"
+    },
+    {
+      "index": 92,
+      "file": "maincode.mod.gml",
+      "script": "sewerboi",
+      "change": "Stop stale water renderers after leaving water",
+      "status": "IMPORTED",
+      "resolution": "hm_maincode_mod_gml_sewerboi"
+    },
+    {
+      "index": 93,
+      "file": "areas/throne.area.gml",
+      "script": "area_transit",
+      "change": "Do not override the native crown-vault destination",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_throne_area_gml_area_transit"
+    },
+    {
+      "index": 94,
+      "file": "maincode.mod.gml",
+      "script": "step",
+      "change": "Only a missile-owned projectile is converted, never one crossing an unrelated enemy",
+      "status": "IMPORTED",
+      "resolution": "hm_maincode_mod_gml_step"
+    },
+    {
+      "index": 95,
+      "file": "bosses/gatorboss.mod.gml",
+      "script": "Gatorfist_wall",
+      "change": "Super Gator punch passes through walls",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_gatorboss_mod_gml_Gatorfist_wall"
+    },
+    {
+      "index": 96,
+      "file": "bosses/gatorboss.mod.gml",
+      "script": "Gatorfist",
+      "change": "Use independent punch lifetime and explosion timers instead of native alarms",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_gatorboss_mod_gml_Gatorfist"
+    },
+    {
+      "index": 97,
+      "file": "bosses/guardianboss.mod.gml",
+      "script": "guardianwall_draw",
+      "change": "Render guardian rings once without shared loop counters or gameplay in Draw",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_guardianboss_mod_gml_guardianwall_draw"
+    },
+    {
+      "index": 98,
+      "file": "bosses/guardianboss.mod.gml",
+      "script": "guardiandark_draw",
+      "change": "Remove the second full draw pass over every combat entity",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_guardianboss_mod_gml_guardiandark_draw"
+    },
+    {
+      "index": 99,
+      "file": "bosses/guardianboss.mod.gml",
+      "script": "guardianboss_create",
+      "change": "Track the single darkness layer for deterministic update and depth restoration",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_guardianboss_mod_gml_guardianboss_create"
+    },
+    {
+      "index": 100,
+      "file": "maincode.mod.gml",
+      "script": "step",
+      "change": "Taking flight is not death: do not generate fake raven corpses",
+      "status": "IMPORTED",
+      "resolution": "hm_maincode_mod_gml_step"
+    },
+    {
+      "index": 101,
+      "file": "maincode.mod.gml",
+      "script": "step",
+      "change": "Commit the native entry event before locking the player at the 24px effect boundary",
+      "status": "IMPORTED",
+      "resolution": "hm_maincode_mod_gml_step"
+    },
+    {
+      "index": 102,
+      "file": "maincode.mod.gml",
+      "script": "step",
+      "change": "Portal shrinking uses the native time scale",
+      "status": "IMPORTED",
+      "resolution": "hm_maincode_mod_gml_step"
+    },
+    {
+      "index": 103,
+      "file": "enemies.mod.gml",
+      "script": "step",
+      "change": "Guard a missing Oasis boss target",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_step"
+    },
+    {
+      "index": 104,
+      "file": "enemies.mod.gml",
+      "script": "step",
+      "change": "The intro cannot overwrite cursed crystal music",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_step"
+    },
+    {
+      "index": 105,
+      "file": "maincode.mod.gml",
+      "script": "step",
+      "change": "Stock loop enemies keep their species and loop police are not erased in side areas",
+      "status": "IMPORTED",
+      "resolution": "hm_maincode_mod_gml_step"
+    },
+    {
+      "index": 106,
+      "file": "maincode.mod.gml",
+      "script": "step",
+      "change": "Claim the Big Dog introduction once",
+      "status": "IMPORTED",
+      "resolution": "hm_maincode_mod_gml_step"
+    },
+    {
+      "index": 107,
+      "file": "bosses/bossintros.mod.gml",
+      "script": "customboss_step",
+      "change": "Use one projectile snapshot rather than repeated state discovery",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_bossintros_mod_gml_customboss_step"
+    },
+    {
+      "index": 108,
+      "file": "options.mod.gml",
+      "script": "basicload",
+      "change": "Do not index truncated legacy settings",
+      "status": "IMPORTED",
+      "resolution": "hm_options_mod_gml_basicload"
+    },
+    {
+      "index": 109,
+      "file": "areas/venuz.area.gml",
+      "script": "area_setup",
+      "change": "Clear stale weapon swapping and reload state on first Venus entry",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_venuz_area_gml_area_setup"
+    },
+    {
+      "index": 110,
+      "file": "props.mod.gml",
+      "script": "step",
+      "change": "Discard old Venus bindings as well as old geometry and drops",
+      "status": "IMPORTED",
+      "resolution": "hm_props_mod_gml_step"
+    },
+    {
+      "index": 111,
+      "file": "props.mod.gml",
+      "script": "VenuzCar_step",
+      "change": "Car throttle follows its facing instead of accumulating sideways momentum",
+      "status": "IMPORTED",
+      "resolution": "hm_props_mod_gml_VenuzCar_step"
+    },
+    {
+      "index": 112,
+      "file": "props.mod.gml",
+      "script": "whitecrystal_step",
+      "change": "Melted ice entrance does not change the active room before entry",
+      "status": "IMPORTED",
+      "resolution": "hm_props_mod_gml_whitecrystal_step"
+    },
+    {
+      "index": 113,
+      "file": "areas/banditcamp.area.gml",
+      "script": "area_transit",
+      "change": "Honor an explicit secret entrance destination",
+      "status": "UNLOADED_UPSTREAM_FILE",
+      "resolution": "Not loaded by either the supplied native MOD entrypoint or the mobile module graph; active equivalents remain loaded."
+    },
+    {
+      "index": 114,
+      "file": "areas/banditcamp.area.gml",
+      "script": "area_setup",
+      "change": "Consume the explicit destination only after all routing callbacks finish",
+      "status": "UNLOADED_UPSTREAM_FILE",
+      "resolution": "Not loaded by either the supplied native MOD entrypoint or the mobile module graph; active equivalents remain loaded."
+    },
+    {
+      "index": 115,
+      "file": "areas/bigdog.area.gml",
+      "script": "area_transit",
+      "change": "Honor an explicit secret entrance destination",
+      "status": "UNLOADED_UPSTREAM_FILE",
+      "resolution": "Not loaded by either the supplied native MOD entrypoint or the mobile module graph; active equivalents remain loaded."
+    },
+    {
+      "index": 116,
+      "file": "areas/bigdog.area.gml",
+      "script": "area_setup",
+      "change": "Consume the explicit destination only after all routing callbacks finish",
+      "status": "UNLOADED_UPSTREAM_FILE",
+      "resolution": "Not loaded by either the supplied native MOD entrypoint or the mobile module graph; active equivalents remain loaded."
+    },
+    {
+      "index": 117,
+      "file": "areas/caves.area.gml",
+      "script": "area_transit",
+      "change": "Honor an explicit secret entrance destination",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_caves_area_gml_area_transit"
+    },
+    {
+      "index": 118,
+      "file": "areas/caves.area.gml",
+      "script": "area_setup",
+      "change": "Consume the explicit destination only after all routing callbacks finish",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_caves_area_gml_area_setup"
+    },
+    {
+      "index": 119,
+      "file": "areas/cavesinv.area.gml",
+      "script": "area_transit",
+      "change": "Honor an explicit secret entrance destination",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_cavesinv_area_gml_area_transit"
+    },
+    {
+      "index": 120,
+      "file": "areas/cavesinv.area.gml",
+      "script": "area_setup",
+      "change": "Consume the explicit destination only after all routing callbacks finish",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_cavesinv_area_gml_area_setup"
+    },
+    {
+      "index": 121,
+      "file": "areas/city.area.gml",
+      "script": "area_transit",
+      "change": "Honor an explicit secret entrance destination",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_city_area_gml_area_transit"
+    },
+    {
+      "index": 122,
+      "file": "areas/city.area.gml",
+      "script": "area_setup",
+      "change": "Consume the explicit destination only after all routing callbacks finish",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_city_area_gml_area_setup"
+    },
+    {
+      "index": 123,
+      "file": "areas/elevator.area.gml",
+      "script": "area_transit",
+      "change": "Honor an explicit secret entrance destination",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_elevator_area_gml_area_transit"
+    },
+    {
+      "index": 124,
+      "file": "areas/elevator.area.gml",
+      "script": "area_setup",
+      "change": "Consume the explicit destination only after all routing callbacks finish",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_elevator_area_gml_area_setup"
+    },
+    {
+      "index": 125,
+      "file": "areas/end.area.gml",
+      "script": "area_transit",
+      "change": "Honor an explicit secret entrance destination",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_end_area_gml_area_transit"
+    },
+    {
+      "index": 126,
+      "file": "areas/end.area.gml",
+      "script": "area_setup",
+      "change": "Consume the explicit destination only after all routing callbacks finish",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_end_area_gml_area_setup"
+    },
+    {
+      "index": 127,
+      "file": "areas/HQ.area.gml",
+      "script": "area_transit",
+      "change": "Honor an explicit secret entrance destination",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_HQ_area_gml_area_transit"
+    },
+    {
+      "index": 128,
+      "file": "areas/HQ.area.gml",
+      "script": "area_setup",
+      "change": "Consume the explicit destination only after all routing callbacks finish",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_HQ_area_gml_area_setup"
+    },
+    {
+      "index": 129,
+      "file": "areas/icecave.area.gml",
+      "script": "area_transit",
+      "change": "Honor an explicit secret entrance destination",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_icecave_area_gml_area_transit"
+    },
+    {
+      "index": 130,
+      "file": "areas/icecave.area.gml",
+      "script": "area_setup",
+      "change": "Consume the explicit destination only after all routing callbacks finish",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_icecave_area_gml_area_setup"
+    },
+    {
+      "index": 131,
+      "file": "areas/jungle.area.gml",
+      "script": "area_transit",
+      "change": "Honor an explicit secret entrance destination",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_jungle_area_gml_area_transit"
+    },
+    {
+      "index": 132,
+      "file": "areas/jungle.area.gml",
+      "script": "area_setup",
+      "change": "Consume the explicit destination only after all routing callbacks finish",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_jungle_area_gml_area_setup"
+    },
+    {
+      "index": 133,
+      "file": "areas/junkyard.area.gml",
+      "script": "area_transit",
+      "change": "Honor an explicit secret entrance destination",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_junkyard_area_gml_area_transit"
+    },
+    {
+      "index": 134,
+      "file": "areas/junkyard.area.gml",
+      "script": "area_setup",
+      "change": "Consume the explicit destination only after all routing callbacks finish",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_junkyard_area_gml_area_setup"
+    },
+    {
+      "index": 135,
+      "file": "areas/labs.area.gml",
+      "script": "area_transit",
+      "change": "Honor an explicit secret entrance destination",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_labs_area_gml_area_transit"
+    },
+    {
+      "index": 136,
+      "file": "areas/labs.area.gml",
+      "script": "area_setup",
+      "change": "Consume the explicit destination only after all routing callbacks finish",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_labs_area_gml_area_setup"
+    },
+    {
+      "index": 137,
+      "file": "areas/mansion.area.gml",
+      "script": "area_transit",
+      "change": "Honor an explicit secret entrance destination",
+      "status": "UNLOADED_UPSTREAM_FILE",
+      "resolution": "Not loaded by either the supplied native MOD entrypoint or the mobile module graph; active equivalents remain loaded."
+    },
+    {
+      "index": 138,
+      "file": "areas/mansion.area.gml",
+      "script": "area_setup",
+      "change": "Consume the explicit destination only after all routing callbacks finish",
+      "status": "UNLOADED_UPSTREAM_FILE",
+      "resolution": "Not loaded by either the supplied native MOD entrypoint or the mobile module graph; active equivalents remain loaded."
+    },
+    {
+      "index": 139,
+      "file": "areas/nightdesert.area.gml",
+      "script": "area_transit",
+      "change": "Honor an explicit secret entrance destination",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_nightdesert_area_gml_area_transit"
+    },
+    {
+      "index": 140,
+      "file": "areas/nightdesert.area.gml",
+      "script": "area_setup",
+      "change": "Consume the explicit destination only after all routing callbacks finish",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_nightdesert_area_gml_area_setup"
+    },
+    {
+      "index": 141,
+      "file": "areas/noyetihere.area.gml",
+      "script": "area_transit",
+      "change": "Honor an explicit secret entrance destination",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_noyetihere_area_gml_area_transit"
+    },
+    {
+      "index": 142,
+      "file": "areas/noyetihere.area.gml",
+      "script": "area_setup",
+      "change": "Consume the explicit destination only after all routing callbacks finish",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_noyetihere_area_gml_area_setup"
+    },
+    {
+      "index": 143,
+      "file": "areas/oasis.area.gml",
+      "script": "area_transit",
+      "change": "Honor an explicit secret entrance destination",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_oasis_area_gml_area_transit"
+    },
+    {
+      "index": 144,
+      "file": "areas/oasis.area.gml",
+      "script": "area_setup",
+      "change": "Consume the explicit destination only after all routing callbacks finish",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_oasis_area_gml_area_setup"
+    },
+    {
+      "index": 145,
+      "file": "areas/palace.area.gml",
+      "script": "area_transit",
+      "change": "Honor an explicit secret entrance destination",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_palace_area_gml_area_transit"
+    },
+    {
+      "index": 146,
+      "file": "areas/palace.area.gml",
+      "script": "area_setup",
+      "change": "Consume the explicit destination only after all routing callbacks finish",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_palace_area_gml_area_setup"
+    },
+    {
+      "index": 147,
+      "file": "areas/ravenboss.area.gml",
+      "script": "area_transit",
+      "change": "Honor an explicit secret entrance destination",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_ravenboss_area_gml_area_transit"
+    },
+    {
+      "index": 148,
+      "file": "areas/ravenboss.area.gml",
+      "script": "area_setup",
+      "change": "Consume the explicit destination only after all routing callbacks finish",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_ravenboss_area_gml_area_setup"
+    },
+    {
+      "index": 149,
+      "file": "areas/scorpionboss.area.gml",
+      "script": "area_transit",
+      "change": "Honor an explicit secret entrance destination",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_scorpionboss_area_gml_area_transit"
+    },
+    {
+      "index": 150,
+      "file": "areas/scorpionboss.area.gml",
+      "script": "area_setup",
+      "change": "Consume the explicit destination only after all routing callbacks finish",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_scorpionboss_area_gml_area_setup"
+    },
+    {
+      "index": 151,
+      "file": "areas/sewers.area.gml",
+      "script": "area_transit",
+      "change": "Honor an explicit secret entrance destination",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_sewers_area_gml_area_transit"
+    },
+    {
+      "index": 152,
+      "file": "areas/sewers.area.gml",
+      "script": "area_setup",
+      "change": "Consume the explicit destination only after all routing callbacks finish",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_sewers_area_gml_area_setup"
+    },
+    {
+      "index": 153,
+      "file": "areas/throne.area.gml",
+      "script": "area_transit",
+      "change": "Honor an explicit secret entrance destination",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_throne_area_gml_area_transit"
+    },
+    {
+      "index": 154,
+      "file": "areas/throne.area.gml",
+      "script": "area_setup",
+      "change": "Consume the explicit destination only after all routing callbacks finish",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_throne_area_gml_area_setup"
+    },
+    {
+      "index": 155,
+      "file": "areas/turtles.area.gml",
+      "script": "area_transit",
+      "change": "Honor an explicit secret entrance destination",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_turtles_area_gml_area_transit"
+    },
+    {
+      "index": 156,
+      "file": "areas/turtles.area.gml",
+      "script": "area_setup",
+      "change": "Consume the explicit destination only after all routing callbacks finish",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_turtles_area_gml_area_setup"
+    },
+    {
+      "index": 157,
+      "file": "areas/venuz.area.gml",
+      "script": "area_transit",
+      "change": "Honor an explicit secret entrance destination",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_venuz_area_gml_area_transit"
+    },
+    {
+      "index": 158,
+      "file": "areas/venuz.area.gml",
+      "script": "area_setup",
+      "change": "Consume the explicit destination only after all routing callbacks finish",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_venuz_area_gml_area_setup"
+    },
+    {
+      "index": 159,
+      "file": "enemies.mod.gml",
+      "script": "DropWeapon",
+      "change": "Filter Venus-only weapon IDs even when they include their mod directory",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_DropWeapon"
+    },
+    {
+      "index": 160,
+      "file": "areas/city.area.gml",
+      "script": "area_mapdata",
+      "change": "Compare each previous-area string independently on the progress map",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_city_area_gml_area_mapdata"
+    },
+    {
+      "index": 161,
+      "file": "areas/palace.area.gml",
+      "script": "area_mapdata",
+      "change": "Do not coerce area-name strings into a boolean on the progress map",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_palace_area_gml_area_mapdata"
+    },
+    {
+      "index": 162,
+      "file": "maincode.mod.gml",
+      "script": "step",
+      "change": "Restrict radiation absorption to nearby pickups",
+      "status": "IMPORTED",
+      "resolution": "hm_maincode_mod_gml_step"
+    },
+    {
+      "index": 163,
+      "file": "props.mod.gml",
+      "script": "draw_shadows",
+      "change": "Expand native shadow instances instead of treating object IDs as instance IDs",
+      "status": "IMPORTED",
+      "resolution": "hm_props_mod_gml_draw_shadows"
+    },
+    {
+      "index": 164,
+      "file": "props.mod.gml",
+      "script": "step",
+      "change": "Expand all four native binding families during Venus floor cleanup",
+      "status": "IMPORTED",
+      "resolution": "hm_props_mod_gml_step"
+    },
+    {
+      "index": 165,
+      "file": "props.mod.gml",
+      "script": "joao_shockwave",
+      "change": "Keep the already-restored cursed cave walls and their collision instances",
+      "status": "IMPORTED",
+      "resolution": "hm_props_mod_gml_joao_shockwave"
+    },
+    {
+      "index": 166,
+      "file": "props.mod.gml",
+      "script": "joao_shockwave",
+      "change": "Keep the restored cave transition layer instead of delayed recreation",
+      "status": "IMPORTED",
+      "resolution": "hm_props_mod_gml_joao_shockwave"
+    },
+    {
+      "index": 167,
+      "file": "areas/junkyard.area.gml",
+      "script": "area_start",
+      "change": "Remove generation-time explosive overlaps beneath sleeping Big Dog without explosions",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_junkyard_area_gml_area_start"
+    },
+    {
+      "index": 168,
+      "file": "areas/bigdog.area.gml",
+      "script": "area_start",
+      "change": "Remove generation-time explosive overlaps beneath sleeping Big Dog without explosions",
+      "status": "UNLOADED_UPSTREAM_FILE",
+      "resolution": "Not loaded by either the supplied native MOD entrypoint or the mobile module graph; active equivalents remain loaded."
+    },
+    {
+      "index": 169,
+      "file": "bosses/titank.mod.gml",
+      "script": "tinade_create",
+      "change": "Give Titank grenades their own fuse and explicit owner",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_titank_mod_gml_tinade_create"
+    },
+    {
+      "index": 170,
+      "file": "bosses/titank.mod.gml",
+      "script": "tinade",
+      "change": "Do not double-decrement Titank grenade lifetime through a native alarm",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_titank_mod_gml_tinade"
+    },
+    {
+      "index": 171,
+      "file": "bosses/titank.mod.gml",
+      "script": "tinade_wall",
+      "change": "Debounce repeated grenade wall-contact sound without restarting its fuse",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_titank_mod_gml_tinade_wall"
+    },
+    {
+      "index": 172,
+      "file": "enemies.mod.gml",
+      "script": "elitebandit_create",
+      "change": "Snow-city and ice-cave bandits retain the requested snow appearance",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_elitebandit_create"
+    },
+    {
+      "index": 173,
+      "file": "maincode.mod.gml",
+      "script": "step",
+      "change": "Wait for pending Venus door enemies before the empty-room auto exit",
+      "status": "IMPORTED",
+      "resolution": "hm_maincode_mod_gml_step"
+    },
+    {
+      "index": 174,
+      "file": "maincode.mod.gml",
+      "script": "step",
+      "change": "Throne II falling uses the same shrink renderer as portal entry",
+      "status": "IMPORTED",
+      "resolution": "hm_maincode_mod_gml_step"
+    },
+    {
+      "index": 175,
+      "file": "maincode.mod.gml",
+      "script": "step",
+      "change": "Restore the normal player draw after the throne fall",
+      "status": "IMPORTED",
+      "resolution": "hm_maincode_mod_gml_step"
+    },
+    {
+      "index": 176,
+      "file": "maincode.mod.gml",
+      "script": "sewerboi",
+      "change": "Do not query dimensions of invisible swimming hit receivers",
+      "status": "IMPORTED",
+      "resolution": "hm_maincode_mod_gml_sewerboi"
+    },
+    {
+      "index": 177,
+      "file": "maincode.mod.gml",
+      "script": "spacesewerboi",
+      "change": "Do not query dimensions of invisible swimming hit receivers",
+      "status": "IMPORTED",
+      "resolution": "hm_maincode_mod_gml_spacesewerboi"
+    },
+    {
+      "index": 178,
+      "file": "maincode.mod.gml",
+      "script": "spacesewerboi",
+      "change": "Retire a Venus swimming draw binding after its owner disappears",
+      "status": "IMPORTED",
+      "resolution": "hm_maincode_mod_gml_spacesewerboi"
+    },
+    {
+      "index": 179,
+      "file": "props.mod.gml",
+      "script": "step",
+      "change": "Remove old secret-door camouflage effects when rebuilding a Venus floor",
+      "status": "IMPORTED",
+      "resolution": "hm_props_mod_gml_step"
+    },
+    {
+      "index": 180,
+      "file": "areas/bigdog.area.gml",
+      "script": "area_pop_enemies",
+      "change": "Apply the requested stock loop population to the alternate Big Dog scrapyard",
+      "status": "UNLOADED_UPSTREAM_FILE",
+      "resolution": "Not loaded by either the supplied native MOD entrypoint or the mobile module graph; active equivalents remain loaded."
+    },
+    {
+      "index": 181,
+      "file": "areas/bigdog.area.gml",
+      "script": "area_setup",
+      "change": "Grow the procedural alternate Big Dog map after loops",
+      "status": "UNLOADED_UPSTREAM_FILE",
+      "resolution": "Not loaded by either the supplied native MOD entrypoint or the mobile module graph; active equivalents remain loaded."
+    },
+    {
+      "index": 182,
+      "file": "props.mod.gml",
+      "script": "draw_shadows",
+      "change": "Build the native shadow candidate array once per draw, retaining pass order",
+      "status": "IMPORTED",
+      "resolution": "hm_props_mod_gml_draw_shadows"
+    },
+    {
+      "index": 183,
+      "file": "enemies.mod.gml",
+      "script": "step",
+      "change": "Skip Bandit Boss aiming and Gator notice/fire blocks after their selected target has disappeared",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_step"
+    },
+    {
+      "index": 184,
+      "file": "bosses/scorpionboss.mod.gml",
+      "script": "scorpionboss_step",
+      "change": "Snapshot a valid target direction and distance before the hurt retaliation's native forks",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_scorpionboss_mod_gml_scorpionboss_step"
+    },
+    {
+      "index": 185,
+      "file": "bosses/ravenboss.mod.gml",
+      "script": "wantravenboss_step",
+      "change": "Bound Big Bird floor retries and retain native loop group creation with a valid-floor fallback",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_ravenboss_mod_gml_wantravenboss_step"
+    },
+    {
+      "index": 186,
+      "file": "options.mod.gml",
+      "script": "chat_command",
+      "change": "List the persisted rat-revival toggle and its current state in /options",
+      "status": "IMPORTED",
+      "resolution": "hm_options_mod_gml_chat_command"
+    },
+    {
+      "index": 187,
+      "file": "bosses/titank.mod.gml",
+      "script": "titank_create",
+      "change": "One landing impact per living Titank foot; dead feet cannot trigger impacts or the shared shockwave",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_titank_mod_gml_titank_create"
+    },
+    {
+      "index": 188,
+      "file": "areas/labs.area.gml",
+      "script": "area_pop_props",
+      "change": "Use the defined first lab-tube factory when populating random lab props",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_labs_area_gml_area_pop_props"
+    },
+    {
+      "index": 189,
+      "file": "enemies.mod.gml",
+      "script": "elitebanditsleep_step",
+      "change": "Preserve exact damage, hit recovery and burning when sleeping bandits wake; never replace a dead sleeper",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_elitebanditsleep_step"
+    },
+    {
+      "index": 190,
+      "file": "areas/caves.area.gml",
+      "script": "area_pop_enemies",
+      "change": "Qualify the native crystal sleep field and apply it to the created lightning crystal",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_caves_area_gml_area_pop_enemies"
+    },
+    {
+      "index": 191,
+      "file": "maincode.mod.gml",
+      "script": "step",
+      "change": "A defeated cursed-crystal room does not re-spread curses while the original uncurse wave finishes",
+      "status": "IMPORTED",
+      "resolution": "hm_maincode_mod_gml_step"
+    },
+    {
+      "index": 192,
+      "file": "areas/caves.area.gml",
+      "script": "area_setup",
+      "change": "Reset the per-room cave cleanse marker before generating any new cave",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_caves_area_gml_area_setup"
+    },
+    {
+      "index": 193,
+      "file": "areas/cavesinv.area.gml",
+      "script": "area_setup",
+      "change": "Reset the per-room cave cleanse marker before generating any new cave",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_cavesinv_area_gml_area_setup"
+    },
+    {
+      "index": 194,
+      "file": "maincode.mod.gml",
+      "script": "step",
+      "change": "Restore palace 4 after an actual native crown pickup before the vault exit advances to the throne",
+      "status": "IMPORTED",
+      "resolution": "hm_maincode_mod_gml_step"
+    },
+    {
+      "index": 195,
+      "file": "props.mod.gml",
+      "script": "step",
+      "change": "Create each Venus elevator transition tile once per coordinate, retaining native wall collision and existing border predicates",
+      "status": "IMPORTED",
+      "resolution": "hm_props_mod_gml_step"
+    },
+    {
+      "index": 196,
+      "file": "areas/sewers.area.gml",
+      "script": "area_start",
+      "change": "Apply native-equivalent character/skin unlock rules at custom-area entry",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_sewers_area_gml_area_start"
+    },
+    {
+      "index": 197,
+      "file": "areas/turtles.area.gml",
+      "script": "area_start",
+      "change": "Apply native-equivalent character/skin unlock rules at custom-area entry",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_turtles_area_gml_area_start"
+    },
+    {
+      "index": 198,
+      "file": "areas/ravenboss.area.gml",
+      "script": "area_start",
+      "change": "Apply native-equivalent character/skin unlock rules at custom-area entry",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_ravenboss_area_gml_area_start"
+    },
+    {
+      "index": 199,
+      "file": "areas/junkyard.area.gml",
+      "script": "area_start",
+      "change": "Apply native-equivalent character/skin unlock rules at custom-area entry",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_junkyard_area_gml_area_start"
+    },
+    {
+      "index": 200,
+      "file": "areas/caves.area.gml",
+      "script": "area_start",
+      "change": "Apply native-equivalent character/skin unlock rules at custom-area entry",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_caves_area_gml_area_start"
+    },
+    {
+      "index": 201,
+      "file": "areas/cavesinv.area.gml",
+      "script": "area_start",
+      "change": "Apply native-equivalent character/skin unlock rules at custom-area entry",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_cavesinv_area_gml_area_start"
+    },
+    {
+      "index": 202,
+      "file": "areas/city.area.gml",
+      "script": "area_start",
+      "change": "Apply native-equivalent character/skin unlock rules at custom-area entry",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_city_area_gml_area_start"
+    },
+    {
+      "index": 203,
+      "file": "areas/labs.area.gml",
+      "script": "area_start",
+      "change": "Apply native-equivalent character/skin unlock rules at custom-area entry",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_labs_area_gml_area_start"
+    },
+    {
+      "index": 204,
+      "file": "areas/jungle.area.gml",
+      "script": "area_start",
+      "change": "Apply native-equivalent character/skin unlock rules at custom-area entry",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_jungle_area_gml_area_start"
+    },
+    {
+      "index": 205,
+      "file": "areas/HQ.area.gml",
+      "script": "area_start",
+      "change": "Apply native-equivalent character/skin unlock rules at custom-area entry",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_HQ_area_gml_area_start"
+    },
+    {
+      "index": 206,
+      "file": "areas/palace.area.gml",
+      "script": "area_start",
+      "change": "Apply native-equivalent character/skin unlock rules at custom-area entry",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_palace_area_gml_area_start"
+    },
+    {
+      "index": 207,
+      "file": "areas/nightdesert.area.gml",
+      "script": "area_start",
+      "change": "Apply native-equivalent character/skin unlock rules at custom-area entry",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_nightdesert_area_gml_area_start"
+    },
+    {
+      "index": 208,
+      "file": "areas/banditcamp.area.gml",
+      "script": "area_mapdata",
+      "change": "Distinct Hardmode subarea map points within native 135px background",
+      "status": "UNLOADED_UPSTREAM_FILE",
+      "resolution": "Not loaded by either the supplied native MOD entrypoint or the mobile module graph; active equivalents remain loaded."
+    },
+    {
+      "index": 209,
+      "file": "areas/bigdog.area.gml",
+      "script": "area_mapdata",
+      "change": "Distinct Hardmode subarea map points within native 135px background",
+      "status": "UNLOADED_UPSTREAM_FILE",
+      "resolution": "Not loaded by either the supplied native MOD entrypoint or the mobile module graph; active equivalents remain loaded."
+    },
+    {
+      "index": 210,
+      "file": "areas/caves.area.gml",
+      "script": "area_mapdata",
+      "change": "Distinct Hardmode subarea map points within native 135px background",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_caves_area_gml_area_mapdata"
+    },
+    {
+      "index": 211,
+      "file": "areas/cavesinv.area.gml",
+      "script": "area_mapdata",
+      "change": "Distinct Hardmode subarea map points within native 135px background",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_cavesinv_area_gml_area_mapdata"
+    },
+    {
+      "index": 212,
+      "file": "areas/city.area.gml",
+      "script": "area_mapdata",
+      "change": "Distinct Hardmode subarea map points within native 135px background",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_city_area_gml_area_mapdata"
+    },
+    {
+      "index": 213,
+      "file": "areas/elevator.area.gml",
+      "script": "area_mapdata",
+      "change": "Distinct Hardmode subarea map points within native 135px background",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_elevator_area_gml_area_mapdata"
+    },
+    {
+      "index": 214,
+      "file": "areas/end.area.gml",
+      "script": "area_mapdata",
+      "change": "Distinct Hardmode subarea map points within native 135px background",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_end_area_gml_area_mapdata"
+    },
+    {
+      "index": 215,
+      "file": "areas/HQ.area.gml",
+      "script": "area_mapdata",
+      "change": "Distinct Hardmode subarea map points within native 135px background",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_HQ_area_gml_area_mapdata"
+    },
+    {
+      "index": 216,
+      "file": "areas/icecave.area.gml",
+      "script": "area_mapdata",
+      "change": "Distinct Hardmode subarea map points within native 135px background",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_icecave_area_gml_area_mapdata"
+    },
+    {
+      "index": 217,
+      "file": "areas/jungle.area.gml",
+      "script": "area_mapdata",
+      "change": "Distinct Hardmode subarea map points within native 135px background",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_jungle_area_gml_area_mapdata"
+    },
+    {
+      "index": 218,
+      "file": "areas/junkyard.area.gml",
+      "script": "area_mapdata",
+      "change": "Distinct Hardmode subarea map points within native 135px background",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_junkyard_area_gml_area_mapdata"
+    },
+    {
+      "index": 219,
+      "file": "areas/labs.area.gml",
+      "script": "area_mapdata",
+      "change": "Distinct Hardmode subarea map points within native 135px background",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_labs_area_gml_area_mapdata"
+    },
+    {
+      "index": 220,
+      "file": "areas/mansion.area.gml",
+      "script": "area_mapdata",
+      "change": "Distinct Hardmode subarea map points within native 135px background",
+      "status": "UNLOADED_UPSTREAM_FILE",
+      "resolution": "Not loaded by either the supplied native MOD entrypoint or the mobile module graph; active equivalents remain loaded."
+    },
+    {
+      "index": 221,
+      "file": "areas/nightdesert.area.gml",
+      "script": "area_mapdata",
+      "change": "Distinct Hardmode subarea map points within native 135px background",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_nightdesert_area_gml_area_mapdata"
+    },
+    {
+      "index": 222,
+      "file": "areas/noyetihere.area.gml",
+      "script": "area_mapdata",
+      "change": "Distinct Hardmode subarea map points within native 135px background",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_noyetihere_area_gml_area_mapdata"
+    },
+    {
+      "index": 223,
+      "file": "areas/oasis.area.gml",
+      "script": "area_mapdata",
+      "change": "Distinct Hardmode subarea map points within native 135px background",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_oasis_area_gml_area_mapdata"
+    },
+    {
+      "index": 224,
+      "file": "areas/palace.area.gml",
+      "script": "area_mapdata",
+      "change": "Distinct Hardmode subarea map points within native 135px background",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_palace_area_gml_area_mapdata"
+    },
+    {
+      "index": 225,
+      "file": "areas/ravenboss.area.gml",
+      "script": "area_mapdata",
+      "change": "Distinct Hardmode subarea map points within native 135px background",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_ravenboss_area_gml_area_mapdata"
+    },
+    {
+      "index": 226,
+      "file": "areas/scorpionboss.area.gml",
+      "script": "area_mapdata",
+      "change": "Distinct Hardmode subarea map points within native 135px background",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_scorpionboss_area_gml_area_mapdata"
+    },
+    {
+      "index": 227,
+      "file": "areas/sewers.area.gml",
+      "script": "area_mapdata",
+      "change": "Distinct Hardmode subarea map points within native 135px background",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_sewers_area_gml_area_mapdata"
+    },
+    {
+      "index": 228,
+      "file": "areas/throne.area.gml",
+      "script": "area_mapdata",
+      "change": "Distinct Hardmode subarea map points within native 135px background",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_throne_area_gml_area_mapdata"
+    },
+    {
+      "index": 229,
+      "file": "areas/turtles.area.gml",
+      "script": "area_mapdata",
+      "change": "Distinct Hardmode subarea map points within native 135px background",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_turtles_area_gml_area_mapdata"
+    },
+    {
+      "index": 230,
+      "file": "areas/venuz.area.gml",
+      "script": "area_mapdata",
+      "change": "Distinct Hardmode subarea map points within native 135px background",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_venuz_area_gml_area_mapdata"
+    },
+    {
+      "index": 231,
+      "file": "weapons/secretweapon2.wep.gml",
+      "script": "weapon_area",
+      "change": "Compare each oasis area ID rather than converting its name to bool",
+      "status": "IMPORTED",
+      "resolution": "hm_weapons_secretweapon2_wep_gml_weapon_area"
+    },
+    {
+      "index": 232,
+      "file": "areas/junkyard.area.gml",
+      "script": "area_start",
+      "change": "Keep post-generation scatter walls away from spawn and narrow paths",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_junkyard_area_gml_area_start"
+    },
+    {
+      "index": 233,
+      "file": "areas/HQ.area.gml",
+      "script": "area_transit",
+      "change": "Keep native crown vault destination and loop count in every area transit hook",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_HQ_area_gml_area_transit"
+    },
+    {
+      "index": 234,
+      "file": "areas/banditcamp.area.gml",
+      "script": "area_transit",
+      "change": "Keep native crown vault destination and loop count in every area transit hook",
+      "status": "UNLOADED_UPSTREAM_FILE",
+      "resolution": "Not loaded by either the supplied native MOD entrypoint or the mobile module graph; active equivalents remain loaded."
+    },
+    {
+      "index": 235,
+      "file": "areas/bigdog.area.gml",
+      "script": "area_transit",
+      "change": "Keep native crown vault destination and loop count in every area transit hook",
+      "status": "UNLOADED_UPSTREAM_FILE",
+      "resolution": "Not loaded by either the supplied native MOD entrypoint or the mobile module graph; active equivalents remain loaded."
+    },
+    {
+      "index": 236,
+      "file": "areas/caves.area.gml",
+      "script": "area_transit",
+      "change": "Keep native crown vault destination and loop count in every area transit hook",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_caves_area_gml_area_transit"
+    },
+    {
+      "index": 237,
+      "file": "areas/cavesinv.area.gml",
+      "script": "area_transit",
+      "change": "Keep native crown vault destination and loop count in every area transit hook",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_cavesinv_area_gml_area_transit"
+    },
+    {
+      "index": 238,
+      "file": "areas/city.area.gml",
+      "script": "area_transit",
+      "change": "Keep native crown vault destination and loop count in every area transit hook",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_city_area_gml_area_transit"
+    },
+    {
+      "index": 239,
+      "file": "areas/elevator.area.gml",
+      "script": "area_transit",
+      "change": "Keep native crown vault destination and loop count in every area transit hook",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_elevator_area_gml_area_transit"
+    },
+    {
+      "index": 240,
+      "file": "areas/end.area.gml",
+      "script": "area_transit",
+      "change": "Keep native crown vault destination and loop count in every area transit hook",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_end_area_gml_area_transit"
+    },
+    {
+      "index": 241,
+      "file": "areas/icecave.area.gml",
+      "script": "area_transit",
+      "change": "Keep native crown vault destination and loop count in every area transit hook",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_icecave_area_gml_area_transit"
+    },
+    {
+      "index": 242,
+      "file": "areas/jungle.area.gml",
+      "script": "area_transit",
+      "change": "Keep native crown vault destination and loop count in every area transit hook",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_jungle_area_gml_area_transit"
+    },
+    {
+      "index": 243,
+      "file": "areas/junkyard.area.gml",
+      "script": "area_transit",
+      "change": "Keep native crown vault destination and loop count in every area transit hook",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_junkyard_area_gml_area_transit"
+    },
+    {
+      "index": 244,
+      "file": "areas/labs.area.gml",
+      "script": "area_transit",
+      "change": "Keep native crown vault destination and loop count in every area transit hook",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_labs_area_gml_area_transit"
+    },
+    {
+      "index": 245,
+      "file": "areas/mansion.area.gml",
+      "script": "area_transit",
+      "change": "Keep native crown vault destination and loop count in every area transit hook",
+      "status": "UNLOADED_UPSTREAM_FILE",
+      "resolution": "Not loaded by either the supplied native MOD entrypoint or the mobile module graph; active equivalents remain loaded."
+    },
+    {
+      "index": 246,
+      "file": "areas/nightdesert.area.gml",
+      "script": "area_transit",
+      "change": "Keep native crown vault destination and loop count in every area transit hook",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_nightdesert_area_gml_area_transit"
+    },
+    {
+      "index": 247,
+      "file": "areas/noyetihere.area.gml",
+      "script": "area_transit",
+      "change": "Keep native crown vault destination and loop count in every area transit hook",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_noyetihere_area_gml_area_transit"
+    },
+    {
+      "index": 248,
+      "file": "areas/oasis.area.gml",
+      "script": "area_transit",
+      "change": "Keep native crown vault destination and loop count in every area transit hook",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_oasis_area_gml_area_transit"
+    },
+    {
+      "index": 249,
+      "file": "areas/palace.area.gml",
+      "script": "area_transit",
+      "change": "Keep native crown vault destination and loop count in every area transit hook",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_palace_area_gml_area_transit"
+    },
+    {
+      "index": 250,
+      "file": "areas/ravenboss.area.gml",
+      "script": "area_transit",
+      "change": "Keep native crown vault destination and loop count in every area transit hook",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_ravenboss_area_gml_area_transit"
+    },
+    {
+      "index": 251,
+      "file": "areas/scorpionboss.area.gml",
+      "script": "area_transit",
+      "change": "Keep native crown vault destination and loop count in every area transit hook",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_scorpionboss_area_gml_area_transit"
+    },
+    {
+      "index": 252,
+      "file": "areas/sewers.area.gml",
+      "script": "area_transit",
+      "change": "Keep native crown vault destination and loop count in every area transit hook",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_sewers_area_gml_area_transit"
+    },
+    {
+      "index": 253,
+      "file": "areas/throne.area.gml",
+      "script": "area_transit",
+      "change": "Keep native crown vault destination and loop count in every area transit hook",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_throne_area_gml_area_transit"
+    },
+    {
+      "index": 254,
+      "file": "areas/turtles.area.gml",
+      "script": "area_transit",
+      "change": "Keep native crown vault destination and loop count in every area transit hook",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_turtles_area_gml_area_transit"
+    },
+    {
+      "index": 255,
+      "file": "areas/venuz.area.gml",
+      "script": "area_transit",
+      "change": "Keep native crown vault destination and loop count in every area transit hook",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_venuz_area_gml_area_transit"
+    },
+    {
+      "index": 256,
+      "file": "areas/city.area.gml",
+      "script": "area_start",
+      "change": "Separate colored ice and snow underlay with native integer depths",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_city_area_gml_area_start"
+    },
+    {
+      "index": 257,
+      "file": "maincode.mod.gml",
+      "script": "step",
+      "change": "Venus retries retain the current stage, stop retry knockback and use one authored spawn placement",
+      "status": "IMPORTED",
+      "resolution": "hm_maincode_mod_gml_step"
+    },
+    {
+      "index": 258,
+      "file": "props.mod.gml",
+      "script": "step",
+      "change": "Explicit Venus retry bypasses contact and next-stage routes; rebuild and spawn placement complete synchronously",
+      "status": "IMPORTED",
+      "resolution": "hm_props_mod_gml_step"
+    },
+    {
+      "index": 259,
+      "file": "maincode.mod.gml",
+      "script": "step",
+      "change": "Either native B/horn or Enter/okay retries Venus; latch held input and suppress chat/generation",
+      "status": "IMPORTED",
+      "resolution": "hm_maincode_mod_gml_step"
+    },
+    {
+      "index": 260,
+      "file": "maincode.mod.gml",
+      "script": "venus_request_retry",
+      "change": "Coalesce simultaneous retry requests into one rebuild without advancing the map",
+      "status": "IMPORTED",
+      "resolution": "hm_maincode_mod_gml_venus_request_retry"
+    },
+    {
+      "index": 261,
+      "file": "bosses/gungod.mod.gml",
+      "script": "GunGod_hurt",
+      "change": "Choose a walkable Gun God phase-two landing rather than the nearest arbitrary floor",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_gungod_mod_gml_GunGod_hurt"
+    },
+    {
+      "index": 262,
+      "file": "bosses/gungod.mod.gml",
+      "script": "yungbullet",
+      "change": "Reacquire deleted/blocked floors, guide descent directly and create phase two once on valid ground",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_gungod_mod_gml_yungbullet"
+    },
+    {
+      "index": 263,
+      "file": "bosses/gungod.mod.gml",
+      "script": "helicopterdown",
+      "change": "Retiring helicopter exits safely if all player/floor targets disappear",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_gungod_mod_gml_helicopterdown"
+    },
+    {
+      "index": 264,
+      "file": "enemies.mod.gml",
+      "script": "IDPDTank_create",
+      "change": "Double initial robot laser readiness delay",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_IDPDTank_create"
+    },
+    {
+      "index": 265,
+      "file": "enemies.mod.gml",
+      "script": "IDPDTank_step",
+      "change": "Robot firing cooldown 150 to 210 native ticks",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_IDPDTank_step"
+    },
+    {
+      "index": 266,
+      "file": "enemies.mod.gml",
+      "script": "IDPDTank_step",
+      "change": "Robot cooldown follows native time scale",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_IDPDTank_step"
+    },
+    {
+      "index": 267,
+      "file": "enemies.mod.gml",
+      "script": "IDPDTank_step",
+      "change": "A robot cannot stack overlapping laser charge controllers",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_IDPDTank_step"
+    },
+    {
+      "index": 268,
+      "file": "enemies.mod.gml",
+      "script": "IDPDTank_step",
+      "change": "Limit blind-fire branch to one active laser controller",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_IDPDTank_step"
+    },
+    {
+      "index": 269,
+      "file": "enemies.mod.gml",
+      "script": "IDPDLaserCannon_step",
+      "change": "Longer robot charge without rapid recharge branch",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_IDPDLaserCannon_step"
+    },
+    {
+      "index": 270,
+      "file": "enemies.mod.gml",
+      "script": "IDPDLaserCannon_step",
+      "change": "Wider robot laser spread",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_IDPDLaserCannon_step"
+    },
+    {
+      "index": 271,
+      "file": "enemies.mod.gml",
+      "script": "IDPDLaserCannon_step",
+      "change": "Remove the near-instant repeated laser charge",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_IDPDLaserCannon_step"
+    },
+    {
+      "index": 272,
+      "file": "enemies.mod.gml",
+      "script": "IDPDLaserCannon_step",
+      "change": "Delete an orphaned robot charge before reading its creator",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_IDPDLaserCannon_step"
+    },
+    {
+      "index": 273,
+      "file": "enemies.mod.gml",
+      "script": "IDPDLaserCannon_destroy",
+      "change": "No delayed cooldown write to a deleted robot",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_IDPDLaserCannon_destroy"
+    },
+    {
+      "index": 274,
+      "file": "enemies.mod.gml",
+      "script": "step",
+      "change": "Correct explicit wall hit test; bounded particles only for live boss-commanded charges",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_step"
+    },
+    {
+      "index": 275,
+      "file": "bosses/throne.mod.gml",
+      "script": "throne_create",
+      "change": "Throne II starts at 50 percent of loop/player-scaled original HP",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_throne_mod_gml_throne_create"
+    },
+    {
+      "index": 276,
+      "file": "bosses/throne.mod.gml",
+      "script": "Throne2Step",
+      "change": "Stop the owner step immediately on death",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_throne_mod_gml_Throne2Step"
+    },
+    {
+      "index": 277,
+      "file": "bosses/throne.mod.gml",
+      "script": "Throne2Step",
+      "change": "Revalidate the owner after a yielded attack returns",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_throne_mod_gml_Throne2Step"
+    },
+    {
+      "index": 278,
+      "file": "bosses/throne.mod.gml",
+      "script": "attack_alarm",
+      "change": "Cancel yielded volleys after boss death; copy projectile team and angle into locals",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_throne_mod_gml_attack_alarm"
+    },
+    {
+      "index": 279,
+      "file": "bosses/gungod.mod.gml",
+      "script": "GunGod_create",
+      "change": "Venus helicopter phase has 75 percent of original health budget",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_gungod_mod_gml_GunGod_create"
+    },
+    {
+      "index": 280,
+      "file": "bosses/gungod.mod.gml",
+      "script": "GunGod_hurt",
+      "change": "Venus first-phase transition needs 750 rather than 1000 damage",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_gungod_mod_gml_GunGod_hurt"
+    },
+    {
+      "index": 281,
+      "file": "enemies.mod.gml",
+      "script": "enemyyv_create",
+      "change": "Venus grounded final boss has 75 percent HP",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_enemyyv_create"
+    },
+    {
+      "index": 282,
+      "file": "props.mod.gml",
+      "script": "fishskull_create",
+      "change": "Fish skull has 50 HP on every loop and is protected before combat clear",
+      "status": "IMPORTED",
+      "resolution": "hm_props_mod_gml_fishskull_create"
+    },
+    {
+      "index": 283,
+      "file": "props.mod.gml",
+      "script": "fishskull_step",
+      "change": "Restore fish-skull collision immediately when the 1-2 fight clears",
+      "status": "IMPORTED",
+      "resolution": "hm_props_mod_gml_fishskull_step"
+    },
+    {
+      "index": 284,
+      "file": "props.mod.gml",
+      "script": "fishskull_hurt",
+      "change": "Reject direct as well as collision damage to the locked fish skull",
+      "status": "IMPORTED",
+      "resolution": "hm_props_mod_gml_fishskull_hurt"
+    },
+    {
+      "index": 285,
+      "file": "props.mod.gml",
+      "script": "Flower_create",
+      "change": "Jungle entrance is permanently immune to damage",
+      "status": "IMPORTED",
+      "resolution": "hm_props_mod_gml_Flower_create"
+    },
+    {
+      "index": 286,
+      "file": "props.mod.gml",
+      "script": "Flower_step",
+      "change": "Do not display or process Jungle feeding interactions until combat is clear",
+      "status": "IMPORTED",
+      "resolution": "hm_props_mod_gml_Flower_step"
+    },
+    {
+      "index": 287,
+      "file": "areas/caves.area.gml",
+      "script": "area_start",
+      "change": "Always create one reachable 4-3 Jungle entrance without Last Wish or traveling converters",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_caves_area_gml_area_start"
+    },
+    {
+      "index": 288,
+      "file": "areas/oasis.area.gml",
+      "script": "area_start",
+      "change": "Track native BoneFish deaths for one 25-percent supply roll without changing their AI",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_oasis_area_gml_area_start"
+    },
+    {
+      "index": 289,
+      "file": "maincode.mod.gml",
+      "script": "step",
+      "change": "Also register BoneFish that appear after Oasis generation",
+      "status": "IMPORTED",
+      "resolution": "hm_maincode_mod_gml_step"
+    },
+    {
+      "index": 290,
+      "file": "maincode.mod.gml",
+      "script": "step",
+      "change": "Remove HQ wall regeneration; dark HQ at L3; use native IDPD portal type in both HQ forms",
+      "status": "IMPORTED",
+      "resolution": "hm_maincode_mod_gml_step"
+    },
+    {
+      "index": 291,
+      "file": "areas/HQ.area.gml",
+      "script": "area_setup",
+      "change": "Set HQ darkness explicitly on every entry",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_HQ_area_gml_area_setup"
+    },
+    {
+      "index": 292,
+      "file": "areas/HQ.area.gml",
+      "script": "area_pop_enemies",
+      "change": "Add a bounded IDPD Freak population to HQ from L3",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_HQ_area_gml_area_pop_enemies"
+    },
+    {
+      "index": 293,
+      "file": "maincode.mod.gml",
+      "script": "step",
+      "change": "The actual 7-4 crown-vault exit targets the throne rather than regenerating 7-4",
+      "status": "IMPORTED",
+      "resolution": "hm_maincode_mod_gml_step"
+    },
+    {
+      "index": 294,
+      "file": "maincode.mod.gml",
+      "script": "step",
+      "change": "Limit the corrected crown return destination to the real 7-4 entry",
+      "status": "IMPORTED",
+      "resolution": "hm_maincode_mod_gml_step"
+    },
+    {
+      "index": 295,
+      "file": "options.mod.gml",
+      "script": "basicload",
+      "change": "Load Bossbar and Grillskills switches with backward-compatible defaults",
+      "status": "IMPORTED",
+      "resolution": "hm_options_mod_gml_basicload"
+    },
+    {
+      "index": 296,
+      "file": "options.mod.gml",
+      "script": "basicsave",
+      "change": "Persist both addon switches alongside existing Hardmode settings",
+      "status": "IMPORTED",
+      "resolution": "hm_options_mod_gml_basicsave"
+    },
+    {
+      "index": 297,
+      "file": "options.mod.gml",
+      "script": "chat_command",
+      "change": "Expose integrated addon switches through persistent options dispatcher",
+      "status": "IMPORTED",
+      "resolution": "hm_options_mod_gml_chat_command"
+    },
+    {
+      "index": 298,
+      "file": "enemies.mod.gml",
+      "script": "step",
+      "change": "Remove the common normal/cursed Hyper Crystal half-health clone branch for normal and extra encounters",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_step"
+    },
+    {
+      "index": 299,
+      "file": "hm_bossbar.mod.gml",
+      "script": "draw_gui",
+      "change": "Do not draw a second bar for the invisible Throne II transition sentinel",
+      "status": "IMPORTED",
+      "resolution": "hm_hm_bossbar_mod_gml_draw_gui"
+    },
+    {
+      "index": 300,
+      "file": "hm_bossbar.mod.gml",
+      "script": "draw",
+      "change": "Ordinary extra bosses do not acquire normal encounter boss bars",
+      "status": "IMPORTED",
+      "resolution": "hm_hm_bossbar_mod_gml_draw"
+    },
+    {
+      "index": 301,
+      "file": "maincode.mod.gml",
+      "script": "game_start",
+      "change": "Discard vault-return latches on a new run",
+      "status": "IMPORTED",
+      "resolution": "hm_maincode_mod_gml_game_start"
+    },
+    {
+      "index": 302,
+      "file": "maincode.mod.gml",
+      "script": "step",
+      "change": "Half the complete Hardmode phase-one Throne health/heal budget; phase two unchanged",
+      "status": "IMPORTED",
+      "resolution": "hm_maincode_mod_gml_step"
+    },
+    {
+      "index": 303,
+      "file": "areas/throne.area.gml",
+      "script": "area_setup",
+      "change": "Double throne hall length",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_throne_area_gml_area_setup"
+    },
+    {
+      "index": 304,
+      "file": "areas/throne.area.gml",
+      "script": "area_make_floor",
+      "change": "Keep generator alcoves in the upper half of the longer hall",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_throne_area_gml_area_make_floor"
+    },
+    {
+      "index": 305,
+      "file": "areas/throne.area.gml",
+      "script": "area_setup",
+      "change": "Throne consumes the crown return latch and disables native van arrivals",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_throne_area_gml_area_setup"
+    },
+    {
+      "index": 306,
+      "file": "maincode.mod.gml",
+      "script": "step",
+      "change": "Remember the actual 7-4 vault visit before native crown selection changes route state",
+      "status": "IMPORTED",
+      "resolution": "hm_maincode_mod_gml_step"
+    },
+    {
+      "index": 307,
+      "file": "areas/banditcamp.area.gml",
+      "script": "area_transit",
+      "change": "Vault exit routing wins before custom area detours",
+      "status": "UNLOADED_UPSTREAM_FILE",
+      "resolution": "Not loaded by either the supplied native MOD entrypoint or the mobile module graph; active equivalents remain loaded."
+    },
+    {
+      "index": 308,
+      "file": "areas/bigdog.area.gml",
+      "script": "area_transit",
+      "change": "Vault exit routing wins before custom area detours",
+      "status": "UNLOADED_UPSTREAM_FILE",
+      "resolution": "Not loaded by either the supplied native MOD entrypoint or the mobile module graph; active equivalents remain loaded."
+    },
+    {
+      "index": 309,
+      "file": "areas/caves.area.gml",
+      "script": "area_transit",
+      "change": "Vault exit routing wins before custom area detours",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_caves_area_gml_area_transit"
+    },
+    {
+      "index": 310,
+      "file": "areas/cavesinv.area.gml",
+      "script": "area_transit",
+      "change": "Vault exit routing wins before custom area detours",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_cavesinv_area_gml_area_transit"
+    },
+    {
+      "index": 311,
+      "file": "areas/city.area.gml",
+      "script": "area_transit",
+      "change": "Vault exit routing wins before custom area detours",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_city_area_gml_area_transit"
+    },
+    {
+      "index": 312,
+      "file": "areas/elevator.area.gml",
+      "script": "area_transit",
+      "change": "Vault exit routing wins before custom area detours",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_elevator_area_gml_area_transit"
+    },
+    {
+      "index": 313,
+      "file": "areas/end.area.gml",
+      "script": "area_transit",
+      "change": "Vault exit routing wins before custom area detours",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_end_area_gml_area_transit"
+    },
+    {
+      "index": 314,
+      "file": "areas/HQ.area.gml",
+      "script": "area_transit",
+      "change": "Vault exit routing wins before custom area detours",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_HQ_area_gml_area_transit"
+    },
+    {
+      "index": 315,
+      "file": "areas/icecave.area.gml",
+      "script": "area_transit",
+      "change": "Vault exit routing wins before custom area detours",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_icecave_area_gml_area_transit"
+    },
+    {
+      "index": 316,
+      "file": "areas/jungle.area.gml",
+      "script": "area_transit",
+      "change": "Vault exit routing wins before custom area detours",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_jungle_area_gml_area_transit"
+    },
+    {
+      "index": 317,
+      "file": "areas/junkyard.area.gml",
+      "script": "area_transit",
+      "change": "Vault exit routing wins before custom area detours",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_junkyard_area_gml_area_transit"
+    },
+    {
+      "index": 318,
+      "file": "areas/labs.area.gml",
+      "script": "area_transit",
+      "change": "Vault exit routing wins before custom area detours",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_labs_area_gml_area_transit"
+    },
+    {
+      "index": 319,
+      "file": "areas/mansion.area.gml",
+      "script": "area_transit",
+      "change": "Vault exit routing wins before custom area detours",
+      "status": "UNLOADED_UPSTREAM_FILE",
+      "resolution": "Not loaded by either the supplied native MOD entrypoint or the mobile module graph; active equivalents remain loaded."
+    },
+    {
+      "index": 320,
+      "file": "areas/nightdesert.area.gml",
+      "script": "area_transit",
+      "change": "Vault exit routing wins before custom area detours",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_nightdesert_area_gml_area_transit"
+    },
+    {
+      "index": 321,
+      "file": "areas/noyetihere.area.gml",
+      "script": "area_transit",
+      "change": "Vault exit routing wins before custom area detours",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_noyetihere_area_gml_area_transit"
+    },
+    {
+      "index": 322,
+      "file": "areas/oasis.area.gml",
+      "script": "area_transit",
+      "change": "Vault exit routing wins before custom area detours",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_oasis_area_gml_area_transit"
+    },
+    {
+      "index": 323,
+      "file": "areas/palace.area.gml",
+      "script": "area_transit",
+      "change": "Vault exit routing wins before custom area detours",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_palace_area_gml_area_transit"
+    },
+    {
+      "index": 324,
+      "file": "areas/ravenboss.area.gml",
+      "script": "area_transit",
+      "change": "Vault exit routing wins before custom area detours",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_ravenboss_area_gml_area_transit"
+    },
+    {
+      "index": 325,
+      "file": "areas/scorpionboss.area.gml",
+      "script": "area_transit",
+      "change": "Vault exit routing wins before custom area detours",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_scorpionboss_area_gml_area_transit"
+    },
+    {
+      "index": 326,
+      "file": "areas/sewers.area.gml",
+      "script": "area_transit",
+      "change": "Vault exit routing wins before custom area detours",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_sewers_area_gml_area_transit"
+    },
+    {
+      "index": 327,
+      "file": "areas/throne.area.gml",
+      "script": "area_transit",
+      "change": "Vault exit routing wins before custom area detours",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_throne_area_gml_area_transit"
+    },
+    {
+      "index": 328,
+      "file": "areas/turtles.area.gml",
+      "script": "area_transit",
+      "change": "Vault exit routing wins before custom area detours",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_turtles_area_gml_area_transit"
+    },
+    {
+      "index": 329,
+      "file": "areas/venuz.area.gml",
+      "script": "area_transit",
+      "change": "Vault exit routing wins before custom area detours",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_venuz_area_gml_area_transit"
+    },
+    {
+      "index": 330,
+      "file": "areas/palace.area.gml",
+      "script": "area_finish",
+      "change": "Crown selection cannot advance palace 2 into palace 3 or 4",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_palace_area_gml_area_finish"
+    },
+    {
+      "index": 331,
+      "file": "props.mod.gml",
+      "script": "fishskull_create",
+      "change": "Use an explicit nonempty fish-skull hitbox instead of caching its empty initial mask",
+      "status": "IMPORTED",
+      "resolution": "hm_props_mod_gml_fishskull_create"
+    },
+    {
+      "index": 332,
+      "file": "props.mod.gml",
+      "script": "Flower_create",
+      "change": "Initialize the visible corpse-flower immediately on creation",
+      "status": "IMPORTED",
+      "resolution": "hm_props_mod_gml_Flower_create"
+    },
+    {
+      "index": 333,
+      "file": "props.mod.gml",
+      "script": "Flower_step",
+      "change": "Use point proximity for the permanently noncolliding Jungle entrance",
+      "status": "IMPORTED",
+      "resolution": "hm_props_mod_gml_Flower_step"
+    },
+    {
+      "index": 334,
+      "file": "props.mod.gml",
+      "script": "whitecrystal_create",
+      "change": "Identify the Ice Cave entrance for safe enemy placement",
+      "status": "IMPORTED",
+      "resolution": "hm_props_mod_gml_whitecrystal_create"
+    },
+    {
+      "index": 335,
+      "file": "props.mod.gml",
+      "script": "whitecrystal_create",
+      "change": "Move overlapping enemies onto clear floor when the entrance appears",
+      "status": "IMPORTED",
+      "resolution": "hm_props_mod_gml_whitecrystal_create"
+    },
+    {
+      "index": 336,
+      "file": "areas/sewers.area.gml",
+      "script": "area_pop_enemies",
+      "change": "No division by zero in pre-loop sewer spawn weights",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_sewers_area_gml_area_pop_enemies"
+    },
+    {
+      "index": 337,
+      "file": "enemies.mod.gml",
+      "script": "Minigunner_create",
+      "change": "Blue Venus minigunner: 15 rads and one combined 50 percent supply roll outside Venus",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_Minigunner_create"
+    },
+    {
+      "index": 338,
+      "file": "enemies.mod.gml",
+      "script": "Monster_create",
+      "change": "Orange Venus Monster: 12 rads and one combined 30 percent supply roll outside Venus",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_Monster_create"
+    },
+    {
+      "index": 339,
+      "file": "enemies.mod.gml",
+      "script": "DropWeapon",
+      "change": "Share death supplies without restoring forbidden Venus weapon drops",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_DropWeapon"
+    },
+    {
+      "index": 340,
+      "file": "enemies.mod.gml",
+      "script": "vanguide",
+      "change": "Remove van fallback which chose an arbitrary old corpse for the exit",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_vanguide"
+    },
+    {
+      "index": 341,
+      "file": "enemies.mod.gml",
+      "script": "vanexplo",
+      "change": "Suppress a nonfinal van hitbox corpse exit timer",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_vanexplo"
+    },
+    {
+      "index": 342,
+      "file": "enemies.mod.gml",
+      "script": "IDPDTank_create",
+      "change": "No robot arrival in throne even from an already queued van",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_IDPDTank_create"
+    },
+    {
+      "index": 343,
+      "file": "bosses/bossintros.mod.gml",
+      "script": "boss_trigger",
+      "change": "Ordinary extra bosses never start boss camera or portrait effects",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_bossintros_mod_gml_boss_trigger"
+    },
+    {
+      "index": 344,
+      "file": "bosses/ravenboss.mod.gml",
+      "script": "ravenboss_create",
+      "change": "The extra bird does not change music from its delayed intro coroutine",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_ravenboss_mod_gml_ravenboss_create"
+    },
+    {
+      "index": 345,
+      "file": "bosses/ravenboss.mod.gml",
+      "script": "ravenboss_create",
+      "change": "An ordinary bird never resumes the delayed boss-intro timer reset",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_ravenboss_mod_gml_ravenboss_create"
+    },
+    {
+      "index": 346,
+      "file": "bosses/turtles.mod.gml",
+      "script": "turtle_step",
+      "change": "An individual extra turtle cannot consume the normal turtle introduction",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_turtles_mod_gml_turtle_step"
+    },
+    {
+      "index": 347,
+      "file": "bosses/ravenboss.mod.gml",
+      "script": "ravenboss_callbackup",
+      "change": "Normal Big Birds share a cap of 20 living summoned Ravens, grounded or flying",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_ravenboss_mod_gml_ravenboss_callbackup"
+    },
+    {
+      "index": 348,
+      "file": "bosses/ravenboss.mod.gml",
+      "script": "ravenboss_callbackup",
+      "change": "Tag summons across native Raven flight/landing changes without counting naturally spawned Ravens",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_ravenboss_mod_gml_ravenboss_callbackup"
+    },
+    {
+      "index": 349,
+      "file": "bosses/ravenboss.mod.gml",
+      "script": "ravenboss_create",
+      "change": "Big Bird has 120 HP, independent of normal player and loop scaling",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_ravenboss_mod_gml_ravenboss_create"
+    },
+    {
+      "index": 350,
+      "file": "enemies.mod.gml",
+      "script": "enemyrogue_create",
+      "change": "Track a separate Rogue strike cooldown",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_enemyrogue_create"
+    },
+    {
+      "index": 351,
+      "file": "enemies.mod.gml",
+      "script": "enemyrogue_step",
+      "change": "Rogue cooldown uses native logical time",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_enemyrogue_step"
+    },
+    {
+      "index": 352,
+      "file": "enemies.mod.gml",
+      "script": "enemyrogue_step",
+      "change": "Do not roll another strike during the extra two-second recovery",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_enemyrogue_step"
+    },
+    {
+      "index": 353,
+      "file": "enemies.mod.gml",
+      "script": "enemyrogue_step",
+      "change": "Add two seconds after each Rogue strike",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_enemyrogue_step"
+    },
+    {
+      "index": 354,
+      "file": "enemies.mod.gml",
+      "script": "enemyrogue_step",
+      "change": "A clear strike path returns noone, which must never be read as a wall instance",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_enemyrogue_step"
+    },
+    {
+      "index": 355,
+      "file": "enemies.mod.gml",
+      "script": "enemyrogue_step",
+      "change": "Never query a sound asset as a sprite during Rogue strike",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_enemyrogue_step"
+    },
+    {
+      "index": 356,
+      "file": "enemies.mod.gml",
+      "script": "enemyrogue_step",
+      "change": "Remove the second invalid strike sprite query",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_enemyrogue_step"
+    },
+    {
+      "index": 357,
+      "file": "options.mod.gml",
+      "script": "basicload",
+      "change": "Keep twelfth setting read inside the saved-settings scope",
+      "status": "IMPORTED",
+      "resolution": "hm_options_mod_gml_basicload"
+    },
+    {
+      "index": 358,
+      "file": "options.mod.gml",
+      "script": "basicsave",
+      "change": "Persist Throne-ball reflection toggle",
+      "status": "IMPORTED",
+      "resolution": "hm_options_mod_gml_basicsave"
+    },
+    {
+      "index": 359,
+      "file": "options.mod.gml",
+      "script": "chat_command",
+      "change": "Expose persistent Throne-ball option",
+      "status": "IMPORTED",
+      "resolution": "hm_options_mod_gml_chat_command"
+    },
+    {
+      "index": 360,
+      "file": "options.mod.gml",
+      "script": "step",
+      "change": "Add twelfth settings row within the native 240-pixel panel",
+      "status": "MOBILE_EQUIVALENT",
+      "resolution": "Touch-accessible Hardmode options retain Chinese labels and existing mutation selection; Bossbar, throneballs and playerboost switches use the same saved fields."
+    },
+    {
+      "index": 361,
+      "file": "options.mod.gml",
+      "script": "hm_settings_toggle",
+      "change": "Add twelfth settings row within the native 240-pixel panel",
+      "status": "MOBILE_EQUIVALENT",
+      "resolution": "Touch-accessible Hardmode options retain Chinese labels and existing mutation selection; Bossbar, throneballs and playerboost switches use the same saved fields."
+    },
+    {
+      "index": 362,
+      "file": "options.mod.gml",
+      "script": "draw_gui",
+      "change": "Add twelfth settings row within the native 240-pixel panel",
+      "status": "MOBILE_EQUIVALENT",
+      "resolution": "Touch-accessible Hardmode options retain Chinese labels and existing mutation selection; Bossbar, throneballs and playerboost switches use the same saved fields."
+    },
+    {
+      "index": 363,
+      "file": "enemies.mod.gml",
+      "script": "step",
+      "change": "Throne big-ball reflection follows the default-on option",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_step"
+    },
+    {
+      "index": 364,
+      "file": "enemies.mod.gml",
+      "script": "step",
+      "change": "The same option controls the second-phase Throne balls",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_step"
+    },
+    {
+      "index": 365,
+      "file": "bosses/ravenboss.mod.gml",
+      "script": "ravenboss_create",
+      "change": "Custom extra Boss constructor bypasses eager native health scaling; shared factory applies +5% per loop once",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_ravenboss_mod_gml_ravenboss_create"
+    },
+    {
+      "index": 366,
+      "file": "bosses/gatorboss.mod.gml",
+      "script": "gatorboss_create",
+      "change": "Custom extra Boss constructor bypasses eager native health scaling; shared factory applies +5% per loop once",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_gatorboss_mod_gml_gatorboss_create"
+    },
+    {
+      "index": 367,
+      "file": "enemies.mod.gml",
+      "script": "enemyrogue_create",
+      "change": "Custom extra Boss constructor bypasses eager native health scaling; shared factory applies +5% per loop once",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_enemyrogue_create"
+    },
+    {
+      "index": 368,
+      "file": "bosses/turtles.mod.gml",
+      "script": "turtle1_create",
+      "change": "Custom extra Boss constructor bypasses eager native health scaling; shared factory applies +5% per loop once",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_turtles_mod_gml_turtle1_create"
+    },
+    {
+      "index": 369,
+      "file": "bosses/turtles.mod.gml",
+      "script": "turtle2_create",
+      "change": "Custom extra Boss constructor bypasses eager native health scaling; shared factory applies +5% per loop once",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_turtles_mod_gml_turtle2_create"
+    },
+    {
+      "index": 370,
+      "file": "bosses/turtles.mod.gml",
+      "script": "turtle3_create",
+      "change": "Custom extra Boss constructor bypasses eager native health scaling; shared factory applies +5% per loop once",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_turtles_mod_gml_turtle3_create"
+    },
+    {
+      "index": 371,
+      "file": "bosses/turtles.mod.gml",
+      "script": "turtle4_create",
+      "change": "Custom extra Boss constructor bypasses eager native health scaling; shared factory applies +5% per loop once",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_turtles_mod_gml_turtle4_create"
+    },
+    {
+      "index": 372,
+      "file": "bosses/ratboss.mod.gml",
+      "script": "ratboss_create",
+      "change": "Extra Rat baseline bypasses the synchronous native loop-health setter before its first assignment",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_ratboss_mod_gml_ratboss_create"
+    },
+    {
+      "index": 373,
+      "file": "enemies.mod.gml",
+      "script": "enemyrogue_create",
+      "change": "Custom ordinary Boss AI uses its own baseline loop count",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_enemyrogue_create"
+    },
+    {
+      "index": 374,
+      "file": "maincode.mod.gml",
+      "script": "game_start",
+      "change": "Initialize the run-owned player-enhancement option and clear completed route markers",
+      "status": "IMPORTED",
+      "resolution": "hm_maincode_mod_gml_game_start"
+    },
+    {
+      "index": 375,
+      "file": "areas/banditcamp.area.gml",
+      "script": "area_transit",
+      "change": "Preserve debug destinations and consume a physical palace-vault exit before area detours",
+      "status": "UNLOADED_UPSTREAM_FILE",
+      "resolution": "Not loaded by either the supplied native MOD entrypoint or the mobile module graph; active equivalents remain loaded."
+    },
+    {
+      "index": 376,
+      "file": "areas/banditcamp.area.gml",
+      "script": "area_finish",
+      "change": "Debug teleport selects the requested room without the source area advancing it",
+      "status": "UNLOADED_UPSTREAM_FILE",
+      "resolution": "Not loaded by either the supplied native MOD entrypoint or the mobile module graph; active equivalents remain loaded."
+    },
+    {
+      "index": 377,
+      "file": "areas/bigdog.area.gml",
+      "script": "area_transit",
+      "change": "Preserve debug destinations and consume a physical palace-vault exit before area detours",
+      "status": "UNLOADED_UPSTREAM_FILE",
+      "resolution": "Not loaded by either the supplied native MOD entrypoint or the mobile module graph; active equivalents remain loaded."
+    },
+    {
+      "index": 378,
+      "file": "areas/bigdog.area.gml",
+      "script": "area_finish",
+      "change": "Debug teleport selects the requested room without the source area advancing it",
+      "status": "UNLOADED_UPSTREAM_FILE",
+      "resolution": "Not loaded by either the supplied native MOD entrypoint or the mobile module graph; active equivalents remain loaded."
+    },
+    {
+      "index": 379,
+      "file": "areas/caves.area.gml",
+      "script": "area_transit",
+      "change": "Preserve debug destinations and consume a physical palace-vault exit before area detours",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_caves_area_gml_area_transit"
+    },
+    {
+      "index": 380,
+      "file": "areas/caves.area.gml",
+      "script": "area_finish",
+      "change": "Debug teleport selects the requested room without the source area advancing it",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_caves_area_gml_area_finish"
+    },
+    {
+      "index": 381,
+      "file": "areas/cavesinv.area.gml",
+      "script": "area_transit",
+      "change": "Preserve debug destinations and consume a physical palace-vault exit before area detours",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_cavesinv_area_gml_area_transit"
+    },
+    {
+      "index": 382,
+      "file": "areas/cavesinv.area.gml",
+      "script": "area_finish",
+      "change": "Debug teleport selects the requested room without the source area advancing it",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_cavesinv_area_gml_area_finish"
+    },
+    {
+      "index": 383,
+      "file": "areas/city.area.gml",
+      "script": "area_transit",
+      "change": "Preserve debug destinations and consume a physical palace-vault exit before area detours",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_city_area_gml_area_transit"
+    },
+    {
+      "index": 384,
+      "file": "areas/city.area.gml",
+      "script": "area_finish",
+      "change": "Debug teleport selects the requested room without the source area advancing it",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_city_area_gml_area_finish"
+    },
+    {
+      "index": 385,
+      "file": "areas/elevator.area.gml",
+      "script": "area_transit",
+      "change": "Preserve debug destinations and consume a physical palace-vault exit before area detours",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_elevator_area_gml_area_transit"
+    },
+    {
+      "index": 386,
+      "file": "areas/elevator.area.gml",
+      "script": "area_finish",
+      "change": "Debug teleport selects the requested room without the source area advancing it",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_elevator_area_gml_area_finish"
+    },
+    {
+      "index": 387,
+      "file": "areas/end.area.gml",
+      "script": "area_transit",
+      "change": "Preserve debug destinations and consume a physical palace-vault exit before area detours",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_end_area_gml_area_transit"
+    },
+    {
+      "index": 388,
+      "file": "areas/end.area.gml",
+      "script": "area_finish",
+      "change": "Debug teleport selects the requested room without the source area advancing it",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_end_area_gml_area_finish"
+    },
+    {
+      "index": 389,
+      "file": "areas/HQ.area.gml",
+      "script": "area_transit",
+      "change": "Preserve debug destinations and consume a physical palace-vault exit before area detours",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_HQ_area_gml_area_transit"
+    },
+    {
+      "index": 390,
+      "file": "areas/HQ.area.gml",
+      "script": "area_finish",
+      "change": "Debug teleport selects the requested room without the source area advancing it",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_HQ_area_gml_area_finish"
+    },
+    {
+      "index": 391,
+      "file": "areas/icecave.area.gml",
+      "script": "area_transit",
+      "change": "Preserve debug destinations and consume a physical palace-vault exit before area detours",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_icecave_area_gml_area_transit"
+    },
+    {
+      "index": 392,
+      "file": "areas/icecave.area.gml",
+      "script": "area_finish",
+      "change": "Debug teleport selects the requested room without the source area advancing it",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_icecave_area_gml_area_finish"
+    },
+    {
+      "index": 393,
+      "file": "areas/jungle.area.gml",
+      "script": "area_transit",
+      "change": "Preserve debug destinations and consume a physical palace-vault exit before area detours",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_jungle_area_gml_area_transit"
+    },
+    {
+      "index": 394,
+      "file": "areas/jungle.area.gml",
+      "script": "area_finish",
+      "change": "Debug teleport selects the requested room without the source area advancing it",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_jungle_area_gml_area_finish"
+    },
+    {
+      "index": 395,
+      "file": "areas/junkyard.area.gml",
+      "script": "area_transit",
+      "change": "Preserve debug destinations and consume a physical palace-vault exit before area detours",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_junkyard_area_gml_area_transit"
+    },
+    {
+      "index": 396,
+      "file": "areas/junkyard.area.gml",
+      "script": "area_finish",
+      "change": "Debug teleport selects the requested room without the source area advancing it",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_junkyard_area_gml_area_finish"
+    },
+    {
+      "index": 397,
+      "file": "areas/labs.area.gml",
+      "script": "area_transit",
+      "change": "Preserve debug destinations and consume a physical palace-vault exit before area detours",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_labs_area_gml_area_transit"
+    },
+    {
+      "index": 398,
+      "file": "areas/labs.area.gml",
+      "script": "area_finish",
+      "change": "Debug teleport selects the requested room without the source area advancing it",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_labs_area_gml_area_finish"
+    },
+    {
+      "index": 399,
+      "file": "areas/mansion.area.gml",
+      "script": "area_transit",
+      "change": "Preserve debug destinations and consume a physical palace-vault exit before area detours",
+      "status": "UNLOADED_UPSTREAM_FILE",
+      "resolution": "Not loaded by either the supplied native MOD entrypoint or the mobile module graph; active equivalents remain loaded."
+    },
+    {
+      "index": 400,
+      "file": "areas/mansion.area.gml",
+      "script": "area_finish",
+      "change": "Debug teleport selects the requested room without the source area advancing it",
+      "status": "UNLOADED_UPSTREAM_FILE",
+      "resolution": "Not loaded by either the supplied native MOD entrypoint or the mobile module graph; active equivalents remain loaded."
+    },
+    {
+      "index": 401,
+      "file": "areas/nightdesert.area.gml",
+      "script": "area_transit",
+      "change": "Preserve debug destinations and consume a physical palace-vault exit before area detours",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_nightdesert_area_gml_area_transit"
+    },
+    {
+      "index": 402,
+      "file": "areas/nightdesert.area.gml",
+      "script": "area_finish",
+      "change": "Debug teleport selects the requested room without the source area advancing it",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_nightdesert_area_gml_area_finish"
+    },
+    {
+      "index": 403,
+      "file": "areas/noyetihere.area.gml",
+      "script": "area_transit",
+      "change": "Preserve debug destinations and consume a physical palace-vault exit before area detours",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_noyetihere_area_gml_area_transit"
+    },
+    {
+      "index": 404,
+      "file": "areas/noyetihere.area.gml",
+      "script": "area_finish",
+      "change": "Debug teleport selects the requested room without the source area advancing it",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_noyetihere_area_gml_area_finish"
+    },
+    {
+      "index": 405,
+      "file": "areas/oasis.area.gml",
+      "script": "area_transit",
+      "change": "Preserve debug destinations and consume a physical palace-vault exit before area detours",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_oasis_area_gml_area_transit"
+    },
+    {
+      "index": 406,
+      "file": "areas/oasis.area.gml",
+      "script": "area_finish",
+      "change": "Debug teleport selects the requested room without the source area advancing it",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_oasis_area_gml_area_finish"
+    },
+    {
+      "index": 407,
+      "file": "areas/palace.area.gml",
+      "script": "area_transit",
+      "change": "Preserve debug destinations and consume a physical palace-vault exit before area detours",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_palace_area_gml_area_transit"
+    },
+    {
+      "index": 408,
+      "file": "areas/palace.area.gml",
+      "script": "area_finish",
+      "change": "Debug teleport selects the requested room without the source area advancing it",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_palace_area_gml_area_finish"
+    },
+    {
+      "index": 409,
+      "file": "areas/ravenboss.area.gml",
+      "script": "area_transit",
+      "change": "Preserve debug destinations and consume a physical palace-vault exit before area detours",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_ravenboss_area_gml_area_transit"
+    },
+    {
+      "index": 410,
+      "file": "areas/ravenboss.area.gml",
+      "script": "area_finish",
+      "change": "Debug teleport selects the requested room without the source area advancing it",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_ravenboss_area_gml_area_finish"
+    },
+    {
+      "index": 411,
+      "file": "areas/scorpionboss.area.gml",
+      "script": "area_transit",
+      "change": "Preserve debug destinations and consume a physical palace-vault exit before area detours",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_scorpionboss_area_gml_area_transit"
+    },
+    {
+      "index": 412,
+      "file": "areas/scorpionboss.area.gml",
+      "script": "area_finish",
+      "change": "Debug teleport selects the requested room without the source area advancing it",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_scorpionboss_area_gml_area_finish"
+    },
+    {
+      "index": 413,
+      "file": "areas/sewers.area.gml",
+      "script": "area_transit",
+      "change": "Preserve debug destinations and consume a physical palace-vault exit before area detours",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_sewers_area_gml_area_transit"
+    },
+    {
+      "index": 414,
+      "file": "areas/sewers.area.gml",
+      "script": "area_finish",
+      "change": "Debug teleport selects the requested room without the source area advancing it",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_sewers_area_gml_area_finish"
+    },
+    {
+      "index": 415,
+      "file": "areas/throne.area.gml",
+      "script": "area_transit",
+      "change": "Preserve debug destinations and consume a physical palace-vault exit before area detours",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_throne_area_gml_area_transit"
+    },
+    {
+      "index": 416,
+      "file": "areas/throne.area.gml",
+      "script": "area_finish",
+      "change": "Debug teleport selects the requested room without the source area advancing it",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_throne_area_gml_area_finish"
+    },
+    {
+      "index": 417,
+      "file": "areas/turtles.area.gml",
+      "script": "area_transit",
+      "change": "Preserve debug destinations and consume a physical palace-vault exit before area detours",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_turtles_area_gml_area_transit"
+    },
+    {
+      "index": 418,
+      "file": "areas/turtles.area.gml",
+      "script": "area_finish",
+      "change": "Debug teleport selects the requested room without the source area advancing it",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_turtles_area_gml_area_finish"
+    },
+    {
+      "index": 419,
+      "file": "areas/venuz.area.gml",
+      "script": "area_transit",
+      "change": "Preserve debug destinations and consume a physical palace-vault exit before area detours",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_venuz_area_gml_area_transit"
+    },
+    {
+      "index": 420,
+      "file": "areas/venuz.area.gml",
+      "script": "area_finish",
+      "change": "Debug teleport selects the requested room without the source area advancing it",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_venuz_area_gml_area_finish"
+    },
+    {
+      "index": 421,
+      "file": "areas/palace.area.gml",
+      "script": "area_finish",
+      "change": "Only an actual completed crown selection routes to Throne",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_palace_area_gml_area_finish"
+    },
+    {
+      "index": 422,
+      "file": "areas/throne.area.gml",
+      "script": "area_setup",
+      "change": "Consume the physical vault marker only after Throne is selected",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_throne_area_gml_area_setup"
+    },
+    {
+      "index": 423,
+      "file": "bosses/ravenboss.mod.gml",
+      "script": "ravenboss_create",
+      "change": "Do not create an arrival coroutine for an extra Big Bird",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_ravenboss_mod_gml_ravenboss_create"
+    },
+    {
+      "index": 424,
+      "file": "enemies.mod.gml",
+      "script": "enemyrogue_create",
+      "change": "Extra Rogue starts in combat without its boss-arrival police portals",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_enemyrogue_create"
+    },
+    {
+      "index": 425,
+      "file": "maincode.mod.gml",
+      "script": "step",
+      "change": "Replace enemy-times-all-radiation scans with one shared spatial index",
+      "status": "IMPORTED",
+      "resolution": "hm_maincode_mod_gml_step"
+    },
+    {
+      "index": 426,
+      "file": "maincode.mod.gml",
+      "script": "step",
+      "change": "Carry native IDPD transition style through custom source/destination areas and own L3 spawn gates",
+      "status": "IMPORTED",
+      "resolution": "hm_maincode_mod_gml_step"
+    },
+    {
+      "index": 427,
+      "file": "enemies.mod.gml",
+      "script": "step",
+      "change": "Destroyed L3 police van bodies use Freak corpse art",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_step"
+    },
+    {
+      "index": 428,
+      "file": "enemies.mod.gml",
+      "script": "vanexplo",
+      "change": "L3 van explosions leave only Freak passenger corpses, without exit ownership",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_vanexplo"
+    },
+    {
+      "index": 429,
+      "file": "options.mod.gml",
+      "script": "basicload",
+      "change": "Read optional player boost from its appended saved-settings slot",
+      "status": "IMPORTED",
+      "resolution": "hm_options_mod_gml_basicload"
+    },
+    {
+      "index": 430,
+      "file": "options.mod.gml",
+      "script": "basicsave",
+      "change": "Persist player HP and level-cap enhancement switch",
+      "status": "IMPORTED",
+      "resolution": "hm_options_mod_gml_basicsave"
+    },
+    {
+      "index": 431,
+      "file": "options.mod.gml",
+      "script": "chat_command",
+      "change": "Expose player enhancement through the saved options dispatcher",
+      "status": "IMPORTED",
+      "resolution": "hm_options_mod_gml_chat_command"
+    },
+    {
+      "index": 432,
+      "file": "options.mod.gml",
+      "script": "step",
+      "change": "Thirteen settings rows fit the native 240-pixel interface",
+      "status": "MOBILE_EQUIVALENT",
+      "resolution": "Touch-accessible Hardmode options retain Chinese labels and existing mutation selection; Bossbar, throneballs and playerboost switches use the same saved fields."
+    },
+    {
+      "index": 433,
+      "file": "options.mod.gml",
+      "script": "hm_settings_toggle",
+      "change": "Thirteen settings rows fit the native 240-pixel interface",
+      "status": "MOBILE_EQUIVALENT",
+      "resolution": "Touch-accessible Hardmode options retain Chinese labels and existing mutation selection; Bossbar, throneballs and playerboost switches use the same saved fields."
+    },
+    {
+      "index": 434,
+      "file": "options.mod.gml",
+      "script": "draw_gui",
+      "change": "Thirteen settings rows fit the native 240-pixel interface",
+      "status": "MOBILE_EQUIVALENT",
+      "resolution": "Touch-accessible Hardmode options retain Chinese labels and existing mutation selection; Bossbar, throneballs and playerboost switches use the same saved fields."
+    },
+    {
+      "index": 435,
+      "file": "options.mod.gml",
+      "script": "draw_gui",
+      "change": "State explicitly that HP and mutation-cap settings apply on the next run",
+      "status": "MOBILE_EQUIVALENT",
+      "resolution": "Touch-accessible Hardmode options retain Chinese labels and existing mutation selection; Bossbar, throneballs and playerboost switches use the same saved fields."
+    },
+    {
+      "index": 436,
+      "file": "enemies.mod.gml",
+      "script": "makeavan_step",
+      "change": "Cancel queued van controllers in the campfire room",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_makeavan_step"
+    },
+    {
+      "index": 437,
+      "file": "enemies.mod.gml",
+      "script": "IDPDTank_create",
+      "change": "Do not let a delayed robot constructor enter 0-0",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_IDPDTank_create"
+    },
+    {
+      "index": 438,
+      "file": "areas/end.area.gml",
+      "script": "area_setup",
+      "change": "Disable native police arrivals throughout the 0-0 campfire room",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_end_area_gml_area_setup"
+    },
+    {
+      "index": 439,
+      "file": "enemies.mod.gml",
+      "script": "step",
+      "change": "Consume each native van conversion once, before constructing body/callbacks",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_step"
+    },
+    {
+      "index": 440,
+      "file": "enemies.mod.gml",
+      "script": "vanguide",
+      "change": "Latch the robot request even across repeated or fractional-clock updates",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_vanguide"
+    },
+    {
+      "index": 441,
+      "file": "enemies.mod.gml",
+      "script": "vanguide",
+      "change": "Complete the one-shot robot request block",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_vanguide"
+    },
+    {
+      "index": 442,
+      "file": "enemies.mod.gml",
+      "script": "makeavan_step",
+      "change": "Only queue one delayed police van per controller",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_makeavan_step"
+    },
+    {
+      "index": 443,
+      "file": "enemies.mod.gml",
+      "script": "makeavan_step",
+      "change": "Close the queued-van latch",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_makeavan_step"
+    },
+    {
+      "index": 444,
+      "file": "enemies.mod.gml",
+      "script": "makeavan_step",
+      "change": "Recheck the campfire exclusion after the delayed van wait resumes",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_makeavan_step"
+    },
+    {
+      "index": 445,
+      "file": "enemies.mod.gml",
+      "script": "vanguide",
+      "change": "Remove the four repeated portal-image trails from a driving police van",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_vanguide"
+    },
+    {
+      "index": 446,
+      "file": "enemies.mod.gml",
+      "script": "idpdtankmissile_step",
+      "change": "Share one rocket-flight loop instead of restarting a voice for every missile tick",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_idpdtankmissile_step"
+    },
+    {
+      "index": 447,
+      "file": "areas/junkyard.area.gml",
+      "script": "area_transit",
+      "change": "Reject floor-generator destinations unsupported by junkyard (only rooms4/5 exist)",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_junkyard_area_gml_area_transit"
+    },
+    {
+      "index": 448,
+      "file": "areas/ravenboss.area.gml",
+      "script": "area_transit",
+      "change": "Recognize both numeric and legacy custom scrapyard sources for 3-3",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_ravenboss_area_gml_area_transit"
+    },
+    {
+      "index": 449,
+      "file": "areas/city.area.gml",
+      "script": "area_setup",
+      "change": "Frozen City B-side in 5-4 and 5-5 until the normal boss music starts",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_city_area_gml_area_setup"
+    },
+    {
+      "index": 450,
+      "file": "areas/palace.area.gml",
+      "script": "area_setup",
+      "change": "Palace B-side in 7-4 and 7-5",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_palace_area_gml_area_setup"
+    },
+    {
+      "index": 451,
+      "file": "areas/throne.area.gml",
+      "script": "area_setup",
+      "change": "Preserve Palace B-side into the Throne approach, leaving boss combat music intact",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_throne_area_gml_area_setup"
+    },
+    {
+      "index": 452,
+      "file": "bosses/ravenboss.mod.gml",
+      "script": "ravenboss_step",
+      "change": "Five-second arrival grace applies to custom extra bosses too",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_ravenboss_mod_gml_ravenboss_step"
+    },
+    {
+      "index": 453,
+      "file": "bosses/turtles.mod.gml",
+      "script": "turtle_step",
+      "change": "Five-second arrival grace applies to custom extra bosses too",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_turtles_mod_gml_turtle_step"
+    },
+    {
+      "index": 454,
+      "file": "enemies.mod.gml",
+      "script": "enemyrogue_step",
+      "change": "Five-second arrival grace applies to custom extra bosses too",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_enemyrogue_step"
+    },
+    {
+      "index": 455,
+      "file": "hm_grillskills.mod.gml",
+      "script": "hm_grill_apply",
+      "change": "Do not overwrite native mutation hit coordinates before input sampling",
+      "status": "EXCLUDED_PER_USER",
+      "resolution": "Mobile retains its existing mutation selector; do not import Grillskills."
+    },
+    {
+      "index": 456,
+      "file": "areas/sewers.area.gml",
+      "script": "area_start",
+      "change": "Invalidate stationary-actor water samples after the final shoreline-art pass",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_sewers_area_gml_area_start"
+    },
+    {
+      "index": 457,
+      "file": "areas/HQ.area.gml",
+      "script": "area_pop_enemies",
+      "change": "Include Necromancers in HQ starting at Loop3, on unoccupied clear floor",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_HQ_area_gml_area_pop_enemies"
+    },
+    {
+      "index": 458,
+      "file": "areas/throne.area.gml",
+      "script": "area_make_floor",
+      "change": "Carve the full generator alcoves, floors and statues in the boss-side half of the hall",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_throne_area_gml_area_make_floor"
+    },
+    {
+      "index": 459,
+      "file": "areas/throne.area.gml",
+      "script": "area_make_floor",
+      "change": "Center the right generator within its authored alcove, matching the left side",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_throne_area_gml_area_make_floor"
+    },
+    {
+      "index": 460,
+      "file": "areas/throne.area.gml",
+      "script": "area_make_floor",
+      "change": "Keep the two generator-area statues symmetric",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_throne_area_gml_area_make_floor"
+    },
+    {
+      "index": 461,
+      "file": "props.mod.gml",
+      "script": "Flower_step",
+      "change": "Latch the Jungle feeding interaction once the fight is cleared",
+      "status": "IMPORTED",
+      "resolution": "hm_props_mod_gml_Flower_step"
+    },
+    {
+      "index": 462,
+      "file": "props.mod.gml",
+      "script": "Flower_step",
+      "change": "Carry the actual rider instance during the Flower flight, rather than treating a player slot as an instance",
+      "status": "IMPORTED",
+      "resolution": "hm_props_mod_gml_Flower_step"
+    },
+    {
+      "index": 463,
+      "file": "props.mod.gml",
+      "script": "Flower_step",
+      "change": "Restore the same actual rider instance when the Flower finishes its flight",
+      "status": "IMPORTED",
+      "resolution": "hm_props_mod_gml_Flower_step"
+    },
+    {
+      "index": 464,
+      "file": "areas/city.area.gml",
+      "script": "area_pop_enemies",
+      "change": "Naturally spawn awake armed Snow Bandits in Frozen City, including Loop0",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_city_area_gml_area_pop_enemies"
+    },
+    {
+      "index": 465,
+      "file": "areas/city.area.gml",
+      "script": "area_pop_enemies",
+      "change": "Use the green Ice Cave Spider in loop Frozen City, without adding normal Spiders or Laser Crystals",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_city_area_gml_area_pop_enemies"
+    },
+    {
+      "index": 466,
+      "file": "areas/icecave.area.gml",
+      "script": "area_pop_enemies",
+      "change": "Add the same awake Snow Bandits to loop Ice Caves",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_icecave_area_gml_area_pop_enemies"
+    },
+    {
+      "index": 467,
+      "file": "areas/jungle.area.gml",
+      "script": "area_pop_enemies",
+      "change": "Add ordinary and strengthened Gators to loop Jungle",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_jungle_area_gml_area_pop_enemies"
+    },
+    {
+      "index": 468,
+      "file": "bosses/gatorboss.mod.gml",
+      "script": "gatorboss_step",
+      "change": "Extra Super Gators wait five logical seconds before acting",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_gatorboss_mod_gml_gatorboss_step"
+    },
+    {
+      "index": 469,
+      "file": "bosses/gatorboss.mod.gml",
+      "script": "gatorboss_step",
+      "change": "Extra Super Gators bypass the normal introduction, music and portal bursts",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_gatorboss_mod_gml_gatorboss_step"
+    },
+    {
+      "index": 470,
+      "file": "bosses/gatorboss.mod.gml",
+      "script": "gatorboss_create",
+      "change": "Assign the actual hurt sound, not a playback result",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_gatorboss_mod_gml_gatorboss_create"
+    },
+    {
+      "index": 471,
+      "file": "bosses/gatorboss.mod.gml",
+      "script": "gatorboss_create",
+      "change": "Assign the death sound without playing it on spawn",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_gatorboss_mod_gml_gatorboss_create"
+    },
+    {
+      "index": 472,
+      "file": "bosses/gatorboss.mod.gml",
+      "script": "gatorboss_death",
+      "change": "Extra boss deaths cannot enter the normal victory music or outro callback",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_gatorboss_mod_gml_gatorboss_death"
+    },
+    {
+      "index": 473,
+      "file": "bosses/ravenboss.mod.gml",
+      "script": "ravenboss_death",
+      "change": "Extra boss deaths cannot enter the normal victory music or outro callback",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_ravenboss_mod_gml_ravenboss_death"
+    },
+    {
+      "index": 474,
+      "file": "bosses/turtles.mod.gml",
+      "script": "turtle_dead",
+      "change": "Extra boss deaths cannot enter the normal victory music or outro callback",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_turtles_mod_gml_turtle_dead"
+    },
+    {
+      "index": 475,
+      "file": "bosses/gatorboss.mod.gml",
+      "script": "gatorboss_step",
+      "change": "Capture the actual Super Gator before native effects and delayed callbacks",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_gatorboss_mod_gml_gatorboss_step"
+    },
+    {
+      "index": 476,
+      "file": "bosses/gatorboss.mod.gml",
+      "script": "gatorboss_step",
+      "change": "Charging particle pitch, movement and depth use owner snapshots rather than implicit other",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_gatorboss_mod_gml_gatorboss_step"
+    },
+    {
+      "index": 477,
+      "file": "bosses/gatorboss.mod.gml",
+      "script": "gatorboss_step",
+      "change": "Charging spiral keeps the same source, team, angle and timing through native construction",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_gatorboss_mod_gml_gatorboss_step"
+    },
+    {
+      "index": 478,
+      "file": "bosses/gatorboss.mod.gml",
+      "script": "gatorboss_step",
+      "change": "A positive target ID is not proof that the player instance still exists",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_gatorboss_mod_gml_gatorboss_step"
+    },
+    {
+      "index": 479,
+      "file": "bosses/gatorboss.mod.gml",
+      "script": "gatorboss_step",
+      "change": "Do not start charging at a deleted player",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_gatorboss_mod_gml_gatorboss_step"
+    },
+    {
+      "index": 480,
+      "file": "bosses/gatorboss.mod.gml",
+      "script": "gatorboss_step",
+      "change": "Do not read the target coordinates after its instance was removed",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_gatorboss_mod_gml_gatorboss_step"
+    },
+    {
+      "index": 481,
+      "file": "bosses/gatorboss.mod.gml",
+      "script": "gatorboss_step",
+      "change": "Avoid reading a missing floor while the scene is being cleared",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_gatorboss_mod_gml_gatorboss_step"
+    },
+    {
+      "index": 482,
+      "file": "bosses/gatorboss.mod.gml",
+      "script": "gatorboss_step",
+      "change": "Resume fist emission only in the still-living captured Gator context",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_gatorboss_mod_gml_gatorboss_step"
+    },
+    {
+      "index": 483,
+      "file": "bosses/gatorboss.mod.gml",
+      "script": "gatorboss_step",
+      "change": "Fist damage identity does not depend on a native constructor caller",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_gatorboss_mod_gml_gatorboss_step"
+    },
+    {
+      "index": 484,
+      "file": "bosses/gatorboss.mod.gml",
+      "script": "gatorboss_step",
+      "change": "Capture normal or extra attack scaling from the owner before projectile construction",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_gatorboss_mod_gml_gatorboss_step"
+    },
+    {
+      "index": 485,
+      "file": "bosses/gatorboss.mod.gml",
+      "script": "gatorboss_step",
+      "change": "Keep the fist on its captured owner team",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_gatorboss_mod_gml_gatorboss_step"
+    },
+    {
+      "index": 486,
+      "file": "bosses/gatorboss.mod.gml",
+      "script": "gatorboss_step",
+      "change": "Use the captured fist direction",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_gatorboss_mod_gml_gatorboss_step"
+    },
+    {
+      "index": 487,
+      "file": "bosses/gatorboss.mod.gml",
+      "script": "gatorboss_step",
+      "change": "Keep the real Gator as fist creator",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_gatorboss_mod_gml_gatorboss_step"
+    },
+    {
+      "index": 488,
+      "file": "bosses/gatorboss.mod.gml",
+      "script": "gatorboss_step",
+      "change": "Resume muzzle particles in the captured owner context too",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_gatorboss_mod_gml_gatorboss_step"
+    },
+    {
+      "index": 489,
+      "file": "bosses/gatorboss.mod.gml",
+      "script": "gatorboss_step",
+      "change": "Use the captured direction for delayed smoke",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_gatorboss_mod_gml_gatorboss_step"
+    },
+    {
+      "index": 490,
+      "file": "bosses/gatorboss.mod.gml",
+      "script": "gatorboss_step",
+      "change": "Use the captured direction for delayed shells",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_gatorboss_mod_gml_gatorboss_step"
+    },
+    {
+      "index": 491,
+      "file": "bosses/gatorboss.mod.gml",
+      "script": "gatorboss_step",
+      "change": "Stop the delayed introduction bursts when the captured boss no longer exists",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_gatorboss_mod_gml_gatorboss_step"
+    },
+    {
+      "index": 492,
+      "file": "maincode.mod.gml",
+      "script": "step",
+      "change": "Keep cursed-cave portal hops in a fixed ten-tile-diameter disk at native creation position",
+      "status": "IMPORTED",
+      "resolution": "hm_maincode_mod_gml_step"
+    },
+    {
+      "index": 493,
+      "file": "bosses/turtles.mod.gml",
+      "script": "turtle1_create",
+      "change": "Initialize the turtle weapon renderer before its first AI step and arrival grace",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_turtles_mod_gml_turtle1_create"
+    },
+    {
+      "index": 494,
+      "file": "bosses/turtles.mod.gml",
+      "script": "turtle2_create",
+      "change": "Initialize the turtle weapon renderer before its first AI step and arrival grace",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_turtles_mod_gml_turtle2_create"
+    },
+    {
+      "index": 495,
+      "file": "bosses/turtles.mod.gml",
+      "script": "turtle3_create",
+      "change": "Initialize the turtle weapon renderer before its first AI step and arrival grace",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_turtles_mod_gml_turtle3_create"
+    },
+    {
+      "index": 496,
+      "file": "bosses/turtles.mod.gml",
+      "script": "turtle4_create",
+      "change": "Initialize the turtle weapon renderer before its first AI step and arrival grace",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_turtles_mod_gml_turtle4_create"
+    },
+    {
+      "index": 497,
+      "file": "bosses/gatorboss.mod.gml",
+      "script": "gatorboss_create",
+      "change": "Super Gator has 120 HP, matching Big Bird without the old coop/loop multipliers",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_gatorboss_mod_gml_gatorboss_create"
+    },
+    {
+      "index": 498,
+      "file": "enemies.mod.gml",
+      "script": "step",
+      "change": "Exclude Toxic Frog bullets from the repeated bullet-to-radiation-maggot feedback path",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_step"
+    },
+    {
+      "index": 499,
+      "file": "bosses/gatorboss.mod.gml",
+      "script": "gatorboss_death",
+      "change": "Do not start a stage-boss death camera while another stage boss is alive",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_gatorboss_mod_gml_gatorboss_death"
+    },
+    {
+      "index": 500,
+      "file": "bosses/ravenboss.mod.gml",
+      "script": "ravenboss_death",
+      "change": "Do not start a stage-boss death camera while another stage boss is alive",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_ravenboss_mod_gml_ravenboss_death"
+    },
+    {
+      "index": 501,
+      "file": "bosses/turtles.mod.gml",
+      "script": "turtle_dead",
+      "change": "Do not start a stage-boss death camera while another stage boss is alive",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_turtles_mod_gml_turtle_dead"
+    },
+    {
+      "index": 502,
+      "file": "maincode.mod.gml",
+      "script": "game_start",
+      "change": "Reset the first outside-Venus YV presentation once per run",
+      "status": "IMPORTED",
+      "resolution": "hm_maincode_mod_gml_game_start"
+    },
+    {
+      "index": 503,
+      "file": "enemies.mod.gml",
+      "script": "enemyrogue_create",
+      "change": "Give the normal Lieutenant a stable boss identity for encounter and bars",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_enemyrogue_create"
+    },
+    {
+      "index": 504,
+      "file": "enemies.mod.gml",
+      "script": "enemyrogue_create",
+      "change": "Do not classify the revived ordinary Freak as a stage boss",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_enemyrogue_create"
+    },
+    {
+      "index": 505,
+      "file": "enemies.mod.gml",
+      "script": "enemyyv_create",
+      "change": "Initialize the grounded final boss HP before any native death check",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_enemyyv_create"
+    },
+    {
+      "index": 506,
+      "file": "enemies.mod.gml",
+      "script": "enemyyv_create",
+      "change": "L3 final phase uses the actual native golden-TV YV boss AI, retaining 150 HP",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_enemyyv_create"
+    },
+    {
+      "index": 507,
+      "file": "enemies.mod.gml",
+      "script": "yv_dead",
+      "change": "Only the Venus arena produces the finishing car; ordinary maps keep normal progression",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_yv_dead"
+    },
+    {
+      "index": 508,
+      "file": "enemies.mod.gml",
+      "script": "step",
+      "change": "Remove vehicle bodies from native enemy counts while retaining damage and native contact attacks",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_step"
+    },
+    {
+      "index": 509,
+      "file": "areas/elevator.area.gml",
+      "script": "area_start",
+      "change": "Set the 6-3 screen to exactly 99999 HP",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_elevator_area_gml_area_start"
+    },
+    {
+      "index": 510,
+      "file": "areas/elevator.area.gml",
+      "script": "area_start",
+      "change": "Mark the elevator progression sentinel as noncombat",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_elevator_area_gml_area_start"
+    },
+    {
+      "index": 511,
+      "file": "props.mod.gml",
+      "script": "elevator_step",
+      "change": "Use one logical exit timer and remove elevator collision before the IDPD exit becomes usable",
+      "status": "IMPORTED",
+      "resolution": "hm_props_mod_gml_elevator_step"
+    },
+    {
+      "index": 512,
+      "file": "props.mod.gml",
+      "script": "elevator_create",
+      "change": "Own one elevator exit/timer instead of starting overlapping yielded tasks",
+      "status": "IMPORTED",
+      "resolution": "hm_props_mod_gml_elevator_create"
+    },
+    {
+      "index": 513,
+      "file": "bosses/gungod.mod.gml",
+      "script": "GunGod_create",
+      "change": "Keep the helicopter alive until its explicit one-shot phase handoff",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_gungod_mod_gml_GunGod_create"
+    },
+    {
+      "index": 514,
+      "file": "bosses/gungod.mod.gml",
+      "script": "GunGod_create",
+      "change": "Outside Venus the final boss respects wall collision",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_gungod_mod_gml_GunGod_create"
+    },
+    {
+      "index": 515,
+      "file": "bosses/gungod.mod.gml",
+      "script": "GunGod_create",
+      "change": "Retain a unique owner token through native rocket explosion and fire hit IDs",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_gungod_mod_gml_GunGod_create"
+    },
+    {
+      "index": 516,
+      "file": "bosses/gungod.mod.gml",
+      "script": "GunGod_hurt",
+      "change": "Latch the helicopter transition before creating its protected landing actor",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_gungod_mod_gml_GunGod_hurt"
+    },
+    {
+      "index": 517,
+      "file": "bosses/gungod.mod.gml",
+      "script": "yungbullet",
+      "change": "Keep the landing sentinel and hull until phase two has actually been created",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_gungod_mod_gml_yungbullet"
+    },
+    {
+      "index": 518,
+      "file": "bosses/gungod.mod.gml",
+      "script": "GunGod_step",
+      "change": "Spawn-relative orbit, gold tank rockets and visible slower sniper shots outside Venus; owned cleanup only",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_gungod_mod_gml_GunGod_step"
+    },
+    {
+      "index": 519,
+      "file": "hm_bossbar.mod.gml",
+      "script": "draw",
+      "change": "Move the inactive Throne bar to screen top",
+      "status": "IMPORTED",
+      "resolution": "hm_hm_bossbar_mod_gml_draw"
+    },
+    {
+      "index": 520,
+      "file": "hm_bossbar.mod.gml",
+      "script": "draw",
+      "change": "Move active Throne I to screen top",
+      "status": "IMPORTED",
+      "resolution": "hm_hm_bossbar_mod_gml_draw"
+    },
+    {
+      "index": 521,
+      "file": "hm_bossbar.mod.gml",
+      "script": "draw",
+      "change": "Top-bar bosses do not also receive a normal overhead bar",
+      "status": "IMPORTED",
+      "resolution": "hm_hm_bossbar_mod_gml_draw"
+    },
+    {
+      "index": 522,
+      "file": "hm_bossbar.mod.gml",
+      "script": "draw_gui",
+      "change": "Add top bars for Titank, Scorpion, Rat, Rogue, both final phases and native YV",
+      "status": "IMPORTED",
+      "resolution": "hm_hm_bossbar_mod_gml_draw_gui"
+    },
+    {
+      "index": 523,
+      "file": "hm_bossbar.mod.gml",
+      "script": "hm_custom_boss_name",
+      "change": "Recognize normal Rogue and the native-AI YV phase",
+      "status": "IMPORTED",
+      "resolution": "hm_hm_bossbar_mod_gml_hm_custom_boss_name"
+    },
+    {
+      "index": 524,
+      "file": "enemies.mod.gml",
+      "script": "step",
+      "change": "Retain native Van damage, knockback and hurt feedback on its non-enemy hitbox",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_step"
+    },
+    {
+      "index": 525,
+      "file": "props.mod.gml",
+      "script": "flag_hurt",
+      "change": "Keep noncombat prop fragments out of native room-exit corpse ownership",
+      "status": "IMPORTED",
+      "resolution": "hm_props_mod_gml_flag_hurt"
+    },
+    {
+      "index": 526,
+      "file": "props.mod.gml",
+      "script": "fishskull_dead",
+      "change": "Keep noncombat prop fragments out of native room-exit corpse ownership",
+      "status": "IMPORTED",
+      "resolution": "hm_props_mod_gml_fishskull_dead"
+    },
+    {
+      "index": 527,
+      "file": "props.mod.gml",
+      "script": "bigtube1_dead",
+      "change": "Keep noncombat prop fragments out of native room-exit corpse ownership",
+      "status": "IMPORTED",
+      "resolution": "hm_props_mod_gml_bigtube1_dead"
+    },
+    {
+      "index": 528,
+      "file": "props.mod.gml",
+      "script": "bigtube2_dead",
+      "change": "Keep noncombat prop fragments out of native room-exit corpse ownership",
+      "status": "IMPORTED",
+      "resolution": "hm_props_mod_gml_bigtube2_dead"
+    },
+    {
+      "index": 529,
+      "file": "areas/scorpionboss.area.gml",
+      "script": "area_pop_props",
+      "change": "Preplaced desert corpse decorations do not own room-clear exits",
+      "status": "IMPORTED",
+      "resolution": "hm_areas_scorpionboss_area_gml_area_pop_props"
+    },
+    {
+      "index": 530,
+      "file": "enemies.mod.gml",
+      "script": "enemychicken_dead",
+      "change": "A severed head fragment does not replace the living headless enemy corpse",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_enemychicken_dead"
+    },
+    {
+      "index": 531,
+      "file": "enemies.mod.gml",
+      "script": "step",
+      "change": "Clean marked Horror bullets once after all existing/new Horror setup",
+      "status": "IMPORTED",
+      "resolution": "hm_enemies_mod_gml_step"
+    },
+    {
+      "index": 532,
+      "file": "maincode.mod.gml",
+      "script": "step",
+      "change": "Convert tank-owned bullets in one pass instead of tanks multiplied by bullets",
+      "status": "IMPORTED",
+      "resolution": "hm_maincode_mod_gml_step"
+    },
+    {
+      "index": 533,
+      "file": "maincode.mod.gml",
+      "script": "step",
+      "change": "Keep Hunter predictive dodge collision every frame without allocating a team-filter array",
+      "status": "IMPORTED",
+      "resolution": "hm_maincode_mod_gml_step"
+    },
+    {
+      "index": 534,
+      "file": "props.mod.gml",
+      "script": "draw_shadows",
+      "change": "Draw compact shadow casters directly, preserving the two render passes",
+      "status": "IMPORTED",
+      "resolution": "hm_props_mod_gml_draw_shadows"
+    },
+    {
+      "index": 535,
+      "file": "bosses/ravenboss.mod.gml",
+      "script": "ravenboss_step",
+      "change": "Carry the firing Big Bird ID through its rocket, explosion and fire damage sources",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_ravenboss_mod_gml_ravenboss_step"
+    },
+    {
+      "index": 536,
+      "file": "bosses/ravenboss.mod.gml",
+      "script": "ravenboss_hurt",
+      "change": "Ignore only this Big Bird's own rocket damage before HP, evade and hurt effects; normal and extra birds share the callback",
+      "status": "IMPORTED",
+      "resolution": "hm_bosses_ravenboss_mod_gml_ravenboss_hurt"
+    },
+    {
+      "index": 537,
+      "file": "arkintide.mod.gml",
+      "script": "hm_water_tick",
+      "change": "Apply deduplicated water speed cap after native Player input; preserve dry movement",
+      "status": "IMPORTED",
+      "resolution": "hm_arkintide_mod_gml_hm_water_tick"
+    },
+    {
+      "index": 538,
+      "file": "arkintide.mod.gml",
+      "script": "hm_venus_boss_bounds",
+      "change": "Recover the grounded Venus final boss from wall overlap using its last safe position or nearest clear floor",
+      "status": "IMPORTED",
+      "resolution": "hm_arkintide_mod_gml_hm_venus_boss_bounds"
+    },
+    {
+      "index": 539,
+      "file": "arkintide.mod.gml",
+      "script": "hm_throne_start",
+      "change": "Use finished floor geometry for bottom-center entry and full-mask throne placement; fit carpet to hall",
+      "status": "IMPORTED",
+      "resolution": "hm_arkintide_mod_gml_hm_throne_start"
+    },
+    {
+      "index": 540,
+      "file": "arkintide.mod.gml",
+      "script": "hm_palace_horror",
+      "change": "Cancel native 25-rad Horror death bonus while preserving absorbed radiation and bounded reproduction",
+      "status": "IMPORTED",
+      "resolution": "hm_arkintide_mod_gml_hm_palace_horror"
+    },
+    {
+      "index": 541,
+      "file": "arkintide.mod.gml",
+      "script": "hm_radiation",
+      "change": "Apply signed DogGuardian 10/20 and Raven/SnowBot 1/native radiation policies; exempt Hardmode Horror budgets",
+      "status": "IMPORTED",
+      "resolution": "hm_arkintide_mod_gml_hm_radiation"
+    },
+    {
+      "index": 542,
+      "file": "arkintide.mod.gml",
+      "script": "hm_warning_icon",
+      "change": "Share direct warning-image drawing, cover van charge/start phases, and restore draw state",
+      "status": "IMPORTED",
+      "resolution": "hm_arkintide_mod_gml_hm_warning_icon"
+    }
+  ],
+  "compatibility_reviews": [
+    {
+      "source": "bosses/gatorboss.mod.gml",
+      "definition": "gatorboss_step",
+      "old_line": 85,
+      "status": "NATIVE_REPLACED_SUBTREE_REVIEW",
+      "resolution": "Native target guards plus retained mobile emitted guard; custom fist timers and collision adapters remain.",
+      "review_status": "RESOLVED"
+    },
+    {
+      "source": "bosses/titank.mod.gml",
+      "definition": "titank_create",
+      "old_line": 241,
+      "status": "NATIVE_REPLACED_SUBTREE_REVIEW",
+      "resolution": "Native body-owned jump completion, independent leg indices and damage receivers replace the old jump fix; retained host receiver registration is idempotent.",
+      "review_status": "RESOLVED"
+    },
+    {
+      "source": "bosses/titank.mod.gml",
+      "definition": "titank_create",
+      "old_line": 839,
+      "status": "NATIVE_REPLACED_SUBTREE_REVIEW",
+      "resolution": "Native body-owned jump completion, independent leg indices and damage receivers replace the old jump fix; retained host receiver registration is idempotent.",
+      "review_status": "RESOLVED"
+    },
+    {
+      "source": "bosses/titank.mod.gml",
+      "definition": "titank_create",
+      "old_line": 979,
+      "status": "NATIVE_REPLACED_SUBTREE_REVIEW",
+      "resolution": "Native body-owned jump completion, independent leg indices and damage receivers replace the old jump fix; retained host receiver registration is idempotent.",
+      "review_status": "RESOLVED"
+    },
+    {
+      "source": "bosses/titank.mod.gml",
+      "definition": "titank_create",
+      "old_line": 979,
+      "status": "NATIVE_REPLACED_SUBTREE_REVIEW",
+      "resolution": "Native body-owned jump completion, independent leg indices and damage receivers replace the old jump fix; retained host receiver registration is idempotent.",
+      "review_status": "RESOLVED"
+    },
+    {
+      "source": "bosses/titank.mod.gml",
+      "definition": "titank_create",
+      "old_line": 979,
+      "status": "NATIVE_REPLACED_SUBTREE_REVIEW",
+      "resolution": "Native body-owned jump completion, independent leg indices and damage receivers replace the old jump fix; retained host receiver registration is idempotent.",
+      "review_status": "RESOLVED"
+    },
+    {
+      "source": "bosses/titank.mod.gml",
+      "definition": "titank_create",
+      "old_line": 980,
+      "status": "NATIVE_REPLACED_SUBTREE_REVIEW",
+      "resolution": "Native body-owned jump completion, independent leg indices and damage receivers replace the old jump fix; retained host receiver registration is idempotent.",
+      "review_status": "RESOLVED"
+    },
+    {
+      "source": "bosses/titank.mod.gml",
+      "definition": "titank_create",
+      "old_line": 981,
+      "status": "NATIVE_REPLACED_SUBTREE_REVIEW",
+      "resolution": "Native body-owned jump completion, independent leg indices and damage receivers replace the old jump fix; retained host receiver registration is idempotent.",
+      "review_status": "RESOLVED"
+    },
+    {
+      "source": "bosses/titank.mod.gml",
+      "definition": "titank_create",
+      "old_line": 988,
+      "status": "NATIVE_REPLACED_SUBTREE_REVIEW",
+      "resolution": "Native body-owned jump completion, independent leg indices and damage receivers replace the old jump fix; retained host receiver registration is idempotent.",
+      "review_status": "RESOLVED"
+    },
+    {
+      "source": "bosses/titank.mod.gml",
+      "definition": "titank_create",
+      "old_line": 990,
+      "status": "NATIVE_REPLACED_SUBTREE_REVIEW",
+      "resolution": "Native body-owned jump completion, independent leg indices and damage receivers replace the old jump fix; retained host receiver registration is idempotent.",
+      "review_status": "RESOLVED"
+    },
+    {
+      "source": "areas/city.area.gml",
+      "definition": "area_start",
+      "old_line": 80,
+      "status": "NATIVE_REPLACED_SUBTREE_REVIEW",
+      "resolution": "Native room-owned hm_hunter_pending and wanttitank controllers replace the old host pending marker.",
+      "review_status": "RESOLVED"
+    },
+    {
+      "source": "maincode.mod.gml",
+      "definition": "step",
+      "old_line": 375,
+      "status": "NATIVE_REPLACED_SUBTREE_REVIEW",
+      "resolution": "Native water, police, cave restoration and canister policies replace old branches. Host overrides preserve five-point swimming, portal enums, authored-wall filtering and van class guard.",
+      "review_status": "RESOLVED"
+    },
+    {
+      "source": "maincode.mod.gml",
+      "definition": "step",
+      "old_line": 378,
+      "status": "NATIVE_REPLACED_SUBTREE_REVIEW",
+      "resolution": "Native water, police, cave restoration and canister policies replace old branches. Host overrides preserve five-point swimming, portal enums, authored-wall filtering and van class guard.",
+      "review_status": "RESOLVED"
+    },
+    {
+      "source": "maincode.mod.gml",
+      "definition": "step",
+      "old_line": 499,
+      "status": "NATIVE_REPLACED_SUBTREE_REVIEW",
+      "resolution": "Native water, police, cave restoration and canister policies replace old branches. Host overrides preserve five-point swimming, portal enums, authored-wall filtering and van class guard.",
+      "review_status": "RESOLVED"
+    },
+    {
+      "source": "enemies.mod.gml",
+      "definition": "step",
+      "old_line": 176,
+      "status": "NATIVE_REPLACED_SUBTREE_REVIEW",
+      "resolution": "Native rat-revival setting and palace Horror helper replace old branches; carried rider-mask and corpse conversions remain.",
+      "review_status": "RESOLVED"
+    },
+    {
+      "source": "enemies.mod.gml",
+      "definition": "step",
+      "old_line": 283,
+      "status": "NATIVE_REPLACED_SUBTREE_REVIEW",
+      "resolution": "Native rat-revival setting and palace Horror helper replace old branches; carried rider-mask and corpse conversions remain.",
+      "review_status": "RESOLVED"
+    },
+    {
+      "source": "enemies.mod.gml",
+      "definition": "IDPDLaserCannon_step",
+      "old_line": 3207,
+      "status": "NATIVE_REPLACED_SUBTREE_REVIEW",
+      "resolution": "Native bounded beam distance and aim-lock replace the old scan; carried host beam orientation/particle fix remains.",
+      "review_status": "RESOLVED"
+    },
+    {
+      "source": "props.mod.gml",
+      "definition": "draw_shadows",
+      "old_line": 116,
+      "status": "NATIVE_REPLACED_SUBTREE_REVIEW",
+      "resolution": "Native draw helper restricts shadow work to CustomObject and Effect; no all-bullet scan.",
+      "review_status": "RESOLVED"
+    },
+    {
+      "source": "props.mod.gml",
+      "definition": "draw_shadows",
+      "old_line": 118,
+      "status": "NATIVE_REPLACED_SUBTREE_REVIEW",
+      "resolution": "Native draw helper restricts shadow work to CustomObject and Effect; no all-bullet scan.",
+      "review_status": "RESOLVED"
+    },
+    {
+      "source": "props.mod.gml",
+      "definition": "elevator_step",
+      "old_line": 2317,
+      "status": "NATIVE_REPLACED_SUBTREE_REVIEW",
+      "resolution": "Native clear-gate countdown disables the blocking mask before opening an IDPD portal; native final value 2 already matches the mobile Portal enum.",
+      "review_status": "RESOLVED"
+    },
+    {
+      "source": "props.mod.gml",
+      "definition": "joao_shockwave",
+      "old_line": 2412,
+      "status": "NATIVE_REPLACED_SUBTREE_REVIEW",
+      "resolution": "Native non-destructive wall palette conversion plus carried host cursed-actor and ammo-subclass conversions preserve collision and avoid duplicate deaths.",
+      "review_status": "RESOLVED"
+    },
+    {
+      "source": "props.mod.gml",
+      "definition": "joao_shockwave",
+      "old_line": 2434,
+      "status": "NATIVE_REPLACED_SUBTREE_REVIEW",
+      "resolution": "Native non-destructive wall palette conversion plus carried host cursed-actor and ammo-subclass conversions preserve collision and avoid duplicate deaths.",
+      "review_status": "RESOLVED"
+    },
+    {
+      "source": "props.mod.gml",
+      "definition": "joao_shockwave",
+      "old_line": 2576,
+      "status": "NATIVE_REPLACED_SUBTREE_REVIEW",
+      "resolution": "Native non-destructive wall palette conversion plus carried host cursed-actor and ammo-subclass conversions preserve collision and avoid duplicate deaths.",
+      "review_status": "RESOLVED"
+    },
+    {
+      "source": "props.mod.gml",
+      "definition": "joao_shockwave",
+      "old_line": 2630,
+      "status": "NATIVE_REPLACED_SUBTREE_REVIEW",
+      "resolution": "Native non-destructive wall palette conversion plus carried host cursed-actor and ammo-subclass conversions preserve collision and avoid duplicate deaths.",
+      "review_status": "RESOLVED"
+    },
+    {
+      "source": "areas/palace.area.gml",
+      "name": "area_start",
+      "pass": 105,
+      "status": "NATIVE_SUPERSEDES_REVIEW",
+      "error": "Palace generator placement must use coordinate deduplication",
+      "resolution": "Native authored-wall list and hm_generator_at coordinate deduplication replace the old palace adapter.",
+      "review_status": "RESOLVED"
+    },
+    {
+      "source": "areas/palace.area.gml",
+      "name": "area_pop_enemies",
+      "pass": 105,
+      "status": "NATIVE_SUPERSEDES_REVIEW",
+      "error": "",
+      "resolution": "Native hm_horror_base initializes the small palace Horror directly; no old 10016-HP placeholder.",
+      "review_status": "RESOLVED"
+    },
+    {
+      "source": "bosses/ravenboss.mod.gml",
+      "name": "ravenboss_step",
+      "pass": 105,
+      "status": "NATIVE_SUPERSEDES_REVIEW",
+      "error": "",
+      "resolution": "Native single alarm decrement, point-distance landing, bounded flight age and radial movement replace the old flight patch.",
+      "review_status": "RESOLVED"
+    },
+    {
+      "source": "enemies.mod.gml",
+      "name": "enemyrogue_step",
+      "pass": 105,
+      "status": "NATIVE_SUPERSEDES_REVIEW",
+      "error": "",
+      "resolution": "Native source removed unused SOUND-as-sprite dimensions; portal strike still uses strike_x/strike_y.",
+      "review_status": "RESOLVED"
+    }
+  ],
+  "structural_checks": {
+    "raven flight uses point distance": true,
+    "rogue avoids sound sprite queries": true,
+    "native beam has bounded search": true,
+    "new callbacks registered": true,
+    "no imported Grillskills": true,
+    "mobile water adapter": true,
+    "throne annex generated before walls": true,
+    "host van class excluded from repeated portal requests": true,
+    "native maxlevel mapped to mobile cap": true,
+    "crown visits mapped to host": true,
+    "native loop pool has no duplicate host roll": true,
+    "mobile pause retry uses synchronized elevator": true
+  },
+  "limits": [
+    "This ledger records implementation coverage, not individual runtime acceptance of all 543 historical transformations."
+  ]
+}

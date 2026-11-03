@@ -36,6 +36,8 @@ if instance_exists(GameCont) {
 }
 
 
+if(scrHMEnabled() && (variable_instance_get(GameCont,"hm_transition_idpd")??false)) type=SpiralType.IDPD;
+
 // [60帧适配] 预热循环按「帧」计数，60fps 下会少模拟一半逻辑步 → 按 timescale 折算次数。
 //
 repeat (round(150 / timescale)) {

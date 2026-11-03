@@ -1,46 +1,82 @@
-// Source areas/HQ.area.gml:1; __load
-function hm_areas_HQ_area_gml___load() {
-
-}
-
-// Source areas/HQ.area.gml:1; area_name
-function hm_areas_HQ_area_gml_area_name() {
-return ("HQ" + string(GameCont.subarea));
-;
-}
-
-// Source areas/HQ.area.gml:4; area_sprite
-function hm_areas_HQ_area_gml_area_sprite(_hml_q) {
-switch (_hml_q) {
-case sprFloor1:
-return sprFloor106;
-;
-case sprFloor1B:
-return sprFloor106B;
-;
-case sprFloor1Explo:
-return sprFloor106Explo;
-;
-case sprWall1Trans:
-return sprWall106Trans;
-;
-case sprWall1Bot:
-return sprWall106Bot;
-;
-case sprWall1Out:
-return sprWall106Out;
-;
-case sprWall1Top:
-return sprWall106Top;
-;
-case sprDebris1:
-return sprDebris106;
-;
-}
-}
-
-// Source areas/HQ.area.gml:16; area_transit
+// Source areas/HQ.area.gml:1; __load
+function hm_areas_HQ_area_gml___load() {
+
+}
+
+// Source areas/HQ.area.gml:1; area_name
+function hm_areas_HQ_area_gml_area_name() {
+return ("HQ" + string(GameCont.subarea));
+;
+}
+
+// Source areas/HQ.area.gml:4; area_sprite
+function hm_areas_HQ_area_gml_area_sprite(_hml_q) {
+switch (_hml_q) {
+case sprFloor1:
+return sprFloor106;
+;
+case sprFloor1B:
+return sprFloor106B;
+;
+case sprFloor1Explo:
+return sprFloor106Explo;
+;
+case sprWall1Trans:
+return sprWall106Trans;
+;
+case sprWall1Bot:
+return sprWall106Bot;
+;
+case sprWall1Out:
+return sprWall106Out;
+;
+case sprWall1Top:
+return sprWall106Top;
+;
+case sprDebris1:
+return sprDebris106;
+;
+}
+}
+
+// Source areas/HQ.area.gml:0; area_transit (native content 1.1.0)
 function hm_areas_HQ_area_gml_area_transit() {
+if ((scrHMVariableExists(GameCont, "hm_debug_pending") && GameCont.hm_debug_pending)) {
+{
+area = scrHMAreaResolve(GameCont.hm_debug_area);
+;
+subarea = GameCont.hm_debug_sub;
+;
+return;
+;
+}
+}
+if ((scrHMVariableExists(GameCont, "hm_crown_return") && GameCont.hm_crown_return)) {
+hm_arkintide_mod_gml_hm_crown_watch();
+}
+if (((scrHMVariableExists(GameCont, "hm_crown_exit_ready") && GameCont.hm_crown_exit_ready) && (area != scrHMAreaResolve(100)))) {
+{
+area = scrHMAreaResolve("throne");
+;
+subarea = 1;
+;
+GameCont.hm_destination = "throne";
+;
+return;
+;
+}
+}
+if ((area == scrHMAreaResolve(100))) {
+return;
+}
+if ((scrHMVariableExists(GameCont, "hm_destination") && (GameCont.hm_destination != ""))) {
+{
+area = scrHMAreaResolve(GameCont.hm_destination);
+;
+return;
+;
+}
+}
 if (((lastarea != scrHMAreaResolve("HQ")) && (lastarea == scrHMAreaResolve("idpd")))) {
 {
 area = scrHMAreaResolve("HQ");
@@ -52,8 +88,18 @@ subarea = 1;
 }
 }
 
-// Source areas/HQ.area.gml:23; area_finish
+// Source areas/HQ.area.gml:0; area_finish (native content 1.1.0)
 function hm_areas_HQ_area_gml_area_finish() {
+if ((scrHMVariableExists(GameCont, "hm_debug_pending") && GameCont.hm_debug_pending)) {
+{
+area = scrHMAreaResolve(GameCont.hm_debug_area);
+;
+subarea = GameCont.hm_debug_sub;
+;
+return;
+;
+}
+}
 if ((subarea < 4)) {
 {
 area = scrHMAreaResolve("HQ");
@@ -71,8 +117,10 @@ subarea = 3;
 }
 }
 
-// Source areas/HQ.area.gml:33; area_setup
+// Source areas/HQ.area.gml:0; area_setup (native content 1.1.0)
 function hm_areas_HQ_area_gml_area_setup() {
+GameCont.hm_destination = "";
+;
 scrHMSoundMusic(mus106);
 ;
 scrHMSoundAmbient(amb106);
@@ -99,10 +147,16 @@ background_set_colour(make_color_rgb(245, 250, 251));
 ;
 BackCont.shadow_color = 9184256;
 ;
+hm_arkintide_mod_gml_hm_map_budget();
+;
+TopCont.darkness = (GameCont.loops >= 3);
+;
 }
 
-// Source areas/HQ.area.gml:43; area_start
+// Source areas/HQ.area.gml:0; area_start (native content 1.1.0)
 function hm_areas_HQ_area_gml_area_start() {
+hm_arkintide_mod_gml_hm_native_unlock_area();
+;
 { var __hm_with1 = scrHMInstances(Floor), __hm_break3=false;
 for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
 if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
@@ -145,91 +199,91 @@ if(__hm_break9) break;
 }}
 }
 
-// Source areas/HQ.area.gml:59; area_make_floor
-function hm_areas_HQ_area_gml_area_make_floor() {
-var _hml_turn = choose(0, 0, 0, 0, 0, 90);
-;
-var _hml_styb = choose(0, 0, 0, 0, 0, 0, 0, 0, 0, 1);
-if ((_hml_styb == 1)) {
-{
-if ((styleb == 0)) {
-styleb = 1;
-} else {
-styleb = 0;
-}
-}
-}
-direction += _hml_turn;
-;
-if (((abs(_hml_turn) == 90) && (point_distance(x, y, 10016, 10016) > 48))) {
-{
-instance_create(x, y, Floor);
-;
-instance_create((x - 32), y, Floor);
-;
-instance_create((x - 32), (y - 32), Floor);
-;
-instance_create(x, (y - 32), Floor);
-;
-instance_create((x + 32), y, Floor);
-;
-instance_create((x + 32), (y - 32), Floor);
-;
-instance_create((x + 32), (y + 32), Floor);
-;
-instance_create(x, (y + 32), Floor);
-;
-instance_create((x - 32), (y + 32), Floor);
-;
-instance_create((x + 16), (y + 16), WeaponChest);
-;
-}
-} else {
-instance_create(x, y, Floor);
-}
-if ((random(6) < 1)) {
-{ var __hm_with1 = scrHMInstances(instance_create(x, y, FloorMaker)), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-var __hm_other4=scrHMOther(other);
-direction = (__hm_other4.direction + choose((- 90), 90));
-}
-if(__hm_break3) break;
-}}
-}
-if ((random((12 + instance_number(FloorMaker))) > 14)) {
-{
-if ((point_distance(x, y, 10016, 10016) > 48)) {
-{
-instance_create((x + 16), (y + 16), AmmoChest);
-;
-instance_create(x, y, Floor);
-;
-instance_create((x - 32), y, Floor);
-;
-instance_create((x - 32), (y - 32), Floor);
-;
-instance_create(x, (y - 32), Floor);
-;
-instance_create((x + 32), y, Floor);
-;
-instance_create((x + 32), (y - 32), Floor);
-;
-instance_create((x + 32), (y + 32), Floor);
-;
-instance_create(x, (y + 32), Floor);
-;
-instance_create((x - 32), (y + 32), Floor);
-;
-}
-}
-instance_destroy();
-;
-}
-}
-}
-
-// Source areas/HQ.area.gml:108; area_pop_enemies
+// Source areas/HQ.area.gml:59; area_make_floor
+function hm_areas_HQ_area_gml_area_make_floor() {
+var _hml_turn = choose(0, 0, 0, 0, 0, 90);
+;
+var _hml_styb = choose(0, 0, 0, 0, 0, 0, 0, 0, 0, 1);
+if ((_hml_styb == 1)) {
+{
+if ((styleb == 0)) {
+styleb = 1;
+} else {
+styleb = 0;
+}
+}
+}
+direction += _hml_turn;
+;
+if (((abs(_hml_turn) == 90) && (point_distance(x, y, 10016, 10016) > 48))) {
+{
+instance_create(x, y, Floor);
+;
+instance_create((x - 32), y, Floor);
+;
+instance_create((x - 32), (y - 32), Floor);
+;
+instance_create(x, (y - 32), Floor);
+;
+instance_create((x + 32), y, Floor);
+;
+instance_create((x + 32), (y - 32), Floor);
+;
+instance_create((x + 32), (y + 32), Floor);
+;
+instance_create(x, (y + 32), Floor);
+;
+instance_create((x - 32), (y + 32), Floor);
+;
+instance_create((x + 16), (y + 16), WeaponChest);
+;
+}
+} else {
+instance_create(x, y, Floor);
+}
+if ((random(6) < 1)) {
+{ var __hm_with1 = scrHMInstances(instance_create(x, y, FloorMaker)), __hm_break3=false;
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+var __hm_other4=scrHMOther(other);
+direction = (__hm_other4.direction + choose((- 90), 90));
+}
+if(__hm_break3) break;
+}}
+}
+if ((random((12 + instance_number(FloorMaker))) > 14)) {
+{
+if ((point_distance(x, y, 10016, 10016) > 48)) {
+{
+instance_create((x + 16), (y + 16), AmmoChest);
+;
+instance_create(x, y, Floor);
+;
+instance_create((x - 32), y, Floor);
+;
+instance_create((x - 32), (y - 32), Floor);
+;
+instance_create(x, (y - 32), Floor);
+;
+instance_create((x + 32), y, Floor);
+;
+instance_create((x + 32), (y - 32), Floor);
+;
+instance_create((x + 32), (y + 32), Floor);
+;
+instance_create(x, (y + 32), Floor);
+;
+instance_create((x - 32), (y + 32), Floor);
+;
+}
+}
+instance_destroy();
+;
+}
+}
+}
+
+// Source areas/HQ.area.gml:0; area_pop_enemies (native content 1.1.0)
 function hm_areas_HQ_area_gml_area_pop_enemies() {
 if ((random(4) < 1)) {
 instance_create((x + 16), (y + 16), Grunt);
@@ -249,21 +303,24 @@ instance_create((x + 16), (y + 16), EliteInspector);
 if ((random((500 / GameCont.subarea)) < 1)) {
 instance_create((x + 16), (y + 16), EliteShielder);
 }
+if (((GameCont.loops >= 3) && (random(48) < 1))) {
+instance_create((x + 16), (y + 16), PopoFreak);
+}
+if ((((GameCont.loops >= 3) && (random(48) < 1)) && (collision_circle((x + 16), (y + 16), 12, [Wall, InvisiWall, enemy], false, true) == noone))) {
+instance_create((x + 16), (y + 16), Necromancer);
+}
 }
 
-// Source areas/HQ.area.gml:115; area_pop_props
-function hm_areas_HQ_area_gml_area_pop_props() {
-if ((random(24) < 1)) {
-instance_create((x + 16), (y + 16), PlantPot);
-}
-}
-
-// Source areas/HQ.area.gml:119; area_mapdata
+// Source areas/HQ.area.gml:115; area_pop_props
+function hm_areas_HQ_area_gml_area_pop_props() {
+if ((random(24) < 1)) {
+instance_create((x + 16), (y + 16), PlantPot);
+}
+}
+
+// Source areas/HQ.area.gml:0; area_mapdata (native content 1.1.0)
 function hm_areas_HQ_area_gml_area_mapdata(_hml_lx, _hml_ly, _hml_lp, _hml_ls, _hml_ws, _hml_ll) {
-if ((_hml_lp == "elevator")) {
-return [(_hml_lx + 9), 0];
-} else {
-return [_hml_lx, 0];
-}
+return hm_arkintide_mod_gml_hm_mapdata("HQ", _hml_lx, _hml_ly, _hml_lp, _hml_ls, _hml_ws, _hml_ll);
 ;
 }
+

@@ -186,7 +186,7 @@ function scrHMRuntimeTests() {
     for(var _rate=30;_rate<=60;_rate+=30) {
         game_set_speed(_rate,gamespeed_fps);global.time_scale=30/_rate;
         scrHMRuntimeInit();
-        scrHMRuntimeCheck(array_length(global.hm_module_order)==45,"actual main.txt module count");
+        scrHMRuntimeCheck(array_length(global.hm_module_order)==47,"actual main.txt module count");
         scrHMRuntimeCheck(scrHMModuleKey("mod","areas/venuz.area")=="area:venuz","area API alias");
         scrHMRuntimeCheck(scrHMModuleKey("wep","weapons/secretweapon1")=="weapon:secretweapon1","weapon API alias");
         scrHMRuntimeCheck(scrHMModuleKey("mod","bossintros")=="mod:bosses/bossintros","loaded boss module basename alias");

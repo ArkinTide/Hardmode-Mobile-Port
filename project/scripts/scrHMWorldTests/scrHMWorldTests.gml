@@ -16,7 +16,7 @@ function scrHMWorldTests() {
         if(!instance_exists(TopCont)) instance_create(0,0,TopCont);
         if(!instance_exists(MusCont)) instance_create(0,0,MusCont);
         var _world=instance_create(0,0,HMWorld);
-        scrHMWorldCheck(array_length(global.hm_module_order)==45,"all supplied enabled modules registered");
+        scrHMWorldCheck(array_length(global.hm_module_order)==47,"all supplied enabled modules registered");
         var _weapons=variable_struct_get_names(global.hm_weapon_keys);
         scrHMWorldCheck(array_length(_weapons)==11&&maxwep==139,"all eleven secret weapons registered");
         for(var _i=0;_i<array_length(_weapons);++_i) {

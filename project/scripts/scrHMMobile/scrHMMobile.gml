@@ -1,9 +1,9 @@
 // Touch-accessible equivalents of the frozen MOD's console options.
 function scrHMMobileOptions() {
     scrOptionsMenuCategoryBegin(OptionCategory.Hardmode);
-    var _fields=["intropan","bossoutros","rads","weaponnames","portals","rogue","flames","ratrevive"];
+    var _fields=["intropan","bossoutros","rads","weaponnames","portals","rogue","flames","ratrevive","bossbars","throneballs","playerboost"];
     var _names=["BOSS INTRO CAMERA","BOSS OUTROS","ENEMIES ABSORB RADIATION","MOD WEAPON NAMES",
-        "MOD PORTAL EFFECTS","MOD ROGUE PICKUPS","MOD FLAME EFFECTS","RATS REVIVE AS GREEN RATS"];
+        "MOD PORTAL EFFECTS","MOD ROGUE PICKUPS","MOD FLAME EFFECTS","RATS REVIVE AS GREEN RATS","BOSS HEALTH BARS","DEFLECT THRONE BALLS","PLAYER BOOST (+2 HP, +1 LEVEL)"];
     for(var _i=0;_i<array_length(_fields);++_i) {
         scrOptionsMenuCreateElement({type:"button",name:scrHMLocalize(_names[_i]),hm_setting:_fields[_i],halign:fa_left,
             click:function(_opt) {scrHMModCall("mod","options","chat_command",_opt.hm_setting);},

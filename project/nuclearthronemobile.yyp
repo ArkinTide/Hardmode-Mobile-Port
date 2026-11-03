@@ -30068,6 +30068,120 @@
         "name": "scrHMRepairs112",
         "path": "scripts/scrHMRepairs112/scrHMRepairs112.yy"
       }
+    },
+    {
+      "id": {
+        "name": "sprHMContent1100_1",
+        "path": "sprites/sprHMContent1100_1/sprHMContent1100_1.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprHMContent1100_2",
+        "path": "sprites/sprHMContent1100_2/sprHMContent1100_2.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprHMContent1100_4",
+        "path": "sprites/sprHMContent1100_4/sprHMContent1100_4.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprHMContent1100_5",
+        "path": "sprites/sprHMContent1100_5/sprHMContent1100_5.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprHMContent1100_6",
+        "path": "sprites/sprHMContent1100_6/sprHMContent1100_6.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprHMContent1100_7",
+        "path": "sprites/sprHMContent1100_7/sprHMContent1100_7.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprHMContent1100_8",
+        "path": "sprites/sprHMContent1100_8/sprHMContent1100_8.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprHMContent1100_9",
+        "path": "sprites/sprHMContent1100_9/sprHMContent1100_9.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprHMContent1100_10",
+        "path": "sprites/sprHMContent1100_10/sprHMContent1100_10.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprHMContent1100_11",
+        "path": "sprites/sprHMContent1100_11/sprHMContent1100_11.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprHMContent1100_12",
+        "path": "sprites/sprHMContent1100_12/sprHMContent1100_12.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprHMContent1100_13",
+        "path": "sprites/sprHMContent1100_13/sprHMContent1100_13.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprHMContent1100_14",
+        "path": "sprites/sprHMContent1100_14/sprHMContent1100_14.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprHMContent1100_15",
+        "path": "sprites/sprHMContent1100_15/sprHMContent1100_15.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprHMContent1100_16",
+        "path": "sprites/sprHMContent1100_16/sprHMContent1100_16.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprHMContent1100_17",
+        "path": "sprites/sprHMContent1100_17/sprHMContent1100_17.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrHMCompiled_arkintide_mod_gml",
+        "path": "scripts/scrHMCompiled_arkintide_mod_gml/scrHMCompiled_arkintide_mod_gml.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrHMCompiled_hm_bossbar_mod_gml",
+        "path": "scripts/scrHMCompiled_hm_bossbar_mod_gml/scrHMCompiled_hm_bossbar_mod_gml.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrHMContent1100",
+        "path": "scripts/scrHMContent1100/scrHMContent1100.yy"
+      }
     }
   ],
   "resourceType": "GMProject",

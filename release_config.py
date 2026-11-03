@@ -1,5 +1,5 @@
 """Standalone Hardmode application identity."""
-VERSION = '1.0.12'
-BUILD = 13
-DIRECTORY = 'release112'
+VERSION = '1.1.0'
+BUILD = 14
+DIRECTORY = 'release1100'
 PACKAGE = 'com.arkintide.nuclearthronehardmode'

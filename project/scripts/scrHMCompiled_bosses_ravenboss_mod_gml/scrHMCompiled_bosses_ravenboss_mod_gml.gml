@@ -1,45 +1,104 @@
-// Source bosses/ravenboss.mod.gml:1; __load
-function hm_bosses_ravenboss_mod_gml___load() {
-global.hm_module_vars[$ "mod:bosses/ravenboss"].ravenbossidle = sprHM_bosses_ravenboss_mod_2;
-global.hm_module_vars[$ "mod:bosses/ravenboss"].ravenbosswalk = sprHM_bosses_ravenboss_mod_3;
-global.hm_module_vars[$ "mod:bosses/ravenboss"].ravenbosshurt = sprHM_bosses_ravenboss_mod_4;
-global.hm_module_vars[$ "mod:bosses/ravenboss"].ravenbossdead = sprHM_bosses_ravenboss_mod_5;
-global.hm_module_vars[$ "mod:bosses/ravenboss"].ravenbossdash = sprHM_bosses_ravenboss_mod_6;
-global.hm_module_vars[$ "mod:bosses/ravenboss"].ravenbosslift = sprHM_bosses_ravenboss_mod_7;
-global.hm_module_vars[$ "mod:bosses/ravenboss"].ravenbossfly = sprHM_bosses_ravenboss_mod_8;
-global.hm_module_vars[$ "mod:bosses/ravenboss"].ravenbossland = sprHM_bosses_ravenboss_mod_9;
-global.hm_module_vars[$ "mod:bosses/ravenboss"].ravenbosstell = sprHM_bosses_ravenboss_mod_10;
-;
-global.hm_module_vars[$ "mod:bosses/ravenboss"].ravenintro = sprHM_bosses_ravenboss_mod_11;
-global.hm_module_vars[$ "mod:bosses/ravenboss"].ravenintrofg = sprHM_bosses_ravenboss_mod_12;
-global.hm_module_vars[$ "mod:bosses/ravenboss"].ravenintrobg = sprHM_bosses_ravenboss_mod_13;
+// Source bosses/ravenboss.mod.gml:1; __load
+function hm_bosses_ravenboss_mod_gml___load() {
+global.hm_module_vars[$ "mod:bosses/ravenboss"].ravenbossidle = sprHM_bosses_ravenboss_mod_2;
+global.hm_module_vars[$ "mod:bosses/ravenboss"].ravenbosswalk = sprHM_bosses_ravenboss_mod_3;
+global.hm_module_vars[$ "mod:bosses/ravenboss"].ravenbosshurt = sprHM_bosses_ravenboss_mod_4;
+global.hm_module_vars[$ "mod:bosses/ravenboss"].ravenbossdead = sprHM_bosses_ravenboss_mod_5;
+global.hm_module_vars[$ "mod:bosses/ravenboss"].ravenbossdash = sprHM_bosses_ravenboss_mod_6;
+global.hm_module_vars[$ "mod:bosses/ravenboss"].ravenbosslift = sprHM_bosses_ravenboss_mod_7;
+global.hm_module_vars[$ "mod:bosses/ravenboss"].ravenbossfly = sprHM_bosses_ravenboss_mod_8;
+global.hm_module_vars[$ "mod:bosses/ravenboss"].ravenbossland = sprHM_bosses_ravenboss_mod_9;
+global.hm_module_vars[$ "mod:bosses/ravenboss"].ravenbosstell = sprHM_bosses_ravenboss_mod_10;
+;
+global.hm_module_vars[$ "mod:bosses/ravenboss"].ravenintro = sprHM_bosses_ravenboss_mod_11;
+global.hm_module_vars[$ "mod:bosses/ravenboss"].ravenintrofg = sprHM_bosses_ravenboss_mod_12;
+global.hm_module_vars[$ "mod:bosses/ravenboss"].ravenintrobg = sprHM_bosses_ravenboss_mod_13;
+}
+
+// Source bosses/ravenboss.mod.gml:17; wantravenboss_create
+function hm_bosses_ravenboss_mod_gml_wantravenboss_create(_hml__x, _hml__y) {
+{ var __hm_with1 = scrHMInstances(instance_create(_hml__x, _hml__y, CustomObject)), __hm_break3=false;
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+{
+enemies = instance_number(enemy);
+name = "wantRavenboss";
+on_step = hm_bosses_ravenboss_mod_gml_wantravenboss_step;
+return id;
+;
+}
+}
+if(__hm_break3) break;
+}}
+}
+
+// Source bosses/ravenboss.mod.gml:0; wantravenboss_step (native content 1.1.0)
+function hm_bosses_ravenboss_mod_gml_wantravenboss_step() {
+if (((instance_number(enemy) >= (enemies / 2)) || (! instance_exists(Player)))) {
+exit;
 }
-
-// Source bosses/ravenboss.mod.gml:17; wantravenboss_create
-function hm_bosses_ravenboss_mod_gml_wantravenboss_create(_hml__x, _hml__y) {
-{ var __hm_with1 = scrHMInstances(instance_create(_hml__x, _hml__y, CustomObject)), __hm_break3=false;
+var _hml_p = instance_nearest(x, y, Player);
+var _hml_f = noone;
+;
+repeat (64) {
+var _hml_r = random_range(64, 140);
+var _hml_r2 = random(360);
+;
+var _hml_candidate = instance_nearest((_hml_p.x + lengthdir_x(_hml_r2, _hml_r)), (_hml_p.y + lengthdir_y(_hml_r2, _hml_r)), Floor);
+;
+if (((instance_exists(_hml_candidate) && (_hml_candidate.object_index != FloorExplo)) && (point_distance((_hml_candidate.x + 16), (_hml_candidate.y + 16), _hml_p.x, _hml_p.y) >= 60))) {
+{
+_hml_f = _hml_candidate;
+;
+break;
+;
+}
+}
+}
+if ((! instance_exists(_hml_f))) {
+{
+var _hml_score = 1000000000;
+;
+{ var __hm_with1 = scrHMInstances(Floor), __hm_break3=false;
 for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
 if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+if ((object_index != FloorExplo)) {
 {
-enemies = instance_number(enemy);
-name = "wantRavenboss";
-on_step = hm_bosses_ravenboss_mod_gml_wantravenboss_step;
-return id;
+var _hml_dist = point_distance((x + 16), (y + 16), _hml_p.x, _hml_p.y);
 ;
+var _hml_value = (abs((_hml_dist - 100)) + ((_hml_dist < 60) ? 10000 : 0));
+;
+if ((_hml_value < _hml_score)) {
+{
+_hml_score = _hml_value;
+;
+_hml_f = id;
+;
+}
+}
+}
 }
 }
 if(__hm_break3) break;
 }}
 }
+}
+if ((! instance_exists(_hml_f))) {
+exit;
+}
+repeat (hm_arkintide_mod_gml_hm_boss_count()) hm_bosses_ravenboss_mod_gml_ravenboss_create((_hml_f.x + 16), (_hml_f.y + 16));
+;
+scrHMSoundPitchVolume(sndRavenDie, 0.6, 4);
+;
+instance_destroy();
+;
+}
 
-// Source bosses/ravenboss.mod.gml:24; wantravenboss_step
-function hm_bosses_ravenboss_mod_gml_wantravenboss_step() {scrHMRavenSpawnStep();}
-
-// Source bosses/ravenboss.mod.gml:44; ravenboss_create
+// Source bosses/ravenboss.mod.gml:0; ravenboss_create (native content 1.1.0)
 function hm_bosses_ravenboss_mod_gml_ravenboss_create() {
 var _args = [];
 for(var _i=0;_i<argument_count;++_i) array_push(_args, argument[_i]);
-return scrHMTaskStart(hm_bosses_ravenboss_mod_gml_ravenboss_create_resume, id, scrHMOther(other), _args, 13, ["_x", "_y"]);
+return scrHMTaskStart(hm_bosses_ravenboss_mod_gml_ravenboss_create_resume, id, scrHMOther(other), _args, 17, ["_x", "_y"]);
 }
 function hm_bosses_ravenboss_mod_gml_ravenboss_create_resume(_hm) {
 var _budget=0;
@@ -48,31 +107,31 @@ assert(++_budget<100000,"Hardmode runaway continuation: hm_bosses_ravenboss_mod_
 if (!instance_exists(_hm.scope)) { if(array_length(_hm.with_stack)>_hm.with_floor) {scrHMTaskWithNext(_hm); continue;} _hm.done=true; return; }
 with (_hm.scope) { switch (_hm.pc) {
 case 0: _hm.done=true; return;
-case 1: // bosses/ravenboss.mod.gml:45
+case 1: // bosses/ravenboss.mod.gml:50
 scrHMTaskWithNext(_hm);
 break;
-case 2: // bosses/ravenboss.mod.gml:45
+case 2: // bosses/ravenboss.mod.gml:50
 scrHMTaskWithAbort(_hm);
 break;
-case 3: // bosses/ravenboss.mod.gml:131
+case 3: // bosses/ravenboss.mod.gml:138
 {
 ;
 }
 _hm.pc=1;
 break;
-case 4: // bosses/ravenboss.mod.gml:131
+case 4: // bosses/ravenboss.mod.gml:138
 _hm.result=id; _hm.done=true; return;
 break;
-case 5: // bosses/ravenboss.mod.gml:129
+case 5: // bosses/ravenboss.mod.gml:136
 {
 ;
 }
 _hm.pc=4;
 break;
-case 6: // bosses/ravenboss.mod.gml:129
+case 6: // bosses/ravenboss.mod.gml:136
 _hm.result=undefined; _hm.done=true; return;
 break;
-case 7: // bosses/ravenboss.mod.gml:128
+case 7: // bosses/ravenboss.mod.gml:135
 {
 if (instance_exists(id)) {
 {
@@ -84,12 +143,12 @@ alrm0 = 1;
 }
 _hm.pc=6;
 break;
-case 8: // bosses/ravenboss.mod.gml:127
+case 8: // bosses/ravenboss.mod.gml:134
 _hm.wait_ticks=max(0,180); _hm.pc=7; return;
 break;
-case 9: // bosses/ravenboss.mod.gml:113
+case 9: // bosses/ravenboss.mod.gml:120
 {
-if ((instance_exists(id) and instance_exists(Player))) {
+if (((instance_exists(id) && (! (scrHMVariableExists(id, "hm_extra") && hm_extra))) and instance_exists(Player))) {
 {
 scrHMSoundMusic(musBoss1);
 if ((scrHMModExists("mod", "options", "intropan") and (scrHMModGet("mod", "options", "intropan") == "1"))) {
@@ -114,18 +173,32 @@ scrHMModCall("mod", "bossintros", "boss_trigger", name, global.hm_module_vars[$ 
 }
 _hm.pc=8;
 break;
-case 10: // bosses/ravenboss.mod.gml:112
-_hm.wait_ticks=max(0,45); _hm.pc=9; return;
+case 10: // bosses/ravenboss.mod.gml:119
+_hm.result=undefined; _hm.done=true; return;
 break;
-case 11: // bosses/ravenboss.mod.gml:111
-_hm.pc = (scrHMTaskFork(_hm, 10)) ? 10 : 4;
+case 11: // bosses/ravenboss.mod.gml:119
+_hm.pc = ((scrHMVariableExists(_hm.scope, "hm_extra") && hm_extra)) ? 10 : 9;
 break;
-case 12: // bosses/ravenboss.mod.gml:46
+case 12: // bosses/ravenboss.mod.gml:118
+_hm.result=undefined; _hm.done=true; return;
+break;
+case 13: // bosses/ravenboss.mod.gml:118
+_hm.pc = ((! instance_exists(_hm.scope))) ? 12 : 11;
+break;
+case 14: // bosses/ravenboss.mod.gml:117
+_hm.wait_ticks=max(0,45); _hm.pc=13; return;
+break;
+case 15: // bosses/ravenboss.mod.gml:116
+_hm.pc = (((! (scrHMVariableExists(GameCont, "hm_extra_pending") && GameCont.hm_extra_pending)) && scrHMTaskFork(_hm, 14))) ? 14 : 4;
+break;
+case 16: // bosses/ravenboss.mod.gml:51
 {
 name = "BIG BIRD";
-scrHMMaxHealthWrite(id, 250, "=");
-scrHMMaxHealthWrite(id, ((max_hp / 2) * instance_number(Player)), "+=");
-scrHMMaxHealthWrite(id, ((max_hp / 3) * GameCont.loops), "+=");
+if ((scrHMVariableExists(GameCont, "hm_extra_pending") && GameCont.hm_extra_pending)) {
+hm_maxhealth_init = false;
+}
+scrHMMaxHealthWrite(id, 120, "=");
+;
 friction = (0.4) * (timescale * timescale);
 hp = max_hp;
 ;
@@ -232,21 +305,27 @@ on_destroy = scrHMScriptRef(hm_bosses_ravenboss_mod_gml_ravenboss_death);
 ;
 animating = 1;
 }
-_hm.pc=11;
+_hm.pc=15;
 break;
-case 13: // bosses/ravenboss.mod.gml:45
-scrHMTaskWithEnter(_hm,scrHMInstances(instance_create(_hm.vars._x, _hm.vars._y, CustomEnemy)),12,0);
+case 17: // bosses/ravenboss.mod.gml:50
+scrHMTaskWithEnter(_hm,scrHMInstances(instance_create(_hm.vars._x, _hm.vars._y, CustomEnemy)),16,0);
 break;
 default: throw "Hardmode invalid continuation PC";
 }}
 }
 }
 
-
-// Source bosses/ravenboss.mod.gml:134; ravenboss_callbackup
+// Source bosses/ravenboss.mod.gml:0; ravenboss_callbackup (native content 1.1.0)
 function hm_bosses_ravenboss_mod_gml_ravenboss_callbackup() {
-if(!scrHMRavenBackup109()) return;
-repeat ((argument0 * (GameCont.loops + 1))) {
+if ((! hm_arkintide_mod_gml_hm_raven_leader())) {
+exit;
+}
+if ((! instance_exists(Floor))) {
+exit;
+}
+var _hml_slots = hm_arkintide_mod_gml_hm_raven_slots();
+;
+repeat (min(_hml_slots, max(0, floor((argument0 * (hm_arkintide_mod_gml_hm_attack_loops() + 1)))))) {
 if ((instance_exists(target) and (target > 0))) {
 { var __hm_with1 = scrHMInstances(instance_create((x + random_range(200, (- 200))), (target.y - random_range(250, 300)), Raven)), __hm_break3=false;
 for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
@@ -254,7 +333,9 @@ if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
 {
 transform = 1;
 image_alpha = 0;
-instance_change(RavenFly, true);
+scrHMContentChange1100(RavenFly,false);emergencylanding=0;z=0;
+;
+hm_bird_summon = 1;
 ;
 image_index = 0;
 ;
@@ -301,8 +382,21 @@ if(__hm_break3) break;
 }
 }
 
-// Source bosses/ravenboss.mod.gml:165; ravenboss_hurt
+// Source bosses/ravenboss.mod.gml:0; ravenboss_hurt (native content 1.1.0)
 function hm_bosses_ravenboss_mod_gml_ravenboss_hurt() {
+if ((instance_exists((scrHMOther(other))) && scrHMVariableExists((scrHMOther(other)), "hitid"))) {
+{
+var _hml_hm_bird_source = (scrHMOther(other)).hitid;
+;
+if (is_array(_hml_hm_bird_source)) {
+{
+if (((array_length(_hml_hm_bird_source) > 2) && (_hml_hm_bird_source[2] == id))) {
+exit;
+}
+}
+}
+}
+}
 evade_aux += argument0;
 ;
 nexthurt = (current_frame + 5);
@@ -356,11 +450,11 @@ alrm2 = 1;
 }
 }
 
-// Source bosses/ravenboss.mod.gml:194; ravenboss_step
+// Source bosses/ravenboss.mod.gml:0; ravenboss_step (native content 1.1.0)
 function hm_bosses_ravenboss_mod_gml_ravenboss_step() {
 var _args = [];
 for(var _i=0;_i<argument_count;++_i) array_push(_args, argument[_i]);
-return scrHMTaskStart(hm_bosses_ravenboss_mod_gml_ravenboss_step_resume, id, scrHMOther(other), _args, 15, []);
+return scrHMTaskStart(hm_bosses_ravenboss_mod_gml_ravenboss_step_resume, id, scrHMOther(other), _args, 19, []);
 }
 function hm_bosses_ravenboss_mod_gml_ravenboss_step_resume(_hm) {
 var _budget=0;
@@ -369,7 +463,7 @@ assert(++_budget<100000,"Hardmode runaway continuation: hm_bosses_ravenboss_mod_
 if (!instance_exists(_hm.scope)) { if(array_length(_hm.with_stack)>_hm.with_floor) {scrHMTaskWithNext(_hm); continue;} _hm.done=true; return; }
 with (_hm.scope) { switch (_hm.pc) {
 case 0: _hm.done=true; return;
-case 1: // bosses/ravenboss.mod.gml:325
+case 1: // bosses/ravenboss.mod.gml:347
 {
 if (instance_exists(id)) {
 {
@@ -487,6 +581,8 @@ if (((z + zspd) <= 0)) {
 {
 if ((z > 0)) {
 {
+hm_arkintide_mod_gml_hm_safe_land();
+;
 sprite_index = spr_land;
 ;
 image_index = 0;
@@ -555,7 +651,7 @@ if ((instance_exists(target) && (target > 0))) {
 {
 if ((angry == 0)) {
 {
-scrHMRavenAim105();
+hm_arkintide_mod_gml_hm_bird_aim();
 ;
 }
 }
@@ -583,7 +679,7 @@ flight_y = (_hm.vars.randfloor.y + 16);
 {
 if ((instance_exists(target) && (target > 0))) {
 {
-scrHMRavenAim105();
+hm_arkintide_mod_gml_hm_bird_aim();
 ;
 }
 }
@@ -591,7 +687,7 @@ scrHMRavenAim105();
 }
 alrm0 = (- 1);
 ;
-if ((point_distance(x,y,flight_x,flight_y) < 32)) {
+if ((point_distance(x, y, flight_x, flight_y) < 32)) {
 {
 _hm.vars.randfloor = instance_nearest((x + choose(32, (- 32))), (y + choose(32, (- 32))), Floor);
 ;
@@ -618,13 +714,18 @@ vspeed *= 0.66;
 if(__hm_break9) break;
 }}
 }
-flying = 1;hm_flight_age=0;hm_flight_locked=false;
+flying = 1;
+;
+hm_flight_age = 0;
+;
+hm_flight_locked = 0;
 ;
 }
 }
 if (flying) {
 {
-hm_flight_age=(self[$ "hm_flight_age"]??0)+1;
+hm_flight_age++;
+;
 _hm.vars._dir = point_direction(x, y, flight_x, flight_y);
 ;
 if ((z >= 48)) {
@@ -637,9 +738,9 @@ _hm.vars._maxspd = 7;
 _hm.vars._maxspd = 5;
 }
 ;
-x += lengthdir_x(min(point_distance(x,y,flight_x,flight_y)*.10,_hm.vars._maxspd), _hm.vars._dir);
+x += lengthdir_x(min((point_distance(x, y, flight_x, flight_y) * 0.10), _hm.vars._maxspd), _hm.vars._dir);
 ;
-y += lengthdir_y(min(point_distance(x,y,flight_x,flight_y)*.10,_hm.vars._maxspd), _hm.vars._dir);
+y += lengthdir_y(min((point_distance(x, y, flight_x, flight_y) * 0.10), _hm.vars._maxspd), _hm.vars._dir);
 ;
 if ((intro > 0)) {
 meleedamage = 10;
@@ -648,7 +749,7 @@ hitid = [spr_fly, name];
 ;
 }
 }
-if ((point_distance(x,y,flight_x,flight_y) < 8)) {
+if (((point_distance(x, y, flight_x, flight_y) < 8) || (hm_flight_age > 180))) {
 {
 flying = 0;
 ;
@@ -758,7 +859,7 @@ image_index = 0;
 }
 if (((instance_exists(target) && (target > 0)) && (angry == 0))) {
 {
-scrHMRavenAim105();
+hm_arkintide_mod_gml_hm_bird_aim();
 ;
 }
 }
@@ -805,7 +906,7 @@ alrm2 = 1;
 }
 _hm.pc=0;
 break;
-case 2: // bosses/ravenboss.mod.gml:272
+case 2: // bosses/ravenboss.mod.gml:294
 {
 if ((instance_exists(target) && (target > 0))) {
 {
@@ -821,7 +922,7 @@ if(instance_exists(__hm_with20[__hm_index21])) with (__hm_with20[__hm_index21]) 
 var __hm_other23=scrHMOther(other);
 creator = __hm_other23;
 var __hm_other24=scrHMOther(other);
-hitid = [__hm_other24.spr_idle, __hm_other24.name];
+hitid = [__hm_other24.spr_idle, __hm_other24.name, __hm_other24.id];
 var __hm_other25=scrHMOther(other);
 team = __hm_other25.team;
 var __hm_other26=scrHMOther(other);
@@ -856,7 +957,7 @@ alrm3 = 0;
 }
 _hm.pc=1;
 break;
-case 3: // bosses/ravenboss.mod.gml:317
+case 3: // bosses/ravenboss.mod.gml:339
 {
 if (instance_exists(id)) {
 {
@@ -869,49 +970,49 @@ alrm2 = 1;
 }
 _hm.pc=1;
 break;
-case 5: // bosses/ravenboss.mod.gml:312
+case 5: // bosses/ravenboss.mod.gml:334
 _hm.vars.__hm_repeat31--; _hm.pc=4;
 break;
-case 6: // bosses/ravenboss.mod.gml:315
+case 6: // bosses/ravenboss.mod.gml:337
 {
 ;
 }
 _hm.pc=5;
 break;
-case 7: // bosses/ravenboss.mod.gml:315
+case 7: // bosses/ravenboss.mod.gml:337
 _hm.wait_ticks=max(0,20); _hm.pc=6; return;
 break;
-case 8: // bosses/ravenboss.mod.gml:314
+case 8: // bosses/ravenboss.mod.gml:336
 {
 scrHMSoundPitch(sndNadeReload, 0.8);
 }
 _hm.pc=7;
 break;
-case 9: // bosses/ravenboss.mod.gml:313
+case 9: // bosses/ravenboss.mod.gml:335
 _hm.pc = (instance_exists(_hm.scope)) ? 8 : 5;
 break;
-case 4: // bosses/ravenboss.mod.gml:312
+case 4: // bosses/ravenboss.mod.gml:334
 _hm.pc=(_hm.vars.__hm_repeat31>0)?9:3;
 break;
-case 10: // bosses/ravenboss.mod.gml:312
+case 10: // bosses/ravenboss.mod.gml:334
 _hm.vars.__hm_repeat31=round(4); _hm.pc=4;
 break;
-case 11: // bosses/ravenboss.mod.gml:311
+case 11: // bosses/ravenboss.mod.gml:333
 _hm.pc = (scrHMTaskFork(_hm, 10)) ? 10 : 1;
 break;
-case 12: // bosses/ravenboss.mod.gml:310
+case 12: // bosses/ravenboss.mod.gml:332
 {
 alrm1 += 70;
 }
 _hm.pc=11;
 break;
-case 13: // bosses/ravenboss.mod.gml:272
+case 13: // bosses/ravenboss.mod.gml:294
 _hm.pc = ((ammo > 0)) ? 2 : 12;
 break;
-case 14: // bosses/ravenboss.mod.gml:271
-_hm.pc = ((((alrm1 == 0) and (flying == false)) and ((sprite_index==spr_idle)||(sprite_index==spr_hurt)||(sprite_index==spr_walk)))) ? 13 : 1;
+case 14: // bosses/ravenboss.mod.gml:293
+_hm.pc = ((((alrm1 == 0) and (flying == false)) and (((sprite_index == spr_idle) || (sprite_index == spr_hurt)) || (sprite_index == spr_walk)))) ? 13 : 1;
 break;
-case 15: // bosses/ravenboss.mod.gml:197
+case 15: // bosses/ravenboss.mod.gml:219
 {
 if ((((++ evade_timer) > (30 * 6)) && (evade_timer < (30 * 6)))) {
 {
@@ -922,7 +1023,6 @@ evade_aux = 0;
 if ((alrm1 > 0)) {
 alrm1--;
 }
-
 if ((alrm4 > 0)) {
 alrm4--;
 }
@@ -930,7 +1030,7 @@ if (instance_exists(Player)) {
 {
 target = instance_nearest(x, y, Player);
 ;
-if ((collision_line(x, y, target.x, target.y, Wall, 0, 1))==noone) {
+if ((collision_line(x, y, target.x, target.y, Wall, 0, 1) == noone)) {
 {
 if ((ammo > 0)) {
 gunangle = point_direction(x, y, target.x, target.y);
@@ -968,7 +1068,7 @@ angry = 0;
 }
 } else {
 {
-if ((collision_line(x, y, target.x, target.y, Wall, 0, 1))==noone) {
+if ((collision_line(x, y, target.x, target.y, Wall, 0, 1) == noone)) {
 {
 if (((distance_to_object(target) <= range_max) && (distance_to_object(target) > range_min))) {
 {
@@ -1050,42 +1150,60 @@ alrm0 = (walk + irandom(10));
 }
 _hm.pc=14;
 break;
+case 16: // bosses/ravenboss.mod.gml:215
+{
+;
+}
+_hm.pc=15;
+break;
+case 17: // bosses/ravenboss.mod.gml:215
+_hm.result=undefined; _hm.done=true; return;
+break;
+case 18: // bosses/ravenboss.mod.gml:215
+{
+speed = (0) * timescale;
+;
+}
+_hm.pc=17;
+break;
+case 19: // bosses/ravenboss.mod.gml:215
+_hm.pc = (((scrHMVariableExists(_hm.scope, "hm_extra") && hm_extra) && (! hm_arkintide_mod_gml_hm_extra_ready()))) ? 18 : 15;
+break;
 default: throw "Hardmode invalid continuation PC";
 }}
 }
 }
 
-
-// Source bosses/ravenboss.mod.gml:575; ravenboss_draw
-function hm_bosses_ravenboss_mod_gml_ravenboss_draw() {
-var _hml_shad_scale = undefined;
-;
-_hml_shad_scale = (1 - min((0.66 * (z / 96)), 0.66));
-draw_set_color(make_color_rgb(20, 20, 20));
-;
-draw_set_alpha(0.4);
-;
-draw_ellipse((x + (16 * _hml_shad_scale)), ((y + 10) + (8 * _hml_shad_scale)), (x - (16 * _hml_shad_scale)), ((y + 10) - (8 * _hml_shad_scale)), 0);
-;
-draw_set_color(c_white);
-;
-draw_set_alpha(1);
-;
-if (((gunangle < 180) && (z == 0))) {
-scrHMDrawSpriteExt(sprGatlingBazooka, 0, (x - lengthdir_x(wkick, gunangle)), ((y - z) - lengthdir_y(wkick, gunangle)), 1, right, gunangle, c_white, 1);
-}
-scrHMDrawSpriteExt(sprite_index, image_index, x, (y - z), right, 1, 0, image_blend, 1);
-;
-if (((gunangle >= 180) && (z == 0))) {
-scrHMDrawSpriteExt(sprGatlingBazooka, 0, (x - lengthdir_x(wkick, gunangle)), ((y - z) - lengthdir_y(wkick, gunangle)), 1, right, gunangle, c_white, 1);
-}
-}
-
-// Source bosses/ravenboss.mod.gml:586; ravenboss_death
+// Source bosses/ravenboss.mod.gml:575; ravenboss_draw
+function hm_bosses_ravenboss_mod_gml_ravenboss_draw() {
+var _hml_shad_scale = undefined;
+;
+_hml_shad_scale = (1 - min((0.66 * (z / 96)), 0.66));
+draw_set_color(make_color_rgb(20, 20, 20));
+;
+draw_set_alpha(0.4);
+;
+draw_ellipse((x + (16 * _hml_shad_scale)), ((y + 10) + (8 * _hml_shad_scale)), (x - (16 * _hml_shad_scale)), ((y + 10) - (8 * _hml_shad_scale)), 0);
+;
+draw_set_color(c_white);
+;
+draw_set_alpha(1);
+;
+if (((gunangle < 180) && (z == 0))) {
+scrHMDrawSpriteExt(sprGatlingBazooka, 0, (x - lengthdir_x(wkick, gunangle)), ((y - z) - lengthdir_y(wkick, gunangle)), 1, right, gunangle, c_white, 1);
+}
+scrHMDrawSpriteExt(sprite_index, image_index, x, (y - z), right, 1, 0, image_blend, 1);
+;
+if (((gunangle >= 180) && (z == 0))) {
+scrHMDrawSpriteExt(sprGatlingBazooka, 0, (x - lengthdir_x(wkick, gunangle)), ((y - z) - lengthdir_y(wkick, gunangle)), 1, right, gunangle, c_white, 1);
+}
+}
+
+// Source bosses/ravenboss.mod.gml:0; ravenboss_death (native content 1.1.0)
 function hm_bosses_ravenboss_mod_gml_ravenboss_death() {
 var _args = [];
 for(var _i=0;_i<argument_count;++_i) array_push(_args, argument[_i]);
-return scrHMTaskStart(hm_bosses_ravenboss_mod_gml_ravenboss_death_resume, id, scrHMOther(other), _args, 3, []);
+return scrHMTaskStart(hm_bosses_ravenboss_mod_gml_ravenboss_death_resume, id, scrHMOther(other), _args, 7, []);
 }
 function hm_bosses_ravenboss_mod_gml_ravenboss_death_resume(_hm) {
 var _budget=0;
@@ -1094,7 +1212,7 @@ assert(++_budget<100000,"Hardmode runaway continuation: hm_bosses_ravenboss_mod_
 if (!instance_exists(_hm.scope)) { if(array_length(_hm.with_stack)>_hm.with_floor) {scrHMTaskWithNext(_hm); continue;} _hm.done=true; return; }
 with (_hm.scope) { switch (_hm.pc) {
 case 0: _hm.done=true; return;
-case 1: // bosses/ravenboss.mod.gml:600
+case 1: // bosses/ravenboss.mod.gml:624
 {
 if (instance_exists(Player)) {
 { var __hm_with1 = scrHMInstances(_hm.vars.fl_), __hm_break3=false;
@@ -1110,10 +1228,16 @@ if(__hm_break3) break;
 }
 _hm.pc=0;
 break;
-case 2: // bosses/ravenboss.mod.gml:599
+case 2: // bosses/ravenboss.mod.gml:623
 _hm.wait_ticks=max(0,14); _hm.pc=1; return;
 break;
-case 3: // bosses/ravenboss.mod.gml:587
+case 3: // bosses/ravenboss.mod.gml:622
+_hm.result=undefined; _hm.done=true; return;
+break;
+case 4: // bosses/ravenboss.mod.gml:622
+_hm.pc = (hm_arkintide_mod_gml_hm_stage_boss_alive()) ? 3 : 2;
+break;
+case 5: // bosses/ravenboss.mod.gml:610
 {
 repeat (32) {
 { var __hm_with4 = scrHMInstances(instance_create(x, y, Feather)), __hm_break6=false;
@@ -1130,8 +1254,12 @@ speed = ((3 + random(6))) * timescale;
 if(__hm_break6) break;
 }}
 }
+if ((! hm_arkintide_mod_gml_hm_stage_boss_alive())) {
 scrHMSoundPlay(sndBossWin);
+}
+if ((! hm_arkintide_mod_gml_hm_stage_boss_alive())) {
 scrHMSoundMusic(musBossDead);
+}
 _hm.vars.xd_ = x;
 ;
 _hm.vars.yd_ = y;
@@ -1139,32 +1267,37 @@ _hm.vars.yd_ = y;
 _hm.vars.fl_ = instance_nearest(_hm.vars.xd_, _hm.vars.yd_, Floor);
 ;
 }
-_hm.pc=2;
+_hm.pc=4;
+break;
+case 6: // bosses/ravenboss.mod.gml:609
+_hm.result=undefined; _hm.done=true; return;
+break;
+case 7: // bosses/ravenboss.mod.gml:609
+_hm.pc = ((scrHMVariableExists(_hm.scope, "hm_extra") && hm_extra)) ? 6 : 5;
 break;
 default: throw "Hardmode invalid continuation PC";
 }}
 }
 }
 
-
-// Source bosses/ravenboss.mod.gml:604; boltstickfly
-function hm_bosses_ravenboss_mod_gml_boltstickfly() {
-if (instance_exists(creator)) {
-{
-x = (creator.x + (creator.hspeed / timescale));
-y = ((creator.y + (creator.vspeed / timescale)) - creator.z);
-{ var __hm_with1 = scrHMInstances(BoltStick), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-if ((target == (scrHMOther(other)).creator)) {
-var __hm_other4=scrHMOther(other);
-target = __hm_other4;
-}
-}
-if(__hm_break3) break;
-}}
-}
-} else {
-instance_destroy();
-}
-}
+// Source bosses/ravenboss.mod.gml:604; boltstickfly
+function hm_bosses_ravenboss_mod_gml_boltstickfly() {
+if (instance_exists(creator)) {
+{
+x = (creator.x + (creator.hspeed / timescale));
+y = ((creator.y + (creator.vspeed / timescale)) - creator.z);
+{ var __hm_with1 = scrHMInstances(BoltStick), __hm_break3=false;
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+if ((target == (scrHMOther(other)).creator)) {
+var __hm_other4=scrHMOther(other);
+target = __hm_other4;
+}
+}
+if(__hm_break3) break;
+}}
+}
+} else {
+instance_destroy();
+}
+}

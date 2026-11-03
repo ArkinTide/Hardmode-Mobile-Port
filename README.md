@@ -2,39 +2,18 @@
 
 [简体中文](README.zh-CN.md) · English
 
-An independent Android, iOS and Windows port of **Hardmode b24 by Blaac**, based on the Nuclear Throne Recreated Epsilon project. This is separate from NTTE Mobile Port.
+An independent Android and iOS port of **Hardmode b24 by Blaac**, based on Nuclear Throne Recreated Epsilon. Maintained separately from NTTE Mobile Port.
 
-Current release: **1.0.12**, native build **13**. This update fixes Windows wheel event delivery and startup timing, cursed-cave wall restoration, music across areas, and dry sewer banks. It also extends manual MOD movement presentation to Android and iOS without changing the 30 Hz simulation. The earlier 1.0.11 fixes are included. [Download APK / IPA / Windows](https://mega.nz/folder/7TY3wZRB#PgQeCYQzxvrVGjfjX6YefA). Installers are distributed through the existing MEGA folder, not GitHub assets.
+Current release: **1.1.0 / build 14**. This release synchronizes the applicable changes maintained for the Hardmode NTT v100.034 mod into the mobile host: extra bosses, loop enemy pools, police arrivals, radiation and loot balances, boss health bars, optional player boosts, terrain and progression repairs, and bounded effects/rendering work. See [changes and verification limits](docs/FIXES.md).
 
-This repository contains **text source code and project metadata only**: the maintained GML adapters, generated modules, compiler, tests, translations and GameMaker project definitions. It does not contain game artwork, audio, fonts, native runners, SDKs, signing identities, user saves, or the original MOD's embedded image payloads. The asset references in project definitions require separately supplied files.
+[Download Android APK / iOS IPA](https://mega.nz/folder/7TY3wZRB#PgQeCYQzxvrVGjfjX6YefA). **IPA requires resigning.** Installers are distributed through MEGA; GitHub contains text source only.
 
-## Play and saves
+Mobile touch controls, Simplified Chinese, existing saves, and 30 Hz simulation with optional 60 Hz presentation remain supported. **Grillskills is not imported**: mobile retains its built-in mutation selection. Hardmode settings include boss health bars, throne-ball deflection, player boost (+2 maximum HP and one extra level), and rat revival.
 
-- Independent application ID: `com.arkintide.nuclearthronehardmode`.
-- Android shared saves: `/storage/emulated/0/games/com.arkintide.nuclearthronehardmode/`, after storage permission; the private directory is the fallback.
-- iOS saves: `Documents/hardmode/`, exposed through Files sharing.
-- Below the level cap, radiation follows Hardmode reductions with raven drops of 5 and laser/lightning/cursed crystal drops of 8/11/11. At the cap, native base rewards return; green rats match ordinary rats. Rat-to-green-rat revival has a persistent Hardmode setting, enabled by default.
-- Online multiplayer, resource packs, daily/weekly challenges and the main-menu Discord button are hidden in this independent port. Simplified Chinese Hardmode text is included; existing base-game translations are preserved.
+Application ID: `com.arkintide.nuclearthronehardmode`. Android shared saves, with permission: `/storage/emulated/0/games/com.arkintide.nuclearthronehardmode/`; private storage is the fallback. iOS saves: `Documents/hardmode/`, with Files sharing enabled. Back up saves before installing an update.
 
-## Source layout and building
+This repository contains **text source and project metadata only**. It excludes artwork, audio, fonts, native runners, SDKs, signing identities, user saves, installers and the upstream mod's embedded image payloads. Referenced media and private build inputs must be supplied separately. See [BUILDING.md](BUILDING.md).
 
-- `native/`: runtime, world, actor, collision, rendering, save and release adapters.
-- `generated/`: translated MOD modules with symbolic asset references.
-- `project/`: GameMaker source and resource metadata, without media files.
-- `tests/`: native, menu and actual gameplay regression observers.
-- `native_compiler.py`, `repairs*.py`, `integrate_release*.py`: maintained translation and registration pipeline.
+Tests use the compiled desktop VM on a silent private desktop, plus Android/iOS package checks. They do not establish physical phone performance or exhaustive campaign acceptance. High-loop performance depends on hardware and scene load; no universal 60 FPS guarantee is made. iOS retains a compatible native runner with fresh VM/resources; no new native Mac build is claimed.
 
-See [BUILDING.md](BUILDING.md) for the local build sequence and asset requirements. A fresh asset-free clone is not a ready-to-run game. Use your lawfully obtained original game and Hardmode files, compatible GameMaker/runtime, Android toolchain, and your own signing material. No credentials are supplied.
-
-## Verification limits
-
-The Windows package was delivered first after 22 targeted 30/60 FPS scenarios, native/menu checks and packaged-executable startup checks. The later mobile presentation change has a separately identified validation VM. Actual wheel input was observed on an earlier development VM; final-VM input checks use synthetic samples through the real Player Step. Mobile checks cover package structure, signature and resources. Desktop CPU profiles are not measurements of phone frame rate. No physical Android/iPhone validation or new Mac native build is claimed. The iOS package retains a compatible native runner with new VM/resources and **requires resigning**.
-
-## Credits and license
-
-- **Blaac** — original Hardmode b24 design, code and artwork; original collaborator credits are retained in [CREDITS.md](CREDITS.md).
-- [NuclearThrone-Recreated-Epsilon](https://github.com/kcd-shichen/NuclearThrone-Recreated-Epsilon), source baseline `44d488896ee8865d8b2bc108f7c69a24de721354` — base mobile project.
-- **Vlambeer** — Nuclear Throne; **YellowAfterlife** — Nuclear Throne Together and its MOD interfaces.
-- **ArkinTide** — mobile integration, maintenance and Simplified Chinese adaptation.
-
-The inherited Epsilon code is distributed under its [GNU GPL v3 license](LICENSE). Original authors retain their copyrights; this repository does not grant additional rights to game or MOD assets, music, or third-party components.
+Credits: **Blaac**, the original Hardmode author; **Vlambeer**; **YellowAfterlife**, Nuclear Throne Together; the [Epsilon base project](https://github.com/kcd-shichen/NuclearThrone-Recreated-Epsilon), baseline `44d488896ee8865d8b2bc108f7c69a24de721354`; **ArkinTide**, mobile integration and maintenance. See [CREDITS.md](CREDITS.md). Inherited Epsilon code uses [GPL v3](LICENSE); original authors retain their rights to assets and third-party components.

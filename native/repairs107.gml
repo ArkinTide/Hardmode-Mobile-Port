@@ -76,16 +76,9 @@ function scrHMVenusLoadout107() {
 function scrHMVenusRetry107() {
     if(!scrHMEnabled() || !instance_exists(GameCont) || instance_exists(GenCont)
         || GameCont.area!=scrHMAreaResolve("venuz") || !instance_exists(Player)) return false;
-    // The original elevator rebuilds terrain and combat in the same room.
-    // Retain its cleanup, spawners and progression rules, overriding only
-    // the next destination when this explicit retry has been requested.
-    var _target=GameCont.subarea,_player=instance_find(Player,0);
-    GameCont.hm_retry_venus107=_target;
-    with(CustomObject) if(name=="VenuzElevator") scrHMDelete(id);
-    with(_player) with(instance_create(x-8,y-8,CustomObject)) {
-        name="VenuzElevator";image_speed=0;sprite_index=sprFloor103;
-        image_alpha=0;image_index=1;depth=7;activated=1;
-    }
+    // The synchronized elevator owns retry destination and cleanup. Calling
+    // its request in player scope also preserves secret-stage destinations.
+    with(instance_find(Player,0)) hm_maincode_mod_gml_venus_request_retry();
     return true;
 }
 

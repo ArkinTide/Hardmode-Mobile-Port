@@ -235,4 +235,4 @@ if UberCont.weekly_run {
 }
 
 // Final boss placement follows all host generation cleanup.
-scrHMThroneEntrance110();
+// 1.1.0: generated floor bounds own throne placement.

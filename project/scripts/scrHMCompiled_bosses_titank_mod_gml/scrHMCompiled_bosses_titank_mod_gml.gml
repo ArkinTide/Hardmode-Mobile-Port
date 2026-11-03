@@ -1,158 +1,158 @@
-// Source bosses/titank.mod.gml:1; __load
-function hm_bosses_titank_mod_gml___load() {
-
-}
-
-// Source bosses/titank.mod.gml:3; init
-function hm_bosses_titank_mod_gml_init() {
-global.hm_module_vars[$ "mod:bosses/titank"].debug = 0;
-;
-global.hm_module_vars[$ "mod:bosses/titank"].sprTitankBody = sprHM_bosses_titank_mod_12;
-;
-global.hm_module_vars[$ "mod:bosses/titank"].sprTitankBodyHurt = sprHM_bosses_titank_mod_14;
-;
-global.hm_module_vars[$ "mod:bosses/titank"].sprTitankHead = sprHM_bosses_titank_mod_20;
-;
-global.hm_module_vars[$ "mod:bosses/titank"].sprTitankEye = sprHM_bosses_titank_mod_22;
-;
-global.hm_module_vars[$ "mod:bosses/titank"].sprTitankShadow = sprHM_bosses_titank_mod_24;
-;
-global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg = sprHM_bosses_titank_mod_26;
-;
-global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLegDark = sprHM_bosses_titank_mod_28;
-;
-global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLegDestroyed = sprHM_bosses_titank_mod_30;
-;
-global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLegDarkDestroyed = sprHM_bosses_titank_mod_32;
-;
-global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLegHurt = sprHM_bosses_titank_mod_34;
-;
-global.hm_module_vars[$ "mod:bosses/titank"].sprSnowFootstep = sprHM_bosses_titank_mod_36;
-;
-global.hm_module_vars[$ "mod:bosses/titank"].sprSnowClumpBig = sprHM_bosses_titank_mod_40;
-;
-global.hm_module_vars[$ "mod:bosses/titank"].titankportrait = sprHM_bosses_titank_mod_44;
-global.hm_module_vars[$ "mod:bosses/titank"].titankportraitfg = sprHM_bosses_titank_mod_45;
-global.hm_module_vars[$ "mod:bosses/titank"].titankportraitbg = sprHM_bosses_titank_mod_46;
-}
-
-// Source bosses/titank.mod.gml:48; step
-function hm_bosses_titank_mod_gml_step() {
-if (global.hm_module_vars[$ "mod:bosses/titank"].debug) {
-{
-GameCont.area = scrHMAreaResolve("city");
-;
-{ var __hm_with1 = scrHMInstances(Player), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-hp = 500;
-if (instance_exists(id)) {
-{
-if (scrHMButtonPressed(index, "horn")) {
-{
-for (var _hml_l = 0; (_hml_l < 999); _hml_l += 1) {
-if ((scrHMWeaponName(("#" + string(_hml_l))) == "GUITAR")) {
-{
-wep = scrHMWeaponResolve(_hml_l);
-;
-}
-}
-}
-hm_bosses_titank_mod_gml_titank_create(mouse_x[index], mouse_y[index]);
-;
-}
-}
-}
-}
-}
-}
-if(__hm_break3) break;
-}}
-}
-}
-}
-
-// Source bosses/titank.mod.gml:130; wanttitank
-function hm_bosses_titank_mod_gml_wanttitank() {
-{ var __hm_with1 = scrHMInstances(instance_create(0, 0, CustomObject)), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-enemies = instance_number(enemy);
-name = "wanttitank";
-on_step = scrHMScriptRef(hm_bosses_titank_mod_gml_wanttitank_step);
-return id;
-;
-}
-}
-if(__hm_break3) break;
-}}
-}
-
-// Source bosses/titank.mod.gml:137; wanttitank_step
-function hm_bosses_titank_mod_gml_wanttitank_step() {
-var _args = [];
-for(var _i=0;_i<argument_count;++_i) array_push(_args, argument[_i]);
-return scrHMTaskStart(hm_bosses_titank_mod_gml_wanttitank_step_resume, id, scrHMOther(other), _args, 7, []);
-}
-function hm_bosses_titank_mod_gml_wanttitank_step_resume(_hm) {
-var _budget=0;
-while(!_hm.done) {
-assert(++_budget<100000,"Hardmode runaway continuation: hm_bosses_titank_mod_gml_wanttitank_step");
-if (!instance_exists(_hm.scope)) { if(array_length(_hm.with_stack)>_hm.with_floor) {scrHMTaskWithNext(_hm); continue;} _hm.done=true; return; }
-with (_hm.scope) { switch (_hm.pc) {
-case 0: _hm.done=true; return;
-case 1: // bosses/titank.mod.gml:148
-{
-;
-}
-_hm.pc=0;
-break;
-case 2: // bosses/titank.mod.gml:148
-_hm.result=undefined; _hm.done=true; return;
-break;
-case 3: // bosses/titank.mod.gml:144
-{
-if (instance_exists(id)) {
-{
-scrHMTitankEntrance(_hm.vars.wx, _hm.vars.wy);
-instance_destroy();
-}
-}
-}
-_hm.pc=2;
-break;
-case 4: // bosses/titank.mod.gml:143
-_hm.wait_ticks=max(0,60); _hm.pc=3; return;
-break;
-case 5: // bosses/titank.mod.gml:142
-_hm.pc = (scrHMTaskFork(_hm, 4)) ? 4 : 0;
-break;
-case 6: // bosses/titank.mod.gml:139
-{
-_hm.vars.wall_ = scrHMNearestAuthoredWall105((Player.x + random(100)), (Player.y + random(100)));
-_hm.vars.wx = _hm.vars.wall_.x;
-;
-_hm.vars.wy = _hm.vars.wall_.y;
-;
-}
-_hm.pc=5;
-break;
-case 7: // bosses/titank.mod.gml:138
-_hm.pc = (((instance_number(enemy) < ((enemies / 6) * 5)) && instance_exists(Player))) ? 6 : 0;
-break;
-default: throw "Hardmode invalid continuation PC";
-}}
-}
-}
-
-
-// Source bosses/titank.mod.gml:151; titank_create
+// Source bosses/titank.mod.gml:1; __load
+function hm_bosses_titank_mod_gml___load() {
+
+}
+
+// Source bosses/titank.mod.gml:3; init
+function hm_bosses_titank_mod_gml_init() {
+global.hm_module_vars[$ "mod:bosses/titank"].debug = 0;
+;
+global.hm_module_vars[$ "mod:bosses/titank"].sprTitankBody = sprHM_bosses_titank_mod_12;
+;
+global.hm_module_vars[$ "mod:bosses/titank"].sprTitankBodyHurt = sprHM_bosses_titank_mod_14;
+;
+global.hm_module_vars[$ "mod:bosses/titank"].sprTitankHead = sprHM_bosses_titank_mod_20;
+;
+global.hm_module_vars[$ "mod:bosses/titank"].sprTitankEye = sprHM_bosses_titank_mod_22;
+;
+global.hm_module_vars[$ "mod:bosses/titank"].sprTitankShadow = sprHM_bosses_titank_mod_24;
+;
+global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg = sprHM_bosses_titank_mod_26;
+;
+global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLegDark = sprHM_bosses_titank_mod_28;
+;
+global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLegDestroyed = sprHM_bosses_titank_mod_30;
+;
+global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLegDarkDestroyed = sprHM_bosses_titank_mod_32;
+;
+global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLegHurt = sprHM_bosses_titank_mod_34;
+;
+global.hm_module_vars[$ "mod:bosses/titank"].sprSnowFootstep = sprHM_bosses_titank_mod_36;
+;
+global.hm_module_vars[$ "mod:bosses/titank"].sprSnowClumpBig = sprHM_bosses_titank_mod_40;
+;
+global.hm_module_vars[$ "mod:bosses/titank"].titankportrait = sprHM_bosses_titank_mod_44;
+global.hm_module_vars[$ "mod:bosses/titank"].titankportraitfg = sprHM_bosses_titank_mod_45;
+global.hm_module_vars[$ "mod:bosses/titank"].titankportraitbg = sprHM_bosses_titank_mod_46;
+}
+
+// Source bosses/titank.mod.gml:48; step
+function hm_bosses_titank_mod_gml_step() {
+if (global.hm_module_vars[$ "mod:bosses/titank"].debug) {
+{
+GameCont.area = scrHMAreaResolve("city");
+;
+{ var __hm_with1 = scrHMInstances(Player), __hm_break3=false;
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+{
+hp = 500;
+if (instance_exists(id)) {
+{
+if (scrHMButtonPressed(index, "horn")) {
+{
+for (var _hml_l = 0; (_hml_l < 999); _hml_l += 1) {
+if ((scrHMWeaponName(("#" + string(_hml_l))) == "GUITAR")) {
+{
+wep = scrHMWeaponResolve(_hml_l);
+;
+}
+}
+}
+hm_bosses_titank_mod_gml_titank_create(mouse_x[index], mouse_y[index]);
+;
+}
+}
+}
+}
+}
+}
+if(__hm_break3) break;
+}}
+}
+}
+}
+
+// Source bosses/titank.mod.gml:130; wanttitank
+function hm_bosses_titank_mod_gml_wanttitank() {
+{ var __hm_with1 = scrHMInstances(instance_create(0, 0, CustomObject)), __hm_break3=false;
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+{
+enemies = instance_number(enemy);
+name = "wanttitank";
+on_step = scrHMScriptRef(hm_bosses_titank_mod_gml_wanttitank_step);
+return id;
+;
+}
+}
+if(__hm_break3) break;
+}}
+}
+
+// Source bosses/titank.mod.gml:137; wanttitank_step
+function hm_bosses_titank_mod_gml_wanttitank_step() {
+var _args = [];
+for(var _i=0;_i<argument_count;++_i) array_push(_args, argument[_i]);
+return scrHMTaskStart(hm_bosses_titank_mod_gml_wanttitank_step_resume, id, scrHMOther(other), _args, 7, []);
+}
+function hm_bosses_titank_mod_gml_wanttitank_step_resume(_hm) {
+var _budget=0;
+while(!_hm.done) {
+assert(++_budget<100000,"Hardmode runaway continuation: hm_bosses_titank_mod_gml_wanttitank_step");
+if (!instance_exists(_hm.scope)) { if(array_length(_hm.with_stack)>_hm.with_floor) {scrHMTaskWithNext(_hm); continue;} _hm.done=true; return; }
+with (_hm.scope) { switch (_hm.pc) {
+case 0: _hm.done=true; return;
+case 1: // bosses/titank.mod.gml:148
+{
+;
+}
+_hm.pc=0;
+break;
+case 2: // bosses/titank.mod.gml:148
+_hm.result=undefined; _hm.done=true; return;
+break;
+case 3: // bosses/titank.mod.gml:144
+{
+if (instance_exists(id)) {
+{
+scrHMTitankEntrance(_hm.vars.wx, _hm.vars.wy);
+instance_destroy();
+}
+}
+}
+_hm.pc=2;
+break;
+case 4: // bosses/titank.mod.gml:143
+_hm.wait_ticks=max(0,60); _hm.pc=3; return;
+break;
+case 5: // bosses/titank.mod.gml:142
+_hm.pc = (scrHMTaskFork(_hm, 4)) ? 4 : 0;
+break;
+case 6: // bosses/titank.mod.gml:139
+{
+_hm.vars.wall_ = scrHMNearestAuthoredWall105((Player.x + random(100)), (Player.y + random(100)));
+_hm.vars.wx = _hm.vars.wall_.x;
+;
+_hm.vars.wy = _hm.vars.wall_.y;
+;
+}
+_hm.pc=5;
+break;
+case 7: // bosses/titank.mod.gml:138
+_hm.pc = (((instance_number(enemy) < ((enemies / 6) * 5)) && instance_exists(Player))) ? 6 : 0;
+break;
+default: throw "Hardmode invalid continuation PC";
+}}
+}
+}
+
+
+// Source bosses/titank.mod.gml:0; titank_create (native content 1.1.0)
 function hm_bosses_titank_mod_gml_titank_create() {
 var _args = [];
 for(var _i=0;_i<argument_count;++_i) array_push(_args, argument[_i]);
-return scrHMTaskStart(hm_bosses_titank_mod_gml_titank_create_resume, id, scrHMOther(other), _args, 333, ["tankx", "tanky"]);
+return scrHMTaskStart(hm_bosses_titank_mod_gml_titank_create_resume, id, scrHMOther(other), _args, 336, ["tankx", "tanky"]);
 }
 function hm_bosses_titank_mod_gml_titank_create_resume(_hm) {
 var _budget=0;
@@ -161,50 +161,50 @@ assert(++_budget<100000,"Hardmode runaway continuation: hm_bosses_titank_mod_gml
 if (!instance_exists(_hm.scope)) { if(array_length(_hm.with_stack)>_hm.with_floor) {scrHMTaskWithNext(_hm); continue;} _hm.done=true; return; }
 with (_hm.scope) { switch (_hm.pc) {
 case 0: _hm.done=true; return;
-case 1: // bosses/titank.mod.gml:1355
+case 1: // bosses/titank.mod.gml:1357
 {
 ;
 }
 _hm.pc=0;
 break;
-case 2: // bosses/titank.mod.gml:1355
+case 2: // bosses/titank.mod.gml:1357
 _hm.result=undefined; _hm.done=true; return;
 break;
-case 3: // bosses/titank.mod.gml:204
+case 3: // bosses/titank.mod.gml:205
 scrHMTaskWithNext(_hm);
 break;
-case 4: // bosses/titank.mod.gml:204
+case 4: // bosses/titank.mod.gml:205
 scrHMTaskWithAbort(_hm);
 break;
-case 6: // bosses/titank.mod.gml:1352
+case 6: // bosses/titank.mod.gml:1354
 {
 ;
 }
 _hm.pc=5;
 break;
-case 7: // bosses/titank.mod.gml:1352
+case 7: // bosses/titank.mod.gml:1354
 _hm.wait_ticks=max(0,1); _hm.pc=6; return;
 break;
-case 9: // bosses/titank.mod.gml:1191
+case 9: // bosses/titank.mod.gml:1193
 _hm.vars.i += 1; _hm.pc=8;
 break;
-case 10: // bosses/titank.mod.gml:1341
+case 10: // bosses/titank.mod.gml:1343
 {
 _hm.vars.i += 1;
 ;
 }
 _hm.pc=9;
 break;
-case 11: // bosses/titank.mod.gml:1339
+case 11: // bosses/titank.mod.gml:1341
 {
 ;
 }
 _hm.pc=10;
 break;
-case 12: // bosses/titank.mod.gml:1339
+case 12: // bosses/titank.mod.gml:1341
 _hm.result=undefined; _hm.done=true; return;
 break;
-case 13: // bosses/titank.mod.gml:1301
+case 13: // bosses/titank.mod.gml:1303
 {
 if (instance_exists(id)) {
 {
@@ -280,19 +280,19 @@ if(__hm_break15) break;
 }
 _hm.pc=12;
 break;
-case 15: // bosses/titank.mod.gml:1287
+case 15: // bosses/titank.mod.gml:1289
 _hm.vars.__hm_repeat16--; _hm.pc=14;
 break;
-case 16: // bosses/titank.mod.gml:1297
+case 16: // bosses/titank.mod.gml:1299
 {
 ;
 }
 _hm.pc=15;
 break;
-case 17: // bosses/titank.mod.gml:1297
+case 17: // bosses/titank.mod.gml:1299
 _hm.wait_ticks=max(0,1); _hm.pc=16; return;
 break;
-case 18: // bosses/titank.mod.gml:1291
+case 18: // bosses/titank.mod.gml:1293
 {
 foot_x[_hm.vars.i] += lengthdir_x((_hm.vars.dist / (_hm.vars.times / (1 + ((speed / timescale) / 16)))), _hm.vars.dir);
 ;
@@ -305,19 +305,19 @@ foot_z[_hm.vars.i] = max(1, abs((sin((_hm.vars.zt / (_hm.vars.times / 3))) * 16)
 }
 _hm.pc=17;
 break;
-case 19: // bosses/titank.mod.gml:1289
+case 19: // bosses/titank.mod.gml:1291
 _hm.pc = (instance_exists(_hm.scope)) ? 18 : 15;
 break;
-case 14: // bosses/titank.mod.gml:1287
+case 14: // bosses/titank.mod.gml:1289
 _hm.pc=(_hm.vars.__hm_repeat16>0)?19:13;
 break;
-case 20: // bosses/titank.mod.gml:1287
+case 20: // bosses/titank.mod.gml:1289
 _hm.vars.__hm_repeat16=round(_hm.vars.times); _hm.pc=14;
 break;
-case 21: // bosses/titank.mod.gml:1285
+case 21: // bosses/titank.mod.gml:1287
 _hm.pc = (scrHMTaskFork(_hm, 20)) ? 20 : 10;
 break;
-case 22: // bosses/titank.mod.gml:1278
+case 22: // bosses/titank.mod.gml:1280
 {
 scrHMSoundPlay(sndSnowBotPickup);
 ;
@@ -330,10 +330,10 @@ foot_z[_hm.vars.i] = 1;
 }
 _hm.pc=21;
 break;
-case 23: // bosses/titank.mod.gml:1276
+case 23: // bosses/titank.mod.gml:1278
 _hm.pc = (_hm.vars.doNormal) ? 22 : 9;
 break;
-case 24: // bosses/titank.mod.gml:1216
+case 24: // bosses/titank.mod.gml:1218
 {
 repeat ((6 + irandom(3))) {
 if ((foot_hp[_hm.vars.i] > 0)) {
@@ -365,14 +365,14 @@ _hm.vars.doNormal = 1;
 }
 _hm.pc=23;
 break;
-case 25: // bosses/titank.mod.gml:1211
+case 25: // bosses/titank.mod.gml:1213
 _hm.pc = ((_hm.vars.canLift > 0)) ? 24 : 9;
 break;
-case 26: // bosses/titank.mod.gml:1201
+case 26: // bosses/titank.mod.gml:1203
 {
 _hm.vars.canLift = 1;
 ;
-for (_hm.vars.j = 0; (_hm.vars.j < array_length_1d(foot_x)); _hm.vars.j += 1) {
+for (_hm.vars.j = 0; (_hm.vars.j < array_length(foot_x)); _hm.vars.j += 1) {
 if (((_hm.vars.j != _hm.vars.i) && (foot_z[_hm.vars.j] != 0))) {
 {
 _hm.vars.canLift -= (1 / (legs / 2));
@@ -383,10 +383,10 @@ _hm.vars.canLift -= (1 / (legs / 2));
 }
 _hm.pc=25;
 break;
-case 27: // bosses/titank.mod.gml:1198
+case 27: // bosses/titank.mod.gml:1200
 _hm.pc = (((foot_z[_hm.vars.i] == 0) && (point_distance(foot_x[_hm.vars.i], foot_y[_hm.vars.i], ((x + foot_home_x[_hm.vars.i]) + _hm.vars.lx), ((y + foot_home_y[_hm.vars.i]) + _hm.vars.ly)) > 32))) ? 26 : 9;
 break;
-case 28: // bosses/titank.mod.gml:1194
+case 28: // bosses/titank.mod.gml:1196
 {
 _hm.vars.randomFactor = random(1);
 ;
@@ -397,38 +397,38 @@ _hm.vars.ly = lengthdir_y((((speed / timescale) * _hm.vars.randomFactor) * (Game
 }
 _hm.pc=27;
 break;
-case 29: // bosses/titank.mod.gml:1193
+case 29: // bosses/titank.mod.gml:1195
 _hm.pc = ((foot_hp[_hm.vars.i] > 0)) ? 28 : 9;
 break;
-case 8: // bosses/titank.mod.gml:1191
-_hm.pc=((_hm.vars.i < array_length_1d(foot_x)))?29:7;
+case 8: // bosses/titank.mod.gml:1193
+_hm.pc=((_hm.vars.i < array_length(foot_x)))?29:7;
 break;
-case 30: // bosses/titank.mod.gml:1191
+case 30: // bosses/titank.mod.gml:1193
 _hm.vars.i = 0;
 _hm.pc=8;
 break;
-case 31: // bosses/titank.mod.gml:1189
+case 31: // bosses/titank.mod.gml:1191
 _hm.pc = (canmove) ? 30 : 7;
 break;
-case 32: // bosses/titank.mod.gml:1163
+case 32: // bosses/titank.mod.gml:1165
 {
 ;
 }
 _hm.pc=31;
 break;
-case 33: // bosses/titank.mod.gml:1163
+case 33: // bosses/titank.mod.gml:1165
 _hm.result=undefined; _hm.done=true; return;
 break;
-case 34: // bosses/titank.mod.gml:1161
+case 34: // bosses/titank.mod.gml:1163
 {
 ;
 }
 _hm.pc=33;
 break;
-case 35: // bosses/titank.mod.gml:1161
+case 35: // bosses/titank.mod.gml:1163
 _hm.result=undefined; _hm.done=true; return;
 break;
-case 36: // bosses/titank.mod.gml:1156
+case 36: // bosses/titank.mod.gml:1158
 {
 if (instance_exists(id)) {
 {
@@ -441,16 +441,16 @@ canmove = 1;
 }
 _hm.pc=35;
 break;
-case 38: // bosses/titank.mod.gml:1154
+case 38: // bosses/titank.mod.gml:1156
 {
 ;
 }
 _hm.pc=37;
 break;
-case 39: // bosses/titank.mod.gml:1154
+case 39: // bosses/titank.mod.gml:1156
 _hm.wait_ticks=max(0,1); _hm.pc=38; return;
 break;
-case 40: // bosses/titank.mod.gml:1151
+case 40: // bosses/titank.mod.gml:1153
 {
 z += min(_hm.vars._zspd, max(1, (point_distance(x, (y - z), x, (y - zstart)) / 4)));
 ;
@@ -462,10 +462,10 @@ headZ -= 1;
 }
 _hm.pc=39;
 break;
-case 37: // bosses/titank.mod.gml:1146
+case 37: // bosses/titank.mod.gml:1148
 _hm.pc=(((instance_exists(_hm.scope) && (z < zstart)) && (hp > 0)))?40:36;
 break;
-case 41: // bosses/titank.mod.gml:1143
+case 41: // bosses/titank.mod.gml:1145
 {
 ;
 _hm.vars._zspd = 1;
@@ -473,10 +473,10 @@ _hm.vars._zspd = 1;
 }
 _hm.pc=37;
 break;
-case 42: // bosses/titank.mod.gml:1143
+case 42: // bosses/titank.mod.gml:1145
 _hm.wait_ticks=max(0,10); _hm.pc=41; return;
 break;
-case 43: // bosses/titank.mod.gml:1129
+case 43: // bosses/titank.mod.gml:1131
 {
 if (instance_exists(id)) {
 {
@@ -505,16 +505,16 @@ instance_create((x + lengthdir_x(8, random(360))), (y + lengthdir_y(8, random(36
 }
 _hm.pc=42;
 break;
-case 45: // bosses/titank.mod.gml:1127
+case 45: // bosses/titank.mod.gml:1129
 {
 ;
 }
 _hm.pc=44;
 break;
-case 46: // bosses/titank.mod.gml:1127
+case 46: // bosses/titank.mod.gml:1129
 _hm.wait_ticks=max(0,1); _hm.pc=45; return;
 break;
-case 47: // bosses/titank.mod.gml:1125
+case 47: // bosses/titank.mod.gml:1127
 {
 z -= _hm.vars._zspd;
 ;
@@ -523,10 +523,10 @@ _hm.vars._zspd *= 1.5;
 }
 _hm.pc=46;
 break;
-case 44: // bosses/titank.mod.gml:1120
+case 44: // bosses/titank.mod.gml:1122
 _hm.pc=(((instance_exists(_hm.scope) && (z > 16)) && (hp > 0)))?47:43;
 break;
-case 48: // bosses/titank.mod.gml:1117
+case 48: // bosses/titank.mod.gml:1119
 {
 if (instance_exists(id)) {
 z = (zstart + 32);
@@ -536,16 +536,16 @@ _hm.vars._zspd = 1;
 }
 _hm.pc=44;
 break;
-case 50: // bosses/titank.mod.gml:1115
+case 50: // bosses/titank.mod.gml:1117
 {
 ;
 }
 _hm.pc=49;
 break;
-case 51: // bosses/titank.mod.gml:1115
+case 51: // bosses/titank.mod.gml:1117
 _hm.wait_ticks=max(0,1); _hm.pc=50; return;
 break;
-case 52: // bosses/titank.mod.gml:1113
+case 52: // bosses/titank.mod.gml:1115
 {
 z += min(_hm.vars._zspd, max(1, (point_distance(x, (y - z), x, ((y - zstart) + 32)) / 8)));
 ;
@@ -554,20 +554,20 @@ _hm.vars._zspd *= 1.1;
 }
 _hm.pc=51;
 break;
-case 49: // bosses/titank.mod.gml:1109
+case 49: // bosses/titank.mod.gml:1111
 _hm.pc=(((instance_exists(_hm.scope) && (z < (zstart + 32))) && (hp > 0)))?52:48;
 break;
-case 53: // bosses/titank.mod.gml:1108
+case 53: // bosses/titank.mod.gml:1110
 {
 _hm.vars._zspd = 1;
 ;
 }
 _hm.pc=49;
 break;
-case 54: // bosses/titank.mod.gml:1106
+case 54: // bosses/titank.mod.gml:1108
 _hm.pc = (scrHMTaskFork(_hm, 53)) ? 53 : 33;
 break;
-case 55: // bosses/titank.mod.gml:1103
+case 55: // bosses/titank.mod.gml:1105
 {
 canmove = 0;
 ;
@@ -576,100 +576,113 @@ scrHMSoundPlay(sndNothingBeamWarn);
 }
 _hm.pc=54;
 break;
-case 56: // bosses/titank.mod.gml:1101
+case 56: // bosses/titank.mod.gml:1103
 _hm.pc = (scrHMTaskFork(_hm, 55)) ? 55 : 31;
 break;
-case 57: // bosses/titank.mod.gml:1099
+case 57: // bosses/titank.mod.gml:1101
 {
 attacking += (30 * 4);
 ;
 }
 _hm.pc=56;
 break;
-case 58: // bosses/titank.mod.gml:1095
+case 58: // bosses/titank.mod.gml:1097
 _hm.pc = (((_hm.vars.atk == 2) && (distance_to_object(Player) < 32))) ? 57 : 31;
 break;
-case 59: // bosses/titank.mod.gml:829
+case 59: // bosses/titank.mod.gml:832
 {
 ;
 }
 _hm.pc=58;
 break;
-case 60: // bosses/titank.mod.gml:829
+case 60: // bosses/titank.mod.gml:832
 _hm.result=undefined; _hm.done=true; return;
 break;
-case 61: // bosses/titank.mod.gml:826
+case 61: // bosses/titank.mod.gml:829
 {
 ;
 }
 _hm.pc=60;
 break;
-case 62: // bosses/titank.mod.gml:826
+case 62: // bosses/titank.mod.gml:829
 _hm.result=undefined; _hm.done=true; return;
 break;
-case 63: // bosses/titank.mod.gml:825
+case 63: // bosses/titank.mod.gml:1
 {
-if (instance_exists(id)) {
-z = zstart;
-}
+;
+canmove = 1;
+;
 }
 _hm.pc=62;
 break;
-case 65: // bosses/titank.mod.gml:823
+case 64: // bosses/titank.mod.gml:1
+_hm.wait_ticks=max(0,15); _hm.pc=63; return;
+break;
+case 65: // bosses/titank.mod.gml:1
 {
+z = zstart;
 ;
 }
 _hm.pc=64;
 break;
-case 66: // bosses/titank.mod.gml:823
-_hm.wait_ticks=max(0,1); _hm.pc=65; return;
+case 66: // bosses/titank.mod.gml:1
+_hm.pc = ((instance_exists(_hm.scope) && (hp > 0))) ? 65 : 62;
 break;
-case 67: // bosses/titank.mod.gml:821
+case 68: // bosses/titank.mod.gml:826
+{
+;
+}
+_hm.pc=67;
+break;
+case 69: // bosses/titank.mod.gml:826
+_hm.wait_ticks=max(0,1); _hm.pc=68; return;
+break;
+case 70: // bosses/titank.mod.gml:824
 {
 z += min(_hm.vars._zspd, max(1, (point_distance(x, (y - z), x, (y - zstart)) / 4)));
 ;
 _hm.vars._zspd *= 1.25;
 ;
 }
-_hm.pc=66;
+_hm.pc=69;
 break;
-case 64: // bosses/titank.mod.gml:816
-_hm.pc=(((instance_exists(_hm.scope) && (z < zstart)) && (hp > 0)))?67:63;
+case 67: // bosses/titank.mod.gml:819
+_hm.pc=(((instance_exists(_hm.scope) && (z < zstart)) && (hp > 0)))?70:66;
 break;
-case 68: // bosses/titank.mod.gml:815
+case 71: // bosses/titank.mod.gml:818
 {
 _hm.vars._zspd = 1;
 ;
 }
-_hm.pc=64;
+_hm.pc=67;
 break;
-case 69: // bosses/titank.mod.gml:812
+case 72: // bosses/titank.mod.gml:815
 {
 ;
 }
-_hm.pc=68;
+_hm.pc=71;
 break;
-case 70: // bosses/titank.mod.gml:812
+case 73: // bosses/titank.mod.gml:815
 _hm.result=undefined; _hm.done=true; return;
 break;
-case 71: // bosses/titank.mod.gml:811
+case 74: // bosses/titank.mod.gml:814
 {
 if (instance_exists(id)) {
 image_index = 0;
 }
 }
-_hm.pc=70;
+_hm.pc=73;
 break;
-case 73: // bosses/titank.mod.gml:809
+case 76: // bosses/titank.mod.gml:812
 {
 ;
 }
-_hm.pc=72;
+_hm.pc=75;
 break;
-case 74: // bosses/titank.mod.gml:809
-_hm.wait_ticks=max(0,1); _hm.pc=73; return;
+case 77: // bosses/titank.mod.gml:812
+_hm.wait_ticks=max(0,1); _hm.pc=76; return;
 break;
-case 75: // bosses/titank.mod.gml:807
+case 78: // bosses/titank.mod.gml:810
 {
 image_index -= 0.4;
 ;
@@ -677,61 +690,61 @@ if ((image_index < 0)) {
 image_index = 0;
 }
 }
-_hm.pc=74;
+_hm.pc=77;
 break;
-case 72: // bosses/titank.mod.gml:803
-_hm.pc=(((instance_exists(_hm.scope) && (sprite_index != spr_hurt)) && (image_index > 0)))?75:71;
+case 75: // bosses/titank.mod.gml:806
+_hm.pc=(((instance_exists(_hm.scope) && (sprite_index != spr_hurt)) && (image_index > 0)))?78:74;
 break;
-case 76: // bosses/titank.mod.gml:801
-_hm.pc = (scrHMTaskFork(_hm, 72)) ? 72 : 68;
+case 79: // bosses/titank.mod.gml:804
+_hm.pc = (scrHMTaskFork(_hm, 75)) ? 75 : 71;
 break;
-case 77: // bosses/titank.mod.gml:797
-_hm.pc = ((instance_exists(_hm.scope) && scrHMTaskFork(_hm, 76))) ? 76 : 60;
+case 80: // bosses/titank.mod.gml:800
+_hm.pc = ((instance_exists(_hm.scope) && scrHMTaskFork(_hm, 79))) ? 79 : 60;
 break;
-case 79: // bosses/titank.mod.gml:723
-_hm.vars.__hm_repeat25--; _hm.pc=78;
+case 82: // bosses/titank.mod.gml:726
+_hm.vars.__hm_repeat25--; _hm.pc=81;
 break;
-case 80: // bosses/titank.mod.gml:793
-{
-;
-}
-_hm.pc=79;
-break;
-case 81: // bosses/titank.mod.gml:793
-_hm.wait_ticks=max(0,2); _hm.pc=80; return;
-break;
-case 82: // bosses/titank.mod.gml:792
-{
-_hm.vars.spread += 2;
-;
-}
-_hm.pc=81;
-break;
-case 83: // bosses/titank.mod.gml:790
+case 83: // bosses/titank.mod.gml:796
 {
 ;
 }
 _hm.pc=82;
 break;
-case 84: // bosses/titank.mod.gml:790
-_hm.result=undefined; _hm.done=true; return;
+case 84: // bosses/titank.mod.gml:796
+_hm.wait_ticks=max(0,2); _hm.pc=83; return;
 break;
-case 85: // bosses/titank.mod.gml:731
-scrHMTaskWithNext(_hm);
+case 85: // bosses/titank.mod.gml:795
+{
+_hm.vars.spread += 2;
+;
+}
+_hm.pc=84;
 break;
-case 86: // bosses/titank.mod.gml:731
-scrHMTaskWithAbort(_hm);
-break;
-case 88: // bosses/titank.mod.gml:787
+case 86: // bosses/titank.mod.gml:793
 {
 ;
 }
-_hm.pc=87;
+_hm.pc=85;
 break;
-case 89: // bosses/titank.mod.gml:787
-_hm.wait_ticks=max(0,2); _hm.pc=88; return;
+case 87: // bosses/titank.mod.gml:793
+_hm.result=undefined; _hm.done=true; return;
 break;
-case 90: // bosses/titank.mod.gml:763
+case 88: // bosses/titank.mod.gml:734
+scrHMTaskWithNext(_hm);
+break;
+case 89: // bosses/titank.mod.gml:734
+scrHMTaskWithAbort(_hm);
+break;
+case 91: // bosses/titank.mod.gml:790
+{
+;
+}
+_hm.pc=90;
+break;
+case 92: // bosses/titank.mod.gml:790
+_hm.wait_ticks=max(0,2); _hm.pc=91; return;
+break;
+case 93: // bosses/titank.mod.gml:766
 {
 image_index = 0;
 speed = ((_hm.vars.bulletdist * 0.6)) * timescale;
@@ -763,12 +776,12 @@ scrHMDelete(id);
 }
 }
 }
-_hm.pc=89;
+_hm.pc=92;
 break;
-case 87: // bosses/titank.mod.gml:761
-_hm.pc=(instance_exists(_hm.scope))?90:85;
+case 90: // bosses/titank.mod.gml:764
+_hm.pc=(instance_exists(_hm.scope))?93:88;
 break;
-case 91: // bosses/titank.mod.gml:735
+case 94: // bosses/titank.mod.gml:738
 {
 _hm.vars.bulletip = instance_nearest(x, y, Player);
 ;
@@ -817,31 +830,31 @@ _hm.vars.msk = mask_index;
 mask_index = mskNone;
 ;
 }
-_hm.pc=87;
+_hm.pc=90;
 break;
-case 92: // bosses/titank.mod.gml:731
-scrHMTaskWithEnter(_hm,scrHMInstances(instance_create(x, ((y - 8) - z), CustomProjectile)),91,84);
+case 95: // bosses/titank.mod.gml:734
+scrHMTaskWithEnter(_hm,scrHMInstances(instance_create(x, ((y - 8) - z), CustomProjectile)),94,87);
 break;
-case 93: // bosses/titank.mod.gml:729
-_hm.pc = (scrHMTaskFork(_hm, 92)) ? 92 : 82;
+case 96: // bosses/titank.mod.gml:732
+_hm.pc = (scrHMTaskFork(_hm, 95)) ? 95 : 85;
 break;
-case 94: // bosses/titank.mod.gml:728
+case 97: // bosses/titank.mod.gml:731
 {
 scrHMSoundPlay(sndGoldTankShoot);
 ;
 }
-_hm.pc=93;
+_hm.pc=96;
 break;
-case 95: // bosses/titank.mod.gml:725
-_hm.pc = ((instance_exists(_hm.scope) && (hp > 0))) ? 94 : 79;
+case 98: // bosses/titank.mod.gml:728
+_hm.pc = ((instance_exists(_hm.scope) && (hp > 0))) ? 97 : 82;
 break;
-case 78: // bosses/titank.mod.gml:723
-_hm.pc=(_hm.vars.__hm_repeat25>0)?95:77;
+case 81: // bosses/titank.mod.gml:726
+_hm.pc=(_hm.vars.__hm_repeat25>0)?98:80;
 break;
-case 96: // bosses/titank.mod.gml:723
-_hm.vars.__hm_repeat25=round(10); _hm.pc=78;
+case 99: // bosses/titank.mod.gml:726
+_hm.vars.__hm_repeat25=round(10); _hm.pc=81;
 break;
-case 97: // bosses/titank.mod.gml:717
+case 100: // bosses/titank.mod.gml:720
 {
 _hm.vars.ip = instance_nearest(x, y, Player);
 ;
@@ -853,194 +866,194 @@ _hm.vars.pdir = point_direction(x, y, _hm.vars.ip.x, _hm.vars.ip.y);
 _hm.vars.spread = 0;
 ;
 }
-_hm.pc=96;
+_hm.pc=99;
 break;
-case 98: // bosses/titank.mod.gml:715
-_hm.pc = (instance_exists(_hm.scope)) ? 97 : 60;
+case 101: // bosses/titank.mod.gml:718
+_hm.pc = (instance_exists(_hm.scope)) ? 100 : 60;
 break;
-case 99: // bosses/titank.mod.gml:713
+case 102: // bosses/titank.mod.gml:716
 {
 ;
 }
-_hm.pc=98;
+_hm.pc=101;
 break;
-case 100: // bosses/titank.mod.gml:713
-_hm.wait_ticks=max(0,30); _hm.pc=99; return;
+case 103: // bosses/titank.mod.gml:716
+_hm.wait_ticks=max(0,30); _hm.pc=102; return;
 break;
-case 101: // bosses/titank.mod.gml:710
+case 104: // bosses/titank.mod.gml:713
 {
 ;
 }
-_hm.pc=100;
+_hm.pc=103;
 break;
-case 102: // bosses/titank.mod.gml:710
+case 105: // bosses/titank.mod.gml:713
 _hm.result=undefined; _hm.done=true; return;
 break;
-case 103: // bosses/titank.mod.gml:709
+case 106: // bosses/titank.mod.gml:712
 {
 if (instance_exists(id)) {
 z = 48;
 }
 }
-_hm.pc=102;
+_hm.pc=105;
 break;
-case 105: // bosses/titank.mod.gml:707
+case 108: // bosses/titank.mod.gml:710
 {
 ;
 }
-_hm.pc=104;
+_hm.pc=107;
 break;
-case 106: // bosses/titank.mod.gml:707
-_hm.wait_ticks=max(0,1); _hm.pc=105; return;
+case 109: // bosses/titank.mod.gml:710
+_hm.wait_ticks=max(0,1); _hm.pc=108; return;
 break;
-case 107: // bosses/titank.mod.gml:705
+case 110: // bosses/titank.mod.gml:708
 {
 z -= min(_hm.vars._zspd, max(1, (point_distance(x, (y - z), x, (y - 48)) / 4)));
 ;
 _hm.vars._zspd *= 1.25;
 ;
 }
-_hm.pc=106;
+_hm.pc=109;
 break;
-case 104: // bosses/titank.mod.gml:701
-_hm.pc=(((z > 48) && (hp > 0)))?107:103;
+case 107: // bosses/titank.mod.gml:704
+_hm.pc=(((z > 48) && (hp > 0)))?110:106;
 break;
-case 108: // bosses/titank.mod.gml:700
+case 111: // bosses/titank.mod.gml:703
 {
 _hm.vars._zspd = 1;
 ;
 }
-_hm.pc=104;
+_hm.pc=107;
 break;
-case 109: // bosses/titank.mod.gml:698
-_hm.pc = (scrHMTaskFork(_hm, 108)) ? 108 : 100;
+case 112: // bosses/titank.mod.gml:701
+_hm.pc = (scrHMTaskFork(_hm, 111)) ? 111 : 103;
 break;
-case 110: // bosses/titank.mod.gml:696
+case 113: // bosses/titank.mod.gml:699
 {
 scrHMSoundPlay(sndGoldTankAim);
 ;
 }
-_hm.pc=109;
+_hm.pc=112;
 break;
-case 111: // bosses/titank.mod.gml:694
-_hm.pc = (scrHMTaskFork(_hm, 110)) ? 110 : 58;
+case 114: // bosses/titank.mod.gml:697
+_hm.pc = (scrHMTaskFork(_hm, 113)) ? 113 : 58;
 break;
-case 112: // bosses/titank.mod.gml:691
+case 115: // bosses/titank.mod.gml:694
 {
 ;
 }
-_hm.pc=111;
+_hm.pc=114;
 break;
-case 113: // bosses/titank.mod.gml:691
+case 116: // bosses/titank.mod.gml:694
 _hm.result=undefined; _hm.done=true; return;
 break;
-case 114: // bosses/titank.mod.gml:689
+case 117: // bosses/titank.mod.gml:692
 {
 if (instance_exists(id)) {
 image_index = (image_number - 0.4);
 }
 }
-_hm.pc=113;
+_hm.pc=116;
 break;
-case 116: // bosses/titank.mod.gml:687
+case 119: // bosses/titank.mod.gml:690
 {
 ;
 }
-_hm.pc=115;
+_hm.pc=118;
 break;
-case 117: // bosses/titank.mod.gml:687
-_hm.wait_ticks=max(0,1); _hm.pc=116; return;
+case 120: // bosses/titank.mod.gml:690
+_hm.wait_ticks=max(0,1); _hm.pc=119; return;
 break;
-case 118: // bosses/titank.mod.gml:686
+case 121: // bosses/titank.mod.gml:689
 {
 image_index += 0.4;
 ;
 }
-_hm.pc=117;
+_hm.pc=120;
 break;
-case 115: // bosses/titank.mod.gml:681
-_hm.pc=((((instance_exists(_hm.scope) && (hp > 0)) && (sprite_index != spr_hurt)) && (image_index < (image_number - 0.4))))?118:114;
+case 118: // bosses/titank.mod.gml:684
+_hm.pc=((((instance_exists(_hm.scope) && (hp > 0)) && (sprite_index != spr_hurt)) && (image_index < (image_number - 0.4))))?121:117;
 break;
-case 119: // bosses/titank.mod.gml:679
-_hm.pc = (scrHMTaskFork(_hm, 115)) ? 115 : 111;
+case 122: // bosses/titank.mod.gml:682
+_hm.pc = (scrHMTaskFork(_hm, 118)) ? 118 : 114;
 break;
-case 120: // bosses/titank.mod.gml:676
+case 123: // bosses/titank.mod.gml:679
 {
 attacking += (30 * 4);
 ;
 }
-_hm.pc=119;
+_hm.pc=122;
 break;
-case 121: // bosses/titank.mod.gml:1092
+case 124: // bosses/titank.mod.gml:1094
 {
 ;
 }
 _hm.pc=58;
 break;
-case 122: // bosses/titank.mod.gml:1092
+case 125: // bosses/titank.mod.gml:1094
 _hm.result=undefined; _hm.done=true; return;
 break;
-case 123: // bosses/titank.mod.gml:1090
+case 126: // bosses/titank.mod.gml:1092
 {
 ;
 }
-_hm.pc=122;
+_hm.pc=125;
 break;
-case 124: // bosses/titank.mod.gml:1090
+case 127: // bosses/titank.mod.gml:1092
 _hm.result=undefined; _hm.done=true; return;
 break;
-case 126: // bosses/titank.mod.gml:930
-_hm.vars.i += 1; _hm.pc=125;
+case 129: // bosses/titank.mod.gml:933
+_hm.vars.i += 1; _hm.pc=128;
 break;
-case 127: // bosses/titank.mod.gml:1087
+case 130: // bosses/titank.mod.gml:1089
 {
 ;
 }
-_hm.pc=126;
+_hm.pc=129;
 break;
-case 128: // bosses/titank.mod.gml:1087
+case 131: // bosses/titank.mod.gml:1089
 _hm.result=undefined; _hm.done=true; return;
 break;
-case 129: // bosses/titank.mod.gml:1084
+case 132: // bosses/titank.mod.gml:1086
 {
 ;
 if ((instance_exists(id) && (hp > 0))) {
 canmove = 1;
 }
 }
-_hm.pc=128;
+_hm.pc=131;
 break;
-case 130: // bosses/titank.mod.gml:1084
-_hm.wait_ticks=max(0,15); _hm.pc=129; return;
+case 133: // bosses/titank.mod.gml:1086
+_hm.wait_ticks=max(0,15); _hm.pc=132; return;
 break;
-case 132: // bosses/titank.mod.gml:1052
-_hm.vars.j += 2; _hm.pc=131;
+case 135: // bosses/titank.mod.gml:1054
+_hm.vars.j += 2; _hm.pc=134;
 break;
-case 133: // bosses/titank.mod.gml:1054
+case 136: // bosses/titank.mod.gml:1056
 scrHMTaskWithNext(_hm);
 break;
-case 134: // bosses/titank.mod.gml:1054
+case 137: // bosses/titank.mod.gml:1056
 scrHMTaskWithAbort(_hm);
 break;
-case 135: // bosses/titank.mod.gml:1077
+case 138: // bosses/titank.mod.gml:1079
 {
 ;
 }
-_hm.pc=133;
+_hm.pc=136;
 break;
-case 136: // bosses/titank.mod.gml:1077
+case 139: // bosses/titank.mod.gml:1079
 _hm.result=undefined; _hm.done=true; return;
 break;
-case 138: // bosses/titank.mod.gml:1075
+case 141: // bosses/titank.mod.gml:1077
 {
 ;
 }
-_hm.pc=137;
+_hm.pc=140;
 break;
-case 139: // bosses/titank.mod.gml:1075
-_hm.wait_ticks=max(0,1); _hm.pc=138; return;
+case 142: // bosses/titank.mod.gml:1077
+_hm.wait_ticks=max(0,1); _hm.pc=141; return;
 break;
-case 140: // bosses/titank.mod.gml:1068
+case 143: // bosses/titank.mod.gml:1070
 {
 { var __hm_with31 = scrHMInstances(instance_nearest(x, y, Detail)), __hm_break33=false;
 for (var __hm_index32=0; __hm_index32<array_length(__hm_with31); ++__hm_index32) {
@@ -1057,15 +1070,15 @@ instance_destroy();
 if(__hm_break33) break;
 }}
 }
-_hm.pc=139;
+_hm.pc=142;
 break;
-case 137: // bosses/titank.mod.gml:1066
-_hm.pc=(((speed / timescale) > 1))?140:136;
+case 140: // bosses/titank.mod.gml:1068
+_hm.pc=(((speed / timescale) > 1))?143:139;
 break;
-case 141: // bosses/titank.mod.gml:1064
-_hm.pc = (scrHMTaskFork(_hm, 137)) ? 137 : 133;
+case 144: // bosses/titank.mod.gml:1066
+_hm.pc = (scrHMTaskFork(_hm, 140)) ? 140 : 136;
 break;
-case 142: // bosses/titank.mod.gml:1056
+case 145: // bosses/titank.mod.gml:1058
 {
 sprite_index = global.hm_module_vars[$ "mod:bosses/titank"].sprSnowClumpBig;
 ;
@@ -1082,33 +1095,34 @@ friction = (0.1) * (timescale * timescale);
 depth -= ((vspeed / timescale) * 0.01);
 ;
 }
-_hm.pc=141;
+_hm.pc=144;
 break;
-case 143: // bosses/titank.mod.gml:1054
-scrHMTaskWithEnter(_hm,scrHMInstances(instance_create(x, y, Detail)),142,132);
+case 146: // bosses/titank.mod.gml:1056
+scrHMTaskWithEnter(_hm,scrHMInstances(instance_create(x, y, Detail)),145,135);
 break;
-case 131: // bosses/titank.mod.gml:1052
-_hm.pc=((_hm.vars.j < 90))?143:130;
+case 134: // bosses/titank.mod.gml:1054
+_hm.pc=((_hm.vars.j < 90))?146:133;
 break;
-case 144: // bosses/titank.mod.gml:1052
+case 147: // bosses/titank.mod.gml:1054
 _hm.vars.j = 0;
-_hm.pc=131;
+_hm.pc=134;
 break;
-case 145: // bosses/titank.mod.gml:1050
+case 148: // bosses/titank.mod.gml:1052
 {
 ;
 }
-_hm.pc=144;
+_hm.pc=147;
 break;
-case 146: // bosses/titank.mod.gml:1050
-_hm.wait_ticks=max(0,10); _hm.pc=145; return;
+case 149: // bosses/titank.mod.gml:1052
+_hm.wait_ticks=max(0,10); _hm.pc=148; return;
 break;
-case 147: // bosses/titank.mod.gml:1048
-_hm.pc = (scrHMTaskFork(_hm, 146)) ? 146 : 130;
+case 150: // bosses/titank.mod.gml:1050
+_hm.pc = (scrHMTaskFork(_hm, 149)) ? 149 : 133;
 break;
-case 148: // bosses/titank.mod.gml:1
+case 151: // bosses/titank.mod.gml:992
 {
-hm_jump_landed109 = true;
+hm_jump_landed = 1;
+;
 { var __hm_with34 = scrHMInstances(Player), __hm_break36=false;
 for (var __hm_index35=0; __hm_index35<array_length(__hm_with34); ++__hm_index35) {
 if(instance_exists(__hm_with34[__hm_index35])) with (__hm_with34[__hm_index35]) {
@@ -1141,20 +1155,18 @@ image_alpha = 0;
 if(__hm_break39) break;
 }}
 }
-_hm.pc=147;
+_hm.pc=150;
 break;
-case 149: // bosses/titank.mod.gml:988
-_hm.pc = (((! hm_jump_landed109) && (hp > 0))) ? 148 : 130;
+case 152: // bosses/titank.mod.gml:989
+_hm.pc = (((! hm_jump_landed) && (hp > 0))) ? 151 : 133;
 break;
-case 150: // bosses/titank.mod.gml:977
+case 153: // bosses/titank.mod.gml:980
 {
 foot_z[_hm.vars.i] = 0;
 ;
 scrHMSoundPlay(sndImpWristHit);
 ;
-for (_hm.vars.blast_leg109 = 0; (_hm.vars.blast_leg109 < legs); _hm.vars.blast_leg109 += 1) {
-if ((foot_hp[_hm.vars.blast_leg109] > 0)) {
-{ var __hm_with41 = scrHMInstances(instance_create(foot_x[_hm.vars.blast_leg109], foot_y[_hm.vars.blast_leg109], SmallExplosion)), __hm_break43=false;
+{ var __hm_with41 = scrHMInstances(instance_create(foot_x[_hm.vars.i], foot_y[_hm.vars.i], SmallExplosion)), __hm_break43=false;
 for (var __hm_index42=0; __hm_index42<array_length(__hm_with41); ++__hm_index42) {
 if(instance_exists(__hm_with41[__hm_index42])) with (__hm_with41[__hm_index42]) {
 {
@@ -1168,35 +1180,33 @@ creator = 1;
 if(__hm_break43) break;
 }}
 }
-}
-}
-_hm.pc=149;
+_hm.pc=152;
 break;
-case 151: // bosses/titank.mod.gml:975
-_hm.pc = (instance_exists(_hm.scope)) ? 150 : 128;
+case 154: // bosses/titank.mod.gml:978
+_hm.pc = (((instance_exists(_hm.scope) && (hp > 0)) && (foot_hp[_hm.vars.i] > 0))) ? 153 : 131;
 break;
-case 153: // bosses/titank.mod.gml:973
+case 156: // bosses/titank.mod.gml:976
 {
 ;
 }
-_hm.pc=152;
+_hm.pc=155;
 break;
-case 154: // bosses/titank.mod.gml:973
-_hm.wait_ticks=max(0,1); _hm.pc=153; return;
+case 157: // bosses/titank.mod.gml:976
+_hm.wait_ticks=max(0,1); _hm.pc=156; return;
 break;
-case 155: // bosses/titank.mod.gml:971
+case 158: // bosses/titank.mod.gml:974
 {
 foot_z[_hm.vars.i] -= _hm.vars._zspd;
 ;
 _hm.vars._zspd *= 1.25;
 ;
 }
-_hm.pc=154;
+_hm.pc=157;
 break;
-case 152: // bosses/titank.mod.gml:965
-_hm.pc=((((instance_exists(_hm.scope) && (foot_z[_hm.vars.i] > 0)) && (hp > 0)) && (foot_hp[_hm.vars.i] > 0)))?155:151;
+case 155: // bosses/titank.mod.gml:968
+_hm.pc=((((instance_exists(_hm.scope) && (foot_z[_hm.vars.i] > 0)) && (hp > 0)) && (foot_hp[_hm.vars.i] > 0)))?158:154;
 break;
-case 156: // bosses/titank.mod.gml:962
+case 159: // bosses/titank.mod.gml:965
 {
 if (instance_exists(id)) {
 foot_z[_hm.vars.i] = 512;
@@ -1204,18 +1214,18 @@ foot_z[_hm.vars.i] = 512;
 _hm.vars._zspd = 1;
 ;
 }
-_hm.pc=152;
+_hm.pc=155;
 break;
-case 158: // bosses/titank.mod.gml:960
+case 161: // bosses/titank.mod.gml:963
 {
 ;
 }
-_hm.pc=157;
+_hm.pc=160;
 break;
-case 159: // bosses/titank.mod.gml:960
-_hm.wait_ticks=max(0,1); _hm.pc=158; return;
+case 162: // bosses/titank.mod.gml:963
+_hm.wait_ticks=max(0,1); _hm.pc=161; return;
 break;
-case 160: // bosses/titank.mod.gml:953
+case 163: // bosses/titank.mod.gml:956
 {
 foot_z[_hm.vars.i] += _hm.vars._zspd;
 ;
@@ -1234,12 +1244,12 @@ speed = (((- 3) + random(6))) * timescale;
 if(__hm_break48) break;
 }}
 }
-_hm.pc=159;
+_hm.pc=162;
 break;
-case 157: // bosses/titank.mod.gml:947
-_hm.pc=((((instance_exists(_hm.scope) && (foot_z[_hm.vars.i] < 512)) && (hp > 0)) && (foot_hp[_hm.vars.i] > 0)))?160:156;
+case 160: // bosses/titank.mod.gml:950
+_hm.pc=((((instance_exists(_hm.scope) && (foot_z[_hm.vars.i] < 512)) && (hp > 0)) && (foot_hp[_hm.vars.i] > 0)))?163:159;
 break;
-case 161: // bosses/titank.mod.gml:934
+case 164: // bosses/titank.mod.gml:937
 {
 if ((foot_hp[_hm.vars.i] > 0)) {
 repeat ((6 + irandom(3))) {
@@ -1264,49 +1274,49 @@ if(__hm_break51) break;
 _hm.vars._zspd = 32;
 ;
 }
-_hm.pc=157;
+_hm.pc=160;
 break;
-case 162: // bosses/titank.mod.gml:932
-_hm.pc = (scrHMTaskFork(_hm, 161)) ? 161 : 126;
+case 165: // bosses/titank.mod.gml:935
+_hm.pc = (scrHMTaskFork(_hm, 164)) ? 164 : 129;
 break;
-case 125: // bosses/titank.mod.gml:930
-_hm.pc=((_hm.vars.i < legs))?162:124;
+case 128: // bosses/titank.mod.gml:933
+_hm.pc=((_hm.vars.i < legs))?165:127;
 break;
-case 163: // bosses/titank.mod.gml:930
+case 166: // bosses/titank.mod.gml:933
 _hm.vars.i = 0;
-_hm.pc=125;
+_hm.pc=128;
 break;
-case 164: // bosses/titank.mod.gml:928
-{
-;
-}
-_hm.pc=163;
-break;
-case 165: // bosses/titank.mod.gml:928
-_hm.wait_ticks=max(0,38); _hm.pc=164; return;
-break;
-case 166: // bosses/titank.mod.gml:926
-_hm.pc = (scrHMTaskFork(_hm, 165)) ? 165 : 122;
-break;
-case 167: // bosses/titank.mod.gml:924
+case 167: // bosses/titank.mod.gml:931
 {
 ;
 }
 _hm.pc=166;
 break;
-case 168: // bosses/titank.mod.gml:924
-_hm.result=undefined; _hm.done=true; return;
+case 168: // bosses/titank.mod.gml:931
+_hm.wait_ticks=max(0,38); _hm.pc=167; return;
 break;
-case 170: // bosses/titank.mod.gml:922
+case 169: // bosses/titank.mod.gml:929
+_hm.pc = (scrHMTaskFork(_hm, 168)) ? 168 : 125;
+break;
+case 170: // bosses/titank.mod.gml:927
 {
 ;
 }
 _hm.pc=169;
 break;
-case 171: // bosses/titank.mod.gml:922
-_hm.wait_ticks=max(0,1); _hm.pc=170; return;
+case 171: // bosses/titank.mod.gml:927
+_hm.result=undefined; _hm.done=true; return;
 break;
-case 172: // bosses/titank.mod.gml:912
+case 173: // bosses/titank.mod.gml:925
+{
+;
+}
+_hm.pc=172;
+break;
+case 174: // bosses/titank.mod.gml:925
+_hm.wait_ticks=max(0,1); _hm.pc=173; return;
+break;
+case 175: // bosses/titank.mod.gml:915
 {
 x += lengthdir_x((_hm.vars.pdist / 30), _hm.vars.pdir);
 ;
@@ -1319,12 +1329,12 @@ foot_y[_hm.vars.i] = (y + (foot_home_y[_hm.vars.i] * 0.25));
 ;
 }
 }
-_hm.pc=171;
+_hm.pc=174;
 break;
-case 169: // bosses/titank.mod.gml:908
-_hm.pc=(((instance_exists(_hm.scope) && (z > zstart)) && (hp > 0)))?172:168;
+case 172: // bosses/titank.mod.gml:911
+_hm.pc=(((instance_exists(_hm.scope) && (z > zstart)) && (hp > 0)))?175:171;
 break;
-case 173: // bosses/titank.mod.gml:896
+case 176: // bosses/titank.mod.gml:899
 {
 ;
 scrHMSoundPlay(sndNothingBeamStart);
@@ -1344,54 +1354,54 @@ _hm.vars.pdist = point_distance(x, y, _hm.vars.p.x, _hm.vars.p.y);
 }
 }
 }
-_hm.pc=169;
+_hm.pc=172;
 break;
-case 174: // bosses/titank.mod.gml:896
-_hm.wait_ticks=max(0,40); _hm.pc=173; return;
+case 177: // bosses/titank.mod.gml:899
+_hm.wait_ticks=max(0,40); _hm.pc=176; return;
 break;
-case 175: // bosses/titank.mod.gml:894
-_hm.pc = (scrHMTaskFork(_hm, 174)) ? 174 : 166;
+case 178: // bosses/titank.mod.gml:897
+_hm.pc = (scrHMTaskFork(_hm, 177)) ? 177 : 169;
 break;
-case 176: // bosses/titank.mod.gml:891
+case 179: // bosses/titank.mod.gml:894
 {
 ;
 }
-_hm.pc=175;
+_hm.pc=178;
 break;
-case 177: // bosses/titank.mod.gml:891
+case 180: // bosses/titank.mod.gml:894
 _hm.result=undefined; _hm.done=true; return;
 break;
-case 178: // bosses/titank.mod.gml:1
+case 181: // bosses/titank.mod.gml:893
 {
 ;
 canmove = 1;
 ;
 }
-_hm.pc=177;
+_hm.pc=180;
 break;
-case 179: // bosses/titank.mod.gml:1
-_hm.wait_ticks=max(0,15); _hm.pc=178; return;
+case 182: // bosses/titank.mod.gml:893
+_hm.wait_ticks=max(0,15); _hm.pc=181; return;
 break;
-case 180: // bosses/titank.mod.gml:1
+case 183: // bosses/titank.mod.gml:893
 {
 z = zstart;
 ;
 }
-_hm.pc=179;
+_hm.pc=182;
 break;
-case 181: // bosses/titank.mod.gml:1
-_hm.pc = ((instance_exists(_hm.scope) && (hp > 0))) ? 180 : 177;
+case 184: // bosses/titank.mod.gml:893
+_hm.pc = ((instance_exists(_hm.scope) && (hp > 0))) ? 183 : 180;
 break;
-case 183: // bosses/titank.mod.gml:888
+case 186: // bosses/titank.mod.gml:891
 {
 ;
 }
-_hm.pc=182;
+_hm.pc=185;
 break;
-case 184: // bosses/titank.mod.gml:888
-_hm.wait_ticks=max(0,1); _hm.pc=183; return;
+case 187: // bosses/titank.mod.gml:891
+_hm.wait_ticks=max(0,1); _hm.pc=186; return;
 break;
-case 185: // bosses/titank.mod.gml:885
+case 188: // bosses/titank.mod.gml:888
 {
 z += min(_hm.vars._zspd, max(1, (point_distance(x, (y - z), x, (y - zstart)) / 4)));
 ;
@@ -1401,12 +1411,12 @@ if ((headZ > 0)) {
 headZ -= 1;
 }
 }
-_hm.pc=184;
+_hm.pc=187;
 break;
-case 182: // bosses/titank.mod.gml:880
-_hm.pc=(((instance_exists(_hm.scope) && (z < zstart)) && (hp > 0)))?185:181;
+case 185: // bosses/titank.mod.gml:883
+_hm.pc=(((instance_exists(_hm.scope) && (z < zstart)) && (hp > 0)))?188:184;
 break;
-case 186: // bosses/titank.mod.gml:877
+case 189: // bosses/titank.mod.gml:880
 {
 if (instance_exists(id)) {
 z = 32;
@@ -1414,30 +1424,30 @@ z = 32;
 _hm.vars._zspd = 1;
 ;
 }
-_hm.pc=182;
+_hm.pc=185;
 break;
-case 188: // bosses/titank.mod.gml:875
+case 191: // bosses/titank.mod.gml:878
 {
 ;
 }
-_hm.pc=187;
+_hm.pc=190;
 break;
-case 189: // bosses/titank.mod.gml:875
-_hm.wait_ticks=max(0,1); _hm.pc=188; return;
+case 192: // bosses/titank.mod.gml:878
+_hm.wait_ticks=max(0,1); _hm.pc=191; return;
 break;
-case 190: // bosses/titank.mod.gml:873
+case 193: // bosses/titank.mod.gml:876
 {
 z -= min(_hm.vars._zspd, max(1, (point_distance(x, (y - z), x, (y - 32)) / 3)));
 ;
 _hm.vars._zspd *= 1.5;
 ;
 }
-_hm.pc=189;
+_hm.pc=192;
 break;
-case 187: // bosses/titank.mod.gml:869
-_hm.pc=(((instance_exists(_hm.scope) && (z > 32)) && (hp > 0)))?190:186;
+case 190: // bosses/titank.mod.gml:872
+_hm.pc=(((instance_exists(_hm.scope) && (z > 32)) && (hp > 0)))?193:189;
 break;
-case 191: // bosses/titank.mod.gml:866
+case 194: // bosses/titank.mod.gml:869
 {
 if (instance_exists(id)) {
 z = 512;
@@ -1445,30 +1455,30 @@ z = 512;
 _hm.vars._zspd = 1;
 ;
 }
-_hm.pc=187;
+_hm.pc=190;
 break;
-case 193: // bosses/titank.mod.gml:864
+case 196: // bosses/titank.mod.gml:867
 {
 ;
 }
-_hm.pc=192;
+_hm.pc=195;
 break;
-case 194: // bosses/titank.mod.gml:864
-_hm.wait_ticks=max(0,1); _hm.pc=193; return;
+case 197: // bosses/titank.mod.gml:867
+_hm.wait_ticks=max(0,1); _hm.pc=196; return;
 break;
-case 195: // bosses/titank.mod.gml:862
+case 198: // bosses/titank.mod.gml:865
 {
 z += min(_hm.vars._zspd, max(1, (point_distance(x, (y - z), x, (y - 512)) / 4)));
 ;
 _hm.vars._zspd *= 1.25;
 ;
 }
-_hm.pc=194;
+_hm.pc=197;
 break;
-case 192: // bosses/titank.mod.gml:858
-_hm.pc=(((instance_exists(_hm.scope) && (z < 512)) && (hp > 0)))?195:191;
+case 195: // bosses/titank.mod.gml:861
+_hm.pc=(((instance_exists(_hm.scope) && (z < 512)) && (hp > 0)))?198:194;
 break;
-case 196: // bosses/titank.mod.gml:855
+case 199: // bosses/titank.mod.gml:858
 {
 if (instance_exists(id)) {
 z = 16;
@@ -1476,18 +1486,18 @@ z = 16;
 _hm.vars._zspd = 1;
 ;
 }
-_hm.pc=192;
+_hm.pc=195;
 break;
-case 198: // bosses/titank.mod.gml:853
+case 201: // bosses/titank.mod.gml:856
 {
 ;
 }
-_hm.pc=197;
+_hm.pc=200;
 break;
-case 199: // bosses/titank.mod.gml:853
-_hm.wait_ticks=max(0,1); _hm.pc=198; return;
+case 202: // bosses/titank.mod.gml:856
+_hm.wait_ticks=max(0,1); _hm.pc=201; return;
 break;
-case 200: // bosses/titank.mod.gml:850
+case 203: // bosses/titank.mod.gml:853
 {
 z -= min(_hm.vars._zspd, max(1, (point_distance(x, (y - z), x, (y - 16)) / 3)));
 ;
@@ -1497,61 +1507,58 @@ if ((headZ < 32)) {
 headZ += 1;
 }
 }
-_hm.pc=199;
+_hm.pc=202;
 break;
-case 197: // bosses/titank.mod.gml:846
-_hm.pc=(((instance_exists(_hm.scope) && (z > 16)) && (hp > 0)))?200:196;
+case 200: // bosses/titank.mod.gml:849
+_hm.pc=(((instance_exists(_hm.scope) && (z > 16)) && (hp > 0)))?203:199;
 break;
-case 201: // bosses/titank.mod.gml:845
+case 204: // bosses/titank.mod.gml:848
 {
 _hm.vars._zspd = 1;
 ;
 }
-_hm.pc=197;
+_hm.pc=200;
 break;
-case 202: // bosses/titank.mod.gml:843
-_hm.pc = (scrHMTaskFork(_hm, 201)) ? 201 : 175;
+case 205: // bosses/titank.mod.gml:846
+_hm.pc = (scrHMTaskFork(_hm, 204)) ? 204 : 178;
 break;
-case 203: // bosses/titank.mod.gml:840
+case 206: // bosses/titank.mod.gml:843
 {
 ;
 scrHMSoundPlay(sndNothingBeamWarn);
 ;
 }
-_hm.pc=202;
+_hm.pc=205;
 break;
-case 204: // bosses/titank.mod.gml:840
-_hm.wait_ticks=max(0,10); _hm.pc=203; return;
+case 207: // bosses/titank.mod.gml:843
+_hm.wait_ticks=max(0,10); _hm.pc=206; return;
 break;
-case 205: // bosses/titank.mod.gml:839
-{
+case 208: // bosses/titank.mod.gml:842
 {
 canmove = 0;
 ;
-hm_jump_landed109 = false;
+hm_jump_landed = 0;
 ;
 }
-;
-}
-_hm.pc=204;
+_hm.pc=207;
 break;
-case 206: // bosses/titank.mod.gml:837
-_hm.pc = (scrHMTaskFork(_hm, 205)) ? 205 : 58;
+case 209: // bosses/titank.mod.gml:840
+_hm.pc = (scrHMTaskFork(_hm, 208)) ? 208 : 58;
 break;
-case 207: // bosses/titank.mod.gml:835
+case 210: // bosses/titank.mod.gml:838
 {
 attacking += (30 * 4);
 ;
 }
-_hm.pc=206;
+_hm.pc=209;
 break;
-case 208: // bosses/titank.mod.gml:832
-_hm.pc = ((_hm.vars.atk == 1)) ? 207 : 58;
+case 211: // bosses/titank.mod.gml:835
+_hm.pc = ((_hm.vars.atk == 1)) ? 210 : 58;
 break;
-case 209: // bosses/titank.mod.gml:673
-_hm.pc = ((_hm.vars.atk == 0)) ? 120 : 208;
+case 212: // bosses/titank.mod.gml:676
+_hm.pc = ((_hm.vars.atk == 0)) ? 123 : 211;
 break;
-case 210: // bosses/titank.mod.gml:661
+case 213: // bosses/titank.mod.gml:664
 {
 _hm.vars.atk = (- 1);
 ;
@@ -1566,58 +1573,58 @@ lastatk = _hm.vars.atk;
 }
 }
 }
-_hm.pc=209;
+_hm.pc=212;
 break;
-case 211: // bosses/titank.mod.gml:1184
+case 214: // bosses/titank.mod.gml:1186
 {
 ;
 }
 _hm.pc=31;
 break;
-case 212: // bosses/titank.mod.gml:1184
+case 215: // bosses/titank.mod.gml:1186
 _hm.result=undefined; _hm.done=true; return;
 break;
-case 214: // bosses/titank.mod.gml:1182
+case 217: // bosses/titank.mod.gml:1184
 {
 ;
 }
-_hm.pc=213;
+_hm.pc=216;
 break;
-case 215: // bosses/titank.mod.gml:1182
-_hm.wait_ticks=max(0,1); _hm.pc=214; return;
+case 218: // bosses/titank.mod.gml:1184
+_hm.wait_ticks=max(0,1); _hm.pc=217; return;
 break;
-case 216: // bosses/titank.mod.gml:1181
+case 219: // bosses/titank.mod.gml:1183
 {
 scrHMMotionAdd(point_direction(x, y, _hm.vars.targetX, _hm.vars.targetY), min((point_distance(x, y, _hm.vars.targetX, _hm.vars.targetY) / 8), 0.1));
 ;
 }
-_hm.pc=215;
+_hm.pc=218;
 break;
-case 213: // bosses/titank.mod.gml:1178
-_hm.pc=((instance_exists(_hm.scope) && (point_distance(x, y, _hm.vars.targetX, _hm.vars.targetY) > 16)))?216:212;
+case 216: // bosses/titank.mod.gml:1180
+_hm.pc=((instance_exists(_hm.scope) && (point_distance(x, y, _hm.vars.targetX, _hm.vars.targetY) > 16)))?219:215;
 break;
-case 217: // bosses/titank.mod.gml:1176
+case 220: // bosses/titank.mod.gml:1178
 {
 _hm.vars.targetX = (x + lengthdir_x(random(256), random(360)));
 ;
 _hm.vars.targetY = (y + lengthdir_y(random(256), random(360)));
 ;
 }
-_hm.pc=213;
+_hm.pc=216;
 break;
-case 218: // bosses/titank.mod.gml:1173
-_hm.pc = (scrHMTaskFork(_hm, 217)) ? 217 : 31;
+case 221: // bosses/titank.mod.gml:1175
+_hm.pc = (scrHMTaskFork(_hm, 220)) ? 220 : 31;
 break;
-case 219: // bosses/titank.mod.gml:1170
-_hm.pc = (((random(1) < 0.01) && ((speed / timescale) < 1))) ? 218 : 31;
+case 222: // bosses/titank.mod.gml:1172
+_hm.pc = (((random(1) < 0.01) && ((speed / timescale) < 1))) ? 221 : 31;
 break;
-case 220: // bosses/titank.mod.gml:1167
-_hm.pc = (((! attacking) && (! instance_exists(Player)))) ? 219 : 31;
+case 223: // bosses/titank.mod.gml:1169
+_hm.pc = (((! attacking) && (! instance_exists(Player)))) ? 222 : 31;
 break;
-case 221: // bosses/titank.mod.gml:657
-_hm.pc = ((((! attacking) && instance_exists(Player)) && (hp > 0))) ? 210 : 220;
+case 224: // bosses/titank.mod.gml:660
+_hm.pc = ((((! attacking) && instance_exists(Player)) && (hp > 0))) ? 213 : 223;
 break;
-case 222: // bosses/titank.mod.gml:627
+case 225: // bosses/titank.mod.gml:630
 {
 if (canmove) {
 {
@@ -1662,30 +1669,30 @@ attacking -= 1;
 attacking = max(0, attacking);
 ;
 }
-_hm.pc=221;
+_hm.pc=224;
 break;
-case 223: // bosses/titank.mod.gml:624
-_hm.pc = ((instance_exists(_hm.scope) && (hp > 0))) ? 222 : 7;
+case 226: // bosses/titank.mod.gml:627
+_hm.pc = ((instance_exists(_hm.scope) && (hp > 0))) ? 225 : 7;
 break;
-case 224: // bosses/titank.mod.gml:519
+case 227: // bosses/titank.mod.gml:522
 {
 _x = x;
 ;
 _y = y;
 ;
 }
-_hm.pc=223;
+_hm.pc=226;
 break;
-case 225: // bosses/titank.mod.gml:620
+case 228: // bosses/titank.mod.gml:623
 {
 ;
 }
-_hm.pc=223;
+_hm.pc=226;
 break;
-case 226: // bosses/titank.mod.gml:620
+case 229: // bosses/titank.mod.gml:623
 _hm.result=undefined; _hm.done=true; return;
 break;
-case 227: // bosses/titank.mod.gml:615
+case 230: // bosses/titank.mod.gml:618
 {
 hm_bosses_titank_mod_gml_scrNuke(z, 1.5);
 ;
@@ -1695,21 +1702,21 @@ scrHMSoundPlay(sndExplosionXL);
 instance_destroy();
 ;
 }
-_hm.pc=226;
+_hm.pc=229;
 break;
-case 229: // bosses/titank.mod.gml:564
-_hm.vars.__hm_repeat57--; _hm.pc=228;
+case 232: // bosses/titank.mod.gml:567
+_hm.vars.__hm_repeat57--; _hm.pc=231;
 break;
-case 230: // bosses/titank.mod.gml:612
+case 233: // bosses/titank.mod.gml:615
 {
 ;
 }
-_hm.pc=229;
+_hm.pc=232;
 break;
-case 231: // bosses/titank.mod.gml:612
-_hm.wait_ticks=max(0,2); _hm.pc=230; return;
+case 234: // bosses/titank.mod.gml:615
+_hm.wait_ticks=max(0,2); _hm.pc=233; return;
 break;
-case 232: // bosses/titank.mod.gml:583
+case 235: // bosses/titank.mod.gml:586
 {
 z = zstart;
 ;
@@ -1762,65 +1769,65 @@ y = (((instance_nearest(x, y, Floor)).y + 8) + random(16));
 if(__hm_break64) break;
 }}
 }
-_hm.pc=231;
+_hm.pc=234;
 break;
-case 233: // bosses/titank.mod.gml:579
+case 236: // bosses/titank.mod.gml:582
 {
 ;
 }
-_hm.pc=232;
+_hm.pc=235;
 break;
-case 234: // bosses/titank.mod.gml:579
+case 237: // bosses/titank.mod.gml:582
 _hm.result=undefined; _hm.done=true; return;
 break;
-case 235: // bosses/titank.mod.gml:577
+case 238: // bosses/titank.mod.gml:580
 {
 ;
 hurtTimer = 0;
 ;
 }
-_hm.pc=234;
+_hm.pc=237;
 break;
-case 236: // bosses/titank.mod.gml:577
-_hm.wait_ticks=max(0,1); _hm.pc=235; return;
+case 239: // bosses/titank.mod.gml:580
+_hm.wait_ticks=max(0,1); _hm.pc=238; return;
 break;
-case 237: // bosses/titank.mod.gml:575
-_hm.pc = (scrHMTaskFork(_hm, 236)) ? 236 : 232;
+case 240: // bosses/titank.mod.gml:578
+_hm.pc = (scrHMTaskFork(_hm, 239)) ? 239 : 235;
 break;
-case 238: // bosses/titank.mod.gml:573
+case 241: // bosses/titank.mod.gml:576
 {
 hurtTimer = 1;
 ;
 }
-_hm.pc=237;
+_hm.pc=240;
 break;
-case 239: // bosses/titank.mod.gml:571
-_hm.pc = ((hurtTimer <= 0)) ? 238 : 232;
+case 242: // bosses/titank.mod.gml:574
+_hm.pc = ((hurtTimer <= 0)) ? 241 : 235;
 break;
-case 240: // bosses/titank.mod.gml:565
-_hm.pc = (instance_exists(_hm.scope)) ? 239 : 229;
+case 243: // bosses/titank.mod.gml:568
+_hm.pc = (instance_exists(_hm.scope)) ? 242 : 232;
 break;
-case 228: // bosses/titank.mod.gml:564
-_hm.pc=(_hm.vars.__hm_repeat57>0)?240:227;
+case 231: // bosses/titank.mod.gml:567
+_hm.pc=(_hm.vars.__hm_repeat57>0)?243:230;
 break;
-case 241: // bosses/titank.mod.gml:564
-_hm.vars.__hm_repeat57=round(35); _hm.pc=228;
+case 244: // bosses/titank.mod.gml:567
+_hm.vars.__hm_repeat57=round(35); _hm.pc=231;
 break;
-case 242: // bosses/titank.mod.gml:561
+case 245: // bosses/titank.mod.gml:564
 {
 ;
 _hm.vars.zz = z;
 ;
 }
-_hm.pc=241;
+_hm.pc=244;
 break;
-case 243: // bosses/titank.mod.gml:561
-_hm.wait_ticks=max(0,10); _hm.pc=242; return;
+case 246: // bosses/titank.mod.gml:564
+_hm.wait_ticks=max(0,10); _hm.pc=245; return;
 break;
-case 244: // bosses/titank.mod.gml:559
-_hm.pc = (scrHMTaskFork(_hm, 243)) ? 243 : 223;
+case 247: // bosses/titank.mod.gml:562
+_hm.pc = (scrHMTaskFork(_hm, 246)) ? 246 : 226;
 break;
-case 245: // bosses/titank.mod.gml:552
+case 248: // bosses/titank.mod.gml:555
 {
 sprite_index = spr_hurt;
 ;
@@ -1833,12 +1840,12 @@ canmove = 0;
 attacking = 999;
 ;
 }
-_hm.pc=244;
+_hm.pc=247;
 break;
-case 246: // bosses/titank.mod.gml:550
+case 249: // bosses/titank.mod.gml:553
 _hm.result=undefined; _hm.done=true; return;
 break;
-case 247: // bosses/titank.mod.gml:546
+case 250: // bosses/titank.mod.gml:549
 {
 if (instance_exists(Player)) {
 { var __hm_with66 = scrHMInstances(_hm.vars.fl_), __hm_break68=false;
@@ -1852,12 +1859,12 @@ if(__hm_break68) break;
 }}
 }
 }
-_hm.pc=246;
+_hm.pc=249;
 break;
-case 248: // bosses/titank.mod.gml:545
-_hm.wait_ticks=max(0,5); _hm.pc=247; return;
+case 251: // bosses/titank.mod.gml:548
+_hm.wait_ticks=max(0,5); _hm.pc=250; return;
 break;
-case 249: // bosses/titank.mod.gml:542
+case 252: // bosses/titank.mod.gml:545
 {
 _hm.vars.xd_ = x;
 ;
@@ -1866,38 +1873,41 @@ _hm.vars.yd_ = y;
 _hm.vars.fl_ = instance_nearest(_hm.vars.xd_, _hm.vars.yd_, Floor);
 ;
 }
-_hm.pc=248;
-break;
-case 250: // bosses/titank.mod.gml:541
-_hm.pc = (scrHMTaskFork(_hm, 249)) ? 249 : 245;
-break;
-case 251: // bosses/titank.mod.gml:539
-{
-scrHMSoundPlay(sndBossWin);
-;
-scrHMSoundMusic(musBossDead);
-}
-_hm.pc=250;
-break;
-case 252: // bosses/titank.mod.gml:537
-{
-;
-}
 _hm.pc=251;
 break;
-case 253: // bosses/titank.mod.gml:537
-_hm.result=undefined; _hm.done=true; return;
+case 253: // bosses/titank.mod.gml:544
+_hm.pc = (scrHMTaskFork(_hm, 252)) ? 252 : 248;
 break;
-case 255: // bosses/titank.mod.gml:535
+case 254: // bosses/titank.mod.gml:542
+{
+if ((! hm_arkintide_mod_gml_hm_stage_boss_alive())) {
+scrHMSoundPlay(sndBossWin);
+}
+if ((! hm_arkintide_mod_gml_hm_stage_boss_alive())) {
+scrHMSoundMusic(musBossDead);
+}
+}
+_hm.pc=253;
+break;
+case 255: // bosses/titank.mod.gml:540
 {
 ;
 }
 _hm.pc=254;
 break;
-case 256: // bosses/titank.mod.gml:535
-_hm.wait_ticks=max(0,1); _hm.pc=255; return;
+case 256: // bosses/titank.mod.gml:540
+_hm.result=undefined; _hm.done=true; return;
 break;
-case 257: // bosses/titank.mod.gml:532
+case 258: // bosses/titank.mod.gml:538
+{
+;
+}
+_hm.pc=257;
+break;
+case 259: // bosses/titank.mod.gml:538
+_hm.wait_ticks=max(0,1); _hm.pc=258; return;
+break;
+case 260: // bosses/titank.mod.gml:535
 {
 z -= choose(0, 1, 1, (- 1));
 x = (_x + random_range((- 1), 1));
@@ -1905,15 +1915,15 @@ x = (_x + random_range((- 1), 1));
 y = _y;
 ;
 }
-_hm.pc=256;
+_hm.pc=259;
 break;
-case 254: // bosses/titank.mod.gml:530
-_hm.pc=(instance_exists(_hm.scope))?257:253;
+case 257: // bosses/titank.mod.gml:533
+_hm.pc=(instance_exists(_hm.scope))?260:256;
 break;
-case 258: // bosses/titank.mod.gml:528
-_hm.pc = (scrHMTaskFork(_hm, 254)) ? 254 : 251;
+case 261: // bosses/titank.mod.gml:531
+_hm.pc = (scrHMTaskFork(_hm, 257)) ? 257 : 254;
 break;
-case 259: // bosses/titank.mod.gml:525
+case 262: // bosses/titank.mod.gml:528
 {
 scrHMSoundMusic((- 1));
 ;
@@ -1922,15 +1932,15 @@ speed = (0) * timescale;
 z = zstart;
 ;
 }
-_hm.pc=258;
+_hm.pc=261;
 break;
-case 260: // bosses/titank.mod.gml:523
-_hm.pc = (((hp <= 0) and (hp != (- 10)))) ? 259 : 223;
+case 263: // bosses/titank.mod.gml:526
+_hm.pc = (((hp <= 0) and (hp != (- 10)))) ? 262 : 226;
 break;
-case 261: // bosses/titank.mod.gml:518
-_hm.pc = ((hp > 0)) ? 224 : 260;
+case 264: // bosses/titank.mod.gml:521
+_hm.pc = ((hp > 0)) ? 227 : 263;
 break;
-case 262: // bosses/titank.mod.gml:510
+case 265: // bosses/titank.mod.gml:513
 {
 if ((hurtTimer > 0)) {
 hurtTimer -= 0.4;
@@ -1939,12 +1949,12 @@ if ((hp <= 1)) {
 canmove = 0;
 }
 }
-_hm.pc=261;
+_hm.pc=264;
 break;
-case 5: // bosses/titank.mod.gml:509
-_hm.pc=(instance_exists(_hm.scope))?262:3;
+case 5: // bosses/titank.mod.gml:512
+_hm.pc=(instance_exists(_hm.scope))?265:3;
 break;
-case 263: // bosses/titank.mod.gml:506
+case 266: // bosses/titank.mod.gml:509
 {
 z = zstart;
 ;
@@ -1953,120 +1963,120 @@ attacking = (30 + irandom(30));
 }
 _hm.pc=5;
 break;
-case 265: // bosses/titank.mod.gml:504
+case 268: // bosses/titank.mod.gml:507
 {
 ;
 }
-_hm.pc=264;
+_hm.pc=267;
 break;
-case 266: // bosses/titank.mod.gml:504
-_hm.wait_ticks=max(0,1); _hm.pc=265; return;
+case 269: // bosses/titank.mod.gml:507
+_hm.wait_ticks=max(0,1); _hm.pc=268; return;
 break;
-case 267: // bosses/titank.mod.gml:503
+case 270: // bosses/titank.mod.gml:506
 {
 z += ((current_frame - _hm.vars.cf) / 24);
 ;
 }
-_hm.pc=266;
+_hm.pc=269;
 break;
-case 264: // bosses/titank.mod.gml:501
-_hm.pc=((z < zstart))?267:263;
+case 267: // bosses/titank.mod.gml:504
+_hm.pc=((z < zstart))?270:266;
 break;
-case 268: // bosses/titank.mod.gml:499
+case 271: // bosses/titank.mod.gml:502
 {
 _hm.vars.cf = current_frame;
 ;
 }
-_hm.pc=264;
+_hm.pc=267;
 break;
-case 269: // bosses/titank.mod.gml:497
+case 272: // bosses/titank.mod.gml:500
 {
 ;
 }
-_hm.pc=268;
+_hm.pc=271;
 break;
-case 270: // bosses/titank.mod.gml:497
+case 273: // bosses/titank.mod.gml:500
 _hm.result=undefined; _hm.done=true; return;
 break;
-case 271: // bosses/titank.mod.gml:496
+case 274: // bosses/titank.mod.gml:499
 {
 kneeRelativePos = 1.25;
 ;
 }
-_hm.pc=270;
+_hm.pc=273;
 break;
-case 273: // bosses/titank.mod.gml:494
+case 276: // bosses/titank.mod.gml:497
 {
 ;
 }
-_hm.pc=272;
+_hm.pc=275;
 break;
-case 274: // bosses/titank.mod.gml:494
-_hm.wait_ticks=max(0,1); _hm.pc=273; return;
+case 277: // bosses/titank.mod.gml:497
+_hm.wait_ticks=max(0,1); _hm.pc=276; return;
 break;
-case 275: // bosses/titank.mod.gml:493
+case 278: // bosses/titank.mod.gml:496
 {
 kneeRelativePos -= 0.02;
 ;
 }
-_hm.pc=274;
+_hm.pc=277;
 break;
-case 272: // bosses/titank.mod.gml:491
-_hm.pc=((kneeRelativePos > 1.25))?275:271;
+case 275: // bosses/titank.mod.gml:494
+_hm.pc=((kneeRelativePos > 1.25))?278:274;
 break;
-case 276: // bosses/titank.mod.gml:490
+case 279: // bosses/titank.mod.gml:493
 {
 ;
 }
-_hm.pc=272;
+_hm.pc=275;
 break;
-case 277: // bosses/titank.mod.gml:490
-_hm.wait_ticks=max(0,15); _hm.pc=276; return;
+case 280: // bosses/titank.mod.gml:493
+_hm.wait_ticks=max(0,15); _hm.pc=279; return;
 break;
-case 278: // bosses/titank.mod.gml:489
-_hm.pc = (scrHMTaskFork(_hm, 277)) ? 277 : 268;
+case 281: // bosses/titank.mod.gml:492
+_hm.pc = (scrHMTaskFork(_hm, 280)) ? 280 : 271;
 break;
-case 279: // bosses/titank.mod.gml:487
-{
-;
-}
-_hm.pc=278;
-break;
-case 280: // bosses/titank.mod.gml:487
-_hm.result=undefined; _hm.done=true; return;
-break;
-case 282: // bosses/titank.mod.gml:485
+case 282: // bosses/titank.mod.gml:490
 {
 ;
 }
 _hm.pc=281;
 break;
-case 283: // bosses/titank.mod.gml:485
-_hm.wait_ticks=max(0,1); _hm.pc=282; return;
+case 283: // bosses/titank.mod.gml:490
+_hm.result=undefined; _hm.done=true; return;
 break;
-case 284: // bosses/titank.mod.gml:484
+case 285: // bosses/titank.mod.gml:488
+{
+;
+}
+_hm.pc=284;
+break;
+case 286: // bosses/titank.mod.gml:488
+_hm.wait_ticks=max(0,1); _hm.pc=285; return;
+break;
+case 287: // bosses/titank.mod.gml:487
 {
 headZ -= 1;
 ;
 }
-_hm.pc=283;
+_hm.pc=286;
 break;
-case 281: // bosses/titank.mod.gml:482
-_hm.pc=((headZ > 0))?284:280;
+case 284: // bosses/titank.mod.gml:485
+_hm.pc=((headZ > 0))?287:283;
 break;
-case 285: // bosses/titank.mod.gml:481
+case 288: // bosses/titank.mod.gml:484
 {
 ;
 }
-_hm.pc=281;
+_hm.pc=284;
 break;
-case 286: // bosses/titank.mod.gml:481
-_hm.wait_ticks=max(0,15); _hm.pc=285; return;
+case 289: // bosses/titank.mod.gml:484
+_hm.wait_ticks=max(0,15); _hm.pc=288; return;
 break;
-case 287: // bosses/titank.mod.gml:480
-_hm.pc = (scrHMTaskFork(_hm, 286)) ? 286 : 278;
+case 290: // bosses/titank.mod.gml:483
+_hm.pc = (scrHMTaskFork(_hm, 289)) ? 289 : 281;
 break;
-case 288: // bosses/titank.mod.gml:476
+case 291: // bosses/titank.mod.gml:479
 {
 z = 0;
 ;
@@ -2078,40 +2088,40 @@ attacking = 999;
 kneeRelativePos = 2;
 ;
 }
-_hm.pc=287;
-break;
-case 290: // bosses/titank.mod.gml:328
-_hm.vars.i += 1; _hm.pc=289;
-break;
-case 291: // bosses/titank.mod.gml:472
-{
-;
-}
 _hm.pc=290;
 break;
-case 292: // bosses/titank.mod.gml:472
-_hm.result=undefined; _hm.done=true; return;
+case 293: // bosses/titank.mod.gml:330
+_hm.vars.i += 1; _hm.pc=292;
 break;
-case 293: // bosses/titank.mod.gml:344
-scrHMTaskWithNext(_hm);
-break;
-case 294: // bosses/titank.mod.gml:344
-scrHMTaskWithAbort(_hm);
-break;
-case 296: // bosses/titank.mod.gml:358
-instance_destroy();
-_hm.pc=295;
-break;
-case 297: // bosses/titank.mod.gml:468
+case 294: // bosses/titank.mod.gml:475
 {
 ;
 }
-_hm.pc=295;
+_hm.pc=293;
 break;
-case 298: // bosses/titank.mod.gml:468
-_hm.wait_ticks=max(0,1); _hm.pc=297; return;
+case 295: // bosses/titank.mod.gml:475
+_hm.result=undefined; _hm.done=true; return;
 break;
-case 299: // bosses/titank.mod.gml:444
+case 296: // bosses/titank.mod.gml:346
+scrHMTaskWithNext(_hm);
+break;
+case 297: // bosses/titank.mod.gml:346
+scrHMTaskWithAbort(_hm);
+break;
+case 299: // bosses/titank.mod.gml:361
+instance_destroy();
+_hm.pc=298;
+break;
+case 300: // bosses/titank.mod.gml:471
+{
+;
+}
+_hm.pc=298;
+break;
+case 301: // bosses/titank.mod.gml:471
+_hm.wait_ticks=max(0,1); _hm.pc=300; return;
+break;
+case 302: // bosses/titank.mod.gml:447
 {
 { var __hm_with69 = scrHMInstances((scrHMOther(other))), __hm_break71=false;
 for (var __hm_index70=0; __hm_index70<array_length(__hm_with69); ++__hm_index70) {
@@ -2120,7 +2130,7 @@ if(instance_exists(__hm_with69[__hm_index70])) with (__hm_with69[__hm_index70]) 
 if ((hp > 0)) {
 hp -= 1;
 }
-_hm.vars.livelegs = hp;
+_hm.vars.livelegs = max(1, hp);
 ;
 for (_hm.vars.i = 0; (_hm.vars.i < legs); _hm.vars.i += 1) {
 if ((foot_hp[_hm.vars.i] > 0)) {
@@ -2148,30 +2158,30 @@ if(__hm_break71) break;
 instance_destroy();
 ;
 }
-_hm.pc=298;
+_hm.pc=301;
 break;
-case 300: // bosses/titank.mod.gml:442
+case 303: // bosses/titank.mod.gml:445
 {
 ;
 }
-_hm.pc=299;
+_hm.pc=302;
 break;
-case 301: // bosses/titank.mod.gml:442
+case 304: // bosses/titank.mod.gml:445
 _hm.result=undefined; _hm.done=true; return;
 break;
-case 303: // bosses/titank.mod.gml:429
-_hm.vars.legdie -= 1; _hm.pc=302;
+case 306: // bosses/titank.mod.gml:432
+_hm.vars.legdie -= 1; _hm.pc=305;
 break;
-case 304: // bosses/titank.mod.gml:440
+case 307: // bosses/titank.mod.gml:443
 {
 ;
 }
-_hm.pc=303;
+_hm.pc=306;
 break;
-case 305: // bosses/titank.mod.gml:440
-_hm.wait_ticks=max(0,3); _hm.pc=304; return;
+case 308: // bosses/titank.mod.gml:443
+_hm.wait_ticks=max(0,3); _hm.pc=307; return;
 break;
-case 306: // bosses/titank.mod.gml:431
+case 309: // bosses/titank.mod.gml:434
 {
 { var __hm_with72 = scrHMInstances((scrHMOther(other))), __hm_break74=false;
 for (var __hm_index73=0; __hm_index73<array_length(__hm_with72); ++__hm_index73) {
@@ -2201,16 +2211,16 @@ if(__hm_break77) break;
 if(__hm_break74) break;
 }}
 }
+_hm.pc=308;
+break;
+case 305: // bosses/titank.mod.gml:432
+_hm.pc=((_hm.vars.legdie > 0))?309:304;
+break;
+case 310: // bosses/titank.mod.gml:432
+_hm.vars.legdie = 8;
 _hm.pc=305;
 break;
-case 302: // bosses/titank.mod.gml:429
-_hm.pc=((_hm.vars.legdie > 0))?306:301;
-break;
-case 307: // bosses/titank.mod.gml:429
-_hm.vars.legdie = 8;
-_hm.pc=302;
-break;
-case 308: // bosses/titank.mod.gml:417
+case 311: // bosses/titank.mod.gml:420
 {
 for (_hm.vars.legdie = 0; (_hm.vars.legdie < 16); _hm.vars.legdie += 1) {
 { var __hm_with81 = scrHMInstances((scrHMOther(other))), __hm_break83=false;
@@ -2243,24 +2253,24 @@ if(__hm_break83) break;
 }}
 }
 }
-_hm.pc=307;
+_hm.pc=310;
 break;
-case 309: // bosses/titank.mod.gml:416
-_hm.pc = (scrHMTaskFork(_hm, 308)) ? 308 : 299;
+case 312: // bosses/titank.mod.gml:419
+_hm.pc = (scrHMTaskFork(_hm, 311)) ? 311 : 302;
 break;
-case 310: // bosses/titank.mod.gml:414
+case 313: // bosses/titank.mod.gml:417
 {
 _hm.vars.titank.hurtTimer = 10;
 ;
 scrHMSoundPlay(sndGoldTankDead);
 ;
 }
-_hm.pc=309;
+_hm.pc=312;
 break;
-case 311: // bosses/titank.mod.gml:410
-_hm.pc = ((hp <= 0)) ? 310 : 298;
+case 314: // bosses/titank.mod.gml:413
+_hm.pc = ((hp <= 0)) ? 313 : 301;
 break;
-case 312: // bosses/titank.mod.gml:361
+case 315: // bosses/titank.mod.gml:364
 {
 if (((speed / timescale) > 0)) {
 {
@@ -2310,15 +2320,15 @@ lsthealth = hp;
 }
 }
 }
-_hm.pc=311;
+_hm.pc=314;
 break;
-case 313: // bosses/titank.mod.gml:358
-_hm.pc = ((! instance_exists(_hm.other_scope))) ? 296 : 312;
+case 316: // bosses/titank.mod.gml:361
+_hm.pc = ((! instance_exists(_hm.other_scope))) ? 299 : 315;
 break;
-case 295: // bosses/titank.mod.gml:356
-_hm.pc=(instance_exists(_hm.scope))?313:293;
+case 298: // bosses/titank.mod.gml:359
+_hm.pc=(instance_exists(_hm.scope))?316:296;
 break;
-case 314: // bosses/titank.mod.gml:346
+case 317: // bosses/titank.mod.gml:348
 {
 sprite_index = mskLaserCrystal;
 ;
@@ -2332,6 +2342,14 @@ hp = __hm_other97.foot_hp[_hm.vars.i];
 hm_titank_parent=__hm_other97;hm_titank_leg=_hm.vars.i;
 __hm_other97.hm_feet[_hm.vars.i]=id;
 ;
+var __hm_other98=scrHMOther(other);
+__hm_other98.hm_feet[_hm.vars.i] = id;
+;
+var __hm_other99=scrHMOther(other);
+hm_titank_parent = __hm_other99;
+;
+hm_titank_leg = _hm.vars.i;
+;
 lsthealth = hp;
 ;
 can_die = 0;
@@ -2342,22 +2360,22 @@ snd_hurt = sndHitMetal;
 ;
 friction = (10) * (timescale * timescale);
 }
-_hm.pc=295;
+_hm.pc=298;
 break;
-case 315: // bosses/titank.mod.gml:344
-scrHMTaskWithEnter(_hm,scrHMInstances(instance_create(x, (y - z), CustomEnemy)),314,292);
+case 318: // bosses/titank.mod.gml:346
+scrHMTaskWithEnter(_hm,scrHMInstances(instance_create(x, (y - z), CustomEnemy)),317,295);
 break;
-case 316: // bosses/titank.mod.gml:343
+case 319: // bosses/titank.mod.gml:345
 {
 _hm.vars.titank = id;
 ;
 }
-_hm.pc=315;
+_hm.pc=318;
 break;
-case 317: // bosses/titank.mod.gml:341
-_hm.pc = (scrHMTaskFork(_hm, 316)) ? 316 : 290;
+case 320: // bosses/titank.mod.gml:343
+_hm.pc = (scrHMTaskFork(_hm, 319)) ? 319 : 293;
 break;
-case 318: // bosses/titank.mod.gml:330
+case 321: // bosses/titank.mod.gml:332
 {
 foot_x[_hm.vars.i] = (x + lengthdir_x(96, ((_hm.vars.i * (360 / legs)) + 45)));
 ;
@@ -2376,16 +2394,16 @@ foot_target_x[_hm.vars.i] = lengthdir_x(96, ((_hm.vars.i * (360 / legs)) + 45));
 foot_target_y[_hm.vars.i] = lengthdir_y(48, ((_hm.vars.i * (360 / legs)) + 45));
 ;
 }
-_hm.pc=317;
+_hm.pc=320;
 break;
-case 289: // bosses/titank.mod.gml:328
-_hm.pc=((_hm.vars.i < legs))?318:288;
+case 292: // bosses/titank.mod.gml:330
+_hm.pc=((_hm.vars.i < legs))?321:291;
 break;
-case 319: // bosses/titank.mod.gml:328
+case 322: // bosses/titank.mod.gml:330
 _hm.vars.i = 0;
-_hm.pc=289;
+_hm.pc=292;
 break;
-case 320: // bosses/titank.mod.gml:317
+case 323: // bosses/titank.mod.gml:319
 {
 for (_hm.vars.i = 0; (_hm.vars.i < legs); _hm.vars.i += 1) {
 leg_x[_hm.vars.i] = lengthdir_x(58, ((_hm.vars.i * (360 / legs)) + 45));
@@ -2394,22 +2412,23 @@ leg_y[_hm.vars.i] = lengthdir_y(28, ((_hm.vars.i * (360 / legs)) + 45));
 ;
 }
 }
-_hm.pc=319;
+_hm.pc=322;
 break;
-case 321: // bosses/titank.mod.gml:254
+case 324: // bosses/titank.mod.gml:256
 {
 ;
 }
-_hm.pc=320;
+_hm.pc=323;
 break;
-case 322: // bosses/titank.mod.gml:254
+case 325: // bosses/titank.mod.gml:256
 _hm.result=undefined; _hm.done=true; return;
 break;
-case 323: // bosses/titank.mod.gml:240
+case 326: // bosses/titank.mod.gml:242
 {
 if ((instance_exists(id) and instance_exists(Player))) {
 {
-scrHMTitankHealth();
+hm_arkintide_mod_gml_hm_titank_health();
+;
 scrHMSoundMusic(musBoss2);
 if ((scrHMModExists("mod", "options", "intropan") and (scrHMModGet("mod", "options", "intropan") == "1"))) {
 {
@@ -2431,22 +2450,27 @@ scrHMModCall("mod", "bossintros", "boss_trigger", "", global.hm_module_vars[$ "m
 }
 }
 }
-_hm.pc=322;
+_hm.pc=325;
 break;
-case 324: // bosses/titank.mod.gml:239
-_hm.wait_ticks=max(0,20); _hm.pc=323; return;
+case 327: // bosses/titank.mod.gml:241
+_hm.wait_ticks=max(0,20); _hm.pc=326; return;
 break;
-case 325: // bosses/titank.mod.gml:238
-_hm.pc = (scrHMTaskFork(_hm, 324)) ? 324 : 320;
+case 328: // bosses/titank.mod.gml:240
+_hm.pc = (scrHMTaskFork(_hm, 327)) ? 327 : 323;
 break;
-case 326: // bosses/titank.mod.gml:205
+case 329: // bosses/titank.mod.gml:206
 {
 name = "titank";
-HMWorld.hm_titank_entering=false;
 team = 1;
 ;
 legs = (4 + (GameCont.loops * 2));
 hm_feet=array_create(legs,noone);_x=x;_y=y;
+;
+hm_feet = array_create(legs, noone);
+;
+_x = x;
+;
+_y = y;
 ;
 scrHMMaxHealthWrite(id, legs, "=");
 ;
@@ -2498,20 +2522,20 @@ depth = (- 8);
 scrHMBindDraw(hm_bosses_titank_mod_gml_draw_tank, depth);
 ;
 }
-_hm.pc=325;
+_hm.pc=328;
 break;
-case 327: // bosses/titank.mod.gml:204
-scrHMTaskWithEnter(_hm,scrHMInstances(instance_create(_hm.vars.tankx, _hm.vars.tanky, CustomEnemy)),326,2);
+case 330: // bosses/titank.mod.gml:205
+scrHMTaskWithEnter(_hm,scrHMInstances(instance_create(_hm.vars.tankx, _hm.vars.tanky, CustomEnemy)),329,2);
 break;
-case 328: // bosses/titank.mod.gml:185
+case 331: // bosses/titank.mod.gml:186
 {
 ;
 scrHMSoundPlay(sndExplosionXL);
 ;
 for (_hm.vars.i = 0; (_hm.vars.i < 360); _hm.vars.i += (2 + irandom(2))) {
-{ var __hm_with98 = scrHMInstances(instance_create((_hm.vars.tankx + lengthdir_x(70, _hm.vars.i)), ((_hm.vars.tanky + 20) + lengthdir_y(36, _hm.vars.i)), Dust)), __hm_break100=false;
-for (var __hm_index99=0; __hm_index99<array_length(__hm_with98); ++__hm_index99) {
-if(instance_exists(__hm_with98[__hm_index99])) with (__hm_with98[__hm_index99]) {
+{ var __hm_with100 = scrHMInstances(instance_create((_hm.vars.tankx + lengthdir_x(70, _hm.vars.i)), ((_hm.vars.tanky + 20) + lengthdir_y(36, _hm.vars.i)), Dust)), __hm_break102=false;
+for (var __hm_index101=0; __hm_index101<array_length(__hm_with100); ++__hm_index101) {
+if(instance_exists(__hm_with100[__hm_index101])) with (__hm_with100[__hm_index101]) {
 {
 speed = (random(12)) * timescale;
 ;
@@ -2525,12 +2549,12 @@ depth = ((- 8) - ((y > _hm.vars.tanky) ? 1 : (- 1)));
 ;
 }
 }
-if(__hm_break100) break;
+if(__hm_break102) break;
 }}
 }
-{ var __hm_with101 = scrHMInstances(Wall), __hm_break103=false;
-for (var __hm_index102=0; __hm_index102<array_length(__hm_with101); ++__hm_index102) {
-if(instance_exists(__hm_with101[__hm_index102])) with (__hm_with101[__hm_index102]) {
+{ var __hm_with103 = scrHMInstances(Wall), __hm_break105=false;
+for (var __hm_index104=0; __hm_index104<array_length(__hm_with103); ++__hm_index104) {
+if(instance_exists(__hm_with103[__hm_index104])) with (__hm_with103[__hm_index104]) {
 {
 if ((point_distance((x + 8), (y + 8), _hm.vars.tankx, _hm.vars.tanky) <= 64)) {
 {
@@ -2542,25 +2566,25 @@ instance_destroy();
 }
 }
 }
-if(__hm_break103) break;
+if(__hm_break105) break;
 }}
 scrHMSoundMusic(musBoss3);
 ;
 }
-_hm.pc=327;
+_hm.pc=330;
 break;
-case 329: // bosses/titank.mod.gml:185
-_hm.wait_ticks=max(0,35); _hm.pc=328; return;
+case 332: // bosses/titank.mod.gml:186
+_hm.wait_ticks=max(0,35); _hm.pc=331; return;
 break;
-case 330: // bosses/titank.mod.gml:169
+case 333: // bosses/titank.mod.gml:170
 {
 ;
 scrHMSoundPlay(sndExplosionXL);
 ;
 for (_hm.vars.i = 0; (_hm.vars.i < 360); _hm.vars.i += (3 + irandom(3))) {
-{ var __hm_with104 = scrHMInstances(instance_create((_hm.vars.tankx + lengthdir_x(70, _hm.vars.i)), ((_hm.vars.tanky + 20) + lengthdir_y(36, _hm.vars.i)), Dust)), __hm_break106=false;
-for (var __hm_index105=0; __hm_index105<array_length(__hm_with104); ++__hm_index105) {
-if(instance_exists(__hm_with104[__hm_index105])) with (__hm_with104[__hm_index105]) {
+{ var __hm_with106 = scrHMInstances(instance_create((_hm.vars.tankx + lengthdir_x(70, _hm.vars.i)), ((_hm.vars.tanky + 20) + lengthdir_y(36, _hm.vars.i)), Dust)), __hm_break108=false;
+for (var __hm_index107=0; __hm_index107<array_length(__hm_with106); ++__hm_index107) {
+if(instance_exists(__hm_with106[__hm_index107])) with (__hm_with106[__hm_index107]) {
 {
 speed = (random(8)) * timescale;
 ;
@@ -2568,12 +2592,12 @@ direction = 90;
 ;
 }
 }
-if(__hm_break106) break;
+if(__hm_break108) break;
 }}
 }
-{ var __hm_with107 = scrHMInstances(Wall), __hm_break109=false;
-for (var __hm_index108=0; __hm_index108<array_length(__hm_with107); ++__hm_index108) {
-if(instance_exists(__hm_with107[__hm_index108])) with (__hm_with107[__hm_index108]) {
+{ var __hm_with109 = scrHMInstances(Wall), __hm_break111=false;
+for (var __hm_index110=0; __hm_index110<array_length(__hm_with109); ++__hm_index110) {
+if(instance_exists(__hm_with109[__hm_index110])) with (__hm_with109[__hm_index110]) {
 {
 if ((point_distance((x + 8), (y + 8), _hm.vars.tankx, _hm.vars.tanky) <= 64)) {
 {
@@ -2585,24 +2609,24 @@ instance_destroy();
 }
 }
 }
-if(__hm_break109) break;
+if(__hm_break111) break;
 }}
 }
-_hm.pc=329;
+_hm.pc=332;
 break;
-case 331: // bosses/titank.mod.gml:169
-_hm.wait_ticks=max(0,45); _hm.pc=330; return;
+case 334: // bosses/titank.mod.gml:170
+_hm.wait_ticks=max(0,45); _hm.pc=333; return;
 break;
-case 332: // bosses/titank.mod.gml:153
+case 335: // bosses/titank.mod.gml:154
 {
 scrHMSoundPlay(sndExplosionL);
 ;
 scrHMSoundMusic((- 1));
 ;
 for (_hm.vars.i = 0; (_hm.vars.i < 360); _hm.vars.i += (4 + irandom(4))) {
-{ var __hm_with110 = scrHMInstances(instance_create((_hm.vars.tankx + lengthdir_x(70, _hm.vars.i)), ((_hm.vars.tanky + 20) + lengthdir_y(36, _hm.vars.i)), Dust)), __hm_break112=false;
-for (var __hm_index111=0; __hm_index111<array_length(__hm_with110); ++__hm_index111) {
-if(instance_exists(__hm_with110[__hm_index111])) with (__hm_with110[__hm_index111]) {
+{ var __hm_with112 = scrHMInstances(instance_create((_hm.vars.tankx + lengthdir_x(70, _hm.vars.i)), ((_hm.vars.tanky + 20) + lengthdir_y(36, _hm.vars.i)), Dust)), __hm_break114=false;
+for (var __hm_index113=0; __hm_index113<array_length(__hm_with112); ++__hm_index113) {
+if(instance_exists(__hm_with112[__hm_index113])) with (__hm_with112[__hm_index113]) {
 {
 speed = (random(4)) * timescale;
 ;
@@ -2610,12 +2634,12 @@ direction = 90;
 ;
 }
 }
-if(__hm_break112) break;
+if(__hm_break114) break;
 }}
 }
-{ var __hm_with113 = scrHMInstances(Wall), __hm_break115=false;
-for (var __hm_index114=0; __hm_index114<array_length(__hm_with113); ++__hm_index114) {
-if(instance_exists(__hm_with113[__hm_index114])) with (__hm_with113[__hm_index114]) {
+{ var __hm_with115 = scrHMInstances(Wall), __hm_break117=false;
+for (var __hm_index116=0; __hm_index116<array_length(__hm_with115); ++__hm_index116) {
+if(instance_exists(__hm_with115[__hm_index116])) with (__hm_with115[__hm_index116]) {
 {
 if ((point_distance((x + 8), (y + 8), _hm.vars.tankx, _hm.vars.tanky) <= 64)) {
 {
@@ -2627,407 +2651,408 @@ instance_destroy();
 }
 }
 }
-if(__hm_break115) break;
+if(__hm_break117) break;
 }}
 }
-_hm.pc=331;
+_hm.pc=334;
 break;
-case 333: // bosses/titank.mod.gml:152
-_hm.pc = (scrHMTaskFork(_hm, 332)) ? 332 : 0;
+case 336: // bosses/titank.mod.gml:153
+_hm.pc = (scrHMTaskFork(_hm, 335)) ? 335 : 0;
 break;
 default: throw "Hardmode invalid continuation PC";
 }}
 }
 }
 
-
-// Source bosses/titank.mod.gml:1358; draw
-function hm_bosses_titank_mod_gml_draw() {
-if (global.hm_module_vars[$ "mod:bosses/titank"].debug) {
-{
-{ var __hm_with1 = scrHMInstances(CustomEnemy), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-scrHMDrawTextShadow(x, (y + 32), string(hp));
-;
-}
-}
-if(__hm_break3) break;
-}}
-}
-}
-}
-
-// Source bosses/titank.mod.gml:1367; draw_tank
-function hm_bosses_titank_mod_gml_draw_tank() {
-{ var __hm_with1 = scrHMMatching(CustomEnemy, "name", "titank"), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-for (var _hml_i = 0; (_hml_i < array_length_1d(leg_x)); _hml_i += 1) {
-if ((((y + leg_y[_hml_i]) < y) and (foot_hp[_hml_i] > 0))) {
-hm_bosses_titank_mod_gml_draw_leg(_hml_i);
-}
-}
-scrHMDrawSpriteExt(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankHead, (- 1), x, ((y - z) - headZ), image_xscale, image_yscale, image_angle, image_blend, 1);
-;
-var _hml_ip = instance_nearest(x, y, Player);
-;
-if ((_hml_ip != noone)) {
-{
-var _hml_pdir = (round((point_direction(x, (y - z), _hml_ip.x, _hml_ip.y) / 5)) * 5);
-;
-scrHMDrawSpriteExt(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankEye, (- 1), (x + lengthdir_x(28, _hml_pdir)), ((((y + 22) + lengthdir_y(22, _hml_pdir)) - z) - headZ), image_xscale, image_yscale, image_angle, image_blend, 1);
-;
-gpu_set_blendmode(bm_add);
-;
-for (var _hml_i = 0; (_hml_i < 360); _hml_i += 36) {
-scrHMDrawSpriteExt(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankEye, (- 1), ((x + lengthdir_x(28, _hml_pdir)) + lengthdir_x(16, _hml_i)), (((((y + 22) + lengthdir_y(22, _hml_pdir)) - z) + lengthdir_y(2, _hml_i)) - headZ), image_xscale, image_yscale, image_angle, image_blend, 0.1);
-;
-}
-gpu_set_blendmode(bm_normal);
-;
-}
-}
-scrHMDrawSpriteExt(((hurtTimer > 0) ? spr_hurt : sprite_index), (- 1), x, (y - z), image_xscale, image_yscale, image_angle, image_blend, 1);
-;
-for (var _hml_i = 0; (_hml_i < array_length_1d(leg_x)); _hml_i += 1) {
-if ((((y + leg_y[_hml_i]) >= y) and (foot_hp[_hml_i] > 0))) {
-hm_bosses_titank_mod_gml_draw_leg(_hml_i);
-}
-}
-if (global.hm_module_vars[$ "mod:bosses/titank"].debug) {
-{
-for (var _hml_i = 0; (_hml_i < array_length_1d(leg_x)); _hml_i += 1) {
-draw_set_color(c_red);
-;
-draw_circle((x + leg_x[_hml_i]), ((y + leg_y[_hml_i]) - z), 3, 1);
-;
-draw_set_color(c_green);
-;
-draw_circle((x + ((leg_x[_hml_i] + (foot_x[_hml_i] - x)) / 1.25)), (((y + ((leg_y[_hml_i] + (foot_y[_hml_i] - y)) / 1.25)) - zstart) - foot_z[_hml_i]), 3, 1);
-;
-draw_set_color(c_blue);
-;
-draw_circle(foot_x[_hml_i], (foot_y[_hml_i] - foot_z[_hml_i]), 3, 1);
-;
-draw_set_color(c_blue);
-;
-draw_circle(foot_x[_hml_i], foot_y[_hml_i], 3, 0);
-;
-}
-}
-}
-}
-}
-if(__hm_break3) break;
-}}
-}
-
-// Source bosses/titank.mod.gml:1426; draw_leg
-function hm_bosses_titank_mod_gml_draw_leg(_hml_i) {
-var _hml_ldir = (((x + leg_x[_hml_i]) >= x) ? 1 : (- 1));
-;
-if (((y + leg_y[_hml_i]) >= y)) {
-{
-var _hml_kneex = (x + ((leg_x[_hml_i] + (foot_x[_hml_i] - x)) / kneeRelativePos));
-;
-var _hml_kneey = (y + ((leg_y[_hml_i] + (foot_y[_hml_i] - y)) / kneeRelativePos));
-;
-var _hml_pdir = point_direction(_hml_kneex, (_hml_kneey - z), x, (y - z));
-;
-draw_sprite_pos(((hurtTimer > 0) ? spr_hurt : global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg), 1, ((x + leg_x[_hml_i]) + lengthdir_x((sprite_get_width(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg) / 2), (_hml_pdir - (90 * _hml_ldir)))), (((y + leg_y[_hml_i]) + lengthdir_y((sprite_get_width(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg) / 2), (_hml_pdir - (90 * _hml_ldir)))) - z), ((x + leg_x[_hml_i]) + lengthdir_x((sprite_get_width(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg) / 2), (_hml_pdir + (90 * _hml_ldir)))), (((y + leg_y[_hml_i]) + lengthdir_y((sprite_get_width(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg) / 2), (_hml_pdir + (90 * _hml_ldir)))) - z), (_hml_kneex + lengthdir_x((sprite_get_width(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg) / 2), (_hml_pdir + (90 * _hml_ldir)))), (((_hml_kneey + lengthdir_y((sprite_get_width(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg) / 2), (_hml_pdir + (90 * _hml_ldir)))) - zstart) - foot_z[_hml_i]), (_hml_kneex + lengthdir_x((sprite_get_width(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg) / 2), (_hml_pdir - (90 * _hml_ldir)))), (((_hml_kneey + lengthdir_y((sprite_get_width(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg) / 2), (_hml_pdir - (90 * _hml_ldir)))) - zstart) - foot_z[_hml_i]), 1);
-;
-}
-}
-var _hml_kneex = (x + ((leg_x[_hml_i] + (foot_x[_hml_i] - x)) / kneeRelativePos));
-;
-var _hml_kneey = (y + ((leg_y[_hml_i] + (foot_y[_hml_i] - y)) / kneeRelativePos));
-;
-var _hml_pdir = point_direction(_hml_kneex, ((_hml_kneey - zstart) - foot_z[_hml_i]), foot_x[_hml_i], (foot_y[_hml_i] - foot_z[_hml_i]));
-;
-draw_sprite_pos(((hurtTimer > 0) ? global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLegHurt : (((y + leg_y[_hml_i]) >= y) ? ((foot_hp[_hml_i] <= 0) ? global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLegDestroyed : global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg) : ((foot_hp[_hml_i] <= 0) ? global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLegDarkDestroyed : global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLegDark))), 0, (_hml_kneex + lengthdir_x((sprite_get_width(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg) / 2), (_hml_pdir + (90 * _hml_ldir)))), (((_hml_kneey + lengthdir_y((sprite_get_width(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg) / 2), (_hml_pdir + (90 * _hml_ldir)))) - zstart) - foot_z[_hml_i]), (_hml_kneex + lengthdir_x((sprite_get_width(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg) / 2), (_hml_pdir - (90 * _hml_ldir)))), (((_hml_kneey + lengthdir_y((sprite_get_width(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg) / 2), (_hml_pdir - (90 * _hml_ldir)))) - zstart) - foot_z[_hml_i]), (foot_x[_hml_i] + lengthdir_x((sprite_get_width(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg) / 2), (_hml_pdir - (90 * _hml_ldir)))), ((foot_y[_hml_i] + lengthdir_y((sprite_get_width(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg) / 2), (_hml_pdir - (90 * _hml_ldir)))) - foot_z[_hml_i]), (foot_x[_hml_i] + lengthdir_x((sprite_get_width(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg) / 2), (_hml_pdir + (90 * _hml_ldir)))), ((foot_y[_hml_i] + lengthdir_y((sprite_get_width(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg) / 2), (_hml_pdir + (90 * _hml_ldir)))) - foot_z[_hml_i]), 1);
-;
-if (((y + leg_y[_hml_i]) < y)) {
-{
-var _hml_kneex = (x + ((leg_x[_hml_i] + (foot_x[_hml_i] - x)) / kneeRelativePos));
-;
-var _hml_kneey = (y + ((leg_y[_hml_i] + (foot_y[_hml_i] - y)) / kneeRelativePos));
-;
-var _hml_pdir = point_direction(_hml_kneex, (_hml_kneey - z), x, (y - z));
-;
-draw_sprite_pos(((hurtTimer > 0) ? spr_hurt : global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg), 1, ((x + leg_x[_hml_i]) + lengthdir_x((sprite_get_width(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg) / 2), (_hml_pdir - (90 * _hml_ldir)))), (((y + leg_y[_hml_i]) + lengthdir_y((sprite_get_width(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg) / 2), (_hml_pdir - (90 * _hml_ldir)))) - z), ((x + leg_x[_hml_i]) + lengthdir_x((sprite_get_width(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg) / 2), (_hml_pdir + (90 * _hml_ldir)))), (((y + leg_y[_hml_i]) + lengthdir_y((sprite_get_width(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg) / 2), (_hml_pdir + (90 * _hml_ldir)))) - z), (_hml_kneex + lengthdir_x((sprite_get_width(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg) / 2), (_hml_pdir + (90 * _hml_ldir)))), (((_hml_kneey + lengthdir_y((sprite_get_width(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg) / 2), (_hml_pdir + (90 * _hml_ldir)))) - zstart) - foot_z[_hml_i]), (_hml_kneex + lengthdir_x((sprite_get_width(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg) / 2), (_hml_pdir - (90 * _hml_ldir)))), (((_hml_kneey + lengthdir_y((sprite_get_width(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg) / 2), (_hml_pdir - (90 * _hml_ldir)))) - zstart) - foot_z[_hml_i]), 1);
-;
-}
-}
-if (global.hm_module_vars[$ "mod:bosses/titank"].debug) {
-draw_line(_hml_kneex, ((_hml_kneey - zstart) - foot_z[_hml_i]), foot_x[_hml_i], (foot_y[_hml_i] - foot_z[_hml_i]));
-}
-}
-
-// Source bosses/titank.mod.gml:1500; draw_shadows
-function hm_bosses_titank_mod_gml_draw_shadows() {
-{ var __hm_with1 = scrHMMatching(CustomEnemy, "name", "titank"), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-for (var _hml_i = 0; (_hml_i < legs); _hml_i += 1) {
-if (((foot_hp[_hml_i] > 0) and position_meeting(foot_x[_hml_i], (foot_y[_hml_i] - 6), Floor))) {
-scrHMDrawSpriteExt(shd24, 1, foot_x[_hml_i], (foot_y[_hml_i] - 6), 0.5, 0.5, 0, c_white, 1);
-}
-}
-var _hml_shad_scale = undefined;
-;
-_hml_shad_scale = (1 - min((0.66 * (z / 96)), 0.66));
-scrHMDrawSpriteExt(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankShadow, 1, x, y, _hml_shad_scale, _hml_shad_scale, 0, c_white, 1);
-}
-}
-if(__hm_break3) break;
-}}
-}
-
-// Source bosses/titank.mod.gml:1510; scrNuke
-function hm_bosses_titank_mod_gml_scrNuke() {
-var _args = [];
-for(var _i=0;_i<argument_count;++_i) array_push(_args, argument[_i]);
-return scrHMTaskStart(hm_bosses_titank_mod_gml_scrNuke_resume, id, scrHMOther(other), _args, 29, ["z", "size"]);
-}
-function hm_bosses_titank_mod_gml_scrNuke_resume(_hm) {
-var _budget=0;
-while(!_hm.done) {
-assert(++_budget<100000,"Hardmode runaway continuation: hm_bosses_titank_mod_gml_scrNuke");
-if (!instance_exists(_hm.scope)) { if(array_length(_hm.with_stack)>_hm.with_floor) {scrHMTaskWithNext(_hm); continue;} _hm.done=true; return; }
-with (_hm.scope) { switch (_hm.pc) {
-case 0: _hm.done=true; return;
-case 2: // bosses/titank.mod.gml:1576
-_hm.vars.i += (24 / _hm.vars.size); _hm.pc=1;
-break;
-case 3: // bosses/titank.mod.gml:1578
-scrHMTaskWithNext(_hm);
-break;
-case 4: // bosses/titank.mod.gml:1578
-scrHMTaskWithAbort(_hm);
-break;
-case 5: // bosses/titank.mod.gml:1597
-{
-;
-}
-_hm.pc=3;
-break;
-case 6: // bosses/titank.mod.gml:1597
-_hm.result=undefined; _hm.done=true; return;
-break;
-case 8: // bosses/titank.mod.gml:1595
-{
-;
-}
-_hm.pc=7;
-break;
-case 9: // bosses/titank.mod.gml:1595
-_hm.wait_ticks=max(0,1); _hm.pc=8; return;
-break;
-case 10: // bosses/titank.mod.gml:1594
-{
-depth = (_hm.vars.d - (y + ystart));
-;
-}
-_hm.pc=9;
-break;
-case 7: // bosses/titank.mod.gml:1592
-_hm.pc=(instance_exists(_hm.scope))?10:6;
-break;
-case 11: // bosses/titank.mod.gml:1590
-_hm.pc = (scrHMTaskFork(_hm, 7)) ? 7 : 3;
-break;
-case 12: // bosses/titank.mod.gml:1580
-{
-var __hm_other1=scrHMOther(other);
-team = __hm_other1.team;
-;
-mask_index = mskNone;
-;
-direction = _hm.vars.i;
-;
-speed = ((6 * _hm.vars.size)) * timescale;
-;
-vspeed *= 0.5;
-;
-vspeed -= ((6 * _hm.vars.size)) * timescale;
-;
-image_xscale = 1.5;
-;
-image_yscale = image_xscale;
-;
-_hm.vars.d = depth;
-;
-}
-_hm.pc=11;
-break;
-case 13: // bosses/titank.mod.gml:1578
-scrHMTaskWithEnter(_hm,scrHMInstances(instance_create(x, (y - _hm.vars.z), Explosion)),12,2);
-break;
-case 1: // bosses/titank.mod.gml:1576
-_hm.pc=((_hm.vars.i < 360))?13:0;
-break;
-case 14: // bosses/titank.mod.gml:1576
-_hm.vars.i = 0;
-_hm.pc=1;
-break;
-case 16: // bosses/titank.mod.gml:1555
-_hm.vars.__hm_repeat2--; _hm.pc=15;
-break;
-case 17: // bosses/titank.mod.gml:1557
-scrHMTaskWithNext(_hm);
-break;
-case 18: // bosses/titank.mod.gml:1557
-scrHMTaskWithAbort(_hm);
-break;
-case 19: // bosses/titank.mod.gml:1571
-{
-;
-}
-_hm.pc=17;
-break;
-case 20: // bosses/titank.mod.gml:1571
-_hm.result=undefined; _hm.done=true; return;
-break;
-case 22: // bosses/titank.mod.gml:1569
-{
-;
-}
-_hm.pc=21;
-break;
-case 23: // bosses/titank.mod.gml:1569
-_hm.wait_ticks=max(0,1); _hm.pc=22; return;
-break;
-case 24: // bosses/titank.mod.gml:1568
-{
-depth = (_hm.vars.d - ((y + ystart) / 2));
-;
-}
-_hm.pc=23;
-break;
-case 21: // bosses/titank.mod.gml:1566
-_hm.pc=(instance_exists(_hm.scope))?24:20;
-break;
-case 25: // bosses/titank.mod.gml:1564
-_hm.pc = (scrHMTaskFork(_hm, 21)) ? 21 : 17;
-break;
-case 26: // bosses/titank.mod.gml:1559
-{
-var __hm_other3=scrHMOther(other);
-team = __hm_other3.team;
-;
-mask_index = mskNone;
-;
-vspeed = (((- random(4)) * _hm.vars.size)) * timescale;
-;
-_hm.vars.d = depth;
-;
-}
-_hm.pc=25;
-break;
-case 27: // bosses/titank.mod.gml:1557
-scrHMTaskWithEnter(_hm,scrHMInstances(instance_create((x + lengthdir_x((random(8) * _hm.vars.size), random(360))), ((y + lengthdir_y((random(8) * _hm.vars.size), random(360))) - _hm.vars.z), SmallExplosion)),26,16);
-break;
-case 15: // bosses/titank.mod.gml:1555
-_hm.pc=(_hm.vars.__hm_repeat2>0)?27:14;
-break;
-case 28: // bosses/titank.mod.gml:1555
-_hm.vars.__hm_repeat2=round((32 * _hm.vars.size)); _hm.pc=15;
-break;
-case 29: // bosses/titank.mod.gml:1513
-{
-{ var __hm_with4 = scrHMInstances(instance_create(x, (y - _hm.vars.z), Explosion)), __hm_break6=false;
-for (var __hm_index5=0; __hm_index5<array_length(__hm_with4); ++__hm_index5) {
-if(instance_exists(__hm_with4[__hm_index5])) with (__hm_with4[__hm_index5]) {
-{
-team = 2;
-;
-visible = 0;
-;
-image_xscale *= (2.5 * _hm.vars.size);
-;
-image_yscale = image_xscale;
-;
-{ var __hm_with7 = scrHMInstances(hitme), __hm_break9=false;
-for (var __hm_index8=0; __hm_index8<array_length(__hm_with7); ++__hm_index8) {
-if(instance_exists(__hm_with7[__hm_index8])) with (__hm_with7[__hm_index8]) {
-{
-if (((scrHMVariableExists(id, "team") && (team != (scrHMOther(other)).team)) && (distance_to_object((scrHMOther(other))) <= 0))) {
-{
-hp -= (20 + (10 * GameCont.level));
-;
-}
-}
-}
-}
-if(__hm_break9) break;
-}}
-}
-}
-if(__hm_break6) break;
-}}
-for (_hm.vars.i = 0; (_hm.vars.i < 360); _hm.vars.i += (60 / _hm.vars.size)) {
-{ var __hm_with10 = scrHMInstances(instance_create(x, (y - _hm.vars.z), Explosion)), __hm_break12=false;
-for (var __hm_index11=0; __hm_index11<array_length(__hm_with10); ++__hm_index11) {
-if(instance_exists(__hm_with10[__hm_index11])) with (__hm_with10[__hm_index11]) {
-{
-var __hm_other13=scrHMOther(other);
-team = __hm_other13.team;
-;
-mask_index = mskNone;
-;
-direction = _hm.vars.i;
-;
-speed = (((8 * _hm.vars.size) / 1.5)) * timescale;
-;
-vspeed *= 0.75;
-;
-}
-}
-if(__hm_break12) break;
-}}
-}
-for (_hm.vars.i = 15; (_hm.vars.i < 360); _hm.vars.i += (60 / _hm.vars.size)) {
-{ var __hm_with14 = scrHMInstances(instance_create(x, (y - _hm.vars.z), SmallExplosion)), __hm_break16=false;
-for (var __hm_index15=0; __hm_index15<array_length(__hm_with14); ++__hm_index15) {
-if(instance_exists(__hm_with14[__hm_index15])) with (__hm_with14[__hm_index15]) {
-{
-var __hm_other17=scrHMOther(other);
-team = __hm_other17.team;
-;
-mask_index = mskNone;
-;
-direction = _hm.vars.i;
-;
-speed = (((10 * _hm.vars.size) / 1.5)) * timescale;
-;
-vspeed *= 0.75;
-;
-}
-}
-if(__hm_break16) break;
-}}
-}
-}
-_hm.pc=28;
-break;
-default: throw "Hardmode invalid continuation PC";
-}}
-}
-}
-
-
-// Source bosses/titank.mod.gml:1601; tinade_create
+// Source bosses/titank.mod.gml:1358; draw
+function hm_bosses_titank_mod_gml_draw() {
+if (global.hm_module_vars[$ "mod:bosses/titank"].debug) {
+{
+{ var __hm_with1 = scrHMInstances(CustomEnemy), __hm_break3=false;
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+{
+scrHMDrawTextShadow(x, (y + 32), string(hp));
+;
+}
+}
+if(__hm_break3) break;
+}}
+}
+}
+}
+
+// Source bosses/titank.mod.gml:1367; draw_tank
+function hm_bosses_titank_mod_gml_draw_tank() {
+{ var __hm_with1 = scrHMMatching(CustomEnemy, "name", "titank"), __hm_break3=false;
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+{
+for (var _hml_i = 0; (_hml_i < array_length_1d(leg_x)); _hml_i += 1) {
+if ((((y + leg_y[_hml_i]) < y) and (foot_hp[_hml_i] > 0))) {
+hm_bosses_titank_mod_gml_draw_leg(_hml_i);
+}
+}
+scrHMDrawSpriteExt(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankHead, (- 1), x, ((y - z) - headZ), image_xscale, image_yscale, image_angle, image_blend, 1);
+;
+var _hml_ip = instance_nearest(x, y, Player);
+;
+if ((_hml_ip != noone)) {
+{
+var _hml_pdir = (round((point_direction(x, (y - z), _hml_ip.x, _hml_ip.y) / 5)) * 5);
+;
+scrHMDrawSpriteExt(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankEye, (- 1), (x + lengthdir_x(28, _hml_pdir)), ((((y + 22) + lengthdir_y(22, _hml_pdir)) - z) - headZ), image_xscale, image_yscale, image_angle, image_blend, 1);
+;
+gpu_set_blendmode(bm_add);
+;
+for (var _hml_i = 0; (_hml_i < 360); _hml_i += 36) {
+scrHMDrawSpriteExt(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankEye, (- 1), ((x + lengthdir_x(28, _hml_pdir)) + lengthdir_x(16, _hml_i)), (((((y + 22) + lengthdir_y(22, _hml_pdir)) - z) + lengthdir_y(2, _hml_i)) - headZ), image_xscale, image_yscale, image_angle, image_blend, 0.1);
+;
+}
+gpu_set_blendmode(bm_normal);
+;
+}
+}
+scrHMDrawSpriteExt(((hurtTimer > 0) ? spr_hurt : sprite_index), (- 1), x, (y - z), image_xscale, image_yscale, image_angle, image_blend, 1);
+;
+for (var _hml_i = 0; (_hml_i < array_length_1d(leg_x)); _hml_i += 1) {
+if ((((y + leg_y[_hml_i]) >= y) and (foot_hp[_hml_i] > 0))) {
+hm_bosses_titank_mod_gml_draw_leg(_hml_i);
+}
+}
+if (global.hm_module_vars[$ "mod:bosses/titank"].debug) {
+{
+for (var _hml_i = 0; (_hml_i < array_length_1d(leg_x)); _hml_i += 1) {
+draw_set_color(c_red);
+;
+draw_circle((x + leg_x[_hml_i]), ((y + leg_y[_hml_i]) - z), 3, 1);
+;
+draw_set_color(c_green);
+;
+draw_circle((x + ((leg_x[_hml_i] + (foot_x[_hml_i] - x)) / 1.25)), (((y + ((leg_y[_hml_i] + (foot_y[_hml_i] - y)) / 1.25)) - zstart) - foot_z[_hml_i]), 3, 1);
+;
+draw_set_color(c_blue);
+;
+draw_circle(foot_x[_hml_i], (foot_y[_hml_i] - foot_z[_hml_i]), 3, 1);
+;
+draw_set_color(c_blue);
+;
+draw_circle(foot_x[_hml_i], foot_y[_hml_i], 3, 0);
+;
+}
+}
+}
+}
+}
+if(__hm_break3) break;
+}}
+}
+
+// Source bosses/titank.mod.gml:1426; draw_leg
+function hm_bosses_titank_mod_gml_draw_leg(_hml_i) {
+var _hml_ldir = (((x + leg_x[_hml_i]) >= x) ? 1 : (- 1));
+;
+if (((y + leg_y[_hml_i]) >= y)) {
+{
+var _hml_kneex = (x + ((leg_x[_hml_i] + (foot_x[_hml_i] - x)) / kneeRelativePos));
+;
+var _hml_kneey = (y + ((leg_y[_hml_i] + (foot_y[_hml_i] - y)) / kneeRelativePos));
+;
+var _hml_pdir = point_direction(_hml_kneex, (_hml_kneey - z), x, (y - z));
+;
+draw_sprite_pos(((hurtTimer > 0) ? spr_hurt : global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg), 1, ((x + leg_x[_hml_i]) + lengthdir_x((sprite_get_width(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg) / 2), (_hml_pdir - (90 * _hml_ldir)))), (((y + leg_y[_hml_i]) + lengthdir_y((sprite_get_width(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg) / 2), (_hml_pdir - (90 * _hml_ldir)))) - z), ((x + leg_x[_hml_i]) + lengthdir_x((sprite_get_width(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg) / 2), (_hml_pdir + (90 * _hml_ldir)))), (((y + leg_y[_hml_i]) + lengthdir_y((sprite_get_width(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg) / 2), (_hml_pdir + (90 * _hml_ldir)))) - z), (_hml_kneex + lengthdir_x((sprite_get_width(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg) / 2), (_hml_pdir + (90 * _hml_ldir)))), (((_hml_kneey + lengthdir_y((sprite_get_width(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg) / 2), (_hml_pdir + (90 * _hml_ldir)))) - zstart) - foot_z[_hml_i]), (_hml_kneex + lengthdir_x((sprite_get_width(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg) / 2), (_hml_pdir - (90 * _hml_ldir)))), (((_hml_kneey + lengthdir_y((sprite_get_width(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg) / 2), (_hml_pdir - (90 * _hml_ldir)))) - zstart) - foot_z[_hml_i]), 1);
+;
+}
+}
+var _hml_kneex = (x + ((leg_x[_hml_i] + (foot_x[_hml_i] - x)) / kneeRelativePos));
+;
+var _hml_kneey = (y + ((leg_y[_hml_i] + (foot_y[_hml_i] - y)) / kneeRelativePos));
+;
+var _hml_pdir = point_direction(_hml_kneex, ((_hml_kneey - zstart) - foot_z[_hml_i]), foot_x[_hml_i], (foot_y[_hml_i] - foot_z[_hml_i]));
+;
+draw_sprite_pos(((hurtTimer > 0) ? global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLegHurt : (((y + leg_y[_hml_i]) >= y) ? ((foot_hp[_hml_i] <= 0) ? global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLegDestroyed : global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg) : ((foot_hp[_hml_i] <= 0) ? global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLegDarkDestroyed : global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLegDark))), 0, (_hml_kneex + lengthdir_x((sprite_get_width(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg) / 2), (_hml_pdir + (90 * _hml_ldir)))), (((_hml_kneey + lengthdir_y((sprite_get_width(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg) / 2), (_hml_pdir + (90 * _hml_ldir)))) - zstart) - foot_z[_hml_i]), (_hml_kneex + lengthdir_x((sprite_get_width(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg) / 2), (_hml_pdir - (90 * _hml_ldir)))), (((_hml_kneey + lengthdir_y((sprite_get_width(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg) / 2), (_hml_pdir - (90 * _hml_ldir)))) - zstart) - foot_z[_hml_i]), (foot_x[_hml_i] + lengthdir_x((sprite_get_width(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg) / 2), (_hml_pdir - (90 * _hml_ldir)))), ((foot_y[_hml_i] + lengthdir_y((sprite_get_width(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg) / 2), (_hml_pdir - (90 * _hml_ldir)))) - foot_z[_hml_i]), (foot_x[_hml_i] + lengthdir_x((sprite_get_width(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg) / 2), (_hml_pdir + (90 * _hml_ldir)))), ((foot_y[_hml_i] + lengthdir_y((sprite_get_width(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg) / 2), (_hml_pdir + (90 * _hml_ldir)))) - foot_z[_hml_i]), 1);
+;
+if (((y + leg_y[_hml_i]) < y)) {
+{
+var _hml_kneex = (x + ((leg_x[_hml_i] + (foot_x[_hml_i] - x)) / kneeRelativePos));
+;
+var _hml_kneey = (y + ((leg_y[_hml_i] + (foot_y[_hml_i] - y)) / kneeRelativePos));
+;
+var _hml_pdir = point_direction(_hml_kneex, (_hml_kneey - z), x, (y - z));
+;
+draw_sprite_pos(((hurtTimer > 0) ? spr_hurt : global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg), 1, ((x + leg_x[_hml_i]) + lengthdir_x((sprite_get_width(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg) / 2), (_hml_pdir - (90 * _hml_ldir)))), (((y + leg_y[_hml_i]) + lengthdir_y((sprite_get_width(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg) / 2), (_hml_pdir - (90 * _hml_ldir)))) - z), ((x + leg_x[_hml_i]) + lengthdir_x((sprite_get_width(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg) / 2), (_hml_pdir + (90 * _hml_ldir)))), (((y + leg_y[_hml_i]) + lengthdir_y((sprite_get_width(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg) / 2), (_hml_pdir + (90 * _hml_ldir)))) - z), (_hml_kneex + lengthdir_x((sprite_get_width(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg) / 2), (_hml_pdir + (90 * _hml_ldir)))), (((_hml_kneey + lengthdir_y((sprite_get_width(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg) / 2), (_hml_pdir + (90 * _hml_ldir)))) - zstart) - foot_z[_hml_i]), (_hml_kneex + lengthdir_x((sprite_get_width(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg) / 2), (_hml_pdir - (90 * _hml_ldir)))), (((_hml_kneey + lengthdir_y((sprite_get_width(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankLeg) / 2), (_hml_pdir - (90 * _hml_ldir)))) - zstart) - foot_z[_hml_i]), 1);
+;
+}
+}
+if (global.hm_module_vars[$ "mod:bosses/titank"].debug) {
+draw_line(_hml_kneex, ((_hml_kneey - zstart) - foot_z[_hml_i]), foot_x[_hml_i], (foot_y[_hml_i] - foot_z[_hml_i]));
+}
+}
+
+// Source bosses/titank.mod.gml:1500; draw_shadows
+function hm_bosses_titank_mod_gml_draw_shadows() {
+{ var __hm_with1 = scrHMMatching(CustomEnemy, "name", "titank"), __hm_break3=false;
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+{
+for (var _hml_i = 0; (_hml_i < legs); _hml_i += 1) {
+if (((foot_hp[_hml_i] > 0) and position_meeting(foot_x[_hml_i], (foot_y[_hml_i] - 6), Floor))) {
+scrHMDrawSpriteExt(shd24, 1, foot_x[_hml_i], (foot_y[_hml_i] - 6), 0.5, 0.5, 0, c_white, 1);
+}
+}
+var _hml_shad_scale = undefined;
+;
+_hml_shad_scale = (1 - min((0.66 * (z / 96)), 0.66));
+scrHMDrawSpriteExt(global.hm_module_vars[$ "mod:bosses/titank"].sprTitankShadow, 1, x, y, _hml_shad_scale, _hml_shad_scale, 0, c_white, 1);
+}
+}
+if(__hm_break3) break;
+}}
+}
+
+// Source bosses/titank.mod.gml:1510; scrNuke
+function hm_bosses_titank_mod_gml_scrNuke() {
+var _args = [];
+for(var _i=0;_i<argument_count;++_i) array_push(_args, argument[_i]);
+return scrHMTaskStart(hm_bosses_titank_mod_gml_scrNuke_resume, id, scrHMOther(other), _args, 29, ["z", "size"]);
+}
+function hm_bosses_titank_mod_gml_scrNuke_resume(_hm) {
+var _budget=0;
+while(!_hm.done) {
+assert(++_budget<100000,"Hardmode runaway continuation: hm_bosses_titank_mod_gml_scrNuke");
+if (!instance_exists(_hm.scope)) { if(array_length(_hm.with_stack)>_hm.with_floor) {scrHMTaskWithNext(_hm); continue;} _hm.done=true; return; }
+with (_hm.scope) { switch (_hm.pc) {
+case 0: _hm.done=true; return;
+case 2: // bosses/titank.mod.gml:1576
+_hm.vars.i += (24 / _hm.vars.size); _hm.pc=1;
+break;
+case 3: // bosses/titank.mod.gml:1578
+scrHMTaskWithNext(_hm);
+break;
+case 4: // bosses/titank.mod.gml:1578
+scrHMTaskWithAbort(_hm);
+break;
+case 5: // bosses/titank.mod.gml:1597
+{
+;
+}
+_hm.pc=3;
+break;
+case 6: // bosses/titank.mod.gml:1597
+_hm.result=undefined; _hm.done=true; return;
+break;
+case 8: // bosses/titank.mod.gml:1595
+{
+;
+}
+_hm.pc=7;
+break;
+case 9: // bosses/titank.mod.gml:1595
+_hm.wait_ticks=max(0,1); _hm.pc=8; return;
+break;
+case 10: // bosses/titank.mod.gml:1594
+{
+depth = (_hm.vars.d - (y + ystart));
+;
+}
+_hm.pc=9;
+break;
+case 7: // bosses/titank.mod.gml:1592
+_hm.pc=(instance_exists(_hm.scope))?10:6;
+break;
+case 11: // bosses/titank.mod.gml:1590
+_hm.pc = (scrHMTaskFork(_hm, 7)) ? 7 : 3;
+break;
+case 12: // bosses/titank.mod.gml:1580
+{
+var __hm_other1=scrHMOther(other);
+team = __hm_other1.team;
+;
+mask_index = mskNone;
+;
+direction = _hm.vars.i;
+;
+speed = ((6 * _hm.vars.size)) * timescale;
+;
+vspeed *= 0.5;
+;
+vspeed -= ((6 * _hm.vars.size)) * timescale;
+;
+image_xscale = 1.5;
+;
+image_yscale = image_xscale;
+;
+_hm.vars.d = depth;
+;
+}
+_hm.pc=11;
+break;
+case 13: // bosses/titank.mod.gml:1578
+scrHMTaskWithEnter(_hm,scrHMInstances(instance_create(x, (y - _hm.vars.z), Explosion)),12,2);
+break;
+case 1: // bosses/titank.mod.gml:1576
+_hm.pc=((_hm.vars.i < 360))?13:0;
+break;
+case 14: // bosses/titank.mod.gml:1576
+_hm.vars.i = 0;
+_hm.pc=1;
+break;
+case 16: // bosses/titank.mod.gml:1555
+_hm.vars.__hm_repeat2--; _hm.pc=15;
+break;
+case 17: // bosses/titank.mod.gml:1557
+scrHMTaskWithNext(_hm);
+break;
+case 18: // bosses/titank.mod.gml:1557
+scrHMTaskWithAbort(_hm);
+break;
+case 19: // bosses/titank.mod.gml:1571
+{
+;
+}
+_hm.pc=17;
+break;
+case 20: // bosses/titank.mod.gml:1571
+_hm.result=undefined; _hm.done=true; return;
+break;
+case 22: // bosses/titank.mod.gml:1569
+{
+;
+}
+_hm.pc=21;
+break;
+case 23: // bosses/titank.mod.gml:1569
+_hm.wait_ticks=max(0,1); _hm.pc=22; return;
+break;
+case 24: // bosses/titank.mod.gml:1568
+{
+depth = (_hm.vars.d - ((y + ystart) / 2));
+;
+}
+_hm.pc=23;
+break;
+case 21: // bosses/titank.mod.gml:1566
+_hm.pc=(instance_exists(_hm.scope))?24:20;
+break;
+case 25: // bosses/titank.mod.gml:1564
+_hm.pc = (scrHMTaskFork(_hm, 21)) ? 21 : 17;
+break;
+case 26: // bosses/titank.mod.gml:1559
+{
+var __hm_other3=scrHMOther(other);
+team = __hm_other3.team;
+;
+mask_index = mskNone;
+;
+vspeed = (((- random(4)) * _hm.vars.size)) * timescale;
+;
+_hm.vars.d = depth;
+;
+}
+_hm.pc=25;
+break;
+case 27: // bosses/titank.mod.gml:1557
+scrHMTaskWithEnter(_hm,scrHMInstances(instance_create((x + lengthdir_x((random(8) * _hm.vars.size), random(360))), ((y + lengthdir_y((random(8) * _hm.vars.size), random(360))) - _hm.vars.z), SmallExplosion)),26,16);
+break;
+case 15: // bosses/titank.mod.gml:1555
+_hm.pc=(_hm.vars.__hm_repeat2>0)?27:14;
+break;
+case 28: // bosses/titank.mod.gml:1555
+_hm.vars.__hm_repeat2=round((32 * _hm.vars.size)); _hm.pc=15;
+break;
+case 29: // bosses/titank.mod.gml:1513
+{
+{ var __hm_with4 = scrHMInstances(instance_create(x, (y - _hm.vars.z), Explosion)), __hm_break6=false;
+for (var __hm_index5=0; __hm_index5<array_length(__hm_with4); ++__hm_index5) {
+if(instance_exists(__hm_with4[__hm_index5])) with (__hm_with4[__hm_index5]) {
+{
+team = 2;
+;
+visible = 0;
+;
+image_xscale *= (2.5 * _hm.vars.size);
+;
+image_yscale = image_xscale;
+;
+{ var __hm_with7 = scrHMInstances(hitme), __hm_break9=false;
+for (var __hm_index8=0; __hm_index8<array_length(__hm_with7); ++__hm_index8) {
+if(instance_exists(__hm_with7[__hm_index8])) with (__hm_with7[__hm_index8]) {
+{
+if (((scrHMVariableExists(id, "team") && (team != (scrHMOther(other)).team)) && (distance_to_object((scrHMOther(other))) <= 0))) {
+{
+hp -= (20 + (10 * GameCont.level));
+;
+}
+}
+}
+}
+if(__hm_break9) break;
+}}
+}
+}
+if(__hm_break6) break;
+}}
+for (_hm.vars.i = 0; (_hm.vars.i < 360); _hm.vars.i += (60 / _hm.vars.size)) {
+{ var __hm_with10 = scrHMInstances(instance_create(x, (y - _hm.vars.z), Explosion)), __hm_break12=false;
+for (var __hm_index11=0; __hm_index11<array_length(__hm_with10); ++__hm_index11) {
+if(instance_exists(__hm_with10[__hm_index11])) with (__hm_with10[__hm_index11]) {
+{
+var __hm_other13=scrHMOther(other);
+team = __hm_other13.team;
+;
+mask_index = mskNone;
+;
+direction = _hm.vars.i;
+;
+speed = (((8 * _hm.vars.size) / 1.5)) * timescale;
+;
+vspeed *= 0.75;
+;
+}
+}
+if(__hm_break12) break;
+}}
+}
+for (_hm.vars.i = 15; (_hm.vars.i < 360); _hm.vars.i += (60 / _hm.vars.size)) {
+{ var __hm_with14 = scrHMInstances(instance_create(x, (y - _hm.vars.z), SmallExplosion)), __hm_break16=false;
+for (var __hm_index15=0; __hm_index15<array_length(__hm_with14); ++__hm_index15) {
+if(instance_exists(__hm_with14[__hm_index15])) with (__hm_with14[__hm_index15]) {
+{
+var __hm_other17=scrHMOther(other);
+team = __hm_other17.team;
+;
+mask_index = mskNone;
+;
+direction = _hm.vars.i;
+;
+speed = (((10 * _hm.vars.size) / 1.5)) * timescale;
+;
+vspeed *= 0.75;
+;
+}
+}
+if(__hm_break16) break;
+}}
+}
+}
+_hm.pc=28;
+break;
+default: throw "Hardmode invalid continuation PC";
+}}
+}
+}
+
+
+// Source bosses/titank.mod.gml:0; tinade_create (native content 1.1.0)
 function hm_bosses_titank_mod_gml_tinade_create(_hml__x, _hml__y, _hml__creator) {
 { var __hm_with1 = scrHMInstances(instance_create(x, y, CustomProjectile)), __hm_break3=false;
 for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
 if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
 {
 hm_grenade_fuse = 40;
-creator=_hml__creator;
+;
+creator = _hml__creator;
+;
 var __hm_other4=scrHMOther(other);
 team = __hm_other4.team;
 var __hm_other5=scrHMOther(other);
@@ -3051,9 +3076,9 @@ if(__hm_break3) break;
 }}
 }
 
-// Source bosses/titank.mod.gml:1620; tinade
+// Source bosses/titank.mod.gml:0; tinade (native content 1.1.0)
 function hm_bosses_titank_mod_gml_tinade() {
-hm_grenade_fuse--;
+hm_grenade_fuse -= 1;
 if (((hm_grenade_fuse < 20) and ((hm_grenade_fuse mod 3) == 3))) {
 {
 sprite_index = sprGrenadeBlink;
@@ -3065,35 +3090,38 @@ instance_destroy();
 }
 }
 
-// Source bosses/titank.mod.gml:1649; tinade_explo
-function hm_bosses_titank_mod_gml_tinade_explo() {
-{ var __hm_with1 = scrHMInstances(instance_create(x, y, Explosion)), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-var __hm_other4=scrHMOther(other);
-hitid = __hm_other4.hitid;
-if ((instance_exists((scrHMOther(other)).creator) and ((scrHMOther(other)).team == (scrHMOther(other)).creator.team))) {
-var __hm_other5=scrHMOther(other);
-team = __hm_other5.creator.team;
-} else {
-team = 0;
-}
-}
-}
-if(__hm_break3) break;
-}}
-}
-
-// Source bosses/titank.mod.gml:1656; tinade_wall
-function hm_bosses_titank_mod_gml_tinade_wall() {scrHMTinadeWall();}
-
-// Source bosses/titank.mod.gml:1659; tinade_hit
-function hm_bosses_titank_mod_gml_tinade_hit() {
-
+// Source bosses/titank.mod.gml:1649; tinade_explo
+function hm_bosses_titank_mod_gml_tinade_explo() {
+{ var __hm_with1 = scrHMInstances(instance_create(x, y, Explosion)), __hm_break3=false;
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+{
+var __hm_other4=scrHMOther(other);
+hitid = __hm_other4.hitid;
+if ((instance_exists((scrHMOther(other)).creator) and ((scrHMOther(other)).team == (scrHMOther(other)).creator.team))) {
+var __hm_other5=scrHMOther(other);
+team = __hm_other5.creator.team;
+} else {
+team = 0;
+}
+}
+}
+if(__hm_break3) break;
+}}
+}
+
+// Source bosses/titank.mod.gml:0; tinade_wall (native content 1.1.0)
+function hm_bosses_titank_mod_gml_tinade_wall() {
+hm_arkintide_mod_gml_hm_tinade_wall();
+;
 }
 
-// Source bosses/titank.mod.gml:1660; tinade_draw
-function hm_bosses_titank_mod_gml_tinade_draw() {
-
-}
+// Source bosses/titank.mod.gml:1659; tinade_hit
+function hm_bosses_titank_mod_gml_tinade_hit() {
+
+}
+
+// Source bosses/titank.mod.gml:1660; tinade_draw
+function hm_bosses_titank_mod_gml_tinade_draw() {
+
+}

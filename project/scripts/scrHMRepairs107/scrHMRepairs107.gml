@@ -36,9 +36,8 @@ function scrHMPoliceRevive107() {
 }
 
 function scrHMShieldKeepPlasma107() {
-    if(!scrHMEnabled() || !(instance_is(id,PlasmaBig)||instance_is(id,PlasmaHuge))) return false;
-    if(team!=team_player && !(self[$ "hm_friendly_plasma111"]??false)) return false;
-    hm_friendly_plasma111=true;team=team_player;return true;
+    return scrHMEnabled() && team==team_player
+        && (instance_is(id,PlasmaBig)||instance_is(id,PlasmaHuge));
 }
 
 function scrHMVanStop107() {
@@ -47,7 +46,7 @@ function scrHMVanStop107() {
     // Its own Destroy callback already produces the three police explosions.
     var _xx=x,_yy=y;
     instance_destroy();
-    repeat(3) scrHMPoliceSpawn108(_xx+orandom(8),_yy+orandom(8));
+    repeat(3) instance_create(_xx+orandom(8),_yy+orandom(8),PopoFreak);
     return true;
 }
 
@@ -77,16 +76,9 @@ function scrHMVenusLoadout107() {
 function scrHMVenusRetry107() {
     if(!scrHMEnabled() || !instance_exists(GameCont) || instance_exists(GenCont)
         || GameCont.area!=scrHMAreaResolve("venuz") || !instance_exists(Player)) return false;
-    // The original elevator rebuilds terrain and combat in the same room.
-    // Retain its cleanup, spawners and progression rules, overriding only
-    // the next destination when this explicit retry has been requested.
-    var _target=GameCont.subarea,_player=instance_find(Player,0);
-    GameCont.hm_retry_venus107=_target;
-    with(CustomObject) if(name=="VenuzElevator") scrHMDelete(id);
-    with(_player) with(instance_create(x-8,y-8,CustomObject)) {
-        name="VenuzElevator";image_speed=0;sprite_index=sprFloor103;
-        image_alpha=0;image_index=1;depth=7;activated=1;
-    }
+    // The synchronized elevator owns retry destination and cleanup. Calling
+    // its request in player scope also preserves secret-stage destinations.
+    with(instance_find(Player,0)) hm_maincode_mod_gml_venus_request_retry();
     return true;
 }
 
