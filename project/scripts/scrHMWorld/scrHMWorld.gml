@@ -34,7 +34,7 @@ function scrHMWorldInit() {
     scrHMRuntimeInit();
     global.hm_enabled=true;
     global.hm_hook_cache={};
-    logic_accumulator=0;logic_tick=true;logic_serial=0;
+    logic_accumulator=0;logic_tick=true;logic_serial=0;hm_portrait_active=noone;
     for(var _i=0;_i<array_length(global.hm_module_order);++_i) {
         var _key=global.hm_module_order[_i];
         scrHMInvokeHere(scrHMScriptRef(global.hm_module_scripts[$ _key].__load),[]);
@@ -59,8 +59,11 @@ function scrHMWorldStep() {
     if(instance_exists(self[$ "hm_portrait_active"]??noone)) return;
     // Resume only the tasks retained by this room. The source's new forks
     // execute immediately and first resume on the following 30 Hz tick.
+    // HMWorld can step before the first GameCont Step or a continued run.
+    scrHMContentInit1100();
     scrHMTasksTick(1);
     if(instance_exists(GameCont)) scrHMHook("step");
+    if(!instance_exists(HMWorld.hm_portrait_active)) with(YVBoss) if(hp>0 && image_alpha>0) scrHMBossCamera1101(id,false);
 }
 
 function scrHMRunStart() {

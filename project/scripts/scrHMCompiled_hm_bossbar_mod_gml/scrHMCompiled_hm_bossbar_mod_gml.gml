@@ -431,7 +431,7 @@ draw_set_valign(fa_top);
 ;
 draw_set_color(c_white);
 ;
-scrHMDrawText((_hml_left + (_hml__width / 2)), (_hml_top - 10), _hml__text);
+scrHMBossTitle1101((_hml_left + (_hml__width / 2)), _hml_top, _hml__width, _hml__text);
 ;
 draw_set_color(c_black);
 ;

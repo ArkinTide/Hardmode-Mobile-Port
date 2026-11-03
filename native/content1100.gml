@@ -24,7 +24,7 @@ function scrHMAnimationEnd1100(_actor) {
 function scrHMLevelCap1100() {
     var _base=scrCustomParam("maxlevel",10);
     if(!scrHMEnabled()||!instance_exists(GameCont)) return _base;
-    return variable_instance_get(GameCont,"hm_maxlevel1100")??_base;
+    return scrHMLevelCap1101();
 }
 function scrHMContentBegin1100() {
     if(!scrHMEnabled()||!instance_exists(GameCont)||!scrHMReadyTick()
@@ -35,7 +35,9 @@ function scrHMContentInit1100() {
     // Settings are initialized before the first run; platform state is not
     // stored in NTT's desktop menu module.
     if(!instance_exists(GameCont)) return;
-    if(!variable_instance_exists(GameCont,"hm_maxlevel1100")) GameCont.hm_maxlevel1100=scrCustomParam("maxlevel",10);
+    if(!variable_instance_exists(GameCont,"hm_maxlevel1100")) {
+        GameCont.hm_maxlevel1100=variable_instance_exists(GameCont,"hm_level_cap")?GameCont.hm_level_cap:scrCustomParam("maxlevel",10);
+    }
 }
 
 function scrHMArrayFind1100(_items,_value) {

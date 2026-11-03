@@ -1,34 +1,19 @@
-# Hardmode Mobile 1.1.0 / build 14
+# Hardmode 1.1.1 / build 15
 
-This release synchronizes the maintained NTT v100.034 Hardmode content with mobile 1.0.12. Mobile input, translations, storage, platform timing, compact wall renderer and mutation selector are retained through host adapters.
+本轮维护手机版 1.1.0 的后续问题，未改动独立 NTT 模组版。
 
-## Gameplay and balance
+1. 修复截图中的同一报错链：`HMWorld.Step` 恢复任务先读取未初始化的 `GameCont.hm_maxlevel1100`。在恢复任务前初始化，并由安全读取器处理新开局和继续游戏；重复初始化不会叠加等级奖励。
+2. 金星最终首领在金星以外的关卡增加首领入场、退场镜头。兼容其自定义绘制和完整两阶段流程。
+3. Y.V 增加首领入场、退场镜头，遵循设置中的入场镜头、退场演出开关，镜头结束后归还玩家操作。
+4. 额外首领不触发这些镜头。
+5. 修复警车受伤造成无限回调递归和栈溢出的闪退。车体暂借原生 Van 伤害路径时移除自定义回调，结算后恢复；保留车体碰撞、受伤和爆炸行为。
+6. 原有 5% 金星最终首领随机替换从 Loop1 开始。宫殿、HQ、金星区域排除规则继续保留；Loop3 的 Y.V 二阶段规则不变。
+7. 首领名称适当缩小、按可用宽度适配，并放在血条上方，避免与血条、血量数值重叠。
 
-- Native loop enemy pools, special enemy variants, radiation and pickup policies, including pre-cap raven/snow-robot base drops of 1, crystal reductions, ordinary green-rat rewards at the cap, and bonefish rewards.
-- Optional player boost: +2 maximum HP and one additional level/mutation; repeat initialization and continue-game do not stack it.
-- Extra bosses use their normal combat behavior without loop attack upgrades or the first-loop 30% HP bonus. They retain 5% HP per loop, random eligible map placement and a one-second room-entry grace period. Their configured count can be zero and its upper bound grows every two loops. They do not replace the ordinary stage boss, play boss music or summon extra ravens.
-- The native changes to boss HP, self-rocket immunity, crystal half-health splitting, raven summon cap, turtle weapon rendering, Rogue attacks and Gun God off-world combat are included.
-- Off-world sewer Rat spawns in a real mask-fitting water pool on existing complete floor tiles. It is vulnerable, has no tentacles and uses a raised submerged renderer. Gun God's off-world terrain restrictions, first-phase projectile policy and L3 YV phase are retained.
-- Boss health bars support Hardmode bosses, overhead extra-boss bars and selected top-of-screen bars. Throne-ball deflection and player boost have persistent touch-accessible switches.
+验证清单包括 30/60 帧下的等级上限、重复初始化和磁盘继续游戏；L1/L3 警车传送门、行驶、子弹／直接伤害、接触玩家及销毁；实际下水道 L3 警车；金星最终首领 L1/L3 两阶段、Y.V 镜头、关闭镜头选项与额外首领排除；Loop0 不替换和 Loop1 正常替换；中英文名称布局；水边、王座、王冠密室、诅咒洞窟、位移与金星重试回归，以及运行时和菜单检查。实际通过情况以本地 `delivery-receipt.json` 为准。
 
-## Police, portals and progression
+验证在完全静音、从未激活的隔离桌面上使用新编译 VM 运行，没有操作用户前台窗口。安装包额外检查应用身份、版本、签名、资源、Android 帧节奏和 iOS runner 兼容性。这不是安卓或 iPhone 真机验收，也不保证所有设备恒定 60 帧。iOS 使用新 VM／资源与兼容的既有原生 runner，安装需要自行重签，未进行新一轮 Mac 原生构建。
 
-- Animated police robot charge/warning, particles and timed emergence; separate gates avoid recurring van requests. Native loop police/freak weights and infantry limits are included.
-- Police portal transitions are blue from the first prewarmed ring. Van wreckage does not replace the last combat death as the exit location.
-- Extended Throne hall: player at bottom center, boss at upper center, complete generator annexes generated on the boss side before wall construction.
-- 7-4 crown-vault round trip resumes at Throne without spending an extra visit or changing the loop.
-- Jungle entrance, fish skull and golden-car clear gates, guaranteed 3-1 access tool, HQ rules, cave exits and native music routing are synchronized.
-- Native Venus retry/progression, carried-weapon cleanup, authored terrain and stage cleanup are retained with mobile interaction adapters. The pause-menu restart uses the synchronized retry request, including secret stages.
+测试记录保留了一次原生 Windows Runner 在关卡生成标记之前退出的访问异常；该异常原因未定，日志不能证明由音频导致。相同最终 VM 的三次警车重复回归结果及原始失败日志另记在交付收据中，不将其与已修复的车体受伤递归混为同一错误。
 
-## Terrain, rendering and performance
-
-- Preserve compact outer-wall collision/rendering, native edge/transition layer selection and cave palette restoration without recreating all detailed walls.
-- The host uses five-point actual-water support with immediate bank recovery. Native pool creation is converted to the host's water material ID, keeping swimming and movement friction separate.
-- Retain 30 Hz AI and manually moved MOD entities with smooth optional 60 Hz presentation, including submerged actors and layered crystals.
-- Native bounded beam queries, staggered entity work, effect budgets, corpse/particle lifetimes, cached wall/effect work and audio limits are included. Performance remains scene- and device-dependent.
-
-## Scope and verification
-
-The implementation ledger accounts for 543 historical native transformations: 509 imported, 8 mobile equivalents, 25 changes in upstream files that neither active loader references, and 1 Grillskills change excluded at the user's request. These counts describe source coverage, not 543 independently exercised runtime features. See [migration ledger](migration-1.1.0.json).
-
-Compiled desktop tests run silently on a private desktop, without foreground window control or input automation. Package verification checks fresh platform resources, Android signing and pacing, iOS runner compatibility and storage metadata. Exact cases and hashes are retained in the local delivery receipt. This is targeted regression testing, not exhaustive manual gameplay or physical Android/iPhone validation. IPA requires resigning; no native Mac rebuild or universal high-loop 60 FPS guarantee is claimed.
+GitHub 只发布文本源码及工程元数据。APK／IPA 发布到 Hardmode 专用 MEGA；完整下载回读 SHA-256 一致后才发布 GitHub Release。保留手机版既有触屏操作、简体中文、变异选择和存档路径，不加入 Grillskills。

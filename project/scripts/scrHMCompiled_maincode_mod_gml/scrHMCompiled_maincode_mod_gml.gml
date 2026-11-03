@@ -1,26 +1,49 @@
-// Source maincode.mod.gml:1; __load
-function hm_maincode_mod_gml___load() {
-global.hm_module_vars[$ "mod:maincode"].versionnumber = "b24";
-global.hm_module_vars[$ "mod:maincode"].YALCredits = sprHM_maincode_mod_5;
-global.hm_module_vars[$ "mod:maincode"].sewersentrance = sprHM_maincode_mod_6;
-scrHMSpriteReplace(sprWall2Top, sprHM_maincode_mod_7);
-global.hm_module_vars[$ "mod:maincode"].ripple = sprHM_maincode_mod_8;
-global.hm_module_vars[$ "mod:maincode"].turretdeactivate = sprHM_maincode_mod_9;
-scrHMSpriteReplace(sprTopPot, sprHM_maincode_mod_11);
-global.hm_module_vars[$ "mod:maincode"].Bigdogportrait = sprHM_maincode_mod_12;
-global.hm_module_vars[$ "mod:maincode"].Bigdogportraitfg = sprHM_maincode_mod_13;
-global.hm_module_vars[$ "mod:maincode"].redfog = sprHM_maincode_mod_14;
-global.hm_module_vars[$ "mod:maincode"].gce = 0;
-;
-global.hm_module_vars[$ "mod:maincode"].door = noone;
-;
-global.hm_module_vars[$ "mod:maincode"].vans = 0;
-;
-global.hm_module_vars[$ "mod:maincode"].runcount = 0;
-;
-global.hm_module_vars[$ "mod:maincode"].venuz = 0;
-}
-
+// Source maincode.mod.gml:1; __load
+
+function hm_maincode_mod_gml___load() {
+
+global.hm_module_vars[$ "mod:maincode"].versionnumber = "b24";
+
+global.hm_module_vars[$ "mod:maincode"].YALCredits = sprHM_maincode_mod_5;
+
+global.hm_module_vars[$ "mod:maincode"].sewersentrance = sprHM_maincode_mod_6;
+
+scrHMSpriteReplace(sprWall2Top, sprHM_maincode_mod_7);
+
+global.hm_module_vars[$ "mod:maincode"].ripple = sprHM_maincode_mod_8;
+
+global.hm_module_vars[$ "mod:maincode"].turretdeactivate = sprHM_maincode_mod_9;
+
+scrHMSpriteReplace(sprTopPot, sprHM_maincode_mod_11);
+
+global.hm_module_vars[$ "mod:maincode"].Bigdogportrait = sprHM_maincode_mod_12;
+
+global.hm_module_vars[$ "mod:maincode"].Bigdogportraitfg = sprHM_maincode_mod_13;
+
+global.hm_module_vars[$ "mod:maincode"].redfog = sprHM_maincode_mod_14;
+
+global.hm_module_vars[$ "mod:maincode"].gce = 0;
+
+;
+
+global.hm_module_vars[$ "mod:maincode"].door = noone;
+
+;
+
+global.hm_module_vars[$ "mod:maincode"].vans = 0;
+
+;
+
+global.hm_module_vars[$ "mod:maincode"].runcount = 0;
+
+;
+
+global.hm_module_vars[$ "mod:maincode"].venuz = 0;
+
+}
+
+
+
 // Source maincode.mod.gml:0; game_start (native content 1.1.0)
 function hm_maincode_mod_gml_game_start() {
 can_walk = true;
@@ -272,50 +295,94 @@ GameCont.hm_yv_seen = 0;
 ;
 }
 
-// Source maincode.mod.gml:221; draw_dark
-function hm_maincode_mod_gml_draw_dark() {
-{ var __hm_with1 = scrHMMatching(Campfire, "sprite_index", sprCampfire, sprCampfireBear), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-draw_set_alpha(1);
-draw_set_color(0);
-draw_circle(x, y, (40 + random(4)), false);
-}
-}
-if(__hm_break3) break;
-}}
-{ var __hm_with4 = scrHMMatching(CampChar, "num", 11), __hm_break6=false;
-for (var __hm_index5=0; __hm_index5<array_length(__hm_with4); ++__hm_index5) {
-if(instance_exists(__hm_with4[__hm_index5])) with (__hm_with4[__hm_index5]) {
-{
-draw_circle((x - 1), y, (12 + random(2)), false);
-}
-}
-if(__hm_break6) break;
-}}
-{ var __hm_with7 = scrHMMatching(CampChar, "num", 3), __hm_break9=false;
-for (var __hm_index8=0; __hm_index8<array_length(__hm_with7); ++__hm_index8) {
-if(instance_exists(__hm_with7[__hm_index8])) with (__hm_with7[__hm_index8]) {
-if ((image_index > 18)) {
-{
-draw_circle((x - 2), (y - 6), (30 + random(3)), false);
-}
-}
-}
-if(__hm_break9) break;
-}}
-{ var __hm_with10 = scrHMInstances(TV), __hm_break12=false;
-for (var __hm_index11=0; __hm_index11<array_length(__hm_with10); ++__hm_index11) {
-if(instance_exists(__hm_with10[__hm_index11])) with (__hm_with10[__hm_index11]) {
-{
-draw_circle(x, y, (30 + random(3)), false);
-}
-}
-if(__hm_break12) break;
-}}
-}
-
+// Source maincode.mod.gml:221; draw_dark
+
+function hm_maincode_mod_gml_draw_dark() {
+
+{ var __hm_with1 = scrHMMatching(Campfire, "sprite_index", sprCampfire, sprCampfireBear), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+{
+
+draw_set_alpha(1);
+
+draw_set_color(0);
+
+draw_circle(x, y, (40 + random(4)), false);
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+{ var __hm_with4 = scrHMMatching(CampChar, "num", 11), __hm_break6=false;
+
+for (var __hm_index5=0; __hm_index5<array_length(__hm_with4); ++__hm_index5) {
+
+if(instance_exists(__hm_with4[__hm_index5])) with (__hm_with4[__hm_index5]) {
+
+{
+
+draw_circle((x - 1), y, (12 + random(2)), false);
+
+}
+
+}
+
+if(__hm_break6) break;
+
+}}
+
+{ var __hm_with7 = scrHMMatching(CampChar, "num", 3), __hm_break9=false;
+
+for (var __hm_index8=0; __hm_index8<array_length(__hm_with7); ++__hm_index8) {
+
+if(instance_exists(__hm_with7[__hm_index8])) with (__hm_with7[__hm_index8]) {
+
+if ((image_index > 18)) {
+
+{
+
+draw_circle((x - 2), (y - 6), (30 + random(3)), false);
+
+}
+
+}
+
+}
+
+if(__hm_break9) break;
+
+}}
+
+{ var __hm_with10 = scrHMInstances(TV), __hm_break12=false;
+
+for (var __hm_index11=0; __hm_index11<array_length(__hm_with10); ++__hm_index11) {
+
+if(instance_exists(__hm_with10[__hm_index11])) with (__hm_with10[__hm_index11]) {
+
+{
+
+draw_circle(x, y, (30 + random(3)), false);
+
+}
+
+}
+
+if(__hm_break12) break;
+
+}}
+
+}
+
+
+
 // Source maincode.mod.gml:0; step (native content 1.1.0)
 function hm_maincode_mod_gml_step() {
 var _args = [];
@@ -5493,7 +5560,7 @@ if(__hm_break927) break;
 }
 hm_arkintide_mod_gml_hm_crown_watch();
 ;
-_hm.vars.hm_below = (GameCont.level < GameCont.hm_maxlevel1100);
+_hm.vars.hm_below = (GameCont.level < scrHMLevelCap1101());
 ;
 { var __hm_with928 = scrHMInstances(enemy), __hm_break930=false;
 for (var __hm_index929=0; __hm_index929<array_length(__hm_with928); ++__hm_index929) {
@@ -5881,194 +5948,382 @@ default: throw "Hardmode invalid continuation PC";
 }
 }
 
-// Source maincode.mod.gml:2653; move_player_snap
-function hm_maincode_mod_gml_move_player_snap() {
-var _args = [];
-for(var _i=0;_i<argument_count;++_i) array_push(_args, argument[_i]);
-return scrHMTaskStart(hm_maincode_mod_gml_move_player_snap_resume, id, scrHMOther(other), _args, 14, ["_index", "_x", "_y"]);
-}
-function hm_maincode_mod_gml_move_player_snap_resume(_hm) {
-var _budget=0;
-while(!_hm.done) {
-assert(++_budget<100000,"Hardmode runaway continuation: hm_maincode_mod_gml_move_player_snap");
-if (!instance_exists(_hm.scope)) { if(array_length(_hm.with_stack)>_hm.with_floor) {scrHMTaskWithNext(_hm); continue;} _hm.done=true; return; }
-with (_hm.scope) { switch (_hm.pc) {
-case 0: _hm.done=true; return;
-case 1: // maincode.mod.gml:2654
-scrHMTaskWithNext(_hm);
-break;
-case 2: // maincode.mod.gml:2654
-scrHMTaskWithAbort(_hm);
-break;
-case 3: // maincode.mod.gml:2671
-{
-;
-}
-_hm.pc=1;
-break;
-case 4: // maincode.mod.gml:2671
-_hm.result=undefined; _hm.done=true; return;
-break;
-case 5: // maincode.mod.gml:2670
-{
-global.hm_camera_targets[_hm.vars._index] = _hm.vars._vo;
-;
-}
-_hm.pc=4;
-break;
-case 6: // maincode.mod.gml:2665
-scrHMTaskWithNext(_hm);
-break;
-case 7: // maincode.mod.gml:2665
-scrHMTaskWithAbort(_hm);
-break;
-case 8: // maincode.mod.gml:2667
-{
-;
-if (instance_exists(id)) {
-instance_destroy();
-}
-}
-_hm.pc=6;
-break;
-case 9: // maincode.mod.gml:2667
-_hm.wait_ticks=max(0,1); _hm.pc=8; return;
-break;
-case 10: // maincode.mod.gml:2666
-{
-global.hm_camera_targets[_hm.vars._index] = id;
-;
-}
-_hm.pc=9;
-break;
-case 11: // maincode.mod.gml:2665
-scrHMTaskWithEnter(_hm,scrHMInstances(instance_create((x + lengthdir_x(_dis, _dir)), (y + lengthdir_y(_dis, _dir)), GameObject)),10,5);
-break;
-case 12: // maincode.mod.gml:2664
-_hm.pc = (scrHMTaskFork(_hm, 11)) ? 11 : 1;
-break;
-case 13: // maincode.mod.gml:2655
-{
-_hm.vars._vo = global.hm_camera_targets[_hm.vars._index];
-;
-_dis = (point_distance(_hm.vars._x, _hm.vars._y, x, y) * (7 / 3));
-;
-_dir = (point_direction(_hm.vars._x, _hm.vars._y, x, y) + 180);
-;
-x = _hm.vars._x;
-;
-y = _hm.vars._y;
-;
-}
-_hm.pc=12;
-break;
-case 14: // maincode.mod.gml:2654
-scrHMTaskWithEnter(_hm,scrHMInstances(scrHMPlayerFind(_hm.vars._index)),13,0);
-break;
-default: throw "Hardmode invalid continuation PC";
-}}
-}
-}
-
-
-// Source maincode.mod.gml:2674; venuzfadein
-function hm_maincode_mod_gml_venuzfadein() {
-if ((fade > 0)) {
-{
-fade -= 4;
-draw_set_alpha((fade / 175));
-;
-draw_set_color(0);
-;
-draw_rectangle(view_xview, view_yview, (view_xview + view_width), (view_yview + view_height), 0);
-draw_set_alpha(1);
-draw_set_color(c_white);
-;
-}
-} else {
-scrHMDelete(id);
-}
-}
-
-// Source maincode.mod.gml:2684; StablePortal
-function hm_maincode_mod_gml_StablePortal() {
-{ var __hm_with1 = scrHMInstances(creator), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-scrHMDrawSpriteExt(sprite_index, image_index, x, y, 1, 1, 0, c_white, 1);
-}
-if(__hm_break3) break;
-}}
-scrHMMenuDrawComplete();
-}
-
-// Source maincode.mod.gml:2688; PortalShrink
-function hm_maincode_mod_gml_PortalShrink() {
-{ var __hm_with1 = scrHMInstances(creator), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-if ((bwep != scrHMWeaponResolve(0))) {
-{
-if ((race != 7)) {
-scrHMDrawSpriteExt(scrHMWeaponSprite(bwep), 0, (x - (right * 2)), (y + 4), scale, scale, ((90 + (15 * right)) * scale), c_silver, 1);
-} else {
-scrHMDrawSpriteExt(scrHMWeaponSprite(bwep), 0, (x + lengthdir_x((bwkick * (- 1)), gunangle)), (y + lengthdir_y((bwkick * (- 1)), gunangle)), scale, ((right * (- 1)) * scale), (gunangle + wepangle), c_white, 1);
-}
-;
-}
-}
-if ((gunangle < 180)) {
-{
-scrHMDrawSpriteExt(scrHMWeaponSprite(wep), 0, (x + lengthdir_x(wkick, gunangle)), ((y + lengthdir_y(wkick, gunangle)) + 4), scale, (right * scale), (((gunangle * scale) + wepangle) * scale), c_white, 1);
-;
-}
-}
-scrHMDrawSpriteExt(spr_hurt, 1, x, y, scale, (scale * right), angle, c_white, 1);
-if ((gunangle >= 180)) {
-scrHMDrawSpriteExt(scrHMWeaponSprite(wep), 0, (x + lengthdir_x((wkick * (- 1)), gunangle)), ((y + lengthdir_y((wkick * (- 1)), gunangle)) + 4), scale, (right * scale), ((gunangle + wepangle) * scale), c_white, 1);
-}
-if(scrHMReadyTick()) { angle += 5; }
-}
-}
-if(__hm_break3) break;
-}}
-scrHMMenuDrawComplete();
-}
-
-// Source maincode.mod.gml:2707; either
-function hm_maincode_mod_gml_either() {
-var _hml_v = argument[0];
-var _hml_i = 0;
-;
-repeat ((argument_count - 1)) {
-if ((argument[(++ _hml_i)] == _hml_v)) {
-return true;
-}
-}
-return false;
-;
-}
-
-// Source maincode.mod.gml:2715; bigdogintro
-function hm_maincode_mod_gml_bigdogintro() {
-{ var __hm_with1 = scrHMInstances(creator), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-draw_set_color(make_color_rgb(20, 20, 20));
-;
-scrHMDrawSpriteExt(shd64, 1, x, (y + spr_shadow_y), image_xscale, image_yscale, 1, c_white, 0.4);
-;
-scrHMDrawSpriteExt(sprScrapBossIntro, introanimation, x, y, image_xscale, image_yscale, image_angle, c_white, 1);
-;
-}
-}
-if(__hm_break3) break;
-}}
-scrHMMenuDrawComplete();
-}
-
+// Source maincode.mod.gml:2653; move_player_snap
+
+function hm_maincode_mod_gml_move_player_snap() {
+
+var _args = [];
+
+for(var _i=0;_i<argument_count;++_i) array_push(_args, argument[_i]);
+
+return scrHMTaskStart(hm_maincode_mod_gml_move_player_snap_resume, id, scrHMOther(other), _args, 14, ["_index", "_x", "_y"]);
+
+}
+
+function hm_maincode_mod_gml_move_player_snap_resume(_hm) {
+
+var _budget=0;
+
+while(!_hm.done) {
+
+assert(++_budget<100000,"Hardmode runaway continuation: hm_maincode_mod_gml_move_player_snap");
+
+if (!instance_exists(_hm.scope)) { if(array_length(_hm.with_stack)>_hm.with_floor) {scrHMTaskWithNext(_hm); continue;} _hm.done=true; return; }
+
+with (_hm.scope) { switch (_hm.pc) {
+
+case 0: _hm.done=true; return;
+
+case 1: // maincode.mod.gml:2654
+
+scrHMTaskWithNext(_hm);
+
+break;
+
+case 2: // maincode.mod.gml:2654
+
+scrHMTaskWithAbort(_hm);
+
+break;
+
+case 3: // maincode.mod.gml:2671
+
+{
+
+;
+
+}
+
+_hm.pc=1;
+
+break;
+
+case 4: // maincode.mod.gml:2671
+
+_hm.result=undefined; _hm.done=true; return;
+
+break;
+
+case 5: // maincode.mod.gml:2670
+
+{
+
+global.hm_camera_targets[_hm.vars._index] = _hm.vars._vo;
+
+;
+
+}
+
+_hm.pc=4;
+
+break;
+
+case 6: // maincode.mod.gml:2665
+
+scrHMTaskWithNext(_hm);
+
+break;
+
+case 7: // maincode.mod.gml:2665
+
+scrHMTaskWithAbort(_hm);
+
+break;
+
+case 8: // maincode.mod.gml:2667
+
+{
+
+;
+
+if (instance_exists(id)) {
+
+instance_destroy();
+
+}
+
+}
+
+_hm.pc=6;
+
+break;
+
+case 9: // maincode.mod.gml:2667
+
+_hm.wait_ticks=max(0,1); _hm.pc=8; return;
+
+break;
+
+case 10: // maincode.mod.gml:2666
+
+{
+
+global.hm_camera_targets[_hm.vars._index] = id;
+
+;
+
+}
+
+_hm.pc=9;
+
+break;
+
+case 11: // maincode.mod.gml:2665
+
+scrHMTaskWithEnter(_hm,scrHMInstances(instance_create((x + lengthdir_x(_dis, _dir)), (y + lengthdir_y(_dis, _dir)), GameObject)),10,5);
+
+break;
+
+case 12: // maincode.mod.gml:2664
+
+_hm.pc = (scrHMTaskFork(_hm, 11)) ? 11 : 1;
+
+break;
+
+case 13: // maincode.mod.gml:2655
+
+{
+
+_hm.vars._vo = global.hm_camera_targets[_hm.vars._index];
+
+;
+
+_dis = (point_distance(_hm.vars._x, _hm.vars._y, x, y) * (7 / 3));
+
+;
+
+_dir = (point_direction(_hm.vars._x, _hm.vars._y, x, y) + 180);
+
+;
+
+x = _hm.vars._x;
+
+;
+
+y = _hm.vars._y;
+
+;
+
+}
+
+_hm.pc=12;
+
+break;
+
+case 14: // maincode.mod.gml:2654
+
+scrHMTaskWithEnter(_hm,scrHMInstances(scrHMPlayerFind(_hm.vars._index)),13,0);
+
+break;
+
+default: throw "Hardmode invalid continuation PC";
+
+}}
+
+}
+
+}
+
+
+
+
+
+// Source maincode.mod.gml:2674; venuzfadein
+
+function hm_maincode_mod_gml_venuzfadein() {
+
+if ((fade > 0)) {
+
+{
+
+fade -= 4;
+
+draw_set_alpha((fade / 175));
+
+;
+
+draw_set_color(0);
+
+;
+
+draw_rectangle(view_xview, view_yview, (view_xview + view_width), (view_yview + view_height), 0);
+
+draw_set_alpha(1);
+
+draw_set_color(c_white);
+
+;
+
+}
+
+} else {
+
+scrHMDelete(id);
+
+}
+
+}
+
+
+
+// Source maincode.mod.gml:2684; StablePortal
+
+function hm_maincode_mod_gml_StablePortal() {
+
+{ var __hm_with1 = scrHMInstances(creator), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+scrHMDrawSpriteExt(sprite_index, image_index, x, y, 1, 1, 0, c_white, 1);
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+scrHMMenuDrawComplete();
+
+}
+
+
+
+// Source maincode.mod.gml:2688; PortalShrink
+
+function hm_maincode_mod_gml_PortalShrink() {
+
+{ var __hm_with1 = scrHMInstances(creator), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+{
+
+if ((bwep != scrHMWeaponResolve(0))) {
+
+{
+
+if ((race != 7)) {
+
+scrHMDrawSpriteExt(scrHMWeaponSprite(bwep), 0, (x - (right * 2)), (y + 4), scale, scale, ((90 + (15 * right)) * scale), c_silver, 1);
+
+} else {
+
+scrHMDrawSpriteExt(scrHMWeaponSprite(bwep), 0, (x + lengthdir_x((bwkick * (- 1)), gunangle)), (y + lengthdir_y((bwkick * (- 1)), gunangle)), scale, ((right * (- 1)) * scale), (gunangle + wepangle), c_white, 1);
+
+}
+
+;
+
+}
+
+}
+
+if ((gunangle < 180)) {
+
+{
+
+scrHMDrawSpriteExt(scrHMWeaponSprite(wep), 0, (x + lengthdir_x(wkick, gunangle)), ((y + lengthdir_y(wkick, gunangle)) + 4), scale, (right * scale), (((gunangle * scale) + wepangle) * scale), c_white, 1);
+
+;
+
+}
+
+}
+
+scrHMDrawSpriteExt(spr_hurt, 1, x, y, scale, (scale * right), angle, c_white, 1);
+
+if ((gunangle >= 180)) {
+
+scrHMDrawSpriteExt(scrHMWeaponSprite(wep), 0, (x + lengthdir_x((wkick * (- 1)), gunangle)), ((y + lengthdir_y((wkick * (- 1)), gunangle)) + 4), scale, (right * scale), ((gunangle + wepangle) * scale), c_white, 1);
+
+}
+
+if(scrHMReadyTick()) { angle += 5; }
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+scrHMMenuDrawComplete();
+
+}
+
+
+
+// Source maincode.mod.gml:2707; either
+
+function hm_maincode_mod_gml_either() {
+
+var _hml_v = argument[0];
+
+var _hml_i = 0;
+
+;
+
+repeat ((argument_count - 1)) {
+
+if ((argument[(++ _hml_i)] == _hml_v)) {
+
+return true;
+
+}
+
+}
+
+return false;
+
+;
+
+}
+
+
+
+// Source maincode.mod.gml:2715; bigdogintro
+
+function hm_maincode_mod_gml_bigdogintro() {
+
+{ var __hm_with1 = scrHMInstances(creator), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+{
+
+draw_set_color(make_color_rgb(20, 20, 20));
+
+;
+
+scrHMDrawSpriteExt(shd64, 1, x, (y + spr_shadow_y), image_xscale, image_yscale, 1, c_white, 0.4);
+
+;
+
+scrHMDrawSpriteExt(sprScrapBossIntro, introanimation, x, y, image_xscale, image_yscale, image_angle, c_white, 1);
+
+;
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+scrHMMenuDrawComplete();
+
+}
+
+
+
 // Source maincode.mod.gml:0; CHCoutro (native content 1.1.0)
 function hm_maincode_mod_gml_CHCoutro() {
 if ((! instance_exists(HyperCrystal))) {
@@ -6230,74 +6485,142 @@ if(__hm_break3) break;
 scrHMMenuDrawComplete();
 }
 
-// Source maincode.mod.gml:2803; draw_pause
-function hm_maincode_mod_gml_draw_pause() {
-draw_set_color(c_white);
-draw_set_alpha(1);
-;
-draw_set_font(fntSmall);
-scrHMDrawTextTransformed(((view_xview + (view_width / 2)) - 128), ((view_yview + (view_height / 2)) + 114), global.hm_module_vars[$ "mod:maincode"].versionnumber, 1, 1, 0);
-;
-draw_set_halign(2);
-scrHMDrawTextTransformed(((view_xview + (view_width / 2)) + 160), ((view_yview + (view_height / 2)) + 114), string(global.hm_module_vars[$ "mod:maincode"].runcount), 1, 1, 0);
-;
-if ((GameCont.area == scrHMAreaResolve("venuz"))) {
-{
-draw_set_font(fntConsole);
-draw_set_halign(1);
-scrHMDrawTextTransformed((view_xview + (view_width / 2)), ((view_yview + (view_height / 2)) - 30), "hold B and press ENTER to restart level", 1, 1, 0);
-;
-}
-}
-draw_set_halign(0);
-}
-
-// Source maincode.mod.gml:2818; shilling
-function hm_maincode_mod_gml_shilling() {
-draw_set_color(c_white);
-draw_set_alpha(0.2);
-;
-draw_set_font(fntM1);
-scrHMDrawTextPlain(((view_xview + (view_width / 2)) - 72), ((view_yview + (view_height / 2)) - 82), "HARD MODE by BLAAC");
-;
-draw_set_alpha(1);
-;
-draw_set_font(fntSmall);
-draw_set_alpha(1);
-;
-scrHMMenuDrawComplete();
-}
-
-// Source maincode.mod.gml:2827; versionnumber
-function hm_maincode_mod_gml_versionnumber() {scrHMMenuDrawComplete();}
-
-// Source maincode.mod.gml:2836; resourceful
-function hm_maincode_mod_gml_resourceful() {
-if (((! instance_exists(argument0)) && (random(argument3) < 1))) {
-{
-{ var __hm_with1 = scrHMInstances(instance_create(argument1, argument2, RogueAmmo)), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-scrHMMotionAdd(random(360), 2);
-}
-}
-if(__hm_break3) break;
-}}
-}
-}
-instance_destroy();
-}
-
-// Source maincode.mod.gml:2843; chat_command
-function hm_maincode_mod_gml_chat_command() {
-if ((argument0 == "venuz")) {
-{
-global.hm_module_vars[$ "mod:maincode"].venuz = 1;
-scrHMTrace("going to space");
-}
-}
-}
+// Source maincode.mod.gml:2803; draw_pause
+
+function hm_maincode_mod_gml_draw_pause() {
+
+draw_set_color(c_white);
+
+draw_set_alpha(1);
+
+;
+
+draw_set_font(fntSmall);
+
+scrHMDrawTextTransformed(((view_xview + (view_width / 2)) - 128), ((view_yview + (view_height / 2)) + 114), global.hm_module_vars[$ "mod:maincode"].versionnumber, 1, 1, 0);
+
+;
+
+draw_set_halign(2);
+
+scrHMDrawTextTransformed(((view_xview + (view_width / 2)) + 160), ((view_yview + (view_height / 2)) + 114), string(global.hm_module_vars[$ "mod:maincode"].runcount), 1, 1, 0);
+
+;
+
+if ((GameCont.area == scrHMAreaResolve("venuz"))) {
+
+{
+
+draw_set_font(fntConsole);
+
+draw_set_halign(1);
+
+scrHMDrawTextTransformed((view_xview + (view_width / 2)), ((view_yview + (view_height / 2)) - 30), "hold B and press ENTER to restart level", 1, 1, 0);
+
+;
+
+}
+
+}
+
+draw_set_halign(0);
+
+}
+
+
+
+// Source maincode.mod.gml:2818; shilling
+
+function hm_maincode_mod_gml_shilling() {
+
+draw_set_color(c_white);
+
+draw_set_alpha(0.2);
+
+;
+
+draw_set_font(fntM1);
+
+scrHMDrawTextPlain(((view_xview + (view_width / 2)) - 72), ((view_yview + (view_height / 2)) - 82), "HARD MODE by BLAAC");
+
+;
+
+draw_set_alpha(1);
+
+;
+
+draw_set_font(fntSmall);
+
+draw_set_alpha(1);
+
+;
+
+scrHMMenuDrawComplete();
+
+}
+
+
+
+// Source maincode.mod.gml:2827; versionnumber
+
+function hm_maincode_mod_gml_versionnumber() {scrHMMenuDrawComplete();}
+
+
+
+// Source maincode.mod.gml:2836; resourceful
+
+function hm_maincode_mod_gml_resourceful() {
+
+if (((! instance_exists(argument0)) && (random(argument3) < 1))) {
+
+{
+
+{ var __hm_with1 = scrHMInstances(instance_create(argument1, argument2, RogueAmmo)), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+{
+
+scrHMMotionAdd(random(360), 2);
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+}
+
+}
+
+instance_destroy();
+
+}
+
+
+
+// Source maincode.mod.gml:2843; chat_command
+
+function hm_maincode_mod_gml_chat_command() {
+
+if ((argument0 == "venuz")) {
+
+{
+
+global.hm_module_vars[$ "mod:maincode"].venuz = 1;
+
+scrHMTrace("going to space");
+
+}
+
+}
+
+}
+
 // Source maincode.mod.gml:0; venus_request_retry (native content 1.1.0)
 function hm_maincode_mod_gml_venus_request_retry() {
 if (((GameCont.area != scrHMAreaResolve("venuz")) || instance_exists(GenCont))) {

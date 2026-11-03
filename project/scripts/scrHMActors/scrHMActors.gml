@@ -64,6 +64,8 @@ function scrHMActorCleanup() {
 function scrHMEnemyStep() {
     if(lockstep_stop) return;
     if(name=="titank") scrHMTitankHealth();
+    scrHMBossCameraTick1101();
+    if(hp>0 && (self[$ "hm_portrait_frozen"]??false)) return;
     if(can_die && hp<=0) {
         scrHMActorCallback("on_death");
         instance_destroy();

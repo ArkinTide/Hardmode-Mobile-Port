@@ -1,3 +1,4 @@
+scrHMBossCamera1101(id,true);
 repeat (3) {
 	scrWeaponPickupCreate(x, y, scrDecideWepGold(), true)
 }

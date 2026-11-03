@@ -5146,6 +5146,7 @@ return ((! scrHMModExists("mod", "options", "playerboost")) || (scrHMModGet("mod
 
 // Source arkintide.mod.gml:0; hm_progression_start (native content 1.1.0)
 function hm_arkintide_mod_gml_hm_progression_start() {
+scrHMContentInit1100();
 if ((scrHMVariableExists(GameCont, "hm_level_cap") && (GameCont.hm_maxlevel1100 == GameCont.hm_level_cap))) {
 GameCont.hm_maxlevel1100 = GameCont.hm_level_base;
 }
@@ -7418,7 +7419,7 @@ return false;
 
 // Source arkintide.mod.gml:0; hm_gungod_replace_tick (native content 1.1.0)
 function hm_arkintide_mod_gml_hm_gungod_replace_tick() {
-if ((((((! instance_exists(GameCont)) || instance_exists(GenCont)) || (! instance_exists(Player))) || (GameCont.loops < 3)) || (! hm_arkintide_mod_gml_hm_gungod_area_allowed()))) {
+if ((((((! instance_exists(GameCont)) || instance_exists(GenCont)) || (! instance_exists(Player))) || (GameCont.loops < 1)) || (! hm_arkintide_mod_gml_hm_gungod_area_allowed()))) {
 exit;
 }
 if (((scrHMVariableExists(id, "hm_gungod_rolled") && hm_gungod_rolled) && (! hm_gungod_replaced))) {
@@ -7598,19 +7599,7 @@ if(__hm_break3) break;
 
 // Source arkintide.mod.gml:0; hm_van_body_hurt (native content 1.1.0)
 function hm_arkintide_mod_gml_hm_van_body_hurt(_hml__damage, _hml__knockback, _hml__direction) {
-var _hml_body_sprite = sprite_index;
-var _hml_body_mask = mask_index;
-;
-hm_arkintide_mod_gml_hm_extra_change(Van);
-;
-scr_projectile_hit(id, _hml__damage, _hml__knockback, _hml__direction);
-;
-hm_arkintide_mod_gml_hm_extra_change(CustomHitme);
-;
-sprite_index = _hml_body_sprite;
-;
-mask_index = _hml_body_mask;
-;
+return scrHMVanBodyHurt1101(_hml__damage, _hml__knockback, _hml__direction);
 }
 
 // Source arkintide.mod.gml:0; hm_van_recheck_exit (native content 1.1.0)

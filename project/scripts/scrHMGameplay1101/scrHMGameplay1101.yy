@@ -1,0 +1,13 @@
+{
+  "$GMScript": "v1",
+  "%Name": "scrHMGameplay1101",
+  "isCompatibility": false,
+  "isDnD": false,
+  "name": "scrHMGameplay1101",
+  "parent": {
+    "name": "Scripts",
+    "path": "folders/Scripts.yy"
+  },
+  "resourceType": "GMScript",
+  "resourceVersion": "2.0"
+}

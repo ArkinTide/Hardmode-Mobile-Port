@@ -19,6 +19,8 @@ spr_dead = sprYVBossDead
 event_inherited()
 
 intro = false
+hm_entry_camera1101=false
+hm_exit_camera1101=false
 gunangle = random_angle
 walk = 0
 

@@ -4,7 +4,7 @@
 
 An independent Android and iOS port of **Hardmode b24 by Blaac**, based on Nuclear Throne Recreated Epsilon. Maintained separately from NTTE Mobile Port.
 
-Current release: **1.1.0 / build 14**. This release synchronizes the applicable changes maintained for the Hardmode NTT v100.034 mod into the mobile host: extra bosses, loop enemy pools, police arrivals, radiation and loot balances, boss health bars, optional player boosts, terrain and progression repairs, and bounded effects/rendering work. See [changes and verification limits](docs/FIXES.md).
+Current release: **1.1.1 / build 15**. Repairs the uninitialized level-cap error and police-van damage recursion, adds targeted final-boss/Y.V camera pans, starts the existing five-percent final-boss replacement rule at Loop1, and separates compact boss titles from their health bars. See [changes and verification limits](docs/FIXES.md).
 
 [Download Android APK / iOS IPA](https://mega.nz/folder/7TY3wZRB#PgQeCYQzxvrVGjfjX6YefA). **IPA requires resigning.** Installers are distributed through MEGA; GitHub contains text source only.
 
