@@ -3,6 +3,7 @@ if lockstep_stop
 
 if instance_exists(GenCont) exit
 if scrChestOpened() exit
+var _hm_tool_open1103=scrHMToolChestBegin1103();
 
 var _player = instance_nearest(x, y, Player),
 	_count = 3
@@ -16,7 +17,7 @@ random_set_seed(dropseed)
 instance_create(x, y, PortalClear)
 
 repeat _count {
-	var _wep = scrHMToolWeapon1100(scrDecideWep(1, false)),
+	var _wep = scrDecideWep(1, false),
 		_x = bbox_center_x + orandom(2),
 		_y = bbox_center_y + orandom(2)
 	
@@ -29,4 +30,5 @@ with (_player) snd_play_hit_big(snd_chst)
 
 GameCont.nochest = 0
 
+scrHMToolChestFinish1103(_hm_tool_open1103);
 instance_destroy()

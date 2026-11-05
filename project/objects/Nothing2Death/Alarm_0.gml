@@ -22,8 +22,10 @@ repeat(5) {
     }
     img += 1
 }
+// Preserve every native death effect/drop. The authored Hardmode fall owns its exit.
+if(!(scrHMEnabled() && GameCont.area==scrHMAreaResolve("throne"))) {
 dir = instance_nearest((x - 16), (y - 16), Floor)
-with(instance_create((dir.x + 16), (dir.y + 16), BigPortal))
-type = 1
+if(instance_exists(dir)) with(instance_create((dir.x + 16), (dir.y + 16), BigPortal)) type = 1
+}
 instance_destroy()
 snd_play_hit_big(sndNothing2Dead, 0.2)

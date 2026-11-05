@@ -143,6 +143,7 @@ function scrHMConsoleGoto(_area,_subarea,_loop=-1) {
     if(!instance_exists(GameCont) || is_undefined(_dest)) return false;
     var _max=scrAreaGetMaxSubarea(_dest[0]);
     if(_dest[1]<1 || _dest[1]>_max) return false;
+    scrHMCrownReset1103();GameCont.hm_destination107=-1;GameCont.hm_destination_sub107=-1;
     with(GameCont) {
         area=_dest[0];subarea=_dest[1];maxsubarea=_max;finalsubarea=(subarea==maxsubarea);
         if(_loop>=0) loops=_loop;

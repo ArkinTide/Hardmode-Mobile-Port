@@ -1,51 +1,99 @@
-// Source areas/sewers.area.gml:1; __load
-function hm_areas_sewers_area_gml___load() {
-global.hm_module_vars[$ "area:sewers"].sewersentrance = sprHM_areas_sewers_area_2;
-global.hm_module_vars[$ "area:sewers"].sewagefloortop = sprHM_areas_sewers_area_3;
-global.hm_module_vars[$ "area:sewers"].sewagefloor = sprHM_areas_sewers_area_4;
-global.hm_module_vars[$ "area:sewers"].sewerfloorexplo = sprHM_areas_sewers_area_5;
-global.hm_module_vars[$ "area:sewers"].crabdead = sprHM_areas_sewers_area_6;
-}
-
-// Source areas/sewers.area.gml:8; area_name
-function hm_areas_sewers_area_gml_area_name() {
-return ("2-" + string(GameCont.subarea));
-;
-}
-
-// Source areas/sewers.area.gml:11; area_sprite
-function hm_areas_sewers_area_gml_area_sprite(_hml_q) {
-switch (_hml_q) {
-case sprFloor1:
-return sprFloor2;
-;
-case sprFloor1B:
-return sprFloor2B;
-;
-case sprFloor1Explo:
-return sprFloor2Explo;
-;
-case sprWall1Trans:
-return sprWall2Trans;
-;
-case sprWall1Bot:
-return sprWall2Bot;
-;
-case sprWall1Out:
-return sprWall2Out;
-;
-case sprWall1Top:
-return sprWall2Top;
-;
-case sprDebris1:
-return sprDebris2;
-;
-case sprDetail1:
-return sprDetail2;
-;
-}
-}
-
+// Source areas/sewers.area.gml:1; __load
+
+function hm_areas_sewers_area_gml___load() {
+
+global.hm_module_vars[$ "area:sewers"].sewersentrance = sprHM_areas_sewers_area_2;
+
+global.hm_module_vars[$ "area:sewers"].sewagefloortop = sprHM_areas_sewers_area_3;
+
+global.hm_module_vars[$ "area:sewers"].sewagefloor = sprHM_areas_sewers_area_4;
+
+global.hm_module_vars[$ "area:sewers"].sewerfloorexplo = sprHM_areas_sewers_area_5;
+
+global.hm_module_vars[$ "area:sewers"].crabdead = sprHM_areas_sewers_area_6;
+
+}
+
+
+
+// Source areas/sewers.area.gml:8; area_name
+
+function hm_areas_sewers_area_gml_area_name() {
+
+return ("2-" + string(GameCont.subarea));
+
+;
+
+}
+
+
+
+// Source areas/sewers.area.gml:11; area_sprite
+
+function hm_areas_sewers_area_gml_area_sprite(_hml_q) {
+
+switch (_hml_q) {
+
+case sprFloor1:
+
+return sprFloor2;
+
+;
+
+case sprFloor1B:
+
+return sprFloor2B;
+
+;
+
+case sprFloor1Explo:
+
+return sprFloor2Explo;
+
+;
+
+case sprWall1Trans:
+
+return sprWall2Trans;
+
+;
+
+case sprWall1Bot:
+
+return sprWall2Bot;
+
+;
+
+case sprWall1Out:
+
+return sprWall2Out;
+
+;
+
+case sprWall1Top:
+
+return sprWall2Top;
+
+;
+
+case sprDebris1:
+
+return sprDebris2;
+
+;
+
+case sprDetail1:
+
+return sprDetail2;
+
+;
+
+}
+
+}
+
+
+
 // Source areas/sewers.area.gml:0; area_transit (native content 1.1.0)
 function hm_areas_sewers_area_gml_area_transit() {
 if ((scrHMVariableExists(GameCont, "hm_debug_pending") && GameCont.hm_debug_pending)) {
@@ -58,9 +106,7 @@ return;
 ;
 }
 }
-if ((scrHMVariableExists(GameCont, "hm_crown_return") && GameCont.hm_crown_return)) {
-hm_arkintide_mod_gml_hm_crown_watch();
-}
+scrHMCrownWatch1103();
 if (((scrHMVariableExists(GameCont, "hm_crown_exit_ready") && GameCont.hm_crown_exit_ready) && (area != scrHMAreaResolve(100)))) {
 {
 area = scrHMAreaResolve("throne");
@@ -492,62 +538,118 @@ default: throw "Hardmode invalid continuation PC";
 }
 }
 
-// Source areas/sewers.area.gml:197; area_make_floor
-function hm_areas_sewers_area_gml_area_make_floor() {
-instance_create(x, y, Floor);
-;
-if ((scrHMVariableExists(id, "big") and (big == 1))) {
-{
-instance_create((x + 32), y, Floor);
-;
-instance_create((x + 32), (y + 32), Floor);
-;
-instance_create(x, (y + 32), Floor);
-;
-}
-}
-var _hml_turn = choose(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 90, (- 90), 180);
-;
-direction += _hml_turn;
-;
-if (((_hml_turn == 180) && (point_distance(x, y, 10016, 10016) > 48))) {
-{
-instance_create(x, y, Floor);
-;
-instance_create((x + 16), (y + 16), WeaponChest);
-;
-}
-}
-if ((random((19 + instance_number(FloorMaker))) > 22)) {
-{
-if ((point_distance(x, y, 10016, 10016) > 48)) {
-{
-instance_create((x + 16), (y + 16), AmmoChest);
-;
-instance_create(x, y, Floor);
-;
-}
-}
-instance_destroy();
-;
-}
-} else {
-if ((random(6) < 1)) {
-{
-{ var __hm_with1 = scrHMInstances(instance_create(x, y, FloorMaker)), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-big = choose(0, 0, 0, 0, 1);
-}
-}
-if(__hm_break3) break;
-}}
-}
-}
-}
-}
-
+// Source areas/sewers.area.gml:197; area_make_floor
+
+function hm_areas_sewers_area_gml_area_make_floor() {
+
+instance_create(x, y, Floor);
+
+;
+
+if ((scrHMVariableExists(id, "big") and (big == 1))) {
+
+{
+
+instance_create((x + 32), y, Floor);
+
+;
+
+instance_create((x + 32), (y + 32), Floor);
+
+;
+
+instance_create(x, (y + 32), Floor);
+
+;
+
+}
+
+}
+
+var _hml_turn = choose(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 90, (- 90), 180);
+
+;
+
+direction += _hml_turn;
+
+;
+
+if (((_hml_turn == 180) && (point_distance(x, y, 10016, 10016) > 48))) {
+
+{
+
+instance_create(x, y, Floor);
+
+;
+
+instance_create((x + 16), (y + 16), WeaponChest);
+
+;
+
+}
+
+}
+
+if ((random((19 + instance_number(FloorMaker))) > 22)) {
+
+{
+
+if ((point_distance(x, y, 10016, 10016) > 48)) {
+
+{
+
+instance_create((x + 16), (y + 16), AmmoChest);
+
+;
+
+instance_create(x, y, Floor);
+
+;
+
+}
+
+}
+
+instance_destroy();
+
+;
+
+}
+
+} else {
+
+if ((random(6) < 1)) {
+
+{
+
+{ var __hm_with1 = scrHMInstances(instance_create(x, y, FloorMaker)), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+{
+
+big = choose(0, 0, 0, 0, 1);
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+}
+
+}
+
+}
+
+}
+
+
+
 // Source areas/sewers.area.gml:0; area_pop_enemies (native content 1.1.0)
 function hm_areas_sewers_area_gml_area_pop_enemies() {
 if ((((instance_nearest(x, y, Floor)).styleb == 1) and (random(3) < 1))) {
@@ -582,13 +684,20 @@ hm_arkintide_mod_gml_hm_loop_population(2);
 ;
 }
 
-// Source areas/sewers.area.gml:241; area_pop_props
-function hm_areas_sewers_area_gml_area_pop_props() {
-if ((((instance_nearest(x, y, Floor)).styleb == 0) and (random(18) < 1))) {
-instance_create((x + 16), (y + 16), Pipe);
-}
-}
-
+// Source areas/sewers.area.gml:241; area_pop_props
+
+function hm_areas_sewers_area_gml_area_pop_props() {
+
+if ((((instance_nearest(x, y, Floor)).styleb == 0) and (random(18) < 1))) {
+
+instance_create((x + 16), (y + 16), Pipe);
+
+}
+
+}
+
+
+
 // Source areas/sewers.area.gml:0; area_mapdata (native content 1.1.0)
 function hm_areas_sewers_area_gml_area_mapdata(_hml_lx, _hml_ly, _hml_lp, _hml_ls, _hml_ws, _hml_ll) {
 return hm_arkintide_mod_gml_hm_mapdata("sewers", _hml_lx, _hml_ly, _hml_lp, _hml_ls, _hml_ws, _hml_ll);

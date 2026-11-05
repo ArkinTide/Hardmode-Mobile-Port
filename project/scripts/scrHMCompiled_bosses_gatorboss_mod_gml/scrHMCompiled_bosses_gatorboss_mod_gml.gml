@@ -1,39 +1,75 @@
-// Source bosses/gatorboss.mod.gml:1; __load
-function hm_bosses_gatorboss_mod_gml___load() {
-global.hm_module_vars[$ "mod:bosses/gatorboss"].gatorbossidle = sprHM_bosses_gatorboss_mod_2;
-global.hm_module_vars[$ "mod:bosses/gatorboss"].gatorbosswalk = sprHM_bosses_gatorboss_mod_3;
-global.hm_module_vars[$ "mod:bosses/gatorboss"].gatorbosshurt = sprHM_bosses_gatorboss_mod_4;
-global.hm_module_vars[$ "mod:bosses/gatorboss"].gatorbossdead = sprHM_bosses_gatorboss_mod_5;
-global.hm_module_vars[$ "mod:bosses/gatorboss"].gatorbosscharge = sprHM_bosses_gatorboss_mod_6;
-global.hm_module_vars[$ "mod:bosses/gatorboss"].gatorbosschargehurt = sprHM_bosses_gatorboss_mod_7;
-global.hm_module_vars[$ "mod:bosses/gatorboss"].gatorbosspunch = sprHM_bosses_gatorboss_mod_8;
-global.hm_module_vars[$ "mod:bosses/gatorboss"].punch = sprHM_bosses_gatorboss_mod_9;
-global.hm_module_vars[$ "mod:bosses/gatorboss"].gatorintro = sprHM_bosses_gatorboss_mod_11;
-global.hm_module_vars[$ "mod:bosses/gatorboss"].gatorintrofg = sprHM_bosses_gatorboss_mod_12;
-global.hm_module_vars[$ "mod:bosses/gatorboss"].gatorintrobg = sprHM_bosses_gatorboss_mod_13;
-}
-
-// Source bosses/gatorboss.mod.gml:15; draw
-function hm_bosses_gatorboss_mod_gml_draw() {
-
-}
-
-// Source bosses/gatorboss.mod.gml:22; draw_dark
-function hm_bosses_gatorboss_mod_gml_draw_dark() {
-{ var __hm_with1 = scrHMMatching(CustomEnemy, "name", "gatorboss"), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-draw_set_color(0);
-if ((random(5) < 1)) {
-draw_circle(x, y, (25 + random(3)), false);
-}
-}
-}
-if(__hm_break3) break;
-}}
-}
-
+// Source bosses/gatorboss.mod.gml:1; __load
+
+function hm_bosses_gatorboss_mod_gml___load() {
+
+global.hm_module_vars[$ "mod:bosses/gatorboss"].gatorbossidle = sprHM_bosses_gatorboss_mod_2;
+
+global.hm_module_vars[$ "mod:bosses/gatorboss"].gatorbosswalk = sprHM_bosses_gatorboss_mod_3;
+
+global.hm_module_vars[$ "mod:bosses/gatorboss"].gatorbosshurt = sprHM_bosses_gatorboss_mod_4;
+
+global.hm_module_vars[$ "mod:bosses/gatorboss"].gatorbossdead = sprHM_bosses_gatorboss_mod_5;
+
+global.hm_module_vars[$ "mod:bosses/gatorboss"].gatorbosscharge = sprHM_bosses_gatorboss_mod_6;
+
+global.hm_module_vars[$ "mod:bosses/gatorboss"].gatorbosschargehurt = sprHM_bosses_gatorboss_mod_7;
+
+global.hm_module_vars[$ "mod:bosses/gatorboss"].gatorbosspunch = sprHM_bosses_gatorboss_mod_8;
+
+global.hm_module_vars[$ "mod:bosses/gatorboss"].punch = sprHM_bosses_gatorboss_mod_9;
+
+global.hm_module_vars[$ "mod:bosses/gatorboss"].gatorintro = sprHM_bosses_gatorboss_mod_11;
+
+global.hm_module_vars[$ "mod:bosses/gatorboss"].gatorintrofg = sprHM_bosses_gatorboss_mod_12;
+
+global.hm_module_vars[$ "mod:bosses/gatorboss"].gatorintrobg = sprHM_bosses_gatorboss_mod_13;
+
+}
+
+
+
+// Source bosses/gatorboss.mod.gml:15; draw
+
+function hm_bosses_gatorboss_mod_gml_draw() {
+
+
+
+}
+
+
+
+// Source bosses/gatorboss.mod.gml:22; draw_dark
+
+function hm_bosses_gatorboss_mod_gml_draw_dark() {
+
+{ var __hm_with1 = scrHMMatching(CustomEnemy, "name", "gatorboss"), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+{
+
+draw_set_color(0);
+
+if ((random(5) < 1)) {
+
+draw_circle(x, y, (25 + random(3)), false);
+
+}
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+}
+
+
+
 // Source bosses/gatorboss.mod.gml:0; gatorboss_create (native content 1.1.0)
 function hm_bosses_gatorboss_mod_gml_gatorboss_create(_hml__x, _hml__y) {
 { var __hm_with1 = scrHMInstances(instance_create(_hml__x, _hml__y, CustomEnemy)), __hm_break3=false;
@@ -57,6 +93,7 @@ hm_maxhealth_init = false;
 }
 scrHMMaxHealthWrite(id, 120, "=");
 hp = max_hp;
+scrHMBossHealth1103();
 direction = random(360);
 spr_shadow = shd48;
 size = 2;
@@ -730,98 +767,190 @@ instance_create((x + (hspeed / timescale)), (y + (vspeed / timescale)), PortalCl
 ;
 }
 
-// Source bosses/gatorboss.mod.gml:374; Gatorfist_destroy
-function hm_bosses_gatorboss_mod_gml_Gatorfist_destroy() {
-var _args = [];
-for(var _i=0;_i<argument_count;++_i) array_push(_args, argument[_i]);
-return scrHMTaskStart(hm_bosses_gatorboss_mod_gml_Gatorfist_destroy_resume, id, scrHMOther(other), _args, 3, []);
-}
-function hm_bosses_gatorboss_mod_gml_Gatorfist_destroy_resume(_hm) {
-var _budget=0;
-while(!_hm.done) {
-assert(++_budget<100000,"Hardmode runaway continuation: hm_bosses_gatorboss_mod_gml_Gatorfist_destroy");
-if (!instance_exists(_hm.scope)) { if(array_length(_hm.with_stack)>_hm.with_floor) {scrHMTaskWithNext(_hm); continue;} _hm.done=true; return; }
-with (_hm.scope) { switch (_hm.pc) {
-case 0: _hm.done=true; return;
-case 1: // bosses/gatorboss.mod.gml:377
-{
-repeat (14) { var __hm_with1 = scrHMInstances(instance_create(x, y, EnemyBullet3)), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-hitid = [global.hm_module_vars[$ "mod:bosses/gatorboss"].gatorbossidle, "super gator"];
-scrHMMotionAdd(random(360), random_range(6, 10));
-typ = 1;
-var __hm_other4=scrHMOther(other);
-team = __hm_other4.team;
-damage = 1;
-wallbounce = 3;
-}
-}
-if(__hm_break3) break;
-}}
-}
-_hm.pc=0;
-break;
-case 2: // bosses/gatorboss.mod.gml:377
-_hm.pc = (scrHMTaskFork(_hm, 1)) ? 1 : 0;
-break;
-case 3: // bosses/gatorboss.mod.gml:375
-{
-scrHMSoundPlay(sndFlakExplode);
-scrHMModCall("mod", "enemies", "scrPickups", 50);
-}
-_hm.pc=2;
-break;
-default: throw "Hardmode invalid continuation PC";
-}}
-}
-}
-
-
-// Source bosses/gatorboss.mod.gml:388; gatorexplosion
-function hm_bosses_gatorboss_mod_gml_gatorexplosion() {
-var _args = [];
-for(var _i=0;_i<argument_count;++_i) array_push(_args, argument[_i]);
-return scrHMTaskStart(hm_bosses_gatorboss_mod_gml_gatorexplosion_resume, id, scrHMOther(other), _args, 3, ["_x", "_y", "_t"]);
-}
-function hm_bosses_gatorboss_mod_gml_gatorexplosion_resume(_hm) {
-var _budget=0;
-while(!_hm.done) {
-assert(++_budget<100000,"Hardmode runaway continuation: hm_bosses_gatorboss_mod_gml_gatorexplosion");
-if (!instance_exists(_hm.scope)) { if(array_length(_hm.with_stack)>_hm.with_floor) {scrHMTaskWithNext(_hm); continue;} _hm.done=true; return; }
-with (_hm.scope) { switch (_hm.pc) {
-case 0: _hm.done=true; return;
-case 1: // bosses/gatorboss.mod.gml:390
-{
-;
-{ var __hm_with1 = scrHMInstances(instance_create(_hm.vars._x, _hm.vars._y, SmallExplosion)), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-team = _hm.vars._t;
-hitid = [global.hm_module_vars[$ "mod:bosses/gatorboss"].gatorbossidle, "super gator"];
-image_angle = random(360);
-}
-}
-if(__hm_break3) break;
-}}
-scrHMSoundPlay(sndExplosionS);
-}
-_hm.pc=0;
-break;
-case 2: // bosses/gatorboss.mod.gml:390
-_hm.wait_ticks=max(0,10); _hm.pc=1; return;
-break;
-case 3: // bosses/gatorboss.mod.gml:389
-_hm.pc = (scrHMTaskFork(_hm, 2)) ? 2 : 0;
-break;
-default: throw "Hardmode invalid continuation PC";
-}}
-}
-}
-
-
+// Source bosses/gatorboss.mod.gml:374; Gatorfist_destroy
+
+function hm_bosses_gatorboss_mod_gml_Gatorfist_destroy() {
+
+var _args = [];
+
+for(var _i=0;_i<argument_count;++_i) array_push(_args, argument[_i]);
+
+return scrHMTaskStart(hm_bosses_gatorboss_mod_gml_Gatorfist_destroy_resume, id, scrHMOther(other), _args, 3, []);
+
+}
+
+function hm_bosses_gatorboss_mod_gml_Gatorfist_destroy_resume(_hm) {
+
+var _budget=0;
+
+while(!_hm.done) {
+
+assert(++_budget<100000,"Hardmode runaway continuation: hm_bosses_gatorboss_mod_gml_Gatorfist_destroy");
+
+if (!instance_exists(_hm.scope)) { if(array_length(_hm.with_stack)>_hm.with_floor) {scrHMTaskWithNext(_hm); continue;} _hm.done=true; return; }
+
+with (_hm.scope) { switch (_hm.pc) {
+
+case 0: _hm.done=true; return;
+
+case 1: // bosses/gatorboss.mod.gml:377
+
+{
+
+repeat (14) { var __hm_with1 = scrHMInstances(instance_create(x, y, EnemyBullet3)), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+{
+
+hitid = [global.hm_module_vars[$ "mod:bosses/gatorboss"].gatorbossidle, "super gator"];
+
+scrHMMotionAdd(random(360), random_range(6, 10));
+
+typ = 1;
+
+var __hm_other4=scrHMOther(other);
+
+team = __hm_other4.team;
+
+damage = 1;
+
+wallbounce = 3;
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+}
+
+_hm.pc=0;
+
+break;
+
+case 2: // bosses/gatorboss.mod.gml:377
+
+_hm.pc = (scrHMTaskFork(_hm, 1)) ? 1 : 0;
+
+break;
+
+case 3: // bosses/gatorboss.mod.gml:375
+
+{
+
+scrHMSoundPlay(sndFlakExplode);
+
+scrHMModCall("mod", "enemies", "scrPickups", 50);
+
+}
+
+_hm.pc=2;
+
+break;
+
+default: throw "Hardmode invalid continuation PC";
+
+}}
+
+}
+
+}
+
+
+
+
+
+// Source bosses/gatorboss.mod.gml:388; gatorexplosion
+
+function hm_bosses_gatorboss_mod_gml_gatorexplosion() {
+
+var _args = [];
+
+for(var _i=0;_i<argument_count;++_i) array_push(_args, argument[_i]);
+
+return scrHMTaskStart(hm_bosses_gatorboss_mod_gml_gatorexplosion_resume, id, scrHMOther(other), _args, 3, ["_x", "_y", "_t"]);
+
+}
+
+function hm_bosses_gatorboss_mod_gml_gatorexplosion_resume(_hm) {
+
+var _budget=0;
+
+while(!_hm.done) {
+
+assert(++_budget<100000,"Hardmode runaway continuation: hm_bosses_gatorboss_mod_gml_gatorexplosion");
+
+if (!instance_exists(_hm.scope)) { if(array_length(_hm.with_stack)>_hm.with_floor) {scrHMTaskWithNext(_hm); continue;} _hm.done=true; return; }
+
+with (_hm.scope) { switch (_hm.pc) {
+
+case 0: _hm.done=true; return;
+
+case 1: // bosses/gatorboss.mod.gml:390
+
+{
+
+;
+
+{ var __hm_with1 = scrHMInstances(instance_create(_hm.vars._x, _hm.vars._y, SmallExplosion)), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+{
+
+team = _hm.vars._t;
+
+hitid = [global.hm_module_vars[$ "mod:bosses/gatorboss"].gatorbossidle, "super gator"];
+
+image_angle = random(360);
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+scrHMSoundPlay(sndExplosionS);
+
+}
+
+_hm.pc=0;
+
+break;
+
+case 2: // bosses/gatorboss.mod.gml:390
+
+_hm.wait_ticks=max(0,10); _hm.pc=1; return;
+
+break;
+
+case 3: // bosses/gatorboss.mod.gml:389
+
+_hm.pc = (scrHMTaskFork(_hm, 2)) ? 2 : 0;
+
+break;
+
+default: throw "Hardmode invalid continuation PC";
+
+}}
+
+}
+
+}
+
+
+
+
+
 // Source bosses/gatorboss.mod.gml:0; gatorboss_death (native content 1.1.0)
 function hm_bosses_gatorboss_mod_gml_gatorboss_death() {
 var _args = [];

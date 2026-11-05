@@ -9,6 +9,10 @@ function scrHMReadyTick() {
 
 function scrHMHook(_hook) {
     if(!scrHMEnabled()) return;
+    if(instance_exists(HMWorld) && instance_exists(variable_instance_get(HMWorld,"hm_portrait_active")??noone)) {
+        if(_hook=="draw_gui") scrHMInvokeHere(scrHMScriptRef(hm_bosses_bossintros_mod_gml_draw_gui),[]);
+        return;
+    }
     var _args=[];
     for(var _i=1;_i<argument_count;++_i) array_push(_args,argument[_i]);
     var _codes=global.hm_hook_cache[$ _hook];
@@ -30,12 +34,13 @@ function scrHMWorldInit() {
     scrHMRuntimeInit();
     global.hm_enabled=true;
     global.hm_hook_cache={};
-    logic_accumulator=0;logic_tick=true;logic_serial=0;
+    logic_accumulator=0;logic_tick=true;logic_serial=0;hm_portrait_active=noone;
     for(var _i=0;_i<array_length(global.hm_module_order);++_i) {
         var _key=global.hm_module_order[_i];
         scrHMInvokeHere(scrHMScriptRef(global.hm_module_scripts[$ _key].__load),[]);
     }
     scrHMHook("init");
+    scrHMReportAssets1103();
     scrHMWeaponsInit();
 }
 
@@ -55,13 +60,18 @@ function scrHMWorldStep() {
     if(instance_exists(self[$ "hm_portrait_active"]??noone)) return;
     // Resume only the tasks retained by this room. The source's new forks
     // execute immediately and first resume on the following 30 Hz tick.
+    // HMWorld can step before the first GameCont Step or a continued run.
+    scrHMContentInit1100();
+    scrHMRouteTick1103();scrHML2UltraTick1103();
     scrHMTasksTick(1);
-    if(instance_exists(GameCont)) scrHMHook("step");
+    if(instance_exists(GameCont)) {scrHMHook("step");scrHMNativeBossHealth1103();}
+    if(!instance_exists(HMWorld.hm_portrait_active)) with(YVBoss) if(hp>0 && image_alpha>0) scrHMBossCamera1101(id,false);
 }
 
 function scrHMRunStart() {
     if(!scrHMEnabled()) return;
     global.hm_tasks=[];
+    scrHMContentInit1100();hm_arkintide_mod_gml_hm_progression_start();
     with(HMWorld) scrHMHook("game_start");
 }
 
@@ -117,6 +127,7 @@ function scrHMAreaCall(_area,_hook) {
 }
 
 function scrHMAreaTransit() {
+    if(area==area_vault) {subarea=1;maxsubarea=1;finalsubarea=true;return;}
     for(var _i=0;_i<array_length(global.hm_module_order);++_i) {
         var _key=global.hm_module_order[_i];
         if(string_pos("area:",_key)==1) {
@@ -131,6 +142,9 @@ function scrHMAreaTransit() {
 
 function scrHMAreaAdvance() {
     if(scrHMAdvanceDestination107()) return;
+    // Native explicit destinations share the existing mobile transition path.
+    var _destination=self[$ "hm_destination"]??"";
+    if(_destination!="") {hm_destination107=scrHMAreaResolve(_destination);hm_destination_sub107=1;hm_destination="";if(scrHMAdvanceDestination107()) return;}
     var _old_area=area,_old_subarea=subarea;
     lastarea=_old_area;lastsubarea=_old_subarea;
     scrHMAreaCall(_old_area,"area_finish");
@@ -214,14 +228,18 @@ function scrHMBindDraw(_code,_depth) {
     var _args=[];
     for(var _i=2;_i<argument_count;++_i) array_push(_args,argument[_i]);
     _code=scrHMScriptRef(_code);
-    var _menu=(_code==scrHMScriptRef(hm_maincode_mod_gml_shilling)
+    var _menu=(_code==scrHMScriptRef(hm_arkintide_mod_gml_hm_van_warning)
+        ||_code==scrHMScriptRef(hm_arkintide_mod_gml_hm_throne_fall_draw)
+        ||_code==scrHMScriptRef(hm_maincode_mod_gml_shilling)
         ||_code==scrHMScriptRef(hm_maincode_mod_gml_versionnumber)
         ||_code==scrHMScriptRef(hm_maincode_mod_gml_StablePortal)
         ||_code==scrHMScriptRef(hm_maincode_mod_gml_PortalShrink)
         ||_code==scrHMScriptRef(hm_maincode_mod_gml_bigdogintro)
         ||_code==scrHMScriptRef(hm_maincode_mod_gml_sewerboi)
         ||_code==scrHMScriptRef(hm_maincode_mod_gml_spacesewerboi)
-        ||_code==scrHMScriptRef(hm_enemies_mod_gml_bigcrystaltopdraw));
+        ||_code==scrHMScriptRef(hm_enemies_mod_gml_bigcrystaltopdraw)
+        ||_code==scrHMScriptRef(hm_props_mod_gml_E)
+        ||_code==scrHMScriptRef(hm_props_mod_gml_outsider_draw));
     var _binding=noone;
     // The source refreshes these one-shot rendering callbacks at 30 Hz. Retain
     // their renderer for intervening 60 FPS frames without accumulating it.
@@ -234,6 +252,7 @@ function scrHMBindDraw(_code,_depth) {
     if(_menu) hm_draw_bindings109[$ string(_code)]=_binding;
     _binding.hm_menu_overlay=_menu;
     _binding.hm_refresh_tick=HMWorld.logic_serial;
+    if(_code==scrHMScriptRef(hm_maincode_mod_gml_PortalShrink)) _depth=-12;
     _binding.depth=_depth;_binding.hm_code=_code;
     _binding.hm_args=_args;_binding.hm_draw=true;_binding.creator=id;
     return _binding;
@@ -249,7 +268,7 @@ function scrHMBindEndStep(_code,_delay) {
 }
 
 function scrHMBindingEndStep() {
-    if(hm_menu_overlay && (!instance_exists(creator)||hm_refresh_tick!=HMWorld.logic_serial)) {
+    if(hm_menu_overlay && (!instance_exists(creator)||(hm_refresh_tick!=HMWorld.logic_serial && !instance_exists(variable_instance_get(HMWorld,"hm_portrait_active")??noone)))) {
         instance_destroy();return;
     }
     if(hm_draw || !scrHMReadyTick() || lockstep_stop || UberCont.paused) return;
@@ -260,6 +279,7 @@ function scrHMBindingEndStep() {
 function scrHMBindingDraw() {
     if(!hm_draw || lockstep_stop) return;
     if(hm_menu_overlay) {
+        if(instance_exists(creator) && hm_code==scrHMScriptRef(hm_maincode_mod_gml_sewerboi) && !(creator[$ "swimming"]??false)) {instance_destroy();return;}
         if(!instance_exists(creator)) {instance_destroy();return;}
         var _font=draw_get_font(),_alpha=draw_get_alpha(),_color=draw_get_color();
         var _halign=draw_get_halign(),_valign=draw_get_valign();

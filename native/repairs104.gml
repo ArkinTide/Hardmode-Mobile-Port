@@ -70,53 +70,7 @@ function scrHMSwimLeave() {
 }
 
 function scrHMSewerTick() {
-    if(!instance_exists(Player)) {
-        with(hitme) if(self[$ "swimming"]??false) scrHMSwimLeave();
-        return;
-    }
-    // Constant-time water membership replaces all nearest-Floor/CustomObject
-    // searches. Only the feet point counts, so a body overlapping the bank
-    // cannot keep an entity swimming on dry ground.
-    if(is_undefined(variable_instance_get(HMWorld,"hm_water_map")) || (variable_instance_get(HMWorld,"hm_water_floors")??-1)!=instance_number(Floor)) scrHMWaterMap();
-    var _player=instance_nearest(x,y,Player),_map=HMWorld.hm_water_map;
-    scrHMWaterBatchBegin1102();
-    with(hitme) {
-        if(self[$ "hm_portrait_frozen"]??false) continue;
-        var _was=self[$ "swimming"]??false;
-        if(!_was && (!variable_instance_exists(id,"right") || object_index==FireBaller || object_index==SuperFireBaller)) continue;
-        var _near=point_distance(x,y,_player.x,_player.y)<view_width;
-        var _water=scrHMSwimSupported112(x,y) && !instance_exists(SpiralCont);
-        if(_water && distance_to_object(Portal)<=32) _water=false;
-        if(!_water) {
-            if(_was) {scrHMSwimLeave();if(_near) scrHMSoundPitchVolume(sndSewerDrip,1,.22);}
-            continue;
-        }
-        if(!_was) {
-            if(!_near && object_index!=Player) continue;
-            hm_swim_fly=self[$ "canfly"]??false;hm_swim_alpha=image_alpha;shd_=spr_shadow;
-            swimming=true;canfly=true;image_alpha=0;spr_shadow=mskNone;
-            if(_near) scrHMWaterEntrySound();
-        }
-        if(!_near && object_index!=Player) continue;
-        if(object_index==Gator || object_index==BuffGator) {
-            speed=5*timescale;direction=round(direction/90)*90;
-        } else if(object_index!=Player && object_index!=CustomEnemy && speed>timescale) speed=timescale;
-        if(random(32)<1 && object_index!=Player) direction=choose(0,90,180,270);
-        if(speed>.4*timescale && HMWorld.logic_serial mod 4==0 && instance_number(Wind)<80) {
-            with(instance_create(x,y-4,Wind)) {sprite_index=global.hm_module_vars[$ "mod:maincode"].ripple;depth=2;image_xscale=choose(-1,1);}
-        }
-        var _bind=scrHMBindDraw(hm_maincode_mod_gml_sewerboi,2-y/10000);
-        _bind.creator=id;
-    }
-    scrHMWaterBatchEnd1102();
-    with(Crab) friction=.8*timescale*timescale;
-    // A handful of visible water specks, rather than a full floor scan plus
-    // particles per cell on every simulation tick.
-    if(HMWorld.logic_serial mod 4==0) repeat(3) {
-        var _xx=_player.x+random_range(-view_width/2,view_width/2),_yy=_player.y+random_range(-view_height/2,view_height/2);
-        if(_map[$ scrHMWaterKey(_xx,_yy)]??false) with(instance_create(_xx,_yy,RadEat)) image_angle=random(360);
-    }
-    if(HMWorld.logic_serial mod 4==0) with(Corpse) if(image_alpha>0 && (_map[$ scrHMWaterKey(x,y)]??false)) image_alpha=max(0,image_alpha-.04);
+scrHMSewerTick1103();
 }
 
 function scrHMWallFillBegin() {

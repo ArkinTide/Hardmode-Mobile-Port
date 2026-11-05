@@ -4,6 +4,7 @@ import argparse,copy,hashlib,json,plistlib,struct,sys,zipfile
 import xml.etree.ElementTree as ET
 from package_fonts import restore
 from release_config import VERSION,BUILD,PACKAGE
+from change_icon1103 import apply_android_runner_icons,ios_icon_resources,verify_ios_icon
 
 ROOT=Path(__file__).resolve().parent
 sys.path.insert(0,str(ROOT.parent))
@@ -63,15 +64,21 @@ def ios():
         info.update(CFBundleIdentifier=PACKAGE,CFBundleDisplayName='Nuclear Throne: Hardmode',
                     CFBundleName='Nuclear Throne: Hardmode',CFBundleShortVersionString=VERSION,
                     CFBundleVersion=str(BUILD),UIFileSharingEnabled=True,LSSupportsOpeningDocumentsInPlace=True)
+        icons=ios_icon_resources(info)
         executable=app+info['CFBundleExecutable'];runner=z.read(executable)
         # Drop the predecessor's game files and signatures; preserve only its
-        # compatible native runner, native UI/frameworks, launch images/icons.
+        # compatible native runner, native UI/frameworks and launch images.
+        # Standalone HM113Icon files are selected explicitly, independently of
+        # the retained native launch/UI asset catalog.
         with zipfile.ZipFile(out,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=6) as result:
             for item in z.infolist():
                 name=item.filename
                 if '/games/' in name or '/_CodeSignature/' in name or name.endswith('/embedded.mobileprovision'):continue
+                leaf=name.removeprefix(app)
+                if '/' not in leaf and leaf.endswith('.png') and leaf.startswith(('NTIcon','AppIcon','HM113Icon')):continue
                 data=plistlib.dumps(info,fmt=plistlib.FMT_BINARY,sort_keys=False) if name==info_path else z.read(name)
                 result.writestr(copy.copy(item),data)
+            for name,data in icons.items():result.writestr(app+name,data)
             for name,data in assets.items():result.writestr(app+'games/'+name,data)
     with zipfile.ZipFile(out) as z:
         assert z.testzip() is None
@@ -82,12 +89,13 @@ def ios():
         for name,data in assets.items():assert z.read(app+'games/'+name)==data
     receipt.update(package=PACKAGE,version=VERSION,build=BUILD,runner_sha256=sha(runner),
                    ipa_sha256=sha(out.read_bytes()),requires_resigning=True,physical_device_tested=False,
-                   mac_native_rebuild=False)
+                   mac_native_rebuild=False,icons=verify_ios_icon(out))
     out.with_suffix('.validation.json').write_text(json.dumps(receipt,indent=2)+'\n')
     print(out)
 
 def android():
     assets,receipt=prepare('android')
+    apply_android_runner_icons()
     dest=ROOT/'platforms/android/gradle-project'/PACKAGE/'src/main/assets'
     for name,data in assets.items():
         path=dest/name;path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(data)

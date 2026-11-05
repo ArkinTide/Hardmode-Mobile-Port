@@ -10,6 +10,7 @@ repeat 10 {
 }
 
 if rad > 24 {
+    if(scrHMEnabled()) scrHMCrownEntry1103();
     with instance_create(x, y, Portal) {
         type = 3
         if(scrHMEnabled()) {hm_destination107=area_vault;hm_subarea107=1;}

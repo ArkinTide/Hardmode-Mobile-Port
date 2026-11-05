@@ -3,6 +3,7 @@ if lockstep_stop
 
 if instance_exists(GenCont) exit
 if scrChestOpened() exit
+var _hm_tool_open1103=scrHMToolChestBegin1103();
 
 var _shift = curse ? 736817 : 0
 
@@ -10,7 +11,7 @@ if (_shift != 0) global.rng_state[RNGStates.WeaponDrops] += _shift
 	
 var _extra = 1 + curse * 2,
 	_player = instance_nearest(x, y, Player),
-	_wep = scrHMToolWeapon1100(scrDecideWep(_extra, curse)),
+	_wep = scrDecideWep(_extra, curse),
 	_count = 1
 
 if scr_ultra_get(Race.Steroids, UltraSkill.Ambidextrous) {
@@ -35,4 +36,5 @@ else {
 
 if (_shift != 0) global.rng_state[RNGStates.WeaponDrops] -= _shift
 
+scrHMToolChestFinish1103(_hm_tool_open1103);
 instance_destroy()

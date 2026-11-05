@@ -1,49 +1,95 @@
-// Source areas/caves.area.gml:1; __load
-function hm_areas_caves_area_gml___load() {
-global.hm_module_vars[$ "area:caves"].sprCrystalPropBlueDead = sprHM_areas_caves_area_1;
-global.hm_module_vars[$ "area:caves"].sprCrystalPropGreenDead = sprHM_areas_caves_area_2;
-global.hm_module_vars[$ "area:caves"].skycrystal = sprHM_areas_caves_area_3;
-}
-
-// Source areas/caves.area.gml:4; area_name
-function hm_areas_caves_area_gml_area_name() {
-return ("4-" + string(GameCont.subarea));
-;
-}
-
-// Source areas/caves.area.gml:7; area_sprite
-function hm_areas_caves_area_gml_area_sprite(_hml_q) {
-switch (_hml_q) {
-case sprFloor1:
-return sprFloor4;
-;
-case sprFloor1B:
-return sprFloor4B;
-;
-case sprFloor1Explo:
-return sprFloor4Explo;
-;
-case sprWall1Trans:
-return sprWall4Trans;
-;
-case sprWall1Bot:
-return sprWall4Bot;
-;
-case sprWall1Out:
-return sprWall4Out;
-;
-case sprWall1Top:
-return sprWall4Top;
-;
-case sprDebris1:
-return sprDebris4;
-;
-case sprDetail1:
-return sprDetail4;
-;
-}
-}
-
+// Source areas/caves.area.gml:1; __load
+
+function hm_areas_caves_area_gml___load() {
+
+global.hm_module_vars[$ "area:caves"].sprCrystalPropBlueDead = sprHM_areas_caves_area_1;
+
+global.hm_module_vars[$ "area:caves"].sprCrystalPropGreenDead = sprHM_areas_caves_area_2;
+
+global.hm_module_vars[$ "area:caves"].skycrystal = sprHM_areas_caves_area_3;
+
+}
+
+
+
+// Source areas/caves.area.gml:4; area_name
+
+function hm_areas_caves_area_gml_area_name() {
+
+return ("4-" + string(GameCont.subarea));
+
+;
+
+}
+
+
+
+// Source areas/caves.area.gml:7; area_sprite
+
+function hm_areas_caves_area_gml_area_sprite(_hml_q) {
+
+switch (_hml_q) {
+
+case sprFloor1:
+
+return sprFloor4;
+
+;
+
+case sprFloor1B:
+
+return sprFloor4B;
+
+;
+
+case sprFloor1Explo:
+
+return sprFloor4Explo;
+
+;
+
+case sprWall1Trans:
+
+return sprWall4Trans;
+
+;
+
+case sprWall1Bot:
+
+return sprWall4Bot;
+
+;
+
+case sprWall1Out:
+
+return sprWall4Out;
+
+;
+
+case sprWall1Top:
+
+return sprWall4Top;
+
+;
+
+case sprDebris1:
+
+return sprDebris4;
+
+;
+
+case sprDetail1:
+
+return sprDetail4;
+
+;
+
+}
+
+}
+
+
+
 // Source areas/caves.area.gml:0; area_transit (native content 1.1.0)
 function hm_areas_caves_area_gml_area_transit() {
 if ((scrHMVariableExists(GameCont, "hm_debug_pending") && GameCont.hm_debug_pending)) {
@@ -56,9 +102,7 @@ return;
 ;
 }
 }
-if ((scrHMVariableExists(GameCont, "hm_crown_return") && GameCont.hm_crown_return)) {
-hm_arkintide_mod_gml_hm_crown_watch();
-}
+scrHMCrownWatch1103();
 if (((scrHMVariableExists(GameCont, "hm_crown_exit_ready") && GameCont.hm_crown_exit_ready) && (area != scrHMAreaResolve(100)))) {
 {
 area = scrHMAreaResolve("throne");
@@ -144,51 +188,96 @@ hm_arkintide_mod_gml_hm_map_budget();
 ;
 }
 
-// Source areas/caves.area.gml:46; area_make_floor
-function hm_areas_caves_area_gml_area_make_floor() {
-instance_create(x, y, Floor);
-var _hml_turn = choose(0, 0, 0, 0, 90, (- 90), 180);
-direction += _hml_turn;
-;
-if (((_hml_turn == 180) && (point_distance(x, y, 10016, 10016) > 48))) {
-{
-instance_create(x, y, Floor);
-;
-{ var __hm_with1 = scrHMInstances(instance_create((x + 16), (y + 16), WeaponChest)), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-curse = 1;
-sprite_index = sprCursedChest;
-}
-}
-if(__hm_break3) break;
-}}
-}
-}
-if ((random((19 + instance_number(FloorMaker))) > 22)) {
-{
-if ((point_distance(x, y, 10016, 10016) > 48)) {
-{
-instance_create((x + 16), (y + 16), AmmoChest);
-;
-instance_create(x, y, Floor);
-;
-}
-}
-instance_destroy();
-;
-}
-} else {
-if ((random(4) < 1)) {
-{
-instance_create(x, y, FloorMaker);
-;
-}
-}
-}
-}
-
+// Source areas/caves.area.gml:46; area_make_floor
+
+function hm_areas_caves_area_gml_area_make_floor() {
+
+instance_create(x, y, Floor);
+
+var _hml_turn = choose(0, 0, 0, 0, 90, (- 90), 180);
+
+direction += _hml_turn;
+
+;
+
+if (((_hml_turn == 180) && (point_distance(x, y, 10016, 10016) > 48))) {
+
+{
+
+instance_create(x, y, Floor);
+
+;
+
+{ var __hm_with1 = scrHMInstances(instance_create((x + 16), (y + 16), WeaponChest)), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+{
+
+curse = 1;
+
+sprite_index = sprCursedChest;
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+}
+
+}
+
+if ((random((19 + instance_number(FloorMaker))) > 22)) {
+
+{
+
+if ((point_distance(x, y, 10016, 10016) > 48)) {
+
+{
+
+instance_create((x + 16), (y + 16), AmmoChest);
+
+;
+
+instance_create(x, y, Floor);
+
+;
+
+}
+
+}
+
+instance_destroy();
+
+;
+
+}
+
+} else {
+
+if ((random(4) < 1)) {
+
+{
+
+instance_create(x, y, FloorMaker);
+
+;
+
+}
+
+}
+
+}
+
+}
+
+
+
 // Source areas/caves.area.gml:0; area_start (native content 1.1.0)
 function hm_areas_caves_area_gml_area_start() {
 hm_arkintide_mod_gml_hm_native_unlock_area();
@@ -378,46 +467,86 @@ hm_arkintide_mod_gml_hm_loop_population(4);
 ;
 }
 
-// Source areas/caves.area.gml:134; area_pop_props
-function hm_areas_caves_area_gml_area_pop_props() {
-if ((random(4) < 1)) {
-{ var __hm_with1 = scrHMInstances(instance_create((x + 16), (y + 16), Crystal)), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-if ((random(2) < 1)) {
-{
-spr_idle = sprCrystalProp;
-spr_hurt = sprCrystalPropHurt;
-spr_dead = sprCrystalPropDead;
-}
-} else {
-if ((random(2) < 1)) {
-{
-spr_idle = sprCrystalPropBlue;
-spr_hurt = sprCrystalPropBlueHurt;
-spr_dead = global.hm_module_vars[$ "area:caves"].sprCrystalPropBlueDead;
-}
-} else {
-{
-spr_idle = sprCrystalPropGreen;
-spr_hurt = sprCrystalPropGreenHurt;
-spr_dead = global.hm_module_vars[$ "area:caves"].sprCrystalPropGreenDead;
-}
-}
-}
-}
-}
-if(__hm_break3) break;
-}}
-}
-if ((GameCont.subarea == 1)) {
-if ((random(16) < 1)) {
-instance_create((x + 16), (y + 16), BonePile);
-}
-}
-}
-
+// Source areas/caves.area.gml:134; area_pop_props
+
+function hm_areas_caves_area_gml_area_pop_props() {
+
+if ((random(4) < 1)) {
+
+{ var __hm_with1 = scrHMInstances(instance_create((x + 16), (y + 16), Crystal)), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+{
+
+if ((random(2) < 1)) {
+
+{
+
+spr_idle = sprCrystalProp;
+
+spr_hurt = sprCrystalPropHurt;
+
+spr_dead = sprCrystalPropDead;
+
+}
+
+} else {
+
+if ((random(2) < 1)) {
+
+{
+
+spr_idle = sprCrystalPropBlue;
+
+spr_hurt = sprCrystalPropBlueHurt;
+
+spr_dead = global.hm_module_vars[$ "area:caves"].sprCrystalPropBlueDead;
+
+}
+
+} else {
+
+{
+
+spr_idle = sprCrystalPropGreen;
+
+spr_hurt = sprCrystalPropGreenHurt;
+
+spr_dead = global.hm_module_vars[$ "area:caves"].sprCrystalPropGreenDead;
+
+}
+
+}
+
+}
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+}
+
+if ((GameCont.subarea == 1)) {
+
+if ((random(16) < 1)) {
+
+instance_create((x + 16), (y + 16), BonePile);
+
+}
+
+}
+
+}
+
+
+
 // Source areas/caves.area.gml:0; area_mapdata (native content 1.1.0)
 function hm_areas_caves_area_gml_area_mapdata(_hml_lx, _hml_ly, _hml_lp, _hml_ls, _hml_ws, _hml_ll) {
 return hm_arkintide_mod_gml_hm_mapdata("caves", _hml_lx, _hml_ly, _hml_lp, _hml_ls, _hml_ws, _hml_ll);

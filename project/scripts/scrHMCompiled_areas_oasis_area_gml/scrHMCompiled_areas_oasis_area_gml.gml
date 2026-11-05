@@ -1,100 +1,197 @@
-// Source areas/oasis.area.gml:1; __load
-function hm_areas_oasis_area_gml___load() {
-global.hm_module_vars[$ "area:oasis"].BoneFish1Fire = sprHM_areas_oasis_area_2;
-global.hm_module_vars[$ "area:oasis"].BoneFish2Fire = sprHM_areas_oasis_area_3;
-global.hm_module_vars[$ "area:oasis"].BoneFish3Fire = sprHM_areas_oasis_area_4;
-global.hm_module_vars[$ "area:oasis"].BoneFish4Fire = sprHM_areas_oasis_area_5;
-global.hm_module_vars[$ "area:oasis"].BoneFish2Idle = sprHM_areas_oasis_area_6;
-global.hm_module_vars[$ "area:oasis"].BoneFish3Idle = sprHM_areas_oasis_area_7;
-global.hm_module_vars[$ "area:oasis"].BoneFish4Idle = sprHM_areas_oasis_area_8;
-global.hm_module_vars[$ "area:oasis"].BoneFish2Walk = sprHM_areas_oasis_area_9;
-global.hm_module_vars[$ "area:oasis"].BoneFish3Walk = sprHM_areas_oasis_area_10;
-global.hm_module_vars[$ "area:oasis"].BoneFish4Walk = sprHM_areas_oasis_area_11;
-global.hm_module_vars[$ "area:oasis"].BoneFish2Hurt = sprHM_areas_oasis_area_12;
-global.hm_module_vars[$ "area:oasis"].BoneFish3Hurt = sprHM_areas_oasis_area_13;
-global.hm_module_vars[$ "area:oasis"].BoneFish4Hurt = sprHM_areas_oasis_area_14;
-global.hm_module_vars[$ "area:oasis"].BoneFish2Dead = sprHM_areas_oasis_area_15;
-global.hm_module_vars[$ "area:oasis"].BoneFish3Dead = sprHM_areas_oasis_area_16;
-global.hm_module_vars[$ "area:oasis"].BoneFish4Dead = sprHM_areas_oasis_area_17;
-global.hm_module_vars[$ "area:oasis"].crabdead = sprHM_areas_oasis_area_18;
-global.hm_module_vars[$ "area:oasis"].toxicfog = sprHM_areas_oasis_area_20;
-}
-
-// Source areas/oasis.area.gml:22; area_name
-function hm_areas_oasis_area_gml_area_name() {
-return ("?-" + string(GameCont.subarea));
-;
-}
-
-// Source areas/oasis.area.gml:25; area_sprite
-function hm_areas_oasis_area_gml_area_sprite(_hml_q) {
-if ((GameCont.subarea <= 4)) {
-{
-switch (_hml_q) {
-case sprFloor1:
-return sprFloor101;
-;
-case sprFloor1B:
-return sprFloor101B;
-;
-case sprFloor1Explo:
-return sprFloor101Explo;
-;
-case sprWall1Trans:
-return sprWall101Trans;
-;
-case sprWall1Bot:
-return sprWall101Bot;
-;
-case sprWall1Out:
-return sprWall101Out;
-;
-case sprWall1Top:
-return sprWall101Top;
-;
-case sprDebris1:
-return sprDebris101;
-;
-case sprDetail1:
-return sprDetail101;
-;
-}
-}
-} else {
-{
-switch (_hml_q) {
-case sprFloor1:
-return sprFloor101B;
-;
-case sprFloor1B:
-return sprFloor2;
-;
-case sprFloor1Explo:
-return sprFloor2Explo;
-;
-case sprWall1Trans:
-return sprWall2Trans;
-;
-case sprWall1Bot:
-return sprWall2Bot;
-;
-case sprWall1Out:
-return sprWall2Out;
-;
-case sprWall1Top:
-return sprWall2Top;
-;
-case sprDebris1:
-return sprDebris2;
-;
-case sprDetail1:
-return sprDetail1;
-;
-}
-}
-}
-}
-
+// Source areas/oasis.area.gml:1; __load
+
+function hm_areas_oasis_area_gml___load() {
+
+global.hm_module_vars[$ "area:oasis"].BoneFish1Fire = sprHM_areas_oasis_area_2;
+
+global.hm_module_vars[$ "area:oasis"].BoneFish2Fire = sprHM_areas_oasis_area_3;
+
+global.hm_module_vars[$ "area:oasis"].BoneFish3Fire = sprHM_areas_oasis_area_4;
+
+global.hm_module_vars[$ "area:oasis"].BoneFish4Fire = sprHM_areas_oasis_area_5;
+
+global.hm_module_vars[$ "area:oasis"].BoneFish2Idle = sprHM_areas_oasis_area_6;
+
+global.hm_module_vars[$ "area:oasis"].BoneFish3Idle = sprHM_areas_oasis_area_7;
+
+global.hm_module_vars[$ "area:oasis"].BoneFish4Idle = sprHM_areas_oasis_area_8;
+
+global.hm_module_vars[$ "area:oasis"].BoneFish2Walk = sprHM_areas_oasis_area_9;
+
+global.hm_module_vars[$ "area:oasis"].BoneFish3Walk = sprHM_areas_oasis_area_10;
+
+global.hm_module_vars[$ "area:oasis"].BoneFish4Walk = sprHM_areas_oasis_area_11;
+
+global.hm_module_vars[$ "area:oasis"].BoneFish2Hurt = sprHM_areas_oasis_area_12;
+
+global.hm_module_vars[$ "area:oasis"].BoneFish3Hurt = sprHM_areas_oasis_area_13;
+
+global.hm_module_vars[$ "area:oasis"].BoneFish4Hurt = sprHM_areas_oasis_area_14;
+
+global.hm_module_vars[$ "area:oasis"].BoneFish2Dead = sprHM_areas_oasis_area_15;
+
+global.hm_module_vars[$ "area:oasis"].BoneFish3Dead = sprHM_areas_oasis_area_16;
+
+global.hm_module_vars[$ "area:oasis"].BoneFish4Dead = sprHM_areas_oasis_area_17;
+
+global.hm_module_vars[$ "area:oasis"].crabdead = sprHM_areas_oasis_area_18;
+
+global.hm_module_vars[$ "area:oasis"].toxicfog = sprHM_areas_oasis_area_20;
+
+}
+
+
+
+// Source areas/oasis.area.gml:22; area_name
+
+function hm_areas_oasis_area_gml_area_name() {
+
+return ("?-" + string(GameCont.subarea));
+
+;
+
+}
+
+
+
+// Source areas/oasis.area.gml:25; area_sprite
+
+function hm_areas_oasis_area_gml_area_sprite(_hml_q) {
+
+if ((GameCont.subarea <= 4)) {
+
+{
+
+switch (_hml_q) {
+
+case sprFloor1:
+
+return sprFloor101;
+
+;
+
+case sprFloor1B:
+
+return sprFloor101B;
+
+;
+
+case sprFloor1Explo:
+
+return sprFloor101Explo;
+
+;
+
+case sprWall1Trans:
+
+return sprWall101Trans;
+
+;
+
+case sprWall1Bot:
+
+return sprWall101Bot;
+
+;
+
+case sprWall1Out:
+
+return sprWall101Out;
+
+;
+
+case sprWall1Top:
+
+return sprWall101Top;
+
+;
+
+case sprDebris1:
+
+return sprDebris101;
+
+;
+
+case sprDetail1:
+
+return sprDetail101;
+
+;
+
+}
+
+}
+
+} else {
+
+{
+
+switch (_hml_q) {
+
+case sprFloor1:
+
+return sprFloor101B;
+
+;
+
+case sprFloor1B:
+
+return sprFloor2;
+
+;
+
+case sprFloor1Explo:
+
+return sprFloor2Explo;
+
+;
+
+case sprWall1Trans:
+
+return sprWall2Trans;
+
+;
+
+case sprWall1Bot:
+
+return sprWall2Bot;
+
+;
+
+case sprWall1Out:
+
+return sprWall2Out;
+
+;
+
+case sprWall1Top:
+
+return sprWall2Top;
+
+;
+
+case sprDebris1:
+
+return sprDebris2;
+
+;
+
+case sprDetail1:
+
+return sprDetail1;
+
+;
+
+}
+
+}
+
+}
+
+}
+
+
+
 // Source areas/oasis.area.gml:0; area_transit (native content 1.1.0)
 function hm_areas_oasis_area_gml_area_transit() {
 if ((scrHMVariableExists(GameCont, "hm_debug_pending") && GameCont.hm_debug_pending)) {
@@ -107,9 +204,7 @@ return;
 ;
 }
 }
-if ((scrHMVariableExists(GameCont, "hm_crown_return") && GameCont.hm_crown_return)) {
-hm_arkintide_mod_gml_hm_crown_watch();
-}
+scrHMCrownWatch1103();
 if (((scrHMVariableExists(GameCont, "hm_crown_exit_ready") && GameCont.hm_crown_exit_ready) && (area != scrHMAreaResolve(100)))) {
 {
 area = scrHMAreaResolve("throne");
@@ -733,155 +828,304 @@ if(__hm_break43) break;
 ;
 }
 
-// Source areas/oasis.area.gml:477; area_make_floor
-function hm_areas_oasis_area_gml_area_make_floor() {
-instance_create(x, y, Floor);
-;
-var _hml_turn = choose(0, 0, 0, 0, 0, 0, 0, 90, 90, 90, (- 90), (- 90), (- 90), 180);
-;
-direction += _hml_turn;
-;
-if (((_hml_turn == 180) && (point_distance(x, y, 10016, 10016) > 48))) {
-{
-instance_create(x, y, Floor);
-;
-instance_create((x + 16), (y + 16), WeaponChest);
-;
-}
-}
-if ((random(10) < 1)) {
-{
-instance_create((x + 32), y, Floor);
-;
-instance_create((x - 32), y, Floor);
-;
-instance_create(x, (y + 32), Floor);
-;
-instance_create(x, (y - 32), Floor);
-;
-}
-}
-if ((random((19 + instance_number(FloorMaker))) > 22)) {
-{
-if ((point_distance(x, y, 10016, 10016) > 48)) {
-{
-instance_create((x + 16), (y + 16), AmmoChest);
-;
-instance_create(x, y, Floor);
-;
-}
-}
-instance_destroy();
-;
-}
-} else {
-if ((random(4) < 1)) {
-{
-instance_create(x, y, FloorMaker);
-;
-}
-}
-}
-}
-
-// Source areas/oasis.area.gml:504; area_pop_enemies
-function hm_areas_oasis_area_gml_area_pop_enemies() {
-{ var __hm_with1 = scrHMInstances(instance_create((x + 16), (y + 16), BoneFish)), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-s_idle = spr_idle;
-}
-}
-if(__hm_break3) break;
-}}
-if ((random(10) < 1)) {
-{ var __hm_with4 = scrHMInstances(instance_create((x + 16), (y + 16), Crab)), __hm_break6=false;
-for (var __hm_index5=0; __hm_index5<array_length(__hm_with4); ++__hm_index5) {
-if(instance_exists(__hm_with4[__hm_index5])) with (__hm_with4[__hm_index5]) {
-spr_dead = global.hm_module_vars[$ "area:oasis"].crabdead;
-}
-if(__hm_break6) break;
-}}
-}
-if ((GameCont.subarea <= 3)) {
-{
-if (((GameCont.subarea > 1) and (GameCont.loops > 0))) {
-{
-if ((random(50) < (1 + GameCont.loops))) {
-repeat (choose(2, 3, 4)) scrHMModCall("mod", "enemies", "enemyfish_create", (x + 16), (y + 16));
-}
-}
-}
-}
-} else {
-{
-if ((random(64) < (1 + GameCont.loops))) {
-{ var __hm_with7 = scrHMInstances(instance_create((x + 16), (y + 16), Gator)), __hm_break9=false;
-for (var __hm_index8=0; __hm_index8<array_length(__hm_with7); ++__hm_index8) {
-if(instance_exists(__hm_with7[__hm_index8])) with (__hm_with7[__hm_index8]) {
-friction = (0.1) * (timescale * timescale);
-}
-if(__hm_break9) break;
-}}
-}
-if ((random(72) < (1 + GameCont.loops))) {
-{ var __hm_with10 = scrHMInstances(instance_create((x + 16), (y + 16), BuffGator)), __hm_break12=false;
-for (var __hm_index11=0; __hm_index11<array_length(__hm_with10); ++__hm_index11) {
-if(instance_exists(__hm_with10[__hm_index11])) with (__hm_with10[__hm_index11]) {
-friction = (0.1) * (timescale * timescale);
-}
-if(__hm_break12) break;
-}}
-}
-if ((random(64) < (1 + GameCont.loops))) {
-instance_create((x + 16), (y + 16), Ratking);
-}
-if ((random(22) < (1 + GameCont.loops))) {
-instance_create((x + 16), (y + 16), Rat);
-}
-if ((random(22) < (1 + GameCont.loops))) {
-instance_create((x + 16), (y + 16), Exploder);
-}
-if ((random(64) < 1)) {
-instance_create((x + 16), (y + 16), ToxicBarrel);
-}
-if ((random(32) < (1 + GameCont.loops))) {
-instance_create((x + 16), (y + 16), Turtle);
-}
-}
-}
-}
-
-// Source areas/oasis.area.gml:524; area_pop_props
-function hm_areas_oasis_area_gml_area_pop_props() {
-if ((GameCont.subarea <= 3)) {
-{
-if ((random(16) < 1)) {
-instance_create((x + 16), (y + 16), WaterMine);
-}
-if ((random(48) < 1)) {
-instance_create((x + 16), (y + 16), Anchor);
-}
-}
-} else {
-{
-if ((random(24) < 1)) {
-instance_create((x + 16), (y + 16), Pipe);
-}
-}
-}
-if ((random(3) < 1)) {
-instance_create((x + 16), (y + 16), LightBeam);
-}
-if ((random(24) < 1)) {
-instance_create((x + 16), (y + 16), WaterPlant);
-}
-if ((random(24) < 1)) {
-instance_create((x + 16), (y + 16), OasisBarrel);
-}
-}
-
+// Source areas/oasis.area.gml:477; area_make_floor
+
+function hm_areas_oasis_area_gml_area_make_floor() {
+
+instance_create(x, y, Floor);
+
+;
+
+var _hml_turn = choose(0, 0, 0, 0, 0, 0, 0, 90, 90, 90, (- 90), (- 90), (- 90), 180);
+
+;
+
+direction += _hml_turn;
+
+;
+
+if (((_hml_turn == 180) && (point_distance(x, y, 10016, 10016) > 48))) {
+
+{
+
+instance_create(x, y, Floor);
+
+;
+
+instance_create((x + 16), (y + 16), WeaponChest);
+
+;
+
+}
+
+}
+
+if ((random(10) < 1)) {
+
+{
+
+instance_create((x + 32), y, Floor);
+
+;
+
+instance_create((x - 32), y, Floor);
+
+;
+
+instance_create(x, (y + 32), Floor);
+
+;
+
+instance_create(x, (y - 32), Floor);
+
+;
+
+}
+
+}
+
+if ((random((19 + instance_number(FloorMaker))) > 22)) {
+
+{
+
+if ((point_distance(x, y, 10016, 10016) > 48)) {
+
+{
+
+instance_create((x + 16), (y + 16), AmmoChest);
+
+;
+
+instance_create(x, y, Floor);
+
+;
+
+}
+
+}
+
+instance_destroy();
+
+;
+
+}
+
+} else {
+
+if ((random(4) < 1)) {
+
+{
+
+instance_create(x, y, FloorMaker);
+
+;
+
+}
+
+}
+
+}
+
+}
+
+
+
+// Source areas/oasis.area.gml:504; area_pop_enemies
+
+function hm_areas_oasis_area_gml_area_pop_enemies() {
+
+{ var __hm_with1 = scrHMInstances(instance_create((x + 16), (y + 16), BoneFish)), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+{
+
+s_idle = spr_idle;
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+if ((random(10) < 1)) {
+
+{ var __hm_with4 = scrHMInstances(instance_create((x + 16), (y + 16), Crab)), __hm_break6=false;
+
+for (var __hm_index5=0; __hm_index5<array_length(__hm_with4); ++__hm_index5) {
+
+if(instance_exists(__hm_with4[__hm_index5])) with (__hm_with4[__hm_index5]) {
+
+spr_dead = global.hm_module_vars[$ "area:oasis"].crabdead;
+
+}
+
+if(__hm_break6) break;
+
+}}
+
+}
+
+if ((GameCont.subarea <= 3)) {
+
+{
+
+if (((GameCont.subarea > 1) and (GameCont.loops > 0))) {
+
+{
+
+if ((random(50) < (1 + GameCont.loops))) {
+
+repeat (choose(2, 3, 4)) scrHMModCall("mod", "enemies", "enemyfish_create", (x + 16), (y + 16));
+
+}
+
+}
+
+}
+
+}
+
+} else {
+
+{
+
+if ((random(64) < (1 + GameCont.loops))) {
+
+{ var __hm_with7 = scrHMInstances(instance_create((x + 16), (y + 16), Gator)), __hm_break9=false;
+
+for (var __hm_index8=0; __hm_index8<array_length(__hm_with7); ++__hm_index8) {
+
+if(instance_exists(__hm_with7[__hm_index8])) with (__hm_with7[__hm_index8]) {
+
+friction = (0.1) * (timescale * timescale);
+
+}
+
+if(__hm_break9) break;
+
+}}
+
+}
+
+if ((random(72) < (1 + GameCont.loops))) {
+
+{ var __hm_with10 = scrHMInstances(instance_create((x + 16), (y + 16), BuffGator)), __hm_break12=false;
+
+for (var __hm_index11=0; __hm_index11<array_length(__hm_with10); ++__hm_index11) {
+
+if(instance_exists(__hm_with10[__hm_index11])) with (__hm_with10[__hm_index11]) {
+
+friction = (0.1) * (timescale * timescale);
+
+}
+
+if(__hm_break12) break;
+
+}}
+
+}
+
+if ((random(64) < (1 + GameCont.loops))) {
+
+instance_create((x + 16), (y + 16), Ratking);
+
+}
+
+if ((random(22) < (1 + GameCont.loops))) {
+
+instance_create((x + 16), (y + 16), Rat);
+
+}
+
+if ((random(22) < (1 + GameCont.loops))) {
+
+instance_create((x + 16), (y + 16), Exploder);
+
+}
+
+if ((random(64) < 1)) {
+
+instance_create((x + 16), (y + 16), ToxicBarrel);
+
+}
+
+if ((random(32) < (1 + GameCont.loops))) {
+
+instance_create((x + 16), (y + 16), Turtle);
+
+}
+
+}
+
+}
+
+}
+
+
+
+// Source areas/oasis.area.gml:524; area_pop_props
+
+function hm_areas_oasis_area_gml_area_pop_props() {
+
+if ((GameCont.subarea <= 3)) {
+
+{
+
+if ((random(16) < 1)) {
+
+instance_create((x + 16), (y + 16), WaterMine);
+
+}
+
+if ((random(48) < 1)) {
+
+instance_create((x + 16), (y + 16), Anchor);
+
+}
+
+}
+
+} else {
+
+{
+
+if ((random(24) < 1)) {
+
+instance_create((x + 16), (y + 16), Pipe);
+
+}
+
+}
+
+}
+
+if ((random(3) < 1)) {
+
+instance_create((x + 16), (y + 16), LightBeam);
+
+}
+
+if ((random(24) < 1)) {
+
+instance_create((x + 16), (y + 16), WaterPlant);
+
+}
+
+if ((random(24) < 1)) {
+
+instance_create((x + 16), (y + 16), OasisBarrel);
+
+}
+
+}
+
+
+
 // Source areas/oasis.area.gml:0; area_mapdata (native content 1.1.0)
 function hm_areas_oasis_area_gml_area_mapdata(_hml_lx, _hml_ly, _hml_lp, _hml_ls, _hml_ws, _hml_ll) {
 return hm_arkintide_mod_gml_hm_mapdata("oasis", _hml_lx, _hml_ly, _hml_lp, _hml_ls, _hml_ws, _hml_ll);

@@ -451,6 +451,7 @@ _hml_pool = [ExploGuardian, DogGuardian, Sniper, DogGuardian, ExploGuardian, Exp
 break;
 ;
 }
+if(_hml__region==7 && GameCont.loops>=3) array_push(_hml_pool,CrownGuardian);
 if ((((array_length(_hml_pool) > 0) && (random(2) < random(GameCont.loops))) && (collision_circle((x + 16), (y + 16), 12, Wall, false, true) == noone))) {
 {
 var _hml_allow = 1;
@@ -472,7 +473,7 @@ var _hml_actor = noone;
 if (((_hml__region == 5) && (_hml_kind == Bandit))) {
 _hml_actor = scrHMModCall("mod", "enemies", "elitebandit_create", (x + 16), (y + 16), 0);
 } else {
-_hml_actor = instance_create((x + 16), (y + 16), _hml_kind);
+_hml_actor = _hml_kind==CrownGuardian?scrHMPalaceGuardianCreate1103(x+16,y+16):instance_create((x + 16), (y + 16), _hml_kind);
 }
 ;
 if (instance_exists(_hml_actor)) {
@@ -579,146 +580,22 @@ if(instance_exists(_hml__floor)) {_hml__floor.hm_water_surface=id;_hml__floor.hm
 
 // Source arkintide.mod.gml:0; hm_water_point (native content 1.1.0)
 function hm_arkintide_mod_gml_hm_water_point(_hml__x, _hml__y) {
-var _hml_candidates = ds_list_create();
-;
-var _hml_wet = hm_arkintide_mod_gml_hm_water_point_list(_hml__x, _hml__y, _hml_candidates);
-;
-ds_list_destroy(_hml_candidates);
-;
-return _hml_wet;
-;
+return scrHMWaterAt(_hml__x,_hml__y);
 }
 
 // Source arkintide.mod.gml:0; hm_water_point_list (native content 1.1.0)
 function hm_arkintide_mod_gml_hm_water_point_list(_hml__x, _hml__y, _hml_candidates) {
-var _hml_owner = noone;
-;
-if (scrHMVariableExists(GameCont, "hm_native_controller_id")) {
-_hml_owner = GameCont.hm_native_controller_id;
-}
-if (((instance_exists(_hml_owner) && scrHMVariableExists(_hml_owner, "hm_water_cells")) && (_hml_owner.hm_water_cells != undefined))) {
-{
-var _hml_gx = (floor((_hml__x / 32)) - _hml_owner.hm_water_min_x);
-var _hml_gy = (floor((_hml__y / 32)) - _hml_owner.hm_water_min_y);
-;
-if (((((_hml_gx < 0) || (_hml_gy < 0)) || (_hml_gx >= _hml_owner.hm_water_width)) || (_hml_gy >= _hml_owner.hm_water_height))) {
-return false;
-}
-var _hml_items = _hml_owner.hm_water_cells[(_hml_gx + (_hml_gy * _hml_owner.hm_water_width))];
-;
-if ((! is_array(_hml_items))) {
-return false;
-}
-var _hml_fl = noone;
-;
-for (var _hml_i = 0; (_hml_i < array_length(_hml_items)); _hml_i++) {
-var _hml_tile = _hml_items[_hml_i];
-;
-if ((! instance_exists(_hml_tile))) {
-continue;
-}
-var _hml_left = _hml_tile.bbox_left;
-var _hml_right = _hml_tile.bbox_right;
-var _hml_top = _hml_tile.bbox_top;
-var _hml_bottom = _hml_tile.bbox_bottom;
-;
-if ((_hml_tile.sprite_index == mskNone)) {
-{
-_hml_left = _hml_tile.x;
-;
-_hml_right = (_hml_tile.x + 31);
-;
-_hml_top = _hml_tile.y;
-;
-_hml_bottom = (_hml_tile.y + 31);
-;
-}
-}
-if (((((_hml__x < _hml_left) || (_hml__x > _hml_right)) || (_hml__y < _hml_top)) || (_hml__y > _hml_bottom))) {
-continue;
-}
-if ((scrHMVariableExists(_hml_tile, "hm_water_surface") && instance_exists(_hml_tile.hm_water_surface))) {
-_hml_fl = _hml_tile;
-} else {
-if (((_hml_tile.image_alpha > 0) && (_hml_tile.sprite_index != mskNone))) {
-return false;
-}
-}
-}
-if ((! instance_exists(_hml_fl))) {
-return false;
-}
-var _hml_surface = _hml_fl.hm_water_surface;
-;
-if (((! instance_exists(_hml_surface)) || (! sprite_exists(_hml_surface.sprite_index)))) {
-return false;
-}
-{ var __hm_with1 = scrHMInstances(_hml_surface), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-hm_arkintide_mod_gml_hm_water_rect();
-}
-if(__hm_break3) break;
-}}
-;
-return ((((_hml__x >= _hml_surface.hm_water_left) && (_hml__x < _hml_surface.hm_water_right)) && (_hml__y >= _hml_surface.hm_water_top)) && (_hml__y < _hml_surface.hm_water_bottom));
-;
-}
-}
-var _hml_fl = noone;
-var _hml_dry = 0;
-;
-ds_list_clear(_hml_candidates);
-;
-hm_arkintide_mod_gml_hm_water_candidates(_hml__x, _hml__y, _hml_candidates);
-;
-for (var _hml_index = 0; (_hml_index < ds_list_size(_hml_candidates)); _hml_index++) {
-var _hml_tile = _hml_candidates[|_hml_index];
-;
-if ((scrHMVariableExists(_hml_tile, "hm_water_surface") && instance_exists(_hml_tile.hm_water_surface))) {
-_hml_fl = _hml_tile;
-} else {
-if (((_hml_tile.image_alpha > 0) && (_hml_tile.sprite_index != mskNone))) {
-_hml_dry = 1;
-}
-}
-}
-if ((_hml_dry || (! instance_exists(_hml_fl)))) {
-return false;
-}
-var _hml_surface = _hml_fl.hm_water_surface;
-;
-if (((! instance_exists(_hml_surface)) || (! sprite_exists(_hml_surface.sprite_index)))) {
-return false;
-}
-{ var __hm_with4 = scrHMInstances(_hml_surface), __hm_break6=false;
-for (var __hm_index5=0; __hm_index5<array_length(__hm_with4); ++__hm_index5) {
-if(instance_exists(__hm_with4[__hm_index5])) with (__hm_with4[__hm_index5]) {
-hm_arkintide_mod_gml_hm_water_rect();
-}
-if(__hm_break6) break;
-}}
-;
-return ((((_hml__x >= _hml_surface.hm_water_left) && (_hml__x < _hml_surface.hm_water_right)) && (_hml__y >= _hml_surface.hm_water_top)) && (_hml__y < _hml_surface.hm_water_bottom));
-;
+return scrHMWaterAt(_hml__x,_hml__y);
 }
 
 // Source arkintide.mod.gml:0; hm_water_at (native content 1.1.0)
 function hm_arkintide_mod_gml_hm_water_at(_hml__x, _hml__y) {
-var _hml_candidates = ds_list_create();
-;
-var _hml_wet = hm_arkintide_mod_gml_hm_water_at_list(_hml__x, _hml__y, _hml_candidates);
-;
-ds_list_destroy(_hml_candidates);
-;
-return _hml_wet;
-;
+return scrHMSwimSupported112(_hml__x,_hml__y);
 }
 
 // Source arkintide.mod.gml:0; hm_water_at_list (native content 1.1.0)
 function hm_arkintide_mod_gml_hm_water_at_list(_hml__x, _hml__y, _hml_candidates) {
-return ((((hm_arkintide_mod_gml_hm_water_point_list(_hml__x, _hml__y, _hml_candidates) && hm_arkintide_mod_gml_hm_water_point_list((_hml__x - 4), _hml__y, _hml_candidates)) && hm_arkintide_mod_gml_hm_water_point_list((_hml__x + 4), _hml__y, _hml_candidates)) && hm_arkintide_mod_gml_hm_water_point_list(_hml__x, (_hml__y - 2), _hml_candidates)) && hm_arkintide_mod_gml_hm_water_point_list(_hml__x, (_hml__y + 2), _hml_candidates));
-;
+return scrHMSwimSupported112(_hml__x,_hml__y);
 }
 
 // Source arkintide.mod.gml:0; hm_water_tick (native content 1.1.0)
@@ -3936,76 +3813,7 @@ return [];
 
 // Source arkintide.mod.gml:0; hm_extra_population (native content 1.1.0)
 function hm_arkintide_mod_gml_hm_extra_population() {
-var _hml_pool = hm_arkintide_mod_gml_hm_extra_pool(GameCont.area);
-;
-if ((array_length(_hml_pool) == 0)) {
-exit;
-}
-var _hml_amount = irandom_range(0, hm_arkintide_mod_gml_hm_extra_limit(GameCont.loops));
-var _hml_candidates = [];
-;
-if ((_hml_amount == 0)) {
-exit;
-}
-{ var __hm_with1 = scrHMInstances(Floor), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-if ((hm_arkintide_mod_gml_hm_extra_far_from_players((x + 16), (y + 16)) && hm_arkintide_mod_gml_hm_throne_clear((x + 16), (y + 16), mskBanditBoss))) {
-_hml_candidates[array_length(_hml_candidates)] = id;
-}
-}
-if(__hm_break3) break;
-}}
-for (var _hml_index = (array_length(_hml_candidates) - 1); (_hml_index > 0); _hml_index--) {
-var _hml_swap = irandom(_hml_index);
-var _hml_temp = _hml_candidates[_hml_index];
-;
-_hml_candidates[_hml_index] = _hml_candidates[_hml_swap];
-;
-_hml_candidates[_hml_swap] = _hml_temp;
-;
-}
-var _hml_spawned = 0;
-;
-for (var _hml_i = 0; ((_hml_i < array_length(_hml_candidates)) && (_hml_spawned < _hml_amount)); _hml_i++) {
-var _hml_tile = _hml_candidates[_hml_i];
-var _hml_px = (_hml_tile.x + 16);
-var _hml_py = (_hml_tile.y + 16);
-;
-if ((collision_circle(_hml_px, _hml_py, 32, [enemy, chestprop, CustomHitme], false, true) != noone)) {
-continue;
-}
-var _hml_kind = _hml_pool[irandom((array_length(_hml_pool) - 1))];
-;
-if (((_hml_kind == "rat") && (! hm_arkintide_mod_gml_hm_extra_water_fit(_hml_px, _hml_py)))) {
-{
-for (var _hml_w = 0; (_hml_w < array_length(_hml_candidates)); _hml_w++) {
-var _hml_wet = _hml_candidates[_hml_w];
-var _hml_wx = (_hml_wet.x + 16);
-var _hml_wy = (_hml_wet.y + 16);
-;
-if (((! hm_arkintide_mod_gml_hm_extra_far_from_players(_hml_wx, _hml_wy)) || (! hm_arkintide_mod_gml_hm_extra_water_fit(_hml_wx, _hml_wy)))) {
-continue;
-}
-if (((! hm_arkintide_mod_gml_hm_extra_fit("rat", _hml_wx, _hml_wy)) || (collision_circle(_hml_wx, _hml_wy, 32, [enemy, chestprop, CustomHitme], false, true) != noone))) {
-continue;
-}
-_hml_px = _hml_wx;
-;
-_hml_py = _hml_wy;
-;
-break;
-;
-}
-}
-}
-if ((! hm_arkintide_mod_gml_hm_extra_fit(_hml_kind, _hml_px, _hml_py))) {
-continue;
-}
-if (instance_exists(hm_arkintide_mod_gml_hm_extra_spawn(_hml_kind, _hml_px, _hml_py))) {
-_hml_spawned++;
-}
-}
+scrHMExtraPopulation1103();
 }
 
 // Source arkintide.mod.gml:0; hm_extra_spawn (native content 1.1.0)
@@ -5397,6 +5205,7 @@ if(__hm_break3) break;
 
 // Source arkintide.mod.gml:0; hm_radiation_index (native content 1.1.0)
 function hm_arkintide_mod_gml_hm_radiation_index() {
+if(scrHMRadiationFlat1103()) return;
 if ((! instance_exists(Rad))) {
 exit;
 }
@@ -5528,6 +5337,7 @@ if(__hm_break6) break;
 
 // Source arkintide.mod.gml:0; hm_infantry_capture (native content 1.1.0)
 function hm_arkintide_mod_gml_hm_infantry_capture() {
+if(scrHMThroneArrivalWaiting1103()) return;
 if ((GameCont.loops < 3)) {
 exit;
 }
@@ -5535,6 +5345,7 @@ exit;
 for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
 if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
 {
+if(object_index!=IDPDSpawn) continue;
 var _hml_sprite = sprite_index;
 var _hml_frame = image_index;
 var _hml_angle = image_angle;
@@ -5953,6 +5764,7 @@ GameCont.hm_debug_floor = instance_find(Floor, 0);
 ;
 GameCont.hm_debug_pending = 1;
 ;
+scrHMCrownReset1103();GameCont.hm_destination107=-1;GameCont.hm_destination_sub107=-1;
 GameCont.hm_crown_return = 0;
 ;
 GameCont.hm_crown_vault_seen = 0;
@@ -6688,6 +6500,8 @@ return true;
 
 // Source arkintide.mod.gml:0; hm_stage_boss_actor (native content 1.1.0)
 function hm_arkintide_mod_gml_hm_stage_boss_actor() {
+if(self[$ "hm_palace_guardian"]??false) return false;
+
 if ((scrHMVariableExists(id, "hm_extra") && hm_extra)) {
 return false;
 }
@@ -6793,7 +6607,7 @@ function hm_arkintide_mod_gml_hm_stage_music_tick() {
 { var __hm_with1 = scrHMInstances(MusCont), __hm_break3=false;
 for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
 if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-if (((alarm[1] >= 0) && hm_arkintide_mod_gml_hm_stage_boss_alive())) {
+if (((alarm[1] >= 0) && (hm_arkintide_mod_gml_hm_stage_boss_alive() || scrHMThroneWinHeld1103()))) {
 alarm[1] = (- 1);
 }
 }
@@ -6811,6 +6625,7 @@ case "scorpionboss":
 case "ratboss":
 
 case "rogueboss":
+case "roguefreak":
 
 case "GunGod":
 
@@ -7135,6 +6950,7 @@ name = "hm_yv_phase";
 hp = _hml__hp;
 ;
 scrHMMaxHealthWrite(id, _hml__hp, "=");
+scrHMBossHealth1103();
 ;
 intro = 1;
 ;

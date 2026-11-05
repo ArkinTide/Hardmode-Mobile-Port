@@ -4,6 +4,7 @@ snd_play(sndBigBallExplo)
 
 instance_create(x, y, PortalClear)
 
+if (!scrHMChiefBallBurst1102()) {
 var _ang = random_angle, _spd = 4
 
 repeat 8 {
@@ -17,5 +18,4 @@ repeat 8 {
 	
 	_spd += 0.6
 }
-
-scrHMChiefBallBurst1102();
+}

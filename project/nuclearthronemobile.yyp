@@ -30206,6 +30206,138 @@
         "name": "scrHMGameplay1102",
         "path": "scripts/scrHMGameplay1102/scrHMGameplay1102.yy"
       }
+    },
+    {
+      "id": {
+        "name": "scrHMSync1103Routes",
+        "path": "scripts/scrHMSync1103Routes/scrHMSync1103Routes.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrHMSync1103Chest",
+        "path": "scripts/scrHMSync1103Chest/scrHMSync1103Chest.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrHMSync1103Ultra",
+        "path": "scripts/scrHMSync1103Ultra/scrHMSync1103Ultra.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrHMSync1103Spawn",
+        "path": "scripts/scrHMSync1103Spawn/scrHMSync1103Spawn.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrHMSync1103Performance",
+        "path": "scripts/scrHMSync1103Performance/scrHMSync1103Performance.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrHMSync1103Bosses",
+        "path": "scripts/scrHMSync1103Bosses/scrHMSync1103Bosses.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrHMGameplay1103Bosses",
+        "path": "scripts/scrHMGameplay1103Bosses/scrHMGameplay1103Bosses.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprHMBossTitleGlyphs1103",
+        "path": "sprites/sprHMBossTitleGlyphs1103/sprHMBossTitleGlyphs1103.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprHMMessengerPortrait1103",
+        "path": "sprites/sprHMMessengerPortrait1103/sprHMMessengerPortrait1103.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprHMMessengerTitle1103",
+        "path": "sprites/sprHMMessengerTitle1103/sprHMMessengerTitle1103.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrHMGameplay1103Performance",
+        "path": "scripts/scrHMGameplay1103Performance/scrHMGameplay1103Performance.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrHMGameplay1103Chest",
+        "path": "scripts/scrHMGameplay1103Chest/scrHMGameplay1103Chest.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrHMGameplay1103Ultra",
+        "path": "scripts/scrHMGameplay1103Ultra/scrHMGameplay1103Ultra.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrHMGameplay1103Spawn",
+        "path": "scripts/scrHMGameplay1103Spawn/scrHMGameplay1103Spawn.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrHMGameplay1103Routes",
+        "path": "scripts/scrHMGameplay1103Routes/scrHMGameplay1103Routes.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrHMFollowup1103Frog",
+        "path": "scripts/scrHMFollowup1103Frog/scrHMFollowup1103Frog.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrHMGameplay1103Frog",
+        "path": "scripts/scrHMGameplay1103Frog/scrHMGameplay1103Frog.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrHMGameplay1103WaterIndex",
+        "path": "scripts/scrHMGameplay1103WaterIndex/scrHMGameplay1103WaterIndex.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrHMFollowup1103Walls",
+        "path": "scripts/scrHMFollowup1103Walls/scrHMFollowup1103Walls.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrHMGameplay1103Walls",
+        "path": "scripts/scrHMGameplay1103Walls/scrHMGameplay1103Walls.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrHMGameplayFollowup1103AllAreas",
+        "path": "scripts/scrHMGameplayFollowup1103AllAreas/scrHMGameplayFollowup1103AllAreas.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrHMGameplay1103ChiefSpacing",
+        "path": "scripts/scrHMGameplay1103ChiefSpacing/scrHMGameplay1103ChiefSpacing.yy"
+      }
     }
   ],
   "resourceType": "GMProject",

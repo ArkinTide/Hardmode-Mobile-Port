@@ -1,8 +1,13 @@
-// Source bosses/throne.mod.gml:1; __load
-function hm_bosses_throne_mod_gml___load() {
-
-}
-
+// Source bosses/throne.mod.gml:1; __load
+
+function hm_bosses_throne_mod_gml___load() {
+
+
+
+}
+
+
+
 // Source bosses/throne.mod.gml:0; throne_create (native content 1.1.0)
 function hm_bosses_throne_mod_gml_throne_create(_hml__x, _hml__y) {
 { var __hm_with1 = scrHMInstances(instance_create(_hml__x, _hml__y, CustomEnemy)), __hm_break3=false;
@@ -16,6 +21,7 @@ scrHMMaxHealthWrite(id, (600 * instance_number(Player)), "+=");
 scrHMMaxHealthWrite(id, 0.5, "*=");
 ;
 hp = max_hp;
+scrHMBossHealth1103();
 spr_idle = sprNothing2Idle;
 snd_hurt = sndNothing2Hurt;
 mask_index = mskNothing2;
@@ -149,62 +155,106 @@ dir = 360;
 
 // Source bosses/throne.mod.gml:0; Throne2Destroy (native content 1.1.0)
 function hm_bosses_throne_mod_gml_Throne2Destroy() {
+GameCont.hm_followup_throne_second_dead = 1;
+;
 scrHMSoundPlay(sndNothing2DeadStart);
-if ((! hm_arkintide_mod_gml_hm_stage_boss_alive())) {
 scrHMSoundPlay(sndBossWin);
-}
-if ((! hm_arkintide_mod_gml_hm_stage_boss_alive())) {
 scrHMSoundMusic(musBossDead);
-}
 instance_create(x, y, Nothing2Death);
 }
 
-// Source bosses/throne.mod.gml:120; Throne2Hit
-function hm_bosses_throne_mod_gml_Throne2Hit(_hml_damage) {
-hp -= _hml_damage;
-scrHMSoundPlay(snd_hurt);
-wframes = 4;
-nexthurt = (current_frame + 12);
-}
-
-// Source bosses/throne.mod.gml:126; Throne2Draw
-function hm_bosses_throne_mod_gml_Throne2Draw() {
-if ((wframes > 0)) {
-gpu_set_fog(true, c_white, 0, 0);
-}
-scrHMDrawSprite(sprite_index, image_index, x, y);
-gpu_set_fog(false, c_white, 0, 0);
-draw_set_color(c_black);
-{ var __hm_with1 = scrHMInstances(Throne2Ball), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-scrHMDrawTextPlain(x, y, string(timeout));
-}
-if(__hm_break3) break;
-}}
-draw_set_color(c_white);
-}
-
-// Source bosses/throne.mod.gml:139; move_alarm
-function hm_bosses_throne_mod_gml_move_alarm() {
-if (instance_exists(Player)) {
-{
-var _hml_t = undefined;
-var _hml_tx = undefined;
-var _hml_ty = undefined;
-var _hml_td = undefined;
-;
-_hml_t = Player;
-_hml_td = point_direction(x, y, _hml_t.x, _hml_t.y);
-direction = (_hml_td + 45);
-alrm0 = (25 + irandom(15));
-if ((random(300) < 1)) {
-rot *= (- 1);
-}
-}
-}
-}
-
+// Source bosses/throne.mod.gml:120; Throne2Hit
+
+function hm_bosses_throne_mod_gml_Throne2Hit(_hml_damage) {
+
+hp -= _hml_damage;
+
+scrHMSoundPlay(snd_hurt);
+
+wframes = 4;
+
+nexthurt = (current_frame + 12);
+
+}
+
+
+
+// Source bosses/throne.mod.gml:126; Throne2Draw
+
+function hm_bosses_throne_mod_gml_Throne2Draw() {
+
+if ((wframes > 0)) {
+
+gpu_set_fog(true, c_white, 0, 0);
+
+}
+
+scrHMDrawSprite(sprite_index, image_index, x, y);
+
+gpu_set_fog(false, c_white, 0, 0);
+
+draw_set_color(c_black);
+
+{ var __hm_with1 = scrHMInstances(Throne2Ball), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+scrHMDrawTextPlain(x, y, string(timeout));
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+draw_set_color(c_white);
+
+}
+
+
+
+// Source bosses/throne.mod.gml:139; move_alarm
+
+function hm_bosses_throne_mod_gml_move_alarm() {
+
+if (instance_exists(Player)) {
+
+{
+
+var _hml_t = undefined;
+
+var _hml_tx = undefined;
+
+var _hml_ty = undefined;
+
+var _hml_td = undefined;
+
+;
+
+_hml_t = Player;
+
+_hml_td = point_direction(x, y, _hml_t.x, _hml_t.y);
+
+direction = (_hml_td + 45);
+
+alrm0 = (25 + irandom(15));
+
+if ((random(300) < 1)) {
+
+rot *= (- 1);
+
+}
+
+}
+
+}
+
+}
+
+
+
 // Source bosses/throne.mod.gml:0; attack_alarm (native content 1.1.0)
 function hm_bosses_throne_mod_gml_attack_alarm() {
 var _args = [];
@@ -451,22 +501,41 @@ default: throw "Hardmode invalid continuation PC";
 }
 }
 
-// Source bosses/throne.mod.gml:210; Throne2Platform
-function hm_bosses_throne_mod_gml_Throne2Platform() {
-{ var __hm_with1 = scrHMInstances(Floor), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-if ((object_index != FloorExplo)) {
-{
-scrHMDrawSprite(sprBackFloor2, image_index, x, y);
-scrHMDrawSprite(sprBackFloor, image_index, x, y);
-}
-} else {
-scrHMDrawSprite(sprBackFloorSmall, image_index, x, y);
-}
-}
-}
-if(__hm_break3) break;
-}}
-}
+// Source bosses/throne.mod.gml:210; Throne2Platform
+
+function hm_bosses_throne_mod_gml_Throne2Platform() {
+
+{ var __hm_with1 = scrHMInstances(Floor), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+{
+
+if ((object_index != FloorExplo)) {
+
+{
+
+scrHMDrawSprite(sprBackFloor2, image_index, x, y);
+
+scrHMDrawSprite(sprBackFloor, image_index, x, y);
+
+}
+
+} else {
+
+scrHMDrawSprite(sprBackFloorSmall, image_index, x, y);
+
+}
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+}
+

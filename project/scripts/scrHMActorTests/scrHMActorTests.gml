@@ -14,6 +14,188 @@ function scrHMActorTestCleanup() { global.hm_actor_order+="cleanup;"; }
 function scrHMActorTestWall() { global.hm_actor_walls++;speed=0; }
 function scrHMActorTestHit() { global.hm_actor_hits++;observed_other=other.id; }
 
+function scrHMActorTestConvertedSchema(_actor,_label) {
+    var _fields=["hm_custom_actor","hm_cleaned","can_die","name","z",
+        "on_step","on_begin_step","on_end_step","on_destroy","on_cleanup",
+        "on_draw","on_hurt","on_death","on_wall","on_hit"];
+    for(var _i=0;_i<array_length(_fields);++_i)
+        scrHMActorTestCheck(variable_instance_exists(_actor,_fields[_i]),_label+" initializes "+_fields[_i]);
+    scrHMActorTestCheck(_actor.hm_custom_actor&&!_actor.hm_cleaned&&_actor.can_die&&_actor.z==0,
+        _label+" initializes common lifecycle values without replaying native Create");
+}
+
+function scrHMActorTestConversions() {
+    var _targets=[CustomObject,CustomEnemy,CustomHitme,CustomProjectile];
+    var _callbacks=["on_step","on_begin_step","on_end_step","on_destroy","on_cleanup",
+        "on_draw","on_hurt","on_death","on_wall","on_hit"];
+    for(var _i=0;_i<array_length(_targets);++_i) {
+        var _target=_targets[_i],_label=object_get_name(_target)+" native conversion";
+        // An event-free native probe prevents inherited Create/Destroy from
+        // supplying the common schema or changing HP behind the regression.
+        var _probe=instance_create(157,241,HMTestProbe),_probe_id=_probe.id;
+        _probe.hp=37;_probe.max_hp=73;_probe.hm_native_sentinel=940+_i;
+        _probe.sprite_index=sprBanditIdle;_probe.mask_index=sprBanditIdle;
+        _probe.image_index=.25;_probe.image_speed=.25*timescale;
+        _probe.image_xscale=1.5;_probe.image_yscale=.75;_probe.image_angle=47;
+        _probe.image_alpha=.6;_probe.image_blend=c_lime;_probe.visible=false;_probe.depth=-123;
+        scrHMActorTestCheck(!variable_instance_exists(_probe,"hm_custom_actor"),_label+" starts outside Custom lifecycle");
+        with(_probe) hm_arkintide_mod_gml_hm_extra_change(_target);
+        scrHMActorTestCheck(_probe.object_index==_target&&_probe.id==_probe_id&&_probe.x==157&&_probe.y==241,
+            _label+" preserves native identity and position");
+        scrHMActorTestCheck(_probe.hp==37&&_probe.max_hp==73&&_probe.hm_native_sentinel==940+_i,
+            _label+" preserves native health and instance fields");
+        scrHMActorTestCheck(_probe.sprite_index==sprBanditIdle&&_probe.mask_index==sprBanditIdle
+            &&abs(_probe.image_index-.25)<.0001&&abs(_probe.image_speed-.25*timescale)<.0001
+            &&_probe.image_xscale==1.5&&_probe.image_yscale==.75&&_probe.image_angle==47
+            &&abs(_probe.image_alpha-.6)<.0001&&_probe.image_blend==c_lime&&!_probe.visible&&_probe.depth==-123,
+            _label+" preserves the actual extra-change rendering contract");
+        scrHMActorTestConvertedSchema(_probe,_label);
+        scrHMActorTestCheck(_probe.name=="",_label+" initializes the common name");
+        for(var _f=0;_f<array_length(_callbacks);++_f)
+            scrHMActorTestCheck(is_undefined(variable_instance_get(_probe,_callbacks[_f])),
+                _label+" initializes callback "+_callbacks[_f]);
+
+        // A second conversion must retain already initialized lifecycle state.
+        _probe.name="conversion-sentinel";_probe.z=17;_probe.can_die=false;
+        for(var _f=0;_f<array_length(_callbacks);++_f)
+            variable_instance_set(_probe,_callbacks[_f],scrHMActorTestStep);
+        _probe.on_cleanup=scrHMActorTestCleanup;_probe.on_destroy=scrHMActorTestDestroy;
+        var _next_target=_targets[(_i+1) mod array_length(_targets)];
+        with(_probe) hm_arkintide_mod_gml_hm_extra_change(_next_target);
+        scrHMActorTestCheck(_probe.object_index==_next_target&&_probe.hm_custom_actor&&!_probe.hm_cleaned
+            &&!_probe.can_die&&_probe.name=="conversion-sentinel"&&_probe.z==17,
+            _label+" initializes exactly once across a Custom-to-Custom change");
+        scrHMActorTestCheck(_probe.hp==37&&_probe.max_hp==73&&_probe.hm_native_sentinel==940+_i,
+            _label+" does not replay target Create during a later change");
+        for(var _f=0;_f<array_length(_callbacks);++_f) {
+            var _expected=scrHMActorTestStep;
+            if(_callbacks[_f]=="on_cleanup") _expected=scrHMActorTestCleanup;
+            if(_callbacks[_f]=="on_destroy") _expected=scrHMActorTestDestroy;
+            scrHMActorTestCheck(scrHMScriptRef(variable_instance_get(_probe,_callbacks[_f]))==scrHMScriptRef(_expected),
+                _label+" preserves callback "+_callbacks[_f]+" during a later change");
+        }
+        global.hm_actor_order="";
+        with(_probe) {event_perform(ev_other,5);event_perform(ev_other,5);}
+        scrHMActorTestCheck(_probe.hm_cleaned&&global.hm_actor_order=="cleanup;",
+            _label+" repeated Room End calls cleanup exactly once");
+        with(_probe) hm_arkintide_mod_gml_hm_extra_change(_target);
+        scrHMActorTestCheck(_probe.object_index==_target&&_probe.hm_cleaned&&!_probe.can_die
+            &&_probe.name=="conversion-sentinel"&&_probe.z==17,
+            _label+" preserves completed cleanup across another Custom change");
+        with(_probe) event_perform(ev_other,5);
+        scrHMActorTestCheck(global.hm_actor_order=="cleanup;",_label+" changing a cleaned actor never reruns cleanup");
+        // Probe lacks the inherited native enemy/projectile destruction fields.
+        // Silent deletion deliberately avoids that unrelated inherited path.
+        scrHMDelete(_probe);
+        scrHMActorTestCheck(!instance_exists(_probe)&&global.hm_actor_order=="cleanup;",
+            _label+" silent teardown does not run destruction or cleanup again");
+    }
+}
+
+function scrHMActorTestInfantryCapture() {
+    var _old_enabled=scrHMEnabled(),_old_area=GameCont.area,_old_sub=GameCont.subarea;
+    var _old_loops=GameCont.loops,_old_popolevel=GameCont.popolevel;
+    var _test_area=scrHMAreaResolve("sewers"),_throne_area=scrHMAreaResolve("throne");
+    scrHMActorTestCheck(!instance_exists(Player)&&instance_number(IDPDSpawn)==0,
+        "native infantry capture fixture has no player placement loop or unrelated gates");
+    // Registries are initialized by scrHMRuntimeInit; capture itself does not
+    // need HMWorld or module __load, and these cases never step the custom gate.
+    global.hm_enabled=true;GameCont.area=_test_area;GameCont.subarea=2;GameCont.loops=3;
+    scrHMActorTestCheck(_test_area!=_throne_area&&scrHMAreaKey(_test_area)=="area:sewers"
+        &&scrHMAreaKey(_throne_area)=="area:throne",
+        "native infantry capture uses distinct real sewer and Throne identities");
+    scrHMActorTestCheck(scrHMEnabled()&&!scrHMThroneArrivalWaiting1103()&&GameCont.loops==3,
+        "native infantry capture has active Hardmode and no production Throne defer guard");
+    scrHMActorTestCheck(!is_undefined(scrHMContentRef1100("mod","arkintide","hm_infantry_step"))
+        &&!is_undefined(scrHMContentRef1100("mod","arkintide","hm_infantry_draw")),
+        "native infantry capture has real registered callback references");
+    for(var _case=0;_case<5;++_case) {
+        var _label="native infantry capture case "+string(_case);
+        var _gate=instance_create(197,263,IDPDSpawn),_gate_id=_gate.id;
+        scrHMActorTestCheck(instance_exists(_gate)&&_gate.object_index==IDPDSpawn,
+            _label+" creates the actual native gate");
+        scrHMActorTestCheck(GameCont.area==_test_area&&GameCont.loops==3&&!scrHMThroneArrivalWaiting1103()
+            &&!(variable_instance_get(_gate,"hm_throne_gate_deferred1103")??false),
+            _label+" native creation preserves the production capture preconditions");
+        var _native_gates=scrHMInstances(IDPDSpawn);
+        if(!array_contains(_native_gates,_gate_id))
+            show_debug_message("HARDMODE ACTORS PRECAPTURE STATE "+json_stringify({
+                label:_label,actual_object:object_get_name(_gate.object_index),actual_id:_gate.id,expected_id:_gate_id,
+                x:_gate.x,y:_gate.y,native_gates:instance_number(IDPDSpawn),queried:array_length(_native_gates),
+                enabled:scrHMEnabled(),area:GameCont.area,throne:_throne_area,loops:GameCont.loops,
+                defer:scrHMThroneArrivalWaiting1103()}));
+        scrHMActorTestCheck(array_contains(_native_gates,_gate_id),
+            _label+" is visible to the same native-instance query used by capture");
+        _gate.sprite_index=sprBanditIdle;_gate.image_index=.25;_gate.image_speed=.25*timescale;
+        _gate.image_angle=47;_gate.alarm[0]=17;_gate.alarm[1]=-1;
+        _gate.hp=37;_gate.max_hp=73;_gate.hm_native_sentinel=960+_case;
+        var _expected_phase=0,_expected_wait=17;
+        if(_case==1) {
+            _gate.sprite_index=sprIDPDPortalStart;_expected_phase=1;
+            _expected_wait=max(1,(sprite_get_number(sprIDPDPortalStart)-.25)/.25);
+        } else if(_case==2) {
+            _gate.sprite_index=sprIDPDPortalClose;_gate.alarm[1]=23;
+            _expected_phase=1;_expected_wait=23;
+        } else if(_case==3) {
+            _gate.sprite_index=sprIDPDPortalClose;_expected_phase=2;
+            _expected_wait=max(1,(sprite_get_number(sprIDPDPortalClose)-.25)/.25);
+        }
+        hm_arkintide_mod_gml_hm_infantry_capture();
+        if(!(_gate.object_index==CustomObject&&_gate.id==_gate_id
+            &&_gate.x==197&&_gate.y==263&&instance_number(IDPDSpawn)==0))
+            show_debug_message("HARDMODE ACTORS CAPTURE STATE "+json_stringify({
+                label:_label,actual_object:object_get_name(_gate.object_index),actual_id:_gate.id,expected_id:_gate_id,
+                x:_gate.x,y:_gate.y,native_gates:instance_number(IDPDSpawn),queried:array_length(_native_gates),
+                queried_after:array_length(scrHMInstances(IDPDSpawn)),
+                enabled:scrHMEnabled(),area:GameCont.area,throne:_throne_area,loops:GameCont.loops,
+                defer:scrHMThroneArrivalWaiting1103()}));
+        scrHMActorTestCheck(_gate.object_index==CustomObject&&_gate.id==_gate_id
+            &&_gate.x==197&&_gate.y==263&&instance_number(IDPDSpawn)==0,
+            _label+" converts the same native instance exactly once");
+        scrHMActorTestConvertedSchema(_gate,_label);
+        scrHMActorTestCheck(_gate.name=="hm_infantry_gate"&&_gate.hm_phase==_expected_phase
+            &&abs(_gate.hm_wait-_expected_wait)<.0001&&_gate.hm_spawned==0,
+            _label+" preserves the actual gate phase and logical remaining time");
+        scrHMActorTestCheck(_gate.hm_gate_area==_test_area&&_gate.hm_gate_sub==2&&_gate.hm_gate_loop==3&&_gate.hm_angle==47,
+            _label+" captures native orientation and area ownership");
+        scrHMActorTestCheck(_gate.hp==37&&_gate.max_hp==73&&_gate.hm_native_sentinel==960+_case,
+            _label+" does not reset native health or unrelated instance fields");
+        scrHMActorTestCheck(!_gate.sprite_visible&&_gate.image_speed==0&&_gate.depth==-7
+            &&_gate.alarm[0]==-1&&_gate.alarm[1]==-1,
+            _label+" disables native animation and alarms owned by the custom gate");
+        scrHMActorTestCheck(scrHMScriptRef(_gate.on_step)==scrHMScriptRef(scrHMContentRef1100("mod","arkintide","hm_infantry_step"))
+            &&scrHMScriptRef(_gate.on_draw)==scrHMScriptRef(scrHMContentRef1100("mod","arkintide","hm_infantry_draw")),
+            _label+" installs the production step and draw callbacks");
+        var _empty_callbacks=["on_begin_step","on_end_step","on_destroy","on_cleanup","on_hurt","on_death","on_wall","on_hit"];
+        for(var _f=0;_f<array_length(_empty_callbacks);++_f)
+            scrHMActorTestCheck(is_undefined(variable_instance_get(_gate,_empty_callbacks[_f])),
+                _label+" initializes unused callback "+_empty_callbacks[_f]);
+        _gate.on_cleanup=scrHMActorTestCleanup;_gate.on_destroy=scrHMActorTestDestroy;_gate.can_die=false;
+        hm_arkintide_mod_gml_hm_infantry_capture();
+        scrHMActorTestCheck(!_gate.can_die&&!_gate.hm_cleaned
+            &&scrHMScriptRef(_gate.on_cleanup)==scrHMScriptRef(scrHMActorTestCleanup)
+            &&scrHMScriptRef(_gate.on_destroy)==scrHMScriptRef(scrHMActorTestDestroy),
+            _label+" a second capture call never reinitializes an existing custom gate");
+        global.hm_actor_order="";
+        if(_case<4) {
+            // This is the failing lifecycle: capture, then Room End before any
+            // Step. Exercise the real object event, not only the cleanup helper.
+            with(_gate) {event_perform(ev_other,5);event_perform(ev_other,5);}
+            scrHMActorTestCheck(_gate.hm_cleaned&&global.hm_actor_order=="cleanup;",
+                _label+" immediate Room End initializes and cleans up exactly once");
+            with(_gate) instance_destroy();
+            scrHMActorTestCheck(!instance_exists(_gate)&&global.hm_actor_order=="cleanup;destroy;",
+                _label+" destruction after Room End never repeats cleanup");
+        } else {
+            with(_gate) instance_destroy();
+            scrHMActorTestCheck(!instance_exists(_gate)&&global.hm_actor_order=="destroy;cleanup;",
+                _label+" direct destruction before Step cleans up exactly once");
+        }
+    }
+    global.hm_enabled=_old_enabled;GameCont.area=_old_area;GameCont.subarea=_old_sub;
+    GameCont.loops=_old_loops;GameCont.popolevel=_old_popolevel;
+}
+
 function scrHMActorsTests() {
     if(os_type!=os_windows) return false;
     var _enabled=false;
@@ -111,6 +293,8 @@ function scrHMActorsTests() {
         with(_projectile) scrHMProjectileWall();
         scrHMActorTestCheck(!instance_exists(_projectile),"default projectile wall response destroys it");
         scrHMDelete(_target);
+        scrHMActorTestConversions();
+        scrHMActorTestInfantryCapture();
         show_debug_message("HARDMODE ACTORS RATE PASS "+string(_rate));
     }
     show_debug_message("HARDMODE ACTORS RESULT "+json_stringify({status:"PASS",checks:global.hm_actor_checks,rates:[30,60]}));

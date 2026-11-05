@@ -800,6 +800,7 @@ scrHMDelete(id);
 }
 if(__hm_break99) break;
 }}
+scrHMVenusCleanup108();
 scrHMModCall("area", "venuz", "area_setup");
 scrHMModCall("area", "venuz", "area_make_floor");
 scrHMModCall("area", "venuz", "area_start");
@@ -6316,7 +6317,7 @@ if(__hm_break22) break;
 }}
 zmax = (y - 100000);
 scrHMSetSkill(18, 0);
-GameCont.skillpoints += 1;
+// Entering the Jungle does not award an extra mutation.
 TopCont.darkness = 0;
 }
 _hm.pc=16;

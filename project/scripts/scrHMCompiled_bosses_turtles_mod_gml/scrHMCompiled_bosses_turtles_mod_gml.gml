@@ -1,17 +1,31 @@
-// Source bosses/turtles.mod.gml:1; __load
-function hm_bosses_turtles_mod_gml___load() {
-global.hm_module_vars[$ "mod:bosses/turtles"].turtlewalk = sprHM_bosses_turtles_mod_2;
-global.hm_module_vars[$ "mod:bosses/turtles"].turtlesintrobg = sprHM_bosses_turtles_mod_3;
-global.hm_module_vars[$ "mod:bosses/turtles"].turtlesintro = sprHM_bosses_turtles_mod_5;
-global.hm_module_vars[$ "mod:bosses/turtles"].turtlesintrofg = sprHM_bosses_turtles_mod_7;
-global.hm_module_vars[$ "mod:bosses/turtles"].seenturtles = 0;
-}
-
-// Source bosses/turtles.mod.gml:10; game_start
-function hm_bosses_turtles_mod_gml_game_start() {
-global.hm_module_vars[$ "mod:bosses/turtles"].seenturtles = 0;
-}
-
+// Source bosses/turtles.mod.gml:1; __load
+
+function hm_bosses_turtles_mod_gml___load() {
+
+global.hm_module_vars[$ "mod:bosses/turtles"].turtlewalk = sprHM_bosses_turtles_mod_2;
+
+global.hm_module_vars[$ "mod:bosses/turtles"].turtlesintrobg = sprHM_bosses_turtles_mod_3;
+
+global.hm_module_vars[$ "mod:bosses/turtles"].turtlesintro = sprHM_bosses_turtles_mod_5;
+
+global.hm_module_vars[$ "mod:bosses/turtles"].turtlesintrofg = sprHM_bosses_turtles_mod_7;
+
+global.hm_module_vars[$ "mod:bosses/turtles"].seenturtles = 0;
+
+}
+
+
+
+// Source bosses/turtles.mod.gml:10; game_start
+
+function hm_bosses_turtles_mod_gml_game_start() {
+
+global.hm_module_vars[$ "mod:bosses/turtles"].seenturtles = 0;
+
+}
+
+
+
 // Source bosses/turtles.mod.gml:0; turtle1_create (native content 1.1.0)
 function hm_bosses_turtles_mod_gml_turtle1_create(_hml__x, _hml__y) {
 { var __hm_with1 = scrHMInstances(instance_create(_hml__x, _hml__y, CustomEnemy)), __hm_break3=false;
@@ -36,6 +50,7 @@ scrHMMaxHealthWrite(id, 30, "=");
 scrHMMaxHealthWrite(id, ((max_hp / 2) * instance_number(Player)), "+=");
 scrHMMaxHealthWrite(id, (hm_arkintide_mod_gml_hm_attack_loops() + 1), "*=");
 hp = max_hp;
+scrHMBossHealth1103();
 direction = random(360);
 spr_shadow = shd24;
 size = 1;
@@ -85,6 +100,7 @@ scrHMMaxHealthWrite(id, 30, "=");
 scrHMMaxHealthWrite(id, ((max_hp / 2) * instance_number(Player)), "+=");
 scrHMMaxHealthWrite(id, (hm_arkintide_mod_gml_hm_attack_loops() + 1), "*=");
 hp = max_hp;
+scrHMBossHealth1103();
 direction = random(360);
 spr_shadow = shd24;
 size = 1;
@@ -134,6 +150,7 @@ scrHMMaxHealthWrite(id, 30, "=");
 scrHMMaxHealthWrite(id, ((max_hp / 2) * instance_number(Player)), "+=");
 scrHMMaxHealthWrite(id, (hm_arkintide_mod_gml_hm_attack_loops() + 1), "*=");
 hp = max_hp;
+scrHMBossHealth1103();
 direction = random(360);
 spr_shadow = shd24;
 size = 1;
@@ -183,6 +200,7 @@ scrHMMaxHealthWrite(id, 30, "=");
 scrHMMaxHealthWrite(id, ((max_hp / 2) * instance_number(Player)), "+=");
 scrHMMaxHealthWrite(id, (hm_arkintide_mod_gml_hm_attack_loops() + 1), "*=");
 hp = max_hp;
+scrHMBossHealth1103();
 direction = random(360);
 spr_shadow = shd24;
 size = 1;
@@ -207,32 +225,58 @@ if(__hm_break3) break;
 }}
 }
 
-// Source bosses/turtles.mod.gml:148; draw_wep_katana
-function hm_bosses_turtles_mod_gml_draw_wep_katana() {
-if ((alrm1 != (- 1))) {
-{
-if ((alrm2 <= 0)) {
-{
-scrHMDrawSpriteExt(sprSword, 0, (x + lengthdir_x(14, gunangle1)), (y + lengthdir_y(14, gunangle1)), 1, 1, (gunangle1 + 180), c_white, 1);
-scrHMDrawSpriteExt(sprSword, 0, (x + lengthdir_x(14, gunangle2)), (y + lengthdir_y(14, gunangle2)), 1, 1, (gunangle2 + 180), c_white, 1);
-}
-}
-draw_self();
-}
-}
-if ((alrm1 == (- 1))) {
-{
-draw_self();
-if ((alrm2 <= 0)) {
-{
-scrHMDrawSpriteExt(sprSword, 0, x, y, 1, 1, gunangle1, c_white, 1);
-scrHMDrawSpriteExt(sprSword, 0, x, y, 1, (- 1), gunangle2, c_white, 1);
-}
-}
-}
-}
-}
-
+// Source bosses/turtles.mod.gml:148; draw_wep_katana
+
+function hm_bosses_turtles_mod_gml_draw_wep_katana() {
+
+if ((alrm1 != (- 1))) {
+
+{
+
+if ((alrm2 <= 0)) {
+
+{
+
+scrHMDrawSpriteExt(sprSword, 0, (x + lengthdir_x(14, gunangle1)), (y + lengthdir_y(14, gunangle1)), 1, 1, (gunangle1 + 180), c_white, 1);
+
+scrHMDrawSpriteExt(sprSword, 0, (x + lengthdir_x(14, gunangle2)), (y + lengthdir_y(14, gunangle2)), 1, 1, (gunangle2 + 180), c_white, 1);
+
+}
+
+}
+
+draw_self();
+
+}
+
+}
+
+if ((alrm1 == (- 1))) {
+
+{
+
+draw_self();
+
+if ((alrm2 <= 0)) {
+
+{
+
+scrHMDrawSpriteExt(sprSword, 0, x, y, 1, 1, gunangle1, c_white, 1);
+
+scrHMDrawSpriteExt(sprSword, 0, x, y, 1, (- 1), gunangle2, c_white, 1);
+
+}
+
+}
+
+}
+
+}
+
+}
+
+
+
 // Source bosses/turtles.mod.gml:0; turtle_step (native content 1.1.0)
 function hm_bosses_turtles_mod_gml_turtle_step() {
 var _args = [];
@@ -748,82 +792,158 @@ default: throw "Hardmode invalid continuation PC";
 }
 }
 
-// Source bosses/turtles.mod.gml:393; draw_wep_dagger
-function hm_bosses_turtles_mod_gml_draw_wep_dagger() {
-if ((alrm1 != (- 1))) {
-{
-if ((alrm2 <= 0)) {
-{
-scrHMDrawSpriteExt(sprScrewDriver, 0, (x + lengthdir_x(14, gunangle1)), (y + lengthdir_y(14, gunangle1)), 1, 1, (gunangle1 + 180), c_white, 1);
-scrHMDrawSpriteExt(sprScrewDriver, 0, (x + lengthdir_x(14, gunangle2)), (y + lengthdir_y(14, gunangle2)), 1, 1, (gunangle2 + 180), c_white, 1);
-}
-}
-draw_self();
-}
-}
-if ((alrm1 == (- 1))) {
-{
-draw_self();
-if ((alrm2 <= 0)) {
-{
-scrHMDrawSpriteExt(sprScrewDriver, 0, x, y, 1, 1, gunangle1, c_white, 1);
-scrHMDrawSpriteExt(sprScrewDriver, 0, x, y, 1, (- 1), gunangle2, c_white, 1);
-}
-}
-}
-}
-}
-
-// Source bosses/turtles.mod.gml:410; draw_wep_chuck
-function hm_bosses_turtles_mod_gml_draw_wep_chuck() {
-if ((alrm1 != (- 1))) {
-{
-if ((alrm2 <= 0)) {
-{
-scrHMDrawSpriteExt(sprWrench, 0, (x + lengthdir_x(14, gunangle1)), (y + lengthdir_y(14, gunangle1)), 1, 1, (gunangle1 + 180), c_white, 1);
-scrHMDrawSpriteExt(sprWrench, 0, (x + lengthdir_x(14, gunangle2)), (y + lengthdir_y(14, gunangle2)), 1, 1, (gunangle2 + 180), c_white, 1);
-}
-}
-draw_self();
-}
-}
-if ((alrm1 == (- 1))) {
-{
-draw_self();
-if ((alrm2 <= 0)) {
-{
-scrHMDrawSpriteExt(sprWrench, 0, x, y, 1, 1, gunangle1, c_white, 1);
-scrHMDrawSpriteExt(sprWrench, 0, x, y, 1, (- 1), gunangle2, c_white, 1);
-}
-}
-}
-}
-}
-
-// Source bosses/turtles.mod.gml:427; draw_wep_stick
-function hm_bosses_turtles_mod_gml_draw_wep_stick() {
-if ((alrm1 != (- 1))) {
-{
-if ((alrm2 <= 0)) {
-{
-scrHMDrawSpriteExt(sprHammer, 0, (x + lengthdir_x(14, gunangle1)), (y + lengthdir_y(14, gunangle1)), 1, 1, (gunangle1 + 180), c_white, 1);
-}
-}
-draw_self();
-}
-}
-if ((alrm1 == (- 1))) {
-{
-draw_self();
-if ((alrm2 <= 0)) {
-{
-scrHMDrawSpriteExt(sprHammer, 0, x, y, 1, 1, gunangle1, c_white, 1);
-}
-}
-}
-}
-}
-
+// Source bosses/turtles.mod.gml:393; draw_wep_dagger
+
+function hm_bosses_turtles_mod_gml_draw_wep_dagger() {
+
+if ((alrm1 != (- 1))) {
+
+{
+
+if ((alrm2 <= 0)) {
+
+{
+
+scrHMDrawSpriteExt(sprScrewDriver, 0, (x + lengthdir_x(14, gunangle1)), (y + lengthdir_y(14, gunangle1)), 1, 1, (gunangle1 + 180), c_white, 1);
+
+scrHMDrawSpriteExt(sprScrewDriver, 0, (x + lengthdir_x(14, gunangle2)), (y + lengthdir_y(14, gunangle2)), 1, 1, (gunangle2 + 180), c_white, 1);
+
+}
+
+}
+
+draw_self();
+
+}
+
+}
+
+if ((alrm1 == (- 1))) {
+
+{
+
+draw_self();
+
+if ((alrm2 <= 0)) {
+
+{
+
+scrHMDrawSpriteExt(sprScrewDriver, 0, x, y, 1, 1, gunangle1, c_white, 1);
+
+scrHMDrawSpriteExt(sprScrewDriver, 0, x, y, 1, (- 1), gunangle2, c_white, 1);
+
+}
+
+}
+
+}
+
+}
+
+}
+
+
+
+// Source bosses/turtles.mod.gml:410; draw_wep_chuck
+
+function hm_bosses_turtles_mod_gml_draw_wep_chuck() {
+
+if ((alrm1 != (- 1))) {
+
+{
+
+if ((alrm2 <= 0)) {
+
+{
+
+scrHMDrawSpriteExt(sprWrench, 0, (x + lengthdir_x(14, gunangle1)), (y + lengthdir_y(14, gunangle1)), 1, 1, (gunangle1 + 180), c_white, 1);
+
+scrHMDrawSpriteExt(sprWrench, 0, (x + lengthdir_x(14, gunangle2)), (y + lengthdir_y(14, gunangle2)), 1, 1, (gunangle2 + 180), c_white, 1);
+
+}
+
+}
+
+draw_self();
+
+}
+
+}
+
+if ((alrm1 == (- 1))) {
+
+{
+
+draw_self();
+
+if ((alrm2 <= 0)) {
+
+{
+
+scrHMDrawSpriteExt(sprWrench, 0, x, y, 1, 1, gunangle1, c_white, 1);
+
+scrHMDrawSpriteExt(sprWrench, 0, x, y, 1, (- 1), gunangle2, c_white, 1);
+
+}
+
+}
+
+}
+
+}
+
+}
+
+
+
+// Source bosses/turtles.mod.gml:427; draw_wep_stick
+
+function hm_bosses_turtles_mod_gml_draw_wep_stick() {
+
+if ((alrm1 != (- 1))) {
+
+{
+
+if ((alrm2 <= 0)) {
+
+{
+
+scrHMDrawSpriteExt(sprHammer, 0, (x + lengthdir_x(14, gunangle1)), (y + lengthdir_y(14, gunangle1)), 1, 1, (gunangle1 + 180), c_white, 1);
+
+}
+
+}
+
+draw_self();
+
+}
+
+}
+
+if ((alrm1 == (- 1))) {
+
+{
+
+draw_self();
+
+if ((alrm2 <= 0)) {
+
+{
+
+scrHMDrawSpriteExt(sprHammer, 0, x, y, 1, 1, gunangle1, c_white, 1);
+
+}
+
+}
+
+}
+
+}
+
+}
+
+
+
 // Source bosses/turtles.mod.gml:0; turtle_dead (native content 1.1.0)
 function hm_bosses_turtles_mod_gml_turtle_dead() {
 var _args = [];

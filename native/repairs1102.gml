@@ -48,31 +48,12 @@ function scrHMElevatorFloor1102(_x,_y) {
     return _found;
 }
 function scrHMElevatorStep1102() {
-    sprite_index=spr_idle;mask_index=mskNone;
-    if(instance_exists(SpiralCont)||instance_exists(Spiral)) return;
-    if(instance_exists(hm_elevator_exit)) {
-        with(hm_elevator_exit) {type=2;scrHMIDPDPortalSprite1102();}
-        return;
-    }
-    if(!hm_arkintide_mod_gml_hm_combat_clear()) {hm_elevator_wait=40;return;}
-    if(--hm_elevator_wait>0) return;
-    var _tile=scrHMElevatorFloor1102(x,y+40);
-    if(!instance_exists(_tile)) {hm_elevator_wait=1;return;}
-    with(Portal) if(endgame<100) {
-        other.hm_elevator_exit=id;type=2;scrHMIDPDPortalSprite1102();return;
-    }
-    if(instance_exists(hm_elevator_exit)) return;
-    with(Portal) if(endgame==100) {
-        x=_tile.x+16;y=_tile.y+16;type=2;scrHMIDPDPortalSprite1102();other.hm_elevator_exit=id;break;
-    }
-    if(instance_exists(hm_elevator_exit)) return;
-    hm_elevator_exit=instance_create(_tile.x+16,_tile.y+16,Portal);
-    with(hm_elevator_exit) {type=2;scrHMIDPDPortalSprite1102();}
+scrHMElevatorStep1103();
 }
 
 function scrHMReplacementArea1102() {
     // Both custom campaigns and the native final/secret rooms are excluded.
-    if(array_contains([scrHMAreaResolve("throne"),scrHMAreaResolve("venuz"),area_crib],GameCont.area)) return false;
+    if(array_contains([scrHMAreaResolve("throne"),scrHMAreaResolve("venuz"),scrHMAreaResolve("HQ"),area_hq,area_crib],GameCont.area)) return false;
     return hm_arkintide_mod_gml_hm_gungod_area_allowed();
 }
 function scrHMReplacementActor1102() {
@@ -117,7 +98,7 @@ function scrHMChiefCreate1102(_x,_y) {
     var _actor=instance_create(_x,_y,Last);
     with(_actor) {
         scrHMActorInit();
-        name="hm_chief";hm_chief1102=true;hm_chief_dead1102=false;
+        name="hm_chief";scrHMBossHealth1103();hm_chief1102=true;hm_chief_dead1102=false;
         hm_chief_arrival1102=20;hm_chief_presented1102=false;
         intro=1;newintro=-1;corpse=0;
         drawspr=sprLastWarpIn;drawimg=0;speed=0;
@@ -174,15 +155,19 @@ function scrHMChiefDepartureDraw1102() {
     if(_time<20) scrHMDrawSpriteExt(sprLastWarpOut,min(_time*.4,sprite_get_number(sprLastWarpOut)-1),x,y,hm_chief_right1102,1,0,c_white,1);
 }
 function scrHMChiefBallBurst1102() {
-    if(!scrHMEnabled()||!instance_exists(GameCont)) return;
-    var _loops=max(0,floor(GameCont.loops)),_source=self[$ "creator"]??noone;
-    for(var _beam=0;_beam<_loops;++_beam) {
-        var _angle=direction+360*(_beam+.5)/max(1,_loops),_velocity=4;
-        repeat(8) {
-            with(scr_projectile_create(x,y,IDPDBullet,_angle,_velocity)) {
+if(!scrHMEnabled()||!instance_exists(GameCont)) return false;
+    // Own the complete burst: appending Loop beams to the native ten leaves
+    // uneven gaps. One native random draw anchors every speed layer, while
+    // the complete ten-plus-Loop beam count divides the same full circle.
+    var _beams=10+max(0,floor(GameCont.loops)),_angle=random_angle,_velocity=4;
+    var _spacing=360/_beams,_source=self[$ "creator"]??noone;
+    repeat(8) {
+        for(var _beam=0;_beam<_beams;++_beam) {
+            with(scr_projectile_create(x,y,IDPDBullet,_angle+_spacing*_beam,_velocity)) {
                 team=other.team;hitid=other.hitid;creator=_source;image_angle=direction;
             }
-            _velocity+=.6;
         }
+        _velocity+=.6;
     }
+    return true;
 }

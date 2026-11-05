@@ -9,8 +9,9 @@ function scrHMContentExists1100(_kind,_module,_name) {
     return !is_undefined(scrHMContentRef1100(_kind,_module,_name));
 }
 function scrHMContentChange1100(_object,_events) {
-    instance_change(_object,_events);
-    if(_object==CustomEnemy && !(self[$ "hm_custom_actor"]??false)) scrHMActorInit();
+instance_change(_object,_events);
+if(array_contains([CustomObject,CustomEnemy,CustomHitme,CustomProjectile],_object)
+   && !(self[$ "hm_custom_actor"]??false)) scrHMActorInit();
 }
 function scrHMContentEvent1100(_object,_event,_number) {
     // NTT's native per-tick enemy event corresponds to the host Step.
@@ -56,8 +57,7 @@ function scrHMBindStep1100(_code,_delay) {
     return _binding;
 }
 function scrHMToolChest1100() {
-    if(GameCont.area!=scrHMAreaResolve("junkyard") || GameCont.subarea!=1) return;
-    hm_tool_chest1100=true;
+scrHMToolChest1103();
 }
 function scrHMLoopPopulationFallback1100() {
     // Active native regional callbacks already perform the stock loop roll.
@@ -82,13 +82,7 @@ function scrHMToolWeapon1100(_original) {
     return GameCont.loops>0?choose(wep_screwdriver,wep_energy_screwdriver):wep_screwdriver;
 }
 function scrHMCrownWatch1100() {
-    if(GameCont.area==scrHMAreaResolve("palace") && GameCont.subarea==4) {
-        with(Portal) if(type==3) GameCont.hm_crown_return=true;
-    }
-    if(GameCont.area==area_vault && GameCont.lastarea==scrHMAreaResolve("palace") && GameCont.lastsubarea==4) {
-        GameCont.hm_crown_return=true;
-        GameCont.hm_destination107=scrHMAreaResolve("throne");GameCont.hm_destination_sub107=1;
-    }
+scrHMCrownWatch1103();
 }
 function scrHMPortalStyle1100(_portal) {
     if(!instance_exists(_portal)) return;

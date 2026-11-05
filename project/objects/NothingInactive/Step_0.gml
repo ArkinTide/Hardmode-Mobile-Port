@@ -15,7 +15,8 @@ if (hp <= 0) {
 		
 	with MusCont {
 	    snd_stop(song)
-	    audio_sound_set_track_position(amb, irandom(audio_sound_length(amb)))
+	    var _hm_amb_length1103=audio_sound_length(amb);
+	    if(_hm_amb_length1103>0) audio_sound_set_track_position(amb, random(_hm_amb_length1103));
 	}
 		
 	flame = sprThroneFlameEnd

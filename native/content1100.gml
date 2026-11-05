@@ -9,8 +9,9 @@ function scrHMContentExists1100(_kind,_module,_name) {
     return !is_undefined(scrHMContentRef1100(_kind,_module,_name));
 }
 function scrHMContentChange1100(_object,_events) {
-    instance_change(_object,_events);
-    if(_object==CustomEnemy && !(self[$ "hm_custom_actor"]??false)) scrHMActorInit();
+instance_change(_object,_events);
+if(array_contains([CustomObject,CustomEnemy,CustomHitme,CustomProjectile],_object)
+   && !(self[$ "hm_custom_actor"]??false)) scrHMActorInit();
 }
 function scrHMContentEvent1100(_object,_event,_number) {
     // NTT's native per-tick enemy event corresponds to the host Step.
@@ -56,8 +57,7 @@ function scrHMBindStep1100(_code,_delay) {
     return _binding;
 }
 function scrHMToolChest1100() {
-    if(GameCont.area!=scrHMAreaResolve("junkyard") || GameCont.subarea!=1) return;
-    hm_tool_chest1100=true;
+scrHMToolChest1103();
 }
 function scrHMLoopPopulationFallback1100() {
     // Active native regional callbacks already perform the stock loop roll.
@@ -82,13 +82,7 @@ function scrHMToolWeapon1100(_original) {
     return GameCont.loops>0?choose(wep_screwdriver,wep_energy_screwdriver):wep_screwdriver;
 }
 function scrHMCrownWatch1100() {
-    if(GameCont.area==scrHMAreaResolve("palace") && GameCont.subarea==4) {
-        with(Portal) if(type==3) GameCont.hm_crown_return=true;
-    }
-    if(GameCont.area==area_vault && GameCont.lastarea==scrHMAreaResolve("palace") && GameCont.lastsubarea==4) {
-        GameCont.hm_crown_return=true;
-        GameCont.hm_destination107=scrHMAreaResolve("throne");GameCont.hm_destination_sub107=1;
-    }
+scrHMCrownWatch1103();
 }
 function scrHMPortalStyle1100(_portal) {
     if(!instance_exists(_portal)) return;
@@ -131,4 +125,9 @@ function scrHMRatWaterDraw1100() {
        ||(creator[$ "hm_extra_kind"]??"")!="rat") return false;
     with(creator) scrHMDrawSpriteExt(sprite_index,image_index,x,y-4,image_xscale,image_yscale,image_angle,image_blend,hm_swim_alpha);
     return true;
+}
+
+function scrHMObjectHasEvent1100(_object,_event,_number) {
+if(_event!=ev_draw||_number!=0) return false;
+return array_contains([Ally,BackButton,BackCont,Bandit,BanditBoss,BecomeNothing,BigDogMissile,BigMaggot,BigTV,BloodBall,BloodGrenade,BoltStick,BoneFish,BuffGator,ButtonAchievements,ButtonDiscord,CarThrow,CharSelect,ClusterNade,Confetti,ConfettiBall,Crab,CrownGuardian,CrownIcon,CrystalShield,CustomEnemy,CustomHitme,CustomObject,CustomProjectile,DogGuardian,DrawStats,Dummy,EliteGrunt,EliteInspector,EliteShield,EliteShielder,EnemyLaser,EnemyLightning,Exploder,ExploFreak,ExploGuardian,FastRat,FireBaller,Flare,Freak,FrogQueen,GameOver,GammaGuts,Gator,GatorSmoke,GenCont,GoButton,GoldScorpion,GoldSnowTank,Grenade,Grunt,Guardian,HeavyGrenade,HMBinding,HMWorld,HostileHorror,HyperCrystal,Inspector,InvLaserCrystal,InvSpider,IonBurst,Jock,JockRocket,JungleAssassin,JungleBandit,JungleFly,Laser,LaserCrystal,Last,LastCutscene,LastIntro,LevCont,LightBeam,Lightning,LightningCrystal,LilHunter,LilHunterFly,Logo,Maggot,MaggotSpawn,MainMenuButton,MakeGame,MeleeBandit,Menu,MenuOptions,Mimic,Molefish,Molesarge,Necromancer,Nothing,Nothing2,NothingBeam,NothingInactive,NothingSpiral,Nuke,OasisBoss,PauseButton,PauseImage,PlayButton,Player,PopoFreak,PopoNade,PopoShield,PopupText,PortalStrike,ProtoStatue,RadMaggot,RainDrop,Rat,Ratking,RatkingRage,Raven,RavenFly,RhinoFreak,Rocket,Salamander,Scorpion,ScrapBoss,ScrapBossMissile,SentryGun,Shielder,SitDown,SkillIcon,SmallGrenade,Sniper,SnowBot,SnowBotCar,SnowFlake,SnowTank,SodaCan,Spider,SpiralCont,StatChar,SubTopCont,SuperFireBaller,SuperFrog,SuperMimic,SwipeBombingTutorial,TechnoMancer,TopCont,ToxicGrenade,Turret,Turtle,TutorialTarget,TV,UberCont,UltraGrenade,UltraIcon,Van,VanSpawn,Vlambeer,WepMimic,WepPickup,Wolf,YVBoss],_object);
 }

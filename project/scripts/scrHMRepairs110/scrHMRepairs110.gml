@@ -58,4 +58,6 @@ function scrHMWallColour110(_sprite) {
 
 function scrHMThroneSeed110() {scrHMThroneSeed111();}
 
-function scrHMThroneEntrance110() {scrHMThroneEntrance111();}
+function scrHMThroneEntrance110() {
+// Original b24 area_start owns placement; no later adaptive repositioning.
+}

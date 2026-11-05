@@ -191,3 +191,4 @@ if instance_exists(SkillText) {
 	with (SkillText) y -= 40
 	appear = 0
 }
+scrHML2UltraMenu1103();

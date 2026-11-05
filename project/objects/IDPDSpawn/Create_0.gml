@@ -1,3 +1,4 @@
+if(scrHMThroneGateDefer1103()) exit;
 GameCont.popolevel++
 
 var player = instance_nearest(x, y, Player)

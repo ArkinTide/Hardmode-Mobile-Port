@@ -158,7 +158,24 @@ function scrHMGameplay1102() {
             if(instance_exists(portal112)) {
                 scrHMGameplayCheck(portal112.type==2,"real elevator exit is host IDPD portal");
                 scrHMGameplayCheck(hm_arkintide_mod_gml_hm_throne_clear(portal112.x,portal112.y,mskBandit),"actual exit has complete player floor");
-                scrHMGameplayCheck(collision_circle(portal112.x,portal112.y,14,CustomHitme,false,true)==noone,"exit does not overlap elevator tubes");
+                // A non-precise query sees mskNone's zero-size bbox at its
+                // origin offset. The elevator itself is deliberately inert;
+                // enumerate every hit so it cannot hide a real tube/obstacle.
+                var _near=ds_list_create(),_blocked=false;
+                collision_circle_list(portal112.x,portal112.y,14,[CustomHitme,prop,Wall,InvisiWall],false,true,_near,false);
+                for(var _i=0;_i<ds_list_size(_near);++_i) {
+                    var _block=_near[| _i];
+                    if(!instance_exists(_block)) continue;
+                    var _inert=_block.mask_index==mskNone;
+                    show_debug_message("HARDMODE EXIT112 BLOCKER "+json_stringify({
+                        portal:[portal112.x,portal112.y],object:object_get_name(_block.object_index),
+                        name:_block[$ "name"]??"",position:[_block.x,_block.y],
+                        bounds:[_block.bbox_left,_block.bbox_top,_block.bbox_right,_block.bbox_bottom],
+                        ignored_empty_mask:_inert}));
+                    if(!_inert) _blocked=true;
+                }
+                ds_list_destroy(_near);
+                scrHMGameplayCheck(!_blocked,"exit does not overlap physical elevator tubes or obstacles");
                 // This fixture validates the exit, not the intervening
                 // mutation/crown selection awarded by clearing the whole map.
                 GameCont.skillpoints=0;GameCont.ultrapoints=0;GameCont.crownpoints=0;

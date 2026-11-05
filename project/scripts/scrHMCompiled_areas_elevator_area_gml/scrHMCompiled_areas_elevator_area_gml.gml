@@ -106,9 +106,7 @@ return;
 ;
 }
 }
-if ((scrHMVariableExists(GameCont, "hm_crown_return") && GameCont.hm_crown_return)) {
-hm_arkintide_mod_gml_hm_crown_watch();
-}
+scrHMCrownWatch1103();
 if (((scrHMVariableExists(GameCont, "hm_crown_exit_ready") && GameCont.hm_crown_exit_ready) && (area != scrHMAreaResolve(100)))) {
 {
 area = scrHMAreaResolve("throne");
@@ -231,7 +229,7 @@ depth = 1;
 for (var __hm_index11=0; __hm_index11<array_length(__hm_with10); ++__hm_index11) {
 if(instance_exists(__hm_with10[__hm_index11])) with (__hm_with10[__hm_index11]) {
 {
-scrHMMaxHealthWrite(id, 99999, "=");
+scrHMMaxHealthWrite(id, 9999, "=");
 ;
 hp = max_hp;
 ;

@@ -23,6 +23,7 @@ hm_maxhealth_init = false;
 ;
 scrHMMaxHealthWrite(id, 15000, "=");
 hp = max_hp;
+scrHMGunGodHealth1103();
 ;
 can_die = false;
 ;

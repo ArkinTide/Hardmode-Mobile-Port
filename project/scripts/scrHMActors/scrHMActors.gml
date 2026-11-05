@@ -56,7 +56,7 @@ function scrHMActorCallback(_field, _args=[]) {
 }
 
 function scrHMActorCleanup() {
-    if(hm_cleaned) return;
+if(self[$ "hm_cleaned"]??false) return;
     hm_cleaned=true;
     scrHMActorCallback("on_cleanup");
 }

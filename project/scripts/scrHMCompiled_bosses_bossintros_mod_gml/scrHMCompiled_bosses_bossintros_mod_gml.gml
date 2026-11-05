@@ -1,10 +1,16 @@
-// Source bosses/bossintros.mod.gml:1; __load
-function hm_bosses_bossintros_mod_gml___load() {
-
-}
-
+// Source bosses/bossintros.mod.gml:1; __load
+
+function hm_bosses_bossintros_mod_gml___load() {
+
+
+
+}
+
+
+
 // Source bosses/bossintros.mod.gml:0; boss_trigger (native content 1.1.0)
 function hm_bosses_bossintros_mod_gml_boss_trigger() {
+if(scrHMMessengerSkipPresentation1103(argument4)) return;
 if(scrHMSkipBossPresentation108(argument0,argument4)) return;
 if (((instance_exists(argument4) && scrHMVariableExists(argument4, "hm_extra")) && argument4.hm_extra)) {
 exit;
@@ -121,67 +127,131 @@ scrHMBossFreeze104();
 // Source bosses/bossintros.mod.gml:0; customboss_step (native content 1.1.0)
 function hm_bosses_bossintros_mod_gml_customboss_step() {scrHMBossStep104();}
 
-// Source bosses/bossintros.mod.gml:284; draw_gui
-function hm_bosses_bossintros_mod_gml_draw_gui() {
-{ var __hm_with1 = scrHMMatching(CustomObject, "name", "bossintro"), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-if ((fadedark == 1)) {
-{
-if ((bossx > (view_width * 0.33))) {
-{
-draw_set_alpha(0.7);
-;
-draw_set_color(c_black);
-;
-draw_rectangle(0, 0, view_width, view_height, 0);
-;
-}
-}
-}
-}
-if ((bossname != "")) {
-{
-draw_set_alpha(1);
-;
-draw_set_color(c_white);
-;
-scrHMDrawBossLetterbox(letterind);
-;
-
-;
-scrHMDrawSprite(spr[0], 0, (bossx * 1.10), 0);
-;
-scrHMDrawSprite(spr[1], 0, bossx, 0);
-;
-scrHMDrawSprite(spr[2], 0, (bossx * 0.90), 0);
-;
-if ((bossx > (view_width * 0.33))) {
-{
-scrHMDrawSprite(sprBossNameSplat, bosssplat, (view_width * 0.50), ((view_height * 0.5) + customheight));
-;
-}
-}
-draw_set_font(fntBig);
-;
-draw_set_halign(1);
-;
-scrHMDrawText((((view_width * 0.80) - (bossx / 3)) - 64), ((view_height * 0.4) + customheight), (" " + bossname));
-;
-draw_set_halign(0);
-;
-}
-}
-}
-}
-if(__hm_break3) break;
-}}
-}
-
-// Source bosses/bossintros.mod.gml:311; boss_death
-function hm_bosses_bossintros_mod_gml_boss_death() {
-if ((instance_exists(Player) and (! instance_exists(SpiralCont)))) {
-hm_bosses_bossintros_mod_gml_boss_trigger("", mskNone, mskNone, mskNone, id, 0);
-}
-}
+// Source bosses/bossintros.mod.gml:284; draw_gui
+
+function hm_bosses_bossintros_mod_gml_draw_gui() {
+
+{ var __hm_with1 = scrHMMatching(CustomObject, "name", "bossintro"), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+{
+
+if ((fadedark == 1)) {
+
+{
+
+if ((bossx > (view_width * 0.33))) {
+
+{
+
+draw_set_alpha(0.7);
+
+;
+
+draw_set_color(c_black);
+
+;
+
+draw_rectangle(0, 0, view_width, view_height, 0);
+
+;
+
+}
+
+}
+
+}
+
+}
+
+if ((bossname != "")) {
+
+{
+
+draw_set_alpha(1);
+
+;
+
+draw_set_color(c_white);
+
+;
+
+scrHMDrawBossLetterbox(letterind);
+
+;
+
+
+
+;
+
+scrHMDrawSprite(spr[0], 0, (bossx * 1.10), 0);
+
+;
+
+scrHMDrawSprite(spr[1], 0, bossx, 0);
+
+;
+
+scrHMDrawSprite(spr[2], 0, (bossx * 0.90), 0);
+
+;
+
+if ((bossx > (view_width * 0.33))) {
+
+{
+
+scrHMDrawSprite(sprBossNameSplat, bosssplat, (view_width * 0.50), ((view_height * 0.5) + customheight));
+
+;
+
+}
+
+}
+
+draw_set_font(fntBig);
+
+;
+
+draw_set_halign(1);
+
+;
+
+scrHMReportIntroDraw1103((((view_width * 0.80) - (bossx / 3)) - 64), ((view_height * 0.4) + customheight), bossname);
+
+;
+
+draw_set_halign(0);
+
+;
+
+}
+
+}
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+}
+
+
+
+// Source bosses/bossintros.mod.gml:311; boss_death
+
+function hm_bosses_bossintros_mod_gml_boss_death() {
+
+if ((instance_exists(Player) and (! instance_exists(SpiralCont)))) {
+
+hm_bosses_bossintros_mod_gml_boss_trigger("", mskNone, mskNone, mskNone, id, 0);
+
+}
+
+}
+

@@ -294,6 +294,7 @@ if(__hm_break3) break;
 ;
 GameCont.hm_yv_seen = 0;
 ;
+scrHMCrownReset1103();scrHML2UltraReset1103();
 }
 
 // Source maincode.mod.gml:221; draw_dark
@@ -1944,7 +1945,7 @@ if(__hm_break331) break;
 }}
 spr_shadow_y = 0;
 fallenable = (- 1);
-hm_arkintide_mod_gml_hm_throne_fall(false);
+
 ;
 sprite_angle = 0;
 scrHMSoundMusic(musCredits);
@@ -2126,7 +2127,7 @@ case 98: // maincode.mod.gml:1684
 {
 if (((! place_meeting(x, y, Floor)) and (distance_to_object(Portal) > 32))) {
 {
-hm_arkintide_mod_gml_hm_throne_fall(true);
+
 ;
 sprite_angle += 15;
 gunangle += 15;
@@ -2135,7 +2136,7 @@ spr_shadow_y = 10000;
 }
 } else {
 {
-hm_arkintide_mod_gml_hm_throne_fall(false);
+
 ;
 sprite_angle = 0;
 spr_shadow_y = 0;
@@ -2357,7 +2358,7 @@ if ((!scrHMVariableExists(id, "morehp"))) {
 {
 scrHMMaxHealthWrite(id, 0.8, "*=");
 hp *= 0.8;
-morehp = 1;
+morehp = 1;scrHMBossHealth1103();
 }
 }
 if (((! instance_exists(BigGenerator)) and (!scrHMVariableExists(id, "mohp")))) {
@@ -3389,6 +3390,8 @@ if(__hm_break610) break;
 for (var __hm_index612=0; __hm_index612<array_length(__hm_with611); ++__hm_index612) {
 if(instance_exists(__hm_with611[__hm_index612])) with (__hm_with611[__hm_index612]) {
 {
+// A converted extra can remain in this event's native snapshot.
+if(self[$ "hm_extra"]??false) continue;
 if ((!scrHMVariableExists(id, "hm_cursed_music"))) {
 {
 hm_cursed_music = 1;
@@ -6327,11 +6330,12 @@ scrHMMenuDrawComplete();
 
 // Source maincode.mod.gml:0; CHCoutro (native content 1.1.0)
 function hm_maincode_mod_gml_CHCoutro() {
-if ((! instance_exists(HyperCrystal))) {
+var _source=creator,_extra=false;
+if(instance_exists(_source)) _extra=(_source[$ "hm_extra"]??false);
+if(!_extra && !instance_exists(HyperCrystal)) {
 hm_arkintide_mod_gml_hm_cave_restore(argument0, argument1);
 }
 instance_destroy();
-;
 }
 
 // Source maincode.mod.gml:0; sewerboi (native content 1.1.0)

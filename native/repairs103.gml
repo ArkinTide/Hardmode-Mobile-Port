@@ -1,5 +1,6 @@
 // Narrow host/NTT contracts established against frozen Hardmode b24.
-function scrHMMusicRoom() {
+function scrHMMusicRoom() {return scrHMMusicRoom112();}
+function scrHMMusicRoom103Legacy() {
     if(!scrHMEnabled() || !instance_exists(GameCont) || !scrHMAreaHas(GameCont.area)) return false;
     alarm[0]=-1;
     var _desired=self[$ "hm_music_desired"]??song;
@@ -17,7 +18,7 @@ function scrHMPalaceHorrorInit() {
     spr_hurt=sprEnemyHorrorHurt;spr_dead=sprEnemyHorrorDead;
     sprite_index=spr_idle;
     snd_dead=-4;ammo=0;charge=100;
-    alarm[1]=-1;alarm[3]=-1;
+    alarm[1]=1;alarm[3]=-1;
 }
 
 function scrHMPalaceHorrorStep() {
@@ -45,9 +46,12 @@ function scrHMPalaceHorrorStep() {
 
 function scrHMPendingBoss() {
     if(!scrHMEnabled()) return false;
+    if(instance_exists(WantLH)) return true;
+    var _hunter=false;with(CustomObject) if(name=="hm_hunter_arrival109") {_hunter=true;break;}
+    if(_hunter) return true;
     if(instance_exists(HMWorld) && (variable_instance_get(HMWorld,"hm_titank_entering")??false)) return true;
     var _pending=false;
-    with(CustomObject) if(name=="wanttitank" || name=="wantravenboss" || name=="wantjungleboss") {_pending=true;break;}
+    with(CustomObject) if(name=="wanttitank" || name=="wantRavenboss" || name=="wantjungleboss") {_pending=true;break;}
     return _pending;
 }
 
@@ -69,6 +73,8 @@ function scrHMCursedCavesRestore(_x,_y) {
     GameCont.area=scrHMAreaResolve("caves");
     GameCont.maxsubarea=scrAreaGetMaxSubarea(GameCont.area);
     with(BackCont) {shadcol=786950;shadow_color=shadcol;}
+    // Capture walls before floor fade callbacks can replace the origin.
+    scrHMCaveWalls112(_floor);
     // The wave outlives the dead boss and uses a stable floor as its origin.
     with(HMWorld) hm_props_mod_gml_joao_shockwave(104,_floor);
     scrHMSoundMusic(mus4);scrHMSoundAmbient(amb4);
@@ -137,6 +143,7 @@ function scrHMConsoleGoto(_area,_subarea,_loop=-1) {
     if(!instance_exists(GameCont) || is_undefined(_dest)) return false;
     var _max=scrAreaGetMaxSubarea(_dest[0]);
     if(_dest[1]<1 || _dest[1]>_max) return false;
+    scrHMCrownReset1103();GameCont.hm_destination107=-1;GameCont.hm_destination_sub107=-1;
     with(GameCont) {
         area=_dest[0];subarea=_dest[1];maxsubarea=_max;finalsubarea=(subarea==maxsubarea);
         if(_loop>=0) loops=_loop;
@@ -182,7 +189,8 @@ function scrHMWaterEntrySound() {
     scrHMSoundPitchVolume(sndSewerDrip,1,.7);
 }
 
-function scrHMSewerBank(_wall) {
+function scrHMSewerBank(_wall) {scrHMSewerBank106(_wall);}
+function scrHMSewerBank103Legacy(_wall) {
     var _x=_wall.x,_y=_wall.y;
     scrWallDestroy(_wall);
     with(FloorExplo) if(point_distance(x,y,_x,_y)<1) {
@@ -225,7 +233,7 @@ function scrHMIDPDBeamFix(_startx,_starty,_angle) {
 
 function scrHMGroundBounds() {
     if(!scrHMEnabled() || !scrHMReadyTick() || !instance_exists(GameCont) || instance_exists(GenCont) || hp<=0) return;
-    static _walking=[Bandit,Scorpion,Maggot,BigMaggot,Gator,BuffGator,Rat,Wolf,SnowBot,SnowTank,Grunt,Inspector,Shielder];
+    static _walking=[Bandit,Scorpion,Maggot,BigMaggot,Gator,BuffGator,Rat,Wolf,SnowBot,SnowTank,Grunt,Inspector,Shielder,EliteGrunt,EliteInspector,EliteShielder,PopoFreak,Raven];
     var _eligible=array_contains(_walking,object_index);
     // b24's armed bandit has no name. Match its actual AI, not a label.
     if(object_index==CustomEnemy) _eligible=(scrHMScriptRef(on_step)==scrHMScriptRef(hm_enemies_mod_gml_elitebandit_step));

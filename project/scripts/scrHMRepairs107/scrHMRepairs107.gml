@@ -114,8 +114,9 @@ function scrHMPortalDestination107() {
 }
 
 function scrHMAdvanceDestination107() {
-    var _destination=self[$ "hm_destination107"]??-1;
+var _destination=self[$ "hm_destination107"]??-1;
     if(_destination<0) return false;
+    scrHMCrownDestination1103(_destination);
     lastarea=area;lastsubarea=subarea;area=_destination;
     subarea=self[$ "hm_destination_sub107"]??1;
     hm_destination107=-1;hm_destination_sub107=-1;

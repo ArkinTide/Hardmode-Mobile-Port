@@ -1,72 +1,142 @@
-// Source bosses/scorpionboss.mod.gml:1; __load
-function hm_bosses_scorpionboss_mod_gml___load() {
-global.hm_module_vars[$ "mod:bosses/scorpionboss"].scorpionbossidle = sprHM_bosses_scorpionboss_mod_2;
-global.hm_module_vars[$ "mod:bosses/scorpionboss"].scorpionbosshurt = sprHM_bosses_scorpionboss_mod_3;
-global.hm_module_vars[$ "mod:bosses/scorpionboss"].scorpionbossdead = sprHM_bosses_scorpionboss_mod_4;
-global.hm_module_vars[$ "mod:bosses/scorpionboss"].scorpionintro = sprHM_bosses_scorpionboss_mod_5;
-global.hm_module_vars[$ "mod:bosses/scorpionboss"].scorpionExplode = scrHMSoundAdd("../music/scorpionexplode.ogg");
-;
-}
-
-// Source bosses/scorpionboss.mod.gml:9; scorpionboss_create
-function hm_bosses_scorpionboss_mod_gml_scorpionboss_create(_hml__x, _hml__y) {
-{ var __hm_with1 = scrHMInstances(instance_create(_hml__x, _hml__y, CustomEnemy)), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-name = "scorpionboss";
-on_step = scrHMScriptRef(hm_bosses_scorpionboss_mod_gml_scorpionboss_step);
-if ((GameCont.loops == 0)) {
-on_destroy = scrHMScriptRef(hm_bosses_scorpionboss_mod_gml_scorpionboss_death);
-} else {
-on_destroy = scrHMScriptRef(hm_bosses_scorpionboss_mod_gml_fancyscorpionboss_death);
-}
-hitid = [global.hm_module_vars[$ "mod:bosses/scorpionboss"].scorpionbossidle, "grand scorpion"];
-spr_idle = global.hm_module_vars[$ "mod:bosses/scorpionboss"].scorpionbossidle;
-spr_walk = global.hm_module_vars[$ "mod:bosses/scorpionboss"].scorpionbossidle;
-spr_hurt = global.hm_module_vars[$ "mod:bosses/scorpionboss"].scorpionbosshurt;
-spr_dead = global.hm_module_vars[$ "mod:bosses/scorpionboss"].scorpionbossdead;
-snd_hurt = sndGoldScorpionHurt;
-snd_dead = sndGoldScorpionDead;
-scrHMMaxHealthWrite(id, 250, "=");
-scrHMMaxHealthWrite(id, ((max_hp / 2) * instance_number(Player)), "+=");
-scrHMMaxHealthWrite(id, (GameCont.loops + 1), "*=");
-hp = max_hp;
-midpoint = ((max_hp / 4) * 3);
-team = 1;
-friction = (0.4) * (timescale * timescale);
-direction = random(360);
-direction2 = direction;
-mask_index = mskShield;
-spr_shadow = shd96;
-size = 3;
-canmelee = 1;
-meleedamage = 6;
-target = 0;
-targetvisible = 0;
-raddrop = 100;
-intro = 0;
-dashing = 0;
-alrm0 = 0;
-alrm1 = (- 1);
-alrm2 = (- 1);
-wakeup = 0;
-repeat ((GameCont.loops + 2)) {
-if ((random(10) < GameCont.loops)) {
-instance_create((x + 16), (y + 16), GoldScorpion);
-} else {
-instance_create((x + 16), (y + 16), Scorpion);
-}
-;
-}
-return id;
-;
-}
-}
-if(__hm_break3) break;
-}}
-}
-
+// Source bosses/scorpionboss.mod.gml:1; __load
+
+function hm_bosses_scorpionboss_mod_gml___load() {
+
+global.hm_module_vars[$ "mod:bosses/scorpionboss"].scorpionbossidle = sprHM_bosses_scorpionboss_mod_2;
+
+global.hm_module_vars[$ "mod:bosses/scorpionboss"].scorpionbosshurt = sprHM_bosses_scorpionboss_mod_3;
+
+global.hm_module_vars[$ "mod:bosses/scorpionboss"].scorpionbossdead = sprHM_bosses_scorpionboss_mod_4;
+
+global.hm_module_vars[$ "mod:bosses/scorpionboss"].scorpionintro = sprHM_bosses_scorpionboss_mod_5;
+
+global.hm_module_vars[$ "mod:bosses/scorpionboss"].scorpionExplode = scrHMSoundAdd("../music/scorpionexplode.ogg");
+
+;
+
+}
+
+
+
+// Source bosses/scorpionboss.mod.gml:9; scorpionboss_create
+
+function hm_bosses_scorpionboss_mod_gml_scorpionboss_create(_hml__x, _hml__y) {
+
+{ var __hm_with1 = scrHMInstances(instance_create(_hml__x, _hml__y, CustomEnemy)), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+{
+
+name = "scorpionboss";
+
+on_step = scrHMScriptRef(hm_bosses_scorpionboss_mod_gml_scorpionboss_step);
+
+if ((GameCont.loops == 0)) {
+
+on_destroy = scrHMScriptRef(hm_bosses_scorpionboss_mod_gml_scorpionboss_death);
+
+} else {
+
+on_destroy = scrHMScriptRef(hm_bosses_scorpionboss_mod_gml_fancyscorpionboss_death);
+
+}
+
+hitid = [global.hm_module_vars[$ "mod:bosses/scorpionboss"].scorpionbossidle, "grand scorpion"];
+
+spr_idle = global.hm_module_vars[$ "mod:bosses/scorpionboss"].scorpionbossidle;
+
+spr_walk = global.hm_module_vars[$ "mod:bosses/scorpionboss"].scorpionbossidle;
+
+spr_hurt = global.hm_module_vars[$ "mod:bosses/scorpionboss"].scorpionbosshurt;
+
+spr_dead = global.hm_module_vars[$ "mod:bosses/scorpionboss"].scorpionbossdead;
+
+snd_hurt = sndGoldScorpionHurt;
+
+snd_dead = sndGoldScorpionDead;
+
+scrHMMaxHealthWrite(id, 250, "=");
+
+scrHMMaxHealthWrite(id, ((max_hp / 2) * instance_number(Player)), "+=");
+
+scrHMMaxHealthWrite(id, (GameCont.loops + 1), "*=");
+
+hp = max_hp;
+scrHMBossHealth1103();
+
+midpoint = ((max_hp / 4) * 3);
+
+team = 1;
+
+friction = (0.4) * (timescale * timescale);
+
+direction = random(360);
+
+direction2 = direction;
+
+mask_index = mskShield;
+
+spr_shadow = shd96;
+
+size = 3;
+
+canmelee = 1;
+
+meleedamage = 6;
+
+target = 0;
+
+targetvisible = 0;
+
+raddrop = 100;
+
+intro = 0;
+
+dashing = 0;
+
+alrm0 = 0;
+
+alrm1 = (- 1);
+
+alrm2 = (- 1);
+
+wakeup = 0;
+
+repeat ((GameCont.loops + 2)) {
+
+if ((random(10) < GameCont.loops)) {
+
+instance_create((x + 16), (y + 16), GoldScorpion);
+
+} else {
+
+instance_create((x + 16), (y + 16), Scorpion);
+
+}
+
+;
+
+}
+
+return id;
+
+;
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+}
+
+
+
 // Source bosses/scorpionboss.mod.gml:0; scorpionboss_step (native content 1.1.0)
 function hm_bosses_scorpionboss_mod_gml_scorpionboss_step() {
 var _args = [];
@@ -956,113 +1026,220 @@ default: throw "Hardmode invalid continuation PC";
 }
 }
 
-// Source bosses/scorpionboss.mod.gml:431; step
-function hm_bosses_scorpionboss_mod_gml_step() {
-{ var __hm_with1 = scrHMMatching(DustOLD, "set", 0), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-if (((current_time mod 30) == 1)) {
-time += 1;
-}
-{ var __hm_with4 = scrHMInstances(Player), __hm_break6=false;
-for (var __hm_index5=0; __hm_index5<array_length(__hm_with4); ++__hm_index5) {
-if(instance_exists(__hm_with4[__hm_index5])) with (__hm_with4[__hm_index5]) {
-if (place_meeting(x, y, (scrHMOther(other)))) {
-{
-var __hm_other7=scrHMOther(other);
-x += lengthdir_x(1, __hm_other7.direction);
-;
-var __hm_other8=scrHMOther(other);
-y += lengthdir_y(1, __hm_other8.direction);
-;
-view_shake[index] = choose(100, (- 100));
-}
-}
-}
-if(__hm_break6) break;
-}}
-if ((random((200 - (time * 3))) < 1)) {
-if ((place_meeting(x, y, Floor) and (distance_to_object(Player) > 32))) {
-{
-{ var __hm_with9 = scrHMInstances(instance_nearest(x, y, Floor)), __hm_break11=false;
-for (var __hm_index10=0; __hm_index10<array_length(__hm_with9); ++__hm_index10) {
-if(instance_exists(__hm_with9[__hm_index10])) with (__hm_with9[__hm_index10]) {
-{
-var _hml__x = x;
-var _hml__y = y;
-if ((object_index != FloorExplo)) {
-{
-if ((random(2) < 1)) {
-_hml__x = (x + 16);
-}
-if ((random(2) < 1)) {
-_hml__y = (y + 16);
-}
-}
-}
-repeat (12) { var __hm_with12 = scrHMInstances(instance_create(_hml__x, _hml__y, Dust)), __hm_break14=false;
-for (var __hm_index13=0; __hm_index13<array_length(__hm_with12); ++__hm_index13) {
-if(instance_exists(__hm_with12[__hm_index13])) with (__hm_with12[__hm_index13]) {
-{
-scrHMMotionAdd(random_range(80, 100), random(4));
-depth = (- 11);
-}
-}
-if(__hm_break14) break;
-}}
-instance_create(_hml__x, _hml__y, Wall);
-scrHMSoundPlay(sndWallBreak);
-}
-}
-if(__hm_break11) break;
-}}
-}
-}
-}
-if (place_meeting(x, y, Wall)) {
-instance_destroy();
-}
-}
-}
-if(__hm_break3) break;
-}}
-{ var __hm_with15 = scrHMMatching(DustOLD, "set", 1), __hm_break17=false;
-for (var __hm_index16=0; __hm_index16<array_length(__hm_with15); ++__hm_index16) {
-if(instance_exists(__hm_with15[__hm_index16])) with (__hm_with15[__hm_index16]) {
-{
-image_xscale *= 0.9;
-image_yscale = image_xscale;
-image_alpha = min((image_xscale + 0.5), 1);
-if ((image_xscale <= 0)) {
-instance_destroy();
-} else {
-if (place_meeting(x, y, Wall)) {
-instance_destroy();
-}
-}
-}
-}
-if(__hm_break17) break;
-}}
-{ var __hm_with18 = scrHMInstances(DustOLD), __hm_break20=false;
-for (var __hm_index19=0; __hm_index19<array_length(__hm_with18); ++__hm_index19) {
-if(instance_exists(__hm_with18[__hm_index19])) with (__hm_with18[__hm_index19]) {
-if (((speed / timescale) <= 0)) {
-{
-scrHMMotionAdd((direction + 180), 20);
-if ((scrHMVariableExists(id, "set") and (set == 0))) {
-set = 1;
-} else {
-instance_destroy();
-}
-}
-}
-}
-if(__hm_break20) break;
-}}
-}
-
+// Source bosses/scorpionboss.mod.gml:431; step
+
+function hm_bosses_scorpionboss_mod_gml_step() {
+
+{ var __hm_with1 = scrHMMatching(DustOLD, "set", 0), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+{
+
+if (((current_time mod 30) == 1)) {
+
+time += 1;
+
+}
+
+{ var __hm_with4 = scrHMInstances(Player), __hm_break6=false;
+
+for (var __hm_index5=0; __hm_index5<array_length(__hm_with4); ++__hm_index5) {
+
+if(instance_exists(__hm_with4[__hm_index5])) with (__hm_with4[__hm_index5]) {
+
+if (place_meeting(x, y, (scrHMOther(other)))) {
+
+{
+
+var __hm_other7=scrHMOther(other);
+
+x += lengthdir_x(1, __hm_other7.direction);
+
+;
+
+var __hm_other8=scrHMOther(other);
+
+y += lengthdir_y(1, __hm_other8.direction);
+
+;
+
+view_shake[index] = choose(100, (- 100));
+
+}
+
+}
+
+}
+
+if(__hm_break6) break;
+
+}}
+
+if ((random((200 - (time * 3))) < 1)) {
+
+if ((place_meeting(x, y, Floor) and (distance_to_object(Player) > 32))) {
+
+{
+
+{ var __hm_with9 = scrHMInstances(instance_nearest(x, y, Floor)), __hm_break11=false;
+
+for (var __hm_index10=0; __hm_index10<array_length(__hm_with9); ++__hm_index10) {
+
+if(instance_exists(__hm_with9[__hm_index10])) with (__hm_with9[__hm_index10]) {
+
+{
+
+var _hml__x = x;
+
+var _hml__y = y;
+
+if ((object_index != FloorExplo)) {
+
+{
+
+if ((random(2) < 1)) {
+
+_hml__x = (x + 16);
+
+}
+
+if ((random(2) < 1)) {
+
+_hml__y = (y + 16);
+
+}
+
+}
+
+}
+
+repeat (12) { var __hm_with12 = scrHMInstances(instance_create(_hml__x, _hml__y, Dust)), __hm_break14=false;
+
+for (var __hm_index13=0; __hm_index13<array_length(__hm_with12); ++__hm_index13) {
+
+if(instance_exists(__hm_with12[__hm_index13])) with (__hm_with12[__hm_index13]) {
+
+{
+
+scrHMMotionAdd(random_range(80, 100), random(4));
+
+depth = (- 11);
+
+}
+
+}
+
+if(__hm_break14) break;
+
+}}
+
+instance_create(_hml__x, _hml__y, Wall);
+
+scrHMSoundPlay(sndWallBreak);
+
+}
+
+}
+
+if(__hm_break11) break;
+
+}}
+
+}
+
+}
+
+}
+
+if (place_meeting(x, y, Wall)) {
+
+instance_destroy();
+
+}
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+{ var __hm_with15 = scrHMMatching(DustOLD, "set", 1), __hm_break17=false;
+
+for (var __hm_index16=0; __hm_index16<array_length(__hm_with15); ++__hm_index16) {
+
+if(instance_exists(__hm_with15[__hm_index16])) with (__hm_with15[__hm_index16]) {
+
+{
+
+image_xscale *= 0.9;
+
+image_yscale = image_xscale;
+
+image_alpha = min((image_xscale + 0.5), 1);
+
+if ((image_xscale <= 0)) {
+
+instance_destroy();
+
+} else {
+
+if (place_meeting(x, y, Wall)) {
+
+instance_destroy();
+
+}
+
+}
+
+}
+
+}
+
+if(__hm_break17) break;
+
+}}
+
+{ var __hm_with18 = scrHMInstances(DustOLD), __hm_break20=false;
+
+for (var __hm_index19=0; __hm_index19<array_length(__hm_with18); ++__hm_index19) {
+
+if(instance_exists(__hm_with18[__hm_index19])) with (__hm_with18[__hm_index19]) {
+
+if (((speed / timescale) <= 0)) {
+
+{
+
+scrHMMotionAdd((direction + 180), 20);
+
+if ((scrHMVariableExists(id, "set") and (set == 0))) {
+
+set = 1;
+
+} else {
+
+instance_destroy();
+
+}
+
+}
+
+}
+
+}
+
+if(__hm_break20) break;
+
+}}
+
+}
+
+
+
 // Source bosses/scorpionboss.mod.gml:0; scorpionboss_death (native content 1.1.0)
 function hm_bosses_scorpionboss_mod_gml_scorpionboss_death() {
 var _args = [];
@@ -1642,24 +1819,45 @@ default: throw "Hardmode invalid continuation PC";
 }
 }
 
-// Source bosses/scorpionboss.mod.gml:747; boltstickfly
-function hm_bosses_scorpionboss_mod_gml_boltstickfly() {
-if (instance_exists(creator)) {
-{
-x = creator.x;
-y = (creator.y + 16);
-{ var __hm_with1 = scrHMInstances(BoltStick), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-if ((target == (scrHMOther(other)).creator)) {
-var __hm_other4=scrHMOther(other);
-target = __hm_other4;
-}
-}
-if(__hm_break3) break;
-}}
-}
-} else {
-instance_destroy();
-}
-}
+// Source bosses/scorpionboss.mod.gml:747; boltstickfly
+
+function hm_bosses_scorpionboss_mod_gml_boltstickfly() {
+
+if (instance_exists(creator)) {
+
+{
+
+x = creator.x;
+
+y = (creator.y + 16);
+
+{ var __hm_with1 = scrHMInstances(BoltStick), __hm_break3=false;
+
+for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
+
+if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
+
+if ((target == (scrHMOther(other)).creator)) {
+
+var __hm_other4=scrHMOther(other);
+
+target = __hm_other4;
+
+}
+
+}
+
+if(__hm_break3) break;
+
+}}
+
+}
+
+} else {
+
+instance_destroy();
+
+}
+
+}
+

@@ -40,6 +40,7 @@ function scrHMWorldInit() {
         scrHMInvokeHere(scrHMScriptRef(global.hm_module_scripts[$ _key].__load),[]);
     }
     scrHMHook("init");
+    scrHMReportAssets1103();
     scrHMWeaponsInit();
 }
 
@@ -61,8 +62,9 @@ function scrHMWorldStep() {
     // execute immediately and first resume on the following 30 Hz tick.
     // HMWorld can step before the first GameCont Step or a continued run.
     scrHMContentInit1100();
+    scrHMRouteTick1103();scrHML2UltraTick1103();
     scrHMTasksTick(1);
-    if(instance_exists(GameCont)) scrHMHook("step");
+    if(instance_exists(GameCont)) {scrHMHook("step");scrHMNativeBossHealth1103();}
     if(!instance_exists(HMWorld.hm_portrait_active)) with(YVBoss) if(hp>0 && image_alpha>0) scrHMBossCamera1101(id,false);
 }
 

@@ -81,6 +81,7 @@ function scrHMVenusCleanup108() {
     // Original elevator has already removed its old floor, walls, props,
     // enemies and effects here. Delete host-only leftovers before new area
     // construction, including non-drawing solid door masks and dead draws.
+    instance_destroy(YungVenuzCouch,false);instance_destroy(ChestOpen,false);
     instance_destroy(DustOLD,false);instance_destroy(WepPickup,false);
     instance_destroy(TopPot,false);instance_destroy(HMBinding,false);
     instance_destroy(WantRevivePopoFreak,false);instance_destroy(RevivePopoFreak,false);

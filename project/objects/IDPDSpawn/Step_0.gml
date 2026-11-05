@@ -1,3 +1,4 @@
+if(self[$ "hm_throne_gate_deferred1103"]??false) exit;
 if lockstep_stop
 	exit
 

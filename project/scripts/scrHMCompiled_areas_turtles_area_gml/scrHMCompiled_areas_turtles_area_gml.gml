@@ -1,48 +1,93 @@
-// Source areas/turtles.area.gml:1; __load
-function hm_areas_turtles_area_gml___load() {
-global.hm_module_vars[$ "area:turtles"].pizzasewersentrance = sprHM_areas_turtles_area_2;
-global.hm_module_vars[$ "area:turtles"].pizzaHPchest = sprHM_areas_turtles_area_3;
-}
-
-// Source areas/turtles.area.gml:5; area_name
-function hm_areas_turtles_area_gml_area_name() {
-return "2-?";
-;
-}
-
-// Source areas/turtles.area.gml:8; area_sprite
-function hm_areas_turtles_area_gml_area_sprite(_hml_q) {
-switch (_hml_q) {
-case sprFloor1:
-return sprFloor102;
-;
-case sprFloor1B:
-return sprFloor102B;
-;
-case sprFloor1Explo:
-return sprFloor102Explo;
-;
-case sprWall1Trans:
-return sprWall102Trans;
-;
-case sprWall1Bot:
-return sprWall102Bot;
-;
-case sprWall1Out:
-return sprWall102Out;
-;
-case sprWall1Top:
-return sprWall102Top;
-;
-case sprDebris1:
-return sprDebris102;
-;
-case sprDetail1:
-return sprDetail102;
-;
-}
-}
-
+// Source areas/turtles.area.gml:1; __load
+
+function hm_areas_turtles_area_gml___load() {
+
+global.hm_module_vars[$ "area:turtles"].pizzasewersentrance = sprHM_areas_turtles_area_2;
+
+global.hm_module_vars[$ "area:turtles"].pizzaHPchest = sprHM_areas_turtles_area_3;
+
+}
+
+
+
+// Source areas/turtles.area.gml:5; area_name
+
+function hm_areas_turtles_area_gml_area_name() {
+
+return "2-?";
+
+;
+
+}
+
+
+
+// Source areas/turtles.area.gml:8; area_sprite
+
+function hm_areas_turtles_area_gml_area_sprite(_hml_q) {
+
+switch (_hml_q) {
+
+case sprFloor1:
+
+return sprFloor102;
+
+;
+
+case sprFloor1B:
+
+return sprFloor102B;
+
+;
+
+case sprFloor1Explo:
+
+return sprFloor102Explo;
+
+;
+
+case sprWall1Trans:
+
+return sprWall102Trans;
+
+;
+
+case sprWall1Bot:
+
+return sprWall102Bot;
+
+;
+
+case sprWall1Out:
+
+return sprWall102Out;
+
+;
+
+case sprWall1Top:
+
+return sprWall102Top;
+
+;
+
+case sprDebris1:
+
+return sprDebris102;
+
+;
+
+case sprDetail1:
+
+return sprDetail102;
+
+;
+
+}
+
+}
+
+
+
 // Source areas/turtles.area.gml:0; area_transit (native content 1.1.0)
 function hm_areas_turtles_area_gml_area_transit() {
 if ((scrHMVariableExists(GameCont, "hm_debug_pending") && GameCont.hm_debug_pending)) {
@@ -55,9 +100,7 @@ return;
 ;
 }
 }
-if ((scrHMVariableExists(GameCont, "hm_crown_return") && GameCont.hm_crown_return)) {
-hm_arkintide_mod_gml_hm_crown_watch();
-}
+scrHMCrownWatch1103();
 if (((scrHMVariableExists(GameCont, "hm_crown_exit_ready") && GameCont.hm_crown_exit_ready) && (area != scrHMAreaResolve(100)))) {
 {
 area = scrHMAreaResolve("throne");
@@ -226,52 +269,98 @@ if(__hm_break21) break;
 }}
 }
 
-// Source areas/turtles.area.gml:74; area_make_floor
-function hm_areas_turtles_area_gml_area_make_floor() {
-instance_create(x, y, Floor);
-;
-var _hml_turn = choose(180, 0, 0, 0, 0, 0, 0, 90, 90, 90, (- 90), (- 90), (- 90), 180);
-;
-direction += _hml_turn;
-;
-if (((_hml_turn == 180) && (point_distance(x, y, 10016, 10016) > 48))) {
-{
-instance_create(x, y, Floor);
-;
-instance_create((x + 16), (y + 16), WeaponChest);
-;
-}
-}
-if ((random((19 + instance_number(FloorMaker))) > 22)) {
-{
-if ((point_distance(x, y, 10016, 10016) > 48)) {
-{
-instance_create((x + 16), (y + 16), AmmoChest);
-;
-instance_create(x, y, Floor);
-;
-}
-}
-instance_destroy();
-;
-}
-} else {
-if ((random(6) < 1)) {
-{
-instance_create(x, y, FloorMaker);
-;
-}
-}
-}
-}
-
-// Source areas/turtles.area.gml:95; area_pop_props
-function hm_areas_turtles_area_gml_area_pop_props() {
-if ((random(12) < 1)) {
-instance_create((x + 16), (y + 16), PizzaBox);
-}
-}
-
+// Source areas/turtles.area.gml:74; area_make_floor
+
+function hm_areas_turtles_area_gml_area_make_floor() {
+
+instance_create(x, y, Floor);
+
+;
+
+var _hml_turn = choose(180, 0, 0, 0, 0, 0, 0, 90, 90, 90, (- 90), (- 90), (- 90), 180);
+
+;
+
+direction += _hml_turn;
+
+;
+
+if (((_hml_turn == 180) && (point_distance(x, y, 10016, 10016) > 48))) {
+
+{
+
+instance_create(x, y, Floor);
+
+;
+
+instance_create((x + 16), (y + 16), WeaponChest);
+
+;
+
+}
+
+}
+
+if ((random((19 + instance_number(FloorMaker))) > 22)) {
+
+{
+
+if ((point_distance(x, y, 10016, 10016) > 48)) {
+
+{
+
+instance_create((x + 16), (y + 16), AmmoChest);
+
+;
+
+instance_create(x, y, Floor);
+
+;
+
+}
+
+}
+
+instance_destroy();
+
+;
+
+}
+
+} else {
+
+if ((random(6) < 1)) {
+
+{
+
+instance_create(x, y, FloorMaker);
+
+;
+
+}
+
+}
+
+}
+
+}
+
+
+
+// Source areas/turtles.area.gml:95; area_pop_props
+
+function hm_areas_turtles_area_gml_area_pop_props() {
+
+if ((random(12) < 1)) {
+
+instance_create((x + 16), (y + 16), PizzaBox);
+
+}
+
+}
+
+
+
 // Source areas/turtles.area.gml:0; area_mapdata (native content 1.1.0)
 function hm_areas_turtles_area_gml_area_mapdata(_hml_lx, _hml_ly, _hml_lp, _hml_ls, _hml_ws, _hml_ll) {
 return hm_arkintide_mod_gml_hm_mapdata("turtles", _hml_lx, _hml_ly, _hml_lp, _hml_ls, _hml_ws, _hml_ll);

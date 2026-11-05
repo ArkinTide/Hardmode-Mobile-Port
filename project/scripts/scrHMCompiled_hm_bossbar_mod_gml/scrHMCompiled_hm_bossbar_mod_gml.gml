@@ -59,7 +59,7 @@ if(__hm_break18) break;
 { var __hm_with19 = scrHMInstances(OasisBoss), __hm_break21=false;
 for (var __hm_index20=0; __hm_index20<array_length(__hm_with19); ++__hm_index20) {
 if(instance_exists(__hm_with19[__hm_index20])) with (__hm_with19[__hm_index20]) {
-hm_hm_bossbar_mod_gml_hm_bossbar(x, (y - 36), 100, "BIG FISH", c_red, hp, max_hp);
+hm_hm_bossbar_mod_gml_hm_bossbar(x, (y - 36), 100, "BIG BUBBLER", c_red, hp, max_hp);
 }
 if(__hm_break21) break;
 }}
@@ -133,7 +133,7 @@ if ((name == "titank")) {
 {
 _hml_hp = 0;
 ;
-_hml_capacity = (150 * legs);
+_hml_capacity = (150 * legs)*scrHMBossLoopFactor1103();
 ;
 for (var _hml_leg = 0; (_hml_leg < legs); _hml_leg++) _hml_hp += max(0, foot_hp[_hml_leg]);
 ;
@@ -148,7 +148,7 @@ continue;
 }
 _hml_hp = max(0, (hp - 14250));
 ;
-_hml_capacity = 750;
+_hml_capacity = max(1,max_hp-14250);
 ;
 _hml_py = ((y - z) - 50);
 ;
@@ -213,24 +213,10 @@ _hml_row++;
 }
 if(__hm_break9) break;
 }}
-{ var __hm_with10 = scrHMInstances(NothingInactive), __hm_break12=false;
-for (var __hm_index11=0; __hm_index11<array_length(__hm_with10); ++__hm_index11) {
-if(instance_exists(__hm_with10[__hm_index11])) with (__hm_with10[__hm_index11]) {
-if ((hp > 0)) {
-{
-hm_hm_bossbar_mod_gml_hm_bossbar((view_width / 2), (20 + (_hml_row * 26)), 160, "THE THRONE...", c_red, hp, max_hp);
-;
-_hml_row++;
-;
-}
-}
-}
-if(__hm_break12) break;
-}}
 { var __hm_with13 = scrHMInstances(Nothing), __hm_break15=false;
 for (var __hm_index14=0; __hm_index14<array_length(__hm_with13); ++__hm_index14) {
 if(instance_exists(__hm_with13[__hm_index14])) with (__hm_with13[__hm_index14]) {
-if ((hp > 0)) {
+if (scrHMThroneBarVisible1103()) {
 {
 hm_hm_bossbar_mod_gml_hm_bossbar((view_width / 2), (20 + (_hml_row * 26)), 160, "THE NUCLEAR THRONE", c_lime, hp, max_hp);
 ;
@@ -268,7 +254,7 @@ if ((name == "titank")) {
 {
 _hml_hp = 0;
 ;
-_hml_capacity = (150 * legs);
+_hml_capacity = (150 * legs)*scrHMBossLoopFactor1103();
 ;
 for (var _hml_leg = 0; (_hml_leg < legs); _hml_leg++) _hml_hp += max(0, foot_hp[_hml_leg]);
 ;
@@ -281,7 +267,7 @@ continue;
 }
 _hml_hp = max(0, (hp - 14250));
 ;
-_hml_capacity = 750;
+_hml_capacity = max(1,max_hp-14250);
 ;
 }
 }
@@ -306,7 +292,7 @@ case "junglebandit":
 return "BIG BANDIT";
 ;
 case "bubble":
-return "BIG FISH";
+return "BIG BUBBLER";
 ;
 case "hunter":
 return "LIL' HUNTER";
@@ -345,7 +331,7 @@ return _hml_title;
 return "TURTLE";
 ;
 case "rogue":
-return "ROGUE";
+return "The Messenger";
 ;
 case "rat":
 return "BIG RAT";
@@ -358,6 +344,8 @@ return "";
 // Source hm_bossbar.mod.gml:0; hm_custom_boss_name (native content 1.1.0)
 function hm_hm_bossbar_mod_gml_hm_custom_boss_name() {
 switch (name) {
+case "roguefreak": return "The Messenger";
+case "hm_palace_guardian": return "CROWN GUARDIAN";
 case "scorpionboss":
 return "GIANT SCORPION";
 ;
@@ -389,7 +377,7 @@ case "guardianboss":
 return "GREAT GUARDIAN";
 ;
 case "rogueboss":
-return "ROGUE";
+return "The Messenger";
 ;
 case "hm_yv_phase":
 return "Y.V.";
