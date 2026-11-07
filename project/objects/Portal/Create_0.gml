@@ -14,7 +14,7 @@ instance_create(x, y, PortalClear)
 instance_create(x, y, PortalShock)
 
 with (Player) {
-	if (race != Race.Rogue) continue
+	if (race != Race.Rogue || scrHMThroneSecond1104()) continue
 	repeat (2) instance_create(other.x, other.y, IDPDSpawn)
     GameCont.popolevel -= 1.5
 }

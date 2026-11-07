@@ -11,7 +11,7 @@ var _dir = random_angle
 repeat(20) {
     _dir += 360 / 20
     
-	scr_projectile_create(x, y, EnemyBullet2, _dir, 4)
+	scrHMPoisonShot1104(scr_projectile_create(x, y, EnemyBullet2, _dir, 4))
     
 	with instance_create(x, y, AcidStreak) {
         motion_add(_dir, (8) * timescale)

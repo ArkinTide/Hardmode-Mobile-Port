@@ -82,38 +82,10 @@ function scrHMThroneWinHeld1103() {
         && !(variable_instance_get(GameCont,"hm_followup_throne_second_dead")??false);
 }
 function scrHMThroneTick1103() {
-    if(GameCont.area!=scrHMAreaResolve("throne") || instance_exists(GenCont)) return;
-    var _bounds=variable_instance_get(GameCont,"hm_followup_throne_bounds")??[];
-    if(array_length(_bounds)==0) {
-        // The host can retain its distant menu diorama. Grow the actual
-        // connected arena, including generator alcoves, from its player floor.
-        var _player=instance_find(Player,0);
-        if(!instance_exists(_player)) return;
-        var _seed=instance_nearest(_player.x,_player.y,Floor);
-        if(!instance_exists(_seed)) return;
-        var _left=_seed.x,_top=_seed.y,_right=_seed.x+32,_bottom=_seed.y+32,_changed=true;
-        while(_changed) {
-            _changed=false;
-            with(Floor) if(x<=_right+32 && x+32>=_left-32 && y<=_bottom+32 && y+32>=_top-32) {
-                var _l=min(_left,x),_t=min(_top,y),_r=max(_right,x+32),_b=max(_bottom,y+32);
-                if(_l!=_left || _t!=_top || _r!=_right || _b!=_bottom) _changed=true;
-                _left=_l;_top=_t;_right=_r;_bottom=_b;
-            }
-        }
-        GameCont.hm_followup_throne_bounds=[_left,_top,_right,_bottom];
-    }
-    if(array_length(variable_instance_get(GameCont,"hm_followup_throne_bounds")??[])!=4) return;
-    with(Nothing) if(!(self[$ "hm_followup_throne_walls_opened"]??false)) {
-        hm_followup_throne_walls_opened=true;scrHMThroneOpenWalls1103();
-    }
+scrHMThronePoliceClear1104();
 }
 function scrHMThroneOpenWalls1103() {
-    var _bounds=GameCont.hm_followup_throne_bounds;
-    var _left=_bounds[0],_right=_bounds[2],_mid=(_bounds[1]+_bounds[3])/2;
-    var _top=_mid-60*32,_bottom=_mid+60*32;
-    with(Wall) if(x>=_left && x<_right && y>=_top && y<_bottom) instance_destroy();
-    with(InvisiWall) if(x>=_left && x<_right && y>=_top && y<_bottom) instance_destroy();
-    with(TopSmall) if(x>=_left && x<_right && y>=_top && y<_bottom) instance_destroy();
+// Retired: waking the Throne must preserve walls and their collision.
 }
 function scrHMRouteTick1103() {
     if(!instance_exists(GameCont)) return;

@@ -984,8 +984,11 @@ if(instance_exists(__hm_with95[__hm_index96])) with (__hm_with95[__hm_index96]) 
 {
 newintro = (- 1);
 scrHMSoundMusic(musBoss3);
+// Hardmode health was initialized before inherited native creation effects.
+if(!scrHMEnabled()) {
 scrHMMaxHealthWrite(id, ((50 * instance_number(Player)) * (GameCont.loops + 1)), "+=");
 hp += ((50 * instance_number(Player)) * (GameCont.loops + 1));
+}
 if ((scrHMModGet("mod", "options", "intropan") == "1")) {
 {
 if ((UberCont.opt_bossintro == 1)) {

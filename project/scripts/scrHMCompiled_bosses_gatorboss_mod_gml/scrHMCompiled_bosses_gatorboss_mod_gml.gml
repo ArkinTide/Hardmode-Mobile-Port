@@ -314,7 +314,7 @@ alrm0 = 0;
 speed = (0) * timescale;
 ;
 alrm3 += (1 + (hm_arkintide_mod_gml_hm_attack_loops() / 3));
-if ((sprite_index != (spr_charge || spr_chargehurt))) {
+if ((sprite_index != spr_charge && sprite_index != spr_chargehurt)) {
 sprite_index = spr_charge;
 }
 if ((random(50) < alrm3)) {
@@ -515,7 +515,7 @@ instance_create((x + random_range((- 8), 8)), (y + random_range((- 8), 8)), Lase
 }
 if ((nexthurt > current_frame)) {
 {
-if ((sprite_index != ((spr_hurt || spr_charge) || spr_chargehurt))) {
+if ((sprite_index != spr_hurt && sprite_index != spr_charge && sprite_index != spr_chargehurt)) {
 {
 image_index = 0;
 ;
@@ -544,7 +544,7 @@ sprite_index = spr_walk;
 }
 if (((image_index + (image_speed / timescale)) >= image_number)) {
 {
-if ((sprite_index != (spr_charge || spr_chargehurt))) {
+if ((sprite_index != spr_charge && sprite_index != spr_chargehurt)) {
 {
 if (((speed / timescale) > (friction / (timescale * timescale)))) {
 sprite_index = spr_walk;
@@ -599,7 +599,7 @@ speed = (0) * timescale;
 }
 if ((dodge <= 5)) {
 {
-_hm.vars.hm_gator_floor = instance_nearest((x - 16), (y - 16), Floor);
+_hm.vars.hm_gator_floor = scrHMGatorFloor1104();
 ;
 if ((instance_exists(_hm.vars.hm_gator_floor) && (_hm.vars.hm_gator_floor.traction == 0.45))) {
 {
@@ -643,7 +643,7 @@ instance_create(x, y, Dust);
 if ((dodge > 0)) {
 dodge--;
 } else {
-{ var __hm_with34 = scrHMMatchingNE(projectile, "team", team), __hm_break36=false;
+{ var __hm_with34 = scrHMGatorDodgeCandidates1104(), __hm_break36=false;
 for (var __hm_index35=0; __hm_index35<array_length(__hm_with34); ++__hm_index35) {
 if(instance_exists(__hm_with34[__hm_index35])) with (__hm_with34[__hm_index35]) {
 if ((place_meeting((x + lengthdir_x(64, direction)), (y + lengthdir_y(64, direction)), (scrHMOther(other))) and (random(3) < 1))) {

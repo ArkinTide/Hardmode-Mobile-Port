@@ -1,5 +1,6 @@
 raddrop = 20
-max_hp = 140 * (1 + (GameCont.loops / 3))
+// One ordinary boss budget. The inherited enemy applies common Loop scaling.
+max_hp = scrHMEnabled() ? (140 + ((variable_instance_get(GameCont,"hm_extra_pending")??false) ? 0 : 50 * instance_number(Player))) : (140 * (1 + (GameCont.loops / 3)))
 meleedamage = 0
 size = 1
 spr_idle = sprLilHunter

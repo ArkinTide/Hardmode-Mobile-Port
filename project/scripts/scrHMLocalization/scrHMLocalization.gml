@@ -33,7 +33,7 @@ static _catalog={
   "BONEFISH": "骨鱼",
   "BIG BIRD": "巨鸟",
   "GRAND SCORPION": "巨型蝎王",
-  "GREATER GUARDIAN": "上位守卫",
+  "GREATER GUARDIAN": "至高守护者",
   "LESSER GUARDIAN": "下位守卫",
   "DA GUN GOD": "枪神",
   "GUNGOD": "枪神",
@@ -199,7 +199,21 @@ static _catalog={
   "RATS REVIVE AS GREEN RATS": "老鼠死亡后变为绿老鼠",
   "BOSS HEALTH BARS": "首领血条",
   "DEFLECT THRONE BALLS": "反弹王座能量球",
-  "PLAYER BOOST (+2 HP, +1 LEVEL)": "玩家增强（生命上限+2，等级上限+1）"
+  "PLAYER BOOST (+2 HP, +1 LEVEL)": "玩家增强（生命上限+2，等级上限+1）",
+  "THE NUCLEAR THRONE": "核能王座",
+  "THRONE II": "王座II",
+  "THRONEII": "王座II",
+  "THE MESSENGER": "通信员",
+  "GREAT GUARDIAN": "至高守护者",
+  "LIL' HUNTER": "小猎人",
+  "GENERATOR": "发电机",
+  "TECHNOMANCER": "科技术士",
+  "CROWN GUARDIAN": "王冠守护者",
+  "CURSED HYPER CRYSTAL": "诅咒超级水晶",
+  "CAPTAIN": "局长",
+  "GIANT SCORPION": "巨型蝎子",
+  "BIG RAT": "大老鼠",
+  "TURTLE": "乌龟首领"
 };
 return _catalog;
 }

@@ -106,6 +106,10 @@ function scrHMGameplayTestStep() {
         if(string_pos("sync111",mode)==1) scrHMGameplay1101();
         if(string_pos("sync112",mode)==1) scrHMGameplay1102();
         if(mode=="sync113chiefspacing") scrHMGameplayChiefSpacing1103();
+        scrHMGameplayRoutes1104();
+        scrHMGameplayUI1104();
+        scrHMGameplayHunter1104();
+        if(string_pos("sync114",mode)==1) scrHMGameplay1104World();
         scrHMGameplayFollowupWalls1103();
         if(mode=="followup113allareas") scrHMGameplayFollowupAllAreas1103();
         if(mode=="profile106") scrHMGameplayWaterIndex113();

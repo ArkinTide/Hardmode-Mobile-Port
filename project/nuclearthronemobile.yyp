@@ -30338,6 +30338,48 @@
         "name": "scrHMGameplay1103ChiefSpacing",
         "path": "scripts/scrHMGameplay1103ChiefSpacing/scrHMGameplay1103ChiefSpacing.yy"
       }
+    },
+    {
+      "id": {
+        "name": "scrHMRepairs1104Routes",
+        "path": "scripts/scrHMRepairs1104Routes/scrHMRepairs1104Routes.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrHMGameplayRoutes1104",
+        "path": "scripts/scrHMGameplayRoutes1104/scrHMGameplayRoutes1104.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrHMUI1104",
+        "path": "scripts/scrHMUI1104/scrHMUI1104.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrHMGameplayUI1104",
+        "path": "scripts/scrHMGameplayUI1104/scrHMGameplayUI1104.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrHMRepairs1104World",
+        "path": "scripts/scrHMRepairs1104World/scrHMRepairs1104World.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrHMGameplay1104World",
+        "path": "scripts/scrHMGameplay1104World/scrHMGameplay1104World.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrHMGameplayHunter1104",
+        "path": "scripts/scrHMGameplayHunter1104/scrHMGameplayHunter1104.yy"
+      }
     }
   ],
   "resourceType": "GMProject",

@@ -24,6 +24,7 @@ function scrEyesTelekinesis() {
 	
 	// push away
 	with projectile {
+        if(scrHMEnabled() && (self[$ "hm_bolt_wall1104"]??false)) continue;
 		var _dir = point_direction(_px, _py, x, y),
 			_lx = lengthdir_x(_strength, _dir),
 			_ly = lengthdir_y(_strength, _dir)

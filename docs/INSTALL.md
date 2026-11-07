@@ -1,11 +1,7 @@
-# Install 1.1.3
+# 安装
 
-[Hardmode APK / IPA downloads](https://mega.nz/folder/7TY3wZRB#PgQeCYQzxvrVGjfjX6YefA).
+安卓安装1.1.4 APK，可覆盖同签名旧版。包名仍为com.arkintide.nuclearthronehardmode；安装前建议保留存档备份。共享存档位于/games/com.arkintide.nuclearthronehardmode；没有共享存储权限时使用应用原有私有目录。
 
-Android: install `NuclearThrone.Hardmode-Android-1.1.3.apk` over the existing Hardmode app after the final package receipt is available. The package identity `com.arkintide.nuclearthronehardmode` and established signing certificate are retained. Back up saves first. Shared saves require the platform's storage permission and live in `/storage/emulated/0/games/com.arkintide.nuclearthronehardmode/`; otherwise the existing private directory is used.
+iOS的IPA需要自行重签，使用兼容的既有原生Runner与本轮新编译VM／资源。存档仍在可共享的Documents/hardmode目录。没有本轮手机真机或新Mac原生构建验收。
 
-iOS: resign `NuclearThrone.Hardmode-iOS-1.1.3.ipa` using your own signing method. Keep the same application identity to preserve the installed app's data, and back it up before replacing the app. Saves are exposed through Files sharing in `Documents/hardmode/`. The IPA uses a compatible retained native runner with newly compiled VM/resources; it is not a new native Mac build and requires resigning.
-
-Hardmode settings retain boss bars, throne-ball deflection, player boost and rat revival. Mobile uses its existing mutation selector; no Grillskills module is added. Entering Loop2 can grant one additional unowned Ultra while preserving the original choice, independently of player boost.
-
-Optional 60-frame presentation retains the mobile 30 Hz game logic. Desktop VM and package checks do not certify phone hardware performance or guarantee 60 FPS in every scene. Final installer hashes and upload status belong to this version's delivery and MEGA readback receipts; these instructions do not assert publication is complete.
+安装包及SHA256SUMS在Hardmode专用MEGA目录，GitHub只发布文本源码和工程元数据。

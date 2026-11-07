@@ -1,3 +1,4 @@
+if(scrHMThroneSecond1104()) {instance_destroy(id,false);exit;}
 if(scrHMVanPortalCreate108()) exit;
 
 var player = instance_random(Player)

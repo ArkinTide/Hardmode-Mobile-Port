@@ -56,7 +56,7 @@ function scrHMMusicRoom112() {
         switch(scrHMAreaKey(_area)) {
             case "area:junkyard":_song=mus3b;_amb=amb3;break;
             case "area:ravenboss":_song=mus3;_amb=amb3;break;
-            case "area:throne":_song=mus7;_amb=amb7;break;
+            case "area:throne":_song=mus7b;_amb=amb7;break;
             case "area:icecave":_song=mus100;_amb=amb100;break;
             case "area:noyetihere":_song=musBoss4Silence;_amb=amb100;break;
             case "area:end":_song=musCredits;_amb=amb0b;break;

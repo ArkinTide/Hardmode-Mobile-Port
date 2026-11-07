@@ -147,7 +147,7 @@ hard += 10;
 
 // Source areas/throne.area.gml:0; area_setup (native content 1.1.0)
 function hm_areas_throne_area_gml_area_setup() {
-scrHMSoundMusic(mus7);
+scrHMSoundMusic(mus7b);
 goal = (480 + (64 * min((GameCont.loops * 2), 4)));
 background_set_colour(make_color_rgb(97, 29, 36));
 ;
@@ -183,6 +183,7 @@ GameCont.hm_throne_gate_frame = (- 1);
 GameCont.hm_followup_throne_bounds = [];
 ;
 GameCont.hm_followup_throne_second_dead = 0;
+GameCont.hm_second_started1104=false;
 ;
 }
 

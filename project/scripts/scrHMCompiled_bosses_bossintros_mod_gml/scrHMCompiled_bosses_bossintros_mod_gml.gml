@@ -10,6 +10,7 @@ function hm_bosses_bossintros_mod_gml___load() {
 
 // Source bosses/bossintros.mod.gml:0; boss_trigger (native content 1.1.0)
 function hm_bosses_bossintros_mod_gml_boss_trigger() {
+if(scrHMExtraPresentation1104(argument4)) return;
 if(scrHMMessengerSkipPresentation1103(argument4)) return;
 if(scrHMSkipBossPresentation108(argument0,argument4)) return;
 if (((instance_exists(argument4) && scrHMVariableExists(argument4, "hm_extra")) && argument4.hm_extra)) {
@@ -246,12 +247,11 @@ if(__hm_break3) break;
 // Source bosses/bossintros.mod.gml:311; boss_death
 
 function hm_bosses_bossintros_mod_gml_boss_death() {
-
+if(scrHMExtraPresentation1104(id)) return;
 if ((instance_exists(Player) and (! instance_exists(SpiralCont)))) {
 
 hm_bosses_bossintros_mod_gml_boss_trigger("", mskNone, mskNone, mskNone, id, 0);
 
 }
-
 }
 

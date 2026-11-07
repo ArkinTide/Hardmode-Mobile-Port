@@ -1,3 +1,5 @@
+// The MOD also creates this final wreck directly after its flying last wish.
+hitid = HitId.LilHunterDie
 typ = 0
 trn = ((random(5) + 5) * choose(1, -1))
 

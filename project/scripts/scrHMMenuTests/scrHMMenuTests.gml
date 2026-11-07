@@ -176,7 +176,7 @@ function scrHMMenuTestStep() {
         scrHMMenuCheck(scrHMWeaponProperty("weapon:secretweapon1","weapon_name","")=="trident","raw weapon ID/name unchanged");
         scrHMMenuCheck(scr_weapon_get_name(global.hm_weapon_ids.secretweapon1)==(scrHMChinese()?"三叉戟":"trident"),"localized weapon presentation");
         scrHMMenuCheck(scrDeathCauseGetName([sprOasisBossIdle,"Big Bubbler"])==(scrHMChinese()?"巨型吐泡怪":"Big Bubbler"),"localized death cause");
-        scrHMMenuCheck(scrHMLocalize("GREATER#GUARDIAN")== (scrHMChinese()?"上位守卫":"GREATER#GUARDIAN"),"legacy multiline boss title");
+        scrHMMenuCheck(scrHMLocalize("GREATER#GUARDIAN")== (scrHMChinese()?"至高守护者":"GREATER#GUARDIAN"),"legacy multiline boss title");
         scrHMMenuCheck(scrHMLocalize(" +3 BOLTS ")== (scrHMChinese()?" +3 箭矢 ":" +3 BOLTS "),"stock dynamic ammo pickup text and surrounding whitespace");
         scrHMMenuOptionsCheck();
         scrHMMenuCheck(global.language_current[$ "Init:Id"]==languages[language_index],"settings retain selected language");

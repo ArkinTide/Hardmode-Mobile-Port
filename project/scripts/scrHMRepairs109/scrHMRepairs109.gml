@@ -58,7 +58,7 @@ function scrHMLilHunterPending109() {
     with(CustomObject) if(name=="hm_hunter_arrival109") {_exists=true;break;}
     if(_exists || instance_exists(WantLH) || instance_exists(LilHunter)) return;
     with(instance_create(10016,10016,CustomObject)) {
-        name="hm_hunter_arrival109";hm_wait109=500;
+        name="hm_hunter_arrival109";hm_wait109=30;
         hm_area109=GameCont.area;hm_sub109=GameCont.subarea;hm_loop109=GameCont.loops;
         on_step=scrHMScriptRef(scrHMLilHunterWait109);
     }
@@ -68,6 +68,7 @@ function scrHMLilHunterWait109() {
     if(GameCont.area!=hm_area109 || GameCont.subarea!=hm_sub109 || GameCont.loops!=hm_loop109) {
         instance_destroy(id,false);return;
     }
+    if(instance_exists(GenCont) || !instance_exists(Player)) return;
     if(--hm_wait109>0) return;
     if(!instance_exists(WantLH) && !instance_exists(LilHunter)) instance_create(x,y,WantLH);
     instance_destroy(id,false);
@@ -213,25 +214,7 @@ function scrHMBoneFishRadiation109(_below) {
 }
 
 function scrHMGuardianLayers109() {
-    if(!scrHMEnabled()) return;
-    var _active=false;
-    with(HMBinding) if(hm_code==scrHMScriptRef(hm_bosses_guardianboss_mod_gml_guardiandark_draw)) {_active=true;break;}
-    if(!_active && !(self[$ "hm_guard_layers109"]??false)) return;
-    hm_guard_layers109=_active;
-    // Native with avoids materializing per-type ID arrays. Keep entities in
-    // one ordinary draw pass above the dark arena instead of redrawing hitme.
-    with(GameObject) {
-        if(!is_undefined(self[$ "hm_guard_depth109"])) {
-            if(depth==hm_guard_set109) depth=hm_guard_depth109;
-            hm_guard_depth109=undefined;
-        }
-    }
-    if(!_active) return;
-    with(GameObject) if(instance_is(id,hitme)||instance_is(id,projectile)||instance_is(id,Pickup)
-        ||instance_is(id,Effect)||instance_is(id,Explosion)||instance_is(id,CrystalShield)
-        ||instance_is(id,CrystalShieldDisappear)||instance_is(id,PortalStrike)) {
-        if(depth>-9) {hm_guard_depth109=depth;depth=-9;hm_guard_set109=depth;}
-    }
+    scrHMGuardianLayers1104();
 }
 
 function scrHMGuardianDark109() {

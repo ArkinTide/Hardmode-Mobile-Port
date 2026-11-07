@@ -421,12 +421,12 @@ _hml_pool = [Scorpion, Scorpion, Bandit, Bandit, Maggot, JungleFly, JungleFly, M
 break;
 ;
 case 2:
-_hml_pool = [Ratking, Ratking, BuffGator, LaserCrystal, Rat, Exploder, Exploder, SuperFireBaller];
+_hml_pool = [Ratking, Ratking, BuffGator, LaserCrystal, Rat, Exploder, Exploder, SuperFireBaller, SuperFrog];
 ;
 break;
 ;
 case 3:
-_hml_pool = [Sniper, Sniper, MeleeFake, MeleeFake, Salamander, SnowBot, Raven, BuffGator, Raven];
+_hml_pool = [Sniper, Sniper, MeleeFake, MeleeFake, Salamander, SnowBot, Raven, BuffGator, Raven, SuperFrog];
 ;
 break;
 ;
@@ -799,7 +799,7 @@ if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
 {
 name = "hm_hunter_pending";
 ;
-hm_wait = 500;
+hm_wait = 30;
 ;
 on_step = scrHMContentRef1100("mod", "arkintide", "hm_hunter_wait");
 ;
@@ -811,6 +811,7 @@ if(__hm_break3) break;
 
 // Source arkintide.mod.gml:0; hm_hunter_wait (native content 1.1.0)
 function hm_arkintide_mod_gml_hm_hunter_wait() {
+if(instance_exists(GenCont) || !instance_exists(Player)) return;
 hm_wait -= 1;
 ;
 if ((hm_wait > 0)) {
@@ -3897,8 +3898,12 @@ _hml_ui.opt_bossintro = 0;
 }
 GameCont.loops = 0;
 ;
+// Native extra constructors must see their extra context before Create.
+var _hml_pending_before1104=variable_instance_get(GameCont,"hm_extra_pending")??false;
+GameCont.hm_extra_pending=true;
 _hml_actor = instance_create(_hml__x, _hml__y, _hml_native);
 ;
+GameCont.hm_extra_pending=_hml_pending_before1104;
 GameCont.loops = _hml_actual_loop;
 ;
 if (instance_exists(_hml_ui)) {
@@ -6481,6 +6486,7 @@ scrHMPickupDrop1100(100, 0);
 
 // Source arkintide.mod.gml:0; hm_bullet_maggot_allowed (native content 1.1.0)
 function hm_arkintide_mod_gml_hm_bullet_maggot_allowed() {
+if(self[$ "hm_poison_no_maggot1104"]??false) return false;
 if (scrHMVariableExists(id, "hitid")) {
 {
 if ((hitid == HitId.SuperFrog)) {
