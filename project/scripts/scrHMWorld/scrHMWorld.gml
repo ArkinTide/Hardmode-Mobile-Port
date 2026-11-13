@@ -45,6 +45,7 @@ function scrHMWorldInit() {
 }
 
 function scrHMWorldBegin() {
+    scrHMClockBegin1117();
     logic_tick=false;
     if(lockstep_stop || UberCont.paused) return;
     logic_accumulator+=timescale;

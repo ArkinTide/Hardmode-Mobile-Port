@@ -1017,7 +1017,7 @@ can_walk = 1;
 
 ;
 
-maxspeed = _hm.vars._maxspd;
+maxspeed = _hm.vars._maxspd * timescale;
 
 ;
 
@@ -1057,7 +1057,7 @@ case 7: // bosses/guardianboss.mod.gml:483
 
 {
 
-_hm.vars._maxspd = maxspeed;
+_hm.vars._maxspd = maxspeed / timescale;
 
 ;
 
@@ -1077,7 +1077,7 @@ nexthurt = (current_frame + 10);
 
 ;
 
-maxspeed = 6;
+maxspeed = 6 * timescale;
 
 ;
 

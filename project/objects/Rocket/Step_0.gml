@@ -4,6 +4,8 @@ if lockstep_stop
 	exit
 
 if active && current_frame_active {
-    motion_add_m(direction, accel, maxspeed)
+    // Acceleration runs once per 30 Hz logical tick; the resulting native
+    // velocity still uses pixels per physical callback at either cap.
+    motion_add_m(direction, accel * timescale, maxspeed)
     instance_create(x, y, Smoke)
 }

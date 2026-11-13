@@ -13,3 +13,17 @@ function scrHMReplacementGunGodHealth1115() {
     max_hp=14250+(max_hp-14250)*1.5;
     hp=14250+(hp-14250)*1.5;
 }
+
+// The helicopter has not died: retire its presentation ledger before its
+// harmless departure actor is created. Loop0 phase two reuses "gungod", so
+// remove the finished phase ledger and let the real combat actor register anew.
+function scrHMGunGodHandoff1117(_actor) {
+    if(!instance_exists(_actor) || (_actor[$ "hm_extra"]??false)
+        || !instance_exists(HMWorld)) return;
+    var _kind=scrHMBossGroupKind115(_actor);
+    if(_kind=="") return;
+    var _groups=scrHMBossGroups115(),_group=_groups[$ _kind];
+    scrHMBossGroupRetire115(_actor);
+    if(!is_undefined(_group)) _group.phase_transition1117=true;
+    if(variable_struct_exists(_groups,_kind)) variable_struct_remove(_groups,_kind);
+}

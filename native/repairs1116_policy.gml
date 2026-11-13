@@ -247,9 +247,87 @@ function scrHMBossNativeDraw1116() {
     if(array_contains([4,6,9,7,8],_boss)) draw_sprite(sprBossIntroBackLayer,_boss,_center+_x*.5,0);
     if(_x<20) {
         draw_sprite(sprBossNameSplat,hm_native_splat1116,_center,view_height*.5);
-        // Use the original native sprite title; no new font or atlas is needed.
-        draw_sprite_ext(sprBossName,_boss,_center+1+hm_native_name_x1116,view_height*.5+1,1,1,0,c_black,1);
-        draw_sprite(sprBossName,_boss,_center+hm_native_name_x1116,view_height*.5);
+        if(scrHMChinese()) {
+            hm_native_title1117=scrHMBossNativeTitle1117(_boss,self[$ "hm_boss_kind115"]??"");
+            scrHMBossPortraitTitleDraw1117(_center+hm_native_name_x1116,view_height*.5-10,hm_native_title1117);
+        } else {
+            draw_sprite_ext(sprBossName,_boss,_center+1+hm_native_name_x1116,view_height*.5+1,1,1,0,c_black,1);
+            draw_sprite(sprBossName,_boss,_center+hm_native_name_x1116,view_height*.5);
+        }
     }
     draw_set_color(_color);draw_set_alpha(_alpha);
+}
+
+// Presentation strings are translated here, after boss identity and AI lookup.
+// The large portrait sprites retain their original artwork in every language.
+function scrHMBossPortraitLabel1117(_title) {
+    var _key=string_upper(string_replace_all(string(_title),"#"," "));
+    if(_key=="THE THRONE") _key="THE NUCLEAR THRONE";
+    if(array_contains(["YV","Y.V","Y.V."],_key)) return "Y.V";
+    return scrHMChinese()?scrHMLocalize(_key):_title;
+}
+function scrHMBossNativeTitle1117(_index,_kind) {
+    var _titles=["BIG BANDIT","BIG DOG","LIL' HUNTER","THE NUCLEAR THRONE","THRONE II",
+        "MOM","HYPER CRYSTAL","TECHNOMANCER","CAPTAIN","CURSED HYPER CRYSTAL","Y.V"];
+    if(_index<0 || _index>=array_length(_titles)) return "";
+    if(_index==10 && _kind=="gungod") return scrHMBossPortraitLabel1117("DA GUN GOD");
+    return scrHMBossPortraitLabel1117(_titles[_index]);
+}
+function scrHMBossPortraitLayout1117(_title,_width=170) {
+    var _previous=draw_get_font();draw_set_font(fntCJK);
+    var _label=scrHMBossPortraitLabel1117(_title);
+    var _w=max(1,font_get_string_width(_label)),_h=max(1,font_get_string_height(_label));
+    var _scale=min(1.5,_width/_w,20/_h),_offset=font_get_height_diff()*_scale;
+    draw_set_font(_previous);
+    return {label:_label,font:fntCJK,scale:_scale,offset:_offset,width:_w*_scale,height:_h*_scale};
+}
+function scrHMBossPortraitTitleDraw1117(_x,_top,_title) {
+    var _font=draw_get_font(),_color=draw_get_color(),_alpha=draw_get_alpha();
+    var _ha=draw_get_halign(),_va=draw_get_valign();
+    draw_set_halign(fa_center);draw_set_valign(fa_top);
+    var _layout=scrHMBossPortraitLayout1117(_title),_y=floor(_top-_layout.offset);
+    draw_set_font(_layout.font);draw_set_alpha(1);draw_set_color(c_black);
+    draw_text_transformed(round(_x)+1,_y+1,_layout.label,_layout.scale,_layout.scale,0);
+    draw_set_color(c_white);
+    draw_text_transformed(round(_x),_y,_layout.label,_layout.scale,_layout.scale,0);
+    draw_set_font(_font);draw_set_color(_color);draw_set_alpha(_alpha);
+    draw_set_halign(_ha);draw_set_valign(_va);
+    return _layout.label;
+}
+
+// The original Last Wish excavation and the guaranteed final-cave entrance
+// share one usable flower. Removing duplicates never changes any Floor or
+// FloorExplo created by the original excavation's jungle-floor painting.
+function scrHMJungleFlowerRoom1117() {
+    return scrHMEnabled() && instance_exists(GameCont) && GameCont.subarea==3
+        && array_contains([scrHMAreaResolve("caves"),scrHMAreaResolve("cavesinv")],GameCont.area);
+}
+function scrHMJungleFlowerSingleton1117() {
+    if(!scrHMJungleFlowerRoom1117()) return noone;
+    var _keep=noone,_progress=-1,_actors=[];
+    with(CustomHitme) if(name=="   feed") {
+        array_push(_actors,id);
+        var _p=fed+((driver!=-1)?100:0);
+        if(_p>_progress || (_p==_progress && id<_keep)) {_keep=id;_progress=_p;}
+    }
+    for(var _i=0;_i<array_length(_actors);++_i)
+        if(_actors[_i]!=_keep) instance_destroy(_actors[_i],false);
+    if(instance_exists(_keep)) scrHMJungleFlowerFloor1117(_keep);
+    return _keep;
+}
+function scrHMJungleFlowerPending1117() {
+    if(!scrHMJungleFlowerRoom1117()) return false;
+    var _pending=false;
+    with(CustomObject) if(on_step==scrHMScriptRef(hm_props_mod_gml_cave_step)) {_pending=true;break;}
+    return _pending;
+}
+
+function scrHMJungleFlowerFloor1117(_actor) {
+    if(!instance_exists(_actor) || !scrHMJungleFlowerRoom1117()
+        || (_actor[$ "hm_flower_floor1117"]??false)) return;
+    _actor.hm_flower_floor1117=true;
+    var _cx=_actor.x,_cy=_actor.y;
+    // Paint existing geometry only, including the unconditional entrance.
+    with(Floor) if(point_distance(x+16,y+16,_cx,_cy)<52) sprite_index=sprFloor105;
+    with(FloorExplo) if(point_distance(x+8,y+8,_cx,_cy)<52) sprite_index=sprFloor105;
 }

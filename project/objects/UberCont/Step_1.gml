@@ -1,4 +1,6 @@
 /// @description Control pause states
+scrHMClockTestGlobalBegin1117();
+scrHMClockBegin1117();
 scrDesktopWheelFrame111();
 
 // 60帧适配：alarm 时间补偿（整数安全版）

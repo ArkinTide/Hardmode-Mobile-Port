@@ -405,6 +405,7 @@ scrHMSoundPlay(snd_hurt);
 if ((! (hp <= 14250))) {
 exit;
 }
+scrHMGunGodHandoff1117(id);
 hm_gungod_departed = 1;
 ;
 hp = 14250;

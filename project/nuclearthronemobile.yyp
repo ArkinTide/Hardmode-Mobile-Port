@@ -30470,6 +30470,36 @@
         "name": "sprHMCorpse116RogueFreak",
         "path": "sprites/sprHMCorpse116RogueFreak/sprHMCorpse116RogueFreak.yy"
       }
+    },
+    {
+      "id": {
+        "name": "scrHMClock1117",
+        "path": "scripts/scrHMClock1117/scrHMClock1117.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrHMChief1117",
+        "path": "scripts/scrHMChief1117/scrHMChief1117.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrHMGameplayClock1117",
+        "path": "scripts/scrHMGameplayClock1117/scrHMGameplayClock1117.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrHMGameplayChief1117",
+        "path": "scripts/scrHMGameplayChief1117/scrHMGameplayChief1117.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrHMGameplayPresentation1117",
+        "path": "scripts/scrHMGameplayPresentation1117/scrHMGameplayPresentation1117.yy"
+      }
     }
   ],
   "resourceType": "GMProject",

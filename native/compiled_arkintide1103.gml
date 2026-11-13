@@ -2473,6 +2473,7 @@ return;
 
 // Source arkintide.mod.gml:0; hm_jungle_entrance (native content 1.1.0)
 function hm_arkintide_mod_gml_hm_jungle_entrance() {
+if(instance_exists(scrHMJungleFlowerSingleton1117()) || scrHMJungleFlowerPending1117()) exit;
 if ((instance_exists(GenCont) || (! instance_exists(Floor)))) {
 exit;
 }
@@ -6715,6 +6716,7 @@ scrHMSoundPlay(snd_hurt);
 if ((! (hp <= 14250))) {
 exit;
 }
+scrHMGunGodHandoff1117(id);
 hm_gungod_departed = 1;
 ;
 hp = 14250;

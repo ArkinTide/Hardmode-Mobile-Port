@@ -174,7 +174,7 @@ function scrHMBossFreeze104() {
             if(!is_undefined(_value)) {_values[$ _key]=_value;self[$ _key]=-1;}
         }
         array_push(_records,{who:id,timers:_timers,values:_values,speed:speed,direction:direction,
-            anim:image_speed,was_frozen:self[$ "frozen"]??false});
+            anim:image_speed,clock_scale:timescale,anim_sprite:sprite_index,was_frozen:self[$ "frozen"]??false});
         speed=0;image_speed=0;frozen=true;hm_portrait_frozen=true;
     }
     _intro.hm_portrait_records=_records;HMWorld.hm_portrait_active=_intro;
@@ -193,7 +193,8 @@ function scrHMBossRestore104() {
             for(var _j=0;_j<12;++_j) alarm[_j]=_record.timers[_j];
             var _keys=variable_struct_get_names(_record.values);
             for(var _j=0;_j<array_length(_keys);++_j) self[$ _keys[_j]]=_record.values[$ _keys[_j]];
-            speed=_record.speed;direction=_record.direction;image_speed=_record.anim;
+            speed=_record.speed*timescale/(_record[$ "clock_scale"]??timescale);direction=_record.direction;
+            image_speed=_record.anim*scrHMClockAnimationRatio1117(_record[$ "anim_sprite"]??sprite_index,_record[$ "clock_scale"]??timescale,timescale);
             frozen=_record.was_frozen;hm_portrait_frozen=false;
         }
     }
@@ -208,6 +209,8 @@ function scrHMBossRestore104() {
 }
 
 function scrHMBossStep104() {
+    var _advance=scrHMClockPresentationTicks1117();
+    repeat(_advance) {
     scrHMBossNativeStep1116();
     if(bosssplat<2) bosssplat=min(2,bosssplat+.4);
     if(bossx>view_width*.60) bossx-=view_width/24;
@@ -217,6 +220,7 @@ function scrHMBossStep104() {
     if((bossx<view_width*.33 && !_native_wait) || instance_exists(SpiralCont) || !instance_exists(Player)) {
         scrHMBossRestore104();
         if(fadedark==1) scrHMSoundPlay(sndBossIntroOut);
-        instance_destroy();
+        instance_destroy();return;
+    }
     }
 }

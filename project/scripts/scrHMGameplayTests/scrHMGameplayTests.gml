@@ -41,6 +41,8 @@ function scrHMGameplayTests() {
     }
     var _rate=real(_parts[3]);
     save_set_value("options","framerate",_rate);
+    save_set_value("visual","hm_autoframerate",false);
+    UberCont.opt_framerate=_rate;UberCont.opt_hm_autoframerate=false;
     game_set_speed(_rate,gamespeed_fps);global.time_scale=30/_rate;
     if(!instance_exists(GameCont)) instance_create(0,0,GameCont);
     var _first=ord(string_char_at(_parts[0],1));

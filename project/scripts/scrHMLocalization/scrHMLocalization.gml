@@ -63,7 +63,7 @@ static _catalog={
   "BANDIT": "小匪",
   "LITTLE BANDIT": "小匪",
   "BIG BANDIT": "大匪",
-  "BIG DOG": "巨犬",
+  "BIG DOG": "大狗",
   "LIL HUNTER": "小猎人",
   "HYPER CRYSTAL": "超能水晶",
   "FISH": "鱼",

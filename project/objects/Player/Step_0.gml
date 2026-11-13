@@ -101,7 +101,7 @@ if fainted {
 
 if (!visible || scrGameIsLockState()) exit
 scrHMSwimPlayer105();
-if(instance_exists(HMGameplayTest)) scrHMGameplayInput105();
+if(instance_exists(HMGameplayTest)) {scrHMGameplayInput105();scrHMClockTestPlayerInput1117();}
 
 if (!roll) {
 	if can_walk && KeyCont.moving[index] > 0 {

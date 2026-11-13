@@ -1,6 +1,6 @@
 var _index = global.index
 
-scrHMFrameBudget1116();
+// Cap transactions run in Begin Step, before alarms and movement.
 
 if native_cursor_inst != -1
 	native_cursor_update()

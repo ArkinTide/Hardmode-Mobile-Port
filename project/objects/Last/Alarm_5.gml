@@ -20,4 +20,4 @@ if (drawspr == sprLastWarpIn) {
 drawspr = sprLastIdle
 charge = 0
 
-alarm[1] = 10 + (hp / max_hp) * 15
+alarm[1] = scrHMChiefDecisionDelay1117()

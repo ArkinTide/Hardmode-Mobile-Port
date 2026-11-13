@@ -46,7 +46,9 @@ function scrHMReportAssets1103() {
 }
 function scrHMReportIntroDraw1103(_x,_y,_title) {
     var _font=draw_get_font();
-    if(_title=="The#Messenger" || _title=="THE#MESSENGER") {
+    if(scrHMChinese()) {
+        hm_custom_title1117=scrHMBossPortraitTitleDraw1117(_x,_y,_title);
+    } else if(_title=="The#Messenger" || _title=="THE#MESSENGER") {
         draw_sprite(sprHMMessengerTitle1103,0,_x,_y-7);
     } else {
         scrHMReportAssets1103();draw_set_font(global.hm_report_title_font1103);

@@ -5,7 +5,10 @@ if lockstep_stop
 if(scrHMEnabled()) {
     var _target=global.hm_camera_targets[global.index];
     if(instance_exists(_target) && !instance_is(_target,Player)) {
-        var _smooth=1-power(.9,timescale);
+        var _clock=timescale;
+        if(instance_exists(HMWorld) && HMWorld.hm_portrait_active==_target)
+            _clock=scrHMClockSafe1117()?clamp(delta_time/1000000,0,.25)*30:0;
+        var _smooth=1-power(.9,_clock);
         view_xview=round(lerp(view_xview,_target.x-view_width/2,_smooth));
         view_yview=round(lerp(view_yview,_target.y-view_height/2,_smooth));
         viewxf=view_xview;viewyf=view_yview;

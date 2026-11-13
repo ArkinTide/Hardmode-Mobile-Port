@@ -6109,6 +6109,8 @@ function hm_props_mod_gml_whitecrystal_step() {scrHMIceCrystal107();}
 
 // Source props.mod.gml:0; Flower_create (native content 1.1.0)
 function hm_props_mod_gml_Flower_create(_hml__x, _hml__y) {
+var _existing1117=scrHMJungleFlowerSingleton1117();
+if(instance_exists(_existing1117)) return _existing1117;
 { var __hm_with1 = scrHMInstances(instance_create(_hml__x, _hml__y, CustomHitme)), __hm_break3=false;
 for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
 if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
@@ -6141,6 +6143,7 @@ depth = 0;
 fed = 0;
 pla_msk = 0;
 on_step = scrHMScriptRef(hm_props_mod_gml_Flower_step);
+scrHMJungleFlowerFloor1117(id);
 }
 }
 if(__hm_break3) break;

@@ -355,6 +355,10 @@ function scrHMBossGroupReserve115(_kind,_expected=1) {
 function scrHMBossGroupKind115(_actor) {
     if(is_undefined(_actor) || is_struct(_actor) || !instance_exists(_actor) || (_actor[$ "hm_extra"]??false)
         || (_actor[$ "hm_palace_guardian"]??false) || ((_actor[$ "revived"]??0)>0 && !(_actor[$ "hm_messenger_auto_revived115"]??false))) return "";
+    // A helicopter hull and its falling actor are a live phase handoff,
+    // never an empty encounter eligible for a victory presentation.
+    var _name=_actor[$ "name"]??"";
+    if(_name=="hm_gungod_landing" || (_name=="GunGod" && (_actor[$ "hm_gungod_departed"]??false))) return "";
     var _tag=_actor[$ "hm_boss_kind115"]??"";
     if(_tag!="") return _tag;
     switch(_actor.object_index) {
@@ -531,6 +535,7 @@ function scrHMBossGroupTick115() {
         if(!instance_exists(_intro)) continue;
         _intro.hm_boss_kind115=_group.kind;_intro.hm_boss_exit115=_exit;
         _intro.hm_camera_start1116=HMWorld.logic_serial;
+        _intro.hm_camera_wall_start1117=get_timer();
         _intro.hm_camera_target_x1116=_intro.x;_intro.hm_camera_target_y1116=_intro.y;
         if(_native_art>=0) scrHMBossNativeAttach1116(_intro,_native_art);
         if(_exit) {_group.exit_done=true;_group.exit_count++;}
@@ -554,7 +559,9 @@ function scrHMBossPresentationProtected115() {
         || ((variable_instance_get(HMWorld, "hm_native_presentation115")??false) && UberCont.bossintro)
         || current_frame<(variable_instance_get(HMWorld, "hm_presentation_until115")??-1);
 }
-
+// A replacement deliberately removes a living original without its death
+// event. Retire that ledger before deletion, rather than treating the empty
+// original group as a victory while the replacement is still fighting.
 function scrHMBossGroupRetire115(_actor) {
     var _kind=scrHMBossGroupKind115(_actor);
     if(_kind=="" || !instance_exists(HMWorld)) return;
