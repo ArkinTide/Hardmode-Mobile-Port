@@ -148,7 +148,8 @@ function scrHMGameplayRepairs105() {
     if(mode=="dog105" && ticks==10) {
         scrHMGameplayIsolate103();scrHMModSet("mod","options","intropan","0");scrHMModSet("mod","options","bossportraits","0");
         dog105=instance_create(player.x+80,player.y,ScrapBoss);
-        with(dog105) {ammo=8;alarm[1]=1;intro=-2;morehp=1;introanimation=11;}
+        // This fixture isolates ricochets; boss1116 observes the full opening.
+        with(dog105) {ammo=8;alarm[1]=1;intro=-2;morehp=1;introanimation=11;hm_dog_open1116=11;}
         dog_shot105=noone;dog_bounce105=false;
         instance_create(14064,14000,Wall);
     }

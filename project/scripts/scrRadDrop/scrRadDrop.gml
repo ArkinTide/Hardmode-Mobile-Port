@@ -5,7 +5,7 @@
 /// @param big_chunks=true
 /// @param proc_stalker=true
 function scrRadDrop(_x, _y, _amount, _can_big = true, _can_stalker = true) {
-    if(scrHMFinalBossNoRadiation1115()) return;
+    if(scrHMFinalBossNoRadiation1115() || scrHMTankNoRadiation1116()) return;
 	var _high = instance_is(self, RadChest) ? 26 : 15, _speed, _direction;
 	
 	if (instance_is(self, prop)) {

@@ -41,3 +41,4 @@ spr_shadow = shd32
 spr_shadow_y = 4
 
 hitid = HitId.BigBandit
+scrHMStageBanditCreate1116();

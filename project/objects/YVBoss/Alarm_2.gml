@@ -1,5 +1,5 @@
 /// @description Attacking
-if ((ammo --) <= 0) {
+if ((wep == wep_minigun && scrHMEnabled() ? ammo : ammo --) <= 0) {
 	motion_add(random_angle, (1) * timescale)
 	if (instance_exists(target)) {
 		motion_add(point_direction(x, y, target.x, target.y), (4) * timescale)
@@ -56,9 +56,21 @@ switch (wep) {
 		snd_play_gun(sndGoldRocket)
 		break
 	case wep_minigun:
-		with (scrBulletShotShellFX(Shell, 40)) speed *= random(1) + 1
-		scr_projectile_create(x, y, YVBullet, gunangle + orandom(5), 16)
-		gunangle += minigun_side * random_range(0.8, 1)
+		if(scrHMEnabled()) {
+			// Native desktop Alarm 2 emits Loop+1 shots per logic tick. Its
+			// opening turn uses half a degree, then the sweep turns by one.
+			var _max=self[$ "hm_minigun_max1116"]??(70+30*max(0,floor(GameCont.loops)))
+			repeat(1+max(0,floor(GameCont.loops))) {
+				with (scrBulletShotShellFX(Shell, 40)) speed *= random(1) + 1
+				scr_projectile_create(x, y, YVBullet, gunangle + orandom(5), 16)
+				ammo--
+				gunangle += minigun_side * ((ammo+10>_max) ? 0.5 : 1)
+			}
+		} else {
+			with (scrBulletShotShellFX(Shell, 40)) speed *= random(1) + 1
+			scr_projectile_create(x, y, YVBullet, gunangle + orandom(5), 16)
+			gunangle += minigun_side * random_range(0.8, 1)
+		}
 		scr_screenshake(3)
 		snd_play_gun(sndMinigun)
 		alarm[2] = 1

@@ -1,3 +1,4 @@
+if(scrHMThroneExitDraw116()) exit;
 if(scrHMPlayerNativeHidden107()) exit;
 // NTT swimming owns the cropped body renderer.
 if(scrHMEnabled() && (self[$ "swimming"]??false)) exit;

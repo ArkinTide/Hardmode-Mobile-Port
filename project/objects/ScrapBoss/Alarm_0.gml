@@ -1,3 +1,4 @@
+if(scrHMEnabled() && (self[$ "hm_dog_native_intro1116"]??false) && hm_dog_open1116<11) {alarm[0]=1;exit;}
 spr_idle = sprScrapBossIdle
 
 if random(3) < 1 {

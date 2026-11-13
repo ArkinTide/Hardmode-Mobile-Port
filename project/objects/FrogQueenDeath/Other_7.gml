@@ -23,6 +23,7 @@ if sprite_index == sprFrogQueenDying {
         mask_index = sprite_index
         image_xscale = other.image_xscale
         size = 2
+        scrHMExtraCorpse1116(other.id);
     }
 
     instance_destroy()

@@ -1,9 +1,9 @@
-# Hardmode Mobile Port 1.1.5
+# Hardmode Mobile Port 1.1.6
 
-Hardmode手机移植版，build19。本轮35项更改见 [修复记录](docs/FIXES.md)，安装方法见 [安装说明](docs/INSTALL.md)。
+Mobile adaptation of Hardmode b24, build 20. See [fixes](docs/FIXES.md) and [installation](docs/INSTALL.md).
 
-最终交付回执记录 155 个同一VM场景、142631 项断言通过。
+Final acceptance: 233 scenarios and 157017 assertions on one source-bound VM. This repository contains text source and project metadata; installers are distributed through the existing Hardmode MEGA folder.
 
-保留原有包名、签名身份、存档和手机版变异选择界面。此仓库发布文本源码及工程元数据；安装包通过Hardmode专用MEGA目录发布。
+The package identity, Android signing identity and save paths are preserved. Native mobile mutation selection is retained. No NTTE/NTUF or desktop MOD is changed.
 
-测试使用静音隔离的桌面宿主VM，未进行安卓/iPhone真机验收，不保证恒定60帧。iOS IPA需重签，采用兼容的既有原生Runner及新VM/资源。
+Validation uses a silent isolated Windows host VM, not physical Android/iPhone devices. Sustained overload may temporarily render at the native30Hz rate to retain simulation speed and restore the saved60FPS preference after recovery. No universal60FPS guarantee is made. The IPA retains a compatible native runner with fresh VM/resources and requires re-signing.

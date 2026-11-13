@@ -58,38 +58,37 @@ function scrHMExtraCrystalTick1115() {
     canfly=true;
     if(current_frame<(self[$ "hm_extra_teleport_at1115"]??0)) return;
     hm_extra_teleport_at1115=current_frame+irandom_range(30,60);
-    // Use the original lateral 64-pixel blink, with collision validation.
-    // Trying the opposite side avoids an invisible enemy trapped in a wall.
-    var _toward=point_direction(x,y,target.x,target.y);
-    var _angle=_toward+choose(-90,90)+random_range(-30,30);
-    var _distance=point_distance(x,y,target.x,target.y)>view_width-32
-        ?min(point_distance(x,y,target.x,target.y)/2,160):64;
-    if(_distance>64) _angle=_toward;
-    for(var _i=0;_i<8;++_i) {
-        var _a=_angle+_i*45,_x=x+lengthdir_x(_distance,_a),_y=y+lengthdir_y(_distance,_a);
-        if(!hm_arkintide_mod_gml_hm_extra_fit("cursedcrystal",_x,_y)) continue;
-        x=_x;y=_y;xprevious=x;yprevious=y;
-        direction=_toward;
-        hm_extra_last_blink1115=current_frame;
-        instance_create(x,y,PortalClear);
-        return;
-    }
+    scrHMExtraCrystalBlink1116();
 }
 
 function scrHMExplosionSource1115(_source) {
     if(!scrHMEnabled() || !instance_exists(_source)) return;
     var _owner=_source[$ "hm_rocket_owner1115"]??noone;
-    if(_owner==noone) return;
-    // Keep the original launcher even if a melee deflection changes creator.
-    hm_rocket_owner1115=_owner;
+    var _messenger=_source[$ "hm_messenger_owner1116"]??noone;
+    if(_owner==noone && _messenger==noone) return;
+    // Ownership survives deflection, secondary explosions and owner death.
+    if(_owner!=noone) hm_rocket_owner1115=_owner;
+    if(_messenger!=noone) hm_messenger_owner1116=_messenger;
+    hm_rocket_nochain1116=_source[$ "hm_rocket_nochain1116"]??false;
     creator=_source[$ "creator"]??noone;
     hitid=_source[$ "hitid"]??hitid;
-    // Explosion team stays native: immunity applies only to its own boss.
 }
 
 function scrHMSelfRocketImmune1115(_target,_source) {
     if(!scrHMEnabled() || !instance_exists(_target) || !instance_exists(_source)) return false;
-    return (_source[$ "hm_rocket_owner1115"]??noone)==_target;
+    if((_source[$ "hm_rocket_owner1115"]??noone)==_target) return true;
+    if((_source[$ "hm_messenger_owner1116"]??noone)==_target) return true;
+    // Delayed source callbacks can carry the immutable owner solely in HitId.
+    var _hitid=_source[$ "hitid"]??HitId.None;
+    return instance_is(_source,Explosion) && is_array(_hitid) && array_length(_hitid)>2
+        && _hitid[2]==_target && (_target[$ "hm_messenger1103"]??false);
+}
+
+function scrHMRocketChainBlocked1116(_rocket,_blast) {
+    if(!scrHMEnabled() || !instance_exists(_rocket) || !instance_exists(_blast)) return false;
+    // GunGod rockets ignore blast-triggered detonation, including unrelated
+    // and player explosions. Wall and direct-target collisions remain native.
+    return (_rocket[$ "hm_rocket_nochain1116"]??false) && instance_is(_blast,Explosion);
 }
 
 // Isolated, multi-frame regression scenarios registered by the main driver.
@@ -246,4 +245,81 @@ function scrHMGameplayRocket1115() {
     show_debug_message("HARDMODE ROCKET1115 "+json_stringify({kind:_bird?"bird":"gungod",loops:GameCont.loops,
         neutral_blasts:array_length(_blasts),child_blasts:_small,self_damage:0,player_damage:1}));
     rocket_complete1115=true;
+}
+
+// Native production attacks and collision callbacks, in an isolated real room.
+function scrHMGameplayBoss1116() {
+    if(mode!="boss1116") return;
+    if(ticks==10) {
+        scrHMGameplayLane107();scrHMGameplayNoReplacement1115();
+        scrHMModSet("mod","options","intropan","0");
+        scrHMModSet("mod","options","bossoutros","0");
+        UberCont.opt_bossintro=0;
+        GameCont.loops=3;
+        var _yv=instance_create(player.x+200,player.y,YVBoss);
+        with(_yv) {
+            intro=true;can_shoot=true;wep=wep_golden_revolver;alarm[2]=-1;
+            event_perform(ev_alarm,1);
+        }
+        scrHMGameplayCheck(_yv.wep==wep_minigun && _yv.ammo==160,
+            "Y.V production weapon selection uses desktop Loop-3 magazine budget");
+        var _angle=_yv.gunangle,_before=instance_number(YVBullet);
+        with(_yv) event_perform(ev_alarm,2);
+        scrHMGameplayCheck(_yv.ammo==156 && instance_number(YVBullet)==_before+4
+            && abs(abs(angle_difference(_yv.gunangle,_angle))-2)<.001,
+            "Y.V native Alarm 2 fires four Loop-3 bullets and starts the half-degree sweep");
+        _yv.ammo=100;_angle=_yv.gunangle;
+        with(_yv) event_perform(ev_alarm,2);
+        scrHMGameplayCheck(_yv.ammo==96 && abs(abs(angle_difference(_yv.gunangle,_angle))-4)<.001,
+            "Y.V main minigun sweep turns exactly one degree per bullet");
+        instance_destroy(_yv,false);
+        with(YVBullet) instance_destroy(id,false);
+        dog_intro1116=instance_create(player.x+90,player.y,ScrapBoss);
+        scrHMGameplayCheck(dog_intro1116.hm_dog_open1116==0,
+            "normal Big Dog starts with its authored closed-eye frame in every area");
+    }
+    if(ticks==20) scrHMGameplayCheck(dog_intro1116.hm_dog_open1116>0
+        && dog_intro1116.hm_dog_open1116<11 && !instance_exists(LHBouncer),
+        "Big Dog eye-opening advances in real host ticks while attacks remain locked");
+    if(ticks==42) {
+        scrHMGameplayCheck(dog_intro1116.hm_dog_open1116==11,
+            "Big Dog finishes its full authored eye-opening animation before combat");
+        with(dog_intro1116) {ammo=1;event_perform(ev_alarm,1);}
+        var _bouncers=0;with(LHBouncer) if(self[$ "hm_bigdog_bullet"]??false) _bouncers++;
+        scrHMGameplayCheck(_bouncers>0,"normal Big Dog production firing creates bouncing bullets outside area-script tasks");
+        instance_destroy(dog_intro1116,false);
+        var _boss=hm_enemies_mod_gml_enemyrogue_create(player.x+140,player.y);
+        var _hp=_boss.hp,_blast=instance_create(_boss.x,_boss.y,PopoExplosion);
+        with(_blast) scrHMMessengerTagExplosion1103(_boss);
+        with(_boss) with(_blast) event_perform_object(Explosion,ev_collision,hitme);
+        with(_blast) {scr_hit(_boss,5,hitid);event_perform_object(Explosion,ev_alarm,1);}
+        with(SmallExplosion) if((self[$ "hm_messenger_owner1116"]??noone)==_boss) scr_hit(_boss,5,hitid);
+        scrHMGameplayCheck(_boss.hp==_hp,"Messenger is immune to its own native, direct and child explosion damage");
+        var _peer=instance_create(_boss.x+100,_boss.y,JockRocket);
+        _peer.hm_rocket_owner1115=_boss;_peer.hm_rocket_nochain1116=true;
+        var _family=instance_create(_peer.x,_peer.y,Explosion);
+        _family.hm_rocket_owner1115=_boss;_family.hm_rocket_nochain1116=true;
+        with(_family) with(_peer) event_perform_object(Rocket,ev_collision,Explosion);
+        scrHMGameplayCheck(instance_exists(_peer),"same-launcher GunGod rockets survive sibling blast collision");
+        _family.hm_rocket_owner1115=player.id;
+        with(_family) with(_peer) event_perform_object(Rocket,ev_collision,Explosion);
+        scrHMGameplayCheck(instance_exists(_peer),"GunGod rockets also survive unrelated and player blast collision");
+        with(_peer) event_perform_object(Rocket,ev_collision,Wall);
+        scrHMGameplayCheck(!instance_exists(_peer),"GunGod rockets still detonate on native wall collision");
+        var _target=instance_create(_boss.x+160,_boss.y,Bandit);
+        _target.hp=100;_target.nexthurt=-1;
+        _peer=instance_create(_target.x,_target.y,JockRocket);
+        _peer.hm_rocket_owner1115=_boss;_peer.hm_rocket_nochain1116=true;
+        _peer.team=player.team;
+        with(_target) with(_peer) event_perform_object(Rocket,ev_collision,hitme);
+        scrHMGameplayCheck(!instance_exists(_peer) && _target.hp<100,
+            "GunGod rockets still damage direct targets and detonate on impact");
+        instance_destroy(_target,false);
+        var _ordinary=instance_create(_boss.x+180,_boss.y,Rocket);
+        with(_family) with(_ordinary) event_perform_object(Rocket,ev_collision,Explosion);
+        scrHMGameplayCheck(!instance_exists(_ordinary),"unmarked rocket types retain native explosion-triggered detonation");
+        with(_family) {team=team_none;scr_hit(_boss,1,HitId.Player);}
+        scrHMGameplayCheck(_boss.hp==_hp-1,"Messenger continues to take external explosion damage");
+        show_debug_message("HARDMODE BOSS1116 PASS "+json_stringify({yv_shots:4,half_turn:2,full_turn:4,dog_bouncers:_bouncers}));
+    }
 }

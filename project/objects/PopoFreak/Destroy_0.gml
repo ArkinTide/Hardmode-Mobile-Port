@@ -22,4 +22,11 @@ if random(4) < 1 {
 with WantVan
 canspawn = 1
 
-instance_create(x, y, WantRevivePopoFreak)
+if(!scrHMEnabled()) instance_create(x, y, WantRevivePopoFreak)
+else if(scrHMPoliceLate1116()) {
+    var _corpse=self[$ "hm_death_corpse107"]??noone;
+    if(instance_exists(_corpse)) {
+        var _timer=instance_create(x,y,WantRevivePopoFreak);
+        scrHMPoliceBindCorpse107(_timer,_corpse);
+    }
+}

@@ -1,3 +1,4 @@
+scrHMBossGroupDeath1116();
 scrHMDeathExit(x,y);
 if givekill && instance_exists(GameCont) {
     GameCont.kills ++
@@ -9,6 +10,7 @@ if (instance_number(enemy) == 2) {
 
 if corpse && (!scrHMEnabled() || (sprite_exists(spr_dead) && spr_dead!=mskNone)) {
     with instance_create(x, y, CorpseActive) {
+        if(scrHMEnabled()) hm_enemy_body116=true;
         if(scrHMEnabled()) other.hm_death_corpse107=id;
         if(scrHMEnabled()) {other.hm_death_corpse107=id;hm_no_revive109=other.object_index==TechnoMancer || (other[$ "hm_extra_kind"]??"")=="tech";}
         size = other.size
@@ -18,6 +20,7 @@ if corpse && (!scrHMEnabled() || (sprite_exists(spr_dead) && spr_dead!=mskNone))
         sprite_index = other.spr_dead
         if(scrHMEnabled()) scrHMMessengerNativeCorpse115(other.id);
         image_xscale = other.right
+        scrHMExtraCorpse1116(other.id);
 
         if instance_exists(Player) {
             if scr_skill_get(mut_impact_wrists) speed += (8) * timescale

@@ -208,11 +208,13 @@ function scrHMBossRestore104() {
 }
 
 function scrHMBossStep104() {
+    scrHMBossNativeStep1116();
     if(bosssplat<2) bosssplat=min(2,bosssplat+.4);
     if(bossx>view_width*.60) bossx-=view_width/24;
     else if(bossx>=view_width*.33) bossx-=view_width/180;
     else {bossx-=view_width/6;letterind=max(0,letterind-1);}
-    if(bossx<view_width*.33 || instance_exists(SpiralCont) || !instance_exists(Player)) {
+    var _native_wait=variable_instance_exists(id,"hm_native_art1116") && hm_native_age1116<40;
+    if((bossx<view_width*.33 && !_native_wait) || instance_exists(SpiralCont) || !instance_exists(Player)) {
         scrHMBossRestore104();
         if(fadedark==1) scrHMSoundPlay(sndBossIntroOut);
         instance_destroy();

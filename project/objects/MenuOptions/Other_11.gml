@@ -14,6 +14,15 @@ if (!editing_mode) {
 	}
 }
 
+if (_current_category == OptionCategory.Hardmode && !editing_mode) {
+	var _header_color = draw_get_color(), _header_alpha = draw_get_alpha()
+	draw_set_color(c_black)
+	draw_set_alpha(1)
+	draw_rectangle(0, 0, gui_w, LETTERBOX_SIZE, false)
+	draw_set_color(_header_color)
+	draw_set_alpha(_header_alpha)
+}
+
 #region Header
 
 draw_align(fa_center, fa_middle)

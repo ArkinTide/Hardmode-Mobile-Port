@@ -29,7 +29,7 @@ function scrHMBossCamera1101(_actor,_exit) {
     // The presentation controller owns its coordinates after actor destruction.
     hm_bosses_bossintros_mod_gml_boss_trigger("",mskNone,mskNone,mskNone,_actor,0);
     var _intro=HMWorld.hm_portrait_active;
-    if(!instance_exists(_intro)) return false;
+    if(!instance_exists(_intro) || (_intro[$ "hm_boss_kind115"]??"")!=scrHMBossGroupKind115(_actor)) return false;
     _intro.hm_camera1101=true;
     _intro.hm_camera_exit1101=_exit;
     _intro.hm_camera_actor1101=_actor;

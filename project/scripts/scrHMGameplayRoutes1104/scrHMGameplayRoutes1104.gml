@@ -308,6 +308,10 @@ function scrHMGameplayChief1115() {
         scrHMGameplayCheck(_visual.warp && _visual.camera,"real draw events observe both the animated teleport and camera presentation");
         scrHMGameplayCheck(_visual.portrait_count==(mode=="chief1115first"?1:0),
             "first Captain portrait plays once per run and repeat replacement skips it");
+        if(mode=="chief1115first") scrHMGameplayCheck(_visual.portrait
+            && (variable_struct_get(_visual,"native_art1116")??-1)==8
+            && (variable_struct_get(_visual,"native_drawn1116")??false),
+            "first replacement visibly renders the actual native Captain portrait during its shared camera");
         scrHMGameplayCheck(player.can_walk && player.can_pick && !(player[$ "hm_portrait_frozen"]??false),
             "Captain presentation returns the camera and controls to the actual Player");
         // Exercise the native teleport-landing attack alarm after normal
@@ -318,61 +322,123 @@ function scrHMGameplayChief1115() {
     if(ticks==220) {
         scrHMGameplayCheck(chief1115.hm_chief_summons1115>=1,
             "native combat teleport landing summons the replacement Captain reinforcement gate");
-        var _oldloop=GameCont.loops;
-        var _ordinary=instance_create(player.x+180,player.y,Last);
-        var _intro=_ordinary.intro,_alarm=_ordinary.alarm[1];
-        for(var _i=0;_i<4;++_i) {
-            var _loop=[0,1,10,30][_i];GameCont.loops=_loop;
-            var _normal=0,_replacement=0;
-            with(_ordinary) _normal=scrHMChiefSpeed1115();
-            with(chief1115) _replacement=scrHMChiefSpeed1115();
-            var _expected=min(2,1+_loop*.05),_delta=abs(_normal-_expected),_same=abs(_normal-_replacement);
-            show_debug_message("HARDMODE CHIEF1115 SPEED "+json_stringify({loop:_loop,normal:_normal,replacement:_replacement,
-                expected:_expected,delta:_delta,same:_same,epsilon:math_get_epsilon(),
-                ordinary:object_get_name(_ordinary.object_index),replacement_object:object_get_name(chief1115.object_index)}));
-            // A strict less-than at the VM's own epsilon compares as equal
-            // even for zero error. This tolerance remains far below .05.
-            scrHMGameplayCheck(_delta<.001 && _same<.001,
-                "ordinary HQ and replacement Captain share the explicit capped five-percent Loop cadence");
+        // Observe automatic native events, not the retired Loop supplement.
+        // Ordinary HQ and replacement actors must both retain desktop cadence.
+        with(IDPDBullet) instance_destroy(id,false);
+        var _ordinary=instance_create(player.x+240,player.y+60,Last);
+        chief_cadence1115=[];
+        var _actors=[chief1115,_ordinary];
+        for(var _i=0;_i<array_length(_actors);++_i) {
+            var _actor=_actors[_i];
+            with(_actor) {
+                for(var _a=0;_a<12;++_a) alarm[_a]=-1;
+                intro=1;introcharge=1;charge=0;walk=0;speed=0;
+                drawspr=sprLastSpin;drawimg=0;attacktype=0;ammo=32;gunangle=0;
+                hm_entry_camera1101=true;hm_exit_camera1101=true;alarm[2]=1;
+            }
+            array_push(chief_cadence1115,{actor:_actor,ordinary:_i==1,previous:32,shots:[]});
         }
-        GameCont.loops=_oldloop;
-        scrHMGameplayCheck(_ordinary.intro==_intro && _ordinary.alarm[1]==_alarm
-            && !(_ordinary[$ "hm_chief1102"]??false),"ordinary HQ Captain retains native introduction and campaign identity");
-        GameCont.loops=10;
-        _ordinary.alarm[1]=100;_ordinary.hm_chief_action1115=0;
-        with(_ordinary) {
-            // Two whole logical ticks, independent of the rendering rate.
-            // This calls the same action supplement as ordinary Last.Step.
-            var _scale=global.time_scale;global.time_scale=1;
-            scrHMChiefAction1115();scrHMChiefAction1115();
-            global.time_scale=_scale;
+        chief_cooldown1115=[];
+        for(var _i=0;_i<2;++_i) {
+            var _actor=instance_create(player.x+280,player.y-100+_i*50,Last);
+            var _health=_i==0?1:.5;
+            with(_actor) {
+                for(var _a=0;_a<12;++_a) alarm[_a]=-1;
+                intro=1;introcharge=1;charge=0;walk=0;speed=0;ammo=0;
+                drawspr=sprLastIdle;drawimg=0;hp=max_hp*_health;
+                hm_entry_camera1101=true;hm_exit_camera1101=true;alarm[5]=1;
+            }
+            array_push(chief_cooldown1115,{actor:_actor,health:_i==0?1:.5,start:ticks,done:-1,frame:-1});
         }
-        scrHMGameplayCheck(_ordinary.alarm[1]==99,
-            "ordinary HQ Captain action supplement adds one native alarm tick over two Loop10 logic ticks");
-        GameCont.loops=_oldloop;
-        instance_destroy(_ordinary,false);
+        chief_native_loop1115=GameCont.loops;
+    }
+    if(ticks>220 && ticks<=258) {
+        for(var _i=0;_i<array_length(chief_cadence1115);++_i) {
+            var _sample=chief_cadence1115[_i],_actor=_sample.actor;
+            scrHMGameplayCheck(instance_exists(_actor),"native Captain remains alive during automatic firing cadence observation");
+            if(_actor.ammo==_sample.previous) continue;
+            scrHMGameplayCheck(_sample.previous-_actor.ammo==4,
+                "one actual native Alarm2 fires exactly one four-ammo Captain volley");
+            var _shots=_sample.shots;
+            array_push(_shots,{logic:ticks,physical:age,frame:current_frame,ammo:_actor.ammo});
+            _sample.shots=_shots;_sample.previous=_actor.ammo;
+        }
+        for(var _i=0;_i<array_length(chief_cooldown1115);++_i) {
+            var _sample=chief_cooldown1115[_i];
+            if(_sample.done>=0 || _sample.actor.drawspr==sprLastIdle) continue;
+            _sample.done=ticks;_sample.frame=current_frame;
+            // Preserve the first actual native decision, then disarm this
+            // unrelated actor so it cannot interfere with the dash sample.
+            with(_sample.actor) {for(var _a=0;_a<12;++_a) alarm[_a]=-1;charge=0;speed=0;walk=0;ammo=0;}
+        }
+    }
+    if(ticks==258) {
+        for(var _i=0;_i<array_length(chief_cadence1115);++_i) {
+            var _sample=chief_cadence1115[_i],_shots=_sample.shots;
+            scrHMGameplayCheck(array_length(_shots)==8 && _sample.actor.ammo==0,
+                "ordinary and replacement native Captains both finish all eight real volleys");
+            if(array_length(_shots)==8) {
+                scrHMGameplayCheck(_shots[7].logic-_shots[0].logic==28,
+                    "desktop Captain's eight automatic volleys span exactly twenty-eight logic ticks");
+                scrHMGameplayCheck(abs((_shots[7].physical-_shots[0].physical)-28*rate/30)<=1,
+                    "Captain firing cadence has the same elapsed duration at thirty and sixty frames");
+            }
+            if(_sample.ordinary) instance_destroy(_sample.actor,false);
+        }
+        var _full=chief_cooldown1115[0],_half=chief_cooldown1115[1];
+        scrHMGameplayCheck(_full.done>0 && abs((_full.done-_full.start)-25)<=2,
+            "real full-health Alarm5 uses the desktop twenty-five-tick decision cooldown");
+        scrHMGameplayCheck(_half.done>0 && abs((_half.done-_half.start)-18)<=2 && _half.done<_full.done,
+            "real half-health Alarm5 accelerates decisions to the desktop eighteen-tick cooldown");
+        for(var _i=0;_i<array_length(chief_cooldown1115);++_i) instance_destroy(chief_cooldown1115[_i].actor,false);
+    }
+    if(ticks==260) {
+        with(chief1115) {
+            for(var _a=0;_a<12;++_a) alarm[_a]=-1;
+            x=other.player.x+180;y=other.player.y-60;xprevious=x;yprevious=y;
+            charge=1;walk=0;speed=0;gunangle=0;drawspr=sprLastDashStart;
+        }
+        chief_dash_start1115=[chief1115.x,chief1115.y,age,current_frame];
+    }
+    if(ticks==265) {
+        chief_dash_distance1115=point_distance(chief_dash_start1115[0],chief_dash_start1115[1],chief1115.x,chief1115.y);
+        scrHMGameplayCheck(abs(chief_dash_distance1115-70)<=14,
+            "actual Captain charge travels the desktop fourteen pixels per logic tick at both frame rates");
+        with(chief1115) {charge=0;speed=0;walk=0;}
         chief_complete1115=true;
     }
     if(ticks==270) {
-        scrHMGameplayCheck(chief_complete1115,"Captain entry and ordinary/replacement Loop checks all executed before completion");
-        show_debug_message("HARDMODE CHIEF1115 "+json_stringify({mode:mode,rate:rate,
+        scrHMGameplayCheck(chief_complete1115,"Captain entry, native firing, health cooldown and charge observations complete");
+        show_debug_message("HARDMODE CHIEF1115 "+json_stringify({mode:mode,rate:rate,loop:chief_native_loop1115,
         combat_at:chief_combat_at1115,no_entry_attack:chief_safe1115,summons:chief1115.hm_chief_summons1115,
-        visuals:global.hm_chief_visual1115,stages:chief_stage1115}));
+        visuals:global.hm_chief_visual1115,stages:chief_stage1115,cadence:chief_cadence1115,
+        cooldown:chief_cooldown1115,dash:chief_dash_distance1115}));
     }
 }
 
 function scrHMGameplayChiefDraw1115() {
     if(!variable_global_exists("hm_chief_visual1115")) return;
     var _v=global.hm_chief_visual1115;
-    if(UberCont.bossintro) {
-        if(!_v.native_active) {_v.portrait_count++;_v.native_active=true;}
-        _v.portrait_frames++;
+    var _portrait_live=UberCont.bossintro,_key="legacy";
+    var _intro=HMWorld.hm_portrait_active;
+    if(instance_exists(_intro) && (_intro[$ "hm_native_art1116"]??-1)==8
+       && _intro.hm_native_age1116<40 && _intro.hm_native_drawn1116) {
+        _portrait_live=true;
+        _key=string(_intro.id)+":"+string(_intro.hm_native_start1116);
+        _v.native_art1116=_intro.hm_native_art1116;_v.native_drawn1116=true;
+    }
+    if(_portrait_live) {
+        // Native art now shares the moving camera controller. Record its
+        // actual rendered identity/start, so a restarted portrait still
+        // counts twice even when the same controller is reused.
+        if(!_v.native_active || (variable_struct_get(_v,"native_key")??"")!=_key) {
+            _v.portrait_count++;_v.native_key=_key;
+        }
+        _v.native_active=true;_v.portrait_frames++;
         if(!_v.portrait && _v.portrait_frames>=12) {
             screen_save(game_directory+"chief1115-portrait.png");_v.portrait=true;
         }
-        return;
-    }
-    _v.native_active=false;
+    } else _v.native_active=false;
     if(!instance_exists(_v.actor)) return;
     if(!_v.warp && _v.actor.hm_chief_arrival1102>2 && _v.actor.hm_chief_arrival1102<14
        && surface_exists(application_surface)) {
@@ -393,36 +459,53 @@ function scrHMGameplayYV1115() {
         scrHMGameplayNoReplacement1115();
         scrHMModSet("mod","options","intropan","0");
         yv1115=instance_create(player.x+160,player.y,YVBoss);
+        // Select the weapon through the production Alarm 1. The previous
+        // revolver and >110 distance force the native minigun selection branch.
         with(yv1115) {
             hm_entry_camera1101=true;hm_exit_camera1101=true;
             for(var _i=0;_i<12;++_i) alarm[_i]=-1;
-            intro=true;wep=wep_minigun;ammo=90;gunangle=0;minigun_side=1;
-            alarm[2]=1;speed=0;walk=0;
+            intro=true;can_shoot=true;wep=wep_golden_revolver;
+            event_perform(ev_alarm,1);
+            for(var _i=0;_i<12;++_i) alarm[_i]=-1;
+            gunangle=0;minigun_side=1;alarm[2]=1;speed=0;walk=0;
         }
-        yv_first1115=-1;yv_last1115=-1;yv_ammo1115=90;yv_shots1115=0;yv_complete1115=false;
-        scrHMGameplayCheck(yv1115.wep==wep_minigun && yv1115.ammo==90,
-            "Y.V cadence fixture uses the real native minigun with ninety rounds");
+        yv_max1115=70+30*GameCont.loops;yv_batch1115=1+GameCont.loops;
+        yv_first1115=-1;yv_last1115=-1;yv_ammo1115=yv_max1115;
+        yv_shots1115=0;yv_complete1115=false;yv_angle1115=0;
+        scrHMGameplayCheck(yv1115.wep==wep_minigun && yv1115.ammo==yv_max1115,
+            "Y.V production minigun selection matches the desktop Loop magazine budget");
     }
     if(ticks<11) return;
     scrHMGameplayCheck(instance_exists(yv1115),"Y.V remains present while native minigun cadence is observed");
-    var _shot=yv_ammo1115-max(0,yv1115.ammo);
+    // The native burst finishes even when its final shots pass zero ammo.
+    var _shot=max(0,yv_ammo1115-yv1115.ammo);
     if(_shot>0) {
+        scrHMGameplayCheck(_shot==yv_batch1115,
+            "actual native minigun alarms emit Loop+1 shots per thirty-Hz logical tick");
+        var _turn=0;
+        for(var _j=0;_j<_shot;++_j)
+            _turn+=((yv_ammo1115-_j-1+10>yv_max1115)?.5:1);
+        yv_angle1115+=_turn;
+        scrHMGameplayCheck(abs(yv1115.gunangle-yv_angle1115)<.001,
+            "every actual minigun alarm matches desktop remaining-ammo turning");
         if(yv_first1115<0) yv_first1115=ticks;
         yv_last1115=ticks;yv_shots1115+=_shot;
     }
-    yv_ammo1115=max(0,yv1115.ammo);
+    yv_ammo1115=yv1115.ammo;
     if(ticks==120) {
-        scrHMGameplayCheck(yv_shots1115==90 && yv1115.ammo==0,
-            "ninety native minigun shots finish at both rendering frame settings");
-        scrHMGameplayCheck(yv_last1115-yv_first1115>=88 && yv_last1115-yv_first1115<=91,
-            "native minigun cadence remains one shot per thirty-Hz logical tick");
-        scrHMGameplayCheck(yv1115.gunangle>=72 && yv1115.gunangle<=90,
-            "native ninety-shot sweep retains the reference point-eight-to-one degree turn per shot");
-        show_debug_message("HARDMODE YV1115 "+json_stringify({rate:rate,shots:yv_shots1115,
-            first_tick:yv_first1115,last_tick:yv_last1115,angle:yv1115.gunangle}));
+        var _total=ceil(yv_max1115/yv_batch1115)*yv_batch1115;
+        scrHMGameplayCheck(yv_shots1115==_total && yv1115.ammo==0,
+            "the entire native minigun magazine finishes at both rendering frame settings");
+        var _duration=ceil(yv_max1115/yv_batch1115)-1;
+        scrHMGameplayCheck(abs(yv_last1115-yv_first1115-_duration)<=1,
+            "native complete-magazine cadence matches its Loop-specific logical duration");
+        scrHMGameplayCheck(abs(yv1115.gunangle-(_total-4.5))<.001,
+            "complete native sweep preserves the exact desktop half-degree opening and one-degree main turn");
+        show_debug_message("HARDMODE YV1115 "+json_stringify({rate:rate,loop:GameCont.loops,
+            shots:yv_shots1115,first_tick:yv_first1115,last_tick:yv_last1115,angle:yv1115.gunangle}));
         yv_complete1115=true;
     }
-    if(ticks==125) scrHMGameplayCheck(yv_complete1115,"all ninety-shot cadence and turning assertions execute before test completion");
+    if(ticks==125) scrHMGameplayCheck(yv_complete1115,"the full native cadence and turn sequence executes before test completion");
 }
 
 function scrHMGameplayNoReplacement1115() {

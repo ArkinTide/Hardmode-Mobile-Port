@@ -3,6 +3,7 @@
 function scrBossIntro(_boss_index,_force=false) {
     if(scrHMExtraPresentation1104(id)) return;
     if(scrHMEnabled() && instance_exists(GameCont) && GameCont.loops>0 && !_force) return;
+    if(scrHMBossNativeRequest1116(_boss_index)) return;
     with UberCont {
         if instance_exists(CoopController) || !opt_bossintro || !instance_exists(Player) exit
 		

@@ -71,13 +71,25 @@ function scrHMCursedCavesRestore(_x,_y) {
     if(instance_exists(HyperCrystal)) return;
     var _floor=instance_nearest(_x,_y,Floor);
     if(!instance_exists(_floor)) return;
+    // The native wave first turns its origin into variant A. Remember the
+    // actual artwork before it runs so broken/B tiles keep their variant.
+    with(Floor) hm_cave_target116=scrHMCavePaletteSprite116(sprite_index);
+    GameCont.hm_cave_cleansed=true;
     GameCont.area=scrHMAreaResolve("caves");
     GameCont.maxsubarea=scrAreaGetMaxSubarea(GameCont.area);
     with(BackCont) {shadcol=786950;shadow_color=shadcol;}
+    background_set_colour(make_color_rgb(129,82,188));
     // Capture walls before floor fade callbacks can replace the origin.
     scrHMCaveWalls112(_floor);
     // The wave outlives the dead boss and uses a stable floor as its origin.
-    with(HMWorld) hm_props_mod_gml_joao_shockwave(104,_floor);
+    var _distance=0;
+    with(Floor) _distance=max(_distance,point_distance(x,y,_floor.x,_floor.y));
+    with(HMWorld) {
+        hm_props_mod_gml_joao_shockwave(104,_floor);
+        // Keep the native near-screen fade, then commit every remaining
+        // terrain variant after even the furthest wave and eleven-step fade.
+        scrHMBindEndStep(scrHMCavePaletteFinish116,ceil(_distance/8)+16);
+    }
     scrHMSoundMusic(mus4);scrHMSoundAmbient(amb4);
 }
 

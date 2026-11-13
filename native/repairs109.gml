@@ -346,7 +346,7 @@ function scrHMBossGroupReserve115(_kind,_expected=1) {
     if(is_undefined(_group)) {
         _group={kind:_kind,members:[],expected:0,hunter_spawned:0,changed:HMWorld.logic_serial,
             entry:undefined,entry_done:false,exit:undefined,exit_done:false,observed:false,
-            x:10016,y:10016,entry_count:0,exit_count:0};
+            x:10016,y:10016,entry_count:0,exit_count:0,native_art1116:-1};
         _groups[$ _kind]=_group;
     }
     _group.expected=max(_group.expected,_expected);
@@ -458,11 +458,13 @@ function scrHMBossGroupPresentation115(_title,_back,_portrait,_front,_focus,_hei
     }
     if(_kind=="") return false;
     var _group=scrHMBossGroupReserve115(_kind);
+    if(instance_exists(_source)) {_group.x=_source.x;_group.y=_source.y;}
     var _exit=instance_exists(_source) && ((_source[$ "hm_boss_exit115"]??false)
         || instance_is(_source,Corpse) || (_source[$ "hp"]??0)<=0
         || (_source[$ "name"]??"")=="hm_chief_departure");
     if(!instance_exists(_source)) _exit=true;
     if(_exit) {
+        if(_kind=="guardian") {_group.exit_done=true;return true;}
         if(!_group.exit_done && is_undefined(_group.exit))
             _group.exit={title:"",back:mskNone,portrait:mskNone,front:mskNone,focus:_focus,height:0};
         scrHMBossGroupTick115();
@@ -490,11 +492,15 @@ function scrHMBossGroupTick115() {
         if(!_exit && is_undefined(_request)) continue;
         if(scrHMBossGroupPending115(_group.kind)) continue;
         if(!_exit && array_length(_group.members)<_group.expected) continue;
+        if(_exit && _group.kind=="guardian") {_group.exit_done=true;continue;}
         if(_exit && is_undefined(_request))
             _request={title:"",back:mskNone,portrait:mskNone,front:mskNone,focus:noone,height:0};
         if(is_undefined(_request)) continue;
-        if(scrHMModGet("mod","options",_exit?"bossoutros":"intropan")!="1"
-            && (_request.title=="" || _exit || GameCont.loops>0)) {
+        var _native_art=_exit?-1:(_group[$ "native_art1116"]??-1);
+        var _portrait=_native_art>=0 || (!_exit && _request.title!="" && GameCont.loops==0
+            && scrHMModGet("mod","options","bossportraits")!="0");
+        var _pan=_group.kind!="guardian" && scrHMModGet("mod","options",_exit?"bossoutros":"intropan")=="1";
+        if(!_pan && !_portrait) {
             if(_exit) _group.exit_done=true;else _group.entry_done=true;
             continue;
         }
@@ -507,14 +513,26 @@ function scrHMBossGroupTick115() {
             }
             if(!instance_exists(_focus)) _focus=instance_nearest(_group.x,_group.y,Floor);
         }
-        if(!instance_exists(_focus) || instance_exists(HMWorld.hm_portrait_active)) continue;
+        if(instance_exists(HMWorld.hm_portrait_active)) continue;
+        // A destroyed actor must not move the camera to its initial spawn
+        // floor. A temporary point retains the last actual boss position.
+        var _point=noone;
+        if(_exit || !_pan || !instance_exists(_focus)) {
+            _point=instance_create(_pan?_group.x:Player.x,_pan?_group.y:Player.y,CustomObject);
+            _point.name="hm_camera_focus1116";_point.sprite_visible=false;
+            _focus=_point;
+        }
         HMWorld.hm_group_dispatch115=true;
-        hm_bosses_bossintros_mod_gml_boss_trigger(GameCont.loops>0?"":_request.title,
+        hm_bosses_bossintros_mod_gml_boss_trigger((GameCont.loops>0 || _native_art>=0)?"":_request.title,
             _request.back,_request.portrait,_request.front,_focus,_request.height);
         HMWorld.hm_group_dispatch115=false;
         var _intro=HMWorld.hm_portrait_active;
+        if(instance_exists(_point)) instance_destroy(_point,false);
         if(!instance_exists(_intro)) continue;
         _intro.hm_boss_kind115=_group.kind;_intro.hm_boss_exit115=_exit;
+        _intro.hm_camera_start1116=HMWorld.logic_serial;
+        _intro.hm_camera_target_x1116=_intro.x;_intro.hm_camera_target_y1116=_intro.y;
+        if(_native_art>=0) scrHMBossNativeAttach1116(_intro,_native_art);
         if(_exit) {_group.exit_done=true;_group.exit_count++;}
         else {_group.entry_done=true;_group.entry_count++;}
         return;

@@ -749,7 +749,7 @@ hm_van_converted = 1;
 for (var __hm_index65=0; __hm_index65<array_length(__hm_with64); ++__hm_index65) {
 if(instance_exists(__hm_with64[__hm_index65])) with (__hm_with64[__hm_index65]) {
 {
-name = "3dvan";hm_freak107=GameCont.loops>=scrHMLoopEnemyStart1115();
+name = "3dvan";hm_freak107=scrHMPoliceLate1116();
 image_alpha = 0;
 ;
 if (instance_exists(Player)) {
@@ -811,7 +811,7 @@ raddrop = 0;
 corpse = 0;
 ;
 hitid = [sprVanDrive, "VAN"];
-if ((GameCont.loops >= scrHMLoopEnemyStart1115())) {
+if ((scrHMPoliceLate1116())) {
 spr_dead = sprPopoFreakDead;
 }
 team = 3;
@@ -8115,7 +8115,7 @@ default: throw "Hardmode invalid continuation PC";
 
 // Source enemies.mod.gml:0; vanguide (native content 1.1.0)
 function hm_enemies_mod_gml_vanguide() {
-if (((((GameCont.loops >= scrHMLoopEnemyStart1115()) && (land == 1)) && ((speed / timescale) <= 0)) && (drivespeed <= 0))) {
+if (((((scrHMPoliceLate1116()) && (land == 1)) && ((speed / timescale) <= 0)) && (drivespeed <= 0))) {
 {
 repeat (3) hm_arkintide_mod_gml_hm_police_spawn((x + random_range((- 8), 8)), (y + random_range((- 8), 8)));
 ;
@@ -8449,7 +8449,7 @@ scrHMDrawSpriteExt(global.hm_module_vars[$ "mod:enemies"].sprSiren, image_index,
 
 // Source enemies.mod.gml:0; vanexplo (native content 1.1.0)
 function hm_enemies_mod_gml_vanexplo() {
-if ((GameCont.loops >= scrHMLoopEnemyStart1115())) {
+if ((scrHMPoliceLate1116())) {
 repeat (3) { var __hm_with1 = scrHMInstances(instance_create((x + random_range((- 8), 8)), (y + random_range((- 8), 8)), Corpse)), __hm_break3=false;
 for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
 if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
@@ -10829,6 +10829,7 @@ if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
 var __hm_other4=scrHMOther(other);
 
 sprite_index = __hm_other4.spr_dead;
+hm_enemy_body116=true;
 
 specialrevive = "skeleton";
 
@@ -11885,6 +11886,7 @@ if(instance_exists(__hm_with6[__hm_index7])) with (__hm_with6[__hm_index7]) {
 {
 var __hm_other9=scrHMOther(other);
 sprite_index = __hm_other9.spr_dead;
+hm_enemy_body116=true;
 }
 }
 if(__hm_break8) break;
@@ -12136,6 +12138,7 @@ if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
 var __hm_other4=scrHMOther(other);
 
 sprite_index = __hm_other4.spr_dead;
+hm_enemy_body116=true;
 
 specialrevive = "melting";
 
@@ -13858,6 +13861,7 @@ if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
 var __hm_other4=scrHMOther(other);
 
 sprite_index = __hm_other4.spr_dead;
+hm_enemy_body116=true;
 
 specialrevive = "rogue";
 scrHMMessengerCorpse1103(scrHMOther(other));
@@ -14359,6 +14363,7 @@ if(instance_exists(__hm_with6[__hm_index7])) with (__hm_with6[__hm_index7]) {
 {
 var __hm_other9=scrHMOther(other);
 sprite_index = __hm_other9.spr_dead;
+hm_enemy_body116=true;
 }
 }
 if(__hm_break8) break;

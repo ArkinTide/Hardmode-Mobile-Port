@@ -46,7 +46,9 @@ if (scrTargetIsVisible(target)) {
 	else {
 		self.change_weapon(wep_minigun)
 		minigun_side = choose(1, -1)
-		ammo = 90
+		// Desktop YVBoss uses one magazine budget for the whole swept burst.
+		hm_minigun_max1116 = scrHMEnabled() ? 70 + 30 * max(0, floor(GameCont.loops)) : 90
+		ammo = hm_minigun_max1116
 		gunangle -= ammo / 2 * minigun_side + orandom(10)
 		alarm[4] = 180 + irandom(40)
 		alarm[2] = 4

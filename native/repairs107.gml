@@ -14,6 +14,15 @@ function scrHMCanHavePolice107() {
         scrHMAreaResolve("venuz")],GameCont.area);
 }
 
+function scrHMPoliceBindCorpse107(_request,_corpse) {
+    if(!instance_exists(_request) || !instance_exists(_corpse) || !instance_is(_corpse,Corpse)) return false;
+    // The imported scanner and native alarm must share the same moving body.
+    _request.hm_corpse107=_corpse;
+    _request.hm_police_corpse=_corpse;
+    _corpse.hm_police_revive_once=1;
+    return true;
+}
+
 function scrHMPoliceDeath107() {
     if(!scrHMEnabled() || GameCont.loops<3 || hp>0) return;
     // Exactly the original Freak timer/effect/revival, including its normal
@@ -23,14 +32,18 @@ function scrHMPoliceDeath107() {
     var _timer=instance_create(x,y,WantRevivePopoFreak);
     // Follow this actual police corpse, including knockback. Invisible logic
     // corpses and another fallen enemy must not steal the revival target.
-    _timer.hm_corpse107=_corpse;
+    scrHMPoliceBindCorpse107(_timer,_corpse);
 }
 
 function scrHMPoliceRevive107() {
-    if(!variable_instance_exists(id,"hm_corpse107")) return false;
-    if(!instance_exists(Portal) && instance_exists(hm_corpse107)) {
-        with(instance_create(hm_corpse107.x,hm_corpse107.y,RevivePopoFreak))
-            hm_corpse107=other.hm_corpse107;
+    if(scrHMPoliceRevivalBlocked1116()) return true;
+    if(!variable_instance_exists(id,"hm_corpse107") && !variable_instance_exists(id,"hm_police_corpse")) {
+        instance_destroy();return true;
+    }
+    var _corpse=self[$ "hm_corpse107"]??(self[$ "hm_police_corpse"]??noone);
+    if(!instance_exists(Portal) && instance_exists(_corpse) && instance_is(_corpse,Corpse)) {
+        var _effect=instance_create(_corpse.x,_corpse.y,RevivePopoFreak);
+        scrHMPoliceBindCorpse107(_effect,_corpse);
     }
     instance_destroy();return true;
 }
@@ -41,7 +54,7 @@ function scrHMShieldKeepPlasma107() {
 }
 
 function scrHMVanStop107() {
-    if(!(self[$ "hm_freak107"]??false) || land!=1 || speed>0 || drivespeed>0) return false;
+    if(!scrHMPoliceLate1116() || !(self[$ "hm_freak107"]??false) || land!=1 || speed>0 || drivespeed>0) return false;
     // Preserve b24's stacked-sprite van and normal unload below loop 3.
     // Its own Destroy callback already produces the three police explosions.
     var _xx=x,_yy=y;
@@ -64,6 +77,51 @@ function scrHMThroneFall107(_falling) {
         hm_throne_falling107=false;image_alpha=hm_throne_alpha107;
         scale=1;angle=0;
     }
+}
+
+function scrHMThroneExitFalling116() {
+    return scrHMEnabled() && instance_exists(GameCont)
+        && GameCont.area==scrHMAreaResolve("throne")
+        && (self[$ "fallenable"]??-1)==1
+        && !place_meeting(x,y,Floor) && distance_to_object(Portal)>32;
+}
+
+function scrHMThroneExitPose116() {
+    if(scrHMThroneExitFalling116()) {
+        if(!(self[$ "hm_exit_pose116"]??false)) {
+            hm_exit_pose116=true;hm_exit_image_speed116=image_speed;
+        }
+        // The ordinary Player Step chooses idle/walk again every physical
+        // frame. Pin the same hurt frame used by the native portal renderer
+        // after movement, while the authored ending still owns descent and
+        // rotation. Do not blink between a refreshed binding and this body.
+        sprite_index=spr_hurt;image_index=1;image_speed=0;
+        image_alpha=1;visible=true;scale=1;spr_shadow_y=10000;
+    } else if(self[$ "hm_exit_pose116"]??false) {
+        hm_exit_pose116=false;image_speed=hm_exit_image_speed116;
+        sprite_index=spr_idle;image_index=0;
+    }
+}
+
+function scrHMThroneExitDraw116() {
+    if(!scrHMThroneExitFalling116()) return false;
+    // Exact native PortalShrink artwork and weapon placement, with the
+    // ending's full-size, fifteen-degree rotation and eight-pixel descent.
+    // Rendering never advances state, including intervening 60 FPS frames.
+    if(bwep!=wep_none) {
+        if(race!=Race.Steroids)
+            scrHMDrawSpriteExt(scrHMWeaponSprite(bwep),0,x-right*2,y+4,1,1,90+15*right,c_silver,1);
+        else scrHMDrawSpriteExt(scrHMWeaponSprite(bwep),0,x+lengthdir_x(-bwkick,gunangle),
+            y+lengthdir_y(-bwkick,gunangle),1,-right,gunangle+wepangle,c_white,1);
+    }
+    if(gunangle<180)
+        scrHMDrawSpriteExt(scrHMWeaponSprite(wep),0,x+lengthdir_x(wkick,gunangle),
+            y+lengthdir_y(wkick,gunangle)+4,1,right,gunangle+wepangle,c_white,1);
+    scrHMDrawSpriteExt(spr_hurt,1,x,y,1,right,self[$ "sprite_angle"]??0,c_white,1);
+    if(gunangle>=180)
+        scrHMDrawSpriteExt(scrHMWeaponSprite(wep),0,x+lengthdir_x(-wkick,gunangle),
+            y+lengthdir_y(-wkick,gunangle)+4,1,right,gunangle+wepangle,c_white,1);
+    return true;
 }
 
 function scrHMVenusLoadout107() {

@@ -62,6 +62,7 @@ function scrHMThroneBarVisible1103() {
 }
 
 function scrHMMessengerInit1103() {
+    hm_messenger1103=true;
     hm_messenger_no_presentation1103=revived>0;
     on_hurt=scrHMScriptRef(scrHMMessengerHurt1103);
     if(revived==0) {
@@ -90,6 +91,7 @@ function scrHMMessengerTagExplosion1103(_owner) {
     var _old=_owner.hitid;
     hitid=[is_array(_old)?_old[0]:sprPopoExplo,is_array(_old)?_old[1]:"IDPD STRIKE",_owner.id];
     creator=_owner.id;
+    hm_messenger_owner1116=_owner.id;
 }
 function scrHMMessengerCorpse1103(_owner) {
     hm_messenger_no_presentation1103=(_owner[$ "revived"]??0)>0;

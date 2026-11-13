@@ -252,7 +252,7 @@ if(instance_exists(__hm_with25[__hm_index26])) with (__hm_with25[__hm_index26]) 
 var _hml_title = "HYPER CRYSTAL";
 var _hml_color = c_orange;
 ;
-if (((GameCont.area == scrHMAreaResolve(104)) || (GameCont.area == scrHMAreaResolve("cavesinv")))) {
+if (((GameCont.area == scrHMAreaResolve(104)) || (GameCont.area == scrHMAreaResolve("cavesinv"))) || (self[$ "hm_extra_cursed1116"]??false)) {
 {
 _hml_title = "CURSED HYPER CRYSTAL";
 ;
@@ -285,7 +285,8 @@ var _hml_py = (y - 48);
 if (scrHMVariableExists(id, "z")) {
 _hml_py -= max(0, z);
 }
-scrHMBossWorldBar1104(x, _hml_py, 80, _hml_title, c_red, hp, max_hp);
+var _hml_color=(self[$ "hm_extra_cursed1116"]??false)?c_purple:((self[$ "hm_extra_native"]??noone)==HyperCrystal?c_orange:c_red);
+scrHMBossWorldBar1104(x, _hml_py, 80, _hml_title, _hml_color, hp, max_hp);
 ;
 }
 } else {

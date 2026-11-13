@@ -27,23 +27,41 @@ function scrHMGuardianLayerRestore1104() {
 }
 
 function scrHMGuardianLayerLift1104() {
-    if(depth>-9) {hm_guard_depth109=depth;depth=-9;hm_guard_set109=depth;}
+    // Keep the lift until the effect ends. Restoring and reassigning depth
+    // every frame forced two engine draw-list migrations for every bullet.
+    if(!is_undefined(self[$ "hm_guard_depth109"]) && depth!=hm_guard_set109)
+        hm_guard_depth109=undefined;
+    if(depth>-9) {
+        hm_guard_depth109=depth;depth=-9;hm_guard_set109=depth;
+    }
 }
 
 function scrHMGuardianLayers1104() {
     if(!scrHMEnabled()) return;
-    var _active=false;
-    with(HMBinding) if(hm_code==scrHMScriptRef(hm_bosses_guardianboss_mod_gml_guardiandark_draw)) {_active=true;break;}
-    if(!_active && !(self[$ "hm_guard_layers109"]??false)) return;
-    hm_guard_layers109=_active;
-    // Native bullets, burst sources, explosions, beams and plasma impacts
-    // all descend from damagesource, independently of GameObject. Traverse
-    // these two disjoint roots once and retain every actual native Draw event.
-    with(GameObject) scrHMGuardianLayerRestore1104();
-    with(damagesource) scrHMGuardianLayerRestore1104();
-    if(!_active) return;
-    with(GameObject) if(instance_is(id,hitme)||instance_is(id,Pickup)||instance_is(id,Effect)
-        ||instance_is(id,CrystalShield)
-        ||instance_is(id,CrystalShieldDisappear)||instance_is(id,PortalStrike)) scrHMGuardianLayerLift1104();
+    var _cached=self[$ "hm_guard_dark116"];
+    var _dark=_cached??noone;
+    if(is_undefined(_cached)) {
+        _dark=noone;
+        with(HMBinding) if(hm_code==scrHMScriptRef(hm_bosses_guardianboss_mod_gml_guardiandark_draw)) {_dark=id;break;}
+        hm_guard_dark116=_dark;
+    }
+    var _active=instance_exists(_dark);
+    if(!_active) {
+        if(self[$ "hm_guard_layers109"]??false) {
+            with(GameObject) scrHMGuardianLayerRestore1104();
+            with(damagesource) scrHMGuardianLayerRestore1104();
+        }
+        hm_guard_layers109=false;return;
+    }
+    hm_guard_layers109=true;
+    // Traverse actor families directly, never all terrain/decorations. Each
+    // new source is lifted once; native movement and Draw events remain live.
+    with(hitme) scrHMGuardianLayerLift1104();
+    with(Pickup) scrHMGuardianLayerLift1104();
+    with(Effect) scrHMGuardianLayerLift1104();
+    with(CrystalShield) scrHMGuardianLayerLift1104();
+    with(CrystalShieldDisappear) scrHMGuardianLayerLift1104();
+    with(PortalStrike) scrHMGuardianLayerLift1104();
+    with(BoltStick) scrHMGuardianLayerLift1104();
     with(damagesource) scrHMGuardianLayerLift1104();
 }

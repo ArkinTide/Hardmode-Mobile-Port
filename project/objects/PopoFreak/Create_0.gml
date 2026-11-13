@@ -1,3 +1,4 @@
+if(scrHMEnabled() && !scrHMPoliceLate1116()) {instance_change(Grunt,true);exit;}
 raddrop = 25
 max_hp = 30
 meleedamage = 5

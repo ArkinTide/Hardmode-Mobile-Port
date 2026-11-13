@@ -1335,6 +1335,7 @@ if (place_meeting(x, y, (scrHMOther(other)))) {
 {
 if (((scrHMOther(other)).alarm[0] < 5)) {
 {
+if(!scrHMPoliceLate1116()) continue;
 instance_create(x, y, PopoFreak);
 scrHMSoundPlay(sndFreakPopoRevive);
 instance_destroy();
@@ -7339,7 +7340,7 @@ if(__hm_break3) break;
 
 // Source props.mod.gml:0; bigtube2_dead (native content 1.1.0)
 function hm_props_mod_gml_bigtube2_dead() {
-instance_create(x, y, PopoFreak);
+instance_create(x, y, scrHMPoliceKind1116());
 repeat (30) { var __hm_with1 = scrHMInstances(instance_create(x, y, Rad)), __hm_break3=false;
 for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
 if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {

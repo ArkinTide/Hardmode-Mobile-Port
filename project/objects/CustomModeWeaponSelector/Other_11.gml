@@ -1,7 +1,10 @@
 /// @description Populate groups
 
 for(var i = 0; i < group_count; ++i) {
-	if (i > 0) {
+	if (i == hm_group_index) {
+		group_names[i] = scrHMLocalize("HARDMODE")
+	}
+	else if (i > 0) {
 		group_names[i] = loc("Ammo:Type", i - 1, typ_name[i - 1])
 	}
 	else {
@@ -15,6 +18,13 @@ var _current_weapon_key = get_weapon_key(),
 	_current_weapon = scrCustomParam(_current_weapon_key)
 
 for(var _weapon_id = 1; _weapon_id <= maxwep; ++_weapon_id) {
+	// Secret/contextual MOD weapons intentionally have no ordinary drop tier.
+	// Their custom-loadout availability must not change the natural drop table.
+	if (hm_group_index >= 0 && !is_undefined(global.hm_weapon_keys[$ string(_weapon_id)])) {
+		array_push(groups[hm_group_index], _weapon_id)
+		continue
+	}
+	
 	var _type = scr_weapon_get_type(_weapon_id)
 	
 	if (scr_weapon_get_area(_weapon_id) > 0
@@ -52,8 +62,14 @@ array_foreach(groups, function(_group) {
 })
 
 if (scr_weapon_is_valid(_current_weapon)) {
-	var _type = scr_weapon_get_type(_weapon_id),
-		_group = groups[_type + 1]
+	var _group_index = scr_weapon_get_type(_current_weapon) + 1
+	if (hm_group_index >= 0 && !is_undefined(global.hm_weapon_keys[$ string(_current_weapon)])) {
+		_group_index = hm_group_index
+	}
+	else if (scr_weapon_is_melee(_current_weapon) || _current_weapon == wep_jackhammer) {
+		_group_index = 1
+	}
+	var _group = groups[_group_index]
 	
 	if (!array_contains(_group, _current_weapon)) {
 		array_push(_group, _current_weapon)

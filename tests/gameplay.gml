@@ -102,6 +102,7 @@ function scrHMGameplayTestStep() {
     }
     if(HMWorld.logic_tick) {
         ticks++;
+        scrHMGameplayBoss1116();
         room_ticks++;
         if(mode=="live112" || string_pos("112",mode)>0) scrHMGameplayRepairs112();
         if(mode=="windows110") scrHMGameplayWindows110();

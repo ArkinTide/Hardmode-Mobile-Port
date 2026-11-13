@@ -57,6 +57,7 @@ function scrHMWorldBegin() {
 
 function scrHMWorldStep() {
     if(!logic_tick || lockstep_stop || UberCont.paused) return;
+    scrHMRoomWaterState1105();
     if(instance_exists(self[$ "hm_portrait_active"]??noone)) return;
     // Resume only the tasks retained by this room. The source's new forks
     // execute immediately and first resume on the following 30 Hz tick.
@@ -255,6 +256,7 @@ function scrHMBindDraw(_code,_depth) {
     _binding.hm_refresh_tick=HMWorld.logic_serial;
     if(_code==scrHMScriptRef(hm_maincode_mod_gml_PortalShrink)) _depth=-12;
     _binding.depth=_depth;_binding.hm_code=_code;
+    if(_code==scrHMScriptRef(hm_bosses_guardianboss_mod_gml_guardiandark_draw)) HMWorld.hm_guard_dark116=_binding;
     _binding.hm_args=_args;_binding.hm_draw=true;_binding.creator=id;
     return _binding;
 }
@@ -265,6 +267,13 @@ function scrHMBindEndStep(_code,_delay) {
     var _binding=instance_create(x,y,HMBinding);
     _binding.hm_code=scrHMScriptRef(_code);_binding.hm_args=_args;
     _binding.hm_delay=_delay;_binding.creator=id;
+    if(_binding.hm_code==scrHMScriptRef(hm_maincode_mod_gml_CHCoutro)) {
+        // The callback can run after its creator has died or changed object
+        // class. Capture encounter ownership while that identity still exists.
+        _binding.hm_cave_extra116=self[$ "hm_extra"]??false;
+        _binding.hm_cave_stage116=!_binding.hm_cave_extra116
+            && (instance_is(id,HyperCrystal) || instance_is(id,HMWorld));
+    }
     return _binding;
 }
 

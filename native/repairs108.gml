@@ -22,11 +22,7 @@ function scrHMTankAim108() {
 }
 
 function scrHMPoliceSpawn108(_x,_y) {
-    if(!scrHMEnabled() || GameCont.loops<3 || random(1)>=.5)
-        return instance_create(_x,_y,PopoFreak);
-    // Half of late-loop arrivals are regular/elite police, independently
-    // of their later revival. Native police Destroy owns that timer.
-    return instance_create(_x,_y,choose(Grunt,Inspector,Shielder,EliteGrunt,EliteInspector,EliteShielder));
+    return instance_create(_x,_y,scrHMPoliceKind1116());
 }
 
 function scrHMVanCrater108() {

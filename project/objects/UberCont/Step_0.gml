@@ -1,5 +1,7 @@
 var _index = global.index
 
+scrHMFrameBudget1116();
+
 if native_cursor_inst != -1
 	native_cursor_update()
 
@@ -81,11 +83,7 @@ if (!lockstep_stop && !paused && !instance_exists(PauseImage)) {
 	
 	if (_camera_boundaries_check) {
 	    collision_rectangle_list(_left,_top,_right,_bottom,Wall,false,false,_wall_list,false);
-		with (Floor) {
-	        if (bbox_right >= _left && bbox_bottom >= _top && bbox_left < _right && bbox_top < _bottom) {
-	            ds_list_add(_floor_list, id)
-	        }
-	    }
+		scrHMVisibleFloors1116(_left,_top,_right,_bottom,_floor_list);
 	}
 	else {
 		with (Wall) ds_list_add(_wall_list, id)

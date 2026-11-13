@@ -84,7 +84,7 @@ function scrHMReplacementTick1102() {
             with(_actor) hm_arkintide_mod_gml_hm_gungod_bounds();
             if(!(variable_instance_get(GameCont,"hm_yv_seen")??false)) {
                 GameCont.hm_yv_seen=true;
-                with(_actor) scrHMContentEvent1100(YVBoss,ev_alarm,7);
+                with(_actor) scrBossIntro(10,true);
                 scrHMSoundMusic(musBoss9);
             }
         }
@@ -127,8 +127,8 @@ function scrHMChiefStep1102() {
         }
         return true;
     }
-    // A native portrait and a MOD camera pan are separate presentations.
-    // Keep every attack disarmed until both have released the scene.
+    // Portrait and camera share one frozen presentation controller.
+    // Combat starts only after that controller has released the scene.
     if(!hm_chief_combat1115) {
         speed=0;drawspr=sprLastIdle;drawimg=0;
         if(UberCont.bossintro || instance_exists(Cinematic)) return true;
@@ -147,28 +147,15 @@ function scrHMChiefAlarm1115() {
         || UberCont.bossintro || (self[$ "hm_portrait_frozen"]??false);
 }
 function scrHMChiefSpeed1115() {
-    if(!scrHMEnabled() || !instance_exists(GameCont) || object_index!=Last) return 1;
-    // Explicit mobile Loop policy: +5% movement/action speed per Loop,
-    // capped at 2x. Native projectile velocities remain unchanged.
-    return min(2,1+max(0,GameCont.loops)/20);
+    // Desktop Last keeps native movement speeds and shortens its attack
+    // cooldown with current health. Loop never adds a separate multiplier.
+    return 1;
 }
 function scrHMChiefAction1115() {
-    if(!scrHMEnabled() || object_index!=Last || lockstep_stop || UberCont.paused
-       || UberCont.bossintro || (self[$ "hm_portrait_frozen"]??false) || scrHMChiefAlarm1115()) return;
-    // Ordinary HQ Captains share the Loop cadence, but retain their own
-    // native introduction, reinforcements and campaign-ending callbacks.
-    hm_chief_action1115=(self[$ "hm_chief_action1115"]??0)+timescale*(scrHMChiefSpeed1115()-1);
-    var _extra=floor(hm_chief_action1115);
-    if(_extra<=0) return;
-    hm_chief_action1115-=_extra;
-    for(var _i=1;_i<7;++_i) if(alarm[_i]>0) {
-        if(alarm[_i]>_extra) alarm[_i]-=_extra;
-        else {
-            alarm[_i]=-1;
-            event_perform_object(Last,ev_alarm,_i);
-            if(!instance_exists(id)) return;
-        }
-    }
+    // Native alarms already advance once at the host's selected frame rate.
+    // Advancing them again here changed desktop cadence and could duplicate
+    // an attack during the same frame.
+    return;
 }
 function scrHMChiefSummon1115() {
     if(!(self[$ "hm_chief1102"]??false) || scrHMChiefAlarm1115() || hp<=0) return;

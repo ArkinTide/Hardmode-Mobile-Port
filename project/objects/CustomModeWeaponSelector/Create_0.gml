@@ -1,6 +1,11 @@
 event_inherited()
 
 group_count = Ammo.NUM_AMMO_TYPES + 1
+hm_group_index = -1
+if (scrHMEnabled()) {
+	hm_group_index = group_count
+	group_count ++
+}
 
 groups = array_create(group_count)
 group_names = array_create(group_count)

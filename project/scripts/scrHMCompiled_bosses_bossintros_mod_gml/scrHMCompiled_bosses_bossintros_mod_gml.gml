@@ -139,6 +139,7 @@ for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
 
 if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
 
+scrHMBossNativeDraw1116();
 {
 
 if ((fadedark == 1)) {

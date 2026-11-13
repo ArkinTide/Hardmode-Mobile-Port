@@ -268,11 +268,7 @@ function hm_arkintide_mod_gml_hm_police_spawn(_hml__x, _hml__y) {
 if ((! hm_arkintide_mod_gml_hm_police_allowed())) {
 return noone;
 }
-var _hml_kind = PopoFreak;
-;
-if (((GameCont.loops >= 3) && (random(1) < 0.5))) {
-_hml_kind = choose(Grunt, Inspector, Shielder, EliteGrunt, EliteInspector, EliteShielder);
-}
+var _hml_kind = scrHMPoliceKind1116();
 return instance_create(_hml__x, _hml__y, _hml_kind);
 ;
 }
@@ -805,48 +801,9 @@ function hm_arkintide_mod_gml_hm_hunter_wait() {
 
 // Source arkintide.mod.gml:0; hm_cave_restore (native content 1.1.0)
 function hm_arkintide_mod_gml_hm_cave_restore(_hml__x, _hml__y) {
-if ((instance_exists(HyperCrystal) || (GameCont.area != scrHMAreaResolve("cavesinv")))) {
-exit;
-}
-GameCont.hm_cave_cleansed = 1;
-;
-GameCont.area = scrHMAreaResolve("caves");
-;
-BackCont.shadow_color = 786950;
-;
-background_set_colour(make_color_rgb(129, 82, 188));
-;
-{ var __hm_with1 = scrHMInstances(Wall), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-sprite_index = sprWall4Bot;
-;
-topspr = sprWall4Top;
-;
-outspr = sprWall4Out;
-;
-image_blend = c_white;
-;
-}
-}
-if(__hm_break3) break;
-}}
-{ var __hm_with4 = scrHMInstances(TopSmall), __hm_break6=false;
-for (var __hm_index5=0; __hm_index5<array_length(__hm_with4); ++__hm_index5) {
-if(instance_exists(__hm_with4[__hm_index5])) with (__hm_with4[__hm_index5]) {
-{
-if ((sprite_index == sprWall104Trans)) {
-sprite_index = sprWall4Trans;
-}
-image_blend = c_white;
-;
-}
-}
-if(__hm_break6) break;
-}}
-scrHMModCall("mod", "props", "joao_shockwave", 104, instance_nearest(_hml__x, _hml__y, Floor));
-;
+// This callback is destroyed immediately after dispatch. The maintained host
+// helper gives the native floor wave a stable HMWorld scope until it finishes.
+scrHMCursedCavesRestore(_hml__x,_hml__y);
 }
 
 // Source arkintide.mod.gml:0; hm_convert_enemy (native content 1.1.0)
@@ -2316,164 +2273,74 @@ return [_hml_px, (_hml_secret * 9), 1, 1];
 
 // Source arkintide.mod.gml:0; hm_police_corpse_busy (native content 1.1.0)
 function hm_arkintide_mod_gml_hm_police_corpse_busy(_hml__corpse, _hml__owner, _hml__tick) {
-if ((! instance_exists(_hml__corpse))) {
-return true;
-}
-if (((scrHMVariableExists(_hml__corpse, "hm_police_busy_owner") && (_hml__corpse.hm_police_busy_owner == _hml__owner)) && (_hml__corpse.hm_police_busy_tick == _hml__tick))) {
-return true;
-}
-var _hml_request = instance_nearest(_hml__corpse.x, _hml__corpse.y, WantRevivePopoFreak);
-;
-if ((instance_exists(_hml_request) && (point_distance(_hml_request.x, _hml_request.y, _hml__corpse.x, _hml__corpse.y) <= 1))) {
-return true;
-}
-_hml_request = instance_nearest(_hml__corpse.x, _hml__corpse.y, RevivePopoFreak);
-;
-return (instance_exists(_hml_request) && (point_distance(_hml_request.x, _hml_request.y, _hml__corpse.x, _hml__corpse.y) <= 1));
-;
+    if(!instance_exists(_hml__corpse)) return true;
+    // The explicit-binding pass below owns this cache. A nearby Messenger
+    // timer or invisible logic corpse must never reserve a police body.
+    return scrHMVariableExists(_hml__corpse,"hm_police_busy_owner")
+        && _hml__corpse.hm_police_busy_owner==_hml__owner
+        && _hml__corpse.hm_police_busy_tick==_hml__tick;
 }
 
 // Source arkintide.mod.gml:0; hm_police_revival (native content 1.1.0)
 function hm_arkintide_mod_gml_hm_police_revival() {
-if (((((GameCont.loops < 3) || instance_exists(GenCont)) || instance_exists(SpiralCont)) || instance_exists(Portal))) {
-exit;
-}
-{ var __hm_with1 = scrHMInstances(WantRevivePopoFreak), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-if (scrHMVariableExists(id, "hm_police_corpse")) {
-{
-var _hml_body = hm_police_corpse;
-;
-if (((! instance_exists(_hml_body)) || (! instance_is(_hml_body, Corpse)))) {
-{
-scrHMDelete(id);
-;
-continue;
-;
-}
-}
-x = _hml_body.x;
-;
-y = _hml_body.y;
-;
-}
-}
-}
-if(__hm_break3) break;
-}}
-var _hml_pending = false;
-;
-{ var __hm_with4 = scrHMInstances(Corpse), __hm_break6=false;
-for (var __hm_index5=0; __hm_index5<array_length(__hm_with4); ++__hm_index5) {
-if(instance_exists(__hm_with4[__hm_index5])) with (__hm_with4[__hm_index5]) {
-if ((!scrHMVariableExists(id, "hm_police_revive_once"))) {
-{
-var _hml_spr = sprite_index;
-;
-if (((((((_hml_spr == sprGruntDead) || (_hml_spr == sprInspectorDead)) || (_hml_spr == sprShielderDead)) || (_hml_spr == sprEliteGruntDead)) || (_hml_spr == sprEliteInspectorDead)) || (_hml_spr == sprEliteShielderDead))) {
-{
-_hml_pending = true;
-;
-__hm_break6=true; break;
-;
-}
-}
-}
-}
-}
-if(__hm_break6) break;
-}}
-if ((! _hml_pending)) {
-exit;
-}
-if ((!scrHMVariableExists(id, "hm_police_scan"))) {
-hm_police_scan = 0;
-}
-hm_police_scan++;
-;
-var _hml_owner = id;
-var _hml_tick = hm_police_scan;
-;
-{ var __hm_with7 = scrHMInstances(WantRevivePopoFreak), __hm_break9=false;
-for (var __hm_index8=0; __hm_index8<array_length(__hm_with7); ++__hm_index8) {
-if(instance_exists(__hm_with7[__hm_index8])) with (__hm_with7[__hm_index8]) {
-{
-var _hml_body = noone;
-;
-if (scrHMVariableExists(id, "hm_police_corpse")) {
-_hml_body = hm_police_corpse;
-} else {
-_hml_body = instance_nearest(x, y, Corpse);
-}
-;
-if (instance_exists(_hml_body)) {
-{
-_hml_body.hm_police_busy_owner = _hml_owner;
-;
-_hml_body.hm_police_busy_tick = _hml_tick;
-;
-}
-}
-}
-}
-if(__hm_break9) break;
-}}
-{ var __hm_with10 = scrHMInstances(RevivePopoFreak), __hm_break12=false;
-for (var __hm_index11=0; __hm_index11<array_length(__hm_with10); ++__hm_index11) {
-if(instance_exists(__hm_with10[__hm_index11])) with (__hm_with10[__hm_index11]) {
-{
-var _hml_body = instance_nearest(x, y, Corpse);
-;
-if (instance_exists(_hml_body)) {
-{
-_hml_body.hm_police_busy_owner = _hml_owner;
-;
-_hml_body.hm_police_busy_tick = _hml_tick;
-;
-}
-}
-}
-}
-if(__hm_break12) break;
-}}
-{ var __hm_with13 = scrHMInstances(Corpse), __hm_break15=false;
-for (var __hm_index14=0; __hm_index14<array_length(__hm_with13); ++__hm_index14) {
-if(instance_exists(__hm_with13[__hm_index14])) with (__hm_with13[__hm_index14]) {
-{
-if (scrHMVariableExists(id, "hm_police_revive_once")) {
-continue;
-}
-var _hml_spr = sprite_index;
-;
-if (((((((_hml_spr != sprGruntDead) && (_hml_spr != sprInspectorDead)) && (_hml_spr != sprShielderDead)) && (_hml_spr != sprEliteGruntDead)) && (_hml_spr != sprEliteInspectorDead)) && (_hml_spr != sprEliteShielderDead))) {
-continue;
-}
-if (hm_arkintide_mod_gml_hm_police_corpse_busy(id, _hml_owner, _hml_tick)) {
-continue;
-}
-if ((instance_nearest(x, y, Corpse) != id)) {
-continue;
-}
-var _hml_body = id;
-var _hml_request = instance_create(x, y, WantRevivePopoFreak);
-;
-if (instance_exists(_hml_request)) {
-{
-hm_police_revive_once = 1;
-;
-hm_police_busy_owner = _hml_owner;
-;
-hm_police_busy_tick = _hml_tick;
-;
-_hml_request.hm_police_corpse = _hml_body;
-;
-}
-}
-}
-}
-if(__hm_break15) break;
-}}
+    if(!scrHMPoliceLate1116() || instance_exists(GenCont)
+        || instance_exists(SpiralCont) || instance_exists(Portal)) return;
+    with(WantRevivePopoFreak) {
+        if(variable_instance_exists(id,"hm_messenger_corpse115")) continue;
+        if(!variable_instance_exists(id,"hm_corpse107") && !variable_instance_exists(id,"hm_police_corpse")) continue;
+        var _hml_body=self[$ "hm_corpse107"]??(self[$ "hm_police_corpse"]??noone);
+        if(!scrHMPoliceBindCorpse107(id,_hml_body)) {scrHMDelete(id);continue;}
+        x=_hml_body.x;y=_hml_body.y;
+    }
+    with(RevivePopoFreak) {
+        if(variable_instance_exists(id,"hm_messenger_corpse115")) continue;
+        if(!variable_instance_exists(id,"hm_corpse107") && !variable_instance_exists(id,"hm_police_corpse")) continue;
+        var _hml_body=self[$ "hm_corpse107"]??(self[$ "hm_police_corpse"]??noone);
+        if(!scrHMPoliceBindCorpse107(id,_hml_body)) {scrHMDelete(id);continue;}
+        x=_hml_body.x;y=_hml_body.y;
+    }
+    var _hml_pending=false;
+    with(Corpse) {
+        if(variable_instance_exists(id,"hm_police_revive_once")) continue;
+        var _hml_spr=sprite_index;
+        if(array_contains([sprGruntDead,sprInspectorDead,sprShielderDead,
+            sprEliteGruntDead,sprEliteInspectorDead,sprEliteShielderDead],_hml_spr)) {
+            _hml_pending=true;break;
+        }
+    }
+    if(!_hml_pending) return;
+    if(!scrHMVariableExists(id,"hm_police_scan")) hm_police_scan=0;
+    hm_police_scan++;
+    var _hml_owner=id,_hml_tick=hm_police_scan;
+    with(WantRevivePopoFreak) {
+        if(variable_instance_exists(id,"hm_messenger_corpse115")) continue;
+        var _hml_body=self[$ "hm_corpse107"]??(self[$ "hm_police_corpse"]??noone);
+        if(instance_exists(_hml_body) && instance_is(_hml_body,Corpse)) {
+            _hml_body.hm_police_busy_owner=_hml_owner;
+            _hml_body.hm_police_busy_tick=_hml_tick;
+        }
+    }
+    with(RevivePopoFreak) {
+        if(variable_instance_exists(id,"hm_messenger_corpse115")) continue;
+        var _hml_body=self[$ "hm_corpse107"]??(self[$ "hm_police_corpse"]??noone);
+        if(instance_exists(_hml_body) && instance_is(_hml_body,Corpse)) {
+            _hml_body.hm_police_busy_owner=_hml_owner;
+            _hml_body.hm_police_busy_tick=_hml_tick;
+        }
+    }
+    with(Corpse) {
+        if(variable_instance_exists(id,"hm_police_revive_once")
+            || variable_instance_exists(id,"hm_messenger_corpse115")) continue;
+        var _hml_spr=sprite_index;
+        if(!array_contains([sprGruntDead,sprInspectorDead,sprShielderDead,
+            sprEliteGruntDead,sprEliteInspectorDead,sprEliteShielderDead],_hml_spr)) continue;
+        if(hm_arkintide_mod_gml_hm_police_corpse_busy(id,_hml_owner,_hml_tick)) continue;
+        var _hml_body=id,_hml_request=instance_create(x,y,WantRevivePopoFreak);
+        if(scrHMPoliceBindCorpse107(_hml_request,_hml_body)) {
+            hm_police_busy_owner=_hml_owner;
+            hm_police_busy_tick=_hml_tick;
+        }
+    }
 }
 
 // Source arkintide.mod.gml:0; hm_water_player_motion (native content 1.1.0)
@@ -3123,12 +2990,13 @@ hm_population_done = 1;
 ;
 GameCont.hm_extra_room_started = current_frame;
 ;
-if (((GameCont.loops >= 3) && (GameCont.area == scrHMAreaResolve(1)))) {
+if (((GameCont.loops >= 1) && (GameCont.area == scrHMAreaResolve(1)))) {
 hm_arkintide_mod_gml_hm_desert_bandits();
 }
 if (((GameCont.loops > 0) && (GameCont.area == scrHMAreaResolve("oasis")))) {
 hm_arkintide_mod_gml_hm_oasis_necromancers();
 }
+scrHMSnowPopulation1116();
 if ((GameCont.loops >= 3)) {
 hm_arkintide_mod_gml_hm_extra_population();
 }
@@ -3775,6 +3643,7 @@ scrHMExtraPopulation1103();
 
 // Source arkintide.mod.gml:0; hm_extra_spawn (native content 1.1.0)
 function hm_arkintide_mod_gml_hm_extra_spawn(_hml__kind, _hml__x, _hml__y) {
+if(GameCont.loops<3) return noone;
 if ((! hm_arkintide_mod_gml_hm_extra_fit(_hml__kind, _hml__x, _hml__y))) {
 return noone;
 }
@@ -4052,6 +3921,7 @@ return _hml_copy;
 
 // Source arkintide.mod.gml:0; hm_extra_bind (native content 1.1.0)
 function hm_arkintide_mod_gml_hm_extra_bind() {
+scrHMExtraCrystalIdentity1116();
 hm_extra = 1;
 ;
 boss = 0;
@@ -4168,6 +4038,7 @@ alarm[11] = hm_extra_alarms[11];
 
 // Source arkintide.mod.gml:0; hm_extra_event (native content 1.1.0)
 function hm_arkintide_mod_gml_hm_extra_event(_hml__type, _hml__number) {
+scrHMExtraCrystalIdentity1116();
 var _hml_loop = GameCont.loops;
 var _hml_area = GameCont.area;
 var _hml_music = noone;
@@ -4202,7 +4073,14 @@ hm_arkintide_mod_gml_hm_extra_timer_restore();
 ;
 hm_arkintide_mod_gml_hm_extra_change(hm_extra_native);
 ;
+// Crystals implement their AI as User Event 0 and inherit Step from enemy.
+// Performing a missing Step directly on HyperCrystal does not dispatch it.
+if (hm_extra_native == HyperCrystal && _hml__type == ev_other && _hml__number == 15) {
+scrTarget();
+scrHMExtraCrystalNative1115();
+} else {
 scrHMContentEvent1100(hm_extra_native, _hml__type, _hml__number);
+}
 ;
 GameCont.loops = _hml_loop;
 ;
@@ -4312,6 +4190,7 @@ if(__hm_break3) break;
 
 // Source arkintide.mod.gml:0; hm_extra_draw (native content 1.1.0)
 function hm_arkintide_mod_gml_hm_extra_draw() {
+scrHMExtraCrystalIdentity1116();
 var _hml_sprite = sprite_index;
 ;
 sprite_index = hm_arkintide_mod_gml_hm_extra_skin(_hml_sprite);
@@ -5066,6 +4945,14 @@ mask_index = mskScrapBoss;
 }
 if (((_hml__kind == "crystal") || (_hml__kind == "cursedcrystal"))) {
 mask_index = mskHyperCrystal;
+hm_extra_cursed1116 = _hml__kind == "cursedcrystal";
+// Keep the native pre-loop combat state; extra crystals do not receive
+// the global HyperCrystal scans once converted to CustomEnemy.
+cnumber = 3;
+crystalset = 1;
+newcnumber = cnumber;
+alarm[1] = 30;
+hm_extra_teleport_at1115 = current_frame + 45;
 }
 if ((_hml__kind == "hunter")) {
 {
@@ -5384,10 +5271,7 @@ if(__hm_break3) break;
 
 // Source arkintide.mod.gml:0; hm_infantry_kind (native content 1.1.0)
 function hm_arkintide_mod_gml_hm_infantry_kind() {
-if ((random(1) < 0.5)) {
-return PopoFreak;
-}
-return choose(Grunt, Inspector, Shielder, EliteGrunt, EliteInspector, EliteShielder);
+return scrHMPoliceKind1116();
 ;
 }
 
@@ -5931,7 +5815,7 @@ return _hml_clear;
 
 // Source arkintide.mod.gml:0; hm_stage_bandit_tick (native content 1.1.0)
 function hm_arkintide_mod_gml_hm_stage_bandit_tick() {
-if ((((GameCont.area != scrHMAreaResolve(1)) || (GameCont.subarea != 3)) || (GameCont.loops < 3))) {
+if ((((GameCont.area != scrHMAreaResolve(1)) || (GameCont.subarea != 3)) || (GameCont.loops < 1))) {
 exit;
 }
 { var __hm_with1 = scrHMInstances(BanditBoss), __hm_break3=false;
@@ -5948,7 +5832,7 @@ if (hm_stage_jungle) {
 {
 hm_extra_kind = "junglebandit";
 ;
-hitid = [global.hm_module_vars[$ "mod:arkintide"].hm_extra_jungle_idle, "BIG JUNGLE BANDIT"];
+hitid = [global.hm_module_vars[$ "mod:arkintide"].hm_extra_jungle_idle, "BIG BANDIT"];
 ;
 var _hml_drawer = instance_create(x, y, CustomObject);
 ;
@@ -6432,6 +6316,7 @@ exit;
 }
 hm_extra_loot_done = 1;
 ;
+scrHMExtraDeathVisual1116();
 scrHMPickupDrop1100(100, 0);
 ;
 }

@@ -30398,6 +30398,78 @@
         "name": "scrHMGameplayRoot1115",
         "path": "scripts/scrHMGameplayRoot1115/scrHMGameplayRoot1115.yy"
       }
+    },
+    {
+      "id": {
+        "name": "scrHMRepairs1116Runtime",
+        "path": "scripts/scrHMRepairs1116Runtime/scrHMRepairs1116Runtime.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrHMGameplayRuntime1116",
+        "path": "scripts/scrHMGameplayRuntime1116/scrHMGameplayRuntime1116.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrHMRepairs1116Policy",
+        "path": "scripts/scrHMRepairs1116Policy/scrHMRepairs1116Policy.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrHMGameplayPolicy1116",
+        "path": "scripts/scrHMGameplayPolicy1116/scrHMGameplayPolicy1116.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprHMCorpse116Crystal",
+        "path": "sprites/sprHMCorpse116Crystal/sprHMCorpse116Crystal.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprHMCorpse116Melting",
+        "path": "sprites/sprHMCorpse116Melting/sprHMCorpse116Melting.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprHMCorpse116MeltingB",
+        "path": "sprites/sprHMCorpse116MeltingB/sprHMCorpse116MeltingB.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprHMCorpse116Plant",
+        "path": "sprites/sprHMCorpse116Plant/sprHMCorpse116Plant.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprHMCorpse116Robot",
+        "path": "sprites/sprHMCorpse116Robot/sprHMCorpse116Robot.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprHMCorpse116Chicken",
+        "path": "sprites/sprHMCorpse116Chicken/sprHMCorpse116Chicken.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprHMCorpse116Skeleton",
+        "path": "sprites/sprHMCorpse116Skeleton/sprHMCorpse116Skeleton.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprHMCorpse116RogueFreak",
+        "path": "sprites/sprHMCorpse116RogueFreak/sprHMCorpse116RogueFreak.yy"
+      }
     }
   ],
   "resourceType": "GMProject",

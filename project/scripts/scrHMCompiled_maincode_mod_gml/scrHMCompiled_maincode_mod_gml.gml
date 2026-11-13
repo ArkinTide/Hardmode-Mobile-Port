@@ -2125,6 +2125,10 @@ _hm.pc = (((y > (portalfall + 2000)) and ((!scrHMVariableExists(_hm.scope, "cred
 break;
 case 98: // maincode.mod.gml:1684
 {
+// A resumed pre-Throne transition can reach this block after this tick's
+// ordinary step hook. Keep the authored descent and credits at one update.
+if((self[$ "hm_throne_fall_tick116"]??-1)==HMWorld.logic_serial) {_hm.pc=79;break;}
+hm_throne_fall_tick116=HMWorld.logic_serial;
 if (((! place_meeting(x, y, Floor)) and (distance_to_object(Portal) > 32))) {
 {
 
@@ -6296,6 +6300,7 @@ return false;
 // Source maincode.mod.gml:2715; bigdogintro
 
 function hm_maincode_mod_gml_bigdogintro() {
+if(instance_exists(creator) && (creator[$ "hm_dog_native_intro1116"]??false)) exit;
 
 { var __hm_with1 = scrHMInstances(creator), __hm_break3=false;
 
@@ -6335,7 +6340,10 @@ scrHMMenuDrawComplete();
 function hm_maincode_mod_gml_CHCoutro() {
 var _source=creator,_extra=false;
 if(instance_exists(_source)) _extra=(_source[$ "hm_extra"]??false);
-if(!_extra && !instance_exists(HyperCrystal)) {
+_extra=self[$ "hm_cave_extra116"]??_extra;
+var _stage=self[$ "hm_cave_stage116"]??(instance_exists(_source)
+    && instance_is(_source,HyperCrystal) && !_extra);
+if(_stage && !_extra && !instance_exists(HyperCrystal)) {
 hm_arkintide_mod_gml_hm_cave_restore(argument0, argument1);
 }
 instance_destroy();

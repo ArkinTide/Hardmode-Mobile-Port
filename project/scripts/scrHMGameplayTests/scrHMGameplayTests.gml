@@ -107,10 +107,13 @@ function scrHMGameplayTestStep() {
         if(string_pos("sync112",mode)==1) scrHMGameplay1102();
         if(mode=="sync113chiefspacing") scrHMGameplayChiefSpacing1103();
         scrHMGameplayRoutes1104();
+        scrHMGameplayPolicy1116();
+        scrHMGameplayRuntime1116();
         scrHMGameplayRoot1115();
         scrHMGameplayPerformance1105();
         scrHMGameplayRocket1115();
         scrHMGameplayExtra1115();
+        scrHMGameplayBoss1116();
         scrHMGameplayUI1104();
         scrHMGameplayHunter1104();
         if(string_pos("sync114",mode)==1) scrHMGameplay1104World();
@@ -1204,7 +1207,8 @@ function scrHMGameplayRepairs105() {
     if(mode=="dog105" && ticks==10) {
         scrHMGameplayIsolate103();scrHMModSet("mod","options","intropan","0");scrHMModSet("mod","options","bossportraits","0");
         dog105=instance_create(player.x+80,player.y,ScrapBoss);
-        with(dog105) {ammo=8;alarm[1]=1;intro=-2;morehp=1;introanimation=11;}
+        // This fixture isolates ricochets; boss1116 observes the full opening.
+        with(dog105) {ammo=8;alarm[1]=1;intro=-2;morehp=1;introanimation=11;hm_dog_open1116=11;}
         dog_shot105=noone;dog_bounce105=false;
         instance_create(14064,14000,Wall);
     }
@@ -1726,6 +1730,33 @@ function scrHMGameplayLane107() {
     player.x=14064;player.y=14160;player.speed=0;
 }
 
+function scrHMGameplayReviveBinding107(_record,_remember=false) {
+    var _body=_record.body,_count=0,_timer=noone,_expected=GameCont.loops>=3?1:0;
+    scrHMGameplayCheck(instance_exists(_body) && instance_is(_body,Corpse),
+        "each lethally hit police target retains its actual corpse until the native revival");
+    if(!instance_exists(_body)) return;
+    with(WantRevivePopoFreak) {
+        var _native=self[$ "hm_corpse107"]??noone,_mod=self[$ "hm_police_corpse"]??noone;
+        if(_native==_body || _mod==_body) {_count++;_timer=id;}
+    }
+    scrHMGameplayCheck(_count==_expected,
+        "each actual police corpse owns exactly one late-loop timer and none before Loop3");
+    if(_expected && _count==1) {
+        scrHMGameplayCheck(_timer.hm_corpse107==_body && _timer.hm_police_corpse==_body
+            && (_body[$ "hm_police_revive_once"]??false),
+            "native and imported revival aliases point to the same once-marked corpse");
+        if(_remember) _record.timer=_timer;
+        else scrHMGameplayCheck(_record.timer==_timer,
+            "corpse movement never creates or substitutes a second revival timer");
+        // This observer runs in End Step, after corpse physics. The scanner
+        // runs once per 30 Hz logic tick; at 60 Hz two physical steps have
+        // elapsed, so speed is pixels per half-tick rather than per scan.
+        var _logic_travel=_body.speed/max(timescale,.001);
+        scrHMGameplayCheck(point_distance(_timer.x,_timer.y,_body.x,_body.y)<=max(1,_logic_travel+1),
+            "the original revival timer follows within its single logical tick of actual corpse travel");
+    }
+}
+
 function scrHMGameplayRepairs107() {
     if(mode=="trail107" && ticks==10) {scrHMGameplayLane107();trail_peak107=0;player.gunangle=90;}
     if(mode=="trail107" && ticks>=10 && ticks<=110 && ticks mod 10==0)
@@ -2006,21 +2037,122 @@ function scrHMGameplayRepairs107() {
         scrHMGameplayLane107();
         // A live enemy keeps this a combat room, as in the native mechanic.
         revive_keeper107=instance_create(14400,14280,CustomEnemy);revive_keeper107.hp=100000;
+        revive_targets107=[];
         var _types=[Grunt,Inspector,Shielder,EliteGrunt,EliteInspector,EliteShielder];
         for(var _i=0;_i<6;++_i) {
             var _e=instance_create(14128+(_i mod 3)*96,14048+(_i div 3)*128,_types[_i]);
             _e.speed=0;_e.freeze=100;_e.alarm[1]=-1;
+            array_push(revive_targets107,{who:_e,type:object_get_name(_types[_i]),
+                dead:_e.spr_dead,x:_e.x,y:_e.y,hp:_e.hp,body:noone,timer:noone});
             scrHMVenusShoot106(_e,10000);
+        }
+    }
+    if(mode=="revive107" && array_contains([12,25],ticks)) {
+        var _actors=[],_bodies=[],_timers=[],_effects=[],_bullets=[];
+        for(var _i=0;_i<array_length(revive_targets107);++_i) {
+            var _record=revive_targets107[_i],_actor=_record.who,_live=instance_exists(_actor);
+            array_push(_actors,{who:_actor,type:_record.type,exists:_live,
+                dead:sprite_get_name(_record.dead),origin:[_record.x,_record.y],initial_hp:_record.hp,
+                actual:_live?object_get_name(_actor.object_index):"destroyed",hp:_live?_actor.hp:-1,
+                position:_live?[_actor.x,_actor.y]:[],frozen:_live?(_actor[$ "frozen"]??false):false,
+                portrait:_live?(_actor[$ "hm_portrait_frozen"]??false):false});
+        }
+        with(Corpse) array_push(_bodies,{who:id,object:object_get_name(object_index),
+            sprite:sprite_get_name(sprite_index),x:x,y:y,speed:speed,index:image_index,
+            no_revive:self[$ "hm_no_revive109"]??false,once:self[$ "hm_police_revive_once"]??false});
+        with(WantRevivePopoFreak) {
+            var _native=self[$ "hm_corpse107"]??noone,_mod=self[$ "hm_police_corpse"]??noone;
+            array_push(_timers,{who:id,x:x,y:y,alarm:alarm[0],native_body:_native,mod_body:_mod,
+                native_exists:instance_exists(_native),mod_exists:instance_exists(_mod),
+                native_position:instance_exists(_native)?[_native.x,_native.y]:[],
+                mod_position:instance_exists(_mod)?[_mod.x,_mod.y]:[]});
+        }
+        with(RevivePopoFreak) array_push(_effects,{who:id,x:x,y:y,alarm:alarm[0],
+            native_body:self[$ "hm_corpse107"]??noone,mod_body:self[$ "hm_police_corpse"]??noone});
+        with(Bullet1) array_push(_bullets,{who:id,x:x,y:y,team:team,damage:damage});
+        show_debug_message("HARDMODE REVIVE107 DIAGNOSTIC "+json_stringify({tick:ticks,targets:_actors,
+            bodies:_bodies,timers:_timers,effects:_effects,bullets:_bullets,
+            shields:instance_number(PopoShield),elite_shields:instance_number(EliteShield),
+            freaks:instance_number(PopoFreak),portals:instance_number(Portal),active:HMWorld.hm_portrait_active}));
+    }
+    if(mode=="revive107" && ticks==12) {
+        for(var _i=0;_i<array_length(revive_targets107);++_i) {
+            var _record=revive_targets107[_i],_body=noone,_matches=0,_dead=_record.dead;
+            with(Corpse) if(sprite_index==_dead) {_body=id;_matches++;}
+            scrHMGameplayCheck(!instance_exists(_record.who) && _matches==1,
+                "each of the six real police targets dies and creates exactly its native corpse");
+            _record.body=_body;
+            scrHMGameplayReviveBinding107(_record,true);
         }
     }
     if(mode=="revive107" && ticks==25)
         scrHMGameplayCheck(instance_number(WantRevivePopoFreak)==(GameCont.loops>=3?6:0),"real deaths schedule one original revival timer per police only from loop three");
+    if(mode=="revive107" && array_contains([25,40,100,400,790],ticks)) {
+        for(var _i=0;_i<array_length(revive_targets107);++_i)
+            scrHMGameplayReviveBinding107(revive_targets107[_i]);
+        scrHMGameplayCheck(instance_number(WantRevivePopoFreak)==(GameCont.loops>=3?6:0),
+            "the entire moving six-corpse cohort keeps its original exact timer total");
+        if(ticks==790) scrHMGameplayCheck(instance_number(PopoFreak)==0 && instance_number(RevivePopoFreak)==0,
+            "the full native 800-tick wait is preserved before either resurrection stage");
+    }
+    if(mode=="revive107" && ticks==30) {
+        var _old=revive_targets107[0].body;
+        revive_decoy107=instance_create(_old.x,_old.y,Corpse);
+        revive_decoy107.sprite_index=mskNone;revive_decoy107.mask_index=mskNone;
+        for(var _i=0;_i<array_length(revive_targets107);++_i) {
+            var _body=revive_targets107[_i].body;
+            _body.x=14120+(_i mod 3)*96;_body.y=14140+(_i div 3)*96;_body.speed=0;
+        }
+    }
     if(mode=="revive107" && array_contains([30,790,815,835,855],ticks)) {
         var _corpses=[];with(Corpse) array_push(_corpses,[x,y,sprite_index]);
         show_debug_message("HARDMODE REVIVE107 "+json_stringify({tick:ticks,timers:instance_number(WantRevivePopoFreak),effects:instance_number(RevivePopoFreak),freaks:instance_number(PopoFreak),portal:instance_number(Portal),corpses:_corpses}));
     }
-    if(mode=="revive107" && ticks==860)
+    if(mode=="revive107" && ticks==860) {
         scrHMGameplayCheck(instance_number(PopoFreak)==(GameCont.loops>=3?6:0),"native 800-tick timers actually revive police corpses as IDPD Freaks");
+        for(var _i=0;_i<array_length(revive_targets107);++_i) {
+            var _body=revive_targets107[_i].body;
+            scrHMGameplayCheck(instance_exists(_body) && instance_is(_body,GameCont.loops>=3?PopoFreak:Corpse),
+                "all six exact original corpse IDs complete the real native resurrection only from Loop3");
+        }
+        scrHMGameplayCheck(instance_exists(revive_decoy107) && instance_is(revive_decoy107,Corpse),
+            "the invisible logic corpse never steals a police resurrection");
+    }
+    if(mode=="revive107" && ticks==870 && GameCont.loops>=3) {
+        var _freak=revive_targets107[0].body;
+        revive_freak_dead107=_freak.spr_dead;
+        _freak.speed=0;_freak.freeze=100;
+        scrHMVenusShoot106(_freak,10000);
+    }
+    if(mode=="revive107" && ticks==875 && GameCont.loops>=3) {
+        var _body=noone,_matches=0,_dead=revive_freak_dead107;
+        with(Corpse) if(sprite_index==_dead) {_body=id;_matches++;}
+        scrHMGameplayCheck(_matches==1 && instance_number(WantRevivePopoFreak)==1,
+            "a genuinely revived Freak death creates exactly one new native corpse and timer");
+        revive_freak_record107={body:_body,timer:noone};
+        scrHMGameplayReviveBinding107(revive_freak_record107,true);
+        if(instance_exists(revive_freak_record107.timer))
+            scrHMGameplayCheck(revive_freak_record107.timer.alarm[0]>780,
+                "the Freak's next life retains the original 800-tick timer interval");
+    }
+    if(mode=="revive107" && array_contains([890,1000,1400,1660],ticks) && GameCont.loops>=3) {
+        scrHMGameplayReviveBinding107(revive_freak_record107);
+        scrHMGameplayCheck(instance_number(WantRevivePopoFreak)==1 && instance_number(PopoFreak)==5,
+            "the returned Freak's second death keeps a single full-interval revival while its five peers remain alive");
+        if(ticks==1660) scrHMGameplayCheck(instance_number(RevivePopoFreak)==0,
+            "the returned Freak cannot skip its next complete native waiting interval");
+    }
+    if(mode=="revive107" && ticks==900 && GameCont.loops>=3) {
+        var _body=revive_freak_record107.body;
+        _body.x=14320;_body.y=14200;_body.speed=0;
+    }
+    if(mode=="revive107" && ticks==1700 && GameCont.loops>=3) {
+        var _body=revive_freak_record107.body;
+        scrHMGameplayCheck(instance_exists(_body) && instance_is(_body,PopoFreak)
+            && instance_number(PopoFreak)==6 && instance_number(WantRevivePopoFreak)==0
+            && instance_number(RevivePopoFreak)==0,
+            "the returned Freak's exact new corpse completes a second real 800-tick plus effect resurrection");
+    }
     if(mode=="van107" && ticks==10) {
         scrHMGameplayLane107();van107=instance_create(player.x+160,player.y,Van);
         for(var _i=0;_i<28;++_i) for(var _j=0;_j<5;++_j) instance_create(13300+_i*32,14100+_j*32,Floor);

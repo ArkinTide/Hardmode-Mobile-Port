@@ -1,9 +1,9 @@
-# Hardmode Mobile Port 1.1.5
+# Hardmode Mobile Port 1.1.6
 
-Hardmode手机移植版，build19。本轮35项更改见 [修复记录](docs/FIXES.md)，安装方法见 [安装说明](docs/INSTALL.md)。
+Hardmode 手机移植版，build 20。本轮26项修改见[修复记录](docs/FIXES.md)，安装方法见[安装说明](docs/INSTALL.md)。
 
-最终交付回执记录 155 个同一VM场景、142631 项断言通过。
+最终交付核验通过 233 个同一 VM 场景、157017 项断言。
 
-保留原有包名、签名身份、存档和手机版变异选择界面。此仓库发布文本源码及工程元数据；安装包通过Hardmode专用MEGA目录发布。
+保留包名、Android签名身份、存档路径和手机版变异选择界面。仓库发布文本源码与工程元数据；APK与IPA通过Hardmode专用MEGA目录发布。
 
-测试使用静音隔离的桌面宿主VM，未进行安卓/iPhone真机验收，不保证恒定60帧。iOS IPA需重签，采用兼容的既有原生Runner及新VM/资源。
+测试使用静音隔离的Windows宿主VM，未进行安卓或iPhone真机验收。持续负载过高时会暂时降低渲染至原生30Hz以维持正常游戏速度，负载恢复后再恢复用户60帧设置；不保证所有设备恒定60帧。iOS IPA需重签，使用兼容既有原生Runner和新VM、资源。

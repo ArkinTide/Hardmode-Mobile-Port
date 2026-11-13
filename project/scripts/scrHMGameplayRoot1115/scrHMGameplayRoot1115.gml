@@ -7,7 +7,13 @@ function scrHMGameplayRoot1115() {
         for(var _l=0;_l<4;++_l) {
             GameCont.loops=_l;var _jungle=0,_plain=0;
             for(var _seed=0;_seed<32;++_seed) {
+                // The constructor now classifies real asynchronous WantBoss
+                // arrivals. Suppress only that initial fixture roll so this
+                // older contract still exercises the seeded stage tick.
+                var _pending=variable_instance_get(GameCont,"hm_extra_pending")??false;
+                GameCont.hm_extra_pending=true;
                 var _boss=instance_create(player.x+120,player.y,BanditBoss);
+                GameCont.hm_extra_pending=_pending;
                 _boss.newintro=-1;
                 random_set_seed(_seed);var _expected=random(1)<.5;
                 random_set_seed(_seed);repeat(4) hm_arkintide_mod_gml_hm_stage_bandit_tick();
@@ -148,6 +154,8 @@ function scrHMGameplayRoot1115() {
         with(enemy) if((self[$ "hm_arrival_gate1115"]??noone)==other.gate115) _new++;
         scrHMGameplayCheck(_new>=1 && _new<=5,"native portal produces between one and five units exactly once");
         var _kind=gate115.hm_spawn_kind1115;
+        if(GameCont.loops<3) scrHMGameplayCheck(_kind!=PopoFreak,
+            "the native Hardmode arrival batch never selects IDPD Freak before Loop3");
         scrHMGameplayCheck(_new==gate115.hm_spawn_count1115,"portal's actual living arrivals match its one batch before normal AI conversion");
         if(_kind!=Grunt) scrHMGameplayCheck(_new==1,"every non-infantry kind exits its portal alone");
         gate115arrived=true;gate115count=_new;

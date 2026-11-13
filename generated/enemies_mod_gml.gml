@@ -7001,6 +7001,7 @@ if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
 {
 var __hm_other4=scrHMOther(other);
 sprite_index = __hm_other4.spr_dead;
+hm_enemy_body116=true;
 specialrevive = "skeleton";
 }
 }
@@ -7555,6 +7556,7 @@ if(instance_exists(__hm_with6[__hm_index7])) with (__hm_with6[__hm_index7]) {
 {
 var __hm_other9=scrHMOther(other);
 sprite_index = __hm_other9.spr_dead;
+hm_enemy_body116=true;
 }
 }
 if(__hm_break8) break;
@@ -7682,6 +7684,7 @@ if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
 {
 var __hm_other4=scrHMOther(other);
 sprite_index = __hm_other4.spr_dead;
+hm_enemy_body116=true;
 specialrevive = "melting";
 }
 }
@@ -8771,6 +8774,7 @@ if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
 {
 var __hm_other4=scrHMOther(other);
 sprite_index = __hm_other4.spr_dead;
+hm_enemy_body116=true;
 specialrevive = "rogue";
 }
 }
@@ -9031,6 +9035,7 @@ if(instance_exists(__hm_with6[__hm_index7])) with (__hm_with6[__hm_index7]) {
 {
 var __hm_other9=scrHMOther(other);
 sprite_index = __hm_other9.spr_dead;
+hm_enemy_body116=true;
 }
 }
 if(__hm_break8) break;

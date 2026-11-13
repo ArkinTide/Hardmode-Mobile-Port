@@ -15,5 +15,6 @@ for(var i = 0; i < 6; ++i) {
         sprite_index = sprScrapBossDead
         image_xscale = choose(1, -1)
         image_index = i
+        if(scrHMEnabled() && (other[$ "hm_extra"]??false)) {hm_extra=true;hm_extra_kind="dog";}
     }
 }

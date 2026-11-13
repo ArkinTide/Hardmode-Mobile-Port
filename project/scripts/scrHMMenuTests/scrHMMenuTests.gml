@@ -58,13 +58,22 @@ function scrHMMenuOptionsCheck() {
     if(scrHMChinese()) {
         var _surface=surface_create(gui_w,gui_h);
         scrHMMenuCheck(surface_exists(_surface),"Chinese settings review surface is allocated");
+        var _font=draw_get_font(),_ha=draw_get_halign(),_va=draw_get_valign();
+        var _color=draw_get_color(),_alpha=draw_get_alpha();
+        var _world=matrix_get(matrix_world),_view=matrix_get(matrix_view),_projection=matrix_get(matrix_projection);
+        var _camera=camera_create_view(0,0,gui_w,gui_h,0,noone,-1,-1,0,0);
         surface_set_target(_surface);draw_clear_alpha(c_black,1);
+        matrix_set(matrix_world,matrix_build_identity());camera_apply(_camera);
+        draw_reset_font();draw_set_halign(fa_center);draw_set_valign(fa_middle);
+        draw_set_color(c_white);draw_set_alpha(1);
         with(_menu) {last_change=current_frame-60;event_user(1);scroll=scroll_max;}
         draw_clear_alpha(c_black,1);
         with(_menu) event_user(1);
         surface_reset_target();
         surface_save(_surface,game_directory+"settings115-"+global.language_current[$ "Init:Id"]+".png");
         surface_free(_surface);
+        camera_destroy(_camera);matrix_set(matrix_world,_world);matrix_set(matrix_view,_view);matrix_set(matrix_projection,_projection);
+        draw_set_font(_font);draw_set_halign(_ha);draw_set_valign(_va);draw_set_color(_color);draw_set_alpha(_alpha);
     }
     with(_menu) instance_destroy();
 }

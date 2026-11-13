@@ -59,3 +59,7 @@ spr_shadow = shd96
 alarm[2] = 20
 
 hitid = HitId.BigDog
+// The authored eye-opening animation belongs to the boss, including bosses
+// created outside the junkyard script task. Extra bosses appear directly.
+hm_dog_native_intro1116=scrHMEnabled() && !(instance_exists(GameCont) && (variable_instance_get(GameCont,"hm_extra_pending")??false))
+hm_dog_open1116=hm_dog_native_intro1116 ? 0 : 11

@@ -1,3 +1,15 @@
+if(scrHMEnabled() && (self[$ "hm_dog_native_intro1116"]??false)) {
+    // Keep the legacy region-only binding from painting over this animation.
+    introanimation=11
+    if(hm_dog_open1116<11) {
+        hm_dog_open1116=min(11,hm_dog_open1116+.4*timescale)
+        speed=0
+        image_alpha=1
+        if(hm_dog_open1116<11) exit
+        friction=.4*timescale*timescale
+        mask_index=mskScrapBoss
+    }
+}
 event_inherited()
 
 if speed > (3) * timescale speed = (3) * timescale

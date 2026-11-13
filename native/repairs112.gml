@@ -21,13 +21,77 @@ function scrHMCaveWalls112(_origin) {
     // The independent floor fade is still allowed to finish afterwards.
     with(Wall) {
         sprite_index=sprWall4Bot;topspr=sprWall4Top;outspr=sprWall4Out;
+        image_blend=c_white;
     }
-    with(TopSmall) sprite_index=sprWall4Trans;
+    with(TopSmall) {sprite_index=sprWall4Trans;image_blend=c_white;}
     with(HMWorld) {
         hm_wall_theme_queue=[];hm_wall_theme_index=0;
         hm_wall_theme_area106=GameCont.area;hm_theme_started111=GameCont.area;
         hm_cave_restored112=true;
     }
+}
+
+function scrHMCavePaletteSprite116(_sprite) {
+    switch(_sprite) {
+        case sprFloor104:return sprFloor4;
+        case sprFloor104B:return sprFloor4B;
+        case sprFloor104Explo:return sprFloor4Explo;
+        case sprWall104Bot:return sprWall4Bot;
+        case sprWall104Top:return sprWall4Top;
+        case sprWall104Out:return sprWall4Out;
+        case sprWall104Trans:return sprWall4Trans;
+        case sprTopDecalInvCave:return sprTopDecalCave;
+        case sprInvCaveDecal:return sprCaveDecal;
+    }
+    return _sprite;
+}
+
+function scrHMCavePaletteFinish116() {
+    if(!instance_exists(GameCont) || !(variable_instance_get(GameCont,"hm_cave_cleansed")??false)
+        || GameCont.area!=scrHMAreaResolve("caves")) {instance_destroy();return;}
+    // A/B/broken-floor artwork is mapped independently. Never replace a
+    // Floor, packed Wall or mask merely to change its destination palette.
+    with(Floor) {
+        var _target=self[$ "hm_cave_target116"]??scrHMCavePaletteSprite116(sprite_index);
+        // A genuine new blast during the wave can still make a broken tile.
+        if(sprite_index==sprFloor104Explo || sprite_index==sprFloor4Explo) _target=sprFloor4Explo;
+        sprite_index=_target;hm_cave_target116=undefined;image_blend=c_white;image_alpha=1;
+    }
+    with(Wall) {
+        sprite_index=sprWall4Bot;topspr=sprWall4Top;outspr=sprWall4Out;image_blend=c_white;
+    }
+    with(TopSmall) {sprite_index=sprWall4Trans;image_blend=c_white;}
+    with(TopDecalInvCave) sprite_index=scrHMCavePaletteSprite116(sprite_index);
+    with(Bones) sprite_index=scrHMCavePaletteSprite116(sprite_index);
+    with(CustomObject) if((self[$ "on_step"]??undefined)==scrHMScriptRef(hm_props_mod_gml_fadefloor))
+        sprite_index=scrHMCavePaletteSprite116(sprite_index);
+    with(Corpse) if(image_speed==0) scrHMCorpseSettle116();
+    HMWorld.hm_cave_palette_done116=true;
+    instance_destroy();
+}
+
+function scrHMCorpseSprite116(_sprite) {
+    switch(_sprite) {
+        case sprMutant2BDead:return sprHMCorpse116Crystal;
+        case sprMutant4Dead:return sprHMCorpse116Melting;
+        case sprMutant4BDead:return sprHMCorpse116MeltingB;
+        case sprMutant5Dead:return sprHMCorpse116Plant;
+        case sprHM_enemies_mod_64:return sprHMCorpse116RogueFreak;
+        case sprMutant8Dead:return sprHMCorpse116Robot;
+        case sprMutant9Dead:return sprHMCorpse116Chicken;
+        case sprMutant14Dead:return sprHMCorpse116Skeleton;
+    }
+    return _sprite;
+}
+
+function scrHMCorpseSettle116() {
+    if(!(self[$ "hm_enemy_body116"]??false)) return;
+    var _sprite=scrHMCorpseSprite116(sprite_index);
+    if(_sprite==sprite_index) return;
+    // Only enemy bodies borrowing bright player death art need a different
+    // settled frame. The original animated and player sprites stay intact.
+    hm_corpse_original116=sprite_index;
+    sprite_index=_sprite;image_index=sprite_get_number(_sprite)-1;
 }
 
 function scrHMSwimSupported112(_x,_y) {
@@ -48,6 +112,7 @@ function scrHMMusicRoom112() {
         return false;
     }
     alarm[0]=-1;
+    scrHMDesertMusic1116();
     var _area=GameCont.area,_owner=self[$ "hm_music_area112"];
     if(is_undefined(_owner) || _owner!=_area) {
         var _native=scrHMVanillaLoopArea111(_area);
@@ -56,7 +121,7 @@ function scrHMMusicRoom112() {
         switch(scrHMAreaKey(_area)) {
             case "area:junkyard":_song=mus3b;_amb=amb3;break;
             case "area:ravenboss":_song=mus3;_amb=amb3;break;
-            case "area:throne":_song=mus7;_amb=amb7;break;
+            case "area:throne":_song=mus7b;_amb=amb7;break;
             case "area:icecave":_song=mus100;_amb=amb100;break;
             case "area:noyetihere":_song=musBoss4Silence;_amb=amb100;break;
             case "area:end":_song=musCredits;_amb=amb0b;break;

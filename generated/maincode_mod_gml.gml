@@ -2209,6 +2209,10 @@ _hm.pc = (((y > (portalfall + 2000)) and ((!scrHMVariableExists(_hm.scope, "cred
 break;
 case 116: // maincode.mod.gml:1917
 {
+// A resumed pre-Throne transition can reach this block after this tick's
+// ordinary step hook. Keep the authored descent and credits at one update.
+if((self[$ "hm_throne_fall_tick116"]??-1)==HMWorld.logic_serial) {_hm.pc=97;break;}
+hm_throne_fall_tick116=HMWorld.logic_serial;
 if (((! place_meeting(x, y, Floor)) and (distance_to_object(Portal) > 32))) {
 {
 scrHMThroneFall107(true);
@@ -6279,7 +6283,17 @@ scrHMMenuDrawComplete();
 }
 
 // Source maincode.mod.gml:2722; CHCoutro
-function hm_maincode_mod_gml_CHCoutro(_x,_y) {scrHMCursedCavesRestore(_x,_y);instance_destroy();}
+function hm_maincode_mod_gml_CHCoutro() {
+var _source=creator,_extra=false;
+if(instance_exists(_source)) _extra=(_source[$ "hm_extra"]??false);
+_extra=self[$ "hm_cave_extra116"]??_extra;
+var _stage=self[$ "hm_cave_stage116"]??(instance_exists(_source)
+    && instance_is(_source,HyperCrystal) && !_extra);
+if(_stage && !_extra && !instance_exists(HyperCrystal)) {
+hm_arkintide_mod_gml_hm_cave_restore(argument0, argument1);
+}
+instance_destroy();
+}
 
 // Source maincode.mod.gml:2734; sewerboi
 function hm_maincode_mod_gml_sewerboi() {

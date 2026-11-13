@@ -1,3 +1,4 @@
+if(scrHMEnabled() && (self[$ "hm_dog_native_intro1116"]??false) && hm_dog_open1116<11) {alarm[1]=1;exit;}
 if ammo > 0 {
     spr_hurt = sprScrapBossHurtSpin
     snd_play(sndEnemyFire)
@@ -26,6 +27,7 @@ if ammo > 0 {
         gunangle += step
     }
 
+    if(scrHMEnabled()) scrHMBigDogShots105()
     gunangle += 4 * turn
 }
 else {
