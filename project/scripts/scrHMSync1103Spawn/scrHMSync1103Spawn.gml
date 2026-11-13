@@ -47,6 +47,8 @@ function scrHMExtraTile1103(_kind) {
 }
 
 function scrHMExtraPopulation1103() {
+    if(GameCont.loops<1 || GameCont.area==scrHMAreaResolve("throne")) return;
+    if(scrHMPoliceArea107(GameCont.area) && (GameCont.subarea==5 || GameCont.loops<3)) return;
     var _pool=hm_arkintide_mod_gml_hm_extra_pool(GameCont.area);
     if(!array_length(_pool)) return;
     var _amount=irandom_range(0,hm_arkintide_mod_gml_hm_extra_limit(GameCont.loops));

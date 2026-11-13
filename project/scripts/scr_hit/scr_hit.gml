@@ -3,12 +3,15 @@
 /// @param amount
 /// @param {Enum.HitId|Array} hitid=HitId.None
 function scr_hit(_instance, _amount, _hitid = HitId.None) {
+	var _source1115=id;
 	with (_instance) {
+		if(scrHMSelfRocketImmune1115(id,_source1115)) return false;
 		if(self[$ "hm_custom_actor"] ?? false) {
 			if(!is_undefined(on_hurt)) return scrHMActorHurt(_amount,_hitid);
 		}
 
 		if (instance_is(self, Player)) {
+			if(_amount>0 && scrHMBossPresentationProtected115()) return false;
 			var _adj = scrCustomParam("damage_to_player", 0)
 			if (_amount != 0 && _adj != 0) _amount = max(1, _amount + _adj)
 			if (scrPlayerProcTakeDamage(_amount)) return false
@@ -61,6 +64,7 @@ function scr_hit_self(_amount, _hitid = HitId.None) {
 /// @param knockback_amount=0
 /// @param knockback_direction=direction
 function scr_projectile_hit(_instance, _amount, _kb_amount = 0, _kb_direction = undefined) {
+	if(scrHMSelfRocketImmune1115(_instance,id)) return false;
 	// Legacy callbacks own both damage and recoil. Do not apply base recoil twice.
 	if _amount > 0 && instance_exists(_instance) {
 		with(_instance) if(self[$ "hm_custom_actor"] ?? false) {

@@ -46,6 +46,7 @@ function scrHMPalaceHorrorStep() {
 
 function scrHMPendingBoss() {
     if(!scrHMEnabled()) return false;
+    if(scrHMMessengerReviving115()) return true;
     if(instance_exists(WantLH)) return true;
     var _hunter=false;with(CustomObject) if(name=="hm_hunter_arrival109") {_hunter=true;break;}
     if(_hunter) return true;

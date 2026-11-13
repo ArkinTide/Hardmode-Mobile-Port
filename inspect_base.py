@@ -2,7 +2,7 @@
 from pathlib import Path
 import re,struct,sys,math
 ROOT=Path(__file__).resolve().parent
-sys.path.insert(0,str(ROOT.parent/'native-deps'))
+sys.path.insert(0,str(ROOT.parent/'native-deps-readable'))
 from capstone import Cs,CS_ARCH_X86,CS_MODE_32
 b=Path('D:/Steam/steamapps/common/Nuclear Throne/9940/NuclearThroneTogether.exe').read_bytes()
 pe=struct.unpack_from('<I',b,0x3c)[0];opt=pe+24

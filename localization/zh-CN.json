@@ -212,5 +212,8 @@
   "CAPTAIN": "局长",
   "GIANT SCORPION": "巨型蝎子",
   "BIG RAT": "大老鼠",
-  "TURTLE": "乌龟首领"
+  "TURTLE": "乌龟首领",
+  "PLAYER BOOST#MAX HP +2#MAX LEVEL +1": "玩家增强#生命上限+2#等级上限+1",
+  "CANCEL SELECTION": "取消选择",
+  "KEEP CURRENT ULTRA MUTATIONS": "保留当前终极变异"
 }

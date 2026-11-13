@@ -270,7 +270,7 @@ return noone;
 }
 var _hml_kind = PopoFreak;
 ;
-if (((GameCont.loops >= 3) && (random(1) < 0.5))) {
+if (((GameCont.loops >= scrHMLoopEnemyStart1115()) && (random(1) < 0.5))) {
 _hml_kind = choose(Grunt, Inspector, Shielder, EliteGrunt, EliteInspector, EliteShielder);
 }
 return instance_create(_hml__x, _hml__y, _hml_kind);
@@ -451,7 +451,7 @@ _hml_pool = [ExploGuardian, DogGuardian, Sniper, DogGuardian, ExploGuardian, Exp
 break;
 ;
 }
-if(_hml__region==7 && GameCont.loops>=3) array_push(_hml_pool,CrownGuardian);
+if(_hml__region==7 && GameCont.loops>=1) array_push(_hml_pool,CrownGuardian);
 if ((((array_length(_hml_pool) > 0) && (random(2) < random(GameCont.loops))) && (collision_circle((x + 16), (y + 16), 12, Wall, false, true) == noone))) {
 {
 var _hml_allow = 1;
@@ -510,10 +510,10 @@ scrHMModCall("mod", "enemies", "Minigunner_create", (x + 16), (y + 16));
 if ((((_hml__region == 2) || ((_hml__region == 3) && (GameCont.subarea >= 4))) && (random(16) < 1))) {
 instance_create((x + 16), (y + 16), BuffGator);
 }
-if (((((_hml__region == 4) && (GameCont.area == scrHMAreaResolve("caves"))) && (GameCont.loops >= 3)) && (random(48) < 1))) {
+if (((((_hml__region == 4) && (GameCont.area == scrHMAreaResolve("caves"))) && (GameCont.loops >= 1)) && (random(48) < 1))) {
 instance_create((x + 16), (y + 16), InvLaserCrystal);
 }
-if (((((_hml__region == 1) || ((_hml__region == 4) && (GameCont.area == scrHMAreaResolve("caves")))) && (GameCont.loops >= 3)) && (random(32) < 1))) {
+if (((((_hml__region == 1) || ((_hml__region == 4) && (GameCont.area == scrHMAreaResolve("caves")))) && (GameCont.loops >= 1)) && (random(32) < 1))) {
 instance_create((x + 16), (y + 16), JungleBandit);
 }
 if ((((_hml__region == 2) || (_hml__region == 3)) && (random(48) < 1))) {
@@ -792,36 +792,15 @@ instance_create((_hml_fl.x + 16), (_hml_fl.y + 16), ProtoStatue);
 }
 
 // Source arkintide.mod.gml:0; hm_hunter_pending (native content 1.1.0)
-function hm_arkintide_mod_gml_hm_hunter_pending() {
-{ var __hm_with1 = scrHMInstances(instance_create(10016, 10016, CustomObject)), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-name = "hm_hunter_pending";
-;
-hm_wait = 30;
-;
-on_step = scrHMContentRef1100("mod", "arkintide", "hm_hunter_wait");
-;
-}
-}
-if(__hm_break3) break;
-}}
-}
+function hm_arkintide_mod_gml_hm_hunter_pending() {scrHMLilHunterPending109();}
 
 // Source arkintide.mod.gml:0; hm_hunter_wait (native content 1.1.0)
 function hm_arkintide_mod_gml_hm_hunter_wait() {
-if(instance_exists(GenCont) || !instance_exists(Player)) return;
-hm_wait -= 1;
-;
-if ((hm_wait > 0)) {
-exit;
-}
-if (((! instance_exists(WantLH)) && (! instance_exists(LilHunter)))) {
-instance_create(x, y, WantLH);
-}
-scrHMDelete(id);
-;
+    if(!variable_instance_exists(id,"hm_area109")) {
+        hm_area109=GameCont.area;hm_sub109=GameCont.subarea;hm_loop109=GameCont.loops;
+        hm_wait109=self[$ "hm_wait"]??30;
+    }
+    scrHMLilHunterWait109();
 }
 
 // Source arkintide.mod.gml:0; hm_cave_restore (native content 1.1.0)
@@ -1367,30 +1346,7 @@ hm_arkintide_mod_gml_hm_bounds_tick();
 ;
 hm_arkintide_mod_gml_hm_empty_exit();
 ;
-if (((GameCont.area == scrHMAreaResolve("city")) && (GameCont.subarea == 5))) {
-{
-{ var __hm_with1 = scrHMInstances(LilHunter), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-if ((!scrHMVariableExists(id, "hm_hunter_group"))) {
-{
-hm_hunter_group = 1;
-;
-repeat ((hm_arkintide_mod_gml_hm_boss_count() - 1)) { var __hm_with4 = scrHMInstances(instance_create(x, y, LilHunter)), __hm_break6=false;
-for (var __hm_index5=0; __hm_index5<array_length(__hm_with4); ++__hm_index5) {
-if(instance_exists(__hm_with4[__hm_index5])) with (__hm_with4[__hm_index5]) {
-hm_hunter_group = 1;
-}
-if(__hm_break6) break;
-}}
-;
-}
-}
-}
-if(__hm_break3) break;
-}}
-}
-}
+scrHMLilHunterReconcile115();
 { var __hm_with7 = scrHMInstances(VanSpawn), __hm_break9=false;
 for (var __hm_index8=0; __hm_index8<array_length(__hm_with7); ++__hm_index8) {
 if(instance_exists(__hm_with7[__hm_index8])) with (__hm_with7[__hm_index8]) {
@@ -2086,7 +2042,7 @@ hm_pending_boss_seen = 0;
 if ((! hm_pending_boss_kind)) {
 exit;
 }
-var _hml_arrived = instance_exists(LilHunter);
+var _hml_arrived = instance_exists(LilHunter) || instance_exists(LilHunterFly);
 ;
 if ((hm_pending_boss_kind == 1)) {
 _hml_arrived = (array_length(scrHMMatching(CustomEnemy, "name", "titank")) > 0);
@@ -2379,7 +2335,7 @@ return (instance_exists(_hml_request) && (point_distance(_hml_request.x, _hml_re
 
 // Source arkintide.mod.gml:0; hm_police_revival (native content 1.1.0)
 function hm_arkintide_mod_gml_hm_police_revival() {
-if (((((GameCont.loops < 3) || instance_exists(GenCont)) || instance_exists(SpiralCont)) || instance_exists(Portal))) {
+if (((((GameCont.loops < scrHMLoopEnemyStart1115()) || instance_exists(GenCont)) || instance_exists(SpiralCont)) || instance_exists(Portal))) {
 exit;
 }
 { var __hm_with1 = scrHMInstances(WantRevivePopoFreak), __hm_break3=false;
@@ -3167,13 +3123,13 @@ hm_population_done = 1;
 ;
 GameCont.hm_extra_room_started = current_frame;
 ;
-if (((GameCont.loops >= 3) && (GameCont.area == scrHMAreaResolve(1)))) {
+if (((GameCont.loops >= 1) && (GameCont.area == scrHMAreaResolve(1)))) {
 hm_arkintide_mod_gml_hm_desert_bandits();
 }
 if (((GameCont.loops > 0) && (GameCont.area == scrHMAreaResolve("oasis")))) {
 hm_arkintide_mod_gml_hm_oasis_necromancers();
 }
-if ((GameCont.loops >= 3)) {
+if ((GameCont.loops >= 1)) {
 hm_arkintide_mod_gml_hm_extra_population();
 }
 }
@@ -4250,7 +4206,14 @@ hm_arkintide_mod_gml_hm_extra_timer_restore();
 ;
 hm_arkintide_mod_gml_hm_extra_change(hm_extra_native);
 ;
+// Crystals implement their AI as User Event 0 and inherit Step from enemy.
+// Performing a missing Step directly on HyperCrystal does not dispatch it.
+if (hm_extra_native == HyperCrystal && _hml__type == ev_other && _hml__number == 15) {
+scrTarget();
+scrHMExtraCrystalNative1115();
+} else {
 scrHMContentEvent1100(hm_extra_native, _hml__type, _hml__number);
+}
 ;
 GameCont.loops = _hml_loop;
 ;
@@ -4315,6 +4278,7 @@ hm_arkintide_mod_gml_hm_extra_event(ev_other, 15);
 if ((! instance_exists(id))) {
 exit;
 }
+if (hm_extra_native == HyperCrystal) scrHMExtraCrystalTick1115();
 hm_arkintide_mod_gml_hm_extra_breakwalls();
 ;
 if ((! instance_exists(id))) {
@@ -5114,6 +5078,13 @@ mask_index = mskScrapBoss;
 }
 if (((_hml__kind == "crystal") || (_hml__kind == "cursedcrystal"))) {
 mask_index = mskHyperCrystal;
+// Keep the native pre-loop combat state; extra crystals do not receive
+// the global HyperCrystal scans once converted to CustomEnemy.
+cnumber = 3;
+crystalset = 1;
+newcnumber = cnumber;
+alarm[1] = 30;
+hm_extra_teleport_at1115 = current_frame + 45;
 }
 if ((_hml__kind == "hunter")) {
 {
@@ -5342,92 +5313,10 @@ if(__hm_break6) break;
 
 // Source arkintide.mod.gml:0; hm_infantry_capture (native content 1.1.0)
 function hm_arkintide_mod_gml_hm_infantry_capture() {
-if(scrHMThroneArrivalWaiting1103()) return;
-if ((GameCont.loops < 3)) {
-exit;
-}
-{ var __hm_with1 = scrHMInstances(IDPDSpawn), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-if(object_index!=IDPDSpawn) continue;
-var _hml_sprite = sprite_index;
-var _hml_frame = image_index;
-var _hml_angle = image_angle;
-var _hml_phase = 0;
-var _hml_delay = max(1, alarm[0]);
-;
-if ((_hml_sprite == sprIDPDPortalStart)) {
-{
-_hml_phase = 1;
-;
-_hml_delay = max(1, ((sprite_get_number(_hml_sprite) - _hml_frame) / max(0.01, (image_speed / timescale))));
-;
-}
-}
-if ((_hml_sprite == sprIDPDPortalClose)) {
-{
-if ((alarm[1] >= 0)) {
-{
-_hml_phase = 1;
-;
-_hml_delay = max(1, alarm[1]);
-;
-}
-} else {
-{
-_hml_phase = 2;
-;
-_hml_delay = max(1, ((sprite_get_number(_hml_sprite) - _hml_frame) / max(0.01, (image_speed / timescale))));
-;
-}
-}
-}
-}
-scrHMContentChange1100(CustomObject, false);
-;
-name = "hm_infantry_gate";
-;
-hm_phase = _hml_phase;
-;
-hm_wait = _hml_delay;
-;
-hm_spawned = 0;
-;
-hm_gate_area = GameCont.area;
-;
-hm_gate_sub = GameCont.subarea;
-;
-hm_gate_loop = GameCont.loops;
-;
-hm_angle = _hml_angle;
-;
-sprite_visible = false;
-;
-image_speed = (0) * timescale;
-;
-depth = (- 7);
-;
-alarm[0] = (- 1);
-;
-alarm[1] = (- 1);
-;
-on_destroy = undefined;
-;
-on_begin_step = undefined;
-;
-on_end_step = undefined;
-;
-on_cleanup = undefined;
-;
-on_step = scrHMContentRef1100("mod", "arkintide", "hm_infantry_step");
-;
-on_draw = scrHMContentRef1100("mod", "arkintide", "hm_infantry_draw");
-;
-}
-}
-if(__hm_break3) break;
-}}
+// The mobile host already has native IDPDSpawn animation/alarm ownership.
+// Converting it halfway through Start/Charge/Close guessed a new phase and
+// discarded its remaining arrival timer. Keep the real native gate alive;
+// its Alarm 1 now applies Hardmode's weights and infantry count directly.
 }
 
 // Source arkintide.mod.gml:0; hm_infantry_kind (native content 1.1.0)
@@ -5979,7 +5868,7 @@ return _hml_clear;
 
 // Source arkintide.mod.gml:0; hm_stage_bandit_tick (native content 1.1.0)
 function hm_arkintide_mod_gml_hm_stage_bandit_tick() {
-if ((((GameCont.area != scrHMAreaResolve(1)) || (GameCont.subarea != 3)) || (GameCont.loops < 3))) {
+if ((((GameCont.area != scrHMAreaResolve(1)) || (GameCont.subarea != 3)) || (GameCont.loops < 1))) {
 exit;
 }
 { var __hm_with1 = scrHMInstances(BanditBoss), __hm_break3=false;
@@ -5996,7 +5885,7 @@ if (hm_stage_jungle) {
 {
 hm_extra_kind = "junglebandit";
 ;
-hitid = [global.hm_module_vars[$ "mod:arkintide"].hm_extra_jungle_idle, "BIG JUNGLE BANDIT"];
+hitid = [global.hm_module_vars[$ "mod:arkintide"].hm_extra_jungle_idle, "BIG BANDIT"];
 ;
 var _hml_drawer = instance_create(x, y, CustomObject);
 ;
@@ -6482,6 +6371,18 @@ hm_extra_loot_done = 1;
 ;
 scrHMPickupDrop1100(100, 0);
 ;
+if ((self[$ "hm_extra_kind"]??"") == "hunter") {
+// Reuse the native flying wreck, without stage-boss music, progression,
+// or the post-loop multiplier from the normal Hunter's Destroy event.
+corpse = false;
+var _wreck = instance_create(x, y, LilHunterDie);
+_wreck.hm_extra = true;
+_wreck.hm_extra_kind = "hunter";
+_wreck.lastwish = 1;
+_wreck.team = team;
+_wreck.hitid = HitId.LilHunterDie;
+_wreck.alarm[2] = 90;
+}
 }
 
 // Source arkintide.mod.gml:0; hm_bullet_maggot_allowed (native content 1.1.0)
@@ -6506,6 +6407,8 @@ return true;
 
 // Source arkintide.mod.gml:0; hm_stage_boss_actor (native content 1.1.0)
 function hm_arkintide_mod_gml_hm_stage_boss_actor() {
+if(self[$ "hm_messenger_auto_revived115"]??false) return !(self[$ "hm_extra"]??false) && hp>0;
+
 if(self[$ "hm_palace_guardian"]??false) return false;
 
 if ((scrHMVariableExists(id, "hm_extra") && hm_extra)) {
@@ -6604,6 +6507,8 @@ if(__hm_break3) break;
 if (((instance_exists(WantBoss) || instance_exists(WantLH)) || instance_exists(BecomeScrapBoss))) {
 return true;
 }
+// Flying is an object change of the same live boss, not its death.
+if(!_hml_alive) with(LilHunterFly) if(hp>0 && !(self[$ "hm_extra"]??false)) {_hml_alive=true;break;}
 return _hml_alive;
 ;
 }
@@ -6953,9 +6858,9 @@ hm_arkintide_mod_gml_hm_yv_phase_bind();
 ;
 name = "hm_yv_phase";
 ;
-hp = _hml__hp;
-;
-scrHMMaxHealthWrite(id, _hml__hp, "=");
+// Keep Y.V's own native constructor health, including this Loop, co-op and
+// creation mutations. The former ground-stage health is no longer inherited.
+hp = max_hp;
 scrHMBossHealth1103();
 ;
 intro = 1;
@@ -7087,7 +6992,7 @@ exit;
 }
 hm_yv_loot_done = 1;
 ;
-scrHMPickupDrop1100(100, 0);
+scrHMFinalBossSupplies1115();
 ;
 if ((GameCont.area == scrHMAreaResolve("venuz"))) {
 scrHMModCall("mod", "props", "VenuzCar_create", x, y, 300);

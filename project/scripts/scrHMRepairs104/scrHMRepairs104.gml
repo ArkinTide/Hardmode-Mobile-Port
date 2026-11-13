@@ -184,6 +184,7 @@ function scrHMBossFreeze104() {
 }
 
 function scrHMBossRestore104() {
+    scrHMBossPresentationEnd115();
     var _records=self[$ "hm_portrait_records"]??[];
     for(var _i=0;_i<array_length(_records);++_i) {
         var _record=_records[_i];

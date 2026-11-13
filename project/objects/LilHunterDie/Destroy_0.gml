@@ -1,6 +1,6 @@
 snd_play(sndExplosionL)
 snd_play(sndLilHunterDeath)
-repeat(1 + GameCont.loops) {
+repeat(1 + ((scrHMEnabled() && (self[$ "hm_extra"]??false))?0:GameCont.loops)) {
     ang = random_angle
     with(instance_create((x + lengthdir_x(12, ang)), (y + lengthdir_y(12, ang)), Explosion))
     hitid = other.hitid
@@ -13,7 +13,11 @@ with(instance_create(x, y, Corpse)) {
     size = 1
     mask_index = mskPlayer
     motion_add(other.direction, other.speed)
-    sprite_index = sprLilHunterDead
+    if(scrHMEnabled() && (other[$ "hm_extra"]??false)) {
+        hm_extra=true
+        music=1
+        sprite_index=hm_arkintide_mod_gml_hm_extra_dead_sprite(sprLilHunterDead)
+    } else sprite_index = sprLilHunterDead
     image_xscale = choose(1, -1)
     if instance_exists(Player) {
         if (scr_skill_get(20)) speed += (8) * timescale

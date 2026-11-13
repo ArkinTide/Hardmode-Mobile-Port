@@ -44,6 +44,9 @@ function scrHMSewerTick1103() {
     // creations during this synchronous pass.
     var _spiral=instance_exists(SpiralCont),_portal=instance_exists(Portal);
     var _ripple=HMWorld.logic_serial mod 4==0,_winds=instance_number(Wind);
+    // Keep the released conservative dry rejection. Most crowded sewer
+    // actors are on dry ground; exact five-foot probes only follow a possible
+    // water center. This grid reads live floor state once for the whole pass.
     var _potential=scrHMWaterPotential1103();
     scrHMWaterBatchBegin1102();
     with(hitme) {
@@ -74,7 +77,7 @@ function scrHMSewerTick1103() {
             with(instance_create(x,y-4,Wind)) {sprite_index=global.hm_module_vars[$ "mod:maincode"].ripple;depth=2;image_xscale=choose(-1,1);}
             _winds++;
         }
-        var _bind=scrHMBindDraw(hm_maincode_mod_gml_sewerboi,2-y/10000);
+        var _bind=scrHMSewerBindDraw1115();
         _bind.creator=id;
     }
     scrHMWaterBatchEnd1102();
@@ -140,4 +143,91 @@ function scrHMRadiationFlat1103() {
         }
     }
     return true;
+}
+
+
+// Oasis presentation-only bubbles keep a bounded visible budget. Combat
+// entities, random draws, and the restored released water queries remain intact.
+function scrHMOasisBubble1105(_x,_y) {
+    if(!scrHMEnabled() || !instance_exists(GameCont)
+        || GameCont.area!=scrHMAreaResolve("oasis")) return instance_create(_x,_y,Bubble);
+    var _serial=HMWorld.logic_serial;
+    if((variable_instance_get(HMWorld, "hm_oasis_bubble_tick1105")??-1)!=_serial) {
+        HMWorld.hm_oasis_bubble_tick1105=_serial;
+        HMWorld.hm_oasis_bubble_count1105=0;
+    }
+    var _visible=_x>=view_xview-32 && _x<=view_xview+view_width+32
+        && _y>=view_yview-32 && _y<=view_yview+view_height+32;
+    if(_visible && HMWorld.hm_oasis_bubble_count1105<3 && instance_number(Bubble)<80) {
+        HMWorld.hm_oasis_bubble_count1105++;
+        return instance_create(_x,_y,Bubble);
+    }
+    var _discard=random_angle;_discard=random(2);_discard=random(.2);
+    return noone;
+}
+
+// A persistent Player can carry its swimming flag across rooms. Water
+// geometry and native underwater audio belong to the current room, never
+// to the last generated room or a continued run's former state.
+function scrHMRoomWaterState1105(_new_room=false) {
+    if(!scrHMEnabled() || !instance_exists(GameCont)) return;
+    var _area=GameCont.area,_sub=GameCont.subarea,_loop=GameCont.loops;
+    if(_new_room || (variable_instance_get(HMWorld, "hm_water_area1105")??undefined)!=_area
+        || (variable_instance_get(HMWorld, "hm_water_sub1105")??undefined)!=_sub
+        || (variable_instance_get(HMWorld, "hm_water_loop1105")??undefined)!=_loop) {
+        HMWorld.hm_water_area1105=_area;HMWorld.hm_water_sub1105=_sub;
+        HMWorld.hm_water_loop1105=_loop;
+        HMWorld.hm_water_map=undefined;HMWorld.hm_water_index1105=undefined;
+        HMWorld.hm_water_batch1102=false;
+    }
+    if(_area==scrHMAreaResolve("throne")) {
+        GameCont.underwater=false;
+        with(Player) if(self[$ "swimming"]??false) scrHMSwimLeave();
+    }
+}
+
+// Query the native broad phase before performing a shield's original precise
+// per-projectile test. When multiple candidates overlap, retain the exact
+// with(projectile) order: random ricochets and Destroy callbacks must keep
+// their former order even when children are enumerated by object type.
+function scrHMShieldProjectiles1105(_target) {
+    var _list=ds_list_create(),_found=[];
+    collision_rectangle_list(_target.bbox_left-1,_target.bbox_top-1,
+        _target.bbox_right+1,_target.bbox_bottom+1,projectile,false,true,_list,false);
+    var _count=ds_list_size(_list);
+    if(_count<2) {
+        if(_count==1) array_push(_found,_list[| 0]);
+        ds_list_destroy(_list);return _found;
+    }
+    var _stamp=(variable_instance_get(HMWorld, "hm_shield_probe1105")??0)+1;
+    HMWorld.hm_shield_probe1105=_stamp;
+    for(var _i=0;_i<_count;++_i) {
+        var _item=_list[| _i];
+        if(instance_exists(_item)) _item.hm_shield_probe1105=_stamp;
+    }
+    ds_list_destroy(_list);
+    with(projectile) if((self[$ "hm_shield_probe1105"]??-1)==_stamp) array_push(_found,id);
+    return _found;
+}
+
+// This one zero-argument renderer is refreshed for every wet actor at 30 Hz.
+// Its generic initialization/ownership map stays authoritative; intervening
+// frames and cleanup still use the same HMBinding Draw/EndStep events.
+function scrHMSewerBindDraw1115() {
+    var _binding=self[$ "hm_sewer_binding1115"]??noone;
+    var _code=scrHMScriptRef(hm_maincode_mod_gml_sewerboi);
+    var _map=self[$ "hm_draw_bindings109"]??undefined;
+    var _key=instance_exists(_binding)?(_binding[$ "hm_sewer_key1115"]??""):"";
+    if(!instance_exists(_binding) || _binding.object_index!=HMBinding || _binding.creator!=id
+        || _binding.hm_code!=_code || !is_struct(_map) || _key=="" || (_map[$ _key]??noone)!=_binding) {
+        _binding=scrHMBindDraw(hm_maincode_mod_gml_sewerboi,2-y/10000);
+        _binding.hm_sewer_key1115=string(_code);
+        hm_sewer_binding1115=_binding;
+    } else {
+        _binding.hm_refresh_tick=HMWorld.logic_serial;
+        _binding.depth=2-y/10000;
+        _binding.hm_menu_overlay=true;_binding.hm_draw=true;
+        if(array_length(_binding.hm_args)!=0) _binding.hm_args=[];
+    }
+    return _binding;
 }

@@ -1,3 +1,4 @@
+if(scrHMChiefAlarm1115()) exit;
 scrTarget()
 if ((target) && instance_exists(target)) {
     if (target.x < x) right = -1

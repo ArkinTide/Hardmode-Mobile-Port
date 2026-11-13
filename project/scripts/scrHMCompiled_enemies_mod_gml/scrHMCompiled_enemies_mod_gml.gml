@@ -749,7 +749,7 @@ hm_van_converted = 1;
 for (var __hm_index65=0; __hm_index65<array_length(__hm_with64); ++__hm_index65) {
 if(instance_exists(__hm_with64[__hm_index65])) with (__hm_with64[__hm_index65]) {
 {
-name = "3dvan";hm_freak107=GameCont.loops>=3;
+name = "3dvan";hm_freak107=GameCont.loops>=scrHMLoopEnemyStart1115();
 image_alpha = 0;
 ;
 if (instance_exists(Player)) {
@@ -811,7 +811,7 @@ raddrop = 0;
 corpse = 0;
 ;
 hitid = [sprVanDrive, "VAN"];
-if ((GameCont.loops >= 3)) {
+if ((GameCont.loops >= scrHMLoopEnemyStart1115())) {
 spr_dead = sprPopoFreakDead;
 }
 team = 3;
@@ -870,7 +870,7 @@ for (var __hm_index81=0; __hm_index81<array_length(__hm_with80); ++__hm_index81)
 if(instance_exists(__hm_with80[__hm_index81])) with (__hm_with80[__hm_index81]) {
 if ((scrHMModExists("mod", "options", "bossoutros") and (scrHMModGet("mod", "options", "bossoutros") == "1"))) {
 {
-scrHMBindEndStep(hm_enemies_mod_gml_banditbossoutro, 1, x, y);
+if(!(self[$ "hm_extra"]??false)) scrHMBindEndStep(hm_enemies_mod_gml_banditbossoutro, 1, x, y);
 }
 }
 }
@@ -6449,7 +6449,7 @@ spr_idle = global.hm_module_vars[$ "mod:enemies"].EliteSpiderShield;
 // Source enemies.mod.gml:0; EliteSpiderShield_step (native content 1.1.0)
 function hm_enemies_mod_gml_EliteSpiderShield_step() {
 if (((image_speed / timescale) == 0)) {
-{ var __hm_with1 = scrHMInstances(projectile), __hm_break3=false;
+{ var __hm_with1 = scrHMShieldProjectiles1105(id), __hm_break3=false;
 for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
 if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
 if (place_meeting(x, y, (scrHMOther(other)))) {
@@ -6775,7 +6775,7 @@ shield = 1;
 // Source enemies.mod.gml:0; bigshield_step (native content 1.1.0)
 function hm_enemies_mod_gml_bigshield_step() {
 image_alpha = 0;
-{ var __hm_with1 = scrHMMatchingNE(projectile, "team", 0), __hm_break3=false;
+{ var __hm_with1 = scrHMMatchingNE(scrHMShieldProjectiles1105(id), "team", 0), __hm_break3=false;
 for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
 if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
 if ((place_meeting(x, y, (scrHMOther(other))) and (object_index != Flame))) {
@@ -8115,7 +8115,7 @@ default: throw "Hardmode invalid continuation PC";
 
 // Source enemies.mod.gml:0; vanguide (native content 1.1.0)
 function hm_enemies_mod_gml_vanguide() {
-if (((((GameCont.loops >= 3) && (land == 1)) && ((speed / timescale) <= 0)) && (drivespeed <= 0))) {
+if (((((GameCont.loops >= scrHMLoopEnemyStart1115()) && (land == 1)) && ((speed / timescale) <= 0)) && (drivespeed <= 0))) {
 {
 repeat (3) hm_arkintide_mod_gml_hm_police_spawn((x + random_range((- 8), 8)), (y + random_range((- 8), 8)));
 ;
@@ -8449,7 +8449,7 @@ scrHMDrawSpriteExt(global.hm_module_vars[$ "mod:enemies"].sprSiren, image_index,
 
 // Source enemies.mod.gml:0; vanexplo (native content 1.1.0)
 function hm_enemies_mod_gml_vanexplo() {
-if ((GameCont.loops >= 3)) {
+if ((GameCont.loops >= scrHMLoopEnemyStart1115())) {
 repeat (3) { var __hm_with1 = scrHMInstances(instance_create((x + random_range((- 8), 8)), (y + random_range((- 8), 8)), Corpse)), __hm_break3=false;
 for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
 if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
@@ -10426,7 +10426,7 @@ scrHMSoundPlay(sndCrystalShield);
 // Source enemies.mod.gml:0; customshield_step (native content 1.1.0)
 function hm_enemies_mod_gml_customshield_step() {
 if (((image_speed / timescale) == 0)) {
-{ var __hm_with1 = scrHMMatchingNE(projectile, "team", 1), __hm_break3=false;
+{ var __hm_with1 = scrHMMatchingNE(scrHMShieldProjectiles1105(id), "team", 1), __hm_break3=false;
 for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
 if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
 if (place_meeting(x, y, (scrHMOther(other)))) {
@@ -11464,7 +11464,7 @@ if(__hm_break3) break;
 
 // Source enemies.mod.gml:0; enemyyv_create (native content 1.1.0)
 function hm_enemies_mod_gml_enemyyv_create(_hml__x, _hml__y) {
-if ((GameCont.loops >= 3)) {
+if ((GameCont.loops >= 1)) {
 return hm_arkintide_mod_gml_hm_yv_phase_create(_hml__x, _hml__y, 150);
 }
 { var __hm_with1 = scrHMInstances(instance_create(_hml__x, _hml__y, CustomEnemy)), __hm_break3=false;
@@ -11865,6 +11865,7 @@ default: throw "Hardmode invalid continuation PC";
 
 // Source enemies.mod.gml:0; yv_dead (native content 1.1.0)
 function hm_enemies_mod_gml_yv_dead() {
+scrHMFinalBossSupplies1115();
 { var __hm_with1 = scrHMInstances(instance_create(x, y, WepPickup)), __hm_break3=false;
 for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
 if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
@@ -14367,6 +14368,8 @@ if(__hm_break8) break;
 // Source enemies.mod.gml:5010; banditbossoutro
 
 function hm_enemies_mod_gml_banditbossoutro() {
+// A delayed binding can outlive the native identity it was made for.
+if(scrHMExtraPresentation1104(creator)) {instance_destroy();return;}
 
 if (((! instance_exists(BanditBoss)) and instance_exists(Player))) {
 

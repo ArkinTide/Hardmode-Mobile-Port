@@ -1,3 +1,4 @@
+if(scrHMEnabled() && scrHMMessengerReviveEffect115()) exit;
 with(self[$ "hm_corpse107"]??instance_nearest(x, y, Corpse)) {
     mask_index = mskBandit
     if (place_meeting(x, y, other) && ((sprite_index != mskNone) && place_free(x, y))) {

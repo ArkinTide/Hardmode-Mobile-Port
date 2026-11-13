@@ -1,3 +1,4 @@
+if(scrHMChiefAlarm1115()) exit;
 if (attacktype == 0) {
     if (ammo > 0) {
         ammo -= 4

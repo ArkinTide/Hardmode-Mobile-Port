@@ -54,11 +54,13 @@ function scrHMRogueCanisters109() {
     instance_create(x,y,RadChest);
 }
 function scrHMLilHunterPending109() {
+    var _group=scrHMBossGroupReserve115("hunter",scrHMLoopBossCount110());
+    if(_group.hunter_spawned>0 || instance_exists(LilHunter) || instance_exists(LilHunterFly)) return;
     var _exists=false;
-    with(CustomObject) if(name=="hm_hunter_arrival109") {_exists=true;break;}
-    if(_exists || instance_exists(WantLH) || instance_exists(LilHunter)) return;
+    with(CustomObject) if(array_contains(["hm_hunter_arrival109","hm_hunter_pending"],name)) {_exists=true;break;}
+    if(_exists || instance_exists(WantLH)) return;
     with(instance_create(10016,10016,CustomObject)) {
-        name="hm_hunter_arrival109";hm_wait109=500;
+        name="hm_hunter_pending";hm_wait109=30;
         hm_area109=GameCont.area;hm_sub109=GameCont.subarea;hm_loop109=GameCont.loops;
         on_step=scrHMScriptRef(scrHMLilHunterWait109);
     }
@@ -68,31 +70,56 @@ function scrHMLilHunterWait109() {
     if(GameCont.area!=hm_area109 || GameCont.subarea!=hm_sub109 || GameCont.loops!=hm_loop109) {
         instance_destroy(id,false);return;
     }
+    if(instance_exists(GenCont) || !instance_exists(Player)) return;
     if(--hm_wait109>0) return;
-    if(!instance_exists(WantLH) && !instance_exists(LilHunter)) instance_create(x,y,WantLH);
+    var _group=scrHMBossGroupReserve115("hunter",scrHMLoopBossCount110());
+    if(_group.hunter_spawned==0 && !instance_exists(WantLH)
+        && !instance_exists(LilHunter) && !instance_exists(LilHunterFly)) instance_create(x,y,WantLH);
     instance_destroy(id,false);
 }
 
 function scrHMLilHunterGroup109(_x,_y) {
-    var _first=noone;
-    repeat(scrHMLoopBossCount110()) {
+    var _group=scrHMBossGroupReserve115("hunter",scrHMLoopBossCount110());
+    var _living=[];
+    with(LilHunter) if(!(self[$ "hm_extra"]??false)) array_push(_living,id);
+    with(LilHunterFly) if(!(self[$ "hm_extra"]??false)) array_push(_living,id);
+    array_sort(_living,true);
+    // A room owns one schedule. Flying, race changes and the death of its
+    // last member cannot start a second schedule during the same visit.
+    if(_group.hunter_spawned>0) return array_length(_living)>0?_living[0]:noone;
+    _group.hunter_spawned=_group.expected;
+    // Also repair an old continued room whose previous bridge multiplied
+    // every member, without executing drops or win callbacks for duplicates.
+    while(array_length(_living)>_group.expected) {
+        instance_destroy(array_pop(_living),false);
+    }
+    var _first=array_length(_living)>0?_living[0]:noone;
+    for(var _i=0;_i<array_length(_living);++_i) with(_living[_i]) {
+        hm_hunter_group=1;scrHMBossGroupRegister115(id);
+    }
+    repeat(max(0,_group.expected-array_length(_living))) {
         var _boss=instance_create(_x,_y,LilHunter);
+        _boss.hm_hunter_group=1;scrHMBossGroupRegister115(_boss);
         if(!instance_exists(_first)) _first=_boss;
     }
     return _first;
 }
 
 function scrHMGatorGroup109(_x,_y) {
+    scrHMBossGroupReserve115("gator",scrHMLoopBossCount110());
     var _first=noone;
     repeat(scrHMLoopBossCount110()) {
         var _boss=hm_bosses_gatorboss_mod_gml_gatorboss_create(_x,_y);
+        scrHMBossGroupRegister115(_boss);
         if(!instance_exists(_first)) _first=_boss;
     }
     return _first;
 }
 
 function scrHMRavenGroup109(_x,_y) {
+    scrHMBossGroupReserve115("raven",scrHMLoopBossCount110());
     repeat(scrHMLoopBossCount110()) hm_bosses_ravenboss_mod_gml_ravenboss_create(_x,_y);
+    with(CustomEnemy) if(name=="BIG BIRD" && !(self[$ "hm_extra"]??false)) scrHMBossGroupRegister115(id);
 }
 
 function scrHMRavenBackup109() {
@@ -302,4 +329,225 @@ function scrHMTransitionPlain109() {
     var _wall=collision_point(x+8,y+8,Wall,false,true),_plain=false;
     if(instance_exists(_wall)) with(_wall) _plain=scrHMPlainWall106();
     return _plain;
+}
+
+// One presentation ledger per visit, shared by all members of a normal
+// encounter. It belongs to the room controller, never to a player/race.
+function scrHMBossGroups115() {
+    var _room=string(GameCont.id)+":"+string(GameCont.hard)+":"+string(GameCont.waypoints)
+        +":"+string(GameCont.area)+":"+string(GameCont.subarea)+":"+string(GameCont.loops);
+    if((variable_instance_get(HMWorld, "hm_boss_room115")??"")!=_room) {
+        HMWorld.hm_boss_room115=_room;HMWorld.hm_boss_groups115={};
+    }
+    return HMWorld.hm_boss_groups115;
+}
+function scrHMBossGroupReserve115(_kind,_expected=1) {
+    var _groups=scrHMBossGroups115(),_group=_groups[$ _kind];
+    if(is_undefined(_group)) {
+        _group={kind:_kind,members:[],expected:0,hunter_spawned:0,changed:HMWorld.logic_serial,
+            entry:undefined,entry_done:false,exit:undefined,exit_done:false,observed:false,
+            x:10016,y:10016,entry_count:0,exit_count:0};
+        _groups[$ _kind]=_group;
+    }
+    _group.expected=max(_group.expected,_expected);
+    return _group;
+}
+function scrHMBossGroupKind115(_actor) {
+    if(is_undefined(_actor) || is_struct(_actor) || !instance_exists(_actor) || (_actor[$ "hm_extra"]??false)
+        || (_actor[$ "hm_palace_guardian"]??false) || ((_actor[$ "revived"]??0)>0 && !(_actor[$ "hm_messenger_auto_revived115"]??false))) return "";
+    var _tag=_actor[$ "hm_boss_kind115"]??"";
+    if(_tag!="") return _tag;
+    switch(_actor.object_index) {
+        case BanditBoss:return "bandit";
+        case ScrapBoss:return "dog";
+        case HyperCrystal:return "crystal";
+        case LilHunter:case LilHunterFly:return "hunter";
+        case FrogQueen:return "mother";
+        case OasisBoss:return "bubbler";
+        case TechnoMancer:return "tech";
+        case NothingInactive:case Nothing:return "throne";
+        case Nothing2:return "throne2";
+        case Last:return "chief";
+        case CrownGuardian:return "crownguardian";
+        case YVBoss:return "yv";
+    }
+    switch(_actor[$ "name"]??"") {
+        case "scorpionboss":return "scorpion";
+        case "gatorboss":return "gator";
+        case "BIG BIRD":return "raven";
+        case "ratboss":return "rat";
+        case "turtle1":case "turtle2":case "turtle3":case "turtle4":return "turtles";
+        case "titank":return "titank";
+        case "guardianboss":return "guardian";
+        case "rogueboss":return "messenger";
+        case "hm_chief":case "hm_chief_departure":return "chief";
+        case "GunGod":case "gungod":case "hm_gungod_landing":return "gungod";
+        case "hm_yv_phase":return "yvphase";
+    }
+    if(instance_is(_actor,Corpse)) {
+        switch(_actor.sprite_index) {
+            case sprOasisBossDead:return "bubbler";
+            case sprFrogQueenDying:return "mother";
+            case sprLilHunterDead:return "hunter";
+            case sprHyperCrystalDead:return "crystal";
+        }
+    }
+    return "";
+}
+function scrHMBossGroupRegister115(_actor) {
+    var _kind=scrHMBossGroupKind115(_actor);
+    if(_kind=="" || (_actor[$ "hp"]??0)<=0 || !instance_exists(HMWorld)) return undefined;
+    var _group=scrHMBossGroupReserve115(_kind);
+    _actor.hm_boss_kind115=_kind;
+    if(!array_contains(_group.members,_actor)) {
+        array_push(_group.members,_actor);_group.changed=HMWorld.logic_serial;
+    }
+    _group.expected=max(_group.expected,array_length(_group.members));
+    _group.observed=true;_group.x=_actor.x;_group.y=_actor.y;
+    return _group;
+}
+function scrHMBossGroupPending115(_kind) {
+    if(instance_exists(GenCont)) return true;
+    if(_kind=="hunter" && instance_exists(WantLH)) return true;
+    if(_kind=="bandit" && instance_exists(WantBoss)) return true;
+    if(_kind=="dog" && instance_exists(BecomeScrapBoss)) return true;
+    var _pending=false;
+    with(CustomObject) {
+        var _name=string_lower(name);
+        if((_kind=="hunter" && array_contains(["hm_hunter_pending","hm_hunter_arrival109"],_name))
+            || (_kind=="raven" && _name=="wantravenboss")
+            || (_kind=="titank" && _name=="wanttitank")
+            || (_kind=="bandit" && _name=="wantjungleboss")) {_pending=true;break;}
+    }
+    return _pending;
+}
+function scrHMBossGroupAlive115(_group) {
+    var _alive=0;
+    for(var _i=0;_i<array_length(_group.members);++_i) {
+        var _actor=_group.members[_i];
+        if(instance_exists(_actor) && (_actor[$ "hp"]??0)>0
+            && !(_actor[$ "hm_extra"]??false)) _alive++;
+    }
+    return _alive;
+}
+function scrHMLilHunterReconcile115() {
+    if(GameCont.area!=scrHMAreaResolve("city") || GameCont.subarea!=5) return;
+    var _group=scrHMBossGroupReserve115("hunter",scrHMLoopBossCount110());
+    if(_group.hunter_spawned>0) return;
+    var _first=noone;
+    with(LilHunter) if(!(self[$ "hm_extra"]??false)) {_first=id;break;}
+    if(!instance_exists(_first)) with(LilHunterFly) if(!(self[$ "hm_extra"]??false)) {_first=id;break;}
+    if(instance_exists(_first)) scrHMLilHunterGroup109(_first.x,_first.y);
+}
+function scrHMBossGroupPresentation115(_title,_back,_portrait,_front,_focus,_height) {
+    if(!scrHMEnabled() || !instance_exists(HMWorld) || !instance_exists(GameCont)
+        || (variable_instance_get(HMWorld, "hm_group_dispatch115")??false)) return false;
+    var _source=id,_kind=scrHMBossGroupKind115(_source);
+    if(_kind=="") {_source=_focus;_kind=scrHMBossGroupKind115(_source);}
+    var _groups=scrHMBossGroups115();
+    // Several original death coroutines invoke their pan on a Floor after
+    // deleting the boss. Match that completed encounter by its last position.
+    if(_kind=="" && _title=="" && instance_exists(_focus) && instance_is(_focus,Floor)) {
+        var _keys=variable_struct_get_names(_groups),_distance=1000000000000;
+        for(var _i=0;_i<array_length(_keys);++_i) {
+            var _candidate=_groups[$ _keys[_i]];
+            if(!_candidate.observed || scrHMBossGroupAlive115(_candidate)>0) continue;
+            var _d=sqr(_candidate.x-_focus.x)+sqr(_candidate.y-_focus.y);
+            if(_d<_distance) {_kind=_candidate.kind;_distance=_d;}
+        }
+    }
+    if(_kind=="") return false;
+    var _group=scrHMBossGroupReserve115(_kind);
+    var _exit=instance_exists(_source) && ((_source[$ "hm_boss_exit115"]??false)
+        || instance_is(_source,Corpse) || (_source[$ "hp"]??0)<=0
+        || (_source[$ "name"]??"")=="hm_chief_departure");
+    if(!instance_exists(_source)) _exit=true;
+    if(_exit) {
+        if(!_group.exit_done && is_undefined(_group.exit))
+            _group.exit={title:"",back:mskNone,portrait:mskNone,front:mskNone,focus:_focus,height:0};
+        scrHMBossGroupTick115();
+        return true;
+    }
+    scrHMBossGroupRegister115(_source);
+    // One snapshot captures any normal co-members constructed earlier in
+    // this room. Later asynchronous arrivals register through this same hook.
+    if(is_undefined(_group.entry)) {
+        with(enemy) if(scrHMBossGroupKind115(id)==_kind) scrHMBossGroupRegister115(id);
+        with(LilHunterFly) if(scrHMBossGroupKind115(id)==_kind) scrHMBossGroupRegister115(id);
+        _group.entry={title:_title,back:_back,portrait:_portrait,front:_front,focus:_focus,height:_height};
+    }
+    scrHMBossGroupTick115();
+    return true;
+}
+function scrHMBossGroupTick115() {
+    if(!scrHMEnabled() || !instance_exists(GameCont) || !instance_exists(Player)) return;
+    var _groups=scrHMBossGroups115(),_keys=variable_struct_get_names(_groups);
+    for(var _i=0;_i<array_length(_keys);++_i) {
+        var _group=_groups[$ _keys[_i]],_alive=scrHMBossGroupAlive115(_group);
+        if(!_group.observed) continue;
+        var _exit=_alive==0,_request=_exit?_group.exit:_group.entry;
+        if((_exit && _group.exit_done) || (!_exit && _group.entry_done)) continue;
+        if(!_exit && is_undefined(_request)) continue;
+        if(scrHMBossGroupPending115(_group.kind)) continue;
+        if(!_exit && array_length(_group.members)<_group.expected) continue;
+        if(_exit && is_undefined(_request))
+            _request={title:"",back:mskNone,portrait:mskNone,front:mskNone,focus:noone,height:0};
+        if(is_undefined(_request)) continue;
+        if(scrHMModGet("mod","options",_exit?"bossoutros":"intropan")!="1"
+            && (_request.title=="" || _exit || GameCont.loops>0)) {
+            if(_exit) _group.exit_done=true;else _group.entry_done=true;
+            continue;
+        }
+        var _focus=_request.focus;
+        if(!instance_exists(_focus) || (!_exit && (_focus[$ "hp"]??1)<=0)) {
+            _focus=noone;
+            for(var _m=0;_m<array_length(_group.members);++_m) {
+                var _actor=_group.members[_m];
+                if(instance_exists(_actor) && (_actor[$ "hp"]??0)>0) {_focus=_actor;break;}
+            }
+            if(!instance_exists(_focus)) _focus=instance_nearest(_group.x,_group.y,Floor);
+        }
+        if(!instance_exists(_focus) || instance_exists(HMWorld.hm_portrait_active)) continue;
+        HMWorld.hm_group_dispatch115=true;
+        hm_bosses_bossintros_mod_gml_boss_trigger(GameCont.loops>0?"":_request.title,
+            _request.back,_request.portrait,_request.front,_focus,_request.height);
+        HMWorld.hm_group_dispatch115=false;
+        var _intro=HMWorld.hm_portrait_active;
+        if(!instance_exists(_intro)) continue;
+        _intro.hm_boss_kind115=_group.kind;_intro.hm_boss_exit115=_exit;
+        if(_exit) {_group.exit_done=true;_group.exit_count++;}
+        else {_group.entry_done=true;_group.entry_count++;}
+        return;
+    }
+}
+// Only actual native/custom presentations activate protection. The grace
+// period does not alter movement, input, reloads, AI, or the pause state.
+function scrHMBossPresentationNative115(_active) {
+    if(!scrHMEnabled() || !instance_exists(HMWorld)) return;
+    HMWorld.hm_native_presentation115=_active;
+    if(!_active) HMWorld.hm_presentation_until115=current_frame+60;
+}
+function scrHMBossPresentationEnd115() {
+    if(scrHMEnabled() && instance_exists(HMWorld)) HMWorld.hm_presentation_until115=current_frame+60;
+}
+function scrHMBossPresentationProtected115() {
+    if(!scrHMEnabled() || !instance_exists(HMWorld)) return false;
+    return instance_exists(HMWorld.hm_portrait_active)
+        || ((variable_instance_get(HMWorld, "hm_native_presentation115")??false) && UberCont.bossintro)
+        || current_frame<(variable_instance_get(HMWorld, "hm_presentation_until115")??-1);
+}
+// A replacement deliberately removes a living original without its death
+// event. Retire that ledger before deletion, rather than treating the empty
+// original group as a victory while the replacement is still fighting.
+function scrHMBossGroupRetire115(_actor) {
+    var _kind=scrHMBossGroupKind115(_actor);
+    if(_kind=="" || !instance_exists(HMWorld)) return;
+    var _groups=scrHMBossGroups115(),_group=_groups[$ _kind];
+    if(is_undefined(_group)) return;
+    _group.observed=false;_group.entry_done=true;_group.exit_done=true;
+    _group.entry=undefined;_group.exit=undefined;_group.retired=true;
+    var _intro=HMWorld.hm_portrait_active;
+    if(instance_exists(_intro) && (_intro[$ "hm_boss_kind115"]??"")==_kind) {
+        with(_intro) scrHMBossRestore104();instance_destroy(_intro,false);
+    }
 }

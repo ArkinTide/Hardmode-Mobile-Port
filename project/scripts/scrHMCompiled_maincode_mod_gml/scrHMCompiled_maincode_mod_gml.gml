@@ -480,7 +480,7 @@ case 7: // maincode.mod.gml:2150
 for (var __hm_index12=0; __hm_index12<array_length(__hm_with11); ++__hm_index12) {
 if(instance_exists(__hm_with11[__hm_index12])) with (__hm_with11[__hm_index12]) {
 if ((random(6) < 1)) {
-instance_create(x, y, Bubble);
+scrHMOasisBubble1105(x, y);
 }
 }
 if(__hm_break13) break;
@@ -524,7 +524,7 @@ if(__hm_break25) break;
 for (var __hm_index27=0; __hm_index27<array_length(__hm_with26); ++__hm_index27) {
 if(instance_exists(__hm_with26[__hm_index27])) with (__hm_with26[__hm_index27]) {
 {
-{ var __hm_with29 = scrHMInstances(instance_create(x, y, Bubble)), __hm_break31=false;
+{ var __hm_with29 = scrHMInstances(scrHMOasisBubble1105(x, y)), __hm_break31=false;
 for (var __hm_index30=0; __hm_index30<array_length(__hm_with29); ++__hm_index30) {
 if(instance_exists(__hm_with29[__hm_index30])) with (__hm_with29[__hm_index30]) {
 var __hm_other32=scrHMOther(other);
@@ -689,7 +689,7 @@ if(__hm_break89) break;
 for (var __hm_index91=0; __hm_index91<array_length(__hm_with90); ++__hm_index91) {
 if(instance_exists(__hm_with90[__hm_index91])) with (__hm_with90[__hm_index91]) {
 {
-{ var __hm_with93 = scrHMInstances(instance_create(x, y, Bubble)), __hm_break95=false;
+{ var __hm_with93 = scrHMInstances(scrHMOasisBubble1105(x, y)), __hm_break95=false;
 for (var __hm_index94=0; __hm_index94<array_length(__hm_with93); ++__hm_index94) {
 if(instance_exists(__hm_with93[__hm_index94])) with (__hm_with93[__hm_index94]) {
 var __hm_other96=scrHMOther(other);
@@ -706,7 +706,7 @@ if(__hm_break92) break;
 for (var __hm_index98=0; __hm_index98<array_length(__hm_with97); ++__hm_index98) {
 if(instance_exists(__hm_with97[__hm_index98])) with (__hm_with97[__hm_index98]) {
 {
-{ var __hm_with100 = scrHMInstances(instance_create(x, y, Bubble)), __hm_break102=false;
+{ var __hm_with100 = scrHMInstances(scrHMOasisBubble1105(x, y)), __hm_break102=false;
 for (var __hm_index101=0; __hm_index101<array_length(__hm_with100); ++__hm_index101) {
 if(instance_exists(__hm_with100[__hm_index101])) with (__hm_with100[__hm_index101]) {
 var __hm_other103=scrHMOther(other);
@@ -723,7 +723,7 @@ if(__hm_break99) break;
 for (var __hm_index105=0; __hm_index105<array_length(__hm_with104); ++__hm_index105) {
 if(instance_exists(__hm_with104[__hm_index105])) with (__hm_with104[__hm_index105]) {
 {
-instance_create(x, y, Bubble);
+scrHMOasisBubble1105(x, y);
 instance_destroy();
 }
 }
@@ -2207,6 +2207,9 @@ if (((!scrHMVariableExists(id, "fallenable")) || (fallenable == (- 1)))) {
 {
 fallenable = 1;
 portalfall = y;
+sprite_angle = 0;
+image_alpha = 1;
+scale = 1;
 }
 }
 }

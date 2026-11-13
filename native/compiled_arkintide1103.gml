@@ -792,35 +792,15 @@ instance_create((_hml_fl.x + 16), (_hml_fl.y + 16), ProtoStatue);
 }
 
 // Source arkintide.mod.gml:0; hm_hunter_pending (native content 1.1.0)
-function hm_arkintide_mod_gml_hm_hunter_pending() {
-{ var __hm_with1 = scrHMInstances(instance_create(10016, 10016, CustomObject)), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-{
-name = "hm_hunter_pending";
-;
-hm_wait = 500;
-;
-on_step = scrHMContentRef1100("mod", "arkintide", "hm_hunter_wait");
-;
-}
-}
-if(__hm_break3) break;
-}}
-}
+function hm_arkintide_mod_gml_hm_hunter_pending() {scrHMLilHunterPending109();}
 
 // Source arkintide.mod.gml:0; hm_hunter_wait (native content 1.1.0)
 function hm_arkintide_mod_gml_hm_hunter_wait() {
-hm_wait -= 1;
-;
-if ((hm_wait > 0)) {
-exit;
-}
-if (((! instance_exists(WantLH)) && (! instance_exists(LilHunter)))) {
-instance_create(x, y, WantLH);
-}
-scrHMDelete(id);
-;
+    if(!variable_instance_exists(id,"hm_area109")) {
+        hm_area109=GameCont.area;hm_sub109=GameCont.subarea;hm_loop109=GameCont.loops;
+        hm_wait109=self[$ "hm_wait"]??30;
+    }
+    scrHMLilHunterWait109();
 }
 
 // Source arkintide.mod.gml:0; hm_cave_restore (native content 1.1.0)
@@ -1366,30 +1346,7 @@ hm_arkintide_mod_gml_hm_bounds_tick();
 ;
 hm_arkintide_mod_gml_hm_empty_exit();
 ;
-if (((GameCont.area == scrHMAreaResolve("city")) && (GameCont.subarea == 5))) {
-{
-{ var __hm_with1 = scrHMInstances(LilHunter), __hm_break3=false;
-for (var __hm_index2=0; __hm_index2<array_length(__hm_with1); ++__hm_index2) {
-if(instance_exists(__hm_with1[__hm_index2])) with (__hm_with1[__hm_index2]) {
-if ((!scrHMVariableExists(id, "hm_hunter_group"))) {
-{
-hm_hunter_group = 1;
-;
-repeat ((hm_arkintide_mod_gml_hm_boss_count() - 1)) { var __hm_with4 = scrHMInstances(instance_create(x, y, LilHunter)), __hm_break6=false;
-for (var __hm_index5=0; __hm_index5<array_length(__hm_with4); ++__hm_index5) {
-if(instance_exists(__hm_with4[__hm_index5])) with (__hm_with4[__hm_index5]) {
-hm_hunter_group = 1;
-}
-if(__hm_break6) break;
-}}
-;
-}
-}
-}
-if(__hm_break3) break;
-}}
-}
-}
+scrHMLilHunterReconcile115();
 { var __hm_with7 = scrHMInstances(VanSpawn), __hm_break9=false;
 for (var __hm_index8=0; __hm_index8<array_length(__hm_with7); ++__hm_index8) {
 if(instance_exists(__hm_with7[__hm_index8])) with (__hm_with7[__hm_index8]) {
@@ -2085,7 +2042,7 @@ hm_pending_boss_seen = 0;
 if ((! hm_pending_boss_kind)) {
 exit;
 }
-var _hml_arrived = instance_exists(LilHunter);
+var _hml_arrived = instance_exists(LilHunter) || instance_exists(LilHunterFly);
 ;
 if ((hm_pending_boss_kind == 1)) {
 _hml_arrived = (array_length(scrHMMatching(CustomEnemy, "name", "titank")) > 0);
@@ -6500,6 +6457,8 @@ return true;
 
 // Source arkintide.mod.gml:0; hm_stage_boss_actor (native content 1.1.0)
 function hm_arkintide_mod_gml_hm_stage_boss_actor() {
+if(self[$ "hm_messenger_auto_revived115"]??false) return !(self[$ "hm_extra"]??false) && hp>0;
+
 if(self[$ "hm_palace_guardian"]??false) return false;
 
 if ((scrHMVariableExists(id, "hm_extra") && hm_extra)) {
@@ -6598,6 +6557,8 @@ if(__hm_break3) break;
 if (((instance_exists(WantBoss) || instance_exists(WantLH)) || instance_exists(BecomeScrapBoss))) {
 return true;
 }
+// Flying is an object change of the same live boss, not its death.
+if(!_hml_alive) with(LilHunterFly) if(hp>0 && !(self[$ "hm_extra"]??false)) {_hml_alive=true;break;}
 return _hml_alive;
 ;
 }

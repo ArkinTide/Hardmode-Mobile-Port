@@ -98,8 +98,8 @@ function scrHMActorTestInfantryCapture() {
     var _test_area=scrHMAreaResolve("sewers"),_throne_area=scrHMAreaResolve("throne");
     scrHMActorTestCheck(!instance_exists(Player)&&instance_number(IDPDSpawn)==0,
         "native infantry capture fixture has no player placement loop or unrelated gates");
-    // Registries are initialized by scrHMRuntimeInit; capture itself does not
-    // need HMWorld or module __load, and these cases never step the custom gate.
+    // Arrival weights are exercised by sync115idpdgate. Capture must retain
+    // native animation and alarm ownership without stepping these fixtures.
     global.hm_enabled=true;GameCont.area=_test_area;GameCont.subarea=2;GameCont.loops=3;
     scrHMActorTestCheck(_test_area!=_throne_area&&scrHMAreaKey(_test_area)=="area:sewers"
         &&scrHMAreaKey(_throne_area)=="area:throne",
@@ -118,79 +118,51 @@ function scrHMActorTestInfantryCapture() {
             &&!(variable_instance_get(_gate,"hm_throne_gate_deferred1103")??false),
             _label+" native creation preserves the production capture preconditions");
         var _native_gates=scrHMInstances(IDPDSpawn);
-        if(!array_contains(_native_gates,_gate_id))
-            show_debug_message("HARDMODE ACTORS PRECAPTURE STATE "+json_stringify({
-                label:_label,actual_object:object_get_name(_gate.object_index),actual_id:_gate.id,expected_id:_gate_id,
-                x:_gate.x,y:_gate.y,native_gates:instance_number(IDPDSpawn),queried:array_length(_native_gates),
-                enabled:scrHMEnabled(),area:GameCont.area,throne:_throne_area,loops:GameCont.loops,
-                defer:scrHMThroneArrivalWaiting1103()}));
         scrHMActorTestCheck(array_contains(_native_gates,_gate_id),
-            _label+" is visible to the same native-instance query used by capture");
+            _label+" is visible to the native-instance query");
         _gate.sprite_index=sprBanditIdle;_gate.image_index=.25;_gate.image_speed=.25*timescale;
         _gate.image_angle=47;_gate.alarm[0]=17;_gate.alarm[1]=-1;
         _gate.hp=37;_gate.max_hp=73;_gate.hm_native_sentinel=960+_case;
-        var _expected_phase=0,_expected_wait=17;
-        if(_case==1) {
-            _gate.sprite_index=sprIDPDPortalStart;_expected_phase=1;
-            _expected_wait=max(1,(sprite_get_number(sprIDPDPortalStart)-.25)/.25);
-        } else if(_case==2) {
-            _gate.sprite_index=sprIDPDPortalClose;_gate.alarm[1]=23;
-            _expected_phase=1;_expected_wait=23;
-        } else if(_case==3) {
-            _gate.sprite_index=sprIDPDPortalClose;_expected_phase=2;
-            _expected_wait=max(1,(sprite_get_number(sprIDPDPortalClose)-.25)/.25);
-        }
+        if(_case==1) _gate.sprite_index=sprIDPDPortalStart;
+        else if(_case==2) {_gate.sprite_index=sprIDPDPortalClose;_gate.alarm[1]=23;}
+        else if(_case==3) _gate.sprite_index=sprIDPDPortalClose;
+        var _native_sprite=_gate.sprite_index,_native_alarm1=_gate.alarm[1];
+        var _native_visible=_gate.visible,_native_depth=_gate.depth;
         hm_arkintide_mod_gml_hm_infantry_capture();
-        if(!(_gate.object_index==CustomObject&&_gate.id==_gate_id
-            &&_gate.x==197&&_gate.y==263&&instance_number(IDPDSpawn)==0))
-            show_debug_message("HARDMODE ACTORS CAPTURE STATE "+json_stringify({
-                label:_label,actual_object:object_get_name(_gate.object_index),actual_id:_gate.id,expected_id:_gate_id,
-                x:_gate.x,y:_gate.y,native_gates:instance_number(IDPDSpawn),queried:array_length(_native_gates),
-                queried_after:array_length(scrHMInstances(IDPDSpawn)),
-                enabled:scrHMEnabled(),area:GameCont.area,throne:_throne_area,loops:GameCont.loops,
-                defer:scrHMThroneArrivalWaiting1103()}));
-        scrHMActorTestCheck(_gate.object_index==CustomObject&&_gate.id==_gate_id
-            &&_gate.x==197&&_gate.y==263&&instance_number(IDPDSpawn)==0,
-            _label+" converts the same native instance exactly once");
-        scrHMActorTestConvertedSchema(_gate,_label);
-        scrHMActorTestCheck(_gate.name=="hm_infantry_gate"&&_gate.hm_phase==_expected_phase
-            &&abs(_gate.hm_wait-_expected_wait)<.0001&&_gate.hm_spawned==0,
-            _label+" preserves the actual gate phase and logical remaining time");
-        scrHMActorTestCheck(_gate.hm_gate_area==_test_area&&_gate.hm_gate_sub==2&&_gate.hm_gate_loop==3&&_gate.hm_angle==47,
-            _label+" captures native orientation and area ownership");
+        scrHMActorTestCheck(_gate.object_index==IDPDSpawn&&_gate.object_index!=CustomObject&&_gate.id==_gate_id
+            &&_gate.x==197&&_gate.y==263&&instance_number(IDPDSpawn)==1
+            &&array_contains(scrHMInstances(IDPDSpawn),_gate_id),
+            _label+" retains the same native instance instead of converting to CustomObject");
+        scrHMActorTestCheck(_gate.sprite_index==_native_sprite&&abs(_gate.image_index-.25)<.0001
+            &&abs(_gate.image_speed-.25*timescale)<.0001&&_gate.image_angle==47
+            &&_gate.visible==_native_visible&&_gate.depth==_native_depth
+            &&_gate.alarm[0]==17&&_gate.alarm[1]==_native_alarm1,
+            _label+" preserves native animation, orientation, renderer and remaining alarm times");
         scrHMActorTestCheck(_gate.hp==37&&_gate.max_hp==73&&_gate.hm_native_sentinel==960+_case,
             _label+" does not reset native health or unrelated instance fields");
-        scrHMActorTestCheck(!_gate.sprite_visible&&_gate.image_speed==0&&_gate.depth==-7
-            &&_gate.alarm[0]==-1&&_gate.alarm[1]==-1,
-            _label+" disables native animation and alarms owned by the custom gate");
-        scrHMActorTestCheck(scrHMScriptRef(_gate.on_step)==scrHMScriptRef(scrHMContentRef1100("mod","arkintide","hm_infantry_step"))
-            &&scrHMScriptRef(_gate.on_draw)==scrHMScriptRef(scrHMContentRef1100("mod","arkintide","hm_infantry_draw")),
-            _label+" installs the production step and draw callbacks");
-        var _empty_callbacks=["on_begin_step","on_end_step","on_destroy","on_cleanup","on_hurt","on_death","on_wall","on_hit"];
-        for(var _f=0;_f<array_length(_empty_callbacks);++_f)
-            scrHMActorTestCheck(is_undefined(variable_instance_get(_gate,_empty_callbacks[_f])),
-                _label+" initializes unused callback "+_empty_callbacks[_f]);
-        _gate.on_cleanup=scrHMActorTestCleanup;_gate.on_destroy=scrHMActorTestDestroy;_gate.can_die=false;
+        var _custom_fields=["hm_custom_actor","hm_cleaned","hm_phase","hm_wait","hm_spawned",
+            "on_step","on_draw","on_begin_step","on_end_step","on_destroy","on_cleanup",
+            "on_hurt","on_death","on_wall","on_hit"];
+        for(var _f=0;_f<array_length(_custom_fields);++_f)
+            scrHMActorTestCheck(!variable_instance_exists(_gate,_custom_fields[_f]),
+                _label+" does not install Custom lifecycle field "+_custom_fields[_f]);
         hm_arkintide_mod_gml_hm_infantry_capture();
-        scrHMActorTestCheck(!_gate.can_die&&!_gate.hm_cleaned
-            &&scrHMScriptRef(_gate.on_cleanup)==scrHMScriptRef(scrHMActorTestCleanup)
-            &&scrHMScriptRef(_gate.on_destroy)==scrHMScriptRef(scrHMActorTestDestroy),
-            _label+" a second capture call never reinitializes an existing custom gate");
+        scrHMActorTestCheck(_gate.object_index==IDPDSpawn&&_gate.id==_gate_id
+            &&_gate.sprite_index==_native_sprite&&abs(_gate.image_index-.25)<.0001
+            &&abs(_gate.image_speed-.25*timescale)<.0001
+            &&_gate.alarm[0]==17&&_gate.alarm[1]==_native_alarm1
+            &&!variable_instance_exists(_gate,"hm_custom_actor"),
+            _label+" repeated capture preserves native ownership and timing");
         global.hm_actor_order="";
         if(_case<4) {
-            // This is the failing lifecycle: capture, then Room End before any
-            // Step. Exercise the real object event, not only the cleanup helper.
             with(_gate) {event_perform(ev_other,5);event_perform(ev_other,5);}
-            scrHMActorTestCheck(_gate.hm_cleaned&&global.hm_actor_order=="cleanup;",
-                _label+" immediate Room End initializes and cleans up exactly once");
-            with(_gate) instance_destroy();
-            scrHMActorTestCheck(!instance_exists(_gate)&&global.hm_actor_order=="cleanup;destroy;",
-                _label+" destruction after Room End never repeats cleanup");
-        } else {
-            with(_gate) instance_destroy();
-            scrHMActorTestCheck(!instance_exists(_gate)&&global.hm_actor_order=="destroy;cleanup;",
-                _label+" direct destruction before Step cleans up exactly once");
+            scrHMActorTestCheck(instance_exists(_gate)&&_gate.object_index==IDPDSpawn
+                &&!variable_instance_exists(_gate,"hm_custom_actor")&&global.hm_actor_order=="",
+                _label+" immediate Room End never enters the Custom cleanup lifecycle");
         }
+        with(_gate) instance_destroy();
+        scrHMActorTestCheck(!instance_exists(_gate)&&instance_number(IDPDSpawn)==0&&global.hm_actor_order=="",
+            _label+" native teardown leaves no gate or Custom callbacks");
     }
     global.hm_enabled=_old_enabled;GameCont.area=_old_area;GameCont.subarea=_old_sub;
     GameCont.loops=_old_loops;GameCont.popolevel=_old_popolevel;

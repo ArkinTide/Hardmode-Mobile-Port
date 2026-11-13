@@ -956,6 +956,7 @@ if(instance_exists(__hm_with20[__hm_index21])) with (__hm_with20[__hm_index21]) 
 {
 var __hm_other23=scrHMOther(other);
 creator = __hm_other23;
+hm_rocket_owner1115 = __hm_other23.id;
 var __hm_other24=scrHMOther(other);
 hitid = [__hm_other24.spr_idle, __hm_other24.name, __hm_other24.id];
 var __hm_other25=scrHMOther(other);

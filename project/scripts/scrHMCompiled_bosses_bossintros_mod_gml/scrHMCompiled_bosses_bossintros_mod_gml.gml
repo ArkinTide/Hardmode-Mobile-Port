@@ -12,6 +12,7 @@ function hm_bosses_bossintros_mod_gml___load() {
 function hm_bosses_bossintros_mod_gml_boss_trigger() {
 if(scrHMExtraPresentation1104(argument4)) return;
 if(scrHMMessengerSkipPresentation1103(argument4)) return;
+if(scrHMBossGroupPresentation115(argument0,argument1,argument2,argument3,argument4,argument5)) return;
 if(scrHMSkipBossPresentation108(argument0,argument4)) return;
 if (((instance_exists(argument4) && scrHMVariableExists(argument4, "hm_extra")) && argument4.hm_extra)) {
 exit;

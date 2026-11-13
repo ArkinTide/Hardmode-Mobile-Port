@@ -48,6 +48,8 @@ scrPlayerAmmoInit()
 clicked = false
 wepflip = 1
 angle = 0
+// NTT exposes body rotation separately from the native player's roll angle.
+sprite_angle = 0
 wkick = 0
 bwkick = 0
 bwepangle = 0

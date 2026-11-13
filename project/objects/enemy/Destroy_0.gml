@@ -16,6 +16,7 @@ if corpse && (!scrHMEnabled() || (sprite_exists(spr_dead) && spr_dead!=mskNone))
         motion_add(other.direction, other.speed)
         speed += (max(0, -other.hp / 5)) * timescale
         sprite_index = other.spr_dead
+        if(scrHMEnabled()) scrHMMessengerNativeCorpse115(other.id);
         image_xscale = other.right
 
         if instance_exists(Player) {

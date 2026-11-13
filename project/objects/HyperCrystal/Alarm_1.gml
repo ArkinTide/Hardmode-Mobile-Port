@@ -16,7 +16,7 @@ if ((target >= Player) && instance_exists(target)) {
         dir = 0
         repeat cnumber {
             type = LaserCrystal
-            if (GameCont.area == 104) {
+            if (GameCont.area == 104 || (scrHMEnabled() && (self[$ "hm_extra_kind"]??"")=="cursedcrystal")) {
                 type = choose(InvLaserCrystal, InvLaserCrystal, InvLaserCrystal, LightningCrystal)
             }
             crystal[dir] = instance_create(x, y, type)

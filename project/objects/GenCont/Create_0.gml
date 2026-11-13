@@ -36,6 +36,7 @@ if (GameCont.area == area_campfire) {
 safespawn = scrAreaHasSafespawn()
 safedir = choose(0, 90, 180, 270)
 if(scrHMEnabled() && scrHMAreaHas(GameCont.area)) {
+    scrHMRoomWaterState1105(true);
     scrHMAreaCall(GameCont.area,"area_setup");
     // area_setup writes the actual room background through the legacy adapter.
     with(BackCont) if(variable_instance_exists(id,"shadcol")) shadow_color=shadcol;

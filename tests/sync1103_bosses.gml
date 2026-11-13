@@ -39,9 +39,13 @@ function scrHMGameplay1103Bosses() {
         scrHMGameplayCheck(_extra.max_hp==345 && _extra.hp==200,"additional boss keeps its separate five-percent health and current damage");
         instance_destroy(_extra,false);
         var _phase=hm_enemies_mod_gml_enemyyv_create(player.x+140,player.y);
-        scrHMGameplayCheck(_phase.name=="hm_yv_phase" && _phase.hp==195 && _phase.max_hp==195,"Loop3 handoff replaces the grounded final boss with YV while retaining its 150 times 1.3 budget");
+        var _yv=instance_create(player.x+180,player.y,YVBoss);
+        with(_yv) scrHMBossHealth1103();
+        var _phasehealth=_yv.max_hp;
+        scrHMGameplayCheck(_phase.name=="hm_yv_phase" && _phase.hp==_phasehealth && _phase.max_hp==_phasehealth,"Loop3 handoff uses YV's own native current-Loop health instead of the retired 150 phase budget");
         with(_phase) {hm_arkintide_mod_gml_hm_yv_phase_bind();repeat(4) scrHMBossHealth1103();}
-        scrHMGameplayCheck(_phase.hp==195 && _phase.max_hp==195,"native YV event rebinding cannot multiply the inherited grounded phase health again");
+        scrHMGameplayCheck(_phase.hp==_phasehealth && _phase.max_hp==_phasehealth,"native YV event rebinding cannot multiply its own native phase health again");
+        instance_destroy(_yv,false);
         instance_destroy(_phase,false);GameCont.loops=_loops;
         var _sleep=instance_create(player.x+120,player.y,NothingInactive);
         var _show=true;with(_sleep) _show=scrHMThroneBarVisible1103();

@@ -1,4 +1,6 @@
 function scrHMGameplayRoutes1104() {
+    scrHMGameplayChief1115();
+    scrHMGameplayYV1115();
     if(mode=="fix114arena" && (ticks==20 || ticks==60)) {
         // Observe the real area_start entry actors without changing enemy HP,
         // player position, pending thresholds or map geometry. Guardian's
@@ -97,6 +99,14 @@ function scrHMGameplayRoutes1104() {
         scrHMGameplayCheck(MusCont.song==custom_sound_check(mus7b) && MusCont.music_sound==_handle,"actual Throne setup continues same playback handle");
         with(MusCont) {hm_music_area112=-999;scrHMMusicRoom112();}
         scrHMGameplayCheck(MusCont.song==custom_sound_check(mus7b) && MusCont.music_sound==_handle,"fallback music repair preserves PalaceB playback");
+    }
+    if(mode=="fix114throne" && ticks==1) {
+        // This fixture measures the phase-II continuation at a fixed logical
+        // deadline. Presentation freezes have their own real-camera coverage;
+        // keep their pauses outside the sustained police-gate stress budget.
+        UberCont.opt_bossintro=0;
+        scrHMModSet("mod","options","intropan","0");
+        scrHMModSet("mod","options","bossoutros","0");
     }
     if(mode=="fix114throne" && ticks==20) {
         UberCont.opt_bossintro=0;
@@ -258,4 +268,168 @@ function scrHMGameplayRoutes1104() {
         scrHMGameplayCheck(player.can_walk,"suppressed extra presentation preserves player input");
         instance_destroy(_building,false);instance_destroy(_extra,false);
     }
+}
+
+// These observations run in the real host events. No test advances the
+// Captain's arrival, portrait timeout, camera timer or attack alarms.
+function scrHMGameplayChief1115() {
+    if(mode!="chief1115first" && mode!="chief1115repeat") return;
+    if(ticks==10) {
+        scrHMGameplayLane107();scrHMGameplayUICamera1104();
+        scrHMGameplayNoReplacement1115();
+        UberCont.opt_bossintro=1;
+        scrHMModSet("mod","options","intropan","1");
+        scrHMModSet("mod","options","bossoutros","1");
+        GameCont.hm_chief_seen=mode=="chief1115repeat";
+        chief1115=scrHMChiefCreate1102(player.x+110,player.y);
+        global.hm_chief_visual1115={actor:chief1115,mode:mode,warp:false,portrait:false,camera:false,
+            portrait_frames:0,portrait_count:0,native_active:false,camera_frames:0};
+        chief_stage1115=[];chief_safe1115=true;chief_combat_at1115=-1;chief_complete1115=false;
+        scrHMGameplayCheck(chief1115.drawspr==sprLastWarpIn && chief1115.drawimg==0
+            && chief1115.hm_chief_arrival1102==20,"replacement Captain begins in the native teleport arrival pose");
+        scrHMGameplayCheck(chief1115.alarm[1]==-1 && !chief1115.hm_chief_combat1115,
+            "Captain entry starts with native attacks disarmed");
+    }
+    if(ticks<11) return;
+    scrHMGameplayCheck(instance_exists(chief1115),"Captain remains the live native actor until the complete presentation observation ends");
+    if(!chief1115.hm_chief_combat1115) {
+        if(!array_contains([sprLastWarpIn,sprLastIdle],chief1115.drawspr)) chief_safe1115=false;
+        if(chief1115.alarm[1]>0 || chief1115.ammo>0 || chief1115.charge>0) chief_safe1115=false;
+    } else if(chief_combat_at1115<0) chief_combat_at1115=ticks;
+    if(ticks mod 10==0 && ticks<160) array_push(chief_stage1115,{tick:ticks,
+        arrival:chief1115.hm_chief_arrival1102,combat:chief1115.hm_chief_combat1115,
+        sprite:sprite_get_name(chief1115.drawspr),frame:chief1115.drawimg,
+        camera:instance_exists(HMWorld.hm_portrait_active),native:UberCont.bossintro});
+    if(ticks==190) {
+        scrHMGameplayCheck(chief1115.hm_chief_combat1115 && chief_combat_at1115>10,
+            "real warp, portrait and camera finish before the Captain enters combat");
+        scrHMGameplayCheck(chief_safe1115,"arrival and presentations never run or repeat the punch, dash or firing attack animation");
+        var _visual=global.hm_chief_visual1115;
+        scrHMGameplayCheck(_visual.warp && _visual.camera,"real draw events observe both the animated teleport and camera presentation");
+        scrHMGameplayCheck(_visual.portrait_count==(mode=="chief1115first"?1:0),
+            "first Captain portrait plays once per run and repeat replacement skips it");
+        scrHMGameplayCheck(player.can_walk && player.can_pick && !(player[$ "hm_portrait_frozen"]??false),
+            "Captain presentation returns the camera and controls to the actual Player");
+        // Exercise the native teleport-landing attack alarm after normal
+        // combat starts; this retains its actual reinforcement gate.
+        chief1115.drawspr=sprLastWarpIn;chief1115.drawimg=0;
+        chief1115.alarm[5]=1;
+    }
+    if(ticks==220) {
+        scrHMGameplayCheck(chief1115.hm_chief_summons1115>=1,
+            "native combat teleport landing summons the replacement Captain reinforcement gate");
+        var _oldloop=GameCont.loops;
+        var _ordinary=instance_create(player.x+180,player.y,Last);
+        var _intro=_ordinary.intro,_alarm=_ordinary.alarm[1];
+        for(var _i=0;_i<4;++_i) {
+            var _loop=[0,1,10,30][_i];GameCont.loops=_loop;
+            var _normal=0,_replacement=0;
+            with(_ordinary) _normal=scrHMChiefSpeed1115();
+            with(chief1115) _replacement=scrHMChiefSpeed1115();
+            var _expected=min(2,1+_loop*.05),_delta=abs(_normal-_expected),_same=abs(_normal-_replacement);
+            show_debug_message("HARDMODE CHIEF1115 SPEED "+json_stringify({loop:_loop,normal:_normal,replacement:_replacement,
+                expected:_expected,delta:_delta,same:_same,epsilon:math_get_epsilon(),
+                ordinary:object_get_name(_ordinary.object_index),replacement_object:object_get_name(chief1115.object_index)}));
+            // A strict less-than at the VM's own epsilon compares as equal
+            // even for zero error. This tolerance remains far below .05.
+            scrHMGameplayCheck(_delta<.001 && _same<.001,
+                "ordinary HQ and replacement Captain share the explicit capped five-percent Loop cadence");
+        }
+        GameCont.loops=_oldloop;
+        scrHMGameplayCheck(_ordinary.intro==_intro && _ordinary.alarm[1]==_alarm
+            && !(_ordinary[$ "hm_chief1102"]??false),"ordinary HQ Captain retains native introduction and campaign identity");
+        GameCont.loops=10;
+        _ordinary.alarm[1]=100;_ordinary.hm_chief_action1115=0;
+        with(_ordinary) {
+            // Two whole logical ticks, independent of the rendering rate.
+            // This calls the same action supplement as ordinary Last.Step.
+            var _scale=global.time_scale;global.time_scale=1;
+            scrHMChiefAction1115();scrHMChiefAction1115();
+            global.time_scale=_scale;
+        }
+        scrHMGameplayCheck(_ordinary.alarm[1]==99,
+            "ordinary HQ Captain action supplement adds one native alarm tick over two Loop10 logic ticks");
+        GameCont.loops=_oldloop;
+        instance_destroy(_ordinary,false);
+        chief_complete1115=true;
+    }
+    if(ticks==270) {
+        scrHMGameplayCheck(chief_complete1115,"Captain entry and ordinary/replacement Loop checks all executed before completion");
+        show_debug_message("HARDMODE CHIEF1115 "+json_stringify({mode:mode,rate:rate,
+        combat_at:chief_combat_at1115,no_entry_attack:chief_safe1115,summons:chief1115.hm_chief_summons1115,
+        visuals:global.hm_chief_visual1115,stages:chief_stage1115}));
+    }
+}
+
+function scrHMGameplayChiefDraw1115() {
+    if(!variable_global_exists("hm_chief_visual1115")) return;
+    var _v=global.hm_chief_visual1115;
+    if(UberCont.bossintro) {
+        if(!_v.native_active) {_v.portrait_count++;_v.native_active=true;}
+        _v.portrait_frames++;
+        if(!_v.portrait && _v.portrait_frames>=12) {
+            screen_save(game_directory+"chief1115-portrait.png");_v.portrait=true;
+        }
+        return;
+    }
+    _v.native_active=false;
+    if(!instance_exists(_v.actor)) return;
+    if(!_v.warp && _v.actor.hm_chief_arrival1102>2 && _v.actor.hm_chief_arrival1102<14
+       && surface_exists(application_surface)) {
+        surface_save(application_surface,game_directory+"chief1115-warp.png");_v.warp=true;
+    }
+    if(instance_exists(HMWorld.hm_portrait_active)) {
+        _v.camera_frames++;
+        if(!_v.camera && _v.camera_frames>=6 && surface_exists(application_surface)) {
+            surface_save(application_surface,game_directory+"chief1115-camera.png");_v.camera=true;
+        }
+    }
+}
+
+function scrHMGameplayYV1115() {
+    if(mode!="yv1115minigun") return;
+    if(ticks==10) {
+        scrHMGameplayLane107();UberCont.opt_bossintro=0;
+        scrHMGameplayNoReplacement1115();
+        scrHMModSet("mod","options","intropan","0");
+        yv1115=instance_create(player.x+160,player.y,YVBoss);
+        with(yv1115) {
+            hm_entry_camera1101=true;hm_exit_camera1101=true;
+            for(var _i=0;_i<12;++_i) alarm[_i]=-1;
+            intro=true;wep=wep_minigun;ammo=90;gunangle=0;minigun_side=1;
+            alarm[2]=1;speed=0;walk=0;
+        }
+        yv_first1115=-1;yv_last1115=-1;yv_ammo1115=90;yv_shots1115=0;yv_complete1115=false;
+        scrHMGameplayCheck(yv1115.wep==wep_minigun && yv1115.ammo==90,
+            "Y.V cadence fixture uses the real native minigun with ninety rounds");
+    }
+    if(ticks<11) return;
+    scrHMGameplayCheck(instance_exists(yv1115),"Y.V remains present while native minigun cadence is observed");
+    var _shot=yv_ammo1115-max(0,yv1115.ammo);
+    if(_shot>0) {
+        if(yv_first1115<0) yv_first1115=ticks;
+        yv_last1115=ticks;yv_shots1115+=_shot;
+    }
+    yv_ammo1115=max(0,yv1115.ammo);
+    if(ticks==120) {
+        scrHMGameplayCheck(yv_shots1115==90 && yv1115.ammo==0,
+            "ninety native minigun shots finish at both rendering frame settings");
+        scrHMGameplayCheck(yv_last1115-yv_first1115>=88 && yv_last1115-yv_first1115<=91,
+            "native minigun cadence remains one shot per thirty-Hz logical tick");
+        scrHMGameplayCheck(yv1115.gunangle>=72 && yv1115.gunangle<=90,
+            "native ninety-shot sweep retains the reference point-eight-to-one degree turn per shot");
+        show_debug_message("HARDMODE YV1115 "+json_stringify({rate:rate,shots:yv_shots1115,
+            first_tick:yv_first1115,last_tick:yv_last1115,angle:yv1115.gunangle}));
+        yv_complete1115=true;
+    }
+    if(ticks==125) scrHMGameplayCheck(yv_complete1115,"all ninety-shot cadence and turning assertions execute before test completion");
+}
+
+function scrHMGameplayNoReplacement1115() {
+    // Lane isolation removes CustomObject controllers. Recreate the actual
+    // production controller, then disable only its independent random boss
+    // substitution so it cannot replace the actor this scenario observes.
+    var _controller=hm_arkintide_mod_gml_hm_native_controller();
+    _controller.hm_gungod_rolled=true;_controller.hm_gungod_replaced=false;
+    GameCont.hm_native_controller_id=_controller;
 }

@@ -47,6 +47,25 @@ function scrHMMenuOptionsCheck() {
         scrHMMenuCheck(_opt.hm_setting!="coopchests","no obsolete co-op ammo setting");
         if(scrHMChinese()) scrHMMenuCheck(_opt.name!=string_upper(_opt.name)||ord(string_char_at(_opt.name,1))>127,"Chinese option label");
     }
+    var _boost=_menu.items[_menu.item_count-1];
+    scrHMMenuCheck(_boost.hm_setting=="playerboost" && string_count("#",_boost.name)==2,
+        "player boost has three explicit lines in the actual touch options list");
+    draw_reset_font();
+    scrHMMenuCheck(_boost.height>=font_get_string_height(string_hash_to_newline(_boost.name)),
+        "player boost allocates the actual font height of all three lines");
+    // Render the actual submenu at its bottom scroll position. This fixture
+    // uses the production Draw wrapper; it is not a mock text rendering.
+    if(scrHMChinese()) {
+        var _surface=surface_create(gui_w,gui_h);
+        scrHMMenuCheck(surface_exists(_surface),"Chinese settings review surface is allocated");
+        surface_set_target(_surface);draw_clear_alpha(c_black,1);
+        with(_menu) {last_change=current_frame-60;event_user(1);scroll=scroll_max;}
+        draw_clear_alpha(c_black,1);
+        with(_menu) event_user(1);
+        surface_reset_target();
+        surface_save(_surface,game_directory+"settings115-"+global.language_current[$ "Init:Id"]+".png");
+        surface_free(_surface);
+    }
     with(_menu) instance_destroy();
 }
 

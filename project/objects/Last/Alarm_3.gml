@@ -1,3 +1,4 @@
+if(scrHMChiefAlarm1115()) exit;
 scrTarget()
 if (instance_exists(target)) {
     do {

@@ -1,16 +1,13 @@
 # Build and maintenance
 
-The maintained project is project/nuclearthronemobile.yyp. Supply the original Epsilon/Hardmode assets, compatible local GameMaker tools, native runners and signing material separately. GitHub contains text source and metadata only. Do not rerun historical full importers over this project.
+The maintained project is project/nuclearthronemobile.yyp. Supply original Epsilon/Hardmode assets, compatible GameMaker tools, native runners and signing material separately. The source-only GitHub publication excludes proprietary binary resources and private signing material. Do not rerun historical full importers over the maintained project.
 
-Version1.1.4/build18 incrementally repairs the16 mobile reports recorded in FIXES.md. The four integrate_1104_* scripts own narrowly scoped transforms; register_1104.py registers the new helpers and opt-in tests. The published baseline and failed candidate evidence remain local underrelease1104. Never overwrite previous releases or original-source.
+Version 1.1.5/build19 covers the35 human followups in docs/scope-1.1.5.json (maintained locally as release1105/scope-coverage.json). The targeted integrate_1115_* and integrate_1105_performance.py transforms preserve prior repairs. Run the Messenger and boss-group integrations after historical generators; production helpers/tests use existing registered assets and register_1115.py. Preserve mobile mutation selection; do not import Grillskills.
 
-Build with build_local.ps1 -Target windows, run release1104_test_plan.py --run in the isolated silent harness, then freeze_source.py final --directory release1104. Build_mobile1104.py compiles fresh Android/iOS resources, prepares fonts, assembles the offline signed APK and retained-runner IPA, and validates storage/native compatibility. make_release1104_receipt.py binds the exact final source, tested VM, render evidence and both packages.
+Build the Windows host with build_checked1105.py; it records unchanged compiler inputs, the build log and exact output VM. release1105_test_plan.py is the authoritative dynamic test plan; run it in the private silent harness. Every receipt must match the current complete Windows VM hash. Preliminary builds and 1.1.4 receipts do not count. Run the static performance audit and review actual output images, then freeze_source.py final --directory release1105. Keep the frozen manifest and exact final-code.zip.
 
-Only a passing matching delivery receipt permits prepare_publication1104.py, the source-only GitHub stager and dedicated Hardmode MEGA upload queue. Require full download-readback SHA256 verification. Physical-device tests and newMac native builds are not claimed. Keep current save and signing identities and existing mobile mutation UI; do not import Grillskills.
+Compile fresh Android/iOS resources, prepare fonts, assemble and validate the offline signed APK and retained-runner IPA using the current release build scripts. make_release1105_receipt.py checks frozen source, all planned same-VM results, strict function-level compiled call edges, reviewed PNG hashes, platform audits, fresh resource ZIPs and both actual package inventories. It never builds or uploads. Run write_release1105_docs.py --final only after that gate passes.
 
-Run build_mobile1104.py and make_release1104_receipt.py with a Python runtime
-containing Pillow, since package_fonts imports PIL. On this machine that is
-C:/Users/ArkinTide/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe.
-If fresh mobile compilation already completed and its source-bound
-mobile-resource-build.json is valid, --packages-only reuses those exact resource
-ZIPs after rechecking their hashes; it does not accept stale resources.
+Only a passing matching delivery receipt permits publication. Use the Hardmode source-only GitHub flow and dedicated MEGA upload queue; retain full download-readback SHA256 verification. Android signing continuity, public save directory and iOS Documents/hardmode sharing are retained. iOS requires re-signing. These are host-VM/resource checks, not physical-device acceptance; no universal high-Loop60FPS or newMac native-build claim is made.
+
+Use a Python runtime containing Pillow. On this machine: C:/Users/ArkinTide/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe. A packages-only workflow may reuse resource ZIPs only when their current frozen-source binding and hashes still verify.

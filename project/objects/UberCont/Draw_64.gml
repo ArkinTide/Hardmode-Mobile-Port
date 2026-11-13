@@ -152,3 +152,5 @@ if MultiplayerConfig && false {
 	draw_set_color(c_white)
 	draw_reset_font()
 }
+
+scrHMGameplayChiefDraw1115();

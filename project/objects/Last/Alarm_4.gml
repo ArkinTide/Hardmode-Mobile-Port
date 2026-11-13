@@ -1,3 +1,4 @@
+if(scrHMChiefAlarm1115()) exit;
 if (charge == 0) {
     charge = 1
     alarm[4] = 10
@@ -13,7 +14,7 @@ if (charge == 0) {
         else right = 1
         drawspr = sprLastDashStart
         gunangle = ((mcr_target_direction + random(30)) - 15)
-        motion_add(gunangle, (10) * timescale)
+        motion_add(gunangle, (10) * timescale * scrHMChiefSpeed1115())
     }
 } else if (charge == 1) {
     drawspr = sprLastDashEnd

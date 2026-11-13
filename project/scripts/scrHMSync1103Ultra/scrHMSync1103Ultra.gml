@@ -126,10 +126,42 @@ function scrHML2UltraMenu1103() {
         _icon.hm_l2_bonus1103=true;
         _icon.hm_l2_owner1103=_offer;
     }
+    // This is a terminal opt-out for this run's extra reward, not Patience:
+    // it must not grant a mutation or defer the point to a later level.
+    var _cancel=instance_create(0,0,UltraIcon);
+    _cancel.race=_race;
+    _cancel.num=0;
+    _cancel.sprite_index=sprSkillIcon;
+    _cancel.hm_l2_bonus1103=true;
+    _cancel.hm_l2_owner1103=_offer;
+    _cancel.hm_l2_cancel1103=true;
     // Existing native alignment, localized text, mouse/touch hitbox and input
     // remain authoritative. In particular `num` is the actual Ultra ID, even
     // when a filtered Horror menu contains only IDs 2 and 3.
     event_user(0);
+    return true;
+}
+
+// Called by the same synchronized native UltraIcon.User0 event as all normal
+// choices, before scr_ultra_set and the Y.V./Cuz home-visit side effects.
+function scrHML2UltraCancel1103() {
+    if(!variable_instance_exists(id,"hm_l2_cancel1103") || !hm_l2_cancel1103) return false;
+    // A stale or invalid cancel icon is still never a real Ultra with ID 0.
+    if(!scrHMEnabled() || !scrHML2UltraInit1103()) return true;
+    var _owner=variable_instance_exists(id,"hm_l2_owner1103")?hm_l2_owner1103:-1;
+    if(_owner<0 || _owner>=array_length(GameCont.hm_l2_ultra_races1103)) return true;
+    if(!variable_instance_exists(id,"hm_l2_bonus1103") || !hm_l2_bonus1103
+       || GameCont.hm_l2_ultra_races1103[_owner]!=race
+       || GameCont.hm_l2_ultra_done1103[_owner]
+       || !GameCont.hm_l2_ultra_issued1103[_owner]
+       || GameCont.hm_l2_ultra_points1103<=0 || GameCont.ultrapoints<=0) return true;
+    GameCont.hm_l2_ultra_done1103[_owner]=true;
+    GameCont.hm_l2_ultra_points1103=max(0,GameCont.hm_l2_ultra_points1103-1);
+    GameCont.ultrapoints=max(0,GameCont.ultrapoints-1);
+    snd_play(sndClick);
+    // Native submission handles any other player's pending choice and saves
+    // the already-completed entitlement, preventing a bonus after continuing.
+    scrLevelUpScreenSubmit(scrHMLocalize("CANCEL SELECTION"));
     return true;
 }
 

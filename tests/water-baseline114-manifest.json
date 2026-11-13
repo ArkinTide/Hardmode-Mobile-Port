@@ -1,0 +1,90 @@
+{
+  "source_commit": "48ac73f965f83240a1a88c1253207aff27866715",
+  "operation": "function identifier renaming only",
+  "functions": [
+    {
+      "source": "native/repairs104.gml",
+      "name": "scrHMWaterKey",
+      "frozen_name": "scrHMGameplayWaterKey114For115",
+      "source_function_sha256": "8d64a9a2e333ceb1a91c65a70a3017b0bc3b0bfff1bb489620eb953f5d3453e1",
+      "frozen_function_sha256": "cdf81a0f9905d02c48920bf36586b3f66c708e0bcfc5a2a857ae824c5cc5f638"
+    },
+    {
+      "source": "native/repairs104.gml",
+      "name": "scrHMWaterMap",
+      "frozen_name": "scrHMGameplayWaterMap114For115",
+      "source_function_sha256": "f4b45c18f93412d75812c7b5009f5e1c542dd94517de9925a0e47422dc7e9b9d",
+      "frozen_function_sha256": "55ad3aa4413ae9451fd53a8d7c4ba6905c9c2702ecbb133571e71318e78f683b"
+    },
+    {
+      "source": "native/repairs104.gml",
+      "name": "scrHMWaterAt",
+      "frozen_name": "scrHMGameplayWaterAt114For115",
+      "source_function_sha256": "6366e51b999972c090a7b037c8d024ec9a6574b6ad4de234bbb090f58f22e1ab",
+      "frozen_function_sha256": "5fd155e7693434e69ddfac2fcef80f13a35c3ad3920fa6fa214ec7ef748fc3e0"
+    },
+    {
+      "source": "native/repairs111.gml",
+      "name": "scrHMWaterBank111",
+      "frozen_name": "scrHMGameplayWaterBank114For115",
+      "source_function_sha256": "094f4f108ce1cbfb54f89f31b9212ad72afa137f97ffaf23765e7cce8ae4d23d",
+      "frozen_function_sha256": "a68f34b919aba0e8899e5c731aace6251044b40e45fa42e05601997258c70459"
+    },
+    {
+      "source": "native/repairs109.gml",
+      "name": "scrHMWaterRects109",
+      "frozen_name": "scrHMGameplayWaterRects114For115",
+      "source_function_sha256": "f22a1bf363fead6290ae362d92ef70f3d2ad8c9fe3ab83c64a72563954a4ecc5",
+      "frozen_function_sha256": "2df7a2f4175d979ecd92718ec572a8bf33d86ab1b52a601b7af14b5cb1af06d8"
+    },
+    {
+      "source": "native/repairs109.gml",
+      "name": "scrHMWaterExact109",
+      "frozen_name": "scrHMGameplayWaterDispatch114For115",
+      "source_function_sha256": "b68223db8fffb76abc143000aff56121f90e767150211602d161963a3407cf37",
+      "frozen_function_sha256": "a3148fa4fa88dad5151620a7bbeae85866912bfede8cd0675d2758b68bc6ef6e"
+    },
+    {
+      "source": "native/repairs1102.gml",
+      "name": "scrHMWaterBatchBegin1102",
+      "frozen_name": "scrHMGameplayWaterBatchBegin114For115",
+      "source_function_sha256": "66c574d60bd9be13275e73e72ac7575ef4f8420c857b167b5b6d079fdf4016b1",
+      "frozen_function_sha256": "d7a38b0f3d3c3827c34d5e76f9182f4e0198357f0f9fe59458de6aa53dbe3430"
+    },
+    {
+      "source": "native/repairs1102.gml",
+      "name": "scrHMWaterBatchEnd1102",
+      "frozen_name": "scrHMGameplayWaterBatchEnd114For115",
+      "source_function_sha256": "2dd923c0c7f139bba0539937c112c5fe9bf4e886c5e410729aece4f0985ea9d9",
+      "frozen_function_sha256": "70d05dc0a36a9a65aa710adcca85cf9725e443050d0357503473b9c8f2f8c18e"
+    },
+    {
+      "source": "native/repairs1102.gml",
+      "name": "scrHMWaterExact1102",
+      "frozen_name": "scrHMGameplayWaterExact114For115",
+      "source_function_sha256": "bded3207369c500c1a9f00001939f5e447b586d0083a02a2148b1918c5af6709",
+      "frozen_function_sha256": "81525886819678f597444209579ff1905167d445eefcf357b64e2d103a224ce0"
+    },
+    {
+      "source": "native/repairs112.gml",
+      "name": "scrHMSwimSupported112",
+      "frozen_name": "scrHMGameplayWaterSupport114For115",
+      "source_function_sha256": "a11c35f4c495f20b539aef2fadc2a1dbefde4184beb6a20af99961fdd034a871",
+      "frozen_function_sha256": "d2382b23ea5127227de58dcd2061c4a95017cdbbceb3ca4a9cc7e936a34329fd"
+    },
+    {
+      "source": "native/sync1103_performance.gml",
+      "name": "scrHMWaterPotential1103",
+      "frozen_name": "scrHMGameplayWaterPotential114For115",
+      "source_function_sha256": "7757329dfd0d67d1730cdb94d768ae4dc3035f83b732665c724bc72c4aec2e09",
+      "frozen_function_sha256": "a1e6d579431591ab58172a8443b7a0117c81364325252e5f69c1f10113b72575"
+    },
+    {
+      "source": "native/sync1103_performance.gml",
+      "name": "scrHMWaterPossible1103",
+      "frozen_name": "scrHMGameplayWaterPossible114For115",
+      "source_function_sha256": "b562db7ac35dc655e090680b50ee28bd96bbd644edae5a478118766752086c07",
+      "frozen_function_sha256": "13d1567f9430e062266015abb48248fafb29731c3b70e66f60999cef6a18675d"
+    }
+  ]
+}

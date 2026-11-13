@@ -66,6 +66,7 @@ function scrHMWorldStep() {
     scrHMTasksTick(1);
     if(instance_exists(GameCont)) {scrHMHook("step");scrHMNativeBossHealth1103();}
     if(!instance_exists(HMWorld.hm_portrait_active)) with(YVBoss) if(hp>0 && image_alpha>0) scrHMBossCamera1101(id,false);
+    if(!instance_exists(HMWorld.hm_portrait_active)) scrHMBossGroupTick115();
 }
 
 function scrHMRunStart() {

@@ -1,0 +1,523 @@
+{
+  "version": "1.1.5",
+  "build": 19,
+  "target": "Hardmode mobile only",
+  "status": "source-covered; final same-VM verification required",
+  "evidence_rule": "Only release1105/delivery-receipt.json may establish final host/package acceptance.",
+  "latest_preferences": {
+    "messenger": "Loop3; 2x native Freak timer; repeatable until exit; normal auto-revival may present; extras do not present",
+    "hq": "named late population remains Loop3",
+    "chief_speed": "explicit mobile +5 percent/Loop, capped 2x; not asserted as an original desktop constant"
+  },
+  "retained_requirements": [
+    "1.1.4 Throne 120-tile wall carve stays disconnected",
+    "Chinese boss bars remain in GUI End, Great Guardian bar/projectile layering retained",
+    "No imported Grillskills: preserve the mobile mutation UI",
+    "No NTTE/NTUF or installed desktop MOD edits"
+  ],
+  "items": [
+    {
+      "item": 1,
+      "request": "局长在Loop后增加行动和移动速度。",
+      "implementation": "普通警局局长与替换局长均采用手机版每Loop增加5%行动/移动速度、最高2倍；没有将未证实的倍率描述成电脑版原始常量。",
+      "sources": [
+        "project/scripts/scrHMRepairs1102/scrHMRepairs1102.gml",
+        "project/objects/Last/Step_0.gml"
+      ],
+      "modes": [
+        "chief1115first",
+        "chief1115repeat",
+        "sync115replacementchief"
+      ],
+      "status": "requires-final-receipt"
+    },
+    {
+      "item": 2,
+      "request": "金星最终首领从Loop1起的第二阶段变为Y.V。",
+      "implementation": "Loop0保留原第二阶段，Loop1及以后使用Y.V。",
+      "sources": [
+        "project/scripts/scrHMCompiled_arkintide_mod_gml/scrHMCompiled_arkintide_mod_gml.gml",
+        "project/scripts/scrHMCompiled_enemies_mod_gml/scrHMCompiled_enemies_mod_gml.gml"
+      ],
+      "modes": [
+        "sync115phasehealth"
+      ],
+      "status": "requires-final-receipt"
+    },
+    {
+      "item": 3,
+      "request": "替换关底首领的局长统一从传送门出场。",
+      "implementation": "替换槽位始终调用局长原生传送入场构造器。",
+      "sources": [
+        "project/scripts/scrHMRepairs1102/scrHMRepairs1102.gml"
+      ],
+      "modes": [
+        "chief1115first",
+        "chief1115repeat",
+        "sync115replacementchief"
+      ],
+      "status": "requires-final-receipt"
+    },
+    {
+      "item": 4,
+      "request": "Throne和HQ-5不生成额外首领。",
+      "implementation": "在额外种群入口提前排除这两间房，避免消耗额外抽签或干扰正常首领。",
+      "sources": [
+        "project/scripts/scrHMSync1103Spawn/scrHMSync1103Spawn.gml"
+      ],
+      "modes": [
+        "sync115policy"
+      ],
+      "status": "requires-final-receipt"
+    },
+    {
+      "item": 5,
+      "request": "IDPD单位出现前的传送门动画不要提前消失。",
+      "implementation": "保留原生IDPDSpawn的动画和定时器所有权，在真正的出兵事件中应用模组权重。",
+      "sources": [
+        "project/scripts/scrHMRepairs1102/scrHMRepairs1102.gml",
+        "project/objects/IDPDSpawn/Alarm_1.gml"
+      ],
+      "modes": [
+        "sync115idpdgate"
+      ],
+      "status": "requires-final-receipt"
+    },
+    {
+      "item": 6,
+      "request": "此前限定Loop3的敌人改为Loop1出现，警局追加规则除外。",
+      "implementation": "普通区域统一使用Loop1阈值；警局的指定追加敌人继续遵守第14项。",
+      "sources": [
+        "project/scripts/scrHMRepairs1102/scrHMRepairs1102.gml",
+        "project/scripts/scrHMCompiled_arkintide_mod_gml/scrHMCompiled_arkintide_mod_gml.gml",
+        "project/scripts/scrHMSync1103Spawn/scrHMSync1103Spawn.gml"
+      ],
+      "modes": [
+        "sync115policy",
+        "followup113allareas"
+      ],
+      "status": "requires-final-receipt"
+    },
+    {
+      "item": 7,
+      "request": "检查大量敌人、弹幕和循环后下水道的开销。",
+      "implementation": "实测发现新的数值水域索引更慢，因此恢复已发布版的精确哈希批处理和干地预筛，保留房间水域状态修复；下水道使用专用绘制绑定缓存，减少每个入水实体重复分类和字符串构造，并验证相同绑定、所有权、数量及随机序列；护盾先筛局部候选再做原精确碰撞。最终回执要求专用绑定和护盾的配对宿主CPU测量不退步。保留战斗数量、伤害、掉落和顺序，不将水域查询回退描述为新的提速。",
+      "sources": [
+        "project/scripts/scrHMSync1103Performance/scrHMSync1103Performance.gml",
+        "project/scripts/scrHMRepairs1102/scrHMRepairs1102.gml",
+        "project/scripts/scrHMRepairs109/scrHMRepairs109.gml",
+        "project/scripts/scrHMSync1103Performance/scrHMSync1103Performance.gml"
+      ],
+      "modes": [
+        "sync115water",
+        "sync115waterprofile",
+        "sync115shield"
+      ],
+      "status": "requires-final-receipt"
+    },
+    {
+      "item": 8,
+      "request": "玩家增强设置使用清晰中文。",
+      "implementation": "多行显示玩家增强、生命上限+2、等级上限+1，沿用已有中文字库。",
+      "sources": [
+        "project/scripts/scrHMMobile/scrHMMobile.gml",
+        "localization/zh-CN.json"
+      ],
+      "modes": [
+        "hunter114menu"
+      ],
+      "status": "requires-final-receipt"
+    },
+    {
+      "item": 9,
+      "request": "Loop2第二次终极变异增加取消选项并使用耐心图标。",
+      "implementation": "取消仅消耗本局追加选择资格，不授予变异，不延迟到下关；保存/继续、联机及特殊角色仍正确处理。",
+      "sources": [
+        "project/scripts/scrHMSync1103Ultra/scrHMSync1103Ultra.gml",
+        "project/objects/UltraIcon/Draw_0.gml",
+        "project/objects/UltraIcon/Other_10.gml"
+      ],
+      "modes": [
+        "sync113ultracancel",
+        "sync113ultracancelsave",
+        "sync113ultracancelpending",
+        "sync113ultracancelhorror",
+        "sync113ultracancelyv",
+        "sync113ultracancelcoop"
+      ],
+      "status": "requires-final-receipt"
+    },
+    {
+      "item": 10,
+      "request": "额外大匪和丛林大匪不触发首领演出。",
+      "implementation": "构造、原生事件以及延后绑定的镜头都识别额外首领身份。",
+      "sources": [
+        "project/scripts/scrHMRepairs1104Routes/scrHMRepairs1104Routes.gml",
+        "project/scripts/scrHMCompiled_arkintide_mod_gml/scrHMCompiled_arkintide_mod_gml.gml"
+      ],
+      "modes": [
+        "extra1115bandit",
+        "extra1115jungle"
+      ],
+      "status": "requires-final-receipt"
+    },
+    {
+      "item": 11,
+      "request": "额外超级水晶正常行动。",
+      "implementation": "恢复包装实例的原生旋转/移动事件，并适配30Hz逻辑和60Hz宿主运动。",
+      "sources": [
+        "project/scripts/scrHMRepairs1104Routes/scrHMRepairs1104Routes.gml",
+        "project/scripts/scrHMCompiled_arkintide_mod_gml/scrHMCompiled_arkintide_mod_gml.gml"
+      ],
+      "modes": [
+        "extra1115crystal"
+      ],
+      "status": "requires-final-receipt"
+    },
+    {
+      "item": 12,
+      "request": "额外诅咒超级水晶正常行动和瞬移。",
+      "implementation": "恢复移动，并将侧向瞬移限制到验证过的空地位置。",
+      "sources": [
+        "project/scripts/scrHMRepairs1104Routes/scrHMRepairs1104Routes.gml",
+        "project/scripts/scrHMCompiled_arkintide_mod_gml/scrHMCompiled_arkintide_mod_gml.gml"
+      ],
+      "modes": [
+        "extra1115cursed"
+      ],
+      "status": "requires-final-receipt"
+    },
+    {
+      "item": 13,
+      "request": "额外小猎人死亡后保留飞行和自爆。",
+      "implementation": "创建真正的原生最后遗愿残骸，保留基础三次爆炸且不触发正常首领演出。",
+      "sources": [
+        "project/scripts/scrHMCompiled_arkintide_mod_gml/scrHMCompiled_arkintide_mod_gml.gml"
+      ],
+      "modes": [
+        "extra1115hunter"
+      ],
+      "status": "requires-final-receipt"
+    },
+    {
+      "item": 14,
+      "request": "HQ的死灵法师、科技术士和IDPD freak保留Loop3门槛。",
+      "implementation": "警局专属的追加种群不随普通区域前移到Loop1。",
+      "sources": [
+        "project/scripts/scrHMRepairs1102/scrHMRepairs1102.gml",
+        "project/scripts/scrHMCompiled_arkintide_mod_gml/scrHMCompiled_arkintide_mod_gml.gml",
+        "project/scripts/scrHMSync1103Spawn/scrHMSync1103Spawn.gml"
+      ],
+      "modes": [
+        "sync115policy",
+        "followup113allareas"
+      ],
+      "status": "requires-final-receipt"
+    },
+    {
+      "item": 15,
+      "request": "替换局长也能召唤IDPD传送门。",
+      "implementation": "在局长原生召唤事件调用普通动画门；入场演出阶段仍禁止攻击。",
+      "sources": [
+        "project/scripts/scrHMRepairs1102/scrHMRepairs1102.gml",
+        "project/objects/Last/Alarm_5.gml"
+      ],
+      "modes": [
+        "chief1115first",
+        "chief1115repeat",
+        "sync115replacementchief",
+        "sync115idpdgate"
+      ],
+      "status": "requires-final-receipt"
+    },
+    {
+      "item": 16,
+      "request": "局长及金星最终首领最终死亡掉落三个弹药包或医疗包。",
+      "implementation": "奖励在最终死亡发放，重复死亡回调不能重发，直升机的非致命换阶段不发放。",
+      "sources": [
+        "project/scripts/scrHMRepairs1102/scrHMRepairs1102.gml",
+        "project/scripts/scrHMCompiled_arkintide_mod_gml/scrHMCompiled_arkintide_mod_gml.gml",
+        "project/scripts/scrHMCompiled_enemies_mod_gml/scrHMCompiled_enemies_mod_gml.gml"
+      ],
+      "modes": [
+        "sync115supplies"
+      ],
+      "status": "requires-final-receipt"
+    },
+    {
+      "item": 17,
+      "request": "正常小猎人数量固定为1+floor(Loop/2)。",
+      "implementation": "一间房只预留一次生成计划；飞行换对象、切角色和已死亡均不能重复扩增。",
+      "sources": [
+        "project/scripts/scrHMRepairs109/scrHMRepairs109.gml",
+        "project/scripts/scrHMCompiled_arkintide_mod_gml/scrHMCompiled_arkintide_mod_gml.gml"
+      ],
+      "modes": [
+        "hunter115count"
+      ],
+      "status": "requires-final-receipt"
+    },
+    {
+      "item": 18,
+      "request": "正常多首领全部到齐才统一入场，全部死亡才统一退场。",
+      "implementation": "房间账本记录待到达和存活成员；替换删除会退休旧组，额外首领排除在演出组外。",
+      "sources": [
+        "project/scripts/scrHMRepairs109/scrHMRepairs109.gml",
+        "project/scripts/scrHMCompiled_bosses_bossintros_mod_gml/scrHMCompiled_bosses_bossintros_mod_gml.gml"
+      ],
+      "modes": [
+        "group115hunter",
+        "group115bubbler",
+        "group115crystal",
+        "group115replace",
+        "sync115replacementchief",
+        "sync115replacementgungod"
+      ],
+      "status": "requires-final-receipt"
+    },
+    {
+      "item": 19,
+      "request": "Throne不能误用水下状态。",
+      "implementation": "生成新房和切换区域时清理过期水域缓存及玩家游泳显示状态。",
+      "sources": [
+        "project/scripts/scrHMSync1103Performance/scrHMSync1103Performance.gml",
+        "project/objects/GenCont/Create_0.gml"
+      ],
+      "modes": [
+        "sync115environment",
+        "sync115throne"
+      ],
+      "status": "requires-final-receipt"
+    },
+    {
+      "item": 20,
+      "request": "王座II存活时玩家只能在地板平台上行走。",
+      "implementation": "以仍存在的Floor平台限制位置，第二阶段死亡后释放限制给原结尾动画。",
+      "sources": [
+        "project/scripts/scrHMRepairs1102/scrHMRepairs1102.gml",
+        "project/objects/Player/Step_2.gml"
+      ],
+      "modes": [
+        "sync115throne"
+      ],
+      "status": "requires-final-receipt"
+    },
+    {
+      "item": 21,
+      "request": "修复Player.sprite_angle未初始化崩溃。",
+      "implementation": "玩家创建及结尾启用处初始化旋转字段，不依赖测试或旧存档提前赋值。",
+      "sources": [
+        "project/objects/Player/Create_0.gml",
+        "project/scripts/scrHMCompiled_bosses_throne_mod_gml/scrHMCompiled_bosses_throne_mod_gml.gml"
+      ],
+      "modes": [
+        "sync115throne"
+      ],
+      "status": "requires-final-receipt"
+    },
+    {
+      "item": 22,
+      "request": "减少绿洲纯显示泡泡开销。",
+      "implementation": "只限制环境泡泡的屏幕可见创建预算和存活上限，保留后续随机序列以及战斗实体。",
+      "sources": [
+        "project/scripts/scrHMSync1103Performance/scrHMSync1103Performance.gml",
+        "project/scripts/scrHMCompiled_maincode_mod_gml/scrHMCompiled_maincode_mod_gml.gml"
+      ],
+      "modes": [
+        "sync115bubbles"
+      ],
+      "status": "requires-final-receipt"
+    },
+    {
+      "item": 23,
+      "request": "王座II结尾恢复原版旋转下落。",
+      "implementation": "保留完整大小和可见身体，每逻辑帧按原方式下落并旋转，不替换为传送门缩小。",
+      "sources": [
+        "project/scripts/scrHMCompiled_maincode_mod_gml/scrHMCompiled_maincode_mod_gml.gml",
+        "project/scripts/scrHMRepairs1102/scrHMRepairs1102.gml"
+      ],
+      "modes": [
+        "sync115throne"
+      ],
+      "status": "requires-final-receipt"
+    },
+    {
+      "item": 24,
+      "request": "首领演出期间及结束后两秒玩家免伤。",
+      "implementation": "只在实际演出激活保护，结束后保留60逻辑帧伤害保护，不延长控制冻结。",
+      "sources": [
+        "project/scripts/scrHMRepairs109/scrHMRepairs109.gml",
+        "project/scripts/scrHMRepairs104/scrHMRepairs104.gml",
+        "project/scripts/scr_hit/scr_hit.gml",
+        "project/scripts/scrBossIntro/scrBossIntro.gml",
+        "project/objects/UberCont/Alarm_2.gml"
+      ],
+      "modes": [
+        "group115hunter",
+        "group115bubbler",
+        "group115crystal",
+        "messenger115short"
+      ],
+      "status": "requires-final-receipt"
+    },
+    {
+      "item": 25,
+      "request": "Loop1起1-3普通大匪有50%几率替换为丛林大匪。",
+      "implementation": "将普通沙漠关底替换门槛前移，额外种群仍独立。",
+      "sources": [
+        "project/scripts/scrHMCompiled_arkintide_mod_gml/scrHMCompiled_arkintide_mod_gml.gml"
+      ],
+      "modes": [
+        "sync115stagebandit",
+        "sync115policy",
+        "followup113allareas"
+      ],
+      "status": "requires-final-receipt"
+    },
+    {
+      "item": 26,
+      "request": "金星最终首领免疫自己发射的火箭。",
+      "implementation": "用不可被反射改写的原发射者标记传递到爆炸及子爆炸，普通玩家攻击仍有效；保留大鸟同样的修复。",
+      "sources": [
+        "project/scripts/scrHMRepairs1104Routes/scrHMRepairs1104Routes.gml",
+        "project/objects/JockRocket/Destroy_0.gml",
+        "project/objects/Explosion/Alarm_1.gml",
+        "project/scripts/scr_hit/scr_hit.gml",
+        "project/scripts/scr_can_hit/scr_can_hit.gml"
+      ],
+      "modes": [
+        "rocket1115gungod",
+        "rocket1115bird"
+      ],
+      "status": "requires-final-receipt"
+    },
+    {
+      "item": 27,
+      "request": "对照Y.V机枪转速和逻辑计时。",
+      "implementation": "保持原始逐发角度步进与30Hz逻辑计时，验证自然发射90发的间隔和转角，不声称未经验证的桌面倍率。",
+      "sources": [
+        "project/objects/YVBoss/Alarm_1.gml",
+        "project/objects/YVBoss/Step_0.gml",
+        "project/scripts/scrHMCompiled_arkintide_mod_gml/scrHMCompiled_arkintide_mod_gml.gml"
+      ],
+      "modes": [
+        "yv1115minigun",
+        "sync115phasehealth"
+      ],
+      "status": "requires-final-receipt"
+    },
+    {
+      "item": 28,
+      "request": "额外诅咒超级水晶召唤诅咒/闪电水晶。",
+      "implementation": "在普通区域也根据额外首领种类选择诅咒召唤表。",
+      "sources": [
+        "project/scripts/scrHMRepairs1104Routes/scrHMRepairs1104Routes.gml",
+        "project/objects/HyperCrystal/Alarm_1.gml"
+      ],
+      "modes": [
+        "extra1115cursed"
+      ],
+      "status": "requires-final-receipt"
+    },
+    {
+      "item": 29,
+      "request": "Y.V第二阶段采用当前Loop自身血量。",
+      "implementation": "不再继承被替换阶段的150血量，保留当前Loop、玩家数和凶恶面容的正常缩放。",
+      "sources": [
+        "project/scripts/scrHMCompiled_arkintide_mod_gml/scrHMCompiled_arkintide_mod_gml.gml",
+        "project/scripts/scrHMCompiled_enemies_mod_gml/scrHMCompiled_enemies_mod_gml.gml",
+        "project/scripts/scrHMSync1103Bosses/scrHMSync1103Bosses.gml"
+      ],
+      "modes": [
+        "sync115phasehealth"
+      ],
+      "status": "requires-final-receipt"
+    },
+    {
+      "item": 30,
+      "request": "局长和金星最终首领不掉辐射，包含融化角色追加点数。",
+      "implementation": "在统一辐射掉落入口排除这些首领，普通敌人仍正常掉落。",
+      "sources": [
+        "project/scripts/scrHMRepairs1115Root/scrHMRepairs1115Root.gml",
+        "project/scripts/scrRadDrop/scrRadDrop.gml"
+      ],
+      "modes": [
+        "sync115supplies"
+      ],
+      "status": "requires-final-receipt"
+    },
+    {
+      "item": 31,
+      "request": "替换关底首领的金星第一阶段战斗血量增加50%。",
+      "implementation": "只缩放可伤害的直升机战斗预算，不缩放14250阶段切换哨兵；正常金星遭遇不受此替换加成。",
+      "sources": [
+        "project/scripts/scrHMRepairs1115Root/scrHMRepairs1115Root.gml",
+        "project/scripts/scrHMRepairs1102/scrHMRepairs1102.gml"
+      ],
+      "modes": [
+        "sync115replacementgungod",
+        "sync115phasehealth"
+      ],
+      "status": "requires-final-receipt"
+    },
+    {
+      "item": 32,
+      "request": "通信员从Loop3起使用IDPD freak特效自动复活。",
+      "implementation": "使用真实原生计时和15帧复活区域特效，复活后保留武器、血条及身份。遵守第34项的新偏好。",
+      "sources": [
+        "project/scripts/scrHMSync1103Bosses/scrHMSync1103Bosses.gml",
+        "project/objects/WantRevivePopoFreak/Alarm_0.gml",
+        "project/objects/RevivePopoFreak/Alarm_0.gml",
+        "project/objects/enemy/Destroy_0.gml"
+      ],
+      "modes": [
+        "messenger115short",
+        "messenger115natural"
+      ],
+      "status": "requires-final-receipt"
+    },
+    {
+      "item": 33,
+      "request": "局长死亡时仅生成一次IDPD爆炸。",
+      "implementation": "死亡锁防止多次回调重复生成爆炸，保留纯动画退场门和独立最终奖励。",
+      "sources": [
+        "project/scripts/scrHMRepairs1102/scrHMRepairs1102.gml"
+      ],
+      "modes": [
+        "sync115supplies"
+      ],
+      "status": "requires-final-receipt"
+    },
+    {
+      "item": 34,
+      "request": "通信员自动复活间隔为Freak两倍，复活时可以有出场演出。",
+      "implementation": "读取原生800逻辑帧间隔并乘二，之后播放原生15帧特效；如Freak一样可重复复活但出口开启即取消。长等待不阻挡清关，15帧复活过程阻挡清关，普通复活可入场、额外首领仍不演出。",
+      "sources": [
+        "project/scripts/scrHMSync1103Bosses/scrHMSync1103Bosses.gml",
+        "project/scripts/scrHMRepairs109/scrHMRepairs109.gml",
+        "project/scripts/scrHMRepairs103/scrHMRepairs103.gml"
+      ],
+      "modes": [
+        "messenger115short",
+        "messenger115natural"
+      ],
+      "status": "requires-final-receipt"
+    },
+    {
+      "item": 35,
+      "request": "局长入场遵守桌面传送流程且不重复拳击。",
+      "implementation": "先完成传送，再完成立绘/镜头，释放后才启用行动及攻击定时器。",
+      "sources": [
+        "project/scripts/scrHMRepairs1102/scrHMRepairs1102.gml",
+        "project/objects/Last/Alarm_1.gml",
+        "project/objects/Last/Alarm_4.gml"
+      ],
+      "modes": [
+        "chief1115first",
+        "chief1115repeat",
+        "sync115replacementchief"
+      ],
+      "status": "requires-final-receipt"
+    }
+  ]
+}

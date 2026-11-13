@@ -253,6 +253,7 @@ var __hm_other6=scrHMOther(other);
 team = __hm_other6.team;
 var __hm_other7=scrHMOther(other);
 creator = __hm_other7;
+hm_rocket_owner1115 = __hm_other7.id;
 sprite_index = sprGoldRocket;
 ;
 speed = (random_range((- 6), 2)) * timescale;

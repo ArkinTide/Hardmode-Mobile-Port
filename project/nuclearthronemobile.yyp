@@ -30380,6 +30380,24 @@
         "name": "scrHMGameplayHunter1104",
         "path": "scripts/scrHMGameplayHunter1104/scrHMGameplayHunter1104.yy"
       }
+    },
+    {
+      "id": {
+        "name": "scrHMRepairs1115Root",
+        "path": "scripts/scrHMRepairs1115Root/scrHMRepairs1115Root.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrHMGameplay1105Performance",
+        "path": "scripts/scrHMGameplay1105Performance/scrHMGameplay1105Performance.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrHMGameplayRoot1115",
+        "path": "scripts/scrHMGameplayRoot1115/scrHMGameplayRoot1115.yy"
+      }
     }
   ],
   "resourceType": "GMProject",

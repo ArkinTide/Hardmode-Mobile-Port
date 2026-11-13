@@ -6,6 +6,7 @@ function scr_can_hit(_instance = other.id, _check_inframes = true, _attacker = u
 	if (_attacker == undefined) _attacker = id
 	
 	with _instance {
+		if(scrHMSelfRocketImmune1115(id,_attacker)) return false;
 		if (hp > 0 && (team != _attacker.team || team == team_none)) {
 			return !(_check_inframes && current_frame < nexthurt)
 		}

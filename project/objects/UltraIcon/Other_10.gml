@@ -1,5 +1,7 @@
 /// @description Select
 
+if (scrHML2UltraCancel1103()) exit
+
 var _race = race, _num = num
 
 scr_ultra_set(_race, _num, scr_ultra_get(_race, _num) + 1)

@@ -10,6 +10,7 @@ if fainted {
 }
 
 var _angle = image_angle + angle
+if(scrHMEnabled() && (self[$ "fallenable"]??-1)==1) _angle=image_angle+sprite_angle;
 
 wave += (0.4) * timescale
 

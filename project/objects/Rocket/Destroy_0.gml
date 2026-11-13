@@ -2,7 +2,7 @@ snd_stop(snd)
 
 snd_play(sndExplosionL)
 
-instance_create(x, y, Explosion)
+with(instance_create(x, y, Explosion)) scrHMExplosionSource1115(other.id)
 
 var _dir = random_angle
 
@@ -14,6 +14,7 @@ repeat 3 {
 	) {
         team = other.team
         hitid = other.hitid
+        scrHMExplosionSource1115(other.id)
     }
 
     _dir += 360 / 3

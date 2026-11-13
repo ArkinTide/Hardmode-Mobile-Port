@@ -107,6 +107,10 @@ function scrHMGameplayTestStep() {
         if(string_pos("sync112",mode)==1) scrHMGameplay1102();
         if(mode=="sync113chiefspacing") scrHMGameplayChiefSpacing1103();
         scrHMGameplayRoutes1104();
+        scrHMGameplayRoot1115();
+        scrHMGameplayPerformance1105();
+        scrHMGameplayRocket1115();
+        scrHMGameplayExtra1115();
         scrHMGameplayUI1104();
         scrHMGameplayHunter1104();
         if(string_pos("sync114",mode)==1) scrHMGameplay1104World();

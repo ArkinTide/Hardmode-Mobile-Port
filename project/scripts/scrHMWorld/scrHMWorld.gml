@@ -57,6 +57,7 @@ function scrHMWorldBegin() {
 
 function scrHMWorldStep() {
     if(!logic_tick || lockstep_stop || UberCont.paused) return;
+    scrHMRoomWaterState1105();
     if(instance_exists(self[$ "hm_portrait_active"]??noone)) return;
     // Resume only the tasks retained by this room. The source's new forks
     // execute immediately and first resume on the following 30 Hz tick.
@@ -66,6 +67,7 @@ function scrHMWorldStep() {
     scrHMTasksTick(1);
     if(instance_exists(GameCont)) {scrHMHook("step");scrHMNativeBossHealth1103();}
     if(!instance_exists(HMWorld.hm_portrait_active)) with(YVBoss) if(hp>0 && image_alpha>0) scrHMBossCamera1101(id,false);
+    if(!instance_exists(HMWorld.hm_portrait_active)) scrHMBossGroupTick115();
 }
 
 function scrHMRunStart() {

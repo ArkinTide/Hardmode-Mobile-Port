@@ -1,4 +1,6 @@
+if(scrHMChiefAlarm1115()) exit;
 if (drawspr == sprLastWarpIn) {
+    scrHMChiefSummon1115()
     snd_play_hit_big(sndLastTeleportShoot, 0)
 
     scrTarget()
